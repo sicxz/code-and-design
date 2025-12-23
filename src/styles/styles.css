@@ -19,14 +19,14 @@
 }
 
 .course-title-icon {
-  stroke: #b7142e !important;
-  color: #b7142e;
+  stroke: #22D3EE !important;
+  color: #22D3EE;
 }
 
 /* Ensure course icon container doesn't interfere */
 .course-icon svg {
   display: block;
-  stroke: #b7142e !important;
+  stroke: #22D3EE !important;
 }
 
 .badge-icon {
@@ -34,102 +34,145 @@
 }
 
 :root {
-  /* EWU Eagle Brand Color Palette */
-  --bg-primary: #fdfffc;
-  --bg-secondary: #fdfffc;
-  --bg-tertiary: #f8faf8;
-  --bg-canvas: #fdfffc;
-  --bg-card: #fdfffc;
-  --bg-subtle: rgba(253, 255, 252, 0.8);
-  --bg-inset: #f5f8f5;
+  /* DESN378 Nervous System Palette */
+  /* Dark neural aesthetic with glowing teal/cyan/violet signals */
+
+  /* Core Colors */
+  --neural-dark: #050816;
+  --neural-teal: #01B799;
+  --neural-cyan: #22D3EE;
+  --neural-violet: #A855F7;
+  --neural-light: #E5F3FF;
+  --neural-text: #111827;
+  --neural-muted: #9CA3AF;
+
+  /* Background Colors - Dark Mode */
+  --bg-primary: #050816;
+  --bg-secondary: #0a1628;
+  --bg-tertiary: #111d36;
+  --bg-canvas: #050816;
+  --bg-card: #0d1a2d;
+  --bg-subtle: rgba(5, 8, 22, 0.9);
+  --bg-inset: #081420;
+  --bg-dark: #050816;
+  --bg-light: #E5F3FF;
 
   /* Text Colors */
-  --text-primary: #393e41;
-  --text-secondary: #656d76;
-  --text-muted: #848d97;
-  --text-inverse: #f7fff7;
-  --text-link: #01baef;
+  --text-primary: #E5F3FF;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --text-inverse: #111827;
+  --text-link: #22D3EE;
 
-  /* EWU Eagle Brand Colors */
-  --eagle-red: #b7142e;
-  --eagle-red-dark: #9a1125;
-  --eagle-red-light: rgba(183, 20, 46, 0.1);
-  --eagle-red-subtle: rgba(183, 20, 46, 0.05);
+  /* Primary Brand Colors - Teal */
+  --teal: #01B799;
+  --teal-dark: #019a80;
+  --teal-light: rgba(1, 183, 153, 0.2);
+  --teal-subtle: rgba(1, 183, 153, 0.1);
+  --teal-glow: rgba(1, 183, 153, 0.4);
 
-  --eagle-black: #393e41;
-  --eagle-black-light: rgba(57, 62, 65, 0.1);
-  --eagle-black-subtle: rgba(57, 62, 65, 0.05);
+  /* Secondary - Cyan (signals/active) */
+  --cyan: #22D3EE;
+  --cyan-dark: #06B6D4;
+  --cyan-light: rgba(34, 211, 238, 0.2);
+  --cyan-subtle: rgba(34, 211, 238, 0.1);
+  --cyan-glow: rgba(34, 211, 238, 0.4);
 
-  --eagle-blue: #01baef;
-  --eagle-blue-dark: #0194c7;
-  --eagle-blue-light: rgba(1, 186, 239, 0.1);
-  --eagle-blue-subtle: rgba(1, 186, 239, 0.05);
+  /* Accent - Violet (synapses/emphasis) */
+  --violet: #A855F7;
+  --violet-dark: #9333EA;
+  --violet-light: rgba(168, 85, 247, 0.2);
+  --violet-subtle: rgba(168, 85, 247, 0.1);
+  --violet-glow: rgba(168, 85, 247, 0.4);
 
-  --eagle-green: #6bd425;
-  --eagle-green-dark: #57b01e;
-  --eagle-green-light: rgba(107, 212, 37, 0.1);
-  --eagle-green-subtle: rgba(107, 212, 37, 0.05);
+  /* Legacy compatibility - map to neural colors */
+  --eagle-red: #01B799;
+  --eagle-red-dark: #019a80;
+  --eagle-red-light: rgba(1, 183, 153, 0.2);
+  --eagle-red-subtle: rgba(1, 183, 153, 0.1);
 
-  /* Semantic Colors Following Primer Patterns with EWU Colors */
-  --color-accent-fg: #01baef;
-  --color-accent-emphasis: #01baef;
-  --color-accent-muted: rgba(1, 186, 239, 0.4);
-  --color-accent-subtle: rgba(1, 186, 239, 0.1);
+  --eagle-black: #111827;
+  --eagle-black-light: rgba(17, 24, 39, 0.2);
+  --eagle-black-subtle: rgba(17, 24, 39, 0.1);
 
-  --color-success-fg: #6bd425;
-  --color-success-emphasis: #6bd425;
-  --color-success-muted: rgba(107, 212, 37, 0.4);
-  --color-success-subtle: rgba(107, 212, 37, 0.1);
+  --eagle-blue: #22D3EE;
+  --eagle-blue-dark: #06B6D4;
+  --eagle-blue-light: rgba(34, 211, 238, 0.2);
+  --eagle-blue-subtle: rgba(34, 211, 238, 0.1);
 
-  --color-danger-fg: #b7142e;
-  --color-danger-emphasis: #b7142e;
-  --color-danger-muted: rgba(183, 20, 46, 0.4);
-  --color-danger-subtle: rgba(183, 20, 46, 0.1);
+  --eagle-green: #01B799;
+  --eagle-green-dark: #019a80;
+  --eagle-green-light: rgba(1, 183, 153, 0.2);
+  --eagle-green-subtle: rgba(1, 183, 153, 0.1);
 
-  --color-attention-fg: #fb8500;
-  --color-attention-emphasis: #fb8500;
-  --color-attention-muted: rgba(251, 133, 0, 0.4);
-  --color-attention-subtle: rgba(251, 133, 0, 0.1);
+  /* Semantic Colors */
+  --color-accent-fg: #22D3EE;
+  --color-accent-emphasis: #01B799;
+  --color-accent-muted: rgba(34, 211, 238, 0.4);
+  --color-accent-subtle: rgba(34, 211, 238, 0.1);
 
-  --color-neutral-fg: #393e41;
-  --color-neutral-emphasis: #393e41;
-  --color-neutral-muted: rgba(57, 62, 65, 0.4);
-  --color-neutral-subtle: rgba(57, 62, 65, 0.1);
+  --color-success-fg: #01B799;
+  --color-success-emphasis: #019a80;
+  --color-success-muted: rgba(1, 183, 153, 0.4);
+  --color-success-subtle: rgba(1, 183, 153, 0.1);
 
-  /* Legacy brand variables for compatibility */
-  --brand-primary: #b7142e;
-  --brand-primary-dark: #9a1125;
-  --brand-primary-light: rgba(183, 20, 46, 0.1);
-  --brand-primary-subtle: rgba(183, 20, 46, 0.05);
-  --brand-secondary: #393e41;
+  --color-danger-fg: #EF4444;
+  --color-danger-emphasis: #DC2626;
+  --color-danger-muted: rgba(239, 68, 68, 0.4);
+  --color-danger-subtle: rgba(239, 68, 68, 0.1);
+
+  --color-attention-fg: #F59E0B;
+  --color-attention-emphasis: #D97706;
+  --color-attention-muted: rgba(245, 158, 11, 0.4);
+  --color-attention-subtle: rgba(245, 158, 11, 0.1);
+
+  --color-neutral-fg: #9CA3AF;
+  --color-neutral-emphasis: #6B7280;
+  --color-neutral-muted: rgba(156, 163, 175, 0.4);
+  --color-neutral-subtle: rgba(156, 163, 175, 0.1);
+
+  /* Brand variables */
+  --brand-primary: #01B799;
+  --brand-primary-dark: #019a80;
+  --brand-primary-light: rgba(1, 183, 153, 0.2);
+  --brand-primary-subtle: rgba(1, 183, 153, 0.1);
+  --brand-secondary: #22D3EE;
+  --brand-red: #01B799;
+
+  /* Terminal colors */
+  --terminal-green: #01B799;
 
   /* UI Colors */
-  --border-color: rgba(57, 62, 65, 0.2);
-  --border-light: rgba(57, 62, 65, 0.15);
-  --border-subtle: rgba(57, 62, 65, 0.08);
+  --border-color: rgba(34, 211, 238, 0.2);
+  --border-light: rgba(34, 211, 238, 0.12);
+  --border-subtle: rgba(34, 211, 238, 0.06);
   --border-accent: var(--brand-primary);
 
-  /* Enhanced Shadows */
-  --shadow-sm: 0 1px 0 rgba(57, 62, 65, 0.04);
-  --shadow-md: 0 3px 6px rgba(57, 62, 65, 0.15);
-  --shadow-lg: 0 8px 24px rgba(57, 62, 65, 0.2);
-  --shadow-xl: 0 12px 28px rgba(57, 62, 65, 0.3);
-  --shadow-inset: inset 0 1px 0 rgba(57, 62, 65, 0.1);
-  --shadow-glow: 0 0 0 3px var(--brand-primary-light);
+  /* Enhanced Shadows - Glow effects for dark mode */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-glow: 0 0 20px var(--teal-glow);
+  --shadow-glow-cyan: 0 0 20px var(--cyan-glow);
+  --shadow-glow-violet: 0 0 20px var(--violet-glow);
 
-  /* Modern Gradients - EWU Eagle Style */
+  /* Gradients - Neural signals */
   --gradient-header: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-primary) 100%);
-  --gradient-card: linear-gradient(180deg, var(--bg-card) 0%, rgba(253, 255, 252, 0.9) 100%);
-  --gradient-accent: linear-gradient(135deg, var(--eagle-blue-subtle) 0%, var(--eagle-green-subtle) 100%);
+  --gradient-card: linear-gradient(180deg, var(--bg-card) 0%, rgba(5, 8, 22, 0.95) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--teal-subtle) 0%, var(--cyan-subtle) 100%);
   --gradient-subtle: linear-gradient(180deg, transparent 0%, var(--bg-subtle) 100%);
-  --gradient-vibrant: linear-gradient(90deg, var(--eagle-red) 0%, var(--eagle-blue) 50%, var(--eagle-green) 100%);
-  --gradient-primary-subtle: linear-gradient(135deg, var(--eagle-red-subtle) 0%, transparent 100%);
+  --gradient-vibrant: linear-gradient(90deg, #01B799 0%, #22D3EE 50%, #A855F7 100%);
+  --gradient-primary-subtle: linear-gradient(135deg, var(--teal-subtle) 0%, transparent 100%);
+  --gradient-neural: linear-gradient(135deg, #01B799 0%, #22D3EE 100%);
 
   /* Decorative Gradients */
   --gradient-divider: linear-gradient(90deg, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
-  --gradient-badge: linear-gradient(135deg, var(--eagle-red) 0%, var(--eagle-red-dark) 100%);
-  --gradient-blue-badge: linear-gradient(135deg, var(--eagle-blue) 0%, var(--eagle-blue-dark) 100%);
-  --gradient-green-badge: linear-gradient(135deg, var(--eagle-green) 0%, var(--eagle-green-dark) 100%);
+  --gradient-badge: linear-gradient(135deg, #01B799 0%, #22D3EE 100%);
+  --gradient-blue-badge: linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%);
+  --gradient-green-badge: linear-gradient(135deg, #01B799 0%, #019a80 100%);
+  --gradient-violet-badge: linear-gradient(135deg, #A855F7 0%, #9333EA 100%);
 
   /* Typography */
   --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
@@ -225,13 +268,10 @@ body {
 .course-header {
   background: var(--gradient-header);
   color: var(--text-primary);
-  padding: 32px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  padding-top: 16px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--border-color);
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
 }
 
 .header-container {
@@ -262,7 +302,7 @@ body {
 .course-icon svg {
   width: 32px;
   height: 32px;
-  stroke: #b7142e !important;
+  stroke: #22D3EE !important;
 }
 
 .course-title {
@@ -277,8 +317,9 @@ body {
 .course-badge {
   display: inline-block;
   padding: 4px 12px;
-  background: var(--bg-dark);
-  color: white;
+  background: linear-gradient(135deg, rgba(1, 183, 153, 0.2) 0%, rgba(34, 211, 238, 0.2) 100%);
+  color: var(--cyan);
+  border: 1px solid rgba(34, 211, 238, 0.3);
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
@@ -306,7 +347,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  background: white;
+  background: var(--bg-card);
   color: var(--text-primary);
 }
 
@@ -326,12 +367,13 @@ body {
 
 /* Breadcrumb Navigation */
 .breadcrumb-nav {
-  background: white;
+  background: rgba(13, 26, 45, 0.95);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
-  z-index: 50;
-  backdrop-filter: blur(8px);
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
 }
 
 .breadcrumb-container {
@@ -629,7 +671,8 @@ body {
 
 /* Terminal-style Code Block */
 .code-block {
-  background: var(--bg-dark);
+  background: #030712;
+  border: 1px solid rgba(1, 183, 153, 0.2);
   border-radius: 8px;
   padding: 20px;
   font-family: var(--font-mono);
@@ -639,7 +682,7 @@ body {
   margin: 20px 0;
   position: relative;
   overflow: auto;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 0 30px rgba(1, 183, 153, 0.1);
 }
 
 .code-block::before {
@@ -657,7 +700,7 @@ body {
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border-light);
-  background: white;
+  background: var(--bg-card);
 }
 
 .week-item {
@@ -666,7 +709,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: white;
+  background: var(--bg-card);
   transition: background 0.2s ease;
 }
 
@@ -715,13 +758,21 @@ body {
 }
 
 .state-label-available {
-  background-color: #1f883d;
-  color: #ffffff;
+  background: linear-gradient(135deg, #01B799 0%, #22D3EE 100%);
+  color: #050816;
+  font-weight: 600;
+}
+
+.state-label-coming {
+  background-color: rgba(156, 163, 175, 0.3);
+  color: #9CA3AF;
+  border: 1px solid rgba(156, 163, 175, 0.3);
 }
 
 .state-label-locked {
-  background-color: #656d76;
-  color: #ffffff;
+  background-color: rgba(107, 114, 128, 0.3);
+  color: #6B7280;
+  border: 1px solid rgba(107, 114, 128, 0.3);
 }
 
 /* Buttons */
@@ -763,68 +814,71 @@ body {
   transform: translateY(1px);
 }
 
-/* Action Buttons - Red border with red text */
+/* Action Buttons - Teal/Cyan glow */
 .btn-primary,
-.btn-start,
-.btn-danger {
-  background: transparent;
-  color: var(--eagle-red);
-  border: 1px solid var(--eagle-red);
+.btn-start {
+  background: linear-gradient(135deg, #01B799 0%, #22D3EE 100%);
+  color: #050816;
+  border: none;
+  font-weight: 600;
 }
 
 .btn-primary:hover,
-.btn-start:hover,
-.btn-danger:hover {
-  background: var(--eagle-red);
-  color: var(--bg-primary);
+.btn-start:hover {
+  box-shadow: 0 0 20px var(--teal-glow), 0 0 40px var(--cyan-glow);
+  transform: translateY(-1px);
 }
 
 .btn-primary:active,
-.btn-start:active,
-.btn-danger:active {
+.btn-start:active {
   transform: translateY(1px);
+  box-shadow: 0 0 10px var(--teal-glow);
 }
 
-/* Secondary/Default Buttons - Onyx border with onyx text */
+.btn-danger {
+  background: transparent;
+  color: var(--color-danger-fg);
+  border: 1px solid var(--color-danger-fg);
+}
+
+.btn-danger:hover {
+  background: var(--color-danger-fg);
+  color: var(--bg-primary);
+}
+
+/* Secondary/Default Buttons - Outline with glow */
 .btn-secondary,
 .btn-accent {
   background: transparent;
-  color: var(--eagle-black);
-  border: 2px solid var(--eagle-black);
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
 }
 
 .btn-secondary:hover,
 .btn-accent:hover {
-  background: var(--eagle-red-light);
-  color: var(--eagle-red);
-  text-decoration: underline;
+  background: var(--cyan-subtle);
+  box-shadow: 0 0 15px var(--cyan-glow);
 }
 
 .btn-secondary:active,
 .btn-accent:active {
-  border-color: var(--eagle-green);
-  background: var(--eagle-red-light);
-  color: var(--eagle-red);
   transform: translateY(1px);
+  box-shadow: 0 0 8px var(--cyan-glow);
 }
 
 /* Outline variant - legacy support */
 .btn-outline {
   background: transparent;
-  color: var(--eagle-red);
-  border: 2px solid var(--eagle-red);
+  color: var(--teal);
+  border: 1px solid var(--teal);
 }
 
 .btn-outline:hover {
-  background: var(--eagle-red-light);
-  color: var(--eagle-red);
-  text-decoration: underline;
+  background: var(--teal-subtle);
+  box-shadow: 0 0 12px var(--teal-glow);
 }
 
 .btn-outline:active {
-  border-color: var(--eagle-green);
-  background: var(--eagle-red-light);
-  color: var(--eagle-red);
   transform: translateY(1px);
 }
 
@@ -863,17 +917,19 @@ body {
 
 /* Links */
 a {
-  color: var(--eagle-red);
+  color: var(--cyan);
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.2s, text-shadow 0.2s;
 }
 
 a:hover {
-  color: var(--eagle-red-dark);
+  color: var(--teal);
+  text-shadow: 0 0 8px var(--teal-glow);
 }
 
 a:active {
-  color: var(--eagle-red-dark);
+  color: var(--teal-dark);
 }
 
 /* Focus States */
@@ -883,18 +939,20 @@ a:focus {
 
 button:focus,
 .btn:focus {
-  outline: 2px solid var(--eagle-red);
+  outline: 2px solid var(--cyan);
   outline-offset: 2px;
+  box-shadow: 0 0 12px var(--cyan-glow);
 }
 
 /* Code Inline */
 code {
   padding: 2px 6px;
   font-size: 85%;
-  background: var(--bg-inset);
+  background: rgba(1, 183, 153, 0.1);
+  border: 1px solid rgba(1, 183, 153, 0.2);
   border-radius: 4px;
   font-family: var(--font-mono);
-  color: var(--eagle-red);
+  color: var(--teal);
 }
 
 /* Quick Reference Styles */
@@ -1038,8 +1096,9 @@ code {
 }
 
 .badge-primary {
-  background: var(--eagle-red);
-  color: white;
+  background: linear-gradient(135deg, #01B799 0%, #22D3EE 100%);
+  color: #050816;
+  font-weight: 600;
 }
 
 .badge-secondary {
@@ -1062,13 +1121,13 @@ code {
 
 /* Accent Blocks */
 .accent-block {
-  border-left: 3px solid var(--eagle-red);
+  border-left: 3px solid var(--teal);
 }
 
 .accent-block-subtle {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
-  border-left: 3px solid var(--eagle-red);
+  border-left: 3px solid var(--teal);
 }
 
 /* Enhanced Cards */
@@ -1085,6 +1144,10 @@ code {
 
 .color-bar-red {
   background: var(--gradient-badge);
+}
+
+.color-bar-primary {
+  background: var(--gradient-vibrant);
 }
 
 .color-bar-blue {
@@ -1110,13 +1173,13 @@ code {
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: var(--eagle-red);
+  color: var(--cyan);
   font-size: 16px;
   margin-right: var(--space-3);
 }
 
 .icon-enhanced.icon-primary {
-  color: var(--eagle-red);
+  color: var(--cyan);
 }
 
 .icon-enhanced.icon-accent {
@@ -1160,7 +1223,11 @@ code {
   margin-right: var(--space-2);
 }
 
-.status-available { background: var(--eagle-green); }
+.status-available {
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+.status-coming { background: var(--text-muted); }
 .status-locked { background: var(--text-muted); }
 .status-coming-soon { background: var(--color-attention-emphasis); }
 
@@ -1603,5 +1670,85 @@ code {
 
   .resource-links {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-color);
+  margin-top: 48px;
+  padding: 32px 0 24px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.footer-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--cyan);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer-divider {
+  color: var(--border-color);
+}
+
+@media (max-width: 640px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 16px;
   }
 }

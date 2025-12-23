@@ -48,18 +48,19 @@ const { title = "DESN368: Code+Design 1" } = Astro.props;
                     </div>
                     <div>
                         <h1 class="course-title">
-                            DESN368: Code+Design 1
+                            DESN378: Code+Design 2
                             <span class="course-badge">
                                 <Icon name="zap" size={14} class="badge-icon" />
-                                Fall 2025
+                                Winter 2026
                             </span>
                         </h1>
                         <p class="course-subtitle">
-                            <span style="color: var(--brand-red); font-weight: 600;">Brick</span> by
-                            <span style="color: var(--brand-red); font-weight: 600;">Brick</span>.
-                            <span style="color: var(--brand-primary); font-weight: 600;">Tag</span> by
-                            <span style="color: var(--brand-primary); font-weight: 600;">Tag</span>.
-                            <span style="font-weight: 600;">Source-Level Fluency</span>.
+                            <span style="color: var(--brand-red); font-weight: 600;">Wiring Up</span> the
+                            <span style="color: var(--brand-red); font-weight: 600;">Nervous System</span>.
+                            <span style="color: var(--brand-primary); font-weight: 600;">Sense.</span> 
+                            <span style="color: var(--brand-primary); font-weight: 600;">Respond.</span>
+                            <span style="color: var(--brand-primary); font-weight: 600;">Adapt.</span>
+                            
                         </p>
                     </div>
                 </div>
@@ -73,7 +74,7 @@ const { title = "DESN368: Code+Design 1" } = Astro.props;
                     <svg width="16" height="16" fill="none" stroke="var(--brand-primary)" viewBox="0 0 24 24" style="margin-right: 6px;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
                     </svg>
-                    11 students
+                    22 students
                 </span>
                 <span class="meta-item">
                     <svg width="16" height="16" fill="none" stroke="var(--brand-red)" viewBox="0 0 24 24" style="margin-right: 6px;">
@@ -94,6 +95,28 @@ const { title = "DESN368: Code+Design 1" } = Astro.props;
 
     <!-- This is where page content goes -->
     <slot />
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-title">DESN378: Code+Design 2</span>
+                    <span class="footer-subtitle">Eastern Washington University</span>
+                </div>
+                <div class="footer-links">
+                    <a href="/syllabus">Syllabus</a>
+                    <a href="https://canvas.ewu.edu" target="_blank">Canvas</a>
+                    <a href="https://github.com/sicxz/desn378-template" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Travis Masingale</span>
+                <span class="footer-divider">·</span>
+                <span>Winter Quarter 2026</span>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Quick Reference toggle functionality

@@ -3,23 +3,53 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import '../styles/styles.css';
 
-// Define the weeks data directly for now
-const weeks = [
-    { number: 0, title: "S3tup & 0nb04rd1ng", subtitle: "Environment Configuration - Dev tools mastery", status: "available" },
-    { number: 1, title: "HTML Fundamentals & Internet Basics", subtitle: "Understanding the Internet & HTML Foundations", status: "available"},
-    { number: 2, title: "D0cum3nt 4rch1t3ctur3", subtitle: "Structure Before Style - Valid HTML foundations", status: "available" },
-    { number: 3, title: "Th3 C4sc4d3 B3g1n5", subtitle: "CSS Separation of Concerns", status: "locked" },
-    { number: 4, title: "F0rm5 & 1nput5", subtitle: "User Interaction Patterns", status: "locked" },
-    { number: 5, title: "Fl3xb0x M45t3ry", subtitle: "One-dimensional Layouts", status: "locked" },
-    { number: 6, title: "Tr1but3 P4g3", subtitle: "First Complete Project", status: "locked" },
-    { number: 7, title: "Gr1d Sy5t3m5", subtitle: "Two-dimensional Thinking", status: "locked" },
-    { number: 8, title: "Pr0duct L4nd1ng", subtitle: "Professional Product Page", status: "available", link: "/assignments" },
-    { number: 9, title: "P0rtf0l10 Sy5t3m", subtitle: "Personal Brand Development (2 weeks)", status: "locked" },
-    { number: 11, title: "Sh1p 1t", subtitle: "Launch & Deploy", status: "locked" }
+// Define the weeks data for DESN378
+const units = [
+    {
+        name: "Unit 1: Adaptive Systems",
+        question: "How does it adapt to me?",
+        weeks: [
+            { number: 0, title: "The On-Ramp", subtitle: "DevTools, console, script linking", status: "available" },
+            { number: 1, title: "First Light", subtitle: "Design tokens, theme toggle, querySelector", status: "available" },
+            { number: 2, title: "The Memory", subtitle: "localStorage, preference persistence", status: "coming" }
+        ]
+    },
+    {
+        name: "Unit 2: Feedback & State",
+        question: "What happens when I interact?",
+        weeks: [
+            { number: 3, title: "The Shape", subtitle: "SVG as interactive material", status: "coming" },
+            { number: 4, title: "The Reaction", subtitle: "State patterns, focus, transitions", status: "coming" }
+        ]
+    },
+    {
+        name: "Unit 3: Motion & Pacing",
+        question: "How does it move with me?",
+        weeks: [
+            { number: 5, title: "The Pulse", subtitle: "CSS animation, easing, keyframes", status: "coming" },
+            { number: 6, title: "The Sequence", subtitle: "GSAP fundamentals", status: "coming" },
+            { number: 7, title: "The Scroll", subtitle: "ScrollTrigger, scroll choreography", status: "coming" }
+        ]
+    },
+    {
+        name: "Unit 4: Creative Voice",
+        question: "What makes it mine?",
+        weeks: [
+            { number: 8, title: "The Voice", subtitle: "Track selection, signature concept", status: "coming" },
+            { number: 9, title: "The Craft", subtitle: "Signature execution", status: "coming" }
+        ]
+    },
+    {
+        name: "Unit 5: Integration",
+        question: "Does it all hold together?",
+        weeks: [
+            { number: 10, title: "The Polish", subtitle: "Portfolio polish, accessibility audit", status: "coming" }
+        ]
+    }
 ];
 ---
 
-<BaseLayout title="Home - DESN368">
+<BaseLayout title="Home - DESN378">
     <!-- Breadcrumb Navigation -->
     <nav class="breadcrumb-nav">
         <div class="breadcrumb-container">
@@ -31,46 +61,58 @@ const weeks = [
 
     <main class="course-content two-column">
         <div class="main-content fade-in">
-            <!-- Course Introduction -->
-            <section class="card card-accent accent-block card-enhanced">
-                <div class="color-bar color-bar-red"></div>
+            <!-- Welcome to the Next Layer -->
+            <section class="card card-enhanced">
+                <div class="color-bar color-bar-multi"></div>
                 <h2>
                     <span class="icon-enhanced icon-primary">
                         <Icon name="lightbulb" size={20} />
                     </span>
-                    Welcome to the <span class="text-gradient">Real Thing</span>
+                    Welcome to the <span class="text-gradient">Next Layer</span>
                 </h2>
-                <p>Most people live on the <strong>surface</strong> of the web—scrolling, clicking, tapping. But beneath all of that, there's <span style="color: var(--brand-primary); font-weight: 600;">structure</span>. <span style="color: var(--brand-red); font-weight: 600;">Logic</span>. <strong>Craft</strong>.</p>
+                <p>You know how to design and build sites with HTML(structure) and CSS(style).<br>
+                    <em>Pages that look right.</em><br>
+                  <em>Layouts that hold together.</em></p>
+                <p>But they don't <em>do</em> anything yet.</p>
+                <p>What's missing... <em>behavior!</em>.</p>
+                <p>This quarter, you add the nervous system—the layer that senses a click, responds to a scroll, remembers a preference. The layer that makes the difference between a static page and an <em>experience</em>.</p>
+                <p>You will learn JavaScript the way designers need it.<br>
+<strong>Behavior first.</strong> <strong>Syntax second.</strong><br>
+<em>“How should this feel?”</em> before <em>“How do I code this?”</em>
+               
+                  
 
-                <p>In this class, you'll learn to read and write the <code>source code</code> that powers the modern internet. Not with drag-and-drop tools. Not through shortcuts. But with the foundational tools—<span style="background: rgba(212, 24, 61, 0.1); color: var(--brand-red); padding: 2px 6px; border-radius: 4px; font-family: var(--font-mono);">HTML</span> and <span style="background: rgba(3, 2, 19, 0.1); color: var(--brand-primary); padding: 2px 6px; border-radius: 4px; font-family: var(--font-mono);">CSS</span>—the way it actually works.</p>
 
-                <p>You'll start from <strong>nothing</strong>. Build from <strong>scratch</strong>. And by the end, you won't just have a few websites. You'll have a <span style="color: var(--brand-primary); font-weight: 600;">lens</span>—a way of seeing and shaping digital space that most people never access.</p>
 
-                <div style="padding: 20px; background: var(--gradient-accent); border-radius: 8px; border-left: 4px solid var(--brand-red); margin: 20px 0;">
+
+
+                <div style="padding: 20px; background: var(--gradient-accent); border-radius: 8px; border-left: 4px solid var(--brand-primary); margin: 20px 0;">
                     <p style="font-style: italic; font-size: 18px; font-weight: 500; margin: 0;">
-                        💻 This isn't a bootcamp. This isn't a YouTube tutorial. <span style="color: var(--brand-red); font-weight: 700;">This is the real thing.</span>
+                        This is not computer science.<br>It's Interaction Design, where code is the material we use to shape experience.
+                        
+
                     </p>
                 </div>
             </section>
 
-            <div class="section-divider with-icon"></div>
+            <div class="section-divider"></div>
 
             <!-- Student Pledge -->
             <section class="card accent-block-subtle card-enhanced">
                 <h2>
                     <span class="icon-enhanced icon-primary">
-                        <Icon name="zap" size={20} />
+                        <Icon name="terminal" size={20} />
                     </span>
-                    Student Pledge
-                    <span class="badge badge-primary">Required</span>
+                    The Protocol 
+                    <span class="badge badge-primary">Pledge</span>
                 </h2>
                 <div class="code-block">
-                    $ "I will build my foundation tag by tag.<br>
-                    I will understand before I automate.<br>
-                    When I use AI, I will remain the architect.<br>
-                    I will review every suggestion.<br>
-                    I will know what my code does.<br>
-                    I will build with intent and intelligence."
+                    $ "I will design behavior, not just apply effects.<br>
+                    I will ask 'how should this feel?' before 'how do I code this?'<br>
+                    When I use AI, I will understand what it generates.<br>
+                    I will respect user preferences and build for everyone.<br>
+                    I will develop my creative voice through code.<br>
+                    I will make things that respond with intent."
                 </div>
             </section>
 
@@ -83,236 +125,206 @@ const weeks = [
                     <span class="icon-enhanced">
                         <Icon name="book" size={20} />
                     </span>
-                    Course Structure: 11 Weeks of Foundation
+                    Course Structure: 10 Weeks of Behavior
                 </h2>
-                <div class="week-list">
-                    {weeks.map((week) => (
-                        <div class="week-item">
-                            <div>
-                                <h3>
-                                    <span class={`status-dot status-${week.status}`}></span>
-                                    {week.status === "available" ? (
-                                        <a href={week.link || `/weeks/week-${week.number}`}>
-                                            Week {week.number}: {week.title}
-                                        </a>
-                                    ) : (
-                                        `Week ${week.number}: ${week.title}`
-                                    )}
-                                </h3>
-                                <p>{week.subtitle}</p>
-                            </div>
-                            <span class={`state-label state-label-${week.status}`}>
-                                {week.status === "available" ? "Available" : "Coming Soon"}
-                            </span>
+
+                {units.map((unit) => (
+                    <div class="unit-block" style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 0.25rem;">{unit.name}</h3>
+                        <p style="font-style: italic; color: var(--text-muted); margin-bottom: 1rem;">"{unit.question}"</p>
+                        <div class="week-list">
+                            {unit.weeks.map((week) => (
+                                <div class="week-item">
+                                    <div>
+                                        <h4 style="margin: 0;">
+                                            <span class={`status-dot status-${week.status}`}></span>
+                                            {week.status === "available" ? (
+                                                <a href={`/weeks/week-${week.number}`}>
+                                                    Week {week.number}: {week.title}
+                                                </a>
+                                            ) : (
+                                                `Week ${week.number}: ${week.title}`
+                                            )}
+                                        </h4>
+                                        <p style="margin: 0.25rem 0 0 1.5rem; font-size: 0.875rem;">{week.subtitle}</p>
+                                    </div>
+                                    <span class={`state-label state-label-${week.status}`}>
+                                        {week.status === "available" ? "Available" : "Coming Soon"}
+                                    </span>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </section>
-
-            <div class="section-divider"></div>
-
-            <!-- Brick by Brick Method -->
-            <section class="card accent-block card-enhanced">
-                <h2>
-                    <span class="icon-enhanced">
-                        <Icon name="layers" size={20} />
-                    </span>
-                    The "Brick by Brick" Method
-                </h2>
-                
-                <h3>Micro-Skills Architecture</h3>
-                <p>Each assignment builds one tiny, specific skill that becomes the foundation for the next. You cannot proceed to Assignment B until you demonstrate mastery of Assignment A through multiple assessment gates.</p>
-                
-                <h3>Four Types of Mastery Gates</h3>
-                <ul>
-                    <li><strong>Technical Gate</strong> - Code validates and works perfectly</li>
-                    <li><strong>Conceptual Gate</strong> - Can explain why it works</li>
-                    <li><strong>Debug Gate</strong> - Can fix broken code</li>
-                    <li><strong>Teaching Gate</strong> - Can help a classmate understand</li>
-                </ul>
-
-                <h3>No Student Left Behind</h3>
-                <p>Multiple learning pathways accommodate different learning styles:</p>
-                <ul>
-                    <li><strong>Visual learners:</strong> Figma integration and visual diagrams</li>
-                    <li><strong>Kinesthetic learners:</strong> Hands-on coding from day one</li>
-                    <li><strong>Analytical learners:</strong> Deep documentation and technical specs</li>
-                    <li><strong>Social learners:</strong> Peer teaching and pair programming</li>
-                </ul>
-
-                <h3>Why This Works</h3>
-                <p>Traditional courses throw everything at you at once. You memorize, you forget. This course builds muscle memory. Each micro-skill becomes automatic before you move on. By Week 11, you won't have to think about syntax—your fingers will know.</p>
+                    </div>
+                ))}
             </section>
 
             <div class="section-divider"></div>
 
             <!-- Course Philosophy -->
-            <section class="card card-enhanced">
-                <div class="color-bar color-bar-multi"></div>
-                <h2>
-                    <span class="icon-enhanced icon-primary">
-                        <Icon name="lightbulb" size={20} />
-                    </span>
-                    Course Philosophy: "Brick by Brick. Tag by Tag."
-                </h2>
-
-                <p>Most people live on the surface of the web—scrolling, clicking, tapping. But beneath all of that, there's structure. Logic. Craft.</p>
-
-                <p>This course teaches students to become <strong>Designer-Coders</strong>—professionals who think visually AND structurally. You'll learn to see the web through two essential lenses:</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
-                    <div style="padding: 16px; background: var(--gradient-accent); border-radius: 8px; border-left: 4px solid var(--brand-primary);">
-                        <h4 style="margin: 0 0 8px 0; color: var(--brand-primary);">The Designer's Eye:</h4>
-                        <p style="margin: 0; font-size: 14px;">Typography, color, layout, hierarchy, user experience</p>
-                    </div>
-                    <div style="padding: 16px; background: var(--gradient-accent); border-radius: 8px; border-left: 4px solid var(--brand-red);">
-                        <h4 style="margin: 0 0 8px 0; color: var(--brand-red);">The Coder's Mind:</h4>
-                        <p style="margin: 0; font-size: 14px;">Structure, syntax, logic, problem-solving, optimization</p>
-                    </div>
-                </div>
-
-                <p>We build understanding brick by brick, tag by tag. Starting with hand-coded foundations, progressively integrating AI as a professional partner. By the end, you won't just make websites—you'll craft digital experiences with both aesthetic sensibility and technical precision.</p>
-
-                <h3>The Journey:</h3>
-                <ul>
-                    <li><strong>Weeks 1-3:</strong> Foundation (Hand-coding, AI as tutor)</li>
-                    <li><strong>Weeks 4-6:</strong> Styling (Design principles, AI as validator)</li>
-                    <li><strong>Weeks 7-9:</strong> Layout (Complex systems, AI as co-coder)</li>
-                    <li><strong>Weeks 10-11:</strong> Portfolio (Professional work, AI as partner)</li>
-                </ul>
-
-                <div style="padding: 20px; background: var(--gradient-accent); border-radius: 8px; border-left: 4px solid var(--brand-primary); margin: 20px 0;">
-                    <p style="font-style: italic; font-size: 18px; font-weight: 600; margin: 0; color: var(--brand-primary);">
-                        This isn't choosing between design and code. It's mastering both.
-                    </p>
-                </div>
-            </section>
-
-            <div class="section-divider"></div>
-
-            <!-- Core Principles -->
             <section class="card accent-block card-enhanced">
                 <h2>
                     <span class="icon-enhanced">
                         <Icon name="layers" size={20} />
                     </span>
-                    Core Principles
+                    Course Philosophy: "Sense. Respond. Adapt."
                 </h2>
 
-                <h3>1. Designer-Coder Duality</h3>
+                <p>You already know structure. You already know style. This course adds the third layer—<strong>behavior</strong>—and treats code as a creative material.</p>
+
+                <p>Think of JavaScript like clay or choreography. It has properties, constraints, possibilities. You shape it to produce experiences that feel alive. The question isn't "what's the syntax?" It's <strong>"how should this feel?"</strong></p>
+
+                <p>Just as you learned to <em>see</em> in typography and <em>feel</em> in color, you'll develop fluency with code as a material—knowing when it resists, when it flows, when it surprises you with something better than you planned.</p>
+
+                <h3>Two Lenses, One Practice:</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                    <div style="padding: 16px; background: var(--gradient-accent); border-radius: 8px; border-left: 4px solid var(--brand-primary);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--brand-primary);">The Interaction Designer:</h4>
+                        <p style="margin: 0; font-size: 14px;">Timing, feedback, state, motion, user respect</p>
+                    </div>
+                    <div style="padding: 16px; background: var(--gradient-accent); border-radius: 8px; border-left: 4px solid var(--brand-red);">
+                        <h4 style="margin: 0 0 8px 0; color: var(--brand-red);">The Behavioral Coder:</h4>
+                        <p style="margin: 0; font-size: 14px;">Events, DOM, animation libraries, preference APIs</p>
+                    </div>
+                </div>
+
+                <p>We don't separate these. Every project asks both "does it feel right?" and "does the code work?" The material doesn't care which hat you're wearing.</p>
+
+                <h3>The Journey:</h3>
                 <ul>
-                    <li>Every project balances visual design and code structure</li>
-                    <li>Learn to switch between aesthetic and technical thinking</li>
-                    <li>Understand how design decisions impact code and vice versa</li>
-                    <li>Develop fluency in both Figma and code editors</li>
+                    <li><strong>Weeks 1–2:</strong> Adaptive Systems (preferences, tokens, persistence)</li>
+                    <li><strong>Weeks 3–4:</strong> Feedback & State (SVG, interaction patterns)</li>
+                    <li><strong>Weeks 5–7:</strong> Motion & Pacing (GSAP, scroll choreography)</li>
+                    <li><strong>Weeks 8–9:</strong> Creative Voice (signature interactions)</li>
+                    <li><strong>Week 10:</strong> Integration (portfolio, polish, audit)</li>
                 </ul>
 
-                <h3>2. Build-First Learning</h3>
-                <ul>
-                    <li>Create something visible every single class</li>
-                    <li>Theory follows practice—understand by doing</li>
-                    <li>Micro-lessons (5-10 min) integrated with hands-on work</li>
-                    <li>No extended lectures or rote memorization</li>
-                </ul>
-
-                <h3>3. Three-Spine Integration</h3>
-                <ul>
-                    <li><strong>Internet Literacy:</strong> Weekly micro-theory on how the web works</li>
-                    <li><strong>Immediate Building:</strong> Projects that work from Day 1</li>
-                    <li><strong>Design Thinking:</strong> Parallel Figma work reinforcing code concepts</li>
-                    <li>All three spines woven throughout every week</li>
-                </ul>
-
-                <h3>4. Progressive AI Integration</h3>
-                <ul>
-                    <li><strong>Week 1:</strong> Setup and orientation, no AI yet</li>
-                    <li><strong>Weeks 2-3:</strong> AI as reference ("What is a &lt;div&gt;?", "Explain CSS specificity")</li>
-                    <li><strong>Weeks 4-5:</strong> AI as validator ("Is my HTML semantic?", "Check my form structure")</li>
-                    <li><strong>Weeks 6-7:</strong> AI as suggester ("How would you style this?", "Show me flexbox options")</li>
-                    <li><strong>Weeks 8-9:</strong> AI as co-coder (Copilot autocomplete, generating components)</li>
-                    <li><strong>Weeks 10-11:</strong> AI as partner (Full professional workflow, prompt engineering)</li>
-                </ul>
-
-                <h3>5. AI as Partner, Not Replacement</h3>
-                <ul>
-                    <li>Students must understand what AI generates</li>
-                    <li>Ability to review, debug, and improve AI suggestions</li>
-                    <li>Learn when to accept, modify, or reject AI code</li>
-                    <li>Develop prompt engineering skills specific to web development</li>
-                </ul>
+                <div style="padding: 20px; background: var(--gradient-accent); border-radius: 8px; border-left: 4px solid var(--brand-primary); margin: 20px 0;">
+                    <p style="font-style: italic; font-size: 18px; font-weight: 600; margin: 0; color: var(--brand-primary);">
+                        This isn't learning JavaScript. It's learning to design behavior—shaping code until it responds the way you intend.
+                    </p>
+                </div>
             </section>
         </div>
 
         <aside class="sidebar">
             <!-- Quick Actions -->
             <section class="card card-action card-enhanced">
-                <div class="color-bar color-bar-red"></div>
+                <div class="color-bar color-bar-primary"></div>
                 <h3>
                     <span class="icon-enhanced icon-primary">
                         <Icon name="zap" size={20} />
                     </span>
                     Quick Actions
-                    <span class="badge badge-warning">New</span>
                 </h3>
                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                     <a href="/syllabus" class="btn btn-secondary">
                         <Icon name="book" size={16} class="btn-icon" />
                         View Syllabus
                     </a>
-                    <a href="https://code-and-design.org/assignments/" class="btn btn-start">
+                    <a href="/weeks/week-0" class="btn btn-start">
                         <Icon name="play" size={16} class="btn-icon" />
-                        Start Week 8
+                        Start Week 0
                     </a>
-                    
-                    <a href="https://github.com/sicxz/desn368-f25" class="btn btn-secondary" target="_blank">
+                    <a href="https://github.com/sicxz/desn378-template" class="btn btn-secondary" target="_blank">
                         <Icon name="github" size={16} class="btn-icon" />
-                        GitHub Repo
+                        GitHub Template
                     </a>
                 </div>
             </section>
 
-            <!-- Course Tools -->
+            <!-- Essential Tools -->
             <section class="card">
                 <h3>
                     <Icon name="settings" size={20} class="section-icon" />
                     Essential Tools
                 </h3>
 
-                <!-- VS Code Block -->
                 <div class="tool-block">
-                    <h4>VS Code</h4>
-                    <p>Your code editor for the semester</p>
-                    <a href="#" class="btn btn-primary">Download VS Code</a>
+                    <h4>Chrome</h4>
+                    <p>Browser + DevTools</p>
                 </div>
 
-                <!-- CodePen Block -->
+                <div class="tool-block">
+                    <h4>Firefox Developer Edition</h4>
+                    <p>Alternative DevTools</p>
+                </div>
+
+                <div class="tool-block">
+                    <h4>VS Code Insiders</h4>
+                    <p>Code editor + Copilot</p>
+                </div>
+
                 <div class="tool-block">
                     <h4>CodePen</h4>
-                    <p>Online playground for quick experiments</p>
-                    <a href="https://codepen.io/" class="btn btn-outline" target="_blank">Create Account</a>
+                    <p>Quick experiments</p>
+                    <a href="https://codepen.io/" class="btn btn-outline" target="_blank">Open CodePen</a>
                 </div>
+            </section>
 
-                <!-- Firefox DevTools Block -->
-                <div class="tool-block-mozilla">
-                    <a href="https://firefox-source-docs.mozilla.org/devtools-user/" class="tool-block-mozilla-header" target="_blank">Learn Firefox DevTools</a>
-                    <div class="tool-block-mozilla-body">
-                        <p><a href="https://firefox-source-docs.mozilla.org/devtools-user/" class="devtools-link" target="_blank">Firefox Developer Tools</a> is a comprehensive set of web developer tools built directly into Firefox. Inspect, debug, and optimize your HTML, CSS, and JavaScript.</p>
+            <!-- Reference -->
+            <section class="card">
+                <h3>
+                    <Icon name="book" size={20} class="section-icon" />
+                    Reference
+                </h3>
 
-                        <div class="mozilla-note">
-                            <div class="mozilla-note-content">
-                                <svg class="mozilla-note-icon" viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <line x1="12" y1="16" x2="12" y2="12"/>
-                                    <line x1="12" y1="8" x2="12.01" y2="8"/>
-                                </svg>
-                                <div class="mozilla-note-body">
-                                    <strong>Note</strong>
-                                    <p>If you are just getting started with web development and browser developer tools, check out our <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools" target="_blank">What are browser developer tools?</a> guide for good starting points.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h4 style="font-size: 0.875rem; margin-bottom: 0.5rem;">DevTools</h4>
+                <ul style="list-style: none; padding: 0; font-size: 13px; margin-bottom: 1rem;">
+                    <li style="margin-bottom: 6px;">
+                        <a href="https://developer.chrome.com/docs/devtools/overview/" target="_blank">Chrome DevTools Overview</a>
+                    </li>
+                    <li style="margin-bottom: 6px;">
+                        <a href="https://developer.chrome.com/docs/devtools/console/" target="_blank">Chrome Console Reference</a>
+                    </li>
+                    <li style="margin-bottom: 6px;">
+                        <a href="https://firefox-source-docs.mozilla.org/devtools-user/" target="_blank">Firefox DevTools Docs</a>
+                    </li>
+                </ul>
+
+                <h4 style="font-size: 0.875rem; margin-bottom: 0.5rem;">JavaScript Basics</h4>
+                <ul style="list-style: none; padding: 0; font-size: 13px;">
+                    <li style="margin-bottom: 6px;">
+                        <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps" target="_blank">JavaScript First Steps — MDN</a>
+                    </li>
+                    <li style="margin-bottom: 6px;">
+                        <a href="https://javascript.info/" target="_blank">JavaScript.info — Comprehensive reference</a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Watch -->
+            <section class="card">
+                <h3>
+                    <Icon name="play" size={20} class="section-icon" />
+                    Watch
+                </h3>
+                <ul style="list-style: none; padding: 0; font-size: 13px;">
+                    <li style="margin-bottom: 8px;">
+                        <a href="https://www.youtube.com/watch?v=DHjqpvDnNGE" target="_blank">JavaScript in 100 Seconds — Fireship</a>
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <a href="https://www.youtube.com/watch?v=x4q86IjJFag" target="_blank">DevTools Crash Course — Traversy Media</a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Hidden Gems -->
+            <section class="card card-resource">
+                <h3>Hidden Gems</h3>
+                <ul style="list-style: none; padding: 0; font-size: 13px;">
+                    <li style="margin-bottom: 8px;">
+                        <a href="https://rachelandrew.co.uk/archives/2019/05/07/javascript-for-designers/" target="_blank">JavaScript for Designers — Rachel Andrew</a>
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <a href="https://www.smashingmagazine.com/2019/02/demystifying-javascript-closures-callbacks-iifes/" target="_blank">Demystifying JavaScript — Smashing Magazine</a>
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <a href="https://www.youtube.com/watch?v=Sh6lK57Cuk4" target="_blank">The Weird History of JavaScript — Fireship</a>
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <a href="https://www.youtube.com/watch?v=Bv_5Zv5c-Ts" target="_blank">Understanding the Weird Parts — Tony Alicea</a>
+                    </li>
+                </ul>
             </section>
 
             <!-- Philosophy Quote -->
@@ -321,96 +333,9 @@ const weeks = [
                     <Icon name="quote" size={48} class="quote-icon" />
                 </div>
                 <blockquote style="font-style: italic; font-weight: 500; line-height: 1.6; position: relative; z-index: 1; margin: 0;">
-                    <span style="font-size: 20px;">"</span>We're not making pretty pages. We're building <span style="color: var(--brand-primary); font-weight: 700;">digital infrastructure</span>.<span style="font-size: 20px;">"</span>
+                    <span style="font-size: 20px;">"</span>This isn't learning JavaScript. It's learning to design <span style="color: var(--brand-primary); font-weight: 700;">behavior</span>.<span style="font-size: 20px;">"</span>
                 </blockquote>
                 <div style="margin-top: 12px; font-size: 12px; color: var(--text-muted);">— Course Philosophy</div>
-            </section>
-
-            <!-- Quick Reference -->
-            <section class="card">
-                <h3>
-                    <Icon name="book" size={20} class="section-icon" />
-                    Quick Reference
-                </h3>
-
-                <!-- HTML Tags -->
-                <div class="reference-section">
-                    <button class="reference-toggle" onclick="toggleReference('html')">
-                        <span>HTML Tags</span>
-                        <Icon name="chevron-down" size={16} class="chevron" />
-                    </button>
-                    <div class="reference-content" id="html-content">
-                        <div class="reference-item">
-                            <span class="tag">&lt;h1&gt;</span>
-                            <span class="desc">Main heading</span>
-                        </div>
-                        <div class="reference-item">
-                            <span class="tag">&lt;p&gt;</span>
-                            <span class="desc">Paragraph</span>
-                        </div>
-                        <div class="reference-item">
-                            <span class="tag">&lt;a&gt;</span>
-                            <span class="desc">Link</span>
-                        </div>
-                        <div class="reference-item">
-                            <span class="tag">&lt;img&gt;</span>
-                            <span class="desc">Image</span>
-                        </div>
-                        <div class="reference-item">
-                            <span class="tag">&lt;div&gt;</span>
-                            <span class="desc">Container</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CSS Properties -->
-                <div class="reference-section">
-                    <button class="reference-toggle" onclick="toggleReference('css')">
-                        <span>CSS Properties</span>
-                        <Icon name="chevron-down" size={16} class="chevron" />
-                    </button>
-                    <div class="reference-content" id="css-content">
-                        <div class="reference-item">
-                            <span class="tag">color</span>
-                            <span class="desc">Text color</span>
-                        </div>
-                        <div class="reference-item">
-                            <span class="tag">background</span>
-                            <span class="desc">Background color</span>
-                        </div>
-                        <div class="reference-item">
-                            <span class="tag">font-size</span>
-                            <span class="desc">Text size</span>
-                        </div>
-                        <div class="reference-item">
-                            <span class="tag">margin</span>
-                            <span class="desc">Outside spacing</span>
-                        </div>
-                        <div class="reference-item">
-                            <span class="tag">padding</span>
-                            <span class="desc">Inside spacing</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Resources -->
-            <section class="card card-resource">
-                <h3>External Resources</h3>
-                <ul style="list-style: none; padding: 0; font-size: 13px;">
-                    <li style="margin-bottom: 8px;">
-                        <a href="https://developer.mozilla.org/en-US/" target="_blank">MDN Web Docs</a>
-                    </li>
-                    <li style="margin-bottom: 8px;">
-                        <a href="https://validator.w3.org/" target="_blank">W3C Validator</a>
-                    </li>
-                    <li style="margin-bottom: 8px;">
-                        <a href="https://css-tricks.com/" target="_blank">CSS-Tricks</a>
-                    </li>
-                    <li style="margin-bottom: 8px;">
-                        <a href="https://codepen.io/" target="_blank">CodePen</a>
-                    </li>
-                </ul>
             </section>
         </aside>
     </main>
