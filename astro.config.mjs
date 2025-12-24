@@ -5,6 +5,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://code-and-design.org',
+  site: 'https://sicxz.github.io',
+  base: '/code-and-design',
   integrations: [mdx()]
 });
