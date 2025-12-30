@@ -4,11 +4,11 @@ import Icon from '../components/Icon.astro';
 
 ---
 
-<BaseLayout title="Syllabus - DESN368">
+<BaseLayout title="Syllabus - DESN378">
     <nav class="breadcrumb-nav">
         <div class="breadcrumb-container">
             <div class="breadcrumb">
-                <a href="/">Course Overview</a>
+                <a href="/code-and-design/">Course Overview</a>
                 <span class="breadcrumb-separator">></span>
                 <span class="breadcrumb-current">Syllabus</span>
             </div>
@@ -27,10 +27,10 @@ import Icon from '../components/Icon.astro';
                     Course Information
                 </h2>
                 <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px 16px;">
-                    <strong>Course:</strong> <span>DESN368 - Code+Design 1</span>
-                    <strong>Term:</strong> <span>Fall 2025 (09/25 - 12/12, 2025)</span>
+                    <strong>Course:</strong> <span>DESN378 - Code+Design 2</span>
+                    <strong>Term:</strong> <span>Winter 2026 (01/06 - 03/20, 2026)</span>
                     <strong>Credits:</strong> <span>5</span>
-                    <strong>Schedule:</strong> <span>Monday + Wednesday, 10:00a - 12:20p</span>
+                    <strong>Schedule:</strong> <span>Tuesday + Thursday, 1:00p - 3:20p</span>
                     <strong>Location:</strong> <span>Catalyst Room 206</span>
                 </div>
             </section>
@@ -53,9 +53,9 @@ import Icon from '../components/Icon.astro';
 
                 <h3>Office Hours</h3>
                 <ul>
-                    <li><strong>Monday/Wednesday:</strong> 1:00-2:30p</li>
-                    <li><strong>Thursday:</strong> 1:00-2:00p</li>
-                    <li><strong>Make an Appointment:</strong> <a href="https://calendly.com/tmasingale/office-hours-advising-fall-2025" target="_blank">Schedule via Calendly</a></li>
+                    <li><strong>Monday/Wednesday:</strong> 9:00-10:00a</li>
+                    <li><strong>Thursday:</strong> 3:30-5:00p</li>
+                    <li><strong>Make an Appointment:</strong> <a href="https://calendly.com/tmasingale/office-hours-advising" target="_blank">Schedule via Calendly</a></li>
                 </ul>
             </section>
 
@@ -69,11 +69,11 @@ import Icon from '../components/Icon.astro';
                     </span>
                     Course Description
                 </h2>
-                <p>CODE + DESIGN 1 addresses modern interfaces, concepts, processes, and techniques for creating Front-end web designed sites, applications, and experiences. Students use current design-and-code technologies while preparing for future web enabled devices. Sets a foundational understanding of HTML, SVG, CSS, JS, and the web-as-a-platform.</p>
+                <p>CODE + DESIGN 2 continues exploration of interfaces, concepts, processes, and techniques for creating front-end web designed sites, applications, and experiences. Introduces web programming, JavaScript libraries, and a modern version control process. Establishes an intermediate understanding of HTML, SVG, CSS, JS, and the web-as-a-platform.</p>
 
-                <p>This course introduces you to the actual craft of building for the web. Not with shortcuts or frameworks, but with fundamental HTML and CSS—understanding how the web actually works at the source level.</p>
-                
-                <p>You'll develop fluency in reading and writing code, building responsive layouts, and creating interactive experiences. More importantly, you'll learn to think systematically about digital design and develop the problem-solving skills essential for web development.</p>
+                <p>This course asks one question: <strong>How should things behave?</strong> In DESN 368, you learned how to make things <em>look</em> right. Here, you'll learn how to make things <em>behave</em> right — treating code as a design material with properties, behaviors, and constraints, just like paint, paper, or clay.</p>
+
+                <p>Throughout the quarter, you'll work with four digital materials: <strong>CSS systems</strong> (tokens, themes, user preferences), <strong>SVG</strong> (interactive, accessible graphics), <strong>animation libraries</strong> (GSAP, ScrollTrigger, choreographed motion), and <strong>creative code</strong> (finding your voice through code). All work is applied directly to your portfolio — nothing is throwaway.</p>
             </section>
 
             <div class="section-divider"></div>
@@ -89,68 +89,69 @@ import Icon from '../components/Icon.astro';
                 </h2>
 
                 <h3>Program Learning Objectives (PLO)</h3>
-                <ol>
-                    <li><strong>Visual Vocabulary:</strong> Achieve fluency in design's visual language</li>
-                    <li><strong>Technical Skills:</strong> Demonstrate proficiency in relevant design skills</li>
-                </ol>
+                <ul style="margin-bottom: 20px;">
+                    <li><strong>PLO-2: Technical Skills</strong> — Demonstrate proficiency in relevant design skills</li>
+                    <li><strong>PLO-3: Design Methodologies</strong> — Apply design methodologies including systems thinking, design thinking, inclusive design, and circular design</li>
+                    <li><strong>PLO-4: Design Process</strong> — Engage in a design process that includes research, ideation, and prototyping</li>
+                </ul>
 
                 <h3>Course-Specific Objectives</h3>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;">
-                    <!-- Creative and Conceptual Objectives Column -->
+                    <!-- Technical Skills Column -->
                     <div>
-                        <h4>Creative and Conceptual Objectives</h4>
+                        <h4>Technical Skills</h4>
                         <p style="color: var(--color-fg-muted); font-size: 14px; margin-bottom: 16px;">
-                            <strong>PLO-1: Visual Vocabulary</strong> - Achieve fluency in the visual vocabulary of design.
+                            <strong>PLO-2</strong> — Demonstrate proficiency in relevant design skills
                         </p>
 
                         <div style="margin-bottom: 20px;">
-                            <h5 style="margin-bottom: 8px;">Apply Graphic Design Principles to Web Interfaces</h5>
+                            <h5 style="margin-bottom: 8px;">Behavior Design</h5>
                             <p style="font-size: 14px; line-height: 1.6;">
-                                Incorporate layout, typography, and color theory principles into web design projects to ensure a visually coherent and aesthetically pleasing user interface.
+                                Design interactions that communicate intent and feedback. Evaluate interaction quality by <em>feel</em> (timing, easing, feedback), not just function.
                             </p>
                         </div>
 
                         <div style="margin-bottom: 20px;">
-                            <h5 style="margin-bottom: 8px;">Understand the Web as a Dynamic Platform</h5>
+                            <h5 style="margin-bottom: 8px;">Motion & Choreography</h5>
                             <p style="font-size: 14px; line-height: 1.6;">
-                                Gain an understanding of the "web" as a constantly evolving creative platform capable of supporting modern interactive experiences and recognizing emerging trends such as AI-driven design.
+                                Choreograph animations using GSAP and ScrollTrigger. Apply timing and easing so motion enhances rather than distracts.
                             </p>
                         </div>
 
                         <div style="margin-bottom: 20px;">
-                            <h5 style="margin-bottom: 8px;">Design for Accessibility and Inclusivity</h5>
+                            <h5 style="margin-bottom: 8px;">Technical Execution</h5>
                             <p style="font-size: 14px; line-height: 1.6;">
-                                Apply best practices for designing web experiences that are accessible to users of diverse abilities, including compliance with WCAG standards (Web Content Accessibility Guidelines).
+                                Implement state changes with JavaScript and CSS. Work with DOM manipulation, CSS Custom Properties, and inline SVG.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Technical Objectives Column -->
+                    <!-- Design Methodologies & Process Column -->
                     <div>
-                        <h4>Technical Objectives</h4>
+                        <h4>Design Methodologies & Process</h4>
                         <p style="color: var(--color-fg-muted); font-size: 14px; margin-bottom: 16px;">
-                            <strong>PLO-2: Technical Skills</strong> - Demonstrate proficiency in the technical skills relevant to design.
+                            <strong>PLO-3 & PLO-4</strong> — Systems thinking, inclusive design, research, ideation, prototyping
                         </p>
 
                         <div style="margin-bottom: 20px;">
-                            <h5 style="margin-bottom: 8px;">Develop Proficiency in HTML and CSS</h5>
+                            <h5 style="margin-bottom: 8px;">Adaptive Systems</h5>
                             <p style="font-size: 14px; line-height: 1.6;">
-                                Demonstrate the ability to write clean, standards-compliant HTML and CSS to create interactive, accessible web pages.
+                                Build interfaces that respond to user context and preferences using design tokens (CSS variables) and preference media queries (<code>prefers-color-scheme</code>, <code>prefers-reduced-motion</code>).
                             </p>
                         </div>
 
                         <div style="margin-bottom: 20px;">
-                            <h5 style="margin-bottom: 8px;">Implement Responsive Design Principles</h5>
+                            <h5 style="margin-bottom: 8px;">Inclusive Interaction</h5>
                             <p style="font-size: 14px; line-height: 1.6;">
-                                Apply responsive design techniques, including media queries, Flexbox, and CSS Grid, to ensure web layouts adapt seamlessly across different devices and screen sizes.
+                                Integrate accessibility as core practice: keyboard navigation, focus states, ARIA roles, reduced-motion alternatives.
                             </p>
                         </div>
 
                         <div style="margin-bottom: 20px;">
-                            <h5 style="margin-bottom: 8px;">Utilize Version Control and Web Technologies</h5>
+                            <h5 style="margin-bottom: 8px;">Creative Voice</h5>
                             <p style="font-size: 14px; line-height: 1.6;">
-                                Use tools like GitHub for version control and demonstrate familiarity with browser developer tools for debugging and optimizing web performance.
+                                Develop a signature interactive experience expressing personal design voice through code. Research, ideate, and prototype within portfolio context.
                             </p>
                         </div>
                     </div>
@@ -169,10 +170,10 @@ import Icon from '../components/Icon.astro';
                     <span class="badge badge-primary">Important</span>
                 </h2>
                 <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 16px 0;">
-                    <span>Projects (5 total)</span>
+                    <span>Projects (4 total)</span>
                     <span style="font-weight: 600; font-family: var(--mono-font);">40%</span>
 
-                    <span>Weekly Assignments</span>
+                    <span>Labs & Weekly Work</span>
                     <span style="font-weight: 600; font-family: var(--mono-font);">30%</span>
 
                     <span>Participation & Engagement</span>
@@ -182,20 +183,23 @@ import Icon from '../components/Icon.astro';
                     <span style="font-weight: 600; font-family: var(--mono-font);">10%</span>
                 </div>
 
-                <h3>Project Evaluation Criteria</h3>
-                <p>Each project is evaluated on:</p>
-                <ul>
-                    <li><strong>Technical execution:</strong> Code validates and works</li>
-                    <li><strong>Conceptual understanding:</strong> Documentation and comments</li>
-                    <li><strong>Problem-solving:</strong> Handling edge cases and debugging</li>
-                    <li><strong>Craft & presentation:</strong> Attention to detail and polish</li>
-                </ul>
+                <h3>Project Evaluation Rubric</h3>
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 12px 0; margin-bottom: 16px;">
+                    <span>Interaction Quality</span>
+                    <span style="font-weight: 600; font-family: var(--mono-font);">35%</span>
+                    <span>Technical Execution</span>
+                    <span style="font-weight: 600; font-family: var(--mono-font);">25%</span>
+                    <span>Design Intention</span>
+                    <span style="font-weight: 600; font-family: var(--mono-font);">25%</span>
+                    <span>Accessibility</span>
+                    <span style="font-weight: 600; font-family: var(--mono-font);">15%</span>
+                </div>
 
-                <h3>Weekly Assignments</h3>
+                <h3>Labs & Weekly Work</h3>
                 <ul>
-                    <li>Micro-assignments, exercises, and tutorials</li>
-                    <li>Emphasis on consistent practice and iteration</li>
-                    <li>Quick-turn feedback cycle</li>
+                    <li>Micro-assignments and exercises</li>
+                    <li>Skill-building tutorials</li>
+                    <li>Consistent practice and iteration</li>
                 </ul>
 
                 <h3>Participation & Engagement</h3>
@@ -206,8 +210,8 @@ import Icon from '../components/Icon.astro';
 
                 <h3>Final Portfolio</h3>
                 <ul>
-                    <li>Curated selection of best work</li>
-                    <li>Reflection on growth and AI collaboration</li>
+                    <li>All projects integrated and deployed</li>
+                    <li>Accessibility audit completed</li>
                     <li>Professional presentation on GitHub Pages</li>
                 </ul>
 
@@ -267,7 +271,7 @@ import Icon from '../components/Icon.astro';
                     Attendance & Participation
                     <span class="badge badge-primary">30% of Grade</span>
                 </h2>
-                <p>In DESN368 Web Design 1, your engagement and participation are crucial components of your learning experience, accounting for 30% of your final grade. Regular attendance and active involvement in class activities are essential for mastering web design concepts and techniques.</p>
+                <p>In DESN378 Code+Design 2, your engagement and participation are crucial components of your learning experience, accounting for 30% of your final grade. Regular attendance and active involvement in class activities are essential for mastering interactive design concepts and techniques.</p>
 
                 <h3>Attendance Expectations</h3>
                 <ul>
@@ -355,7 +359,7 @@ import Icon from '../components/Icon.astro';
                     Quick Actions
                 </h3>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="/" class="btn btn-primary">← Back to Hub</a>
+                    <a href="/code-and-design/" class="btn btn-primary">← Back to Hub</a>
 
                     <a href="https://docs.google.com/document/d/1qGVxC5Y49uTHjlFmPVFvN7inQ3UmgJuQsH5wCrZYQ64/edit?usp=sharing" class="btn btn-primary" target="_blank">EWU Syllabus Statements</a>
 
@@ -407,23 +411,27 @@ import Icon from '../components/Icon.astro';
                 <div style="font-size: 13px;">
                     <div style="margin-bottom: 8px;">
                         <strong>First Day:</strong><br>
-                        September 25, 2025
+                        January 6, 2026
                     </div>
                     <div style="margin-bottom: 8px;">
                         <strong>Project 1 Due:</strong><br>
-                        October 23, 2025
+                        January 17, 2026
                     </div>
                     <div style="margin-bottom: 8px;">
                         <strong>Project 2 Due:</strong><br>
-                        November 20, 2025
+                        January 31, 2026
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <strong>Project 3 Due:</strong><br>
+                        February 21, 2026
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <strong>Project 4 Due:</strong><br>
+                        March 7, 2026
                     </div>
                     <div style="margin-bottom: 8px;">
                         <strong>Portfolio Due:</strong><br>
-                        December 11, 2025
-                    </div>
-                    <div style="margin-bottom: 8px;">
-                        <strong>Last Day:</strong><br>
-                        December 13, 2025
+                        March 20, 2026
                     </div>
                 </div>
             </section>
