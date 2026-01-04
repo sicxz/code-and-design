@@ -139,7 +139,7 @@ const units = [
                                         <h4 style="margin: 0;">
                                             <span class={`status-dot status-${week.status}`}></span>
                                             {week.status === "available" ? (
-                                                <a href={`/code-and-design/weeks/week-${week.number}`}>
+                                                <a href={`/weeks/week-${week.number}`}>
                                                     Week {week.number}: {week.title}
                                                 </a>
                                             ) : (
@@ -217,7 +217,7 @@ const units = [
                     Quick Actions
                 </h3>
                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <a href="/code-and-design/syllabus" class="btn btn-secondary">
+                    <a href="/syllabus" class="btn btn-secondary">
                         <Icon name="book" size={16} class="btn-icon" />
                         View Syllabus
                     </a>
