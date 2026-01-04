@@ -59,10 +59,11 @@
 
   /* Text Colors */
   --text-primary: #E5F3FF;
-  --text-secondary: #9CA3AF;
+  --text-secondary: #B8C0CC;    /* Lightened for better contrast */
   --text-muted: #6B7280;
   --text-inverse: #111827;
   --text-link: #22D3EE;
+  --text-highlight: #c9c98d;    /* Warm highlight for times, dates, important values */
 
   /* Primary Brand Colors - Teal */
   --teal: #01B799;
@@ -1213,6 +1214,14 @@ code {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 700;
+}
+
+/* Highlight utility classes for times, dates, important values */
+.time,
+.date,
+.text-highlight {
+  color: var(--text-highlight);
+  font-weight: 500;
 }
 
 

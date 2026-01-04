@@ -28,9 +28,9 @@ import Icon from '../components/Icon.astro';
                 </h2>
                 <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px 16px;">
                     <strong>Course:</strong> <span>DESN378 - Code+Design 2</span>
-                    <strong>Term:</strong> <span>Winter 2026 (01/06 - 03/20, 2026)</span>
+                    <strong>Term:</strong> <span>Winter 2026 <span class="date">(01/06 - 03/20, 2026)</span></span>
                     <strong>Credits:</strong> <span>5</span>
-                    <strong>Schedule:</strong> <span>Monday + Wednesday, 4:00p - 6:20p</span>
+                    <strong>Schedule:</strong> <span>Monday + Wednesday, <span class="time">4:00p - 6:20p</span></span>
                     <strong>Location:</strong> <span>Catalyst Room 206</span>
                 </div>
             </section>
@@ -53,8 +53,8 @@ import Icon from '../components/Icon.astro';
 
                 <h3>Office Hours</h3>
                 <ul>
-                    <li><strong>Monday/Wednesday:</strong> 9:00-10:00a</li>
-                    <li><strong>Thursday:</strong> 3:30-5:00p</li>
+                    <li><strong>Monday/Wednesday:</strong> <span class="time">9:00-10:00a</span></li>
+                    <li><strong>Thursday:</strong> <span class="time">3:30-5:00p</span></li>
                     <li><strong>Make an Appointment:</strong> <a href="https://calendly.com/tmasingale/office-hours-advising" target="_blank">Schedule via Calendly</a></li>
                 </ul>
             </section>
@@ -65,7 +65,7 @@ import Icon from '../components/Icon.astro';
             <section class="card accent-block-subtle card-enhanced">
                 <h2>
                     <span class="icon-enhanced">
-                        <i class="octicon octicon-book" aria-hidden="true"></i>
+                        <Icon name="book" size={20} />
                     </span>
                     Course Description
                 </h2>
@@ -83,7 +83,7 @@ import Icon from '../components/Icon.astro';
                 <div class="color-bar color-bar-multi"></div>
                 <h2>
                     <span class="icon-enhanced icon-primary">
-                        <i class="octicon octicon-goal" aria-hidden="true"></i>
+                        <Icon name="target" size={20} />
                     </span>
                     Learning Objectives
                 </h2>
@@ -164,7 +164,7 @@ import Icon from '../components/Icon.astro';
             <section class="card accent-block card-enhanced">
                 <h2>
                     <span class="icon-enhanced icon-primary">
-                        <i class="octicon octicon-graph" aria-hidden="true"></i>
+                        <Icon name="bar-chart" size={20} />
                     </span>
                     Grading Breakdown
                     <span class="badge badge-primary">Important</span>
@@ -246,7 +246,7 @@ import Icon from '../components/Icon.astro';
             <section class="card accent-block-subtle card-enhanced">
                 <h2>
                     <span class="icon-enhanced">
-                        <i class="octicon octicon-comment" aria-hidden="true"></i>
+                        <Icon name="quote" size={20} />
                     </span>
                     Assessment Philosophy
                 </h2>
@@ -266,7 +266,7 @@ import Icon from '../components/Icon.astro';
                 <div class="color-bar color-bar-red"></div>
                 <h2>
                     <span class="icon-enhanced icon-primary">
-                        <i class="octicon octicon-people" aria-hidden="true"></i>
+                        <Icon name="users" size={20} />
                     </span>
                     Attendance & Participation
                     <span class="badge badge-primary">30% of Grade</span>
@@ -301,7 +301,7 @@ import Icon from '../components/Icon.astro';
 
                 <div style="padding: 1rem; background: var(--eagle-green-light); border: 1px solid var(--eagle-green); color: var(--text-primary); border-radius: 6px; margin: 2rem 0;">
                     <span class="icon-enhanced">
-                        <i class="octicon octicon-mortar-board" aria-hidden="true"></i>
+                        <Icon name="graduation-cap" size={20} />
                     </span>
                     <strong>Remember:</strong> The goal is to attend class and be fully present and actively involved in your learning journey. Your consistent engagement will improve your grade and significantly enhance your web design skills and professional development.
                 </div>
@@ -314,7 +314,7 @@ import Icon from '../components/Icon.astro';
                 <div class="color-bar color-bar-red"></div>
                 <h2>
                     <span class="icon-enhanced icon-primary">
-                        <i class="octicon octicon-checklist" aria-hidden="true"></i>
+                        <Icon name="clipboard-list" size={20} />
                     </span>
                     Course Policies
                     <span class="badge badge-warning">Required Reading</span>
@@ -354,19 +354,15 @@ import Icon from '../components/Icon.astro';
                 <div class="color-bar color-bar-red"></div>
                 <h3>
                     <span class="icon-enhanced icon-primary">
-                        <i class="octicon octicon-zap" aria-hidden="true"></i>
+                        <Icon name="zap" size={20} />
                     </span>
                     Quick Actions
                 </h3>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="/code-and-design/" class="btn btn-primary">← Back to Hub</a>
-
-                    <a href="https://docs.google.com/document/d/1qGVxC5Y49uTHjlFmPVFvN7inQ3UmgJuQsH5wCrZYQ64/edit?usp=sharing" class="btn btn-primary" target="_blank">EWU Syllabus Statements</a>
-
+                    <a href="/code-and-design/" class="btn btn-secondary">← Back to Hub</a>
+                    <a href="https://docs.google.com/document/d/1qGVxC5Y49uTHjlFmPVFvN7inQ3UmgJuQsH5wCrZYQ64/edit?usp=sharing" class="btn btn-secondary" target="_blank">EWU Syllabus Statements</a>
                     <a href="mailto:tmasingale@ewu.edu" class="btn btn-secondary">Email Professor</a>
-
                     <a href="https://calendly.com/tmasingale" class="btn btn-secondary" target="_blank">Schedule Office Hours</a>
-
                 </div>
             </section>
 
@@ -374,7 +370,7 @@ import Icon from '../components/Icon.astro';
             <section class="card accent-block-subtle card-enhanced">
                 <h3>
                     <span class="icon-enhanced icon-primary">
-                        <i class="octicon octicon-goal" aria-hidden="true"></i>
+                        <Icon name="target" size={20} />
                     </span>
                     Attendance Policy
                     <span class="badge badge-warning">Critical</span>
@@ -403,7 +399,7 @@ import Icon from '../components/Icon.astro';
             <section class="card card-enhanced">
                 <h3>
                     <span class="icon-enhanced">
-                        <i class="octicon octicon-calendar" aria-hidden="true"></i>
+                        <Icon name="calendar" size={20} />
                     </span>
                     Important Dates
                     <span class="badge badge-secondary">Mark Calendar</span>
@@ -411,27 +407,27 @@ import Icon from '../components/Icon.astro';
                 <div style="font-size: 13px;">
                     <div style="margin-bottom: 8px;">
                         <strong>First Day:</strong><br>
-                        January 6, 2026
+                        <span class="date">January 6, 2026</span>
                     </div>
                     <div style="margin-bottom: 8px;">
                         <strong>Project 1 Due:</strong><br>
-                        January 17, 2026
+                        <span class="date">January 17, 2026</span>
                     </div>
                     <div style="margin-bottom: 8px;">
                         <strong>Project 2 Due:</strong><br>
-                        January 31, 2026
+                        <span class="date">January 31, 2026</span>
                     </div>
                     <div style="margin-bottom: 8px;">
                         <strong>Project 3 Due:</strong><br>
-                        February 21, 2026
+                        <span class="date">February 21, 2026</span>
                     </div>
                     <div style="margin-bottom: 8px;">
                         <strong>Project 4 Due:</strong><br>
-                        March 7, 2026
+                        <span class="date">March 7, 2026</span>
                     </div>
                     <div style="margin-bottom: 8px;">
                         <strong>Portfolio Due:</strong><br>
-                        March 20, 2026
+                        <span class="date">March 20, 2026</span>
                     </div>
                 </div>
             </section>

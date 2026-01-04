@@ -9,8 +9,8 @@ const units = [
         name: "Unit 1: Adaptive Systems",
         question: "How does it adapt to me?",
         weeks: [
-            { number: 0, title: "The On-Ramp", subtitle: "DevTools, console, script linking", status: "available" },
-            { number: 1, title: "First Light", subtitle: "Design tokens, theme toggle, querySelector", status: "available" },
+            { number: 0, title: "The On-Ramp", subtitle: "DevTools, console, script linking", status: "coming" },
+            { number: 1, title: "First Light", subtitle: "Design tokens, theme toggle, querySelector", status: "coming" },
             { number: 2, title: "The Memory", subtitle: "localStorage, preference persistence", status: "coming" }
         ]
     },
@@ -239,26 +239,29 @@ const units = [
                     Essential Tools
                 </h3>
 
-                <div class="tool-block">
-                    <h4>Chrome</h4>
-                    <p>Browser + DevTools</p>
-                </div>
+                <h4 style="font-size: 0.875rem; margin-bottom: 0.5rem;">Browsers</h4>
+                <ul style="list-style: none; padding: 0; font-size: 13px; margin-bottom: 1rem;">
+                    <li style="margin-bottom: 6px;">
+                        <a href="https://www.mozilla.org/en-US/firefox/developer/" target="_blank">Firefox Developer Edition</a> — <a href="https://firefox-source-docs.mozilla.org/devtools-user/" target="_blank" style="color: var(--text-secondary);">Docs</a>
+                    </li>
+                    <li style="margin-bottom: 6px;">
+                        <a href="https://www.google.com/chrome/" target="_blank">Chrome</a> — <a href="https://developer.chrome.com/docs/devtools/" target="_blank" style="color: var(--text-secondary);">Docs</a>
+                    </li>
+                </ul>
 
-                <div class="tool-block">
-                    <h4>Firefox Developer Edition</h4>
-                    <p>Alternative DevTools</p>
-                </div>
+                <h4 style="font-size: 0.875rem; margin-bottom: 0.5rem;">Editor</h4>
+                <ul style="list-style: none; padding: 0; font-size: 13px; margin-bottom: 1rem;">
+                    <li style="margin-bottom: 6px;">
+                        <a href="https://code.visualstudio.com/insiders/" target="_blank">VS Code Insiders</a> — <a href="https://code.visualstudio.com/docs" target="_blank" style="color: var(--text-secondary);">Docs</a>
+                    </li>
+                </ul>
 
-                <div class="tool-block">
-                    <h4>VS Code Insiders</h4>
-                    <p>Code editor + Copilot</p>
-                </div>
-
-                <div class="tool-block">
-                    <h4>CodePen</h4>
-                    <p>Quick experiments</p>
-                    <a href="https://codepen.io/" class="btn btn-outline" target="_blank">Open CodePen</a>
-                </div>
+                <h4 style="font-size: 0.875rem; margin-bottom: 0.5rem;">Playground</h4>
+                <ul style="list-style: none; padding: 0; font-size: 13px;">
+                    <li style="margin-bottom: 6px;">
+                        <a href="https://codepen.io/" target="_blank">CodePen</a> — Quick experiments
+                    </li>
+                </ul>
             </section>
 
             <!-- Reference -->
