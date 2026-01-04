@@ -1,3 +1,5 @@
+link to live site: https://sicxz.github.io/code-and-design/
+
 # Astro Starter Kit: Minimal
 
 ```sh
