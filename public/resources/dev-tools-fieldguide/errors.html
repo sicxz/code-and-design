@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Errors | Designer's DevTools Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="header-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="9" y1="21" x2="9" y2="9"/>
+      </svg>
+      DevTools Field Guide
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">Get Started</a>
+      <a href="console.html">Tutorials</a>
+      <a href="errors.html" class="active">Troubleshooting</a>
+      <a href="reference.html">Reference</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Get Started</div>
+        <a href="index.html" class="sidebar-link">Overview</a>
+        <a href="start.html" class="sidebar-link">Your First 15 Minutes</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Tutorials</div>
+        <a href="console.html" class="sidebar-link">The Console</a>
+        <a href="bridge.html" class="sidebar-link">The $0 Bridge</a>
+        <a href="behavioral.html" class="sidebar-link">Reading Element State</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Troubleshooting</div>
+        <a href="errors.html" class="sidebar-link active">Reading Errors</a>
+        <a href="connecting.html" class="sidebar-link">Quick Reminders</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Reference</div>
+        <a href="visual.html" class="sidebar-link">Visual Tools</a>
+        <a href="reference.html" class="sidebar-link">Keyboard Shortcuts</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <nav class="breadcrumb">
+        <a href="index.html">Docs</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="console.html">Behavioral Tools</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Reading Errors</span>
+      </nav>
+
+      <h1>Reading Errors</h1>
+      <p class="lead">
+        Errors aren't failures—they're the browser telling you exactly what went wrong. Learn to read them like helpful messages, not scary warnings.
+      </p>
+
+      <div class="metaphor">
+        <div class="metaphor-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+          Mental Model
+        </div>
+        <p>
+          Think of errors as the browser saying "I tried, but I need more information." Red text looks alarming, but it's actually the most helpful feedback you'll get—it tells you exactly where to look and what went wrong.
+        </p>
+      </div>
+
+      <h2 id="anatomy">Error Anatomy</h2>
+      <p>
+        Every error in the Console follows the same structure. Once you learn to read it, debugging becomes much faster.
+      </p>
+
+      <div class="console-demo">
+        <div class="console-header">
+          <span class="console-dot red"></span>
+          <span class="console-dot yellow"></span>
+          <span class="console-dot green"></span>
+          <span class="console-tab">Console</span>
+        </div>
+        <div class="console-body">
+          <div class="console-line">
+            <span class="console-error">Uncaught TypeError: Cannot read properties of null (reading 'classList')</span>
+          </div>
+          <div class="console-line">
+            <span class="console-output" style="color: var(--text-muted);">    at script.js:12:15</span>
+          </div>
+        </div>
+      </div>
+
+      <p>Let's break this down piece by piece:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>What It Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Uncaught</code></td>
+            <td>The error wasn't handled by the code—it stopped execution</td>
+          </tr>
+          <tr>
+            <td><code>TypeError</code></td>
+            <td>The type of error. "I expected one thing but got another."</td>
+          </tr>
+          <tr>
+            <td><code>Cannot read properties of null</code></td>
+            <td>JavaScript tried to access something on <code>null</code> (nothing)</td>
+          </tr>
+          <tr>
+            <td><code>(reading 'classList')</code></td>
+            <td>Specifically, it tried to read <code>.classList</code></td>
+          </tr>
+          <tr>
+            <td><code>at script.js:12:15</code></td>
+            <td>File name, line 12, character 15—click this to jump there</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-note">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          Click the Location
+        </div>
+        <p>
+          The <code>script.js:12:15</code> part is a link. Click it and Firefox will take you directly to that line in the Debugger panel. This is the fastest way to find the problem.
+        </p>
+      </div>
+
+      <h2 id="the-big-one">The #1 Error You'll See</h2>
+      <p>
+        If you write JavaScript for the web, you will see this error. Probably today. Definitely this week:
+      </p>
+
+<pre><code><span class="code-error">Uncaught TypeError: Cannot read properties of null (reading 'classList')</span></code></pre>
+
+      <p>
+        Or variations like:
+      </p>
+      <ul>
+        <li><code>Cannot read properties of null (reading 'style')</code></li>
+        <li><code>Cannot read properties of null (reading 'addEventListener')</code></li>
+        <li><code>Cannot read properties of null (reading 'textContent')</code></li>
+      </ul>
+
+      <p>
+        <strong>Translation:</strong> <code>querySelector</code> didn't find the element you asked for. It returned <code>null</code> (nothing), and then your code tried to do something with that nothing.
+      </p>
+
+      <h2 id="causes">Three Common Causes</h2>
+
+      <h3>1. Typo in the Selector</h3>
+<pre><code><span class="code-comment">// Your HTML</span>
+&lt;button class="<span class="code-string">button</span>"&gt;Click me&lt;/button&gt;
+
+<span class="code-comment">// Your JavaScript</span>
+<span class="code-keyword">const</span> btn = document.<span class="code-keyword">querySelector</span>(<span class="code-string">'.buton'</span>);  <span class="code-comment">// typo!</span>
+btn.<span class="code-property">classList</span>.<span class="code-keyword">add</span>(<span class="code-string">'active'</span>);
+
+<span class="code-comment">// Result</span>
+<span class="code-error">Cannot read properties of null (reading 'classList')</span></code></pre>
+
+      <p><strong>The fix:</strong> Check your spelling. <code>.buton</code> ≠ <code>.button</code></p>
+
+      <h3>2. Wrong Selector Type</h3>
+<pre><code><span class="code-comment">// Your HTML</span>
+&lt;div class="<span class="code-string">button</span>"&gt;Click me&lt;/div&gt;
+
+<span class="code-comment">// Your JavaScript</span>
+<span class="code-keyword">const</span> btn = document.<span class="code-keyword">querySelector</span>(<span class="code-string">'button'</span>);  <span class="code-comment">// looking for &lt;button&gt; tag</span>
+
+<span class="code-comment">// Result: null — there's no &lt;button&gt; element, only a div with class "button"</span></code></pre>
+
+      <p><strong>The fix:</strong> Use <code>.button</code> (with the dot) for classes, <code>#button</code> for IDs, <code>button</code> (no prefix) for tags.</p>
+
+      <h3>3. Script Runs Before the DOM Exists</h3>
+<pre><code><span class="code-comment">// In your &lt;head&gt; — runs immediately</span>
+&lt;script src="script.js"&gt;&lt;/script&gt;
+
+<span class="code-comment">// script.js</span>
+<span class="code-keyword">const</span> btn = document.<span class="code-keyword">querySelector</span>(<span class="code-string">'.button'</span>);
+<span class="code-comment">// The &lt;body&gt; hasn't loaded yet — element doesn't exist!</span>
+
+<span class="code-error">Cannot read properties of null (reading 'classList')</span></code></pre>
+
+      <p><strong>The fix:</strong> Add <code>defer</code> to your script tag, or move it to the end of <code>&lt;body&gt;</code>:</p>
+<pre><code><span class="code-comment">// Option 1: defer attribute</span>
+&lt;script src="script.js" <span class="code-keyword">defer</span>&gt;&lt;/script&gt;
+
+<span class="code-comment">// Option 2: Move to end of body</span>
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+
+      <div class="callout callout-success">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Week 1 Context
+        </div>
+        <p>
+          Building a theme toggle and it's not working? This is almost always the issue. Check that your selector matches your HTML exactly, and that your script has the <code>defer</code> attribute.
+        </p>
+      </div>
+
+      <h2 id="workflow">Quick Diagnosis Workflow</h2>
+      <p>
+        When you see "Cannot read properties of null," follow these steps:
+      </p>
+
+      <div class="exercise">
+        <div class="exercise-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Debug It: The Null Check
+        </div>
+        <ol>
+          <li><strong>Click the error location</strong> to see which line failed</li>
+          <li><strong>Find the selector</strong> on that line (the string in quotes)</li>
+          <li><strong>Test it in Console:</strong>
+<pre><code>document.querySelector('.your-selector')</code></pre>
+          </li>
+          <li><strong>If it returns <code>null</code></strong> → your selector is wrong or the element doesn't exist yet</li>
+          <li><strong>If it returns the element</strong> → the problem is on a later line</li>
+        </ol>
+      </div>
+
+      <h2 id="other-errors">Other Common Errors</h2>
+
+      <h3>SyntaxError</h3>
+<pre><code><span class="code-error">Uncaught SyntaxError: Unexpected token '}'</span></code></pre>
+      <p><strong>Meaning:</strong> You have a typo in your code structure—missing bracket, extra comma, unclosed string.</p>
+      <p><strong>Fix:</strong> Check the line number. Look for mismatched <code>{ }</code>, <code>( )</code>, or missing quotes.</p>
+
+      <h3>ReferenceError</h3>
+<pre><code><span class="code-error">Uncaught ReferenceError: buttn is not defined</span></code></pre>
+      <p><strong>Meaning:</strong> You're using a variable that doesn't exist (usually a typo).</p>
+      <p><strong>Fix:</strong> Check your spelling. <code>buttn</code> should probably be <code>button</code>.</p>
+
+      <h3>Failed to Load Resource</h3>
+<pre><code><span class="code-error">GET http://localhost/script.js 404 (Not Found)</span></code></pre>
+      <p><strong>Meaning:</strong> The browser can't find your file.</p>
+      <p><strong>Fix:</strong> Check the file path in your <code>&lt;script&gt;</code> tag. Is the file where you think it is?</p>
+
+      <h2 id="reading-stack">Reading the Stack Trace</h2>
+      <p>
+        Sometimes errors show multiple lines—this is called a "stack trace." It shows the chain of function calls that led to the error:
+      </p>
+
+      <div class="console-demo">
+        <div class="console-header">
+          <span class="console-dot red"></span>
+          <span class="console-dot yellow"></span>
+          <span class="console-dot green"></span>
+          <span class="console-tab">Console</span>
+        </div>
+        <div class="console-body">
+          <div class="console-line">
+            <span class="console-error">Uncaught TypeError: Cannot read properties of null</span>
+          </div>
+          <div class="console-line">
+            <span class="console-output" style="color: var(--text-muted);">    at toggleTheme (script.js:15:10)</span>
+          </div>
+          <div class="console-line">
+            <span class="console-output" style="color: var(--text-muted);">    at HTMLButtonElement.&lt;anonymous&gt; (script.js:8:3)</span>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        Read from top to bottom: the error happened in <code>toggleTheme</code> on line 15, which was called from an event listener on line 8. Start debugging at the top.
+      </p>
+
+      <div class="callout callout-note">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          Errors Are Progress
+        </div>
+        <p>
+          An error means your code ran far enough to fail somewhere specific. That's good! It's much better than nothing happening at all. Use the error message to find and fix the problem.
+        </p>
+      </div>
+
+      <h2 id="next">Next: Visual Tools</h2>
+      <p>
+        Now that you can read errors, let's look at the other half of DevTools—the Elements panel and visual inspection tools.
+      </p>
+      <p>
+        <a href="visual.html">Continue to Visual Tools →</a>
+      </p>
+
+    </main>
+
+    <aside class="toc">
+      <div class="toc-title">On this page</div>
+      <a href="#anatomy" class="toc-link">Error Anatomy</a>
+      <a href="#the-big-one" class="toc-link">The #1 Error</a>
+      <a href="#causes" class="toc-link">Three Common Causes</a>
+      <a href="#workflow" class="toc-link">Quick Diagnosis</a>
+      <a href="#other-errors" class="toc-link">Other Common Errors</a>
+      <a href="#reading-stack" class="toc-link">Stack Traces</a>
+      <a href="#next" class="toc-link">Next Steps</a>
+    </aside>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

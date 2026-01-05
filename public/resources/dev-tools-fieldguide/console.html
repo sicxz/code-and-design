@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Console | Designer's DevTools Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="header-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="9" y1="21" x2="9" y2="9"/>
+      </svg>
+      DevTools Field Guide
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">Get Started</a>
+      <a href="console.html" class="active">Tutorials</a>
+      <a href="errors.html">Troubleshooting</a>
+      <a href="reference.html">Reference</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Get Started</div>
+        <a href="index.html" class="sidebar-link">Overview</a>
+        <a href="start.html" class="sidebar-link">Your First 15 Minutes</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Tutorials</div>
+        <a href="console.html" class="sidebar-link active">The Console</a>
+        <a href="bridge.html" class="sidebar-link">The $0 Bridge</a>
+        <a href="behavioral.html" class="sidebar-link">Reading Element State</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Troubleshooting</div>
+        <a href="errors.html" class="sidebar-link">Reading Errors</a>
+        <a href="connecting.html" class="sidebar-link">Quick Reminders</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Reference</div>
+        <a href="visual.html" class="sidebar-link">Visual Tools</a>
+        <a href="reference.html" class="sidebar-link">Keyboard Shortcuts</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <nav class="breadcrumb">
+        <a href="index.html">Docs</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="console.html">Behavioral Tools</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>The Console</span>
+      </nav>
+
+      <h1>The Console</h1>
+      <p class="lead">
+        The Console isn't just for running code—it's a window into what your page is thinking. Learn to read its messages like a conversation.
+      </p>
+
+      <div class="metaphor">
+        <div class="metaphor-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+          Mental Model
+        </div>
+        <p>
+          Think of the Console as listening to a conversation between the browser and your code. Messages appear when something happens: code runs, errors occur, or you explicitly ask elements to "speak."
+        </p>
+      </div>
+
+      <h2 id="opening">Opening the Console</h2>
+      <p>Three ways to access the Console in Firefox:</p>
+      <ul>
+        <li><kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>K</kbd> (Mac) or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> (Windows) — opens Console directly</li>
+        <li>Right-click → Inspect, then click the <strong>Console</strong> tab</li>
+        <li>While in Inspector, press <kbd>Esc</kbd> to toggle the Console drawer (split view)</li>
+      </ul>
+
+      <div class="callout callout-note">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          The Split View
+        </div>
+        <p>
+          The <kbd>Esc</kbd> shortcut is powerful—it lets you see the Console while staying in the Inspector. This is the "both tools at once" mode you'll use most often. Press <kbd>Esc</kbd> again to hide it.
+        </p>
+      </div>
+
+      <h2 id="message-types">Reading Message Types</h2>
+      <p>
+        The Console shows different types of messages. Learn to recognize them at a glance:
+      </p>
+
+      <div class="console-demo">
+        <div class="console-header">
+          <span class="console-dot red"></span>
+          <span class="console-dot yellow"></span>
+          <span class="console-dot green"></span>
+          <span class="console-tab">Console</span>
+        </div>
+        <div class="console-body">
+          <div class="console-line">
+            <span class="message-type log">log</span>
+            <span class="console-log">Button clicked</span>
+          </div>
+          <div class="console-line">
+            <span class="message-type info">info</span>
+            <span class="console-log">Page loaded in 234ms</span>
+          </div>
+          <div class="console-line">
+            <span class="message-type warn">warn</span>
+            <span class="console-warn">Image has no alt attribute</span>
+          </div>
+          <div class="console-line">
+            <span class="message-type error">error</span>
+            <span class="console-error">Cannot read properties of null (reading 'classList')</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>What each type means:</h3>
+      <ul>
+        <li><strong>Log (gray):</strong> Intentional output from <code>console.log()</code>. The code is working as written.</li>
+        <li><strong>Info (blue):</strong> Informational messages, often from the browser itself.</li>
+        <li><strong>Warning (yellow):</strong> Something might be wrong, but the page still works. Worth investigating.</li>
+        <li><strong>Error (red):</strong> Something broke. The code tried to do something it couldn't. <a href="errors.html">Learn to read these</a>.</li>
+      </ul>
+
+      <h2 id="your-first-commands">Your First Console Commands</h2>
+      <p>
+        Open the <a href="../../demos/console-playground.html" target="_blank">Console Playground</a> and try these commands. Type each one and press Enter.
+      </p>
+
+      <h3>Math works</h3>
+<pre><code><span class="code-comment">// The Console is a calculator</span>
+2 + 2
+<span class="code-output">→ 4</span>
+
+100 / 3
+<span class="code-output">→ 33.333...</span></code></pre>
+
+      <h3>Finding elements</h3>
+<pre><code><span class="code-comment">// Find the heading</span>
+document.<span class="code-keyword">querySelector</span>(<span class="code-string">'h1'</span>)
+<span class="code-output">→ &lt;h1&gt;Console Playground&lt;/h1&gt;</span>
+
+<span class="code-comment">// Find the counter display</span>
+document.<span class="code-keyword">querySelector</span>(<span class="code-string">'#counter'</span>)
+<span class="code-output">→ &lt;span id="counter"&gt;0&lt;/span&gt;</span>
+
+<span class="code-comment">// Find the color box</span>
+document.<span class="code-keyword">querySelector</span>(<span class="code-string">'.color-box'</span>)
+<span class="code-output">→ &lt;div class="color-box"&gt;...&lt;/div&gt;</span></code></pre>
+
+      <h3>Changing things</h3>
+<pre><code><span class="code-comment">// Change the heading text</span>
+document.<span class="code-keyword">querySelector</span>(<span class="code-string">'h1'</span>).<span class="code-property">textContent</span> = <span class="code-string">'Hello World'</span>
+<span class="code-output">→ "Hello World"</span>
+
+<span class="code-comment">// Change the heading color</span>
+document.<span class="code-keyword">querySelector</span>(<span class="code-string">'h1'</span>).<span class="code-property">style</span>.<span class="code-property">color</span> = <span class="code-string">'tomato'</span>
+<span class="code-output">→ "tomato"</span></code></pre>
+
+      <div class="callout callout-success">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          This is real JavaScript
+        </div>
+        <p>
+          Every command you type in the Console is actual JavaScript running on the page. When you build a theme toggle in Week 1, you'll write the same <code>querySelector</code> and <code>classList</code> commands in a file instead of typing them manually.
+        </p>
+      </div>
+
+      <h2 id="console-log">Making Elements Talk</h2>
+      <p>
+        <code>console.log()</code> is how you make your code talk. When debugging, insert it anywhere to see what's happening:
+      </p>
+
+<pre><code><span class="code-keyword">const</span> button = document.<span class="code-keyword">querySelector</span>(<span class="code-string">'#primary-btn'</span>);
+
+<span class="code-comment">// Did we find it?</span>
+console.<span class="code-keyword">log</span>(<span class="code-string">'Found button:'</span>, button);
+
+<span class="code-comment">// What classes does it have?</span>
+console.<span class="code-keyword">log</span>(<span class="code-string">'Classes:'</span>, button.<span class="code-property">classList</span>);
+
+button.<span class="code-keyword">addEventListener</span>(<span class="code-string">'click'</span>, () => {
+  console.<span class="code-keyword">log</span>(<span class="code-string">'Button was clicked!'</span>);
+  button.<span class="code-property">classList</span>.<span class="code-keyword">toggle</span>(<span class="code-string">'active'</span>);
+  console.<span class="code-keyword">log</span>(<span class="code-string">'Classes now:'</span>, button.<span class="code-property">classList</span>);
+});</code></pre>
+
+      <div class="console-demo">
+        <div class="console-header">
+          <span class="console-dot red"></span>
+          <span class="console-dot yellow"></span>
+          <span class="console-dot green"></span>
+          <span class="console-tab">Console</span>
+        </div>
+        <div class="console-body">
+          <div class="console-line">
+            <span class="console-log">Found button: </span>
+            <span class="console-object">&lt;button id="primary-btn"&gt;...&lt;/button&gt;</span>
+          </div>
+          <div class="console-line">
+            <span class="console-log">Classes: </span>
+            <span class="console-object">DOMTokenList ["btn", "primary"]</span>
+          </div>
+          <div class="console-line">
+            <span class="console-output" style="color: var(--text-muted);">— user clicks —</span>
+          </div>
+          <div class="console-line">
+            <span class="console-log">Button was clicked!</span>
+          </div>
+          <div class="console-line">
+            <span class="console-log">Classes now: </span>
+            <span class="console-object">DOMTokenList ["btn", "primary", "active"]</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 id="filtering">Filtering Messages</h2>
+      <p>
+        When the Console gets noisy, filter it. In Firefox, use the filter buttons at the top of the Console panel:
+      </p>
+      <ul>
+        <li><strong>Errors</strong> — Show only red error messages</li>
+        <li><strong>Warnings</strong> — Show only yellow warnings</li>
+        <li><strong>Logs</strong> — Show only console.log output</li>
+        <li><strong>Info</strong> — Show informational messages</li>
+      </ul>
+      <p>
+        You can also type in the filter box to search for specific text.
+      </p>
+
+      <h2 id="clearing">Clearing the Console</h2>
+      <p>
+        Two ways to clear all messages:
+      </p>
+      <ul>
+        <li>Click the trash can icon in the Console toolbar</li>
+        <li>Type <code>clear()</code> and press Enter</li>
+      </ul>
+
+      <div class="exercise">
+        <div class="exercise-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Practice: Console Exploration
+        </div>
+        <ol>
+          <li>Open the <a href="../../demos/console-playground.html" target="_blank">Console Playground</a></li>
+          <li>Open DevTools (<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>K</kbd>)</li>
+          <li>Find the <code>#counter</code> element using <code>document.querySelector('#counter')</code></li>
+          <li>Read its current value: add <code>.textContent</code> to your query</li>
+          <li>Change it: <code>document.querySelector('#counter').textContent = '999'</code></li>
+          <li>Click the + button on the page — what happens to your value?</li>
+        </ol>
+      </div>
+
+      <nav class="page-nav">
+        <a href="start.html" class="page-nav-link page-nav-prev">
+          <span class="page-nav-label">Previous</span>
+          <span class="page-nav-title">Your First 15 Minutes</span>
+        </a>
+        <a href="bridge.html" class="page-nav-link page-nav-next">
+          <span class="page-nav-label">Next</span>
+          <span class="page-nav-title">The $0 Bridge</span>
+        </a>
+      </nav>
+
+    </main>
+
+    <aside class="toc">
+      <div class="toc-title">On this page</div>
+      <a href="#opening" class="toc-link">Opening the Console</a>
+      <a href="#message-types" class="toc-link">Message Types</a>
+      <a href="#your-first-commands" class="toc-link">Your First Commands</a>
+      <a href="#console-log" class="toc-link">Making Elements Talk</a>
+      <a href="#filtering" class="toc-link">Filtering Messages</a>
+      <a href="#clearing" class="toc-link">Clearing the Console</a>
+      <a href="#next" class="toc-link">Next Steps</a>
+    </aside>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
