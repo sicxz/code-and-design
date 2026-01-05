@@ -4,20 +4,17 @@ import Icon from '../../components/Icon.astro';
 import Card from '../../components/Card.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
 import Badge from '../../components/Badge.astro';
-import Alert from '../../components/Alert.astro';
 import LinkItem from '../../components/LinkItem.astro';
-import LensItem from '../../components/LensItem.astro';
-import MomentCard from '../../components/MomentCard.astro';
 ---
 
-<BaseLayout title="Week 0: Setup - DESN368">
+<BaseLayout title="Week 0: The On-Ramp - DESN378">
     <!-- Breadcrumb Navigation -->
     <nav class="breadcrumb-nav">
         <div class="breadcrumb-container">
             <div class="breadcrumb">
                 <a href="/">Course Overview</a>
                 <span class="breadcrumb-separator">></span>
-                <span class="breadcrumb-current">Week 0: S3tup & 0nb04rd1ng</span>
+                <span class="breadcrumb-current">Week 0: The On-Ramp</span>
             </div>
         </div>
     </nav>
@@ -25,492 +22,153 @@ import MomentCard from '../../components/MomentCard.astro';
     <main class="course-content two-column">
         <div class="main-content fade-in">
             <Card variant="accent" class="card-enhanced">
-                <div class="color-bar color-bar-red"></div>
-                <SectionHeader level={1} icon="rocket" badge={{ text: "Available", variant: "success" }}>
-                    Week 0: Setup & First Page — Your Digital Foundation
+                <SectionHeader level={1} icon="rocket" badge={{ text: "Week 0", variant: "success" }}>
+                    The On-Ramp
                 </SectionHeader>
-                <p class="subtitle">Wednesday, September 24, 2025 • 10:00 AM - 12:20 PM</p>
+                <p class="subtitle">Setting up your tools and meeting JavaScript</p>
 
-                <Alert icon="alert-triangle">
-                    <strong>First Day Reality:</strong> You'll be confused. You'll feel overwhelmed. That's completely normal and expected. Every professional developer started here.
-                </Alert>
-
-                <div class="repo-info">
-                    <p><strong>Repository:</strong> <a href="https://github.com/DESN368/student-workspace" target="_blank">https://github.com/DESN368/student-workspace</a></p>
-                    <p><strong>Theme:</strong> Foundation Building & Tool Mastery</p>
+                <div class="repo-info" style="margin-top: 1.5rem;">
+                    <p><strong>Theme:</strong> JavaScript as the behavioral layer of web design</p>
+                    <p><strong>Focus:</strong> DevTools, Console, Script Linking</p>
                 </div>
             </Card>
 
             <div class="section-divider"></div>
 
-            <Card variant="enhanced" class="designer-coder-section">
-                <SectionHeader icon="zap">
-                    Designer-Coder Lens
+            <!-- Lectures -->
+            <Card variant="enhanced">
+                <SectionHeader icon="presentation">
+                    Lectures
                 </SectionHeader>
 
-                <div class="lens-grid">
-                    <LensItem type="designer" title="Designer Focus">
-                        Visual hierarchy in code editors, file organization as information architecture, GitHub as visual portfolio platform, choosing themes that enhance focus and productivity
-                    </LensItem>
+                <div class="lecture-list">
+                    <div class="lecture-item">
+                        <h4>Day 1: The Behavioral Layer</h4>
+                        <p>Variables, functions, event listeners, DOM selection — JavaScript fundamentals from a designer's perspective.</p>
+                        <a href="https://docs.google.com/presentation/d/1DA4Djfiy8rPv8m0ICxGS0ncj0jTnP7VcDJM1nuSIpYs/edit?usp=sharing" target="_blank" class="btn btn-secondary" style="margin-top: 0.5rem;">
+                            View Slides
+                        </a>
+                    </div>
 
-                    <LensItem type="coder" title="Coder Focus">
-                        HTML document structure, Git version control foundations, browser developer tools introduction, understanding markup as the structural layer
-                    </LensItem>
-                </div>
-
-                <div class="duality-statement">
-                    <p><strong>The Duality:</strong> Every tag you write has both meaning (semantic structure) and potential appearance (visual hierarchy). This is why we start with HTML—it's the foundation that both designers and coders build upon.</p>
-                </div>
-
-            </Card>
-
-            <div class="section-divider with-icon"></div>
-
-            <Card variant="enhanced" class="timeline-section">
-                <SectionHeader icon="user" badge={{ text: "10:00-10:30 AM", variant: "secondary" }}>
-                    Part 1: Welcome & Context Setting
-                </SectionHeader>
-                <div class="activities-list">
-                    <ul>
-                        <li>Welcome and introductions</li>
-                        <li>Course philosophy: "Brick by Brick. Tag by Tag." — foundation building approach</li>
-                        <li>Designer-Coder identity: thinking both visually AND structurally</li>
-                        <li>Growth mindset and "coding is hard" reality check</li>
-                        <li>Workspace evolution into portfolio explanation</li>
-                    </ul>
-
-                    <div class="key-points">
-                        <h4>Key Points:</h4>
-                        <ul>
-                            <li>Everything is public and demonstrates growth</li>
-                            <li>Struggle is normal and expected</li>
-                            <li>Asking for help is professional behavior</li>
-                        </ul>
+                    <div class="lecture-item" style="margin-top: 1.5rem;">
+                        <h4>Day 2: TBD</h4>
+                        <p style="color: var(--text-secondary); font-style: italic;">Lecture content coming soon</p>
                     </div>
                 </div>
             </Card>
 
             <div class="section-divider"></div>
 
-            <Card variant="accent" class="card-enhanced timeline-section">
-                <SectionHeader icon="github" badge={{ text: "10:30-11:20 AM", variant: "secondary" }}>
-                    Part 2: GitHub Setup & Environment Tour
+            <!-- Assignments -->
+            <Card variant="enhanced">
+                <SectionHeader icon="clipboard">
+                    Assignments
                 </SectionHeader>
 
-                <div class="designer-coder-moments">
-                    <MomentCard type="designer">
-                        Your code editor is your design studio. Choose a theme that helps you focus—dark themes reduce eye strain during long sessions.
-                    </MomentCard>
+                <div class="assignment-list">
+                    <div class="assignment-item">
+                        <div class="assignment-header">
+                            <span class="assignment-type engage">Engage</span>
+                            <span class="assignment-due">In-class</span>
+                        </div>
+                        <h4>Portfolio Audit</h4>
+                        <p>Review and document existing portfolio work to establish your starting point.</p>
+                        <a href="https://canvas.ewu.edu/courses/1858410/assignments/11024445?module_item_id=25562791" class="assignment-link">View in Canvas →</a>
+                    </div>
 
-                    <MomentCard type="coder">
-                        File organization is like information architecture. Clean folders and meaningful names make collaboration possible.
-                    </MomentCard>
-                </div>
+                    <div class="assignment-item">
+                        <div class="assignment-header">
+                            <span class="assignment-type build">Build</span>
+                            <span class="assignment-due"></span>
+                        </div>
+                        <h4>The Set Up</h4>
+                        <p>Configure your development environment and clone the course repository.</p>
+                        <a href="https://canvas.ewu.edu/courses/1858410/assignments/11024296?module_item_id=25562789" class="assignment-link">View in Canvas →</a>
+                    </div>
 
-                <div class="live-demo">
-                    <h4>Live Demo & Follow-Along:</h4>
-                    <ol>
-                        <li><strong>Repository structure walkthrough</strong>
-                            <ul>
-                                <li><code>/setup/</code> folder purpose</li>
-                                <li><code>/week01/</code> for assignments</li>
-                                <li>README as living document</li>
-                            </ul>
-                        </li>
-                        <li><strong>GitHub web interface basics</strong>
-                            <ul>
-                                <li>Navigating files and folders</li>
-                                <li>Understanding commit history</li>
-                                <li>Using the pencil icon to edit</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
+                    <div class="assignment-item">
+                        <div class="assignment-header">
+                            <span class="assignment-type learn">Learn</span>
+                            <span class="assignment-due"></span>
+                        </div>
+                        <h4>Console Explorer</h4>
+                        <p>Hands-on exploration of DevTools using the Console Playground.</p>
+                        <a href="https://canvas.ewu.edu/courses/1858410/assignments/11024446?module_item_id=25562793" class="assignment-link">View in Canvas →</a>
+                    </div>
 
-                <div class="github-setup">
-                    <h4>GitHub Setup Steps:</h4>
-                    <ol>
-                        <li><strong>Create GitHub Account</strong>
-                            <ul>
-                                <li>Go to <a href="https://github.com/signup" target="_blank">Sign up for GitHub</a></li>
-                                <li>Use a professional username</li>
-                                <li>Add your real name to your profile</li>
-                            </ul>
-                        </li>
-                        <li><strong>Fork the Course Workspace</strong>
-                            <ul>
-                                <li>Go to <a href="https://github.com/sicxz/DESN368-code-design-workspace" target="_blank">Course Workspace Repository</a></li>
-                                <li>Click "Fork" button (top right)</li>
-                                <li>Rename to: <code>desn368-yourname</code></li>
-                            </ul>
-                        </li>
-                        <li><strong>Make Your First Edit</strong>
-                            <ul>
-                                <li>Click on README.md</li>
-                                <li>Click pencil icon to edit</li>
-                                <li>Add your name and save (commit)</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
+                    <div class="assignment-item">
+                        <div class="assignment-header">
+                            <span class="assignment-type learn">Learn</span>
+                            <span class="assignment-due"></span>
+                        </div>
+                        <h4>Codex Console Fundamentals</h4>
+                        <p>Complete exercises 1-5 on Codedex to practice console basics.</p>
+                        <a href="https://canvas.ewu.edu/courses/1858410/assignments/11024027?module_item_id=25562792" class="assignment-link">View in Canvas →</a>
+                    </div>
 
-                <div class="hands-on">
-                    <h4>Hands-On Exercise:</h4>
-                    <ul>
-                        <li>First README edit: Add your name</li>
-                        <li>Write meaningful commit message</li>
-                        <li>View commit history</li>
-                    </ul>
+                    <div class="assignment-item">
+                        <div class="assignment-header">
+                            <span class="assignment-type reflect">Reflect</span>
+                            <span class="assignment-due"></span>
+                        </div>
+                        <h4>Visual Notes // The Behavioral Layer</h4>
+                        <p>Create visual notes summarizing key concepts from Week 0.</p>
+                        <a href="https://canvas.ewu.edu/courses/1858410/assignments/11024448?module_item_id=25562794" class="assignment-link">View in Canvas →</a>
+                    </div>
                 </div>
             </Card>
 
             <div class="section-divider"></div>
 
-            <section class="card card-enhanced timeline-section">
-                <h2>
-                    <span class="icon-enhanced">
-                        <Icon name="file-text" size={20} />
-                    </span>
-                    Part 3: Your First HTML Page
-                    <span class="badge badge-secondary">11:20 AM-12:05 PM</span>
-                </h2>
+            <!-- Resources -->
+            <Card variant="accent">
+                <SectionHeader icon="book">
+                    Resources
+                </SectionHeader>
 
-                <h4>Live Code-Along: About Me Page</h4>
-                <div class="code-block">
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;About [Your Name]&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Hello, I'm [Your Name]&lt;/h1&gt;
-    &lt;p&gt;I'm learning to be a designer-coder.&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-                </div>
-<details id="w0-part3-details">
-  <summary>Open the LiveCodes sandbox</summary>
+                <div class="resources-grid">
+                    <a href="/demos/console-playground.html" class="resource-card" target="_blank">
+                        <div class="resource-icon">
+                            <Icon name="terminal" size={24} />
+                        </div>
+                        <h4>Console Playground</h4>
+                        <p>Interactive sandbox for practicing DevTools and console commands</p>
+                    </a>
 
-  <div style="margin-top:1rem">
-    <iframe
-  src="https://livecodes.io/?mode=full&console=closed&layout=vertical&html=%3C!DOCTYPE%20html%3E%0A%3Chtml%3E%0A%20%20%3Chead%3E%3Ctitle%3EMy%20First%20Page%3C/title%3E%3C/head%3E%0A%20%20%3Cbody%3E%3Ch1%3EHello%2C%20I%27m%20%5Byour%20name%5D%3C/h1%3E%3Cp%3EThis%20is%20my%20first%20HTML%20file%20in%20DESN368!%3C/p%3E%3C/body%3E%0A%3C/html%3E"
-  style="width:100%; height:700px; border:0; border-radius:12px"
-  loading="lazy"
-  title="LiveCodes editor (vertical split)"
-></iframe>
+                    <a href="/resources/dev-tools-fieldguide/" class="resource-card" target="_blank">
+                        <div class="resource-icon">
+                            <Icon name="book" size={24} />
+                        </div>
+                        <h4>DevTools Field Guide</h4>
+                        <p>Designer-focused guide to browser developer tools</p>
+                    </a>
 
-    <!-- Accessibility / fallback -->
-    <p style="margin-top:.5rem">
-      <a
-        href="https://livecodes.io/?mode=full&amp;console=closed&amp;layout=v&amp;html=%3C!DOCTYPE%20html%3E%0A%3Chtml%3E%0A%20%20%3Chead%3E%3Ctitle%3EMy%20First%20Page%3C/title%3E%3C/head%3E%0A%20%20%3Cbody%3E%3Ch1%3EHello%2C%20I%27m%20%5Byour%20name%5D%3C/h1%3E%3Cp%3EThis%20is%20my%20first%20HTML%20file%20in%20DESN368!%3C/p%3E%3C/body%3E%0A%3C/html%3E"
-        target="_blank" rel="noopener"
-      >Open in a new tab</a>
-    </p>
-  </div>
-</details>
-
-
-                <div class="designer-coder-discussion">
-                    <h4>Designer-Coder Discussion:</h4>
-                    <ul>
-                        <li><strong>Designer perspective:</strong> Why does hierarchy matter even without CSS? How do headings create visual flow?</li>
-                        <li><strong>Coder perspective:</strong> How does the browser parse HTML? What makes semantic markup meaningful?</li>
-                        <li><strong>The Connection:</strong> Structure IS design—your HTML creates the foundation for everything visual.</li>
-                    </ul>
-                </div>
-
-                <div class="hands-on" style="margin-top: 1.5rem;">
-                    <h4>Designer-Coder Intake Assignment:</h4>
-                    <p style="margin-bottom: 0.75rem;">Complete the intake form by editing the about-me.md file in your GitHub fork.</p>
-                    <p style="margin-bottom: 0.75rem;">This is your first markdown edit and GitHub commit!</p>
-                    <a href="https://canvas.ewu.edu/courses/1839909/assignments/10736116" class="btn btn-primary" style="display: inline-block;" target="_blank">
-                        View Full Instructions in Canvas
+                    <a href="https://github.com/sicxz/DESN-378-code-design-2" class="resource-card" target="_blank">
+                        <div class="resource-icon">
+                            <Icon name="github" size={24} />
+                        </div>
+                        <h4>Student Repository</h4>
+                        <p>Your workspace template for the quarter</p>
                     </a>
                 </div>
-            </section>
-
-            <div class="section-divider"></div>
-
-     <section class="card accent-block-subtle card-enhanced timeline-section">
-  <h2>
-    <span class="icon-enhanced"><Icon name="zap" size={20} /></span>
-    Part 4: Manifesto — Heading Hierarchy in Practice
-    <span class="badge badge-secondary">12:05–12:20 PM</span>
-  </h2>
-
-  <p><strong>Goal:</strong> Create a short “Designer–Coder Manifesto” using <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code>, each followed by a paragraph. No CSS. Feel the hierarchy and the outline.</p>
-
-  <h4>Instructions</h4>
-  <ol class="prep-list">
-    <li>Inside the starter, add exactly one <code>&lt;h1&gt;</code> as the page title and a <code>&lt;p&gt;</code> under it explaining the manifesto’s purpose.</li>
-    <li>Add one each of <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, <code>&lt;h6&gt;</code>—each immediately followed by a <code>&lt;p&gt;</code> explaining that point.</li>
-    <li>Keep levels in sensible order (don’t skip from H2 to H5).</li>
-    <li>Wrap everything in a semantic container (<code>&lt;article&gt;</code> or <code>&lt;section&gt;</code>).</li>
-  </ol>
-
-  <div class="designer-coder-discussion">
-    <h4>Connect to the Lens</h4>
-    <ul>
-      <li><strong>Designer:</strong> How does heading order create visual flow even without CSS?</li>
-      <li><strong>Coder:</strong> How will the browser/assistive tech outline this document?</li>
-      <li><strong>Link:</strong> Structure drives meaning; meaning drives design choices.</li>
-    </ul>
-  </div>
-
-  <h4>Success Criteria</h4>
-  <ul class="test-goals">
-    <li>✓ Exactly one <code>&lt;h1&gt;</code> + a paragraph under it</li>
-    <li>✓ One each of <code>&lt;h2&gt;</code> … <code>&lt;h6&gt;</code> with a paragraph under each</li>
-    <li>✓ Uses <code>&lt;article&gt;</code> or <code>&lt;section&gt;</code></li>
-    <li>✓ No skipped/illogical levels</li>
-  </ul>
-
-  <details>
-    
-    <summary>Open the LiveCodes starter</summary>
-    <div style="margin-top:1rem">
-      <!-- Minimal, not completed: students add all headings & paragraphs -->
-      <iframe
-        src="https://livecodes.io/?mode=full&amp;console=closed&amp;layout=vertical&amp;html=%3C!DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3E%0A%3Cbody%3E%0A%20%20%3Carticle%3E%0A%20%20%20%20%3C!--%20Build%20a%20manifesto%3A%20add%20H1..H6%2C%20each%20followed%20by%20a%20paragraph.%20No%20CSS.%20--%3E%0A%20%20%20%20%3C!--%20Start%20with%20H1%20as%20title%20%2B%20one-sentence%20purpose.%20Then%20H2%E2%86%92H6%2C%20each%20with%20a%20%3Cp%3E.%20--%3E%0A%20%20%3C/article%3E%0A%3C/body%3E%0A%3C/html%3E"
-        style="width:100%; height:700px; border:0; border-radius:12px"
-        loading="lazy"
-        title="LiveCodes editor (vertical split)"
-      ></iframe>
-
-      <p style="margin-top:.5rem">
-        <a
-          href="https://livecodes.io/?mode=full&amp;console=closed&amp;layout=vertical&amp;html=%3C!DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3E%0A%3Cbody%3E%0A%20%20%3Carticle%3E%0A%20%20%20%20%3C!--%20Build%20a%20manifesto%3A%20add%20H1..H6%2C%20each%20followed%20by%20a%20paragraph.%20No%20CSS.%20--%3E%0A%20%20%20%20%3C!--%20Start%20with%20H1%20as%20title%20%2B%20one-sentence%20purpose.%20Then%20H2%E2%86%92H6%2C%20each%20with%20a%20%3Cp%3E.%20--%3E%0A%20%20%3C/article%3E%0A%3C/body%3E%0A%3C/html%3E"
-          target="_blank" rel="noopener"
-        >Open in a new tab</a>
-      </p>
-    </div>
-  </details>
-
-  <p class="sidebar-subheading" style="margin-top:1rem">Turn-in</p>
- 
-</p>
-<h4>Submission Instructions</h4>
-<ul class="submission-list">
-  <li>Build your manifesto in the LiveCodes sandbox above.</li>
-  <li>When finished, open <a href="https://codepen.io/pen/" target="_blank" rel="noopener">CodePen</a> in a new tab.</li>
-  <li>Copy your finished HTML from LiveCodes and paste it into the HTML panel in CodePen.</li>
-  <li><strong>Name your Pen:</strong> <code>h1-manifesto-lastname-firstname-f25</code></li>
-  <li>Save your Pen (requires a free CodePen account).</li>
-  <li>Copy your Pen URL.</li>
-  <li>Submit that link in <strong>Canvas → Week 0 → Part 4 Submission</strong>.</li>
-</ul>
-</section>
-
-
-
-<script is:inline type="module">
-  import { createPlayground } from 'https://esm.sh/@live-codes/sdk@0.3.9';
-
-  /** Utility: only run once per details element */
-  function onOpenOnce(detailsEl, fn) {
-    const handler = () => {
-      if (detailsEl.open) {
-        detailsEl.removeEventListener('toggle', handler);
-        fn();
-      }
-    };
-    detailsEl.addEventListener('toggle', handler);
-  }
-
-  // PART 3
-  const d3 = document.getElementById('w0-part3-details');
-  onOpenOnce(d3, () => {
-    createPlayground('#w0-part3', {
-      template: 'static',
-      params: { mode: 'full', console: 'closed', lineNumbers: true },
-      // Pinning the app version = fewer surprises during the quarter
-      appUrl: 'https://v26.livecodes.io',
-      config: {
-        markup: {
-          language: 'html',
-          content: `<!DOCTYPE html>
-<html>
-  <head><title>My First Page</title></head>
-  <body>
-    <h1>Hello, I'm [your name]</h1>
-    <p>This is my first HTML file in DESN368!</p>
-  </body>
-</html>`
-        }
-      }
-    });
-  });
-
-  // PART 4
-  const d4 = document.getElementById('w0-part4-details');
-  onOpenOnce(d4, () => {
-    createPlayground('#w0-part4', {
-      template: 'static',
-      params: { mode: 'full', console: 'closed', lineNumbers: true },
-      appUrl: 'https://v26.livecodes.io',
-      config: {
-        markup: {
-          language: 'html',
-          content: `<!DOCTYPE html>
-<html lang="en">
-  <body>
-    <article>
-      <h1><!-- Your name here --></h1>
-      <p><!-- Your major --></p>
-      <p><!-- One interesting fact --></p>
-      <a href="https://example.com">A thing I made</a>
-    </article>
-  </body>
-</html>`
-        }
-      }
-    });
-  });
-</script>
-            <div class="section-divider"></div>
-
-            <section class="card accent-block-subtle card-enhanced">
-                <h2>
-                    <span class="icon-enhanced">
-                        <Icon name="zap" size={20} />
-                    </span>
-                    Week 0 AI Policy: Foundation First
-                </h2>
-
-                <div class="ai-policy-alert">
-                    <h4>This Week: NO AI ASSISTANCE</h4>
-                    <p>We're building your foundation brick by brick, tag by tag. Every tool setup, every first HTML tag, every Git command needs to be understood at the foundational level.</p>
-                </div>
-
-                <h4>Why No AI Yet?</h4>
-                <ul>
-                    <li>You need to feel the friction of learning new tools</li>
-                    <li>Problem-solving skills develop through struggle</li>
-                    <li>Understanding comes from doing, not from having AI do it for you</li>
-                    <li>Your foundation must be solid before AI becomes helpful</li>
-                </ul>
-
-                <div class="future-ai">
-                    <p><strong>Starting Week 1:</strong> AI will be introduced as a reference tool for definitions and explanations</p>
-                </div>
-            </section>
-
-            <div class="section-divider"></div>
-
-            <section class="card card-enhanced">
-                <h2>
-                    <span class="icon-enhanced">
-                        <Icon name="calendar" size={20} />
-                    </span>
-                    Submission Requirements
-                    <span class="badge badge-warning">Due End of Class</span>
-                </h2>
-
-                <p><strong>Due:</strong> End of class (12:20 PM)</p>
-
-                <h4>Submit to Canvas:</h4>
-                <ol class="submission-list">
-                    <li>Link to your GitHub repository</li>
-                    <li>Screenshot of completed personal card challenge</li>
-                </ol>
-            </section>
-
-            <div class="section-divider"></div>
-
-            <section class="card accent-block-subtle card-enhanced">
-                <h2>
-                    <span class="icon-enhanced">
-                        <Icon name="book" size={20} />
-                    </span>
-                    Prep for Week 1
-                </h2>
-
-                <h4>To Do Before Week 1:</h4>
-                <ol class="prep-list">
-                    <li>Complete Code + Design Workspace Setup</li>
-                    <li>Reading and Visual Notes for week 0</li>
-                    <li>Watch: "The Power of Believing You Can Improve" TED Talk by Carol Dweck</li>
-                    <li>Explore: Find 5 websites that inspire you and add them to the milanote board</li>
-                </ol>
-
-                <h4>Coming Next Week:</h4>
-                <ul class="coming-up">
-                    <li><strong>Monday:</strong> Internet vs Web deep dive, your first Figma exercises</li>
-                    <li><strong>Wednesday:</strong> Building a recipe page with semantic HTML</li>
-                </ul>
-            </section>
-
-            <div class="section-divider"></div>
-
-            <section class="card card-enhanced">
-                <h2>
-                    <span class="icon-enhanced">
-                        <Icon name="book" size={20} />
-                    </span>
-                    Resources
-                </h2>
-
-                <ul class="resources-list">
-                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank">HTML Elements Reference</a></li>
-                    <li><a href="https://guides.github.com/features/mastering-markdown/" target="_blank">GitHub Markdown Guide</a></li>
-                    <li><a href="https://guides.github.com/introduction/git-handbook/" target="_blank">Git Handbook</a></li>
-                </ul>
-            </section>
-
-            <div class="section-divider"></div>
-
-            <section class="card card-enhanced">
-                <h2>
-                    <span class="icon-enhanced">
-                        <Icon name="alert-triangle" size={20} />
-                    </span>
-                    Troubleshooting
-                </h2>
-                <div class="alert-tip">
-                    <strong>Can't find the Fork button?</strong><br>
-                    Make sure you're logged into GitHub first.
-                </div>
-
-                <div class="alert-tip">
-                    <strong>Repository won't rename?</strong><br>
-                    Go to Settings → Repository name → Rename
-                </div>
-
-                <div class="alert-tip">
-                    <strong>Confused about committing?</strong><br>
-                    Think of it as "Save with a note about what you changed"
-                </div>
-
-                <div class="alert-tip">
-                    <strong>VS Code won't start?</strong><br>
-                    Try restarting your computer after installation
-                </div>
-
-                <div class="closing-note">
-                    <p><em>Remember: Every professional web developer started with their first HTML page. You're now part of that journey.</em></p>
-                </div>
-            </section>
+            </Card>
         </div>
 
         <aside class="sidebar">
             <section class="card card-enhanced">
                 <h3>
-                    <Icon name="github" size={18} class="section-icon" />
+                    <Icon name="zap" size={18} class="section-icon" />
                     Quick Links
                 </h3>
                 <div class="quick-links">
-                    <LinkItem href="https://github.com/sicxz/DESN368-code-design-workspace" icon="github" target="_blank">
-                        Course Template Repo
+                    <LinkItem href="/demos/console-playground.html" icon="terminal" target="_blank">
+                        Console Playground
                     </LinkItem>
-                    <LinkItem href="https://code.visualstudio.com/" icon="settings" target="_blank">
-                        Download VS Code
+                    <LinkItem href="/resources/dev-tools-fieldguide/" icon="book" target="_blank">
+                        DevTools Field Guide
                     </LinkItem>
-                    <LinkItem href="https://www.firefox.com/en-US/browsers/desktop/" icon="zap" target="_blank">
-                        Download Firefox
-                    </LinkItem>
-                    <LinkItem href="https://desktop.github.com/" icon="github" target="_blank">
-                        GitHub Desktop
+                    <LinkItem href="https://github.com/sicxz/DESN-378-code-design-2" icon="github" target="_blank">
+                        Student Repository
                     </LinkItem>
                 </div>
             </section>
@@ -518,68 +176,153 @@ import MomentCard from '../../components/MomentCard.astro';
             <section class="card accent-block-subtle card-enhanced">
                 <h3>
                     <Icon name="lightbulb" size={18} class="section-icon" />
-                    Objectives & Key Concepts
+                    This Week
                 </h3>
-
-                <h4 class="sidebar-subheading">Learning Objectives:</h4>
-                <ol class="sidebar-objectives">
-                    <li>Navigate GitHub repository</li>
-                    <li>Setup development tools</li>
-                    <li>Execute basic Git workflows</li>
-                    <li>Establish professional online presence</li>
-                    <li>Demonstrate growth mindset</li>
-                </ol>
-
-                <h4 class="sidebar-subheading">Key Concepts:</h4>
                 <ul class="sidebar-concepts">
-                    <li><strong>Version Control:</strong> Git/GitHub workflows</li>
-                    <li><strong>Professional Development:</strong> Portfolio building</li>
-                    <li><strong>Growth Mindset:</strong> Learning persistence</li>
-                    <li><strong>Developer Workflows:</strong> Industry practices</li>
+                    <li>Open and use DevTools</li>
+                    <li>Run JavaScript in the Console</li>
+                    <li>Select elements with querySelector</li>
+                    <li>Change page content with JavaScript</li>
+                    <li>Link a script file to HTML</li>
                 </ul>
             </section>
 
             <section class="card card-enhanced">
                 <h3>
-                    <Icon name="user" size={18} class="section-icon" />
-                    About Me Survey
-                    <span class="badge badge-warning">Required</span>
+                    <Icon name="calendar" size={18} class="section-icon" />
+                    Week 1 Preview
                 </h3>
-                <p style="font-size: 14px; margin-bottom: 1rem;">Help us tailor the course experience to your background and goals.</p>
-                <a href="https://github.com/sicxz/DESN368-code-design-workspace/blob/main/week-0/about-me.md" class="link-item" target="_blank">
-                    <Icon name="file-text" size={16} />
-                    Complete Survey
-                </a>
-                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 0.5rem; font-style: italic;">
-                    Questions about your design background, comfort levels, and course goals
-                </div>
-            </section>
-
-            <section class="card card-accent">
-                <h3>
-                    <Icon name="lightbulb" size={18} class="section-icon" />
-                    Success Tip
-                </h3>
-                <p>Don't try to understand everything today. Just follow along, get the tools installed, and trust the process.</p>
-            </section>
-
-            <section class="card card-enhanced">
-                <h3>
-                    <Icon name="user" size={18} class="section-icon" />
-                    Need Help?
-                </h3>
-                <div class="help-info">
-                    <p><strong>During Class:</strong> Raise your hand!</p>
-                    <p><strong>This Weekend:</strong> Email me</p>
-                    <p><strong>Office Hours:</strong> Mon 1-2pm</p>
-                </div>
+                <ul class="sidebar-concepts">
+                    <li>CSS Custom Properties (design tokens)</li>
+                    <li>querySelector + addEventListener</li>
+                    <li>The $0 Bridge</li>
+                    <li>Building a theme toggle</li>
+                </ul>
             </section>
         </aside>
     </main>
-    <!-- put the script right here, before closing BaseLayout -->
-<script is:inline type="module">
-  import { createPlayground } from 'https://esm.sh/@live-codes/sdk@0.3.9';
-  // you'll add your lazy init code below
-</script>
-</BaseLayout>
+
+    <style>
+        .lecture-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .lecture-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .assignment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .assignment-item {
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            border-left: 3px solid var(--neural-teal);
+        }
+
+        .assignment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .assignment-type {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .assignment-type.learn {
+            background: rgba(34, 211, 238, 0.2);
+            color: var(--neural-cyan);
+        }
+
+        .assignment-type.build {
+            background: rgba(1, 183, 153, 0.2);
+            color: var(--neural-teal);
+        }
+
+        .assignment-type.engage {
+            background: rgba(168, 85, 247, 0.2);
+            color: var(--neural-violet);
+        }
+
+        .assignment-type.reflect {
+            background: rgba(201, 201, 141, 0.2);
+            color: #c9c98d;
+        }
+
+        .assignment-due {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .assignment-item h4 {
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .assignment-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .assignment-link {
+            font-size: 0.85rem;
+            color: var(--neural-cyan);
+            text-decoration: none;
+        }
+
+        .assignment-link:hover {
+            text-decoration: underline;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .resource-card {
+            display: block;
+            padding: 1.25rem;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .resource-card:hover {
+            border-color: var(--neural-teal);
+            transform: translateY(-2px);
+        }
+
+        .resource-icon {
+            color: var(--neural-cyan);
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .resource-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+    </style>
 </BaseLayout>
