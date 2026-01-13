@@ -1,6 +1,6 @@
 {
-  "name": "DESN368: Code+Design 1",
-  "short_name": "DESN368",
+  "name": "code+design",
+  "short_name": "c+d",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#b7142e",
-  "background_color": "#fdfffc",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "display": "standalone"
 }
