@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Switcher — Practice Mode</title>
+  <link rel="stylesheet" href="tutorial-styles.css">
+</head>
+<body>
+  <header>
+    <h1>Theme Switcher — Practice Mode</h1>
+    <p>Same project, but now YOU write the code. Fill in the blanks for new concepts. Write it yourself when you&rsquo;ve seen the pattern before.</p>
+
+    <div class="goal-box">
+      <h2>How this works:</h2>
+      <ul>
+        <li><strong class="challenge-tag-fill">Fill in the blank</strong> &mdash; Code is shown with missing pieces. Figure out what goes in the <code>______</code> spots.</li>
+        <li><strong class="challenge-tag-write">Write it yourself</strong> &mdash; You get a description and hints. Write the code from scratch.</li>
+        <li><strong>Show Solution</strong> &mdash; Stuck? Reveal the answer. No shame, but try first.</li>
+        <li>Everything from the walkthrough tutorial still applies &mdash; same concepts, same order.</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Progress Tracking -->
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 0%"></div>
+    </div>
+    <p class="progress-text">Progress: 0/6 sections &bull; 0%</p>
+  </div>
+
+  <div class="tutorial-container">
+    <!-- Tutorial Sections (Left Side) -->
+    <main class="tutorial-sections">
+
+      <!-- ============================================================ -->
+      <!-- PART A: Understanding Theme Switching -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-a">
+        <h2><span class="part-number">A</span> Understanding Theme Switching</h2>
+
+        <p><strong>Goal:</strong> Understand the three ingredients that make a theme switcher work.</p>
+
+        <h3>The Big Picture</h3>
+        <p>A theme switcher changes colors across your entire page in one move. Instead of rewriting every color when the user picks &ldquo;dark mode,&rdquo; you change a single attribute on the <code>&lt;html&gt;</code> element and let CSS do the rest.</p>
+
+        <div class="info-box">
+          <h4>The Three Ingredients</h4>
+          <ul>
+            <li><strong>CSS Custom Properties</strong> &mdash; Variables like <code>--color-surface</code> that hold your colors.</li>
+            <li><strong>A Dropdown UI</strong> &mdash; The menu that lets users pick Light, Dark, or System.</li>
+            <li><strong>JavaScript</strong> &mdash; The glue. It listens for clicks, swaps the <code>data-theme</code> attribute, and saves the choice.</li>
+          </ul>
+        </div>
+
+        <h3>The Data Flow</h3>
+        <p>When a user clicks &ldquo;Dark&rdquo;:</p>
+        <ol>
+          <li>JavaScript sets <code>document.documentElement.dataset.theme = "dark"</code></li>
+          <li>The <code>&lt;html&gt;</code> tag now has <code>data-theme="dark"</code></li>
+          <li>CSS rule <code>[data-theme="dark"]</code> activates and overrides the variables</li>
+          <li>Every element using <code>var(--color-surface)</code> instantly updates</li>
+          <li>JavaScript saves <code>"dark"</code> to localStorage</li>
+        </ol>
+
+        <h3>Your Starting HTML</h3>
+        <p>Your CodePen already has this structure:</p>
+
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy Code</span>
+          </button>
+          <pre><code>&lt;div class="theme-dropdown"&gt;
+  &lt;button class="theme-trigger"&gt;
+    &lt;span&gt;Theme&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class="theme-menu"&gt;
+    &lt;ul class="theme-list"&gt;
+      &lt;li&gt;&lt;button class="color-theme-option" data-theme="system"&gt;OS default&lt;/button&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;button class="color-theme-option" data-theme="light"&gt;Light&lt;/button&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;button class="color-theme-option" data-theme="dark"&gt;Dark&lt;/button&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;main class="card"&gt;
+  &lt;h1&gt;Theme Toggle Demo&lt;/h1&gt;
+  &lt;p&gt;This text will change color when the theme switches.&lt;/p&gt;
+&lt;/main&gt;</code></pre>
+        </div>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>Before writing any CSS: look at the HTML. What do the <code>data-theme</code> attributes do? How will CSS and JS use them?</p>
+          <textarea class="response-area"
+                    data-section="part-a"
+                    data-question="1"
+                    placeholder="Type your thoughts here..."
+                    rows="4"></textarea>
+          <p class="save-indicator">Auto-saved ✓</p>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="a-complete">
+            <span>I understand how CSS variables, data attributes, and JavaScript work together</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART B: CSS Custom Properties & Theme Colors -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-b">
+        <h2><span class="part-number">B</span> CSS Custom Properties &amp; Theme Colors</h2>
+
+        <p><strong>Goal:</strong> Define color variables and create light/dark rule sets.</p>
+
+        <!-- STEP 1: FILL IN THE BLANK (new concept: CSS variable syntax) -->
+        <h3>Step 1: Define your default variables <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>CSS custom properties (variables) always start with <code>--</code>. They go inside <code>:root</code> so they&rsquo;re available everywhere. Fill in the variable names:</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code>:root {
+  <span class="blank">__________________</span>: #ffffff;
+  <span class="blank">__________________</span>: #111111;
+}</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hint:</strong> You need a variable for the page background (surface) and one for the text color.
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="b-step-1">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="b-step-1">
+          <pre><code>:root {
+  --color-surface: #ffffff;
+  --color-text: #111111;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="b-step-1">
+            <span>Added <code>:root</code> variables</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: FILL IN THE BLANK (new concept: var() function) -->
+        <h3>Step 2: Apply variables to body <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>Instead of hard-coding colors, use the <code>var()</code> function to reference your custom properties. Fill in the two values:</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code>body {
+  margin: 0;
+  padding: 2rem;
+  font-family: system-ui, sans-serif;
+  background: <span class="blank">__________________</span>;
+  color: <span class="blank">__________________</span>;
+}</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hint:</strong> The syntax is <code>var(--your-variable-name)</code>
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="b-step-2">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="b-step-2">
+          <pre><code>body {
+  margin: 0;
+  padding: 2rem;
+  font-family: system-ui, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-text);
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="b-step-2">
+            <span>Body uses <code>var()</code> for colors</span>
+          </label>
+        </div>
+
+        <!-- STEP 3: FILL IN THE BLANK (new concept: attribute selector) -->
+        <h3>Step 3: Add the light theme rule <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>CSS can target HTML attributes using bracket notation. Fill in the selector that matches when <code>&lt;html&gt;</code> has <code>data-theme="light"</code>:</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code><span class="blank">______________________</span> {
+  --color-surface: #ffffff;
+  --color-text: #111111;
+}</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hint:</strong> Attribute selectors use square brackets: <code>[attribute="value"]</code>
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="b-step-3">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="b-step-3">
+          <pre><code>[data-theme="light"] {
+  --color-surface: #ffffff;
+  --color-text: #111111;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="b-step-3">
+            <span>Added <code>[data-theme="light"]</code> rule</span>
+          </label>
+        </div>
+
+        <!-- STEP 4: WRITE IT YOURSELF (repeated pattern from Step 3) -->
+        <h3>Step 4: Add the dark theme rule <span class="challenge-tag-write">Write it yourself</span></h3>
+        <p>Same pattern as Step 3, but for the dark theme. Use these colors:</p>
+        <ul>
+          <li>Surface: <code>#1a1a1a</code></li>
+          <li>Text: <code>#f0f0f0</code></li>
+        </ul>
+        <div class="challenge-block write-prompt">
+          <p>Write the complete CSS rule for <code>[data-theme="dark"]</code> that overrides both variables.</p>
+        </div>
+
+        <button class="show-solution" data-solution="b-step-4">Show Solution</button>
+        <div class="solution-box hidden" data-solution-id="b-step-4">
+          <pre><code>[data-theme="dark"] {
+  --color-surface: #1a1a1a;
+  --color-text: #f0f0f0;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="b-step-4">
+            <span>Added <code>[data-theme="dark"]</code> rule</span>
+          </label>
+        </div>
+
+        <h3>Test it in DevTools</h3>
+        <p>Open DevTools (F12). Find the <code>&lt;html&gt;</code> element and manually add <code>data-theme="dark"</code>. Your colors should flip. Remove it to go back.</p>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>Why use CSS variables instead of writing separate stylesheets for light and dark?</p>
+          <textarea class="response-area"
+                    data-section="part-b"
+                    data-question="1"
+                    placeholder="Type your answer here..."
+                    rows="3"></textarea>
+          <p class="save-indicator">Auto-saved ✓</p>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="b-complete">
+            <span>Part B Complete</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART C: Styling the Dropdown Container -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-c">
+        <h2><span class="part-number">C</span> Styling the Dropdown Container</h2>
+
+        <p><strong>Goal:</strong> Style the trigger button and position the hidden menu below it.</p>
+
+        <div class="info-box research">
+          <h4>Key properties to know:</h4>
+          <ul>
+            <li><code>position: relative</code> &mdash; Creates a positioning context for child elements</li>
+            <li><code>position: absolute</code> &mdash; Positions relative to nearest positioned ancestor</li>
+            <li><code>display: none</code> &mdash; Completely hides an element</li>
+            <li><code>top: 100%</code> &mdash; Places element right below its parent</li>
+          </ul>
+        </div>
+
+        <!-- STEP 1: FILL IN THE BLANK (new concept: positioning context) -->
+        <h3>Step 1: Position the dropdown wrapper <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>The wrapper needs a specific position value so the menu (which will be <code>absolute</code>) knows where to anchor itself. What goes here?</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code>.theme-dropdown {
+  position: <span class="blank">__________</span>;
+}</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hint:</strong> It&rsquo;s not <code>absolute</code>, not <code>fixed</code>, not <code>static</code>. It creates a positioning context without moving the element itself.
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="c-step-1">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="c-step-1">
+          <pre><code>.theme-dropdown {
+  position: relative;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="c-step-1">
+            <span>Dropdown wrapper is positioned</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: WRITE IT YOURSELF (basic CSS styling) -->
+        <h3>Step 2: Style the trigger button <span class="challenge-tag-write">Write it yourself</span></h3>
+        <p>Style <code>.theme-trigger</code> to look like a clickable button. Include:</p>
+        <ul>
+          <li>Black background, white text</li>
+          <li>Some padding (at least <code>0.5rem</code>)</li>
+          <li>No default border</li>
+          <li><code>cursor: pointer</code></li>
+        </ul>
+        <div class="challenge-block write-prompt">
+          <p>Write the <code>.theme-trigger</code> rule. The exact values are up to you &mdash; just make it look intentional, not default.</p>
+        </div>
+
+        <button class="show-solution" data-solution="c-step-2">Show Solution</button>
+        <div class="solution-box hidden" data-solution-id="c-step-2">
+          <pre><code>.theme-trigger {
+  background-color: #000000;
+  color: white;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="c-step-2">
+            <span>Trigger button is styled</span>
+          </label>
+        </div>
+
+        <!-- STEP 3: FILL IN THE BLANK (new concept: absolute positioning) -->
+        <h3>Step 3: Hide and position the menu <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>The menu needs to: (1) start hidden, (2) sit below the trigger without pushing content around, (3) know where &ldquo;below&rdquo; is relative to the dropdown wrapper.</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code>.theme-menu {
+  display: <span class="blank">________</span>;
+  position: <span class="blank">__________</span>;
+  top: <span class="blank">________</span>;
+  left: 0;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  z-index: 10;
+}</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hints:</strong> Blank 1 hides the element completely. Blank 2 removes it from normal flow and positions it relative to the nearest positioned ancestor. Blank 3 puts it at the bottom edge of its parent.
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="c-step-3">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="c-step-3">
+          <pre><code>.theme-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  z-index: 10;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="c-step-3">
+            <span>Menu is hidden and absolutely positioned</span>
+          </label>
+        </div>
+
+        <!-- STEP 4: COPY (trivial) -->
+        <h3>Step 4: Reset the list styles</h3>
+        <p>Remove default bullets and spacing from the <code>&lt;ul&gt;</code>:</p>
+
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy Code</span>
+          </button>
+          <pre><code>.theme-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="c-step-4">
+            <span>List styles are reset</span>
+          </label>
+        </div>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>What would happen if you forgot <code>position: relative</code> on <code>.theme-dropdown</code>? Where would the menu appear?</p>
+          <textarea class="response-area"
+                    data-section="part-c"
+                    data-question="1"
+                    placeholder="Type your answer..."
+                    rows="3"></textarea>
+          <p class="save-indicator">Auto-saved ✓</p>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="c-complete">
+            <span>Part C Complete</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART D: Styling the Menu Buttons -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-d">
+        <h2><span class="part-number">D</span> Styling the Menu Buttons</h2>
+
+        <p><strong>Goal:</strong> Style the option buttons and create the rule that reveals the menu.</p>
+
+        <!-- STEP 1: COPY (many properties, not conceptually new) -->
+        <h3>Step 1: Style the option buttons</h3>
+        <p>Each option needs flexbox for icon+text alignment and full-width click targets:</p>
+
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy Code</span>
+          </button>
+          <pre><code>.color-theme-option {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  margin: 0;
+  font-size: 1rem;
+  color: white;
+  background-color: #000000;
+  border: none;
+  cursor: pointer;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="d-step-1">
+            <span>Option buttons have flex layout</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: WRITE IT YOURSELF (simple hover pattern) -->
+        <h3>Step 2: Add a hover state <span class="challenge-tag-write">Write it yourself</span></h3>
+        <div class="challenge-block write-prompt">
+          <p>Write a <code>:hover</code> rule for <code>.color-theme-option</code> that changes the background to <code>#333</code>.</p>
+          <div class="challenge-hint-box">
+            <strong>Hint:</strong> The selector is <code>.color-theme-option:hover</code>
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="d-step-2">Show Solution</button>
+        <div class="solution-box hidden" data-solution-id="d-step-2">
+          <pre><code>.color-theme-option:hover {
+  background-color: #333;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="d-step-2">
+            <span>Hover state changes background</span>
+          </label>
+        </div>
+
+        <!-- STEP 3: FILL IN THE BLANK (new concept: compound selector for state) -->
+        <h3>Step 3: The reveal rule <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>When JavaScript adds a class to the dropdown wrapper, this CSS rule should show the menu. Fill in the missing class name and display value:</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code>.theme-dropdown.<span class="blank">______</span> .theme-menu {
+  display: <span class="blank">________</span>;
+}</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hint:</strong> The class name describes the menu&rsquo;s state. The display value is the opposite of <code>none</code> for block-level content.
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="d-step-3">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="d-step-3">
+          <pre><code>.theme-dropdown.open .theme-menu {
+  display: block;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="d-step-3">
+            <span>Added the <code>.open</code> reveal rule</span>
+          </label>
+        </div>
+
+        <h3>Test it in DevTools</h3>
+        <p>Find <code>.theme-dropdown</code> in the Elements panel. Manually add <code>open</code> to its class list. The menu should appear. Remove it and it disappears.</p>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>Why is toggling a CSS class better than directly setting <code>style.display</code> in JavaScript?</p>
+          <textarea class="response-area"
+                    data-section="part-d"
+                    data-question="1"
+                    placeholder="Type your answer..."
+                    rows="3"></textarea>
+          <p class="save-indicator">Auto-saved ✓</p>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="d-complete">
+            <span>Part D Complete</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART E: JavaScript — Opening & Closing the Dropdown -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-e">
+        <h2><span class="part-number">E</span> JavaScript &mdash; Opening &amp; Closing the Dropdown</h2>
+
+        <p><strong>Goal:</strong> Wire up JavaScript so clicking the trigger toggles the menu, and clicking elsewhere closes it.</p>
+
+        <div class="info-box research">
+          <h4>Key concepts:</h4>
+          <ul>
+            <li><code>classList.toggle("open")</code> &mdash; Adds the class if missing, removes it if present</li>
+            <li><code>event.stopPropagation()</code> &mdash; Prevents the click from bubbling up to parent elements</li>
+            <li><code>element.contains(event.target)</code> &mdash; Checks if a clicked element is inside another element</li>
+          </ul>
+        </div>
+
+        <!-- STEP 1: FILL IN THE BLANK (new concept: querySelector) -->
+        <h3>Step 1: Select your elements <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>Use <code>querySelector</code> with the CSS class selectors to grab the dropdown wrapper and trigger button:</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code>const dropdown = document.querySelector("<span class="blank">________________</span>");
+const trigger = document.querySelector("<span class="blank">________________</span>");</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hint:</strong> These are CSS class selectors. Look at the HTML &mdash; what classes do the wrapper <code>&lt;div&gt;</code> and the <code>&lt;button&gt;</code> have?
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="e-step-1">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="e-step-1">
+          <pre><code>const dropdown = document.querySelector(".theme-dropdown");
+const trigger = document.querySelector(".theme-trigger");</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="e-step-1">
+            <span>Selected dropdown and trigger elements</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: FILL IN THE BLANK (new concepts: stopPropagation, classList.toggle) -->
+        <h3>Step 2: Toggle on trigger click <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>When the trigger is clicked: (1) stop the event from bubbling, and (2) toggle the <code>open</code> class on the dropdown wrapper.</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code>trigger.addEventListener("click", function (event) {
+  event.<span class="blank">__________________</span>();
+  dropdown.classList.<span class="blank">__________</span>("open");
+});</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hints:</strong> Blank 1 stops the event from reaching parent elements (the word literally means &ldquo;stop propagation&rdquo;). Blank 2 is a classList method that adds a class if missing and removes it if present.
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="e-step-2">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="e-step-2">
+          <pre><code>trigger.addEventListener("click", function (event) {
+  event.stopPropagation();
+  dropdown.classList.toggle("open");
+});</code></pre>
+        </div>
+
+        <div class="info-box">
+          <h4>Why <code>stopPropagation()</code>?</h4>
+          <p>Without it, the click bubbles up to the document listener (Step 3), which would immediately close the menu. The open and close would happen in the same tick &mdash; the menu would never visibly appear.</p>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="e-step-2">
+            <span>Clicking the trigger toggles the menu</span>
+          </label>
+        </div>
+
+        <!-- STEP 3: WRITE IT YOURSELF (applies concepts from Step 2) -->
+        <h3>Step 3: Close when clicking outside <span class="challenge-tag-write">Write it yourself</span></h3>
+        <div class="challenge-block write-prompt">
+          <p>Add a <code>"click"</code> listener on <code>document</code>. Inside the handler, check if the click target is <strong>outside</strong> the dropdown. If it is, remove the <code>"open"</code> class.</p>
+          <div class="challenge-hint-box">
+            <strong>Hints:</strong>
+            <ul>
+              <li>Use <code>document.addEventListener("click", function (event) { ... })</code></li>
+              <li>Use <code>dropdown.contains(event.target)</code> to check if the click is inside</li>
+              <li>The <code>!</code> operator flips the boolean &mdash; &ldquo;if NOT inside&rdquo;</li>
+              <li>Use <code>classList.remove("open")</code> (not <code>toggle</code>) to close</li>
+            </ul>
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="e-step-3">Show Solution</button>
+        <div class="solution-box hidden" data-solution-id="e-step-3">
+          <pre><code>document.addEventListener("click", function (event) {
+  if (!dropdown.contains(event.target)) {
+    dropdown.classList.remove("open");
+  }
+});</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="e-step-3">
+            <span>Clicking outside closes the menu</span>
+          </label>
+        </div>
+
+        <h3>Test it</h3>
+        <p>Click the button &mdash; menu opens. Click it again &mdash; menu closes. Click somewhere else &mdash; menu closes.</p>
+
+        <div class="info-box warning">
+          <h4>Common bug</h4>
+          <p>If the menu opens and immediately closes, you probably forgot <code>event.stopPropagation()</code> in Step 2.</p>
+        </div>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>Could you use <code>classList.toggle</code> in the document listener instead of <code>classList.remove</code>? Why or why not?</p>
+          <textarea class="response-area"
+                    data-section="part-e"
+                    data-question="1"
+                    placeholder="Type your answer..."
+                    rows="3"></textarea>
+          <p class="save-indicator">Auto-saved ✓</p>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="e-complete">
+            <span>Part E Complete</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART F: JavaScript — Loading & Applying Themes -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-f">
+        <h2><span class="part-number">F</span> JavaScript &mdash; Loading &amp; Applying Themes</h2>
+
+        <p><strong>Goal:</strong> Wire up each theme button, save the choice, and restore it on reload.</p>
+
+        <!-- STEP 1: WRITE IT YOURSELF (same querySelector pattern from Part E) -->
+        <h3>Step 1: Select the theme buttons <span class="challenge-tag-write">Write it yourself</span></h3>
+        <div class="challenge-block write-prompt">
+          <p>Select the three theme buttons using attribute selectors. You need three <code>const</code> declarations using <code>querySelector</code>.</p>
+          <div class="challenge-hint-box">
+            <strong>Hints:</strong>
+            <ul>
+              <li>Attribute selector syntax: <code>button[data-theme='value']</code></li>
+              <li>Name them <code>systemBtn</code>, <code>lightBtn</code>, <code>darkBtn</code></li>
+              <li>The values to match are <code>'system'</code>, <code>'light'</code>, and <code>'dark'</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="f-step-1">Show Solution</button>
+        <div class="solution-box hidden" data-solution-id="f-step-1">
+          <pre><code>const systemBtn = document.querySelector("button[data-theme='system']");
+const lightBtn = document.querySelector("button[data-theme='light']");
+const darkBtn = document.querySelector("button[data-theme='dark']");</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="f-step-1">
+            <span>Selected all three theme buttons</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: FILL IN THE BLANK (new concepts: dataset, localStorage) -->
+        <h3>Step 2: Wire up the Light button <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>When clicked, this handler needs to: set the <code>data-theme</code> attribute on <code>&lt;html&gt;</code>, save to localStorage, and close the dropdown.</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code>lightBtn.addEventListener("click", function () {
+  document.<span class="blank">___________________</span>.dataset.theme = "light";
+  localStorage.<span class="blank">___________</span>("theme", "light");
+  dropdown.classList.remove("open");
+});</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hints:</strong> Blank 1 is the property that gives you the <code>&lt;html&gt;</code> element (it literally means &ldquo;document element&rdquo;). Blank 2 is the localStorage method that saves a key-value pair.
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="f-step-2">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="f-step-2">
+          <pre><code>lightBtn.addEventListener("click", function () {
+  document.documentElement.dataset.theme = "light";
+  localStorage.setItem("theme", "light");
+  dropdown.classList.remove("open");
+});</code></pre>
+        </div>
+
+        <div class="info-box">
+          <h4>Breaking this down</h4>
+          <ul>
+            <li><code>document.documentElement</code> &mdash; The <code>&lt;html&gt;</code> element</li>
+            <li><code>.dataset.theme = "light"</code> &mdash; Sets <code>data-theme="light"</code> on it</li>
+            <li><code>localStorage.setItem("theme", "light")</code> &mdash; Saves the string under the key <code>"theme"</code></li>
+          </ul>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="f-step-2">
+            <span>Light button switches to light theme</span>
+          </label>
+        </div>
+
+        <!-- STEP 3: WRITE IT YOURSELF (same pattern as Step 2) -->
+        <h3>Step 3: Wire up the Dark button <span class="challenge-tag-write">Write it yourself</span></h3>
+        <div class="challenge-block write-prompt">
+          <p>Same exact pattern as the light button. Just change the three instances of <code>"light"</code> to <code>"dark"</code>.</p>
+        </div>
+
+        <button class="show-solution" data-solution="f-step-3">Show Solution</button>
+        <div class="solution-box hidden" data-solution-id="f-step-3">
+          <pre><code>darkBtn.addEventListener("click", function () {
+  document.documentElement.dataset.theme = "dark";
+  localStorage.setItem("theme", "dark");
+  dropdown.classList.remove("open");
+});</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="f-step-3">
+            <span>Dark button switches to dark theme</span>
+          </label>
+        </div>
+
+        <!-- STEP 4: FILL IN THE BLANK (new concept: matchMedia) -->
+        <h3>Step 4: Wire up the System button <span class="challenge-tag-fill">Fill in the blank</span></h3>
+        <p>This button saves <code>"system"</code> and then checks the OS preference to decide light or dark:</p>
+
+        <div class="challenge-block">
+          <pre class="challenge-code"><code>systemBtn.addEventListener("click", function () {
+  localStorage.setItem("theme", "system");
+  const osDark = window.<span class="blank">____________________________________________</span>;
+  if (osDark) {
+    document.documentElement.dataset.theme = "dark";
+  } else {
+    document.documentElement.dataset.theme = "light";
+  }
+  dropdown.classList.remove("open");
+});</code></pre>
+          <div class="challenge-hint-box">
+            <strong>Hint:</strong> <code>window.matchMedia()</code> takes a media query string like CSS uses. You want to check <code>(prefers-color-scheme: dark)</code> and read the <code>.matches</code> property.
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="f-step-4">Reveal Answer</button>
+        <div class="solution-box hidden" data-solution-id="f-step-4">
+          <pre><code>systemBtn.addEventListener("click", function () {
+  localStorage.setItem("theme", "system");
+  const osDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (osDark) {
+    document.documentElement.dataset.theme = "dark";
+  } else {
+    document.documentElement.dataset.theme = "light";
+  }
+  dropdown.classList.remove("open");
+});</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="f-step-4">
+            <span>System button detects OS preference</span>
+          </label>
+        </div>
+
+        <!-- STEP 5: WRITE IT YOURSELF (combines all concepts) -->
+        <h3>Step 5: Load the saved theme on page load <span class="challenge-tag-write">Write it yourself</span></h3>
+        <div class="challenge-block write-prompt">
+          <p>This is the boss fight. Write code that runs at the <strong>top</strong> of your JS file. It should:</p>
+          <ol>
+            <li>Read the saved theme from localStorage (key is <code>"theme"</code>)</li>
+            <li>If there&rsquo;s no saved value, OR if it&rsquo;s <code>"system"</code>: check the OS preference with <code>matchMedia</code> and set the theme accordingly</li>
+            <li>Otherwise: set <code>data-theme</code> to whatever was saved</li>
+          </ol>
+          <div class="challenge-hint-box">
+            <strong>Hints:</strong>
+            <ul>
+              <li><code>localStorage.getItem("theme")</code> returns <code>null</code> if nothing is saved</li>
+              <li><code>!saved</code> is truthy when <code>saved</code> is <code>null</code></li>
+              <li>You can combine conditions: <code>if (!saved || saved === "system")</code></li>
+              <li>Reuse the <code>matchMedia</code> pattern from Step 4</li>
+            </ul>
+          </div>
+        </div>
+
+        <button class="show-solution" data-solution="f-step-5">Show Solution</button>
+        <div class="solution-box hidden" data-solution-id="f-step-5">
+          <pre><code>// Load saved theme (put this at the TOP of your JS)
+const saved = localStorage.getItem("theme");
+if (!saved || saved === "system") {
+  const osDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (osDark) {
+    document.documentElement.dataset.theme = "dark";
+  } else {
+    document.documentElement.dataset.theme = "light";
+  }
+} else {
+  document.documentElement.dataset.theme = saved;
+}</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="f-step-5">
+            <span>Saved theme loads on page refresh</span>
+          </label>
+        </div>
+
+        <h3>Final test</h3>
+        <ol>
+          <li>Click &ldquo;Dark&rdquo; &mdash; page goes dark</li>
+          <li>Refresh the page &mdash; it stays dark</li>
+          <li>Click &ldquo;Light&rdquo; &mdash; page goes light</li>
+          <li>Click &ldquo;OS default&rdquo; &mdash; matches your system setting</li>
+          <li>Refresh again &mdash; persists correctly</li>
+        </ol>
+
+        <div class="info-box success">
+          <h4>You built a theme switcher!</h4>
+          <p>The full loop works: user clicks &rarr; JS sets the attribute &rarr; CSS swaps variables &rarr; localStorage remembers.</p>
+        </div>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>The &ldquo;system&rdquo; option saves <code>"system"</code> to localStorage, not the resolved <code>"dark"</code> or <code>"light"</code>. Why does that matter? What breaks if you save the resolved value?</p>
+          <textarea class="response-area"
+                    data-section="part-f"
+                    data-question="1"
+                    placeholder="Type your answer..."
+                    rows="3"></textarea>
+          <p class="save-indicator">Auto-saved ✓</p>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="f-complete">
+            <span>Part F Complete</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- COMPLETION SECTION -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section completion-section">
+        <h2>Congratulations!</h2>
+        <p>You built a fully functional theme switcher &mdash; and you wrote most of the code yourself.</p>
+        <ul>
+          <li>Define and override CSS custom properties with <code>:root</code> and attribute selectors</li>
+          <li>Build a dropdown pattern: trigger button + absolutely positioned menu</li>
+          <li>Toggle visibility with a CSS class (<code>.open</code>) controlled by JavaScript</li>
+          <li>Close dropdowns on outside click using event bubbling</li>
+          <li>Persist user preferences with <code>localStorage</code></li>
+          <li>Read OS dark mode preference with <code>matchMedia</code></li>
+        </ul>
+
+        <div class="info-box success">
+          <h4>What you built:</h4>
+          <ul>
+            <li><strong>CSS variables</strong> that swap all colors in one attribute change</li>
+            <li><strong>A dropdown menu</strong> using the relative/absolute positioning pattern</li>
+            <li><strong>Three theme options</strong> including OS-aware &ldquo;system&rdquo; mode</li>
+            <li><strong>Persistence</strong> across page reloads with localStorage</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Where to go from here:</h4>
+          <ul>
+            <li><strong>Add more variables:</strong> borders, shadows, accent colors, link colors</li>
+            <li><strong>Add transitions:</strong> <code>transition: background-color 0.3s, color 0.3s</code> for smooth changes</li>
+            <li><strong>Keyboard accessibility:</strong> Arrow keys to navigate, Escape to close</li>
+            <li><strong>Active indicator:</strong> Highlight which theme is currently selected</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- CodePen Workspace (Right Side, Sticky) -->
+    <aside class="codepen-area">
+      <div class="codepen-header">
+        <div class="codepen-header-content">
+          <div>
+            <h3>Your Workspace</h3>
+            <p>Code along as you follow the tutorial &rarr;</p>
+          </div>
+          <button id="toggle-focus" class="toggle-focus-btn">
+            <span class="icon">&#x1f441;&#xfe0f;</span>
+            <span class="text">Focus Mode</span>
+          </button>
+        </div>
+      </div>
+      <iframe
+        id="codepen-embed"
+        src="https://codepen.io/tmasingale/pen/xbOQPVB?editable=true&utm_source=your_website&utm_medium=embed&utm_campaign=xbOQPVB"
+        loading="lazy"
+        allowfullscreen
+        title="Theme Switcher Practice CodePen workspace">
+      </iframe>
+    </aside>
+  </div>
+
+  <!-- Export Responses Section -->
+  <div class="export-section">
+    <button id="export-responses">Copy All My Responses</button>
+  </div>
+
+  <footer>
+    <p>Theme Switcher — Practice Mode | Fill in the blanks for new concepts, write it yourself for patterns you know</p>
+    <p>The best way to learn is by building. Experiment, break things, and learn from the process!</p>
+  </footer>
+
+  <script src="tutorial.js"></script>
+</body>
+</html>
