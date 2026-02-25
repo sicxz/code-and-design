@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSAP ScrollTrigger — Lecture Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --accent: #c84b2f;
+      --muted: #8a8070;
+      --rule: #d4cfc4;
+      --code-bg: #2a2520;
+      --code-fg: #e8dcc8;
+    }
+
+    html { scroll-behavior: auto; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── LABEL BADGE ─── */
+    .concept-badge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.25rem 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ─── DIVIDER ─── */
+    .rule {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 0 — INTRO / MASTHEAD
+    ══════════════════════════════════════ */
+    #intro {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8vw;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    #intro .vol {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    #intro h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 9vw, 8rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+    }
+
+    #intro h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    #intro .deck {
+      margin-top: 2.5rem;
+      max-width: 52ch;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    #intro .toc {
+      margin-top: 3rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    #intro .toc-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-top: 2px solid var(--ink);
+      padding-top: 0.5rem;
+    }
+
+    #intro .toc-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.6rem;
+      margin-top: 0.2rem;
+    }
+
+    #intro .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      right: 4vw;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 1 — BASIC TRIGGER
+    ══════════════════════════════════════ */
+    #section-trigger {
+      padding: 8vw;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 em { font-style: italic; color: var(--accent); }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #3a3530;
+      margin-bottom: 1rem;
+    }
+
+    /* Trigger demo cards */
+    .trigger-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .trigger-card {
+      background: white;
+      border: 1px solid var(--rule);
+      padding: 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .trigger-card .card-kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .trigger-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .trigger-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .trigger-card.feature {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .trigger-card.feature h3 { color: var(--paper); }
+    .trigger-card.feature p { color: var(--rule); }
+    .trigger-card.feature .card-kicker { color: var(--accent); }
+
+    /* Code block */
+    .code-block {
+      background: var(--code-bg);
+      color: var(--code-fg);
+      padding: 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin-top: 2rem;
+    }
+
+    .code-block .cm { color: #6a7a5a; }
+    .code-block .kw { color: #e89a5a; }
+    .code-block .fn { color: #7ac0c8; }
+    .code-block .st { color: #a8c870; }
+    .code-block .nu { color: #d4a0d4; }
+
+    /* ══════════════════════════════════════
+       SECTION 2 — SCRUB
+    ══════════════════════════════════════ */
+    #section-scrub {
+      padding: 8vw;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .scrub-visual {
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    .scrub-track {
+      width: 100%;
+      height: 4px;
+      background: var(--rule);
+      position: relative;
+      margin-bottom: 3rem;
+    }
+
+    .scrub-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transform-origin: left;
+    }
+
+    .scrub-label {
+      position: absolute;
+      right: 0;
+      top: -1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scrub-headline-wrap {
+      overflow: hidden;
+    }
+
+    .scrub-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 7rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      display: block;
+    }
+
+    .scrub-headline-wrap:nth-child(1) .scrub-headline { transform: translateX(-120%); }
+    .scrub-headline-wrap:nth-child(2) .scrub-headline { transform: translateX(120%); }
+    .scrub-headline-wrap:nth-child(3) .scrub-headline { transform: translateX(-120%); }
+
+    .scrub-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .scrub-row .caption {
+      max-width: 40ch;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .scrub-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--accent);
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 3 — PIN + TIMELINE
+    ══════════════════════════════════════ */
+    #section-pin {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .pin-intro {
+      padding: 8vw;
+      padding-bottom: 4vw;
+    }
+
+    .pin-stage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    @media (max-width: 768px) {
+      .pin-stage { grid-template-columns: 1fr; }
+    }
+
+    .pin-left {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      padding: 4vw;
+    }
+
+    .pin-visual {
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .pin-cover {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: #2a2520;
+      border: 1px solid #3a3530;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pin-cover-stripe {
+      position: absolute;
+      left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .pin-cover-title {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      right: 2rem;
+    }
+
+    .pin-cover-kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .pin-cover-h {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--paper);
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .pin-cover-sub {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .pin-cover-cta {
+      margin-top: 1.2rem;
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--paper);
+      border: 1px solid var(--paper);
+      padding: 0.4rem 0.8rem;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .pin-progress-dots {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3a3530;
+      transition: background 0.3s;
+    }
+
+    .dot.active { background: var(--accent); }
+
+    .pin-right {
+      padding: 8vw 6vw;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .pin-step {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4vw 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .pin-step:last-child { border-bottom: none; }
+
+    .pin-step .step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .pin-step h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .pin-step h3 em { font-style: italic; color: var(--accent); }
+
+    .pin-step p {
+      max-width: 40ch;
+      color: var(--muted);
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 4 — CODE RECAP
+    ══════════════════════════════════════ */
+    #section-code {
+      padding: 8vw;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .code-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 0;
+      margin-top: 2rem;
+    }
+
+    .code-tab {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      background: var(--rule);
+      color: var(--muted);
+      border: none;
+      cursor: pointer;
+    }
+
+    .code-tab.active {
+      background: var(--code-bg);
+      color: var(--code-fg);
+    }
+
+    .code-panel { display: none; }
+    .code-panel.active { display: block; }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    #footer {
+      padding: 4vw 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    #footer .footer-sig {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    #footer .footer-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rule);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ INTRO ═══ -->
+  <section id="intro">
+    <p class="vol">DESN 374 · Lecture Demo · GSAP ScrollTrigger</p>
+    <h1>Scroll as a <em>Design</em> Material</h1>
+    <p class="deck">
+      Three concepts. One page. Each section isolates a single ScrollTrigger mechanic so you can see exactly what the code does — and why a designer would reach for it.
+    </p>
+    <div class="toc">
+      <div class="toc-item">01 / Trigger<span>Enter the viewport</span></div>
+      <div class="toc-item">02 / Scrub<span>Scroll as controller</span></div>
+      <div class="toc-item">03 / Pin + Timeline<span>Scrollytelling</span></div>
+    </div>
+    <p class="scroll-hint">scroll to begin</p>
+  </section>
+
+  <!-- ═══ SECTION 1: TRIGGER ═══ -->
+  <section id="section-trigger">
+    <div class="two-col">
+      <div>
+        <p class="section-label">01 — Basic Trigger</p>
+        <h2>Enter the viewport, <em>begin</em>.</h2>
+        <p>The simplest use of ScrollTrigger: an animation fires once when an element scrolls into view. No scrubbing, no pinning. Just a threshold crossing.</p>
+        <p>Watch the three cards to the right. Each one has <code style="font-family:'DM Mono',monospace; font-size:0.8em; background:#e8e0d0; padding:0.1em 0.4em;">scrollTrigger: ".trigger-card"</code> attached. They fade and rise independently as they enter the viewport.</p>
+        <div class="code-block">
+<span class="cm">// Fire once on enter — no scroll control</span>
+<span class="kw">gsap</span>.<span class="fn">from</span>(<span class="st">".trigger-card"</span>, {
+  <span class="kw">scrollTrigger</span>: <span class="st">".trigger-card"</span>,
+  <span class="kw">opacity</span>: <span class="nu">0</span>,
+  <span class="kw">y</span>: <span class="nu">50</span>,
+  <span class="kw">duration</span>: <span class="nu">0.8</span>,
+  <span class="kw">stagger</span>: <span class="nu">0.15</span>
+});</div>
+      </div>
+
+      <div class="trigger-stack">
+        <div class="trigger-card feature">
+          <p class="card-kicker">Lead Story</p>
+          <h3>The Scroll Is the Story</h3>
+          <p>When position becomes narrative, the reader's hand becomes the director.</p>
+        </div>
+        <div class="trigger-card">
+          <p class="card-kicker">Analysis</p>
+          <h3>Why GSAP Over CSS?</h3>
+          <p>Cross-browser reliability and sequencing control that native scroll can't match.</p>
+        </div>
+        <div class="trigger-card">
+          <p class="card-kicker">Technique</p>
+          <h3>Stagger as Rhythm</h3>
+          <p>A 0.15s offset between elements reads as choreography, not coincidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 2: SCRUB ═══ -->
+  <section id="section-scrub">
+    <p class="section-label">02 — Scrub</p>
+    <h2 style="max-width:14ch;">The scrollbar <em>becomes</em> the playhead.</h2>
+
+    <div class="scrub-visual" id="scrub-container">
+      <div class="scrub-track">
+        <div class="scrub-fill" id="scrub-fill"></div>
+        <span class="scrub-label">scroll progress</span>
+      </div>
+
+      <div class="scrub-headline-wrap">
+        <span class="scrub-headline" id="hl1">SCROLL</span>
+      </div>
+      <div class="scrub-headline-wrap">
+        <span class="scrub-headline" id="hl2" style="text-align:right; display:block;">DOWN</span>
+      </div>
+      <div class="scrub-headline-wrap">
+        <span class="scrub-headline" id="hl3">TO REVEAL</span>
+      </div>
+
+      <div class="scrub-row">
+        <p class="caption">
+          With <code style="font-family:'DM Mono',monospace; font-size:0.85em;">scrub: 1</code>, the animation's progress is directly tied to how far you've scrolled through the trigger zone. Scroll back up — it reverses. The number adds a one-second lag for smoothness.
+        </p>
+        <div class="scrub-note" id="scrub-pct">0%</div>
+      </div>
+    </div>
+
+    <div class="code-block" style="margin-top:3rem;">
+<span class="cm">// Scroll position drives the animation — forward and back</span>
+<span class="kw">let</span> tl = <span class="kw">gsap</span>.<span class="fn">timeline</span>({
+  <span class="kw">scrollTrigger</span>: {
+    <span class="kw">trigger</span>: <span class="st">"#scrub-container"</span>,
+    <span class="kw">start</span>: <span class="st">"top center"</span>,
+    <span class="kw">end</span>: <span class="st">"bottom center"</span>,
+    <span class="kw">scrub</span>: <span class="nu">1</span>   <span class="cm">// 1 = one-second lag (smoother feel)</span>
+  }
+});
+
+tl.<span class="fn">to</span>(<span class="st">"#hl1"</span>, { <span class="kw">x</span>: <span class="nu">0</span> })
+  .<span class="fn">to</span>(<span class="st">"#hl2"</span>, { <span class="kw">x</span>: <span class="nu">0</span> }, <span class="st">"&lt;0.1"</span>)
+  .<span class="fn">to</span>(<span class="st">"#hl3"</span>, { <span class="kw">x</span>: <span class="nu">0</span> }, <span class="st">"&lt;0.1"</span>);</div>
+  </section>
+
+  <!-- ═══ SECTION 3: PIN + TIMELINE ═══ -->
+  <section id="section-pin">
+    <div class="pin-intro">
+      <p class="section-label">03 — Pin + Timeline</p>
+      <h2 style="max-width:16ch;">Hold the visual. Let the <em>story</em> move past it.</h2>
+      <p style="max-width:52ch; margin-top:1rem;">The left panel is pinned. As you scroll through the right-side steps, a GSAP timeline reveals elements inside the pinned card — sequentially, controlled by your scroll position.</p>
+    </div>
+
+    <div class="pin-stage" id="pin-stage">
+      <div class="pin-left" id="pin-visual-wrap">
+        <div class="pin-visual">
+          <div class="pin-cover" id="pin-cover">
+            <div class="pin-cover-stripe" id="stripe" style="top: 30%; opacity:0;"></div>
+            <div class="pin-cover-title">
+              <p class="pin-cover-kicker">Feature</p>
+              <h2 class="pin-cover-h" id="pin-h">The Long<br>Read</h2>
+              <p class="pin-cover-sub" id="pin-sub">A deep investigation into how motion design shapes editorial narrative on the modern web.</p>
+              <span class="pin-cover-cta" id="pin-cta">Read Now →</span>
+            </div>
+          </div>
+          <div class="pin-progress-dots">
+            <div class="dot active" id="dot0"></div>
+            <div class="dot" id="dot1"></div>
+            <div class="dot" id="dot2"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-right">
+        <div class="pin-step" data-step="0">
+          <p class="step-num">Step 01 / The pin</p>
+          <h3>Lock the visual in place.</h3>
+          <p>The left card is pinned with <code style="font-family:'DM Mono',monospace; font-size:0.85em;">pin: true</code>. It stays in the viewport while you scroll through the right column.</p>
+        </div>
+        <div class="pin-step" data-step="1">
+          <p class="step-num">Step 02 / The timeline</p>
+          <h3>Sequence reveals <em>inside</em> the pin.</h3>
+          <p>A GSAP timeline fires as you enter this step — the headline fades up inside the pinned card. The scroll position controls when it triggers.</p>
+        </div>
+        <div class="pin-step" data-step="2">
+          <p class="step-num">Step 03 / The payoff</p>
+          <h3>The full <em>composition</em> arrives.</h3>
+          <p>Sub-copy and the CTA complete the card. Three scroll zones, one visual, one timeline. This is the Apple product page pattern — deconstructed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CODE RECAP ═══ -->
+  <section id="section-code">
+    <p class="section-label">The Pattern</p>
+    <h2>All three concepts, <em>side by side.</em></h2>
+
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchTab('trigger')">Trigger</button>
+      <button class="code-tab" onclick="switchTab('scrub')">Scrub</button>
+      <button class="code-tab" onclick="switchTab('pin')">Pin + Timeline</button>
+    </div>
+
+    <div id="tab-trigger" class="code-panel active">
+      <div class="code-block">
+<span class="cm">// 1. Register the plugin (do this once)</span>
+<span class="kw">gsap</span>.<span class="fn">registerPlugin</span>(ScrollTrigger);
+
+<span class="cm">// 2. Animate from invisible when element enters view</span>
+<span class="kw">gsap</span>.<span class="fn">from</span>(<span class="st">".trigger-card"</span>, {
+  <span class="kw">scrollTrigger</span>: <span class="st">".trigger-card"</span>,   <span class="cm">// shorthand: just a selector</span>
+  <span class="kw">opacity</span>: <span class="nu">0</span>,
+  <span class="kw">y</span>: <span class="nu">50</span>,
+  <span class="kw">duration</span>: <span class="nu">0.8</span>,
+  <span class="kw">stagger</span>: <span class="nu">0.15</span>                     <span class="cm">// offset each card</span>
+});</div>
+    </div>
+
+    <div id="tab-scrub" class="code-panel">
+      <div class="code-block">
+<span class="cm">// scrub: 1 — animation progress = scroll progress (with 1s lag)</span>
+<span class="kw">gsap</span>.<span class="fn">timeline</span>({
+  <span class="kw">scrollTrigger</span>: {
+    <span class="kw">trigger</span>: <span class="st">"#container"</span>,
+    <span class="kw">start</span>: <span class="st">"top center"</span>,   <span class="cm">// "trigger-edge viewport-edge"</span>
+    <span class="kw">end</span>: <span class="st">"bottom center"</span>,
+    <span class="kw">scrub</span>: <span class="nu">1</span>
+  }
+})
+.<span class="fn">to</span>(<span class="st">"#hl1"</span>, { <span class="kw">x</span>: <span class="nu">0</span> })
+.<span class="fn">to</span>(<span class="st">"#hl2"</span>, { <span class="kw">x</span>: <span class="nu">0</span> }, <span class="st">"&lt;0.1"</span>)   <span class="cm">// overlap by 0.1s</span>
+.<span class="fn">to</span>(<span class="st">"#hl3"</span>, { <span class="kw">x</span>: <span class="nu">0</span> }, <span class="st">"&lt;0.1"</span>);</div>
+    </div>
+
+    <div id="tab-pin" class="code-panel">
+      <div class="code-block">
+<span class="cm">// Pin the left panel; use scroll steps to trigger reveals inside it</span>
+ScrollTrigger.<span class="fn">create</span>({
+  <span class="kw">trigger</span>: <span class="st">"#pin-visual-wrap"</span>,
+  <span class="kw">start</span>: <span class="st">"top top"</span>,
+  <span class="kw">end</span>: <span class="st">"bottom bottom"</span>,    <span class="cm">// relative to parent container</span>
+  <span class="kw">pin</span>: <span class="kw">true</span>
+});
+
+<span class="cm">// Each step triggers a reveal inside the pinned card</span>
+<span class="kw">gsap</span>.<span class="fn">to</span>(<span class="st">"#pin-h"</span>, {
+  <span class="kw">scrollTrigger</span>: {
+    <span class="kw">trigger</span>: <span class="st">"[data-step='1']"</span>,
+    <span class="kw">start</span>: <span class="st">"top center"</span>,
+    <span class="kw">toggleActions</span>: <span class="st">"play none none reverse"</span>
+  },
+  <span class="kw">opacity</span>: <span class="nu">1</span>, <span class="kw">y</span>: <span class="nu">0</span>, <span class="kw">duration</span>: <span class="nu">0.6</span>
+});</div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <p class="footer-sig">GSAP ScrollTrigger — Lecture Demo</p>
+    <p class="footer-meta">DESN 374 · AI + Design · EWU</p>
+  </footer>
+
+  <!-- GSAP via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ─── 1. BASIC TRIGGER ───
+    gsap.to(".trigger-card", {
+      scrollTrigger: {
+        trigger: ".trigger-stack",
+        start: "top 80%",
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.18,
+      ease: "power2.out"
+    });
+
+    // ─── 2. SCRUB ───
+    let scrubTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#scrub-container",
+        start: "top 60%",
+        end: "bottom 40%",
+        scrub: 1,
+        onUpdate: (self) => {
+          const pct = Math.round(self.progress * 100);
+          document.getElementById("scrub-pct").textContent = pct + "%";
+          document.getElementById("scrub-fill").style.width = pct + "%";
+        }
+      }
+    });
+
+    scrubTl
+      .to("#hl1", { x: 0, duration: 1 })
+      .to("#hl2", { x: 0, duration: 1 }, "<0.2")
+      .to("#hl3", { x: 0, duration: 1 }, "<0.2");
+
+    // ─── 3. PIN + TIMELINE ───
+    // Pin the left visual for the duration of the right column
+    ScrollTrigger.create({
+      trigger: "#pin-stage",
+      start: "top top",
+      end: "bottom bottom",
+      pin: "#pin-visual-wrap",
+      pinSpacing: false
+    });
+
+    // Step 1: headline
+    gsap.to(["#stripe", "#pin-h"], {
+      scrollTrigger: {
+        trigger: "[data-step='1']",
+        start: "top 55%",
+        toggleActions: "play none none reverse"
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "power2.out",
+      onStart: () => setDot(1),
+      onReverseComplete: () => setDot(0)
+    });
+
+    // Step 2: sub + cta
+    gsap.to(["#pin-sub", "#pin-cta"], {
+      scrollTrigger: {
+        trigger: "[data-step='2']",
+        start: "top 55%",
+        toggleActions: "play none none reverse"
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      stagger: 0.15,
+      ease: "power2.out",
+      onStart: () => setDot(2),
+      onReverseComplete: () => setDot(1)
+    });
+
+    function setDot(n) {
+      document.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === n);
+      });
+    }
+
+    // ─── CODE TABS ───
+    function switchTab(name) {
+      document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.code-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Expose to window so onclick works
+    window.switchTab = switchTab;
+  </script>
+</body>
+</html>

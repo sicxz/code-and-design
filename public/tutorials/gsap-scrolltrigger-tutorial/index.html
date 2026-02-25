@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScrollTrigger Patterns &mdash; Scroll as a Design Material</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;800;900&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tutorial-styles.css">
+</head>
+<body>
+
+  <!-- ═══ HEADER / HERO ═══ -->
+  <header>
+    <div class="header-inner">
+      <p class="header-label">DESN 378 &middot; Week 7 Preview</p>
+      <h1>Scroll as a <em>Design</em> Material</h1>
+      <p class="header-deck">Three patterns that turn scroll position into a creative tool. You&rsquo;ll feel each one as you scroll through this page.</p>
+
+      <div class="goal-box">
+        <h2>How this works</h2>
+        <ul>
+          <li>Each part teaches one ScrollTrigger pattern with real, copy-ready code.</li>
+          <li>Below each code block is a <strong>live demo zone</strong> &mdash; scroll through it to <em>feel</em> the concept.</li>
+          <li><strong>How It Works</strong> boxes break down the mechanics in plain language.</li>
+          <li>Checkpoints and reflections connect each pattern to your Lost in The Scroll project.</li>
+          <li>Parts 1&ndash;3 cover: <strong>Basic Trigger</strong>, <strong>Scrub</strong>, and <strong>Pin + Timeline</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="toc">
+        <a href="#part-1" class="toc-item">
+          <span class="toc-num">01</span>
+          <span class="toc-label">Trigger</span>
+        </a>
+        <a href="#part-2" class="toc-item">
+          <span class="toc-num">02</span>
+          <span class="toc-label">Scrub</span>
+        </a>
+        <a href="#part-3" class="toc-item">
+          <span class="toc-num">03</span>
+          <span class="toc-label">Pin + Timeline</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ PROGRESS BAR ═══ -->
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 0%"></div>
+    </div>
+    <p class="progress-text">Progress: 0/3 sections &bull; 0%</p>
+  </div>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="tutorial-content">
+
+    <!-- ════════════════════════════════════════════════════════════════
+         PART 1: BASIC TRIGGER (light background)
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="tutorial-section section-light" id="part-1">
+      <h2><span class="part-number">1</span> Basic Trigger</h2>
+
+      <p><strong>Goal:</strong> Understand how ScrollTrigger fires an animation when an element enters the viewport.</p>
+
+      <p><strong>Context you have:</strong> You built GSAP animations in The Pulse (Build 7-2). They all fire on page load. ScrollTrigger makes them wait for the audience.</p>
+
+      <!-- How It Works -->
+      <div class="info-box strategy">
+        <h4>How It Works: The Threshold</h4>
+        <p>ScrollTrigger watches scroll position. When the <strong>top of the trigger element</strong> crosses a line on the viewport (like 80% from the top), the animation fires. Think of it as a tripwire &mdash; your element walks into it, and the animation goes off.</p>
+        <p>The <code>start</code> property defines two things: which edge of the trigger element, and where on the viewport. <code>"top 80%"</code> means &ldquo;when the top of my element reaches 80% down the viewport.&rdquo;</p>
+      </div>
+
+      <!-- The Pattern -->
+      <h3>The Pattern</h3>
+
+      <div class="code-block-wrapper">
+        <button class="copy-code-btn">
+          <span class="icon">&nbsp;</span>
+          <span>Copy</span>
+        </button>
+        <pre><code>// Register the plugin (do this once, at the top)
+gsap.registerPlugin(ScrollTrigger);
+
+// Animate when element enters viewport
+gsap.from('.card', {
+  opacity: 0,
+  y: 40,
+  scale: 0.92,
+  duration: 0.6,
+  stagger: 0.15,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: '.cards-container',
+    start: 'top 80%',    // "trigger-edge viewport-position"
+    markers: true         // visual debugging — remove for production
+  }
+});</code></pre>
+      </div>
+
+      <!-- Live Demo Zone -->
+      <div class="demo-zone demo-trigger" id="demo-trigger">
+        <div class="demo-toolbar">
+          <p class="demo-label">Live Demo &mdash; scroll to see these cards animate in &amp; out</p>
+          <button class="demo-reset-btn" id="demo-trigger-reset" aria-label="Reset card animation">
+            <span class="demo-reset-icon">&#x21bb;</span> Reset
+          </button>
+        </div>
+        <div class="demo-cards-grid">
+          <div class="demo-card">
+            <span class="demo-card-icon">&#9653;</span>
+            <h4>Design System</h4>
+            <p>Tokens, scales, and reusable decisions that keep a project consistent.</p>
+          </div>
+          <div class="demo-card">
+            <span class="demo-card-icon">&#9670;</span>
+            <h4>Motion Library</h4>
+            <p>A vocabulary of entrance, exit, and transition animations to draw from.</p>
+          </div>
+          <div class="demo-card">
+            <span class="demo-card-icon">&#9711;</span>
+            <h4>Interaction Pattern</h4>
+            <p>A repeatable response to user input that feels natural and intentional.</p>
+          </div>
+          <div class="demo-card">
+            <span class="demo-card-icon">&#9724;</span>
+            <h4>Scroll Narrative</h4>
+            <p>Content that unfolds as the reader moves, turning position into pacing.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- What to Notice -->
+      <div class="info-box">
+        <h4>What You Just Saw</h4>
+        <p>The cards animate in when you enter the demo zone, then animate out when the demo zone scrolls away. Scroll back and they animate in again. This live demo uses an <code>end</code> plus <code>toggleActions: "play reverse play reverse"</code> so you can feel enter/leave behavior in both directions.</p>
+        <p>Hit the <strong>Reset</strong> button to replay the demo from scratch.</p>
+      </div>
+
+      <!-- Key Config Reference -->
+      <h3>Key Config Options</h3>
+      <table class="config-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>What It Does</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>trigger</code></td>
+            <td>Which element&rsquo;s position triggers the animation</td>
+            <td><code>".cards-container"</code></td>
+          </tr>
+          <tr>
+            <td><code>start</code></td>
+            <td>&ldquo;trigger-edge viewport-position&rdquo; format</td>
+            <td><code>"top 80%"</code></td>
+          </tr>
+          <tr>
+            <td><code>end</code></td>
+            <td>When the trigger zone ends</td>
+            <td><code>"bottom 20%"</code></td>
+          </tr>
+          <tr>
+            <td><code>markers</code></td>
+            <td>Visual debugging lines (remove before shipping)</td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td><code>toggleActions</code></td>
+            <td>What happens on enter / leave / re-enter / re-leave</td>
+            <td><code>"play none none reverse"</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Checkpoint -->
+      <div class="checkpoint">
+        <label>
+          <input type="checkbox" data-checkpoint="1-trigger">
+          <span>Cards animate when I scroll to them</span>
+        </label>
+      </div>
+
+      <!-- Reflection -->
+      <div class="reflection-box">
+        <h4>Reflection</h4>
+        <p>Look at your Lost in The Scroll site. Which sections should use basic trigger? Which need something more than &ldquo;fire once on scroll&rdquo;?</p>
+        <textarea class="response-area"
+                  data-section="part-1"
+                  data-question="1"
+                  placeholder="Think about your sections and which trigger pattern fits each one..."
+                  rows="4"></textarea>
+        <p class="save-indicator">Auto-saved &#10003;</p>
+      </div>
+
+      <!-- Solution -->
+      <button class="show-solution" data-solution="1-trigger">Show Complete Code</button>
+      <div class="solution-box hidden" data-solution-id="1-trigger">
+        <pre><code>// ── BASIC TRIGGER ──
+// Register once at the top of your file
+gsap.registerPlugin(ScrollTrigger);
+
+// Cards fade up + scale in when container enters viewport
+gsap.from('.card', {
+  opacity: 0,
+  y: 40,
+  scale: 0.92,
+  duration: 0.6,
+  stagger: 0.15,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: '.cards-container',  // the parent element
+    start: 'top 80%',            // when top of container hits 80% of viewport
+    markers: true                 // remove for production!
+  }
+});
+
+// With toggleActions (replay on re-enter):
+gsap.from('.card', {
+  opacity: 0,
+  y: 40,
+  scale: 0.92,
+  duration: 0.6,
+  stagger: 0.15,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: '.cards-container',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse'
+    // play on enter, nothing on leave,
+    // nothing on re-enter, reverse on re-leave
+  }
+});</code></pre>
+      </div>
+
+      <!-- Completion -->
+      <div class="checkpoint">
+        <label>
+          <input type="checkbox" data-checkpoint="1-complete">
+          <span>Part 1 Complete &mdash; I understand basic trigger</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         PART 2: SCRUB (dark background)
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="tutorial-section section-dark" id="part-2">
+      <h2><span class="part-number">2</span> Scrub</h2>
+
+      <p><strong>Goal:</strong> Link animation progress directly to scroll position. Scroll forward = animate forward. Scroll back = animate back.</p>
+
+      <p><strong>Context you have:</strong> Basic trigger fires once. But what if you want scroll to <em>be</em> the playhead? That&rsquo;s scrub.</p>
+
+      <!-- How It Works -->
+      <div class="info-box strategy">
+        <h4>How It Works: Scroll as Playhead</h4>
+        <p>With <code>scrub: true</code>, the animation&rsquo;s progress is tied directly to how far you&rsquo;ve scrolled through the trigger zone. Scroll 50% through? The animation is 50% done. Scroll backward? The animation reverses.</p>
+        <p><code>scrub: 1</code> adds a one-second smoothing lag &mdash; the animation catches up to your scroll position over one second instead of instantly. This feels much better than <code>scrub: true</code> for most designs.</p>
+        <p>Think of it like a slider: your scrollbar <em>is</em> the animation&rsquo;s progress bar.</p>
+      </div>
+
+      <!-- The Pattern -->
+      <h3>The Pattern</h3>
+
+      <div class="code-block-wrapper">
+        <button class="copy-code-btn">
+          <span class="icon">&nbsp;</span>
+          <span>Copy</span>
+        </button>
+        <pre><code>// Scroll position drives the animation — forward and back
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '#scrub-section',
+    start: 'top center',
+    end: 'bottom center',
+    scrub: 1,             // 1-second smoothing lag
+    markers: true
+  }
+});
+
+tl.to('#headline-1', { x: 0, opacity: 1, ease: 'none' })
+  .to('#headline-2', { x: 0, opacity: 1, ease: 'none' }, '<0.1')
+  .to('#headline-3', { x: 0, opacity: 1, ease: 'none' }, '<0.1');</code></pre>
+      </div>
+
+      <!-- Live Demo Zone -->
+      <div class="demo-zone demo-scrub" id="demo-scrub">
+        <p class="demo-label">Live Demo &mdash; scroll slowly. Your scroll controls the animation.</p>
+
+        <div class="demo-scrub-track">
+          <div class="demo-scrub-fill" id="demo-scrub-fill"></div>
+          <span class="demo-scrub-label">scroll progress</span>
+        </div>
+
+        <div class="demo-headline-wrap">
+          <span class="demo-headline demo-hl" id="demo-hl1">SCROLL</span>
+        </div>
+        <div class="demo-headline-wrap">
+          <span class="demo-headline demo-hl demo-hl-right" id="demo-hl2">DRIVES</span>
+        </div>
+        <div class="demo-headline-wrap">
+          <span class="demo-headline demo-hl" id="demo-hl3">MOTION</span>
+        </div>
+
+        <div class="demo-scrub-footer">
+          <p class="demo-scrub-caption">With <code>scrub: 1</code>, the animation&rsquo;s progress is directly tied to how far you&rsquo;ve scrolled. Scroll back up &mdash; it reverses.</p>
+          <span class="demo-scrub-pct" id="demo-scrub-pct">0%</span>
+        </div>
+      </div>
+
+      <!-- What to Notice -->
+      <div class="info-box info-box-dark">
+        <h4>What You Just Felt</h4>
+        <p>Scroll backward. The headlines retreat. That&rsquo;s scrub &mdash; animation as a two-way street.</p>
+        <p>Notice the code uses <code>ease: 'none'</code>. With scrub, your scroll speed already provides natural easing. Adding a complex ease on top feels overcooked.</p>
+      </div>
+
+      <!-- Warning -->
+      <div class="info-box warning">
+        <h4>Common Trap</h4>
+        <p>Using complex easing (like <code>bounce.out</code>) with scrub. Since scroll speed already provides easing, <code>ease: 'none'</code> usually feels best for scrubbed animations. Save the fancy easing for basic trigger animations.</p>
+      </div>
+
+      <!-- Checkpoint -->
+      <div class="checkpoint checkpoint-dark">
+        <label>
+          <input type="checkbox" data-checkpoint="2-scrub">
+          <span>Animation progress follows my scroll position</span>
+        </label>
+      </div>
+
+      <!-- Reflection -->
+      <div class="reflection-box reflection-box-dark">
+        <h4>Reflection</h4>
+        <p>Which section of your Lost in The Scroll site would benefit from scrub? Think about a section where the content should <em>progress</em> with scroll, not just appear.</p>
+        <textarea class="response-area"
+                  data-section="part-2"
+                  data-question="1"
+                  placeholder="Describe a section where scroll-driven progress makes sense..."
+                  rows="4"></textarea>
+        <p class="save-indicator">Auto-saved &#10003;</p>
+      </div>
+
+      <!-- Solution -->
+      <button class="show-solution show-solution-dark" data-solution="2-scrub">Show Complete Code</button>
+      <div class="solution-box hidden" data-solution-id="2-scrub">
+        <pre><code>// ── SCRUB ──
+// Timeline progress is tied to scroll position
+
+const scrubTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '#scrub-section',
+    start: 'top center',     // when top of section hits center of viewport
+    end: 'bottom center',    // when bottom of section hits center
+    scrub: 1,                // 1-second smoothing lag
+    markers: true,
+    onUpdate: (self) => {
+      // Optional: track percentage for a progress indicator
+      const pct = Math.round(self.progress * 100);
+      document.querySelector('.pct').textContent = pct + '%';
+    }
+  }
+});
+
+// Headlines start off-screen (set in CSS: translateX(-120%) or translateX(120%))
+scrubTl
+  .to('#headline-1', { x: 0, opacity: 1, duration: 1, ease: 'none' })
+  .to('#headline-2', { x: 0, opacity: 1, duration: 1, ease: 'none' }, '<0.2')
+  .to('#headline-3', { x: 0, opacity: 1, duration: 1, ease: 'none' }, '<0.2');
+
+// Position parameter '<0.2' means:
+// start this tween 0.2 seconds after the PREVIOUS tween starts
+// (creates overlap / stagger in a timeline)</code></pre>
+      </div>
+
+      <!-- Completion -->
+      <div class="checkpoint checkpoint-dark">
+        <label>
+          <input type="checkbox" data-checkpoint="2-complete">
+          <span>Part 2 Complete &mdash; I understand scrub</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         PART 3: PIN + TIMELINE (light background)
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="tutorial-section section-light" id="part-3">
+      <h2><span class="part-number">3</span> Pin + Timeline</h2>
+
+      <p><strong>Goal:</strong> Pin a visual element in place while scroll drives a timeline of reveals inside it. The scrollytelling signature move.</p>
+
+      <p><strong>Context you have:</strong> In scrollytelling, the most powerful technique is pinning: locking a section while the user scrolls through &ldquo;steps&rdquo; that reveal content inside the pinned area. This is the Apple product page pattern, deconstructed.</p>
+
+      <!-- How It Works -->
+      <div class="info-box strategy">
+        <h4>How It Works: Hold the Stage</h4>
+        <p><code>pin: true</code> locks an element in place while the rest of the page scrolls past it. GSAP automatically adds extra scroll distance to compensate &mdash; the page gets longer, and that extra distance becomes the timeline&rsquo;s playback range.</p>
+        <p>Combine pinning with <code>scrub</code> and a <code>timeline</code>, and you get the scrollytelling pattern: a fixed visual stage where content reveals step by step as the reader scrolls.</p>
+        <p><code>end: "+=200%"</code> means the pin lasts for 2x the section height in scroll distance. More distance = slower pacing = more room for reveals.</p>
+      </div>
+
+      <!-- The Pattern -->
+      <h3>The Pattern</h3>
+
+      <div class="code-block-wrapper">
+        <button class="copy-code-btn">
+          <span class="icon">&nbsp;</span>
+          <span>Copy</span>
+        </button>
+        <pre><code>// Pin the visual element; scroll drives the timeline
+const pinTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.pin-section',
+    start: 'top top',
+    end: '+=200%',        // pin lasts for 2x the section height
+    pin: true,
+    scrub: 1,
+    markers: true
+  }
+});
+
+// Sequenced reveals inside the pinned section
+pinTl
+  .from('.step-1', { opacity: 0, y: 30, duration: 1 })
+  .from('.step-2', { opacity: 0, y: 30, duration: 1 })
+  .from('.step-3', { opacity: 0, y: 30, duration: 1 });</code></pre>
+      </div>
+
+      <!-- Live Demo Zone -->
+      <div class="demo-zone demo-pin" id="demo-pin">
+        <p class="demo-label">Live Demo &mdash; the left panel pins while you scroll through the steps</p>
+
+        <div class="demo-pin-stage" id="demo-pin-stage">
+          <div class="demo-pin-left" id="demo-pin-visual">
+            <div class="demo-pin-card">
+              <div class="demo-pin-stripe" id="demo-pin-stripe"></div>
+              <div class="demo-pin-card-content">
+                <p class="demo-pin-kicker">Feature</p>
+                <h3 class="demo-pin-title" id="demo-pin-title">The Long Read</h3>
+                <p class="demo-pin-subtitle" id="demo-pin-subtitle">A deep investigation into how motion design shapes editorial narrative on the modern web.</p>
+                <span class="demo-pin-cta" id="demo-pin-cta">Read Now &rarr;</span>
+              </div>
+            </div>
+            <div class="demo-pin-dots">
+              <span class="demo-dot active" id="demo-dot-0"></span>
+              <span class="demo-dot" id="demo-dot-1"></span>
+              <span class="demo-dot" id="demo-dot-2"></span>
+            </div>
+          </div>
+
+          <div class="demo-pin-right">
+            <div class="demo-pin-step" data-demo-step="0">
+              <p class="demo-step-num">Step 01 / The Pin</p>
+              <h3>Lock the visual in place.</h3>
+              <p>The left card is pinned with <code>pin: true</code>. It stays in the viewport while you scroll through this column.</p>
+            </div>
+            <div class="demo-pin-step" data-demo-step="1">
+              <p class="demo-step-num">Step 02 / The Timeline</p>
+              <h3>Sequence reveals <em>inside</em> the pin.</h3>
+              <p>A GSAP timeline fires as you enter this step &mdash; the headline fades up inside the pinned card. Scroll controls when it triggers.</p>
+            </div>
+            <div class="demo-pin-step" data-demo-step="2">
+              <p class="demo-step-num">Step 03 / The Payoff</p>
+              <h3>The full <em>composition</em> arrives.</h3>
+              <p>Sub-copy and the CTA complete the card. Three scroll zones, one visual, one timeline. This is the Apple product page pattern &mdash; deconstructed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What to Notice -->
+      <div class="info-box">
+        <h4>What You Just Experienced</h4>
+        <p>The left panel stayed fixed while you scrolled through the steps on the right. Each step revealed new content inside the pinned card. When all steps completed, the pin released and the section scrolled away.</p>
+        <p>The <code>end: "+=200%"</code> controlled how long the pin lasted. More scroll distance = slower, more dramatic reveals.</p>
+      </div>
+
+      <!-- Warning -->
+      <div class="info-box warning">
+        <h4>Pin + Mobile</h4>
+        <p>On small screens, pinning can feel disorienting. Consider disabling the pin on mobile and stacking the layout vertically instead. Use <code>ScrollTrigger.matchMedia()</code> to set different behaviors per breakpoint:</p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>ScrollTrigger.matchMedia({
+  "(min-width: 769px)": function() {
+    // Desktop: pin + scrub timeline
+  },
+  "(max-width: 768px)": function() {
+    // Mobile: simple stagger, no pin
+  }
+});</code></pre>
+        </div>
+      </div>
+
+      <!-- Common Pitfalls -->
+      <div class="info-box warning">
+        <h4>Common Pitfalls</h4>
+        <ul>
+          <li><strong>Pin spacing:</strong> GSAP adds <code>padding-bottom</code> to prevent layout jumps. Don&rsquo;t fight it &mdash; it&rsquo;s keeping your page length correct.</li>
+          <li><strong>Nested pins:</strong> Avoid putting a pinned section inside another pinned section. It creates conflicting scroll calculations.</li>
+          <li><strong>Performance:</strong> Pinning is GPU-intensive. Keep pinned animations simple &mdash; opacity and transforms only. Avoid animating layout properties like <code>width</code> or <code>height</code>.</li>
+        </ul>
+      </div>
+
+      <!-- Checkpoint -->
+      <div class="checkpoint">
+        <label>
+          <input type="checkbox" data-checkpoint="3-pin">
+          <span>Pinned section holds while steps reveal</span>
+        </label>
+      </div>
+
+      <!-- Reflection -->
+      <div class="reflection-box">
+        <h4>Reflection</h4>
+        <p>The showpiece section of your Lost in The Scroll site &mdash; could it use pinning? Describe how you would structure the pinned visual and the scroll steps.</p>
+        <textarea class="response-area"
+                  data-section="part-3"
+                  data-question="1"
+                  placeholder="Describe your pinned visual, the steps, and what reveals at each step..."
+                  rows="4"></textarea>
+        <p class="save-indicator">Auto-saved &#10003;</p>
+      </div>
+
+      <!-- Solution -->
+      <button class="show-solution" data-solution="3-pin">Show Complete Code</button>
+      <div class="solution-box hidden" data-solution-id="3-pin">
+        <pre><code>// ── PIN + TIMELINE ──
+// Pin the left panel; scroll steps drive reveals inside it
+
+// Method 1: Pin the entire section, scrub a timeline
+const pinTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.pin-section',
+    start: 'top top',
+    end: '+=200%',
+    pin: true,
+    scrub: 1,
+    markers: true
+  }
+});
+
+pinTl
+  .from('.step-1-content', { opacity: 0, y: 30, duration: 1 })
+  .from('.step-2-content', { opacity: 0, y: 30, duration: 1 })
+  .from('.step-3-content', { opacity: 0, y: 30, duration: 1 });
+
+// Method 2: Pin a child element while sibling scrolls past
+// (two-column layout like the demo above)
+ScrollTrigger.create({
+  trigger: '#pin-stage',
+  start: 'top top',
+  end: 'bottom bottom',
+  pin: '#pin-visual',
+  pinSpacing: false     // parent already provides the scroll distance
+});
+
+// Then use separate triggers for each step
+gsap.to('#pin-title', {
+  opacity: 1, y: 0, duration: 0.6,
+  scrollTrigger: {
+    trigger: '[data-step="1"]',
+    start: 'top 55%',
+    toggleActions: 'play none none reverse'
+  }
+});
+
+gsap.to(['#pin-subtitle', '#pin-cta'], {
+  opacity: 1, y: 0, duration: 0.5, stagger: 0.15,
+  scrollTrigger: {
+    trigger: '[data-step="2"]',
+    start: 'top 55%',
+    toggleActions: 'play none none reverse'
+  }
+});</code></pre>
+      </div>
+
+      <!-- Completion -->
+      <div class="checkpoint">
+        <label>
+          <input type="checkbox" data-checkpoint="3-complete">
+          <span>Part 3 Complete &mdash; I understand pin + timeline</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         CODE RECAP (tabbed)
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="tutorial-section section-light recap-section" id="recap">
+      <h2>Three Patterns, Side by Side</h2>
+      <p>Every ScrollTrigger interaction is one of these three patterns &mdash; or a combination of them.</p>
+
+      <div class="tab-bar">
+        <button class="tab-btn active" data-panel="#tab-trigger">Trigger</button>
+        <button class="tab-btn" data-panel="#tab-scrub">Scrub</button>
+        <button class="tab-btn" data-panel="#tab-pin">Pin + Timeline</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-trigger">
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>// ── PATTERN 1: BASIC TRIGGER ──
+// Animation fires once when element enters viewport.
+// Use for: section entrances, card reveals, hero load-ins.
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from('.card', {
+  scrollTrigger: {
+    trigger: '.cards-container',   // element to watch
+    start: 'top 80%',             // fires here
+    // toggleActions: 'play none none reverse'  // optional replay
+  },
+  opacity: 0,
+  y: 40,
+  scale: 0.92,
+  duration: 0.6,
+  stagger: 0.15,
+  ease: 'power2.out'
+});</code></pre>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-scrub">
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>// ── PATTERN 2: SCRUB ──
+// Animation progress = scroll progress. Forward and back.
+// Use for: progress bars, text reveals, parallax-like effects.
+
+const scrubTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '#section',
+    start: 'top center',          // trigger-edge viewport-edge
+    end: 'bottom center',
+    scrub: 1                      // 1-second smoothing lag
+  }
+});
+
+scrubTl
+  .to('#el-1', { x: 0, opacity: 1, ease: 'none' })
+  .to('#el-2', { x: 0, opacity: 1, ease: 'none' }, '&lt;0.1')   // overlap
+  .to('#el-3', { x: 0, opacity: 1, ease: 'none' }, '&lt;0.1');</code></pre>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-pin">
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>// ── PATTERN 3: PIN + TIMELINE ──
+// Pin an element. Scroll through reveals inside it.
+// Use for: scrollytelling showpieces, product features, data stories.
+
+const pinTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.pin-section',
+    start: 'top top',
+    end: '+=200%',                // pin duration as scroll distance
+    pin: true,
+    scrub: 1
+  }
+});
+
+pinTl
+  .from('.step-1', { opacity: 0, y: 30, duration: 1 })
+  .from('.step-2', { opacity: 0, y: 30, duration: 1 })
+  .from('.step-3', { opacity: 0, y: 30, duration: 1 });</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         COMPLETION
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="tutorial-section section-light completion-section" id="completion">
+      <h2>You Felt It.</h2>
+      <p>You didn&rsquo;t just read about ScrollTrigger &mdash; you scrolled through it. Three patterns, three different relationships between scroll and motion.</p>
+
+      <div class="info-box success">
+        <h4>What You Learned</h4>
+        <ol>
+          <li><strong>Basic Trigger</strong> &mdash; animation fires when an element enters the viewport. One crossing, one animation.</li>
+          <li><strong>Scrub</strong> &mdash; scroll position controls animation progress. Forward and backward. The scrollbar is the playhead.</li>
+          <li><strong>Pin + Timeline</strong> &mdash; section locks in place while scroll drives a sequence of reveals. The scrollytelling signature.</li>
+          <li><strong>Markers</strong> &mdash; visual debugging for trigger positions. Use them constantly, remove before shipping.</li>
+          <li><strong>Reduced motion</strong> &mdash; always wrap animation code in a <code>prefers-reduced-motion</code> check. Every time.</li>
+        </ol>
+      </div>
+
+      <div class="info-box">
+        <h4>Connection to Your Project</h4>
+        <p>These patterns map directly to your Lost in The Scroll site:</p>
+        <ul>
+          <li><strong>Basic trigger</strong> for your section entrances (hero, chapter openings)</li>
+          <li><strong>Scrub</strong> for a visual effect section (progress bar, parallax text)</li>
+          <li><strong>Pin + timeline</strong> for your showpiece section (the moment that stops the reader)</li>
+        </ul>
+        <p>Next week in class, you&rsquo;ll take the GSAP animations you built in The Pulse and wrap them in ScrollTrigger configs. The choreography stays the same &mdash; you&rsquo;re just adding curtain cues.</p>
+      </div>
+
+      <div class="reflection-box">
+        <h4>Final Reflection</h4>
+        <p>Which pattern surprised you the most? Which feels most relevant to your Lost in The Scroll site? What questions do you still have heading into class?</p>
+        <textarea class="response-area"
+                  data-section="final"
+                  data-question="1"
+                  placeholder="Reflect on the three patterns and how they connect to your project..."
+                  rows="5"></textarea>
+        <p class="save-indicator">Auto-saved &#10003;</p>
+      </div>
+
+      <div class="info-box warning">
+        <h4>Before You Leave</h4>
+        <ol>
+          <li>Click <strong>&ldquo;Copy All My Responses&rdquo;</strong> below.</li>
+          <li>Paste them into a note or your project repo &mdash; you&rsquo;ll reference these in class.</li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ EXPORT ═══ -->
+  <div class="export-section">
+    <button id="export-responses">Copy All My Responses</button>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <p class="footer-title">ScrollTrigger Patterns &mdash; Scroll as a Design Material</p>
+    <p class="footer-meta">DESN 378 &middot; Week 7 Preview &middot; Code + Design &middot; EWU</p>
+    <p class="footer-note">The patterns from this tutorial transfer directly to your scrollytelling project. Basic trigger for reveals. Scrub for progress. Pin for showpieces.</p>
+  </footer>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="tutorial.js"></script>
+</body>
+</html>
