@@ -1,0 +1,223 @@
+<!--
+  CSS VARIABLES INTRO
+  Week 1 Demo for DESN 378
+
+  This demo shows the power of CSS custom properties.
+  Change one value, watch everything update.
+
+  CodePen: Copy into a new pen
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Variables Intro</title>
+  <style>
+    /* ========================================
+       THE PROBLEM: Scattered Values
+
+       Imagine changing #0066cc to #009966...
+       You'd have to find every instance!
+       ======================================== */
+
+    /*
+    .bad-example {
+      color: #0066cc;
+      border: 2px solid #0066cc;
+    }
+    .bad-example:hover {
+      background: #0066cc;
+    }
+    .bad-link {
+      color: #0066cc;
+    }
+    */
+
+    /* ========================================
+       THE SOLUTION: Design Tokens
+
+       Define once, use everywhere.
+       Change once, update everywhere.
+       ======================================== */
+
+    :root {
+      /* Brand colors */
+      --color-primary: #0066cc;
+      --color-primary-light: #e6f0ff;
+
+      /* Neutrals */
+      --color-surface: #ffffff;
+      --color-text: #1a1a1a;
+      --color-text-muted: #666666;
+      --color-border: #e0e0e0;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+
+      /* Typography */
+      --font-family: system-ui, -apple-system, sans-serif;
+      --font-size-sm: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.25rem;
+      --font-size-xl: 1.5rem;
+
+      /* Borders */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+    }
+
+    /* ========================================
+       BASE STYLES
+       ======================================== */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      font-size: var(--font-size-base);
+      color: var(--color-text);
+      background: var(--color-surface);
+      padding: var(--space-xl);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--space-lg);
+    }
+
+    h2 {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--space-sm);
+      color: var(--color-primary);
+    }
+
+    p {
+      margin-bottom: var(--space-md);
+      color: var(--color-text-muted);
+    }
+
+    /* ========================================
+       COMPONENT: Card
+       ======================================== */
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+    }
+
+    .card--highlighted {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+
+    /* ========================================
+       COMPONENT: Button
+       ======================================== */
+
+    .button {
+      display: inline-block;
+      background: var(--color-primary);
+      color: var(--color-surface);
+      padding: var(--space-sm) var(--space-md);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .button:hover {
+      opacity: 0.9;
+    }
+
+    .button--outline {
+      background: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    /* ========================================
+       COMPONENT: Link
+       ======================================== */
+
+    a {
+      color: var(--color-primary);
+    }
+
+    /* ========================================
+       UTILITY CLASSES
+       ======================================== */
+
+    .text-muted {
+      color: var(--color-text-muted);
+    }
+
+    .mt-lg {
+      margin-top: var(--space-lg);
+    }
+
+    .flex-row {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    /* ========================================
+       TRY THIS:
+
+       Change --color-primary to #009966
+       and watch EVERYTHING update!
+       ======================================== */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Variables Demo</h1>
+
+    <div class="card">
+      <h2>One Source of Truth</h2>
+      <p>Every blue element on this page uses <code>--color-primary</code>. Change it once in the CSS, and headings, buttons, links, and borders all update together.</p>
+      <div class="flex-row">
+        <button class="button">Primary Button</button>
+        <button class="button button--outline">Outline Button</button>
+      </div>
+    </div>
+
+    <div class="card card--highlighted">
+      <h2>Consistent Spacing</h2>
+      <p>Padding, margins, and gaps all use the spacing scale. <code>--space-sm</code>, <code>--space-md</code>, <code>--space-lg</code>. Consistent rhythm throughout.</p>
+    </div>
+
+    <div class="card">
+      <h2>Try It Yourself</h2>
+      <p>Open DevTools, find <code>:root</code>, and change <code>--color-primary</code> to something else. Watch the whole page respond.</p>
+      <p><a href="#">Links use the same color</a> — everything stays connected.</p>
+    </div>
+
+    <p class="text-muted mt-lg">
+      This is how design systems work. Tokens create consistency and make global changes effortless.
+    </p>
+  </div>
+</body>
+</html>

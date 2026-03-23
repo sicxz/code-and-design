@@ -1,0 +1,1270 @@
+{
+  "course": {
+    "code": "DESN 378-040",
+    "name": "Code + Design 2",
+    "term": "Winter 2026",
+    "weeks": 11
+  },
+  "weeks": [
+    {
+      "week": 0,
+      "route": "/weeks/week-0",
+      "title": "Week 0: The Workshop",
+      "unit": "Pre-Course Foundation",
+      "interaction_question": "What is JavaScript, and how do I talk to a web page?",
+      "summary": null,
+      "learning_outcomes": [
+        "Set up a GitHub repository from template with GitHub Pages enabled",
+        "Explain what JavaScript does in relation to HTML and CSS (the behavioral layer)",
+        "Navigate Chrome/Firefox DevTools, specifically the Console and Elements panels",
+        "Execute simple JavaScript expressions in the browser console",
+        "Recognize basic JavaScript syntax: variables, functions, event listeners",
+        "Link an external JavaScript file to an HTML document",
+        "Read console error messages and identify the source of common problems"
+      ],
+      "curriculum_files": {
+        "learn": [
+          {
+            "title": "Learn: Codedex Console Tutorial",
+            "path": "weeks/week-0/learn/learn-0-1-codedex-console.md"
+          },
+          {
+            "title": "Learn: Console Explorer",
+            "path": "weeks/week-0/learn/learn-0-2-console-explorer.md"
+          }
+        ],
+        "engage": [
+          {
+            "title": "Engage: Portfolio Audit",
+            "path": "weeks/week-0/engage/engage-0-1-portfolio-audit.md"
+          }
+        ],
+        "build": [
+          {
+            "title": "Build: The Setup",
+            "path": "weeks/week-0/build/build-0-1-the-setup.md"
+          },
+          {
+            "title": "Build: The Behavioral Layer",
+            "path": "weeks/week-0/build/build-0-2-the-behavioral-layer.md"
+          }
+        ],
+        "reflect": [
+          {
+            "title": "Reflect: Variables & Strings",
+            "path": "weeks/week-0/reflect/reflect-0-1-visual-notes.md"
+          }
+        ],
+        "lectures": [
+          {
+            "title": "Lecture 1: The Behavioral Layer",
+            "path": "weeks/week-0/lectures/lecture-1-the-behavioral-layer.md"
+          },
+          {
+            "title": "Lecture 2: From Console to Files",
+            "path": "weeks/week-0/lectures/lecture-2-from-console-to-files.md"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Behavioral",
+            "path": "weeks/week-0/resources/dev-tools-fieldguide/behavioral.html"
+          },
+          {
+            "title": "Bridge",
+            "path": "weeks/week-0/resources/dev-tools-fieldguide/bridge.html"
+          },
+          {
+            "title": "Connecting",
+            "path": "weeks/week-0/resources/dev-tools-fieldguide/connecting.html"
+          },
+          {
+            "title": "Console",
+            "path": "weeks/week-0/resources/dev-tools-fieldguide/console.html"
+          },
+          {
+            "title": "Errors",
+            "path": "weeks/week-0/resources/dev-tools-fieldguide/errors.html"
+          },
+          {
+            "title": "Index",
+            "path": "weeks/week-0/resources/dev-tools-fieldguide/index.html"
+          },
+          {
+            "title": "Reference",
+            "path": "weeks/week-0/resources/dev-tools-fieldguide/reference.html"
+          },
+          {
+            "title": "Start",
+            "path": "weeks/week-0/resources/dev-tools-fieldguide/start.html"
+          },
+          {
+            "title": "Visual",
+            "path": "weeks/week-0/resources/dev-tools-fieldguide/visual.html"
+          },
+          {
+            "title": "01. Setting Up",
+            "path": "weeks/week-0/resources/sources/codex.io-week0.md"
+          },
+          {
+            "title": "Week 0 Resources: The Workshop",
+            "path": "weeks/week-0/resources/week-0-resources.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 0: The On-Ramp // DevTools, console, script linking",
+      "canvas_items": [
+        {
+          "title": "Day 1 // Jan 5th",
+          "content_type": "ContextModuleSubHeader",
+          "workflow_state": "active",
+          "identifierref": "",
+          "source_html": null
+        },
+        {
+          "title": "Build: The Set Up",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g485286c89cddb1f3aa15ab124b98c50e",
+          "source_html": "g485286c89cddb1f3aa15ab124b98c50e/build-the-set-up.html"
+        },
+        {
+          "title": "Learn: Console Explorer",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "gbeca98507bdd6b29bcbed215c2ace998",
+          "source_html": "gbeca98507bdd6b29bcbed215c2ace998/learn-console-explorer.html"
+        },
+        {
+          "title": "Build: The Behavioral Layer",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g02ec0c1b32de9c56026d72ac3407a8da",
+          "source_html": "g02ec0c1b32de9c56026d72ac3407a8da/build-the-behavioral-layer.html"
+        },
+        {
+          "title": "Day 2",
+          "content_type": "ContextModuleSubHeader",
+          "workflow_state": "active",
+          "identifierref": "",
+          "source_html": null
+        },
+        {
+          "title": "Engage: Portfolio Audit",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "ge98af29b6045ad86cc4ed2f5e0033107",
+          "source_html": "ge98af29b6045ad86cc4ed2f5e0033107/engage-portfolio-audit.html"
+        },
+        {
+          "title": "Learn: Codex Console Fundamentals",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g98a526d16a7cd278bd804941dc54f586",
+          "source_html": "g98a526d16a7cd278bd804941dc54f586/learn-codex-console-fundamentals.html"
+        },
+        {
+          "title": "Reflect: week 0 -- Visual Notes via freeCodeCamp - Theory Variables & Strings",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g56f6b16746c8580b83020fea13dd5017",
+          "source_html": "g56f6b16746c8580b83020fea13dd5017/reflect-week-0-visual-notes-via-freecodecamp-theory-variables-and-strings.html"
+        },
+        {
+          "title": "Build 1-2 // Portfolio in Figma + Style Tile",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g1dca537ee49d396ae5e77303ff3a6344",
+          "source_html": "g1dca537ee49d396ae5e77303ff3a6344/build-1-2-slash-slash-portfolio-in-figma-+-style-tile.html"
+        },
+        {
+          "title": "Learn 1-3 // html academy chtp. 2 Introduction to Javascript chapters 10 - 17",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g091fbddc6dfd8cde3dc8c6ab0235670c",
+          "source_html": "g091fbddc6dfd8cde3dc8c6ab0235670c/learn-1-3-slash-slash-html-academy-chtp-2-introduction-to-javascript-chapters-10-17.html"
+        }
+      ]
+    },
+    {
+      "week": 1,
+      "route": "/weeks/week-1",
+      "title": "Week 1: First Light",
+      "unit": "Adaptive Systems",
+      "interaction_question": "How does it adapt to me?",
+      "summary": null,
+      "learning_outcomes": [
+        "Implement a scalable project structure with separation of concerns",
+        "Explain the hierarchy of design systems (system \u2192 pattern library \u2192 style guide)",
+        "Differentiate between primitive and semantic design tokens",
+        "Create Figma variables with collections and modes",
+        "Build a brand component library (style guide) in Figma",
+        "Apply JavaScript fundamentals (querySelector, addEventListener) in a creative project"
+      ],
+      "curriculum_files": {
+        "learn": [
+          {
+            "title": "Learn: Codedex Variables Tutorial",
+            "path": "weeks/week-1/learn/learn-1-0-codedex-variables.md"
+          },
+          {
+            "title": "Learn: HTML Academy \u2014 Introduction to JavaScript",
+            "path": "weeks/week-1/learn/learn-1-1-html-academy.md"
+          }
+        ],
+        "engage": [
+          {
+            "title": "Engage: VS Code Theme Setup",
+            "path": "weeks/week-1/engage/engage-1-1-vscode-theme-setup.md"
+          },
+          {
+            "title": "Engage 1-2: Learning Log",
+            "path": "weeks/week-1/engage/engage-1-2-learning-log.md"
+          },
+          {
+            "title": "Engage: Style Tile",
+            "path": "weeks/week-1/engage/engage-1-3-style-tile.md"
+          }
+        ],
+        "practice": [
+          {
+            "title": "Practice: The Story Teller",
+            "path": "weeks/week-1/practice/practice-1-1-the-story-teller.md"
+          }
+        ],
+        "build": [
+          {
+            "title": "Build: Portfolio Migration",
+            "path": "weeks/week-1/build/build-1-1-portfolio-migration.md"
+          }
+        ],
+        "reflect": [
+          {
+            "title": "Reflect: Visual Notes \u2014 Design Systems",
+            "path": "weeks/week-1/reflect/reflect-1-1-visual-notes.md"
+          }
+        ],
+        "lectures": [
+          {
+            "title": "Lecture 1: Project Structure + Design Systems",
+            "path": "weeks/week-1/lectures/lecture-1-project-structure-design-systems.md"
+          },
+          {
+            "title": "Lecture 2: Figma Variables + Workshop",
+            "path": "weeks/week-1/lectures/lecture-2-figma-variables-workshop.md"
+          },
+          {
+            "title": "Lecture 2: Tokens in Practice",
+            "path": "weeks/week-1/lectures/lecture-2-tokens-in-practice.md"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Event Flow Diagram",
+            "path": "weeks/week-1/resources/event-flow-diagram.md"
+          },
+          {
+            "title": "querySelector Selector Cheatsheet",
+            "path": "weeks/week-1/resources/selector-cheatsheet.md"
+          },
+          {
+            "title": "Week 1 Resources: Systems That Respond",
+            "path": "weeks/week-1/resources/week-1-resources.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 1: Results May Vary // settings and variables",
+      "canvas_items": [
+        {
+          "title": "DAY 1",
+          "content_type": "ContextModuleSubHeader",
+          "workflow_state": "active",
+          "identifierref": "",
+          "source_html": null
+        },
+        {
+          "title": "Engage 1-1 // Learning Log week-0",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g1adba2d7aa882dda783365457306ff2c",
+          "source_html": "g1adba2d7aa882dda783365457306ff2c/engage-1-1-slash-slash-learning-log-week-0.html"
+        },
+        {
+          "title": "Engage: 1-2 // VS Code Theme Setup",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g074d418226e4b34f5a9c6aff5ad97efa",
+          "source_html": "g074d418226e4b34f5a9c6aff5ad97efa/engage-1-2-slash-slash-vs-code-theme-setup.html"
+        },
+        {
+          "title": "Learn 1-1 // codedex.io variables",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g6bf69eed8bae910f35b19251708e449f",
+          "source_html": "g6bf69eed8bae910f35b19251708e449f/learn-1-1-slash-slash-codedex-dot-io-variables.html"
+        },
+        {
+          "title": "Build 1-1 // Portfolio Migration",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g448cfce3733df4ed13882b757e1f8ae9",
+          "source_html": "g448cfce3733df4ed13882b757e1f8ae9/build-1-1-slash-slash-portfolio-migration.html"
+        },
+        {
+          "title": "Learn 1-2 // html academy chtp. 2 Introduction to Javascript chapters 1 - 9.",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g2474298fa5a2198a474a46834a306ee0",
+          "source_html": "g2474298fa5a2198a474a46834a306ee0/learn-1-2-slash-slash-html-academy-chtp-2-introduction-to-javascript-chapters-1-9.html"
+        },
+        {
+          "title": "Learn 1-3 // html academy chtp. 2 Introduction to Javascript chapters 10 - 17",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g091fbddc6dfd8cde3dc8c6ab0235670c",
+          "source_html": "g091fbddc6dfd8cde3dc8c6ab0235670c/learn-1-3-slash-slash-html-academy-chtp-2-introduction-to-javascript-chapters-10-17.html"
+        },
+        {
+          "title": "Reflect: week 1 -- Visual Notes",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g0b725da9c7a7e61f1fd4fe87b2a1060b",
+          "source_html": "g0b725da9c7a7e61f1fd4fe87b2a1060b/reflect-week-1-visual-notes.html"
+        },
+        {
+          "title": "Practice 1-1 // The Story Teller",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g15b3eac00a8fcb6452f98b494f6cad72",
+          "source_html": "g15b3eac00a8fcb6452f98b494f6cad72/practice-1-1-slash-slash-the-story-teller.html"
+        },
+        {
+          "title": "DAY 2",
+          "content_type": "ContextModuleSubHeader",
+          "workflow_state": "unpublished",
+          "identifierref": "",
+          "source_html": null
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "route": "/weeks/week-2",
+      "title": "Week 2: The Memory",
+      "unit": "Adaptive Systems",
+      "interaction_question": "How does it adapt to me?",
+      "summary": null,
+      "learning_outcomes": [
+        "Use `document.querySelector()` to find elements in the DOM",
+        "Implement `addEventListener()` to respond to user interactions",
+        "Apply `classList.toggle()` to change element state",
+        "Build a working light/dark theme toggle with CSS Custom Properties",
+        "Store user preferences using `localStorage`",
+        "Detect system color scheme preference with JavaScript",
+        "Implement a preference hierarchy (user choice \u2192 system \u2192 default)",
+        "Respect `prefers-reduced-motion` in CSS"
+      ],
+      "curriculum_files": {
+        "learn": [
+          {
+            "title": "Learn: Figma Variables",
+            "path": "weeks/week-2/learn/learn-2-1-figma-variables/learn-2-1-figma-variables.md"
+          },
+          {
+            "title": "Learn: Codedex Conditionals Tutorial",
+            "path": "weeks/week-2/learn/learn-2-2-codedex-conditionals.md"
+          },
+          {
+            "title": "Learn: The Story Teller Tutorial (Optional)",
+            "path": "weeks/week-2/learn/learn-2-3-story-teller-tutorial.md"
+          },
+          {
+            "title": "Index",
+            "path": "weeks/week-2/learn/story-teller-tutorial/index.html"
+          }
+        ],
+        "engage": [],
+        "practice": [
+          {
+            "title": "Practice 2-1: The Switch",
+            "path": "weeks/week-2/practice/practice-2-1-the-switch.md"
+          },
+          {
+            "title": "Practice 2-2: The Memory",
+            "path": "weeks/week-2/practice/practice-2-2-the-memory.md"
+          }
+        ],
+        "build": [
+          {
+            "title": "Build: The Foundation",
+            "path": "weeks/week-2/build/build-2-1-the-foundation.md"
+          }
+        ],
+        "reflect": [
+          {
+            "title": "R&D // Weekly Visual Notes",
+            "path": "weeks/week-2/reflect/reflect-2-1-visual-notes.md"
+          }
+        ],
+        "lectures": [
+          {
+            "title": "Week 2 Lecture: From Figma to Code",
+            "path": "weeks/week-2/lectures/lecture-week-2-figma-to-code.md"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Preference Hierarchy Diagram",
+            "path": "weeks/week-2/resources/preference-hierarchy-diagram.md"
+          },
+          {
+            "title": "Week 2 Resources: Remembering Choices",
+            "path": "weeks/week-2/resources/week-2-resources.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 2: The Structure of Design // Systems and Tokens",
+      "canvas_items": [
+        {
+          "title": "Engage 2-1 // Learning Log week-1",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g41e33de8eba79c82ed14f3471798c6fb",
+          "source_html": "g41e33de8eba79c82ed14f3471798c6fb/engage-2-1-slash-slash-learning-log-week-1.html"
+        },
+        {
+          "title": "Learn 2-1 // figma-variables",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "gc21d94f7658961a7340056d4eba6701b",
+          "source_html": "gc21d94f7658961a7340056d4eba6701b/learn-2-1-slash-slash-figma-variables.html"
+        },
+        {
+          "title": "Learn 2-2 // codedex.io conditionals",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g332d54eae278bad1fd224a721ea0d547",
+          "source_html": "g332d54eae278bad1fd224a721ea0d547/learn-2-2-slash-slash-codedex-dot-io-conditionals.html"
+        },
+        {
+          "title": "learn 2-x // The Story Teller (backup tutorial)",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "gfb20b9fe2278dca6e3e58ce68c3f7365",
+          "source_html": "gfb20b9fe2278dca6e3e58ce68c3f7365/learn-2-x-slash-slash-the-story-teller-backup-tutorial.html"
+        },
+        {
+          "title": "Practice 2-1 // The Switch",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g52b91436d80f343b5af6c9a4a37406cc",
+          "source_html": "g52b91436d80f343b5af6c9a4a37406cc/practice-2-1-slash-slash-the-switch.html"
+        },
+        {
+          "title": "workshop 2-1 // figma variables workshop",
+          "content_type": "Assignment",
+          "workflow_state": "unpublished",
+          "identifierref": "gc282aa55e25c165907e7b79cb836ab1d",
+          "source_html": "gc282aa55e25c165907e7b79cb836ab1d/workshop-2-1-slash-slash-figma-variables-workshop.html"
+        },
+        {
+          "title": "Build 2-1 // The Foundation",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "ge34ce688e4fea41e4208b08fb0281fd2",
+          "source_html": "ge34ce688e4fea41e4208b08fb0281fd2/build-2-1-slash-slash-the-foundation.html"
+        },
+        {
+          "title": "Reflect: week 2 -- Visual Notes",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g9c1b7b0cc513052d353c96302a72e5fe",
+          "source_html": "g9c1b7b0cc513052d353c96302a72e5fe/reflect-week-2-visual-notes.html"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "route": "/weeks/week-3",
+      "title": "Week 3: Signal + State",
+      "unit": "Adaptive Systems",
+      "interaction_question": "How does an interface remember what a user asked it to do?",
+      "summary": null,
+      "learning_outcomes": [
+        "Refactor portfolio styles into a token-driven system using `variables.css`",
+        "Implement theme state with `data-theme` instead of presentation-only classes",
+        "Persist user preferences with `localStorage`",
+        "Apply a preference hierarchy (user choice -> system -> default)",
+        "Use `matchMedia` for system preference detection",
+        "Respect `prefers-reduced-motion` in both CSS and JavaScript decisions",
+        "Prepare Project 1 for submission as a coherent signal-and-state system"
+      ],
+      "curriculum_files": {
+        "practice": [
+          {
+            "title": "Practice 3 1 Canvas",
+            "path": "weeks/week-3/practice/practice-3-1-canvas.html"
+          },
+          {
+            "title": "Practice 3-1: The Inheritance",
+            "path": "weeks/week-3/practice/practice-3-1-the-inheritance.md"
+          },
+          {
+            "title": "Practice 3-2: The Preference",
+            "path": "weeks/week-3/practice/practice-3-2-the-preference.md"
+          }
+        ],
+        "build": [],
+        "lectures": [
+          {
+            "title": "Lecture 3.1: Systems That Respond",
+            "path": "weeks/week-3/lectures/archive/lecture-1-systems-that-respond.md"
+          },
+          {
+            "title": "Lecture 3.2: Persistence & Preference",
+            "path": "weeks/week-3/lectures/archive/lecture-2-persistence-and-preference.md"
+          },
+          {
+            "title": "Lecture 3.3: State Patterns & Accessibility",
+            "path": "weeks/week-3/lectures/archive/lecture-3-state-and-accessibility.md"
+          },
+          {
+            "title": "Lecture 1.5: Why We Do Math the Hard Way",
+            "path": "weeks/week-3/lectures/lecture-week-3-0-why-the-hard-way.md"
+          },
+          {
+            "title": "Lecture: Signal & State",
+            "path": "weeks/week-3/lectures/lecture-week-3-1-signal-and-state.md"
+          },
+          {
+            "title": "Lecture Week 3 2 Signal And State",
+            "path": "weeks/week-3/lectures/lecture-week-3-2-signal-and-state.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 3 The Memory // localStorage, preference, & persistance:",
+      "canvas_items": [
+        {
+          "title": "Engage 3-1 // Learning Log week-2",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g768e2fffad4f0470f25990063a308e89",
+          "source_html": "g768e2fffad4f0470f25990063a308e89/engage-3-1-slash-slash-learning-log-week-2.html"
+        },
+        {
+          "title": "Practice 3-1 // The Inheritance",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "ge2fa0bf952377b3254f5b6b779236883",
+          "source_html": "ge2fa0bf952377b3254f5b6b779236883/practice-3-1-slash-slash-the-inheritance.html"
+        },
+        {
+          "title": "Build 3-2 // The Preference",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g424c9d7c5a73baa935daa3ad85a6becf",
+          "source_html": "g424c9d7c5a73baa935daa3ad85a6becf/build-3-2-slash-slash-the-preference.html"
+        },
+        {
+          "title": "Project 1 // signal & state -- designing for preference",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g405ff29e8651c91de99379d6295bc516",
+          "source_html": "g405ff29e8651c91de99379d6295bc516/project-1-slash-slash-signal-and-state-designing-for-preference.html"
+        },
+        {
+          "title": "Reflect: week 3 -- Visual Notes",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g810f401747910d9ae243e97985672a6c",
+          "source_html": "g810f401747910d9ae243e97985672a6c/reflect-week-3-visual-notes.html"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "route": "/weeks/week-4",
+      "title": "Week 4: The Shape",
+      "unit": null,
+      "interaction_question": "What happens when I interact?",
+      "summary": null,
+      "learning_outcomes": [
+        "Understand Figma's SVG Engine \u2014 Explain how Figma generates SVG code and what export settings affect output quality",
+        "Prepare Designs for Code \u2014 Structure Figma files with semantic layer naming, flattened groups, and outlined strokes for clean SVG export",
+        "Read SVG Structure \u2014 Identify SVG elements (`<svg>`, `<path>`, `<g>`, `<rect>`, `<circle>`) and understand XML syntax",
+        "Explain viewBox \u2014 Understand the viewBox coordinate system and how it differs from pixel dimensions",
+        "Optimize SVG Code \u2014 Use SVGO and manual cleanup to remove Figma metadata while preserving structure",
+        "Apply Design Tokens to SVG \u2014 Use CSS custom properties to theme SVG colors, connecting to Week 1-2 systems",
+        "Implement ARIA Basics \u2014 Add aria-label to icons and understand decorative vs. content SVG",
+        "Prepare for Keyboard Interaction \u2014 Make SVG focusable and plan for interactive states (expanded in Week 5)"
+      ],
+      "curriculum_files": {
+        "learn": [
+          {
+            "title": "Learn 4-1: Figma's SVG Engine",
+            "path": "weeks/week-4/learn/learn-4-1-figmas-svg-engine.md"
+          },
+          {
+            "title": "Learn 4-2: SVG Fundamentals",
+            "path": "weeks/week-4/learn/learn-4-2-svg-fundamentals.md"
+          },
+          {
+            "title": "Learn 4-3: Optimization Workflow",
+            "path": "weeks/week-4/learn/learn-4-3-optimization-workflow.md"
+          }
+        ],
+        "engage": [
+          {
+            "title": "Engage 4-1: Icon Audit",
+            "path": "weeks/week-4/engage/engage-4-1-icon-audit.md"
+          }
+        ],
+        "practice": [
+          {
+            "title": "Practice 4-1: The Anatomy",
+            "path": "weeks/week-4/practice/practice-4-1-the-anatomy.md"
+          },
+          {
+            "title": "Practice 4-2: The Interaction",
+            "path": "weeks/week-4/practice/practice-4-2-the-interaction.md"
+          }
+        ],
+        "build": [
+          {
+            "title": "Build 4-1: The Mark",
+            "path": "weeks/week-4/build/build-4-1-the-mark.md"
+          },
+          {
+            "title": "Build 4-2: The Refinement",
+            "path": "weeks/week-4/build/build-4-2-the-refinement.md"
+          }
+        ],
+        "reflect": [
+          {
+            "title": "Reflect 4-1: Visual Notes",
+            "path": "weeks/week-4/reflect/reflect-4-1-visual-notes.md"
+          }
+        ],
+        "lectures": [
+          {
+            "title": "Lecture 4-1: SVG Structure & Figma's Engine",
+            "path": "weeks/week-4/lectures/lecture-4-1-svg-structure.md"
+          },
+          {
+            "title": "Lecture 4-2: Interactive SVG",
+            "path": "weeks/week-4/lectures/lecture-4-2-interactive-svg.md"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Week 4 Resources: The Shape (SVG)",
+            "path": "weeks/week-4/resources/week-4-resources.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 4 The Shape // SVG Structure, Figma's Engine, and Interactive Graphics",
+      "canvas_items": [
+        {
+          "title": "Build 4-1 // symbols -- Theme Dropdown with Custom SVG Icons",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "ge6b0025c9a6106da1186ee8dd04bcd8c",
+          "source_html": "ge6b0025c9a6106da1186ee8dd04bcd8c/build-4-1-slash-slash-symbols-theme-dropdown-with-custom-svg-icons.html"
+        },
+        {
+          "title": "Engage 4-1 // Learning Log week-3",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g22134b7a4b9a89786197de9d4f48bc59",
+          "source_html": "g22134b7a4b9a89786197de9d4f48bc59/engage-4-1-slash-slash-learning-log-week-3.html"
+        },
+        {
+          "title": "Practice 4-1 / SVG Tutorial",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g6a4bd36f7504fd0887e5b02f6acb991b",
+          "source_html": "g6a4bd36f7504fd0887e5b02f6acb991b/practice-4-1-slash-svg-tutorial.html"
+        },
+        {
+          "title": "Reflect: week 4 -- Visual Notes",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "gb22493cae6b0ca18cddb27212b71a051",
+          "source_html": "gb22493cae6b0ca18cddb27212b71a051/reflect-week-4-visual-notes.html"
+        },
+        {
+          "title": "Build 4 -2 // The Mark (Geometry & Primitives)",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g5e0371b487d97d4ca5d7c9b081c2f946",
+          "source_html": "g5e0371b487d97d4ca5d7c9b081c2f946/build-4-2-slash-slash-the-mark-geometry-and-primitives.html"
+        },
+        {
+          "title": "Practice 4-1 // .svg Anatomy",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "ga08fcab0c7b8cfd8179c249651e5364d",
+          "source_html": "ga08fcab0c7b8cfd8179c249651e5364d/practice-4-1-slash-slash-svg-anatomy.html"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "route": "/weeks/week-5",
+      "title": "Week 5: The Blueprint",
+      "unit": "Teaching Through Story",
+      "interaction_question": "What's the story you want to tell, and what does it look like?",
+      "summary": null,
+      "learning_outcomes": [
+        "Choose a personal metaphor that maps JavaScript concepts to familiar experience",
+        "Design a scrollytelling site layout in Figma with 5\u20137 narrative sections",
+        "Create a complete design system in Figma (primitives, semantic tokens, typography, spacing)",
+        "Set up Figma variables with modes (light/dark if applicable)",
+        "Export Figma variables to CSS custom properties (`tokens.css`)",
+        "Map each JS concept learned so far to a chapter in their metaphor",
+        "Evaluate a metaphor's clarity by explaining it to a partner"
+      ],
+      "curriculum_files": {
+        "learn": [
+          {
+            "title": "Learn + Practice: GSAP Express",
+            "path": "weeks/week-5/learn/learn-5-1-gsap-express.md"
+          }
+        ],
+        "engage": [
+          {
+            "title": "Engage: The Pitch",
+            "path": "weeks/week-5/engage/engage-5-1-the-pitch.md"
+          }
+        ],
+        "practice": [
+          {
+            "title": "Codepen Starter Html",
+            "path": "weeks/week-5/practice/switch-tutorial-practice/codepen-starter-html.html"
+          },
+          {
+            "title": "Index",
+            "path": "weeks/week-5/practice/switch-tutorial-practice/index.html"
+          }
+        ],
+        "build": [
+          {
+            "title": "Build: The Blueprint",
+            "path": "weeks/week-5/build/build-5-1-the-system.md"
+          }
+        ],
+        "reflect": [
+          {
+            "title": "Reflect: Visual Notes \u2014 The Metaphor Map",
+            "path": "weeks/week-5/reflect/reflect-5-1-visual-notes.md"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Week 5 Resources: The Blueprint",
+            "path": "weeks/week-5/resources/week-5-resources.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 5 The Blueprint // ScrollyTelling part 1",
+      "canvas_items": [
+        {
+          "title": "BRIEF",
+          "content_type": "ContextModuleSubHeader",
+          "workflow_state": "active",
+          "identifierref": "",
+          "source_html": null
+        },
+        {
+          "title": "PROJECT BRIEF: Lost in the Scroll",
+          "content_type": "WikiPage",
+          "workflow_state": "active",
+          "identifierref": "gb8b092b6ae0ea8fc9679db36e0cc4b7d",
+          "source_html": null
+        },
+        {
+          "title": "Scrollytelling Inspiration: 25 Sites",
+          "content_type": "WikiPage",
+          "workflow_state": "active",
+          "identifierref": "g5c6accfe2def3e023bd6c6af347771f2",
+          "source_html": null
+        },
+        {
+          "title": "PRACTICE AND LEARNING",
+          "content_type": "ContextModuleSubHeader",
+          "workflow_state": "active",
+          "identifierref": "",
+          "source_html": null
+        },
+        {
+          "title": "switch practice",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "ge12711fb9254303aac2393bc66e683f7",
+          "source_html": "ge12711fb9254303aac2393bc66e683f7/switch-practice.html"
+        },
+        {
+          "title": "Learn 5-1 // Green Sock Animation Platform",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g9c7f4d1f0c1562d825d9b09df56b7d77",
+          "source_html": "g9c7f4d1f0c1562d825d9b09df56b7d77/learn-5-1-slash-slash-green-sock-animation-platform.html"
+        },
+        {
+          "title": "Practice 5-2 // GSAP SVG",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g67bc2d46c2f69dc8f9c59ac436e5a9c6",
+          "source_html": "g67bc2d46c2f69dc8f9c59ac436e5a9c6/practice-5-2-slash-slash-gsap-svg.html"
+        },
+        {
+          "title": "PROJECT RELATED",
+          "content_type": "ContextModuleSubHeader",
+          "workflow_state": "active",
+          "identifierref": "",
+          "source_html": null
+        },
+        {
+          "title": "Metaphor Alignment",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "gb75111759ba2025aca7c390b64aaf9b7",
+          "source_html": "gb75111759ba2025aca7c390b64aaf9b7/metaphor-alignment.html"
+        },
+        {
+          "title": "scrollytelling research",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g124959d33a1fecb0f842c85a67afe1cb",
+          "source_html": "g124959d33a1fecb0f842c85a67afe1cb/scrollytelling-research.html"
+        },
+        {
+          "title": "Build 5 // The System",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g675e7f6dfd8d66e38d5fd9df56f57927",
+          "source_html": "g675e7f6dfd8d66e38d5fd9df56f57927/build-5-slash-slash-the-system.html"
+        },
+        {
+          "title": "LEARNING LOG",
+          "content_type": "ContextModuleSubHeader",
+          "workflow_state": "active",
+          "identifierref": "",
+          "source_html": null
+        },
+        {
+          "title": "Reflect: week 5 -- Visual Notes",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "ga78268f6ae75c6c6154ec966573fdb7e",
+          "source_html": "ga78268f6ae75c6c6154ec966573fdb7e/reflect-week-5-visual-notes.html"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "route": "/weeks/week-6",
+      "title": "Week 6: The Blueprint",
+      "unit": "Teaching Through Story",
+      "interaction_question": "What happens when the page moves with you?",
+      "summary": null,
+      "learning_outcomes": [
+        "Design a complete scrollytelling site in Figma with 5\u20137 sections, each mapped to a metaphor chapter and JS concept",
+        "Set up Figma variables with semantic tokens and light/dark mode",
+        "Explain how GSAP ScrollTrigger ties animation progress to scroll position",
+        "Use ScrollTrigger's core properties: `trigger`, `start`, `end`, `scrub`, and `markers`",
+        "Define parallax and identify how different scroll speeds create the illusion of depth",
+        "Build a basic parallax effect using GSAP ScrollTrigger in CodePen",
+        "Apply DrawSVGPlugin to animate SVG strokes tied to scroll position (via tutorial)",
+        "Analyze scrollytelling as a design pattern \u2014 understanding how scroll controls pacing, attention, reveal, and meaning"
+      ],
+      "curriculum_files": {
+        "learn": [
+          {
+            "title": "Codepen Starter Html",
+            "path": "weeks/week-6/learn/gsap-svg-tutorial/codepen-starter-html.html"
+          },
+          {
+            "title": "Index",
+            "path": "weeks/week-6/learn/gsap-svg-tutorial/index.html"
+          },
+          {
+            "title": "Learn: Scrollytelling Readings + Visual Notes",
+            "path": "weeks/week-6/learn/learn-6-1-scrollytelling-readings.md"
+          },
+          {
+            "title": "Learn: Animating SVG Icons with GSAP + AI",
+            "path": "weeks/week-6/learn/learn-6-2-svg-icons-gsap.md"
+          },
+          {
+            "title": "Learn: GSAP ScrollTrigger + Parallax",
+            "path": "weeks/week-6/learn/learn-6-3-gsap-scrolltrigger.md"
+          }
+        ],
+        "engage": [
+          {
+            "title": "Engage 6-1 // Learning Log",
+            "path": "weeks/week-6/engage/engage-6-0-learning-log.md"
+          },
+          {
+            "title": "Engage: Parallax Dissection",
+            "path": "weeks/week-6/engage/engage-6-1-parallax-dissection.md"
+          }
+        ],
+        "practice": [
+          {
+            "title": "Practice: The Parallax",
+            "path": "weeks/week-6/practice/practice-6-1-the-parallax.md"
+          }
+        ],
+        "build": [
+          {
+            "title": "Build: The Blueprint",
+            "path": "weeks/week-6/build/build-6-1-the-blueprint.md"
+          }
+        ],
+        "reflect": [
+          {
+            "title": "Reflect: Visual Notes \u2014 Motion Map",
+            "path": "weeks/week-6/reflect/reflect-6-1-visual-notes.md"
+          },
+          {
+            "title": "Reflect: Visual Notes \u2014 ScrollTrigger + Parallax",
+            "path": "weeks/week-6/reflect/reflect-6-2-visual-notes.md"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Week 6 Resources: The Blueprint",
+            "path": "weeks/week-6/resources/week-6-resources.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 6",
+      "canvas_items": [
+        {
+          "title": "fireship cat parchute tutorial",
+          "content_type": "Assignment",
+          "workflow_state": "unpublished",
+          "identifierref": "ge9459ce178a9fcec89f43b644e1cb0b9",
+          "source_html": "ge9459ce178a9fcec89f43b644e1cb0b9/fireship-cat-parchute-tutorial.html"
+        },
+        {
+          "title": "Build 6-1 : The Blueprint",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "ge941f171249b45ed779978166726177d",
+          "source_html": "ge941f171249b45ed779978166726177d/build-6-1-the-blueprint.html"
+        },
+        {
+          "title": "gsap ai svg tutorial",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g0f9afca658297cdf8fe502c6640c3cc8",
+          "source_html": "g0f9afca658297cdf8fe502c6640c3cc8/gsap-ai-svg-tutorial.html"
+        },
+        {
+          "title": "Motion Map",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g83533ff7019a0c7016dce16fa93a089d",
+          "source_html": "g83533ff7019a0c7016dce16fa93a089d/motion-map.html"
+        },
+        {
+          "title": "Reflect: week 6 -- Visual Notes // ScrollTrigger + Parallax",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g547b6e0dee31c6cf445aff9db00be2b7",
+          "source_html": "g547b6e0dee31c6cf445aff9db00be2b7/reflect-week-6-visual-notes-slash-slash-scrolltrigger-+-parallax.html"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "route": "/weeks/week-7",
+      "title": "Week 7: The Rough Cut",
+      "unit": "Teaching Through Story",
+      "interaction_question": "Can your story work before JavaScript starts moving it?",
+      "summary": null,
+      "learning_outcomes": [
+        "Translate Figma section designs into semantic HTML structure (hero + story chapters + closing)",
+        "Apply design tokens from `tokens.css` to layout, type, and color decisions",
+        "Build reusable section layout patterns in `layout.css` (spacing, containers, rhythm)",
+        "Establish visual rhythm across sections in the browser (contrast in layout, density, pacing)",
+        "Adjust layouts for mobile and desktop readability",
+        "Test that the site remains readable and functional with JavaScript disabled",
+        "Write real content for the majority (or all) of their sections",
+        "Prepare a complete rough cut for next week's animation work",
+        "Integrate Project 1 theme toggle (dark mode tokens, localStorage, system preference detection) into the scrollytelling project",
+        "Implement GSAP entrance animations using timelines, easing, and stagger for hero and 2+ story sections"
+      ],
+      "curriculum_files": {
+        "learn": [
+          {
+            "title": "Learn: Rough Cut Prep (HTML, Tokens, and Responsive Layout)",
+            "path": "weeks/week-7/learn/learn-7-1-rough-cut-prep.md"
+          },
+          {
+            "title": "Learn: ScrollTrigger Preview",
+            "path": "weeks/week-7/learn/learn-7-2-scrolltrigger-preview.md"
+          }
+        ],
+        "engage": [],
+        "practice": [
+          {
+            "title": "Practice: The Bridge",
+            "path": "weeks/week-7/practice/practice-7-1-the-bridge.md"
+          }
+        ],
+        "build": [
+          {
+            "title": "Build: The Rough Cut",
+            "path": "weeks/week-7/build/build-7-1-the-rough-cut.md"
+          }
+        ],
+        "reflect": [
+          {
+            "title": "Reflect: Visual Notes \u2014 Rough Cut Audit",
+            "path": "weeks/week-7/reflect/reflect-7-1-visual-notes.md"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Week 7 Resources: The Rough Cut",
+            "path": "weeks/week-7/resources/week-7-resources.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 7",
+      "canvas_items": [
+        {
+          "title": "Engage 6/7-1 // Learning Log",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g3b3fdacf0aafc6e149127ec16a5c0754",
+          "source_html": "g3b3fdacf0aafc6e149127ec16a5c0754/engage-6-slash-7-1-slash-slash-learning-log.html"
+        },
+        {
+          "title": "Build 7-1 // Rough Cut 1",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g230caf0765b1455dac64c840369b2a20",
+          "source_html": "g230caf0765b1455dac64c840369b2a20/build-7-1-slash-slash-rough-cut-1.html"
+        },
+        {
+          "title": "Engage 6/7-1 // Learning Log",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g3b3fdacf0aafc6e149127ec16a5c0754",
+          "source_html": "g3b3fdacf0aafc6e149127ec16a5c0754/engage-6-slash-7-1-slash-slash-learning-log.html"
+        },
+        {
+          "title": "Practice 7-1: The Parallax",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g37b436546f5eab1417e9562b4e8ba8b6",
+          "source_html": "g37b436546f5eab1417e9562b4e8ba8b6/practice-7-1-the-parallax.html"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "route": "/weeks/week-8",
+      "title": "Week 8: The Scroll",
+      "unit": "Teaching Through Story",
+      "interaction_question": "How does scroll become your storytelling medium?",
+      "summary": null,
+      "learning_outcomes": [
+        "Load the ScrollTrigger plugin and register it with GSAP",
+        "Convert existing GSAP animations to scroll-triggered animations",
+        "Configure `trigger`, `start`, and `end` parameters for precise scroll control",
+        "Use `markers: true` for debugging scroll trigger positions",
+        "Implement `scrub` to link animation progress to scroll position",
+        "Calibrate scroll pacing to match reading speed",
+        "Disable scroll animations for `prefers-reduced-motion` users"
+      ],
+      "curriculum_files": {
+        "learn": [
+          {
+            "title": "Learn: Scroll as Medium",
+            "path": "weeks/week-8/learn/learn-8-1-scroll-as-medium.md"
+          }
+        ],
+        "engage": [],
+        "practice": [
+          {
+            "title": "Practice: The Scroll",
+            "path": "weeks/week-8/practice/practice-8-1-the-scroll.md"
+          }
+        ],
+        "build": [
+          {
+            "title": "Build: The Pulse",
+            "path": "weeks/week-8/build/build-8-1-the-pulse.md"
+          },
+          {
+            "title": "Build: Three Chapters",
+            "path": "weeks/week-8/build/build-8-2-three-chapters.md"
+          }
+        ],
+        "reflect": [
+          {
+            "title": "Reflect: Visual Notes \u2014 Scroll Timeline Map",
+            "path": "weeks/week-8/reflect/reflect-8-1-visual-notes.md"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Week 8 Resources: The Scroll",
+            "path": "weeks/week-8/resources/week-8-resources.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 8 (9)",
+      "canvas_items": [
+        {
+          "title": "Build 7-2 The Pulse // GSAP Animations + All Content Written",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g3a7db932e7be4d4a1b350c4ba2f490df",
+          "source_html": "g3a7db932e7be4d4a1b350c4ba2f490df/build-7-2-the-pulse-slash-slash-gsap-animations-+-all-content-written.html"
+        },
+        {
+          "title": "Project 2  // Issue-Based Project Management Workflow",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g7a92d92a7f5ab610a9977192882c668b",
+          "source_html": "g7a92d92a7f5ab610a9977192882c668b/project-2-slash-slash-issue-based-project-management-workflow.html"
+        },
+        {
+          "title": "github-starter-tutorial",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g7bd69f45262601b9c2ad042d21c23b1c",
+          "source_html": "g7bd69f45262601b9c2ad042d21c23b1c/github-starter-tutorial.html"
+        },
+        {
+          "title": "FINAL: Lost in the Scroll",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g69613311359b95839cd97ee977df4813",
+          "source_html": "g69613311359b95839cd97ee977df4813/final-lost-in-the-scroll.html"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "route": "/weeks/week-9",
+      "title": "Week 9: The Deep",
+      "unit": "Teaching Through Story",
+      "interaction_question": "What separates good from great?",
+      "summary": null,
+      "learning_outcomes": [
+        "Implement a pinned ScrollTrigger section that locks in the viewport while content animates",
+        "Create parallax effects using different scroll speeds on layered elements",
+        "Conduct structured peer review of a scrollytelling site",
+        "Test for accessibility: keyboard navigation, reduced motion, color contrast",
+        "Optimize animation performance using Lighthouse and DevTools",
+        "Deploy a production-ready site to GitHub Pages",
+        "Identify and fix common scroll-animation bugs (layout shifts, z-index issues, pin spacing)"
+      ],
+      "curriculum_files": {
+        "learn": [
+          {
+            "title": "Learn: Scrollytelling Craft",
+            "path": "weeks/week-9/learn/learn-9-1-scrollytelling-craft.md"
+          }
+        ],
+        "engage": [
+          {
+            "title": "Engage: Peer Review",
+            "path": "weeks/week-9/engage/engage-9-1-peer-review.md"
+          }
+        ],
+        "practice": [
+          {
+            "title": "Practice: The Deep",
+            "path": "weeks/week-9/practice/practice-9-1-the-deep.md"
+          }
+        ],
+        "build": [
+          {
+            "title": "Build: The Refinement",
+            "path": "weeks/week-9/build/build-9-1-the-refinement.md"
+          },
+          {
+            "title": "Build: The Story Flows",
+            "path": "weeks/week-9/build/build-9-1-the-story-flows.md"
+          }
+        ],
+        "reflect": [
+          {
+            "title": "Reflect: Visual Notes \u2014 Final Reflection",
+            "path": "weeks/week-9/reflect/reflect-9-1-visual-notes.md"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Week 9 Resources: The Deep",
+            "path": "weeks/week-9/resources/week-9-resources.md"
+          }
+        ]
+      },
+      "canvas_module_title": "week 9 (10) week before finals",
+      "canvas_items": [
+        {
+          "title": "Agent Workflow(s) OPTIONAL",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "gbdce17e7c7cf1c17f3cf90fbb3527e1a",
+          "source_html": "gbdce17e7c7cf1c17f3cf90fbb3527e1a/agent-workflow-s-optional.html"
+        },
+        {
+          "title": "The Deep // Pinned section, peer review, polish, deploy",
+          "content_type": "Assignment",
+          "workflow_state": "unpublished",
+          "identifierref": "g10ecd877a0e236c068e7aa1b6f836845",
+          "source_html": "g10ecd877a0e236c068e7aa1b6f836845/the-deep-slash-slash-pinned-section-peer-review-polish-deploy.html"
+        },
+        {
+          "title": "FINAL: Lost in the Scroll",
+          "content_type": "Assignment",
+          "workflow_state": "active",
+          "identifierref": "g69613311359b95839cd97ee977df4813",
+          "source_html": "g69613311359b95839cd97ee977df4813/final-lost-in-the-scroll.html"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "route": "/weeks/week-10",
+      "title": "Week 10: The Showcase",
+      "unit": "Teaching Through Story",
+      "interaction_question": "Can you explain what you built and why?",
+      "summary": null,
+      "learning_outcomes": [],
+      "curriculum_files": {
+        "learn": [],
+        "engage": [],
+        "practice": [],
+        "build": [],
+        "reflect": [],
+        "resources": []
+      },
+      "canvas_module_title": null,
+      "canvas_items": []
+    }
+  ],
+  "projects": [
+    {
+      "name": "Project 1: Signal + State",
+      "path": "curriculum/projects/project-1-signal-and-state/project-1-brief.md",
+      "checklist": "curriculum/projects/project-1-signal-and-state/checklist.md"
+    },
+    {
+      "name": "Project 2: Lost in the Scroll",
+      "path": "curriculum/projects/project-2-lost-in-the-scroll/project-2-brief.md",
+      "checklist": "curriculum/projects/project-2-lost-in-the-scroll/project-2-student-hub/docs/02-project-completion-checklist.md"
+    }
+  ]
+}

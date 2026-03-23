@@ -1,0 +1,178 @@
+<!--
+  THEME TOGGLE - BASIC
+  Week 1 Demo for DESN 378
+
+  CodePen: Copy everything into a new pen
+  - HTML panel: The <body> content
+  - CSS panel: The <style> content
+  - JS panel: The <script> content
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Toggle - Basic</title>
+  <style>
+    /* ========================================
+       DESIGN TOKENS
+       Your single source of truth for colors
+       ======================================== */
+
+    :root {
+      /* Light mode (default) */
+      --color-surface: #ffffff;
+      --color-surface-secondary: #f5f5f5;
+      --color-text: #1a1a1a;
+      --color-text-secondary: #666666;
+      --color-accent: #0066cc;
+      --color-border: #e0e0e0;
+    }
+
+    /* Dark mode overrides */
+    body.dark {
+      --color-surface: #1a1a1a;
+      --color-surface-secondary: #2a2a2a;
+      --color-text: #f0f0f0;
+      --color-text-secondary: #a0a0a0;
+      --color-accent: #66b3ff;
+      --color-border: #404040;
+    }
+
+    /* ========================================
+       BASE STYLES
+       Using the tokens above
+       ======================================== */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--color-surface);
+      color: var(--color-text);
+      line-height: 1.6;
+      padding: 2rem;
+      min-height: 100vh;
+
+      /* Smooth color transitions */
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* ========================================
+       COMPONENTS
+       ======================================== */
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .theme-toggle {
+      background-color: var(--color-accent);
+      color: var(--color-surface);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      opacity: 0.9;
+    }
+
+    .theme-toggle:focus {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    .card {
+      background-color: var(--color-surface-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h2 {
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--color-text-secondary);
+      font-size: 0.9375rem;
+    }
+
+    a {
+      color: var(--color-accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Theme Toggle Demo</h1>
+      <button class="theme-toggle">Toggle Theme</button>
+    </header>
+
+    <main>
+      <div class="card">
+        <h2>How This Works</h2>
+        <p>Click the button to toggle between light and dark mode. The JavaScript adds or removes a <code>dark</code> class on the body, and CSS variables respond to that class.</p>
+      </div>
+
+      <div class="card">
+        <h2>The Pattern</h2>
+        <p>User clicks → JavaScript changes class → CSS variables update → All colors change. This is the foundation of interactive design.</p>
+      </div>
+
+      <div class="card">
+        <h2>What's Missing?</h2>
+        <p>Refresh the page—the theme resets! Next week we add <code>localStorage</code> to remember the user's choice.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // ========================================
+    // THEME TOGGLE LOGIC
+    // ========================================
+
+    // Step 1: Find the button
+    const toggle = document.querySelector('.theme-toggle');
+
+    // Step 2: Listen for clicks
+    toggle.addEventListener('click', function() {
+
+      // Step 3: Toggle the 'dark' class on <body>
+      document.body.classList.toggle('dark');
+
+      // (Optional) Log to console so you can see it working
+      console.log('Theme toggled!');
+      console.log('Dark mode:', document.body.classList.contains('dark'));
+    });
+  </script>
+</body>
+</html>

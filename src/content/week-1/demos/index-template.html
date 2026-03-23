@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+  DOCTYPE Declaration
+  Tells the browser this is an HTML5 document.
+  Always the first line. No exceptions.
+-->
+
+<html lang="en">
+<head>
+  <!--
+    Meta Tags
+    These go in the <head> and tell browsers/search engines about your page.
+  -->
+
+  <!-- Character encoding: supports all languages and emoji -->
+  <meta charset="UTF-8">
+
+  <!-- Viewport: makes your site work on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Description: appears in search results -->
+  <meta name="description" content="A brief description of your page for search engines">
+
+  <title>Page Title — Site Name</title>
+
+  <!--
+    Link CSS in Head
+    CSS goes here so styles load before content appears.
+    Order matters: normalize → variables → your styles
+  -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!--
+    Semantic HTML5 Elements
+    Use elements that describe their content, not just <div> for everything.
+    Screen readers and search engines understand these.
+  -->
+
+  <header>
+    <!-- Site logo, main navigation -->
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Primary content of the page (only one per page) -->
+
+    <article>
+      <!-- Self-contained content that could stand alone -->
+      <h1>Article Title</h1>
+      <p>Article content goes here.</p>
+    </article>
+
+    <section>
+      <!-- Thematic grouping of content -->
+      <h2>Section Heading</h2>
+      <p>Section content goes here.</p>
+    </section>
+
+    <aside>
+      <!-- Content tangentially related to main content -->
+      <p>Sidebar or supplementary info</p>
+    </aside>
+  </main>
+
+  <footer>
+    <!-- Copyright, contact info, secondary navigation -->
+    <p>&copy; 2025 Your Name</p>
+  </footer>
+
+  <!--
+    JavaScript Before Closing Body
+    JS goes here so the page content loads first.
+    The "defer" attribute also works if you put scripts in <head>.
+  -->
+  <script src="js/script.js"></script>
+</body>
+</html>
