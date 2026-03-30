@@ -1,0 +1,857 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+import Card from '../../../components/Card.astro';
+import SectionHeader from '../../../components/SectionHeader.astro';
+import Badge from '../../../components/Badge.astro';
+import Alert from '../../../components/Alert.astro';
+import LinkItem from '../../../components/LinkItem.astro';
+import LensItem from '../../../components/LensItem.astro';
+import MomentCard from '../../../components/MomentCard.astro';
+---
+
+<BaseLayout title="Week 2: From Cloud to Code - DESN368">
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb">
+                <a href="/1">Course Overview</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Week 2: From Cloud to Code</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-content two-column">
+        <div class="main-content fade-in">
+            <Card variant="accent" class="card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <SectionHeader level={1} icon="code" badge={{ text: "Available", variant: "success" }}>
+                    Week 2: From Cloud to Code — Local Development & HTML Structure
+                </SectionHeader>
+                <p class="subtitle">Monday, October 6, 2025 • 10:00 AM - 12:20 PM</p>
+
+                <Alert icon="info">
+                    <strong>This Week's Theme:</strong> Professional Development Workflow + HTML Structure Mastery. You'll bridge the gap between "playing in CodePen" and "working like a real developer."
+                </Alert>
+
+                <div class="repo-info">
+                    <p><strong>Repository:</strong> <a href="https://code-and-design.org/1/" target="_blank">https://code-and-design.org/</a></p>
+                    <p><strong>Theme:</strong> Professional Development Workflow + HTML Structure Mastery</p>
+                </div>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <Card variant="enhanced" class="designer-coder-section">
+                <SectionHeader icon="eye">
+                    Designer-Coder Lens
+                </SectionHeader>
+
+                <div class="lens-grid">
+                    <LensItem type="designer" title="Designer Focus">
+                        Visual hierarchy and information architecture, spatial relationships (boxes within boxes, nesting), file organization as foundation of design systems, wireframing structural relationships in Figma, logo design and icon systems
+                    </LensItem>
+
+                    <LensItem type="coder" title="Coder Focus">
+                        HTML document structure and the DOM tree, parent-child relationships in code, semantic HTML element selection, file/folder hierarchy and organization, attributes, classes, and IDs as metadata, local development workflow
+                    </LensItem>
+                </div>
+
+                <div class="duality-statement">
+                    <p><strong>Bridge Concept:</strong> "Hierarchy exists everywhere—in your file system, in your HTML structure, and in your visual design. Master one, understand them all."</p>
+                </div>
+            </Card>
+
+            <div class="section-divider with-icon"></div>
+
+            <!-- Monday Session -->
+            <section class="day-section">
+                <Card variant="accent" class="card-enhanced">
+                    <SectionHeader level={2} icon="calendar" badge={{ text: "Monday, Oct 6", variant: "info" }}>
+                        Day 1: Local Development & Deployment Workflow
+                    </SectionHeader>
+                </Card>
+
+                <Card variant="enhanced" class="timeline-section">
+                    <SectionHeader icon="globe" badge={{ text: "10:00-10:40 AM", variant: "secondary" }}>
+                        Part 1: Web Evolution Discussion
+                    </SectionHeader>
+
+                    <h4>Web Then and Now: Group Discussion</h4>
+                    <p>Students discuss their "Then & Now" assignment analyzing website evolution via Wayback Machine.</p>
+
+                    <div class="activities-list">
+                        <h5>Small Groups (3-4 students) - 15 min</h5>
+                        <ul>
+                            <li>Each person shares their site analysis (3-4 min per person)</li>
+                            <li>Group identifies common patterns across different sites</li>
+                        </ul>
+
+                        <h5>Discussion Prompts:</h5>
+                        <ul>
+                            <li>What navigation patterns changed over time?</li>
+                            <li>How did user control increase?</li>
+                            <li>Which features reflect current web trends?</li>
+                            <li>How has mobile affected design decisions?</li>
+                            <li>What elements stayed consistent?</li>
+                        </ul>
+
+                        <h5>Class Debrief - 10 min</h5>
+                        <ul>
+                            <li>Each group shares one surprising finding</li>
+                            <li>Instructor highlights common observations</li>
+                            <li>Connect to today's lesson: "You analyzed how design evolved. Now we learn how the code structure behind these sites works."</li>
+                        </ul>
+                    </div>
+                </Card>
+
+                <div class="section-divider"></div>
+
+                <Card variant="enhanced" class="timeline-section">
+                    <SectionHeader icon="folder" badge={{ text: "10:50-11:00 AM", variant: "secondary" }}>
+                        Part 2: File Structures & Hierarchy
+                    </SectionHeader>
+
+                    <Alert icon="lightbulb">
+                        <strong>Key Concept:</strong> Organization creates clarity. Whether organizing files, code, or visual elements, hierarchy helps users (and browsers) understand relationships.
+                    </Alert>
+
+                    <h4>Three Types of Hierarchy (Parallel Concepts)</h4>
+
+                    <div class="concept-box">
+                        <h5>1. File System Hierarchy</h5>
+                        <div class="code-block">
+my-portfolio/
+├── index.html
+├── week-1/
+│   ├── newspaper.html
+│   ├── lost-pet.html
+│   └── favorite-band.html
+├── week-2/
+│   └── recipe.html
+└── images/
+    ├── logo.png
+    └── recipe-photo.jpg
+                        </div>
+
+                        <h5>2. HTML Document Hierarchy (Parent-Child)</h5>
+                        <div class="code-block">
+&lt;body&gt;           ← parent
+  &lt;header&gt;       ← child of body, parent of h1
+    &lt;h1&gt;Title&lt;/h1&gt;  ← child of header
+  &lt;/header&gt;
+  &lt;main&gt;         ← child of body, sibling of header
+    &lt;p&gt;Text&lt;/p&gt;  ← child of main
+  &lt;/main&gt;
+&lt;/body&gt;
+                        </div>
+
+                        <h5>3. Visual Design Hierarchy</h5>
+                        <ul>
+                            <li>What users see first (size, color, position)</li>
+                            <li>Grouping and relationships (proximity, similarity)</li>
+                            <li>Information architecture (how content is organized)</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>Key Concept:</strong> Proper hierarchy makes projects maintainable, code understandable, and designs clear.</p>
+                </Card>
+
+                <div class="section-divider"></div>
+
+                <Card variant="enhanced" class="timeline-section">
+                    <SectionHeader icon="code" badge={{ text: "11:30 AM-12:20 PM", variant: "secondary" }}>
+                        Part 3: Local Development Workflow
+                    </SectionHeader>
+
+                    <h4>Step 1: VS Code Boilerplate Shortcut (5 min)</h4>
+
+                    <div class="demo-section">
+                        <p><strong>Demo & Practice:</strong></p>
+                        <ol>
+                            <li>Open VS Code</li>
+                            <li>Create new file, save as <code>test.html</code></li>
+                            <li>Type <code>!</code> and press <strong>Tab</strong></li>
+                            <li><strong>Magic!</strong> Full HTML5 boilerplate appears</li>
+                        </ol>
+
+                        <h5>Understanding the boilerplate:</h5>
+                        <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </div>
+
+                        <h5>What each part means:</h5>
+                        <ul>
+                            <li><code>&lt;!DOCTYPE html&gt;</code> - Tells browser this is HTML5</li>
+                            <li><code>&lt;html lang="en"&gt;</code> - Root element, language declaration</li>
+                            <li><code>&lt;head&gt;</code> - Metadata (not visible on page)</li>
+                            <li><code>&lt;meta charset="UTF-8"&gt;</code> - Character encoding</li>
+                            <li><code>&lt;meta name="viewport"...&gt;</code> - Responsive design setup</li>
+                            <li><code>&lt;title&gt;</code> - Page title (shows in browser tab)</li>
+                            <li><code>&lt;body&gt;</code> - Visible content goes here</li>
+                        </ul>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <h4>Step 2: Images in CodePen via snipboard.io (10 min)</h4>
+
+                    <Alert icon="alert-triangle">
+                        <strong>Problem:</strong> CodePen doesn't allow direct image uploads (in free tier)<br>
+                        <strong>Solution:</strong> Use snipboard.io for quick image hosting
+                    </Alert>
+
+                    <div class="demo-section">
+                        <p><strong>Demo:</strong></p>
+                        <ol>
+                            <li>Go to <a href="https://snipboard.io" target="_blank">https://snipboard.io</a></li>
+                            <li>Upload or paste an image</li>
+                            <li>Copy the generated URL</li>
+                            <li>In CodePen, add: <code>&lt;img src="[snipboard-url]" alt="description"&gt;</code></li>
+                            <li>Optionally style: <code>&lt;img src="..." style="width: 300px;"&gt;</code></li>
+                        </ol>
+
+                        <p><strong>Key Learning:</strong> External hosting is common for images (CDNs, cloud storage, etc.)</p>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <h4>Step 3: Create Local HTML Files in VS Code (15 min)</h4>
+
+                    <p><strong>Transition from CodePen to local files.</strong></p>
+
+                    <h5>3A. Recipe Page from CodePen (8 min)</h5>
+                    <ol>
+                        <li>Open your recipe CodePen</li>
+                        <li>Copy all HTML from CodePen</li>
+                        <li>In VS Code: Create new file <code>recipe.html</code></li>
+                        <li>Generate boilerplate (<code>!</code> + Tab)</li>
+                        <li>Paste recipe HTML into <code>&lt;body&gt;</code></li>
+                        <li>Update <code>&lt;title&gt;</code> to your recipe name</li>
+                        <li><strong>Handle the image:</strong>
+                            <ul>
+                                <li>Download image from snipboard URL (or find new image)</li>
+                                <li>Save to same folder as <code>recipe.html</code></li>
+                                <li>Update img tag: <code>&lt;img src="recipe-photo.jpg" alt="description"&gt;</code></li>
+                            </ul>
+                        </li>
+                        <li><strong>Preview:</strong> Right-click file → Open with Live Server (or browser)</li>
+                    </ol>
+
+                    <div class="section-divider"></div>
+
+                    <h4>Step 4: GitHub Repo Organization (15 min)</h4>
+
+                    <h5>4A. Create GitHub Repository (3 min)</h5>
+                    <ol>
+                        <li>Go to GitHub.com (logged in)</li>
+                        <li>Click "+" → "New repository"</li>
+                        <li>Repository name: <code>code-design-workspace</code></li>
+                        <li>Description: "My DESN368 Code+Design Portfolio"</li>
+                        <li>Public</li>
+                        <li>Do NOT initialize with README (we'll add files directly)</li>
+                        <li>Click "Create repository"</li>
+                    </ol>
+
+                    <h5>4B. Organize with Folders via Drag & Drop (12 min)</h5>
+                    <p>GitHub allows folder creation through file upload:</p>
+                    <ol>
+                        <li><strong>Create week-1 folder with files:</strong>
+                            <ul>
+                                <li>On repo page, click "uploading an existing file"</li>
+                                <li>In the filename field at top, type: <code>week-1/newspaper.html</code></li>
+                                <li>This creates the <code>week-1/</code> folder!</li>
+                                <li>Upload files one at a time (GitHub limitation)</li>
+                                <li>Repeat for <code>lost-pet.html</code> and <code>favorite-band.html</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="section-divider"></div>
+
+                    <h4>Step 5: Codespaces & GitHub Copilot (10 min)</h4>
+
+                    <h5>5A. Open Codespace (3 min)</h5>
+                    <ol>
+                        <li>From GitHub repo page, click "Code" button</li>
+                        <li>Click "Codespaces" tab</li>
+                        <li>Click "Create codespace on main"</li>
+                        <li>Wait 1-2 minutes for environment to load</li>
+                        <li>VS Code opens in browser! 🎉</li>
+                    </ol>
+
+                    <h5>5B. Introduce GitHub Copilot (3 min)</h5>
+
+                    <Alert icon="zap">
+                        <strong>What is GitHub Copilot?</strong> AI pair programmer that suggests code as you type, answers questions in chat, and helps with errors. Free for students!
+                    </Alert>
+
+                    <div class="concept-box">
+                        <h5>Week 2 AI Level: Reference and Validator</h5>
+                        <ul>
+                            <li>Ask definitional questions</li>
+                            <li>Request explanations</li>
+                            <li>Validate code syntax</li>
+                            <li>Get help with errors</li>
+                        </ul>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <h4>Step 6: Deploy with Netlify (5 min)</h4>
+
+                    <p><strong>Goal:</strong> Get a live URL for the portfolio</p>
+
+                    <div class="demo-section">
+                        <h5>Demo & Students Follow:</h5>
+                        <ol>
+                            <li><strong>Go to Netlify:</strong>
+                                <ul>
+                                    <li>Visit <a href="https://app.netlify.com" target="_blank">https://app.netlify.com</a></li>
+                                    <li>Sign up/login with GitHub account</li>
+                                </ul>
+                            </li>
+                            <li><strong>Import Project:</strong>
+                                <ul>
+                                    <li>Click "Add new site" → "Import an existing project"</li>
+                                    <li>Choose "Deploy with GitHub"</li>
+                                    <li>Authorize Netlify to access GitHub</li>
+                                    <li>Select <code>code-design-workspace</code> repository</li>
+                                </ul>
+                            </li>
+                            <li><strong>Configure & Deploy:</strong>
+                                <ul>
+                                    <li>Site name: auto-generated (can customize later)</li>
+                                    <li>Branch: <code>main</code></li>
+                                    <li>Build command: leave empty</li>
+                                    <li>Publish directory: leave empty (we're just deploying HTML)</li>
+                                    <li>Click "Deploy site"</li>
+                                </ul>
+                            </li>
+                            <li><strong>Wait for Deployment:</strong>
+                                <ul>
+                                    <li>Watch build log (usually 30-60 seconds)</li>
+                                    <li>Site goes live!</li>
+                                    <li>URL format: <code>random-name-123.netlify.app</code></li>
+                                </ul>
+                            </li>
+                        </ol>
+
+                        <Alert icon="check">
+                            <strong>Key Points:</strong> Every push to GitHub automatically redeploys (continuous deployment). Custom domains possible later. Free tier sufficient for class projects. Professional deployment workflow!
+                        </Alert>
+                    </div>
+                </Card>
+            </section>
+
+            <div class="section-divider with-icon"></div>
+
+            <!-- Assignments Section -->
+            <section class="assignments-section">
+                <Card variant="accent" class="card-enhanced">
+                    <div class="color-bar color-bar-multi"></div>
+                    <SectionHeader level={2} icon="file-text">
+                        Week 2 Assignments
+                    </SectionHeader>
+                    <p>Complete all 7 assignments to demonstrate mastery of local development workflows and semantic HTML.</p>
+                </Card>
+
+                <!-- Assignment 1 -->
+                <Card variant="enhanced" class="card-enhanced">
+                    <SectionHeader icon="github" badge={{ text: "Due: Mon, Oct 13", variant: "warning" }}>
+                        📋 Lab: Repo Sync, GitHub Codespaces, and Netlify Deployment
+                    </SectionHeader>
+
+                    <Alert icon="alert-triangle">
+                        <strong>Status:</strong> Most of this was completed in class on Oct 6. If you missed class, complete all steps below.
+                    </Alert>
+
+                    <h4>Overview</h4>
+                    <p>Organize your projects on GitHub, create an index page with AI assistance, and deploy your site live to the web.</p>
+
+                    <h4>Requirements</h4>
+                    <p>Your deployed site must include:</p>
+                    <ul class="checklist-items">
+                        <li>✅ <code>index.html</code> with working navigation at the root of your repository</li>
+                        <li>✅ <code>week-1</code> folder containing: <code>newspaper.html</code>, <code>lost-pet.html</code>, <code>favorite-band.html</code></li>
+                        <li>✅ <code>week-2</code> folder containing: <code>recipe.html</code> and at least one image file</li>
+                        <li>✅ All navigation links working correctly</li>
+                        <li>✅ Site accessible via your Netlify URL</li>
+                    </ul>
+
+                    <h4>To Submit</h4>
+                    <ol>
+                        <li>Copy your full Netlify URL (e.g., <code>https://your-site-name.netlify.app</code>)</li>
+                        <li>Paste it in the Canvas submission box</li>
+                        <li>Click "Submit"</li>
+                    </ol>
+
+                    <a href="[CANVAS_LINK_HERE]" class="btn btn-primary" target="_blank" style="display: inline-block; margin-top: 1rem;">
+                        View Assignment in Canvas
+                    </a>
+                </Card>
+
+                <!-- Assignment 2 -->
+                <Card variant="enhanced" class="card-enhanced">
+                    <SectionHeader icon="code" badge={{ text: "Due: Fri, Oct 10", variant: "warning" }}>
+                        💻 Practice: Codedex.io - Structure
+                    </SectionHeader>
+
+                    <h4>Overview</h4>
+                    <p>Complete three HTML coding exercises in CodePen to practice web page structure and formatting fundamentals.</p>
+
+                    <h4>Instructions</h4>
+
+                    <p><strong>Step 1: Complete exercises 8 through 12 on Codedex.io</strong></p>
+
+                    <p>Create three separate CodePens for:</p>
+                    <ol>
+                        <li><strong>Craigslist Ad</strong> - Create a Craigslist ad for something odd in your house. Mimic the style of Craigslist.</li>
+                        <li><strong>Wiki Article</strong> - Create a wiki article about one of your favorite people (dead or alive).</li>
+                        <li><strong>Lorem Ipsum</strong> - Practice with Lorem Ipsum placeholder text. Add comments describing what each section class is for.</li>
+                    </ol>
+
+                    <p><strong>Step 2: Submit Your Links</strong></p>
+                    <p>Copy and paste the URLs for all three CodePens in the Canvas text entry box.</p>
+
+                    <p><strong>Format your submission like this:</strong></p>
+                    <div class="code-block">
+Craigslist Ad: [your CodePen URL]
+Wiki Article: [your CodePen URL]
+Lorem Ipsum: [your CodePen URL]
+                    </div>
+
+                    <p><strong>Before You Submit:</strong></p>
+                    <ul class="checklist-items">
+                        <li>✅ Make sure each CodePen is saved</li>
+                        <li>✅ Test each link by opening it in a new browser tab</li>
+                        <li>✅ Verify you have all three URLs</li>
+                    </ul>
+
+                    <a href="[CANVAS_LINK_HERE]" class="btn btn-primary" target="_blank" style="display: inline-block; margin-top: 1rem;">
+                        View Assignment in Canvas
+                    </a>
+                </Card>
+
+                <!-- Assignment 3 -->
+                <Card variant="enhanced" class="card-enhanced">
+                    <SectionHeader icon="refresh-cw" badge={{ text: "Due: Mon, Oct 13", variant: "warning" }}>
+                        🔄 Practice: Migrate Codedex CodePens to GitHub
+                    </SectionHeader>
+
+                    <h4>Overview</h4>
+                    <p>Practice migrating your CodePen projects to your GitHub repository using Codespaces. This mirrors the professional workflow we demonstrated in the Week 2 Lab.</p>
+
+                    <h4>Instructions</h4>
+
+                    <p><strong>Step 1: Open Your Codespace</strong></p>
+                    <ol>
+                        <li>Go to GitHub.com and navigate to your <code>code-design-workspace</code> repository</li>
+                        <li>Click the green "Code" button → "Codespaces" tab</li>
+                        <li>Click "Resume" on your existing Codespace (or "Create codespace on main" if needed)</li>
+                        <li>Wait for VS Code to load in your browser</li>
+                    </ol>
+
+                    <p><strong>Step 2: Migrate Your Three Projects</strong></p>
+                    <p>For each of your three CodePen projects (Craigslist Ad, Wiki Article, Lorem Ipsum):</p>
+                    <ol>
+                        <li>Create new HTML files in your <code>week-2</code> folder:
+                            <ul>
+                                <li><code>craigslist-ad.html</code></li>
+                                <li><code>wiki-article.html</code></li>
+                                <li><code>lorem-ipsum.html</code></li>
+                            </ul>
+                        </li>
+                        <li>Use the HTML boilerplate shortcut: Type <code>!</code> and press Tab</li>
+                        <li>Copy your CodePen content and paste it into the <code>&lt;body&gt;</code> section</li>
+                        <li>Update the <code>&lt;title&gt;</code> tag to match your project</li>
+                        <li>Save the file (Ctrl+S or Cmd+S)</li>
+                    </ol>
+
+                    <p><strong>Step 3: Commit and Sync Your Changes</strong></p>
+                    <ol>
+                        <li>Click the <strong>Source Control</strong> icon in the left sidebar</li>
+                        <li>In the message box, type: <code>Add week 2 codedex.io HTML exercises</code></li>
+                        <li>Click the blue <strong>"Commit"</strong> button</li>
+                        <li>Click <strong>"Sync Changes"</strong> to push to GitHub</li>
+                    </ol>
+
+                    <p><strong>Submit:</strong> Your Netlify URL (site will auto-update with new files)</p>
+
+                    <a href="[CANVAS_LINK_HERE]" class="btn btn-primary" target="_blank" style="display: inline-block; margin-top: 1rem;">
+                        View Assignment in Canvas
+                    </a>
+                </Card>
+
+                <!-- Assignment 4 -->
+                <Card variant="enhanced" class="card-enhanced">
+                    <SectionHeader icon="upload" badge={{ text: "Due: Fri, Oct 10", variant: "warning" }}>
+                        🎨 Practice & Explore: Migrating HTML from CodePen to VSCode
+                    </SectionHeader>
+
+                    <h4>Objective</h4>
+                    <p>Practice using VS Code's HTML boilerplate shortcut and migrate your CodePen projects to local development with proper file organization.</p>
+
+                    <h4>Part 1: Recipe Migration (Week 2 Folder)</h4>
+                    <ol>
+                        <li>Open VS Code</li>
+                        <li>Drag and drop your <code>desn368</code> folder onto VS Code</li>
+                        <li>Navigate to your <code>week-2</code> folder</li>
+                        <li>Create a new file named <code>recipe.html</code></li>
+                        <li>Use the <code>!</code> + Tab shortcut to generate the HTML5 boilerplate</li>
+                        <li>Copy your recipe HTML content from CodePen into the <code>&lt;body&gt;</code> section</li>
+                        <li>Update the <code>&lt;title&gt;</code> tag to match your recipe</li>
+                        <li>Download your recipe image from snipboard.io</li>
+                        <li>Save the image in your <code>week-2</code> folder</li>
+                        <li>Update your <code>&lt;img&gt;</code> tag to reference the local image file</li>
+                    </ol>
+
+                    <h4>Part 2: Previous Projects (Week 1 Folder)</h4>
+                    <p>Repeat the migration process for your three previous assignments. Create these files in your <code>week-1</code> folder:</p>
+                    <ul>
+                        <li><code>newspaper.html</code></li>
+                        <li><code>lost-pet.html</code></li>
+                        <li><code>favorite-band.html</code></li>
+                    </ul>
+
+                    <h4>Submission Requirements</h4>
+                    <p><strong>Screenshot 1 (Required for everyone):</strong></p>
+                    <p>Take a screenshot of your VS Code Explorer panel showing:</p>
+                    <ul>
+                        <li>Both <code>week-1</code> and <code>week-2</code> folders expanded</li>
+                        <li>All HTML files visible</li>
+                        <li>Your recipe image file in week-2</li>
+                        <li>Clear, readable file names</li>
+                    </ul>
+
+                    <p><strong>Screenshot 2 (If you attended class):</strong></p>
+                    <p>Take a screenshot of your GitHub repo showing the same structure</p>
+
+                    <p><strong>Upload:</strong> Submit your screenshots to Canvas</p>
+
+                    <a href="[CANVAS_LINK_HERE]" class="btn btn-primary" target="_blank" style="display: inline-block; margin-top: 1rem;">
+                        View Assignment in Canvas
+                    </a>
+                </Card>
+
+                <!-- Assignment 5 -->
+                <Card variant="enhanced" class="card-enhanced">
+                    <SectionHeader icon="figma" badge={{ text: "Due: Fri, Oct 10", variant: "warning" }}>
+                        🎨 Practice: Figma 101 Part 3 - Logo and Icon Set
+                    </SectionHeader>
+
+                    <h4>Overview</h4>
+                    <p>Complete the 3rd lesson in the Figma 101 course focusing on logo design and icon systems.</p>
+
+                    <h4>Learning Objectives</h4>
+                    <ul>
+                        <li>Explore the Pen tool</li>
+                        <li>Discover the power of vector networks</li>
+                        <li>Design a logo for an app concept</li>
+                        <li>Begin creating a set of icons</li>
+                    </ul>
+
+                    <h4>Instructions</h4>
+                    <ol>
+                        <li><strong>Name your file</strong> using the format: <code>figma-101-pt3-[last and first initial]-f25</code>
+                            <br>Example: If your name is Jane Smith: <code>figma-101-pt3-sj-f25</code>
+                        </li>
+                        <li><strong>Place your Figma file</strong> in the Figma 101 Project folder</li>
+                        <li><strong>Submit to Canvas:</strong> Submit the link to your Figma file</li>
+                    </ol>
+
+                    <div class="designer-coder-moments">
+                        <MomentCard type="designer">
+                            Logo and icon systems require both creativity and systematic thinking—just like coding requires both problem-solving and structure.
+                        </MomentCard>
+                    </div>
+
+                    <a href="[CANVAS_LINK_HERE]" class="btn btn-primary" target="_blank" style="display: inline-block; margin-top: 1rem;">
+                        View Assignment in Canvas
+                    </a>
+                </Card>
+
+                <!-- Assignment 6 -->
+                <Card variant="enhanced" class="card-enhanced">
+                    <SectionHeader icon="book" badge={{ text: "Due: Sun, Oct 12", variant: "warning" }}>
+                        📝 Reflection: Weekly Visual Notes
+                    </SectionHeader>
+
+                    <h4>Objective</h4>
+                    <p>Create hand-written visual notes that capture key concepts, ideas, and learnings from this week's content.</p>
+
+                    <h4>This Week's Focus</h4>
+                    <p>Read and take visual notes on this article about semantic HTML and the web development journey ahead.</p>
+
+                    <h4>Required Reading</h4>
+                    <p><strong>Semantic HTML</strong><br>
+                    <a href="https://developer.mozilla.org/en-US/curriculum/core/semantic-html/" target="_blank">MDN: Semantic HTML</a></p>
+
+                    <h4>What to Include in Your Visual Notes</h4>
+                    <ul>
+                        <li>Key definitions and concepts</li>
+                        <li>Diagrams showing HTML structure</li>
+                        <li>Examples of semantic vs. non-semantic markup</li>
+                        <li>Your own observations and connections</li>
+                        <li>Questions that arise while reading</li>
+                        <li>Visual metaphors that help you understand</li>
+                    </ul>
+
+                    <h4>Submission</h4>
+                    <ul>
+                        <li>Scan or photograph your visual notes</li>
+                        <li>Ensure text is legible</li>
+                        <li>Upload to Canvas</li>
+                    </ul>
+
+                    <a href="[CANVAS_LINK_HERE]" class="btn btn-primary" target="_blank" style="display: inline-block; margin-top: 1rem;">
+                        View Assignment in Canvas
+                    </a>
+                </Card>
+
+                <!-- Assignment 7 -->
+                <Card variant="enhanced" class="card-enhanced">
+                    <SectionHeader icon="edit" badge={{ text: "Due: Mon, Oct 13", variant: "warning" }}>
+                        🔧 Update: Apply Semantic HTML to Week 1 Pages
+                    </SectionHeader>
+
+                    <h4>Overview</h4>
+                    <p>Apply what you learned about semantic HTML and styling to improve your Week 1 pages.</p>
+
+                    <h4>Requirements</h4>
+                    <p>For <code>newspaper.html</code>, <code>lost-pet.html</code>, and <code>favorite-band.html</code>:</p>
+
+                    <ul class="checklist-items">
+                        <li>✅ Replace generic <code>&lt;div&gt;</code> tags with semantic elements where appropriate:
+                            <ul>
+                                <li>Use <code>&lt;article&gt;</code> for main content</li>
+                                <li>Use <code>&lt;header&gt;</code> for top sections</li>
+                                <li>Use <code>&lt;footer&gt;</code> for bottom sections</li>
+                                <li>Use <code>&lt;nav&gt;</code> if you add navigation</li>
+                            </ul>
+                        </li>
+                        <li>✅ Add appropriate <code>class</code> and <code>id</code> attributes</li>
+                        <li>✅ Ensure proper document structure (DOCTYPE, head, body)</li>
+                        <li>✅ Add HTML comments explaining your structure</li>
+                        <li>✅ Apply styling using either inline styles or in-page styles</li>
+                        <li>✅ Improve visual presentation (colors, spacing, typography)</li>
+                    </ul>
+
+                    <h4>GitHub Copilot Usage</h4>
+
+                    <Alert icon="zap">
+                        <strong>Week 2 = AI as Teacher, Not Doer</strong><br>
+                        You're learning the foundation. AI helps you understand, not bypass learning.
+                    </Alert>
+
+                    <p><strong>Use GitHub Copilot for:</strong></p>
+                    <ul>
+                        <li>Generating HTML boilerplate structures</li>
+                        <li>Getting suggestions for semantic element choices</li>
+                        <li>Asking questions about HTML/CSS properties</li>
+                        <li>Reviewing code for structural issues</li>
+                    </ul>
+
+                    <p><strong>Example Prompts:</strong></p>
+                    <ul>
+                        <li>"Create a semantic HTML structure for a blog post with header, article, and footer"</li>
+                        <li>"Explain why this link isn't working: <code>&lt;a href=about.html&gt;About&lt;/a&gt;</code>"</li>
+                        <li>"Suggest semantic HTML elements for a recipe page"</li>
+                    </ul>
+
+                    <p><strong>NOT Allowed Yet:</strong></p>
+                    <ul>
+                        <li>Having AI write complete pages for you (you must understand every line)</li>
+                        <li>Copy-pasting AI code without modification and understanding</li>
+                        <li>Using AI instead of learning fundamentals yourself</li>
+                    </ul>
+
+                    <h4>Submission</h4>
+                    <p>Commit your updated files to GitHub and submit your Netlify URL (site will auto-update).</p>
+
+                    <a href="[CANVAS_LINK_HERE]" class="btn btn-primary" target="_blank" style="display: inline-block; margin-top: 1rem;">
+                        View Assignment in Canvas
+                    </a>
+                </Card>
+            </section>
+
+            <div class="section-divider with-icon"></div>
+
+            <!-- Resources Section -->
+            <section class="card card-enhanced">
+                <SectionHeader level={2} icon="book">
+                    Resources
+                </SectionHeader>
+
+                <h4>Web Evolution</h4>
+                <ul class="resources-list">
+                    <li><a href="https://archive.org/web" target="_blank">Wayback Machine</a> - View historical website versions</li>
+                    <li><a href="https://dev.to/pragativerma18/evolution-of-web-42eh" target="_blank">Evolution of the Web</a></li>
+                    <li><a href="https://www.vizzuality.com/project/evolution-of-the-web" target="_blank">Evolution of the Web</a> - Interactive timeline</li>
+                    <li><a href="https://www.webdesignmuseum.org/" target="_blank">Web Design Museum</a> - Gallery of historical designs</li>
+                </ul>
+
+                <h4>HTML & Semantic Elements</h4>
+                <ul class="resources-list">
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank">MDN HTML Elements Reference</a></li>
+                    <li><a href="https://web.dev/learn/html/" target="_blank">Web.dev: Learn HTML</a></li>
+                    <li><a href="http://html5doctor.com/" target="_blank">HTML5 Doctor</a> - Semantic element explanations</li>
+                    <li><a href="https://www.a11yproject.com/posts/what-is-semantic-html/" target="_blank">A11y Project: Semantic HTML</a></li>
+                </ul>
+
+                <h4>Tools & Services</h4>
+                <ul class="resources-list">
+                    <li><a href="https://snipboard.io" target="_blank">snipboard.io</a> - Quick image hosting</li>
+                    <li><a href="https://github.com/features/codespaces" target="_blank">GitHub Codespaces</a> - Cloud development environment</li>
+                    <li><a href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a> - AI pair programmer</li>
+                    <li><a href="https://www.netlify.com" target="_blank">Netlify</a> - Free static site hosting</li>
+                    <li><a href="https://www.codedex.io/html" target="_blank">Codedex HTML</a> - Interactive tutorials</li>
+                </ul>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Troubleshooting Section 
+            <section class="card card-enhanced">
+                <SectionHeader level={2} icon="alert-triangle">
+                    Troubleshooting Common Issues
+                </SectionHeader>
+
+                <div class="alert-tip">
+                    <strong>Images Not Displaying</strong><br>
+                    Check file path, verify file uploaded to GitHub, check file extension matches, ensure image is in correct folder
+                </div>
+
+                <div class="alert-tip">
+                    <strong>Links Not Working</strong><br>
+                    Check relative paths, verify file names match exactly (case-sensitive), test locally first, use browser dev tools to see 404 errors
+                </div>
+
+                <div class="alert-tip">
+                    <strong>Netlify Not Updating</strong><br>
+                    Verify changes pushed to GitHub, check Netlify deploy log, wait 30-60 seconds for build, hard refresh browser (Cmd/Ctrl + Shift + R)
+                </div>
+
+                <div class="alert-tip">
+                    <strong>Codespace Issues</strong><br>
+                    Save files before previewing, check file paths are relative, commit and sync changes, if stuck close and reopen Codespace
+                </div>
+
+                <div class="alert-tip">
+                    <strong>CSS Not Applying</strong><br>
+                    Check selector matches element, verify <code>&lt;style&gt;</code> is in <code>&lt;head&gt;</code>, check for typos, use browser Inspector to debug
+                </div>
+            </section>
+        -->
+        </div> 
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <section class="card card-enhanced">
+                <h3>
+                    <Icon name="link" size={18} class="section-icon" />
+                    Quick Links
+                </h3>
+                <div class="quick-links">
+                    <LinkItem href="https://github.com/DESN368/course-hub" icon="github" target="_blank">
+                        Course Repository
+                    </LinkItem>
+                    <LinkItem href="https://www.netlify.com" icon="zap" target="_blank">
+                        Netlify
+                    </LinkItem>
+                    <LinkItem href="https://snipboard.io" icon="image" target="_blank">
+                        snipboard.io
+                    </LinkItem>
+                    <LinkItem href="https://www.codedex.io/html" icon="code" target="_blank">
+                        Codedex HTML
+                    </LinkItem>
+                </div>
+            </section>
+
+            <section class="card accent-block-subtle card-enhanced">
+                <h3>
+                    <Icon name="lightbulb" size={18} class="section-icon" />
+                    Learning Objectives
+                </h3>
+
+                <h4 class="sidebar-subheading">By the end of Week 2:</h4>
+                <ol class="sidebar-objectives">
+                    <li>Analyze design evolution from Web 1.0 to current era</li>
+                    <li>Create HTML files locally using VS Code</li>
+                    <li>Organize projects with proper folder hierarchy</li>
+                    <li>Use GitHub for file management</li>
+                    <li>Work with GitHub Codespaces and Copilot</li>
+                    <li>Deploy live sites using Netlify</li>
+                    <li>Write semantic HTML</li>
+                    <li>Understand parent-child relationships</li>
+                    <li>Apply classes and IDs appropriately</li>
+                    <li>Use inline and in-page CSS</li>
+                </ol>
+            </section>
+
+            <section class="card card-enhanced">
+                <h3>
+                    <Icon name="book" size={18} class="section-icon" />
+                    Key Concepts
+                </h3>
+
+                <h4 class="sidebar-subheading">This Week:</h4>
+                <ul class="sidebar-concepts">
+                    <li><strong>Hierarchy:</strong> File system, HTML, visual design</li>
+                    <li><strong>Local Development:</strong> VS Code, GitHub, Netlify</li>
+                    <li><strong>Web Evolution:</strong> Web 1.0, 2.0, and current trends</li>
+                    <li><strong>Professional Workflow:</strong> Code → Commit → Deploy</li>
+                    <li><strong>GitHub Codespaces:</strong> Cloud development environment</li>
+                    <li><strong>AI as Teacher:</strong> Reference and validator</li>
+                </ul>
+            </section>
+
+            <section class="card card-accent">
+                <h3>
+                    <Icon name="lightbulb" size={18} class="section-icon" />
+                    Success Tip
+                </h3>
+                <p>Professional development is about workflow, not just code. Learning Git, GitHub, and deployment tools is just as important as learning HTML.</p>
+            </section>
+
+            <section class="card card-enhanced">
+                <h3>
+                    <Icon name="user" size={18} class="section-icon" />
+                    Need Help?
+                </h3>
+                <div class="help-info">
+                    <p><strong>During Class:</strong> Raise your hand!</p>
+                    <p><strong>After Class:</strong> Email instructor</p>
+                    <p><strong>Office Hours:</strong> Mon 1-2pm</p>
+                </div>
+            </section>
+
+            <section class="card card-enhanced">
+                <h3>
+                    <Icon name="calendar" size={18} class="section-icon" />
+                    Coming in Week 3
+                </h3>
+                <div class="coming-up">
+                    <ul>
+                        <li>Semantic HTML deep dive</li>
+                        <li>Codedex Chapter 2 exercises</li>
+                        <li>Classes and IDs</li>
+                        <li>Parent-child relationships in HTML</li>
+                        <li>More advanced AI integration</li>
+                    </ul>
+                </div>
+            </section>
+        </aside>
+    </main>
+</BaseLayout>

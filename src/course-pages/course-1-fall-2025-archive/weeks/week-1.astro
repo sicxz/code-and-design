@@ -1,0 +1,410 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+import Card from '../../../components/Card.astro';
+import SectionHeader from '../../../components/SectionHeader.astro';
+import Badge from '../../../components/Badge.astro';
+import Alert from '../../../components/Alert.astro';
+import LinkItem from '../../../components/LinkItem.astro';
+import LensItem from '../../../components/LensItem.astro';
+import MomentCard from '../../../components/MomentCard.astro';
+---
+
+<BaseLayout title="Week 1: HTML Fundamentals & Internet Basics - DESN368">
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb">
+                <a href="/1-fall-2025">Course Overview</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Week 1: HTML Fundamentals & Internet Basics</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-content two-column">
+        <div class="main-content fade-in">
+            <Card variant="accent" class="card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <SectionHeader level={1} icon="globe" badge={{ text: "Available", variant: "success" }}>
+                    Week 1: HTML Fundamentals & Internet Basics
+                </SectionHeader>
+                <p class="subtitle">Monday, September 29 & Wednesday, October 1, 2025</p>
+
+                <Alert icon="info">
+                    <strong>Week Overview:</strong> This week we build our foundation in HTML while exploring how the internet works. You'll create your first web pages using GitHub Codespaces and deploy them with Netlify.
+                </Alert>
+
+                <div class="repo-info">
+
+                    <p><strong>Theme:</strong> Understanding the Internet & HTML Foundations</p>
+                </div>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <Card variant="enhanced" class="designer-coder-section">
+                <SectionHeader icon="zap">
+                    Learning Objectives
+                </SectionHeader>
+                <ul class="checklist-items">
+                    <li>Understand the difference between the Internet and the Web</li>
+                    <li>Write semantic HTML from scratch</li>
+                    <li>Set up and use GitHub Codespaces for development</li>
+                    <li>Create and link multiple HTML pages</li>
+                    <li>Deploy a live website with Netlify</li>
+                    <li>Analyze web design evolution through history</li>
+                </ul>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <Card variant="enhanced" class="designer-coder-section">
+                <SectionHeader icon="eye">
+                    Designer-Coder Lens
+                </SectionHeader>
+                <div class="lens-grid">
+                    <LensItem type="designer" title="Designer Focus">
+                        Creating mood boards in Figma 101, analyzing website evolution through design lens, understanding how visual trends shape user experience over time, connecting domain names to brand identity
+                    </LensItem>
+
+                    <LensItem type="coder" title="Coder Focus">
+                        Understanding IP addresses and DNS as the foundation of web architecture, analyzing how technical infrastructure affects user experience, connecting domain structure to website organization
+                    </LensItem>
+                </div>
+
+                <div class="duality-statement">
+                    <p><strong>The Connection:</strong> When you analyze a website's evolution from its earliest archived version to today, you're seeing both technical progress (faster DNS, better hosting) and design evolution (visual trends, UX improvements) working together. Your mood board skills help you identify visual patterns, while understanding IP/DNS helps you grasp the technical foundation that makes those designs possible.</p>
+                </div>
+            </Card>
+
+            <div class="section-divider with-icon"></div>
+
+            <!-- Monday Session -->
+            <section class="day-section">
+                <Card variant="accent" class="card-enhanced">
+                    <SectionHeader level={2} icon="calendar" badge={{ text: "Monday, Sept 29", variant: "info" }}>
+                        Day 1: The Internet, DNS, IPs Oh my!
+                    </SectionHeader>
+                </Card>
+
+                <Card variant="enhanced" class="timeline-section">
+                    <SectionHeader icon="brain" badge={{ text: "10:00-10:15 AM", variant: "secondary" }}>
+                        Opening: Programming is NOT Easy
+                    </SectionHeader>
+
+                    <Alert icon="heart">
+                        <strong>Setting Realistic Expectations:</strong> Feeling overwhelmed is normal. You are not stupid!
+                    </Alert>
+
+                    <div class="activities-list">
+                        <ul>
+                            <li>Start with Kate Ray's "Programming is Easy" slides</li>
+                            <li>Discuss the Dunning-Kruger effect in learning to code</li>
+                            <li>Review the confidence vs. competence curve</li>
+                            <li>Tips for success: Take notes, tackle challenges, understand before moving on</li>
+                        </ul>
+                    </div>
+                </Card>
+
+                <div class="section-divider"></div>
+
+                <Card variant="enhanced" class="timeline-section">
+                    <SectionHeader icon="wifi" badge={{ text: "10:15-11:15 AM", variant: "secondary" }}>
+                        Part 1: How the Internet Works
+                    </SectionHeader>
+
+                    <h4>Video Marathon - Watch Together & Discuss:</h4>
+
+                    <div class="video-list">
+                        <div class="video-item">
+                            <h5>1. How the Internet Works in 5 Minutes (10:15-10:25 AM)</h5>
+                            <ul>
+                                <li><a href="https://www.youtube.com/watch?v=7_LPdttKXPc&t=46s" target="_blank">Watch on YouTube</a></li>
+                                <li>Pause for questions about packets, ISPs, and infrastructure</li>
+                            </ul>
+                        </div>
+
+                        <div class="video-item">
+                            <h5>2. Don't Fear the Internet - Not Tubes (10:25-10:40 AM)</h5>
+                            <ul>
+                                <li><a href="http://www.dontfeartheinternet.com/01-not-tubes/" target="_blank">View Tutorial</a></li>
+                                <li>Framework for understanding the web as documents</li>
+                                <li>What is a website on a practical level?</li>
+                            </ul>
+                        </div>
+
+                        <div class="video-item">
+                            <h5>3. A Packet's Tale (10:40-10:55 AM)</h5>
+                            <ul>
+                                <li><a href="https://www.youtube.com/watch?v=ewrBalT_eBM" target="_blank">Watch on YouTube</a></li>
+                                <li>Visual journey of how data travels</li>
+                                <li>Understanding routing and packet switching</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="discussion-box">
+                        <h4>Quick Discussion (10:55-11:15 AM)</h4>
+                        <ul>
+                            <li>Internet vs. Web - what's the difference?</li>
+                            <li>Networks of networks concept</li>
+                            <li>Brief preview of submarine cables map</li>
+                        </ul>
+                    </div>
+                </Card>
+
+                <div class="section-divider"></div>
+
+                <Card variant="enhanced" class="timeline-section">
+                    <SectionHeader icon="server" badge={{ text: "11:15 AM-12:00 PM", variant: "secondary" }}>
+                        Part 2: IP Addresses, DNS & Domains
+                    </SectionHeader>
+
+                    <h4>Understanding Addresses on the Internet</h4>
+
+                    <div class="concept-box">
+                        <h5>Key Concepts (Lecture with Slides):</h5>
+                        <ul>
+                            <li><strong>IP Addresses:</strong> Every device's unique identifier (like 91.198.174.192)</li>
+                            <li><strong>Domains:</strong> Human-readable names (wikipedia.org)</li>
+                            <li><strong>DNS:</strong> The phonebook of the internet</li>
+                            <li><strong>URL Structure:</strong> protocol://domain/path</li>
+                        </ul>
+                    </div>
+
+                    <div class="demo-section">
+                        <h4>Interactive Demo: Traceroute</h4>
+                        <div class="code-block">
+traceroute google.com
+                        </div>
+
+                        <Alert icon="code">
+                            <strong>Instructor Script:</strong> Each line is a 'hop'—a router or server that our request passes through. Watch for geographic jumps and time increases!
+                        </Alert>
+
+                        <p>Try it yourself: <a href="https://gsuite.tools/traceroute" target="_blank">GSuite Traceroute Tool</a></p>
+                    </div>
+
+                    <div class="resources-box">
+                        <h4>Resources:</h4>
+                        <ul>
+                            <li><a href="https://howdns.works/" target="_blank">How DNS Works (Interactive)</a></li>
+                            <li><a href="https://submarine-cable-map-2024.telegeography.com/" target="_blank">Submarine Cable Map</a></li>
+                            <li><a href="https://app.milanote.com/1TvZ801GZiL38S?p=fn6BuViasPw" target="_blank">Milanote Board</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="hands-on">
+                        <h4>Hands-On Activities:</h4>
+                        <ol>
+                            <li><strong>Find IP Addresses:</strong>
+                                <ul>
+                                    <li>Visit <a href="https://www.site24x7.com/tools/find-ip-address-of-web-site.html" target="_blank">IP Lookup Tool</a></li>
+                                    <li>Look up your favorite website</li>
+                                    <li>Record the IP address(es)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Trace Geographic Location:</strong>
+                                <ul>
+                                    <li>Visit <a href="https://www.iplocation.net/ip-lookup" target="_blank">IP Location Tool</a></li>
+                                    <li>Enter: 171.67.215.200 (Stanford's IP)</li>
+                                    <li>Screenshot the results</li>
+                                </ul>
+                            </li>
+                            <li><strong>Discover Your IP:</strong>
+                                <ul>
+                                    <li>Google "what is my IP"</li>
+                                    <li>Is it IPv4 or IPv6?</li>
+                                    <li>What location does it reveal?</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </Card>
+
+                <div class="section-divider"></div>
+
+                <Card variant="enhanced" class="timeline-section">
+                    <SectionHeader icon="clock" badge={{ text: "12:00-12:20 PM", variant: "secondary" }}>
+                        Part 3: Web History & Evolution
+                    </SectionHeader>
+
+                    <div class="timeline-content">
+                        <h4>Quick Timeline Review:</h4>
+                        <ul>
+                            <li>ARPANET to Internet evolution</li>
+                            <li>Tim Berners-Lee and the birth of WWW (1989)</li>
+                            <li>FTP vs HTTP - why the web won</li>
+                            <li>Browser wars and standardization</li>
+                            <li>From 1 website (1991) to 2 billion today</li>
+                        </ul>
+
+                        <div class="key-takeaway">
+                            <h5>Key Takeaways:</h5>
+                            <ul>
+                                <li>The web is just 35 years old!</li>
+                                <li>HTML as the foundation</li>
+                                <li>Evolution driven by user needs</li>
+                                <li>Standards bodies: W3C and WHATWG</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <Alert icon="pencil">
+                        <strong>Reflection:</strong> Write 150-300 words on DNS, IP addresses, and privacy implications
+                    </Alert>
+                </Card>
+
+                <div class="section-divider"></div>
+
+                <Card variant="enhanced" class="card-enhanced">
+                    <SectionHeader icon="external-link">
+                        Complete Week Information
+                    </SectionHeader>
+
+                    <p>You can find this week's complete information, assignments, and resources in:</p>
+
+                    <div class="resource-links">
+                        <div class="resource-item">
+                            <h4><Icon name="bookmark" size={16} /> Milanote Board</h4>
+                            <p>All week content, assignments, and visual resources</p>
+                            <a href="https://app.milanote.com/1UHeqL1Wevfm3F?p=jHMkPcMB5W4" target="_blank" class="btn btn-primary">
+                                View Milanote Board
+                            </a>
+                        </div>
+
+                        <div class="resource-item">
+                            <h4><Icon name="book" size={16} /> Canvas Course</h4>
+                            <p>Assignment submissions and gradebook</p>
+                            <a href="https://canvas.ewu.edu/courses/1813614" target="_blank" class="btn btn-secondary">
+                                Go to Canvas
+                            </a>
+                        </div>
+                    </div>
+                </Card>
+
+                <div class="section-divider"></div>
+
+                <section class="card card-enhanced">
+                    <h2>
+                        <span class="icon-enhanced">
+                            <Icon name="book" size={20} />
+                        </span>
+                        Micro-Theory Concepts
+                    </h2>
+
+                    <div class="theory-item">
+                        <h4>The Internet vs. The Web</h4>
+                        <p>Before we build, let's understand the foundation:</p>
+                        <ul>
+                            <li><strong>The Internet:</strong> The global network of connected computers—the infrastructure</li>
+                            <li><strong>The World Wide Web:</strong> The information system that runs on top, connected by links</li>
+                            <li><strong>DNS & IP:</strong> How domain names (google.com) map to IP addresses (142.250.80.46)</li>
+                            <li><strong>HTTP:</strong> The protocol that transfers web pages from servers to browsers</li>
+                        </ul>
+                        <p><em>Think of it like this: The Internet is the road system, the Web is all the buildings you can visit.</em></p>
+                    </div>
+
+                    <div class="theory-item">
+                        <h4>How Browsers Read Your Code</h4>
+                        <p>When you type a URL and hit enter, here's what happens:</p>
+                        <ol>
+                            <li>Your browser sends a request to a server</li>
+                            <li>The server sends back an HTML file (just text!)</li>
+                            <li>The browser reads it top to bottom, like a recipe</li>
+                            <li>Each tag tells the browser what to display</li>
+                            <li>The browser paints pixels on your screen</li>
+                        </ol>
+                    </div>
+                </section>
+            </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <section class="card card-enhanced">
+                <h3>
+                    <Icon name="link" size={18} class="section-icon" />
+                    Quick Links
+                </h3>
+                <div class="quick-links">
+                    <LinkItem href="https://github.com/DESN368/course-hub" icon="github" target="_blank">
+                        Course Repository
+                    </LinkItem>
+                    <LinkItem href="https://app.milanote.com/1UHeqL1Wevfm3F?p=jHMkPcMB5W4" icon="external-link" target="_blank">
+                        Milanote Board
+                    </LinkItem>
+                    <LinkItem href="https://submarine-cable-map-2024.telegeography.com/" icon="globe" target="_blank">
+                        Submarine Cable Map
+                    </LinkItem>
+                    <LinkItem href="https://howdns.works/" icon="server" target="_blank">
+                        How DNS Works
+                    </LinkItem>
+                </div>
+            </section>
+
+            <section class="card accent-block-subtle card-enhanced">
+                <h3>
+                    <Icon name="lightbulb" size={18} class="section-icon" />
+                    Key Concepts
+                </h3>
+
+                <h4 class="sidebar-subheading">Today's Topics:</h4>
+                <ul class="sidebar-concepts">
+                    <li><strong>Internet Infrastructure:</strong> Physical networks</li>
+                    <li><strong>IP Addresses:</strong> Device identification</li>
+                    <li><strong>DNS:</strong> Domain name system</li>
+                    <li><strong>HTTP/HTTPS:</strong> Transfer protocols</li>
+                    <li><strong>Packets:</strong> Data transmission units</li>
+                </ul>
+
+                <h4 class="sidebar-subheading">Key Takeaways:</h4>
+                <ul class="sidebar-objectives">
+                    <li>Internet ≠ Web</li>
+                    <li>Web is 35 years old</li>
+                    <li>Everything is connected physically</li>
+                    <li>DNS translates names to numbers</li>
+                </ul>
+            </section>
+
+            <section class="card card-enhanced">
+                <h3>
+                    <Icon name="calendar" size={18} class="section-icon" />
+                    Wednesday Preview
+                </h3>
+                <p>Next class we'll dive into writing HTML code and deploying your first website!</p>
+
+                <div class="coming-up">
+                    <h4 class="sidebar-subheading">Topics:</h4>
+                    <ul>
+                        <li>HTML document structure</li>
+                        <li>Semantic markup</li>
+                        <li>GitHub Codespaces setup</li>
+                        <li>Netlify deployment</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card card-accent">
+                <h3>
+                    <Icon name="lightbulb" size={18} class="section-icon" />
+                    Study Tip
+                </h3>
+                <p>Focus on understanding concepts, not memorizing facts. The internet's infrastructure affects how we build for the web.</p>
+            </section>
+
+            <section class="card card-enhanced">
+                <h3>
+                    <Icon name="user" size={18} class="section-icon" />
+                    Need Help?
+                </h3>
+                <div class="help-info">
+                    <p><strong>During Class:</strong> Raise your hand!</p>
+                    <p><strong>After Class:</strong> Email instructor</p>
+                    <p><strong>Office Hours:</strong> Mon 1-2pm</p>
+                </div>
+            </section>
+        </aside>
+    </main>
+</BaseLayout>

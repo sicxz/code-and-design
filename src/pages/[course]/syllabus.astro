@@ -1,0 +1,18 @@
+---
+import CourseOneSyllabus from '../../course-pages/course-1/syllabus.astro';
+import CourseTwoSyllabus from '../../course-pages/course-2/syllabus.astro';
+import { COURSE_REGISTRY, isCourseId } from '../../lib/courseRegistry';
+
+export function getStaticPaths() {
+  return Object.keys(COURSE_REGISTRY).map((course) => ({
+    params: { course },
+  }));
+}
+
+const { course } = Astro.params;
+if (!isCourseId(course)) {
+  throw new Error(`Unknown course route: ${course}`);
+}
+---
+
+{course === '1' ? <CourseOneSyllabus /> : <CourseTwoSyllabus />}

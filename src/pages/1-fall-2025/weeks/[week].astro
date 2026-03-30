@@ -1,0 +1,22 @@
+---
+import {
+  COURSE_ONE_WEEK_COMPONENTS,
+  isCourseOneWeekSlug,
+} from '../../../course-pages/course-1-fall-2025-archive/weeks/weekRegistry';
+
+export function getStaticPaths() {
+  return Object.keys(COURSE_ONE_WEEK_COMPONENTS).map((week) => ({
+    params: { week },
+  }));
+}
+
+const { week } = Astro.params;
+
+if (!isCourseOneWeekSlug(week)) {
+  throw new Error(`Unknown archived week: ${week}`);
+}
+
+const WeekPage = (COURSE_ONE_WEEK_COMPONENTS as Record<string, any>)[week];
+---
+
+<WeekPage />

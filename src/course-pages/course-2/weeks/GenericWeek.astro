@@ -1,0 +1,264 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Card from '../../../components/Card.astro';
+import SectionHeader from '../../../components/SectionHeader.astro';
+import Icon from '../../../components/Icon.astro';
+import courseData from '../../../data/course-data.json';
+
+type CurriculumItem = {
+  title: string;
+  path: string;
+};
+
+type CanvasItem = {
+  title: string;
+  content_type: string;
+  workflow_state: string;
+  identifierref: string;
+  source_html: string | null;
+};
+
+type WeekRecord = {
+  week: number;
+  route: string;
+  title: string;
+  unit: string | null;
+  interaction_question: string | null;
+  summary: string | null;
+  learning_outcomes: string[];
+  curriculum_files: Record<string, CurriculumItem[]>;
+  canvas_module_title: string | null;
+  canvas_items: CanvasItem[];
+};
+
+const { weekData } = Astro.props as { weekData: WeekRecord };
+const allWeeks = courseData.weeks as WeekRecord[];
+const orderedWeeks = [...allWeeks].sort((a, b) => a.week - b.week);
+const currentIndex = orderedWeeks.findIndex((w) => w.week === weekData.week);
+const prevWeek = currentIndex > 0 ? orderedWeeks[currentIndex - 1] : null;
+const nextWeek = currentIndex < orderedWeeks.length - 1 ? orderedWeeks[currentIndex + 1] : null;
+
+const categoryOrder = ['engage', 'learn', 'practice', 'build', 'reflect', 'lectures', 'resources'];
+const displayName: Record<string, string> = {
+  engage: 'Engage',
+  learn: 'Learn',
+  practice: 'Practice',
+  build: 'Build',
+  reflect: 'Reflect',
+  lectures: 'Lectures',
+  resources: 'Resources',
+};
+
+const activeCanvasItems = weekData.canvas_items.filter((item) => item.content_type === 'Assignment');
+---
+
+<BaseLayout title={`${weekData.title} - DESN378`}>
+  <nav class="breadcrumb-nav">
+    <div class="breadcrumb-container">
+      <div class="breadcrumb">
+        <a href="/2">Course Overview</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="breadcrumb-current">Week {weekData.week}</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="course-content two-column">
+    <div class="main-content fade-in">
+      <Card variant="accent" class="card-enhanced">
+        <SectionHeader level={1} icon="calendar" badge={{ text: `Week ${weekData.week}`, variant: 'info' }}>
+          {weekData.title}
+        </SectionHeader>
+        {weekData.unit && <p class="subtitle"><strong>Unit:</strong> {weekData.unit}</p>}
+        {weekData.interaction_question && <p><strong>Interaction Question:</strong> {weekData.interaction_question}</p>}
+        {weekData.summary && <p>{weekData.summary}</p>}
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="enhanced">
+        <SectionHeader icon="target">
+          Learning Outcomes
+        </SectionHeader>
+        {weekData.learning_outcomes.length > 0 ? (
+          <ul class="checklist-items">
+            {weekData.learning_outcomes.map((outcome) => <li>{outcome}</li>)}
+          </ul>
+        ) : (
+          <p style="color: var(--text-secondary);">No week overview outcomes were found yet for this week.</p>
+        )}
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="enhanced">
+        <SectionHeader icon="book">
+          Curriculum Activities
+        </SectionHeader>
+        {categoryOrder
+          .filter((category) => (weekData.curriculum_files[category] || []).length > 0)
+          .map((category) => (
+            <section class="category-block">
+              <h3>{displayName[category]}</h3>
+              <ul class="assignment-list-compact">
+                {weekData.curriculum_files[category].map((item) => (
+                  <li>
+                    <div class="item-title">{item.title}</div>
+                    <code>{item.path}</code>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="accent-subtle" class="card-enhanced">
+        <SectionHeader icon="clipboard-list">
+          Canvas Alignment
+        </SectionHeader>
+        {weekData.canvas_module_title ? <p><strong>Module:</strong> {weekData.canvas_module_title}</p> : <p>No Canvas module mapped for this week.</p>}
+        {weekData.canvas_items.length > 0 && (
+          <ul class="canvas-items">
+            {weekData.canvas_items.map((item) => (
+              <li>
+                <span class={`status-pill ${item.workflow_state === 'active' ? 'active' : 'inactive'}`}>
+                  {item.workflow_state || 'unknown'}
+                </span>
+                <span>{item.title}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Card>
+    </div>
+
+    <aside class="sidebar">
+      <section class="card card-enhanced">
+        <h3>
+          <Icon name="bar-chart" size={18} class="section-icon" />
+          Week Stats
+        </h3>
+        <ul class="sidebar-concepts">
+          <li>{Object.values(weekData.curriculum_files).reduce((total, items) => total + items.length, 0)} curriculum files</li>
+          <li>{activeCanvasItems.length} Canvas assignments</li>
+          <li>{weekData.learning_outcomes.length} learning outcomes</li>
+        </ul>
+      </section>
+
+      <section class="card accent-block-subtle card-enhanced">
+        <h3>
+          <Icon name="layers" size={18} class="section-icon" />
+          Week Navigation
+        </h3>
+        <div class="week-nav-links">
+          {prevWeek ? <a href={prevWeek.route}>← Week {prevWeek.week}</a> : <span class="nav-disabled">Start of course</span>}
+          {nextWeek ? <a href={nextWeek.route}>Week {nextWeek.week} →</a> : <span class="nav-disabled">Final week</span>}
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <style>
+    .subtitle {
+      margin-top: 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    .category-block {
+      margin-top: 1.25rem;
+    }
+
+    .category-block h3 {
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .assignment-list-compact {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .assignment-list-compact li {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.75rem;
+    }
+
+    .item-title {
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+      font-weight: 500;
+    }
+
+    .assignment-list-compact code {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      word-break: break-word;
+    }
+
+    .canvas-items {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .canvas-items li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 0.6rem 0.75rem;
+    }
+
+    .status-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 0.15rem 0.45rem;
+      line-height: 1.4;
+      flex-shrink: 0;
+    }
+
+    .status-pill.active {
+      background: rgba(1, 183, 153, 0.2);
+      color: var(--neural-teal);
+      border: 1px solid rgba(1, 183, 153, 0.3);
+    }
+
+    .status-pill.inactive {
+      background: rgba(168, 85, 247, 0.2);
+      color: var(--neural-violet);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .week-nav-links {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+    }
+
+    .week-nav-links a {
+      color: var(--text-link);
+      text-decoration: none;
+    }
+
+    .week-nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .nav-disabled {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+  </style>
+</BaseLayout>

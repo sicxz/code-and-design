@@ -1,0 +1,40 @@
+---
+import CourseOneOverview from '../../../course-pages/course-1/assignments/overview.astro';
+import CourseOneBrief from '../../../course-pages/course-1/assignments/brief.astro';
+import CourseOneRequirements from '../../../course-pages/course-1/assignments/requirements.astro';
+import CourseOneGoals from '../../../course-pages/course-1/assignments/goals.astro';
+import CourseTwoProjectDetail from '../../../course-pages/course-2/assignments/ProjectDetail.astro';
+import { COURSE_REGISTRY, isCourseId } from '../../../lib/courseRegistry';
+
+type AssignmentEntry = {
+  slug: string;
+  title: string;
+  path?: string;
+  checklist?: string;
+};
+
+export function getStaticPaths() {
+  return Object.values(COURSE_REGISTRY).flatMap((course) =>
+    course.assignments.map((assignment) => ({
+      params: { course: course.id, slug: assignment.slug },
+      props: { assignment },
+    })),
+  );
+}
+
+const { course, slug } = Astro.params;
+const { assignment } = Astro.props as { assignment: AssignmentEntry };
+
+if (!isCourseId(course)) {
+  throw new Error(`Unknown course route: ${course}`);
+}
+if (course === '1' && !['overview', 'brief', 'requirements', 'goals'].includes(slug)) {
+  throw new Error(`Unknown Code + Design 1 assignment: ${slug}`);
+}
+---
+
+{course === '1' && slug === 'overview' && <CourseOneOverview />}
+{course === '1' && slug === 'brief' && <CourseOneBrief />}
+{course === '1' && slug === 'requirements' && <CourseOneRequirements />}
+{course === '1' && slug === 'goals' && <CourseOneGoals />}
+{course === '2' && <CourseTwoProjectDetail project={assignment} />}

@@ -1,0 +1,28 @@
+---
+import ArchivedOverview from '../../../course-pages/course-1-fall-2025-archive/assignments/overview.astro';
+import ArchivedBrief from '../../../course-pages/course-1-fall-2025-archive/assignments/brief.astro';
+import ArchivedRequirements from '../../../course-pages/course-1-fall-2025-archive/assignments/requirements.astro';
+import ArchivedGoals from '../../../course-pages/course-1-fall-2025-archive/assignments/goals.astro';
+
+const ARCHIVED_ASSIGNMENTS = {
+  overview: ArchivedOverview,
+  brief: ArchivedBrief,
+  requirements: ArchivedRequirements,
+  goals: ArchivedGoals,
+} as const;
+
+export function getStaticPaths() {
+  return ['overview', 'brief', 'requirements', 'goals'].map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const AssignmentPage = slug ? (ARCHIVED_ASSIGNMENTS as Record<string, any>)[slug] : null;
+
+if (!AssignmentPage) {
+  throw new Error(`Unknown archived assignment: ${slug}`);
+}
+---
+
+<AssignmentPage />

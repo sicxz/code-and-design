@@ -1,0 +1,302 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Card from '../../../components/Card.astro';
+import SectionHeader from '../../../components/SectionHeader.astro';
+import Alert from '../../../components/Alert.astro';
+import Badge from '../../../components/Badge.astro';
+import Icon from '../../../components/Icon.astro';
+---
+
+<BaseLayout title="Product Landing Page Assignment - DESN368">
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb">
+                <a href="/1">Course Overview</a>
+                <span class="breadcrumb-separator">›</span>
+                <span class="breadcrumb-current">Product Landing Page Assignment</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-content two-column">
+        <div class="main-content fade-in">
+            <!-- Hero Section -->
+            <Card variant="accent" class="card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <SectionHeader level={1} icon="briefcase" badge={{ text: "Week 8", variant: "info" }}>
+                    Product Landing Page Assignment
+                </SectionHeader>
+                <p class="subtitle" style="font-size: 1.125rem; color: var(--text-muted); margin-top: -0.5rem;">
+                    Design and build a complete product landing page from scratch
+                </p>
+
+                <Alert icon="alert-triangle" variant="info">
+                    <strong>Two-Phase Project:</strong> Design in Figma first (graded Nov 24), then implement with HTML/CSS (graded Dec 3). Design and code are graded separately.
+                </Alert>
+
+                <div style="background: var(--gradient-accent); padding: 1.5rem; border-radius: 6px; margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 500;">
+                        <Icon name="zap" size={16} /> This is your <strong>competency project</strong>—a culmination of everything you've learned about HTML, CSS, forms, tables, and responsive design before your final portfolio.
+                    </p>
+                </div>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <!-- Timeline -->
+            <Card class="card-enhanced">
+                <div class="color-bar color-bar-multi"></div>
+                <SectionHeader icon="calendar" level={2}>
+                    Project Timeline
+                </SectionHeader>
+
+                <div class="week-list">
+                    <div class="week-item">
+                        <div>
+                            <h3>
+                                <span class="status-dot status-available"></span>
+                                Wednesday, Nov 19
+                            </h3>
+                            <p>Style Guide & Theme Rough Draft</p>
+                        </div>
+                        <Badge variant="info">Design Phase</Badge>
+                    </div>
+                    <div class="week-item">
+                        <div>
+                            <h3>
+                                <span class="status-dot status-available"></span>
+                                Sunday, Nov 24
+                            </h3>
+                            <p>Design Rough Draft (Figma) - GRADED</p>
+                        </div>
+                        <Badge variant="info">Design Phase</Badge>
+                    </div>
+                    <div class="week-item">
+                        <div>
+                            <h3>
+                                <span class="status-dot status-available"></span>
+                                Monday, Nov 25
+                            </h3>
+                            <p>Figma Critique Session</p>
+                        </div>
+                        <Badge variant="info">Design Phase</Badge>
+                    </div>
+                    <div class="week-item">
+                        <div>
+                            <h3>
+                                <span class="status-dot status-available"></span>
+                                Tuesday, Dec 3
+                            </h3>
+                            <p>Final Code Due - GRADED</p>
+                        </div>
+                        <Badge variant="success">Code Phase</Badge>
+                    </div>
+                </div>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <!-- Assignment Documents -->
+            <Card class="card-enhanced">
+                <SectionHeader icon="book" level={2}>
+                    Assignment Documents
+                </SectionHeader>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    Follow these documents in order. Each builds on the previous one.
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <!-- Start Here -->
+                    <div style="background: var(--bg-primary); border: 2px solid var(--brand-green); border-radius: 8px; padding: 1.5rem; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        <Badge variant="success" style="margin-bottom: 0.75rem;">Start Here</Badge>
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">
+                            <a href="/1/assignments/overview" style="color: var(--text-primary); text-decoration: none;">
+                                Assignment Overview
+                            </a>
+                        </h3>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 1rem;">
+                            Complete project scope, learning objectives, timeline, and grading criteria
+                        </p>
+                        <a href="/1/assignments/overview" class="btn btn-primary" style="width: 100%; text-align: center;">
+                            Read Overview →
+                        </a>
+                    </div>
+
+                    <!-- Phase 1: Design -->
+                    <div style="background: var(--bg-primary); border: 2px solid #8b5cf6; border-radius: 8px; padding: 1.5rem; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        <Badge variant="info" style="margin-bottom: 0.75rem;">Phase 1: Design</Badge>
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">
+                            <a href="/1/assignments/brief" style="color: var(--text-primary); text-decoration: none;">
+                                Design Brief
+                            </a>
+                        </h3>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 0.5rem;">
+                            Figma design requirements and specifications
+                        </p>
+                        <p style="color: var(--text-light); font-size: 0.875rem; margin-bottom: 1rem;">
+                            Due: Nov 24
+                        </p>
+                        <a href="/1/assignments/brief" class="btn btn-secondary" style="width: 100%; text-align: center;">
+                            View Design Brief →
+                        </a>
+                    </div>
+
+                    <!-- Phase 2: Code -->
+                    <div style="background: var(--bg-primary); border: 2px solid var(--brand-primary); border-radius: 8px; padding: 1.5rem; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        <Badge variant="info" style="margin-bottom: 0.75rem;">Phase 2: Implementation</Badge>
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">
+                            <a href="/1/assignments/requirements" style="color: var(--text-primary); text-decoration: none;">
+                                Code Requirements
+                            </a>
+                        </h3>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 0.5rem;">
+                            HTML/CSS implementation guide and technical specs
+                        </p>
+                        <p style="color: var(--text-light); font-size: 0.875rem; margin-bottom: 1rem;">
+                            Due: Dec 3
+                        </p>
+                        <a href="/1/assignments/requirements" class="btn btn-secondary" style="width: 100%; text-align: center;">
+                            View Requirements →
+                        </a>
+                    </div>
+
+                    <!-- Optional: Stretch Goals -->
+                    <div style="background: var(--bg-primary); border: 2px solid #f59e0b; border-radius: 8px; padding: 1.5rem; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        <Badge variant="warning" style="margin-bottom: 0.75rem;">Optional Challenge</Badge>
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">
+                            <a href="/1/assignments/goals" style="color: var(--text-primary); text-decoration: none;">
+                                Stretch Goals
+                            </a>
+                        </h3>
+                        <p style="color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 0.5rem;">
+                            Advanced JavaScript challenges for early finishers
+                        </p>
+                        <p style="color: var(--text-light); font-size: 0.875rem; margin-bottom: 1rem;">
+                            2-4 hours each
+                        </p>
+                        <a href="/1/assignments/goals" class="btn btn-secondary" style="width: 100%; text-align: center;">
+                            View Stretch Goals →
+                        </a>
+                    </div>
+                </div>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <!-- What You'll Build -->
+            <Card variant="accent-subtle" class="card-enhanced">
+                <SectionHeader icon="code" level={2}>
+                    What You'll Build
+                </SectionHeader>
+                <ul style="margin-left: 1.5rem; color: var(--text-muted);">
+                    <li>Fixed navigation header with logo</li>
+                    <li>Hero section with compelling call-to-action</li>
+                    <li>Embedded product video</li>
+                    <li>Feature cards using semantic HTML</li>
+                    <li>Product data table (displayed in-page)</li>
+                    <li>Contact form with HTML5 validation</li>
+                    <li>Responsive footer</li>
+                </ul>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <!-- Key Requirements -->
+            <Card class="card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <SectionHeader icon="check-circle" level={2}>
+                    Critical Requirements
+                </SectionHeader>
+
+                <Alert icon="alert-triangle" variant="warning">
+                    <strong>Table Location:</strong> Your data table must appear <strong>in the page</strong> (not in a modal). Modal implementation is an optional stretch goal.
+                </Alert>
+
+                <Alert icon="video" variant="info">
+                    <strong>Video Required:</strong> Embed a product-related video with <code>id="video"</code>. Can be YouTube iframe or HTML5 video element.
+                </Alert>
+
+                <Alert icon="palette" variant="info">
+                    <strong>Design First:</strong> Complete your Figma design before writing any code. The design is your roadmap.
+                </Alert>
+            </Card>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar fade-in">
+            <!-- Quick Navigation -->
+            <Card class="card-action card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <h3>
+                    <Icon name="zap" size={18} />
+                    Quick Navigation
+                </h3>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <a href="/1/assignments/overview" class="btn btn-primary" style="width: 100%; text-align: center;">
+                        Assignment Overview
+                    </a>
+                    <a href="/1/assignments/brief" class="btn btn-secondary" style="width: 100%; text-align: center;">
+                        Design Brief
+                    </a>
+                    <a href="/1/assignments/requirements" class="btn btn-secondary" style="width: 100%; text-align: center;">
+                        Code Requirements
+                    </a>
+                    <a href="/1/assignments/goals" class="btn btn-secondary" style="width: 100%; text-align: center;">
+                        Stretch Goals
+                    </a>
+                </div>
+            </Card>
+
+            <!-- Essential Resources -->
+            <Card class="card-enhanced">
+                <h3>
+                    <Icon name="book-open" size={18} />
+                    Essential Resources
+                </h3>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="https://app.milanote.com/1Vl1yK1rLjfkdv/landing-page-info?p=jHMkPcMB5W4" target="_blank" style="display: block; padding: 0.75rem; background: var(--bg-secondary); border-radius: 6px; text-decoration: none;">
+                        <div style="font-weight: 600; margin-bottom: 0.25rem;">📋 Milanote Board</div>
+                        <div style="font-size: 0.875rem; color: var(--text-muted);">Examples, tutorials, resources</div>
+                    </a>
+                    <a href="https://unbounce.com/landing-page-articles/what-is-a-landing-page/" target="_blank" style="display: block; padding: 0.75rem; background: var(--bg-secondary); border-radius: 6px; text-decoration: none;">
+                        <div style="font-weight: 600; margin-bottom: 0.25rem;">📖 What is a Landing Page?</div>
+                        <div style="font-size: 0.875rem; color: var(--text-muted);">Unbounce fundamentals article</div>
+                    </a>
+                </div>
+            </Card>
+
+            <!-- Key Dates -->
+            <Card class="card-enhanced">
+                <h3>
+                    <Icon name="calendar" size={18} />
+                    Key Dates
+                </h3>
+                <div style="font-size: 0.9375rem; line-height: 1.8;">
+                    <div><strong>Nov 19:</strong> Style Guide</div>
+                    <div><strong>Nov 24:</strong> Design Draft</div>
+                    <div><strong>Nov 25:</strong> Critique</div>
+                    <div style="color: var(--brand-red); font-weight: 600;"><strong>Dec 3:</strong> Final Code Due</div>
+                </div>
+            </Card>
+
+            <!-- Grading Split -->
+            <Card class="card-enhanced">
+                <h3>
+                    <Icon name="award" size={18} />
+                    Grading Split
+                </h3>
+                <div style="font-size: 0.9375rem; line-height: 1.8;">
+                    <div><strong>Design:</strong> Separate grade (Nov 24)</div>
+                    <div><strong>Code:</strong> Separate grade (Dec 3)</div>
+                    <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color);">
+                        <div>HTML Structure: 25%</div>
+                        <div>CSS Implementation: 45%</div>
+                        <div>Design & Polish: 20%</div>
+                        <div>Deployment & Docs: 10%</div>
+                    </div>
+                </div>
+            </Card>
+        </aside>
+    </main>
+</BaseLayout>

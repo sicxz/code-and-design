@@ -8,7 +8,7 @@
   "weeks": [
     {
       "week": 0,
-      "route": "/weeks/week-0",
+      "route": "/2/weeks/week-0",
       "title": "Week 0: The Workshop",
       "unit": "Pre-Course Foundation",
       "interaction_question": "What is JavaScript, and how do I talk to a web page?",
@@ -188,7 +188,7 @@
     },
     {
       "week": 1,
-      "route": "/weeks/week-1",
+      "route": "/2/weeks/week-1",
       "title": "Week 1: First Light",
       "unit": "Adaptive Systems",
       "interaction_question": "How does it adapt to me?",
@@ -349,7 +349,7 @@
     },
     {
       "week": 2,
-      "route": "/weeks/week-2",
+      "route": "/2/weeks/week-2",
       "title": "Week 2: The Memory",
       "unit": "Adaptive Systems",
       "interaction_question": "How does it adapt to me?",
@@ -485,7 +485,7 @@
     },
     {
       "week": 3,
-      "route": "/weeks/week-3",
+      "route": "/2/weeks/week-3",
       "title": "Week 3: Signal + State",
       "unit": "Adaptive Systems",
       "interaction_question": "How does an interface remember what a user asked it to do?",
@@ -583,7 +583,7 @@
     },
     {
       "week": 4,
-      "route": "/weeks/week-4",
+      "route": "/2/weeks/week-4",
       "title": "Week 4: The Shape",
       "unit": null,
       "interaction_question": "What happens when I interact?",
@@ -710,7 +710,7 @@
     },
     {
       "week": 5,
-      "route": "/weeks/week-5",
+      "route": "/2/weeks/week-5",
       "title": "Week 5: The Blueprint",
       "unit": "Teaching Through Story",
       "interaction_question": "What's the story you want to tell, and what does it look like?",
@@ -863,7 +863,7 @@
     },
     {
       "week": 6,
-      "route": "/weeks/week-6",
+      "route": "/2/weeks/week-6",
       "title": "Week 6: The Blueprint",
       "unit": "Teaching Through Story",
       "interaction_question": "What happens when the page moves with you?",
@@ -981,7 +981,7 @@
     },
     {
       "week": 7,
-      "route": "/weeks/week-7",
+      "route": "/2/weeks/week-7",
       "title": "Week 7: The Rough Cut",
       "unit": "Teaching Through Story",
       "interaction_question": "Can your story work before JavaScript starts moving it?",
@@ -1069,7 +1069,7 @@
     },
     {
       "week": 8,
-      "route": "/weeks/week-8",
+      "route": "/2/weeks/week-8",
       "title": "Week 8: The Scroll",
       "unit": "Teaching Through Story",
       "interaction_question": "How does scroll become your storytelling medium?",
@@ -1154,7 +1154,7 @@
     },
     {
       "week": 9,
-      "route": "/weeks/week-9",
+      "route": "/2/weeks/week-9",
       "title": "Week 9: The Deep",
       "unit": "Teaching Through Story",
       "interaction_question": "What separates good from great?",
@@ -1237,7 +1237,7 @@
     },
     {
       "week": 10,
-      "route": "/weeks/week-10",
+      "route": "/2/weeks/week-10",
       "title": "Week 10: The Showcase",
       "unit": "Teaching Through Story",
       "interaction_question": "Can you explain what you built and why?",

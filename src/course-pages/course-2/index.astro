@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import Card from '../../components/Card.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import courseData from '../../data/course-data.json';
+
+type WeekRecord = {
+  week: number;
+  route: string;
+  title: string;
+  unit: string | null;
+  interaction_question: string | null;
+  canvas_items: Array<{ content_type: string }>;
+  curriculum_files: Record<string, Array<{ title: string; path: string }>>;
+};
+
+const weeks = (courseData.weeks as WeekRecord[]).sort((a, b) => a.week - b.week);
+
+const unitGroups = weeks.reduce((groups, week) => {
+  const key = week.unit || 'Uncategorized';
+  if (!groups[key]) groups[key] = [];
+  groups[key].push(week);
+  return groups;
+}, {} as Record<string, WeekRecord[]>);
+
+const projectCards = [
+  {
+    title: 'Project 1: Signal + State',
+    note: 'Theme system, persistence, user preferences, accessibility.',
+  },
+  {
+    title: 'Project 2: Lost in the Scroll',
+    note: 'Scrollytelling narrative from blueprint to final deployed experience.',
+  },
+];
+---
+
+<BaseLayout title="DESN378: Code + Design 2">
+  <nav class="breadcrumb-nav">
+    <div class="breadcrumb-container">
+      <div class="breadcrumb">
+        <span class="breadcrumb-current">Course Overview</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="course-content two-column">
+    <div class="main-content fade-in">
+      <Card variant="accent" class="card-enhanced">
+        <SectionHeader icon="rocket" level={1} badge={{ text: 'Winter 2026', variant: 'success' }}>
+          DESN 378: Code + Design 2
+        </SectionHeader>
+        <p class="subtitle">
+          How should things behave?
+        </p>
+        <p>
+          This site is generated from the consolidated curriculum + Canvas export for the full course.
+          Every week route below is aligned to the source materials in the repo.
+        </p>
+        <div class="meta-grid">
+          <div><strong>Weeks:</strong> {weeks.length}</div>
+          <div><strong>Course Code:</strong> {courseData.course.code}</div>
+          <div><strong>Term:</strong> {courseData.course.term}</div>
+        </div>
+        <p class="guide-link-intro">
+          <a href="/2/style-guide">Open the live Web 2 style guide -></a>
+        </p>
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="accent-subtle" class="card-enhanced">
+        <SectionHeader icon="layers">
+          Course Philosophy: "Sense. Respond. Adapt."
+        </SectionHeader>
+        <p>
+          You already know structure. You already know style. This course adds the third layer:
+          <strong> behavior</strong>. Code is treated as a creative material.
+        </p>
+        <p>
+          The question is not just "what syntax do I use?" It's
+          <strong> "how should this feel?"</strong>
+        </p>
+        <div class="lens-grid">
+          <div class="lens-card">
+            <h4>The Interaction Designer</h4>
+            <p>Timing, feedback, state, motion, user respect.</p>
+          </div>
+          <div class="lens-card">
+            <h4>The Behavioral Coder</h4>
+            <p>Events, DOM, animation systems, preference APIs.</p>
+          </div>
+        </div>
+        <p>
+          Every project asks both: does it feel right, and does the code hold up?
+        </p>
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="enhanced" class="card-enhanced">
+        <SectionHeader icon="zap">
+          The Protocol (Pledge)
+        </SectionHeader>
+        <div class="code-block">
+          $ "I will design behavior, not just apply effects.
+          <br />I will ask 'how should this feel?' before 'how do I code this?'
+          <br />When I use AI, I will understand what it generates.
+          <br />I will respect user preferences and build for everyone.
+          <br />I will develop my creative voice through code.
+          <br />I will make things that respond with intent."
+        </div>
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="enhanced">
+        <SectionHeader icon="book">
+          Weekly Curriculum
+        </SectionHeader>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+          Open any week for outcomes, curriculum activity files, and Canvas module alignment.
+        </p>
+
+        {Object.entries(unitGroups).map(([unitName, unitWeeks]) => (
+          <section class="unit-section">
+            <h3>{unitName}</h3>
+            <div class="week-list">
+              {unitWeeks.map((week) => {
+                const totalCurriculum = Object.values(week.curriculum_files).reduce((sum, entries) => sum + entries.length, 0);
+                const assignmentCount = week.canvas_items.filter((item) => item.content_type === 'Assignment').length;
+                return (
+                  <div class="week-item">
+                    <div>
+                      <h4>
+                        <span class="status-dot status-available"></span>
+                        <a href={week.route}>{week.title}</a>
+                      </h4>
+                      {week.interaction_question && <p>{week.interaction_question}</p>}
+                    </div>
+                    <div class="counts">
+                      <span>{totalCurriculum} files</span>
+                      <span>{assignmentCount} Canvas items</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        ))}
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="accent-subtle" class="card-enhanced">
+        <SectionHeader icon="layers">
+          Course Projects
+        </SectionHeader>
+        <div class="project-grid">
+          {projectCards.map((project) => (
+            <div class="project-card">
+              <h3>{project.title}</h3>
+              <p>{project.note}</p>
+            </div>
+          ))}
+        </div>
+        <p style="margin-top: 1rem;">
+          <a href="/2/assignments">Open projects + assignments hub -></a>
+        </p>
+      </Card>
+    </div>
+
+    <aside class="sidebar">
+      <section class="card card-enhanced">
+        <h3>
+          <Icon name="target" size={18} class="section-icon" />
+          Through-Line
+        </h3>
+        <ul class="sidebar-concepts">
+          <li>Design behavior, not just visual style.</li>
+          <li>Build adaptive systems that remember users.</li>
+          <li>Use motion and scroll with intent.</li>
+          <li>Ship a final story-led interactive project.</li>
+        </ul>
+      </section>
+
+      <section class="card accent-block-subtle card-enhanced">
+        <h3>
+          <Icon name="clipboard-list" size={18} class="section-icon" />
+          Consolidation Status
+        </h3>
+        <ul class="sidebar-concepts">
+          <li>Canvas export mapped to week routes</li>
+          <li>Curriculum files indexed by category</li>
+          <li>Projects aligned to active track</li>
+          <li>Legacy materials archived, not deleted</li>
+        </ul>
+      </section>
+
+      <section class="card card-enhanced">
+        <h3>
+          <Icon name="layers" size={18} class="section-icon" />
+          Visual System
+        </h3>
+        <p class="sidebar-style-copy">
+          Web 2 now inherits the DESN368 dark-mode system with DM Sans + DM Mono and a stricter semantic accent palette.
+        </p>
+        <a href="/2/style-guide" class="btn btn-secondary">Open Style Guide</a>
+      </section>
+    </aside>
+  </main>
+
+  <style>
+    .subtitle {
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .meta-grid {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.35rem;
+      color: var(--text-secondary);
+    }
+
+    .guide-link-intro {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    .unit-section + .unit-section {
+      margin-top: 1.5rem;
+    }
+
+    .unit-section h3 {
+      margin-bottom: 0.65rem;
+    }
+
+    .week-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .week-item h4 {
+      margin: 0 0 0.25rem 0;
+    }
+
+    .week-item p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .counts {
+      display: grid;
+      gap: 0.15rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .project-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.95rem 1rem;
+    }
+
+    .project-card h3 {
+      margin-bottom: 0.35rem;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .lens-grid {
+      margin: 1rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .lens-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.75rem 0.85rem;
+    }
+
+    .lens-card h4 {
+      margin: 0 0 0.3rem;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .lens-card p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+    }
+
+    .sidebar-style-copy {
+      margin-bottom: 0.85rem;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+  </style>
+</BaseLayout>

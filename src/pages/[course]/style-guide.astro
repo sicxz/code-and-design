@@ -1,0 +1,302 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/Card.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Icon from '../../components/Icon.astro';
+import { COURSE_REGISTRY, getCourse, isCourseId } from '../../lib/courseRegistry';
+
+export function getStaticPaths() {
+  return Object.keys(COURSE_REGISTRY).map((course) => ({
+    params: { course },
+  }));
+}
+
+const { course } = Astro.params;
+if (!isCourseId(course)) {
+  throw new Error(`Unknown course route: ${course}`);
+}
+
+const currentCourse = getCourse(course);
+if (!currentCourse) {
+  throw new Error(`Missing course definition for route: ${course}`);
+}
+
+const themeName = course === '1' ? 'Light System' : 'Dark System';
+const guideTitle = course === '1' ? 'Web 1 Style Guide' : 'Web 2 Style Guide';
+const guideSummary =
+  course === '1'
+    ? 'Code + Design 1 now uses the shared 368-derived light system: restrained cards, high-contrast text, DM Sans + DM Mono, and the rainbow reserved for the “Real Thing” moment.'
+    : 'Code + Design 2 now uses the DESN368 dark-mode system as its base: WCAG-forward contrast, semantic red/blue/green accents, and a web-native font stack.';
+const behaviorNote =
+  course === '1'
+    ? 'Use the rainbow only as a signature accent for the “Real Thing” language and keep the rest of the interface anchored in the semantic system.'
+    : 'Keep motion and behavior expressive, but let the color system stay disciplined so interaction states remain readable and accessible.';
+---
+
+<BaseLayout title={`${currentCourse.courseCode} Style Guide`}>
+  <nav class="breadcrumb-nav">
+    <div class="breadcrumb-container">
+      <div class="breadcrumb">
+        <a href={currentCourse.homePath}>Course Overview</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Style Guide</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="course-content two-column">
+    <div class="main-content fade-in">
+      <Card variant="accent" class="card-enhanced">
+        <SectionHeader icon="layers" level={1} badge={{ text: themeName, variant: course === '1' ? 'info' : 'success' }}>
+          {guideTitle}
+        </SectionHeader>
+        <p>{guideSummary}</p>
+        <div class="guide-note">
+          <p>{behaviorNote}</p>
+        </div>
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="enhanced" class="card-enhanced">
+        <SectionHeader icon="book">
+          Typography
+        </SectionHeader>
+        <div class="type-specimen">
+          <p class="type-kicker">Display / Navigation</p>
+          <h2 class="type-display">DM Sans brings the warmth and the weight.</h2>
+          <p class="type-body">
+            Body copy stays readable at normal paragraph sizes, and headings can go heavier without feeling corporate or generic.
+          </p>
+          <div class="code-block">
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            <br />
+            font-family: 'DM Mono', 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+          </div>
+        </div>
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="enhanced" class="card-enhanced">
+        <SectionHeader icon="target">
+          Semantic Color System
+        </SectionHeader>
+        <div class="swatch-grid">
+          <article class="swatch swatch-primary">
+            <span class="swatch-label">Primary / Action</span>
+            <strong>Red</strong>
+            <p>Use for emphasis, call-to-action accents, and anchor moments.</p>
+          </article>
+          <article class="swatch swatch-info">
+            <span class="swatch-label">Info / Navigation</span>
+            <strong>Blue</strong>
+            <p>Use for links, technical cues, and supporting interaction affordances.</p>
+          </article>
+          <article class="swatch swatch-success">
+            <span class="swatch-label">Success / Ready</span>
+            <strong>Green</strong>
+            <p>Use for available states, completion, and positive reinforcement.</p>
+          </article>
+          <article class="swatch swatch-warning">
+            <span class="swatch-label">Attention / Timing</span>
+            <strong>Gold</strong>
+            <p>Use sparingly for caution, deadlines, and “read this closely” moments.</p>
+          </article>
+        </div>
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <Card variant="enhanced" class="card-enhanced">
+        <SectionHeader icon="zap">
+          Components in Practice
+        </SectionHeader>
+        <div class="component-stack">
+          <div class="accent-block-subtle component-demo">
+            <h3>Card language</h3>
+            <p>Cards are simple, square-ish, and contrast-first. They should feel like course artifacts, not marketing blocks.</p>
+          </div>
+          <div class="button-row">
+            <a href={currentCourse.assignmentsPath} class="btn btn-start">Primary Action</a>
+            <a href={currentCourse.syllabusPath} class="btn btn-secondary">Secondary Action</a>
+            <a href={currentCourse.styleGuidePath} class="btn btn-outline">Reference Link</a>
+          </div>
+          <div class="guide-reference-grid">
+            <div class="guide-reference-card">
+              <h4>Course 1 Accent Rule</h4>
+              <p>Keep the rainbow only for <span class="text-gradient">Real Thing</span> language and similar signature moments.</p>
+            </div>
+            <div class="guide-reference-card">
+              <h4>Course 2 Accent Rule</h4>
+              <p>Lead with dark surfaces and let red, blue, and green do the signaling instead of decorative gradients.</p>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </div>
+
+    <aside class="sidebar">
+      <section class="card card-enhanced">
+        <h3>
+          <Icon name="clipboard-list" size={18} class="section-icon" />
+          Quick Rules
+        </h3>
+        <ul class="sidebar-concepts">
+          <li>Use DM Sans for interface and display copy.</li>
+          <li>Use DM Mono for code, labels, and utility text.</li>
+          <li>Prefer semantic accents over decorative color mixing.</li>
+          <li>Keep contrast strong enough for classroom WCAG use.</li>
+        </ul>
+      </section>
+
+      <section class="card accent-block-subtle card-enhanced">
+        <h3>
+          <Icon name="layers" size={18} class="section-icon" />
+          Jump Back In
+        </h3>
+        <div class="guide-sidebar-actions">
+          <a href={currentCourse.homePath} class="btn btn-secondary">Overview</a>
+          <a href={currentCourse.assignmentsPath} class="btn btn-secondary">Assignments</a>
+          <a href={currentCourse.repoUrl} class="btn btn-secondary" target="_blank">GitHub Repo</a>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <style>
+    .guide-note {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-left: 4px solid var(--brand-primary);
+      border-radius: 8px;
+      background: var(--gradient-accent);
+    }
+
+    .guide-note p {
+      margin: 0;
+    }
+
+    .type-specimen {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .type-kicker {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .type-display {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .type-body {
+      max-width: 42rem;
+      margin: 0;
+      color: var(--text-secondary);
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .swatch {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card);
+    }
+
+    .swatch-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .swatch strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .swatch p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    .swatch-primary {
+      border-left: 4px solid var(--brand-primary);
+    }
+
+    .swatch-info {
+      border-left: 4px solid var(--eagle-blue-text);
+    }
+
+    .swatch-success {
+      border-left: 4px solid var(--eagle-green-text);
+    }
+
+    .swatch-warning {
+      border-left: 4px solid var(--color-attention-emphasis);
+    }
+
+    .component-stack {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .component-demo {
+      padding: 1rem 1.1rem;
+    }
+
+    .component-demo h3,
+    .guide-reference-card h4 {
+      margin-bottom: 0.35rem;
+    }
+
+    .component-demo p,
+    .guide-reference-card p {
+      margin: 0;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .guide-reference-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .guide-reference-card {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card);
+    }
+
+    .guide-sidebar-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  </style>
+</BaseLayout>

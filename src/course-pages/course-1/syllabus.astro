@@ -1,0 +1,465 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { COURSE_REGISTRY } from '../../lib/courseRegistry';
+
+const courseLinks = COURSE_REGISTRY['1'];
+---
+
+<BaseLayout title="Syllabus - DESN368">
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb">
+                <a href="/1">Course Overview</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Syllabus</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-content two-column">
+        <div class="main-content fade-in">
+            <!-- Course Information -->
+            <section class="card accent-block card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <h2>
+                    <span class="icon-enhanced icon-primary">
+                        <Icon name="file-text" size={20} />
+                    </span>
+                    Course Information
+                </h2>
+                <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px 16px;">
+                    <strong>Course:</strong> <span>DESN368 - Code+Design 1</span>
+                    <strong>Term:</strong> <span>Spring 2026 (Quarter)</span>
+                    <strong>Credits:</strong> <span>5</span>
+                    <strong>Schedule:</strong> <span>Tuesday + Thursday, 10:00a - 12:20p</span>
+                    <strong>Location:</strong> <span>Catalyst Room 206</span>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Instructor -->
+            <section class="card card-enhanced">
+                <h2>
+                    <span class="icon-enhanced">
+                        <Icon name="user" size={20} />
+                    </span>
+                    Instructor
+                </h2>
+                <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px 16px;">
+                    <strong>Professor:</strong> <span>Travis Masingale</span>
+                    <strong>Email:</strong> <span><a href="mailto:tmasingale@ewu.edu">tmasingale@ewu.edu</a></span>
+                    <strong>Office:</strong> <span>Catalyst 167</span>
+                </div>
+
+                <h3>Office Hours</h3>
+                <ul>
+                    <li><strong>Monday / Tuesday / Thursday:</strong> 1:00-2:00p</li>
+                    <li><strong>Wednesday:</strong> 2:00-3:00p</li>
+                    <li><strong>Make an Appointment:</strong> <a href="https://calendly.com/tmasingale" target="_blank">Schedule via Calendly</a></li>
+                </ul>
+            </section>
+
+            <div class="section-divider with-icon"></div>
+
+            <section class="card card-enhanced">
+                <div class="color-bar color-bar-multi"></div>
+                <h2>
+                    <span class="icon-enhanced icon-primary">
+                        <Icon name="link" size={20} />
+                    </span>
+                    Course Platforms
+                </h2>
+                <p>These are the primary course spaces for Spring 2026. Canvas handles submissions and grades, Milanote holds the quarter board, and GitHub is where we build in public.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 16px;">
+                    <a href={courseLinks.canvasUrl} target="_blank" class="card" style="text-decoration: none;">
+                        <strong>Canvas</strong>
+                        <p style="margin: 8px 0 0; color: var(--color-fg-muted);">Assignments, announcements, grades, and official submissions.</p>
+                    </a>
+                    <a href={courseLinks.milanoteUrl} target="_blank" class="card" style="text-decoration: none;">
+                        <strong>Milanote</strong>
+                        <p style="margin: 8px 0 0; color: var(--color-fg-muted);">Quarter board with planning, references, and weekly context.</p>
+                    </a>
+                    <a href={courseLinks.repoUrl} target="_blank" class="card" style="text-decoration: none;">
+                        <strong>GitHub</strong>
+                        <p style="margin: 8px 0 0; color: var(--color-fg-muted);">Source, workspace patterns, and public-facing build practice.</p>
+                    </a>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Course Description -->
+            <section class="card accent-block-subtle card-enhanced">
+                <h2>
+                    <span class="icon-enhanced">
+                        <i class="octicon octicon-book" aria-hidden="true"></i>
+                    </span>
+                    Course Description
+                </h2>
+                <p>CODE + DESIGN 1 addresses modern interfaces, concepts, processes, and techniques for creating Front-end web designed sites, applications, and experiences. Students use current design-and-code technologies while preparing for future web enabled devices. Sets a foundational understanding of HTML, SVG, CSS, JS, and the web-as-a-platform.</p>
+
+                <p>This course introduces you to the actual craft of building for the web. Not with shortcuts or frameworks, but with fundamental HTML and CSS—understanding how the web actually works at the source level.</p>
+                
+                <p>You'll develop fluency in reading and writing code, building responsive layouts, and creating interactive experiences. More importantly, you'll learn to think systematically about digital design and develop the problem-solving skills essential for web development.</p>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Learning Objectives -->
+            <section class="card card-enhanced">
+                <div class="color-bar color-bar-multi"></div>
+                <h2>
+                    <span class="icon-enhanced icon-primary">
+                        <i class="octicon octicon-goal" aria-hidden="true"></i>
+                    </span>
+                    Learning Objectives
+                </h2>
+
+                <h3>Program Learning Objectives (PLO)</h3>
+                <ol>
+                    <li><strong>Visual Vocabulary:</strong> Achieve fluency in design's visual language</li>
+                    <li><strong>Technical Skills:</strong> Demonstrate proficiency in relevant design skills</li>
+                </ol>
+
+                <h3>Course-Specific Objectives</h3>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;">
+                    <!-- Creative and Conceptual Objectives Column -->
+                    <div>
+                        <h4>Creative and Conceptual Objectives</h4>
+                        <p style="color: var(--color-fg-muted); font-size: 14px; margin-bottom: 16px;">
+                            <strong>PLO-1: Visual Vocabulary</strong> - Achieve fluency in the visual vocabulary of design.
+                        </p>
+
+                        <div style="margin-bottom: 20px;">
+                            <h5 style="margin-bottom: 8px;">Apply Graphic Design Principles to Web Interfaces</h5>
+                            <p style="font-size: 14px; line-height: 1.6;">
+                                Incorporate layout, typography, and color theory principles into web design projects to ensure a visually coherent and aesthetically pleasing user interface.
+                            </p>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <h5 style="margin-bottom: 8px;">Understand the Web as a Dynamic Platform</h5>
+                            <p style="font-size: 14px; line-height: 1.6;">
+                                Gain an understanding of the "web" as a constantly evolving creative platform capable of supporting modern interactive experiences and recognizing emerging trends such as AI-driven design.
+                            </p>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <h5 style="margin-bottom: 8px;">Design for Accessibility and Inclusivity</h5>
+                            <p style="font-size: 14px; line-height: 1.6;">
+                                Apply best practices for designing web experiences that are accessible to users of diverse abilities, including compliance with WCAG standards (Web Content Accessibility Guidelines).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Technical Objectives Column -->
+                    <div>
+                        <h4>Technical Objectives</h4>
+                        <p style="color: var(--color-fg-muted); font-size: 14px; margin-bottom: 16px;">
+                            <strong>PLO-2: Technical Skills</strong> - Demonstrate proficiency in the technical skills relevant to design.
+                        </p>
+
+                        <div style="margin-bottom: 20px;">
+                            <h5 style="margin-bottom: 8px;">Develop Proficiency in HTML and CSS</h5>
+                            <p style="font-size: 14px; line-height: 1.6;">
+                                Demonstrate the ability to write clean, standards-compliant HTML and CSS to create interactive, accessible web pages.
+                            </p>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <h5 style="margin-bottom: 8px;">Implement Responsive Design Principles</h5>
+                            <p style="font-size: 14px; line-height: 1.6;">
+                                Apply responsive design techniques, including media queries, Flexbox, and CSS Grid, to ensure web layouts adapt seamlessly across different devices and screen sizes.
+                            </p>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <h5 style="margin-bottom: 8px;">Utilize Version Control and Web Technologies</h5>
+                            <p style="font-size: 14px; line-height: 1.6;">
+                                Use tools like GitHub for version control and demonstrate familiarity with browser developer tools for debugging and optimizing web performance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider with-icon"></div>
+
+            <!-- Grading -->
+            <section class="card accent-block card-enhanced">
+                <h2>
+                    <span class="icon-enhanced icon-primary">
+                        <i class="octicon octicon-graph" aria-hidden="true"></i>
+                    </span>
+                    Grading Breakdown
+                    <span class="badge badge-primary">Important</span>
+                </h2>
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 16px 0;">
+                    <span>Projects (5 total)</span>
+                    <span style="font-weight: 600; font-family: var(--mono-font);">40%</span>
+
+                    <span>Weekly Assignments</span>
+                    <span style="font-weight: 600; font-family: var(--mono-font);">30%</span>
+
+                    <span>Participation & Engagement</span>
+                    <span style="font-weight: 600; font-family: var(--mono-font);">20%</span>
+
+                    <span>Final Portfolio</span>
+                    <span style="font-weight: 600; font-family: var(--mono-font);">10%</span>
+                </div>
+
+                <h3>Project Evaluation Criteria</h3>
+                <p>Each project is evaluated on:</p>
+                <ul>
+                    <li><strong>Technical execution:</strong> Code validates and works</li>
+                    <li><strong>Conceptual understanding:</strong> Documentation and comments</li>
+                    <li><strong>Problem-solving:</strong> Handling edge cases and debugging</li>
+                    <li><strong>Craft & presentation:</strong> Attention to detail and polish</li>
+                </ul>
+
+                <h3>Weekly Assignments</h3>
+                <ul>
+                    <li>Micro-assignments, exercises, and tutorials</li>
+                    <li>Emphasis on consistent practice and iteration</li>
+                    <li>Quick-turn feedback cycle</li>
+                </ul>
+
+                <h3>Participation & Engagement</h3>
+                <ul>
+                    <li>In-class activities and peer collaboration: 10%</li>
+                    <li>Attendance & presence: 10%</li>
+                </ul>
+
+                <h3>Final Portfolio</h3>
+                <ul>
+                    <li>Curated selection of best work</li>
+                    <li>Reflection on growth and AI collaboration</li>
+                    <li>Professional presentation on GitHub Pages</li>
+                </ul>
+
+                <h3>Grade Scale</h3>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 12px;">
+                    <div style="text-align: center; padding: 8px; background: var(--color-canvas-subtle); border-radius: 4px;">
+                        <div style="font-weight: 600;">A</div>
+                        <div style="color: var(--color-fg-muted); font-size: 12px;">90-100%</div>
+                    </div>
+                    <div style="text-align: center; padding: 8px; background: var(--color-canvas-subtle); border-radius: 4px;">
+                        <div style="font-weight: 600;">B</div>
+                        <div style="color: var(--color-fg-muted); font-size: 12px;">80-89%</div>
+                    </div>
+                    <div style="text-align: center; padding: 8px; background: var(--color-canvas-subtle); border-radius: 4px;">
+                        <div style="font-weight: 600;">C</div>
+                        <div style="color: var(--color-fg-muted); font-size: 12px;">70-79%</div>
+                    </div>
+                    <div style="text-align: center; padding: 8px; background: var(--color-canvas-subtle); border-radius: 4px;">
+                        <div style="font-weight: 600;">D</div>
+                        <div style="color: var(--color-fg-muted); font-size: 12px;">60-69%</div>
+                    </div>
+                    <div style="text-align: center; padding: 8px; background: var(--color-canvas-subtle); border-radius: 4px;">
+                        <div style="font-weight: 600;">F</div>
+                        <div style="color: var(--color-fg-muted); font-size: 12px;">0-59%</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Assessment Philosophy -->
+            <section class="card accent-block-subtle card-enhanced">
+                <h2>
+                    <span class="icon-enhanced">
+                        <i class="octicon octicon-comment" aria-hidden="true"></i>
+                    </span>
+                    Assessment Philosophy
+                </h2>
+                <p>While not formal "gates," all work is evaluated for:</p>
+                <ul>
+                    <li><strong>Technical Quality:</strong> Does it work as intended?</li>
+                    <li><strong>Understanding:</strong> Can you explain your choices?</li>
+                    <li><strong>Problem-Solving:</strong> Can you debug and adapt?</li>
+                    <li><strong>Communication:</strong> Is your code/documentation clear?</li>
+                </ul>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Attendance & Participation -->
+            <section class="card accent-block card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <h2>
+                    <span class="icon-enhanced icon-primary">
+                        <i class="octicon octicon-people" aria-hidden="true"></i>
+                    </span>
+                    Attendance & Participation
+                    <span class="badge badge-primary">30% of Grade</span>
+                </h2>
+                <p>In DESN368 Web Design 1, your engagement and participation are crucial components of your learning experience, accounting for 30% of your final grade. Regular attendance and active involvement in class activities are essential for mastering web design concepts and techniques.</p>
+
+                <h3>Attendance Expectations</h3>
+                <ul>
+                    <li>Students are expected to attend all scheduled classes, both Tuesday lectures and Thursday practical sessions.</li>
+                    <li>Punctuality is crucial. Arriving late or leaving early disrupts everyone's learning environment.</li>
+                    <li>If you must miss a class due to illness or emergency, please notify the instructor as soon as possible.</li>
+                </ul>
+
+                <h3>Engagement and Participation</h3>
+                <p>Your engagement level will be assessed based on:
+                <ol>
+                    <li>Punctuality and preparedness for each class</li>
+                    <li>Active participation in discussions, critiques, and in-class exercises</li>
+                    <li>Receptiveness to feedback and willingness to apply it</li>
+                    <li>Overall disposition towards peers and the course material</li>
+                    <li>Proactive translation of web design concepts into practical applications</li>
+                    <li>Commitment to establishing a disciplined web design practice</li>
+                </ol>
+                </p>
+                <h3>Important Notes</h3>
+                <ol>
+                    <li>There are no "free" or "excused" absences. Every class session is valuable for your learning and professional development.</li>
+                    <li>If extenuating circumstances affect your attendance or participation, please communicate with the instructor promptly to discuss your situation.</li>
+                    <li>Engagement is not just about being physically present. It's about actively contributing to the learning environment and pushing yourself to grow as a web designer.</li>
+                    <li>Your participation grade will be assessed holistically throughout the term, considering your overall engagement and growth in the course.</li>
+                </ol>
+
+                <div style="padding: 1rem; background: var(--eagle-green-light); border: 1px solid var(--eagle-green); color: var(--text-primary); border-radius: 6px; margin: 2rem 0;">
+                    <span class="icon-enhanced">
+                        <i class="octicon octicon-mortar-board" aria-hidden="true"></i>
+                    </span>
+                    <strong>Remember:</strong> The goal is to attend class and be fully present and actively involved in your learning journey. Your consistent engagement will improve your grade and significantly enhance your web design skills and professional development.
+                </div>
+            </section>
+
+            <div class="section-divider with-icon"></div>
+
+            <!-- Course Policies -->
+            <section class="card card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <h2>
+                    <span class="icon-enhanced icon-primary">
+                        <i class="octicon octicon-checklist" aria-hidden="true"></i>
+                    </span>
+                    Course Policies
+                    <span class="badge badge-warning">Required Reading</span>
+                </h2>
+
+                <h3>Late Work</h3>
+                <p>Assignments build on each other—you cannot proceed until previous work is complete. Late submissions delay your progress. Extensions are available for documented emergencies.</p>
+
+                <h3>Academic Integrity</h3>
+                <p>You must write your own code. While you can reference resources and get help, submitting code you don't understand or didn't write is plagiarism. When in doubt, cite your sources.</p>
+                
+                <p>
+                EWU expects its students to have the highest standards of academic integrity. Academic honesty is the foundation for a fair and supportive learning environment for all students. Personal responsibility for academic performance is essential for equitable assessment of student accomplishments. The university supports the faculty in setting and maintaining standards of academic integrity. Charges of academic dishonesty are reviewed through a process that allows for student learning and impartial review. EWU’s academic integrity policy is available online at:
+                <br>
+                <br>
+                <a href ="https://inside.ewu.edu/policies/knowledge-base/wac-172-90-student-academic-integrity-3/"">(https://inside.ewu.edu/policies/policies-and-procedures/wac-172-90-student-academic-integrity-3/"</a>
+                </p>
+
+
+                </p>
+
+                <h3>AI Policy</h3>
+                <p>In this course, students can use AI-based tools (such as ChatGPT and GitHub Copilot) on some assignments. The instructions for each assignment will include information about whether and how you may use AI-based tools to complete the assignment. All sources, including AI tools, must be appropriately cited. The use of AI in ways inconsistent with the parameters above will be considered academic misconduct and subject to investigation.</p>
+
+                <p>Please note that AI results can be biased and inaccurate. You are responsible for ensuring that the information you use from AI is accurate. Additionally, pay attention to the privacy of your data. Many AI tools will incorporate and use any content you share, so be careful not to unintentionally share copyrighted materials, original work, or personal information.</p>
+
+                <p>Learning how to thoughtfully and strategically use AI-based tools may help you develop your skills, refine your work, and prepare for your future career. If you have any questions about citation or what constitutes academic integrity in this course or at Eastern Washington University, please contact me to discuss your concerns.</p>
+
+                <h3>Accessibility</h3>
+                <p>Students with documented disabilities should meet with me ASAP to discuss accommodations. All discussions remain confidential. Contact Disability Support Services for documentation.</p>
+            </section>
+        </div>
+
+        <aside class="sidebar">
+            <!-- Quick Actions -->
+            <section class="card accent-block card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <h3>
+                    <span class="icon-enhanced icon-primary">
+                        <i class="octicon octicon-zap" aria-hidden="true"></i>
+                    </span>
+                    Quick Actions
+                </h3>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="/1" class="btn btn-primary">← Back to Hub</a>
+
+                    <a href={courseLinks.canvasUrl} class="btn btn-primary" target="_blank">Open Canvas</a>
+
+                    <a href={courseLinks.milanoteUrl} class="btn btn-secondary" target="_blank">Open Milanote</a>
+
+                    <a href="https://docs.google.com/document/d/1qGVxC5Y49uTHjlFmPVFvN7inQ3UmgJuQsH5wCrZYQ64/edit?usp=sharing" class="btn btn-primary" target="_blank">EWU Syllabus Statements</a>
+
+                    <a href="mailto:tmasingale@ewu.edu" class="btn btn-secondary">Email Professor</a>
+
+                    <a href="https://calendly.com/tmasingale" class="btn btn-secondary" target="_blank">Schedule Office Hours</a>
+
+                </div>
+            </section>
+
+            <!-- Attendance Policy -->
+            <section class="card accent-block-subtle card-enhanced">
+                <h3>
+                    <span class="icon-enhanced icon-primary">
+                        <i class="octicon octicon-goal" aria-hidden="true"></i>
+                    </span>
+                    Attendance Policy
+                    <span class="badge badge-warning">Critical</span>
+                </h3>
+
+                <h4 style="font-size: 14px; margin: 12px 0 8px 0;">Simple Rule: Show up. If you can't, let me know.</h4>
+
+                <div style="font-size: 13px;">
+                    <p style="margin-bottom: 12px;"><strong>Communication is Key:</strong></p>
+                    <ul style="margin-bottom: 12px; padding-left: 16px;">
+                        <li>Email me or message me on Canvas if you'll miss class</li>
+                        <li>No communication = unexcused absence</li>
+                    </ul>
+
+                    <p style="margin-bottom: 12px;"><strong>The Reality Check:</strong></p>
+                    <ul style="margin-bottom: 12px; padding-left: 16px;">
+                        <li><strong>3+ absences:</strong> You'll likely fall behind</li>
+                        <li><strong>5+ absences:</strong> Course failure</li>
+                    </ul>
+
+                    <p style="margin: 0;"><strong>Bottom Line:</strong> Face-to-face learning requires consistent attendance.</p>
+                </div>
+            </section>
+
+            <!-- Important Dates -->
+            <section class="card card-enhanced">
+                <h3>
+                    <span class="icon-enhanced">
+                        <i class="octicon octicon-calendar" aria-hidden="true"></i>
+                    </span>
+                    Important Dates
+                    <span class="badge badge-secondary">Mark Calendar</span>
+                </h3>
+                <div style="font-size: 13px;">
+                    <div style="margin-bottom: 8px;">
+                        <strong>First Day:</strong><br>
+                        First week of Spring 2026 quarter
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <strong>Project 1 Due:</strong><br>
+                        TBD
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <strong>Project 2 Due:</strong><br>
+                        TBD
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <strong>Portfolio Due:</strong><br>
+                        Final week of Spring 2026
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <strong>Last Day:</strong><br>
+                        End of Spring 2026 quarter
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </main>
+</BaseLayout>

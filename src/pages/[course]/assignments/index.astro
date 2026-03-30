@@ -1,0 +1,18 @@
+---
+import CourseOneAssignments from '../../../course-pages/course-1/assignments/index.astro';
+import CourseTwoAssignments from '../../../course-pages/course-2/assignments/index.astro';
+import { COURSE_REGISTRY, isCourseId } from '../../../lib/courseRegistry';
+
+export function getStaticPaths() {
+  return Object.keys(COURSE_REGISTRY).map((course) => ({
+    params: { course },
+  }));
+}
+
+const { course } = Astro.params;
+if (!isCourseId(course)) {
+  throw new Error(`Unknown course route: ${course}`);
+}
+---
+
+{course === '1' ? <CourseOneAssignments /> : <CourseTwoAssignments />}

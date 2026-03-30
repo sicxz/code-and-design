@@ -1,0 +1,28 @@
+---
+import RedirectPage from '../../components/RedirectPage.astro';
+import { COURSE_REGISTRY } from '../../lib/courseRegistry';
+
+export function getStaticPaths() {
+  const legacyAssignmentRoutes = {
+    overview: '/1/assignments/overview',
+    brief: '/1/assignments/brief',
+    requirements: '/1/assignments/requirements',
+    goals: '/1/assignments/goals',
+    ...Object.fromEntries(
+      COURSE_REGISTRY['2'].assignments.map((assignment) => [
+        assignment.slug,
+        `/2/assignments/${assignment.slug}`,
+      ]),
+    ),
+  } as Record<string, string>;
+
+  return Object.entries(legacyAssignmentRoutes).map(([slug, to]) => ({
+    params: { slug },
+    props: { to },
+  }));
+}
+
+const { to } = Astro.props as { to: string };
+---
+
+<RedirectPage to={to} title="Redirecting to the current assignment route" />

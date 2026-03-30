@@ -1,9 +1,11 @@
 ---
-// This is the "frontmatter" - JavaScript runs here
 import '../styles/styles.css';
 import Icon from '../components/Icon.astro';
+import { getCourseFromPathname } from '../lib/courseRegistry';
 
-const { title = "DESN378: Code+Design 2" } = Astro.props;
+const { title = 'code-and-design.org' } = Astro.props;
+const course = getCourseFromPathname(Astro.url.pathname);
+const footerYear = course?.term.match(/20\d{2}/)?.[0] ?? '2026';
 ---
 
 <!DOCTYPE html>
@@ -12,6 +14,12 @@ const { title = "DESN378: Code+Design 2" } = Astro.props;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
+    />
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -25,7 +33,7 @@ const { title = "DESN378: Code+Design 2" } = Astro.props;
     <!-- CSS is automatcially injected by the import -->
 
 </head>
-<body>
+<body data-course={course?.themeId ?? 'home'}>
     <!-- Mobile Notice Banner -->
     <div id="mobile-notice" class="mobile-notice">
         <div class="mobile-notice-content">
@@ -49,46 +57,63 @@ const { title = "DESN378: Code+Design 2" } = Astro.props;
                     </div>
                     <div>
                         <h1 class="course-title">
-                            DESN378: Code+Design 2
+                            {course ? course.title : 'code-and-design.org'}
                             <span class="course-badge">
                                 <Icon name="zap" size={14} class="badge-icon" />
-                                Winter 2026
+                                {course ? course.term : 'Unified Hub'}
                             </span>
                         </h1>
                         <p class="course-subtitle">
-                            <span style="color: var(--brand-red); font-weight: 600;">Wiring Up</span> the
-                            <span style="color: var(--brand-red); font-weight: 600;">Nervous System</span>.
-                            <span style="color: var(--brand-primary); font-weight: 600;">Sense.</span> 
-                            <span style="color: var(--brand-primary); font-weight: 600;">Respond.</span>
-                            <span style="color: var(--brand-primary); font-weight: 600;">Adapt.</span>
-                            
+                            {course
+                                ? course.subtitle
+                                : 'Two course sites, one domain, one Astro app.'}
                         </p>
                     </div>
                 </div>
                 <div class="header-actions">
-                    <a href="https://canvas.ewu.edu/courses/1858410" class="btn-fork" target="_blank">Canvas</a>
-                    <a href="https://app.milanote.com/1Vycx91Ziu4g2D?p=bneQoS8Q1HM" class="btn btn-start" target="_blank">Milanote</a>
+                    {course ? (
+                        <>
+                            <a href="/" class="btn-fork">All Courses</a>
+                            <a href={course.canvasUrl} class="btn-fork" target="_blank">Canvas</a>
+                            <a href={course.milanoteUrl} class="btn btn-start" target="_blank">Milanote</a>
+                        </>
+                    ) : (
+                        <>
+                            <a href="/1" class="btn-fork">Open /1</a>
+                            <a href="/2" class="btn btn-start">Open /2</a>
+                        </>
+                    )}
                 </div>
             </div>
             <div class="course-meta">
-                <span class="meta-item">
-                    <svg width="16" height="16" fill="none" stroke="var(--brand-primary)" viewBox="0 0 24 24" style="margin-right: 6px;">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
-                    </svg>
-                    22 students
-                </span>
-                <span class="meta-item">
-                    <svg width="16" height="16" fill="none" stroke="var(--brand-red)" viewBox="0 0 24 24" style="margin-right: 6px;">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>
-                    </svg>
-                    11 weeks
-                </span>
-                <span class="meta-item">
-                    <svg width="16" height="16" fill="none" stroke="var(--text-muted)" viewBox="0 0 24 24" style="margin-right: 6px;">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    5 hours/week:in-class 10 hours/week:at home 
-                </span>
+                {course ? (
+                    <>
+                        <span class="meta-item">
+                            <svg width="16" height="16" fill="none" stroke="var(--brand-primary)" viewBox="0 0 24 24" style="margin-right: 6px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                            </svg>
+                            {course.studentCount}
+                        </span>
+                        <span class="meta-item">
+                            <svg width="16" height="16" fill="none" stroke="var(--brand-red)" viewBox="0 0 24 24" style="margin-right: 6px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2v0M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>
+                            </svg>
+                            {course.weekCount} weeks
+                        </span>
+                        <span class="meta-item">
+                            <svg width="16" height="16" fill="none" stroke="var(--text-muted)" viewBox="0 0 24 24" style="margin-right: 6px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            {course.workload}
+                        </span>
+                    </>
+                ) : (
+                    <>
+                        <span class="meta-item">2 course hubs</span>
+                        <span class="meta-item">Shared components + layout</span>
+                        <span class="meta-item">Single Astro deployment</span>
+                    </>
+                )}
             </div>
         </div>
     </header>
@@ -102,20 +127,33 @@ const { title = "DESN378: Code+Design 2" } = Astro.props;
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <span class="footer-title">DESN378: Code+Design 2</span>
+                    <span class="footer-title">{course ? course.title : 'code-and-design.org'}</span>
                     <span class="footer-subtitle">Eastern Washington University</span>
                 </div>
                 <div class="footer-links">
-                    <a href="/syllabus">Syllabus</a>
-                    <a href="https://canvas.ewu.edu/courses/1858410" target="_blank">Canvas</a>
-                    <a href="https://app.milanote.com/1Vycx91Ziu4g2D?p=bneQoS8Q1HM" target="_blank">Milanote</a>
-                    <a href="https://github.com/sicxz/DESN-378-code-design-2" target="_blank">GitHub</a>
+                    {course ? (
+                        <>
+                            <a href="/">All Courses</a>
+                            <a href={course.homePath}>Overview</a>
+                            <a href={course.syllabusPath}>Syllabus</a>
+                            <a href={course.assignmentsPath}>Assignments</a>
+                            {course.styleGuidePath && <a href={course.styleGuidePath}>Style Guide</a>}
+                            <a href={course.repoUrl} target="_blank">GitHub</a>
+                        </>
+                    ) : (
+                        <>
+                            <a href="/1">Code + Design 1</a>
+                            <a href="/2">Code + Design 2</a>
+                            <a href="/1/assignments">Course 1 Assignments</a>
+                            <a href="/2/assignments">Course 2 Assignments</a>
+                        </>
+                    )}
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© 2026 Travis Masingale</span>
+                <span>© {footerYear} Travis Masingale</span>
                 <span class="footer-divider">·</span>
-                <span>Winter Quarter 2026</span>
+                <span>{course ? course.term : 'Shared course hub'}</span>
             </div>
         </div>
     </footer>

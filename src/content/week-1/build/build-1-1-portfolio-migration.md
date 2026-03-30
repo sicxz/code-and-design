@@ -1,7 +1,7 @@
 # Build: Portfolio Migration
 
 **Points:** 10 (Complete/Incomplete)
-**Time Estimate:** 30–45 minutes
+**Time Estimate:** 30-45 minutes
 
 ---
 
@@ -11,7 +11,7 @@ Move your portfolio files into the standardized `week-1/portfolio/` folder struc
 ---
 
 ## Submit
-No separate submission — verified in class. Push to GitHub and confirm GitHub Pages works.
+No separate submission. Verified in class. Push to GitHub and confirm GitHub Pages works.
 
 ---
 
@@ -25,14 +25,14 @@ Migrate your portfolio site into this week's folder structure. This establishes 
 
 1. Copy your current portfolio files into `week-1/portfolio/`
 2. Reorganize files to match our project structure
-3. Update any broken paths (images, links, CSS, JS)
+3. Update any broken paths: images, links, CSS, JS
 4. Verify everything works locally
 
 ---
 
 ## Target Structure
 
-```
+```bash
 week-1/
 └── portfolio/
     ├── index.html
@@ -83,14 +83,15 @@ Copy your portfolio files into the appropriate folders:
 
 ### Step 3: Create Missing Files
 
-If you don't have these files yet, create them:
+If you do not have these files yet, create them:
 
 **normalize.css**
 Download from [necolas.github.io/normalize.css](https://necolas.github.io/normalize.css/) or use a CDN link.
 
-**variables.css** (can be empty for now)
+**variables.css** can be empty for now
+
 ```css
-/* Design Tokens — Week 1 */
+/* Design Tokens - Week 1 */
 :root {
   /* Colors - to be defined */
 
@@ -101,13 +102,14 @@ Download from [necolas.github.io/normalize.css](https://necolas.github.io/normal
 ```
 
 **README.md**
-```markdown
-# Portfolio — Week 1
+
+```md
+# Portfolio - Week 1
 
 ## Project Structure
-- `css/` — Stylesheets
-- `js/` — JavaScript
-- `assets/` — Images, fonts, icons
+- `css/` - Stylesheets
+- `js/` - JavaScript
+- `assets/` - Images, fonts, icons
 
 ## Changes This Week
 - Migrated to standardized structure
@@ -116,16 +118,18 @@ Download from [necolas.github.io/normalize.css](https://necolas.github.io/normal
 
 ### Step 4: Update Paths
 
-After moving files, you'll need to update paths in your HTML:
+After moving files, update paths in your HTML:
 
-**Before (flat structure):**
+**Before flat structure:**
+
 ```html
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
 <img src="hero-image.jpg" alt="...">
 ```
 
-**After (organized structure):**
+**After organized structure:**
+
 ```html
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/variables.css">
@@ -140,7 +144,7 @@ After moving files, you'll need to update paths in your HTML:
 2. Check that:
    - [ ] Styles load correctly
    - [ ] Images display
-   - [ ] JavaScript works (if any)
+   - [ ] JavaScript works if any
    - [ ] No console errors
 3. Fix any broken paths
 
@@ -148,17 +152,17 @@ After moving files, you'll need to update paths in your HTML:
 
 ## Common Issues
 
-### "Images aren't showing"
+### Images are not showing
 - Check the path: `assets/images/filename.jpg`
-- Verify the filename matches exactly (case-sensitive)
+- Verify the filename matches exactly and is case-sensitive
 
-### "CSS isn't loading"
-- Check link order: normalize → variables → style
+### CSS is not loading
+- Check link order: normalize, variables, style
 - Verify paths start from the HTML file's location
 
-### "JavaScript errors"
+### JavaScript errors
 - Add `defer` to your script tag
-- Check console for specific errors
+- Check the console for specific errors
 
 ---
 
@@ -168,10 +172,10 @@ Your migration is complete when:
 
 - [ ] Folder structure matches the target
 - [ ] All files are in correct locations
-- [ ] `variables.css` file exists (even if empty)
+- [ ] `variables.css` exists even if empty
 - [ ] `README.md` exists with basic info
 - [ ] Site loads without errors locally
-- [ ] Committed to GitHub with descriptive message
+- [ ] Committed to GitHub with a descriptive message
 
 ---
 
@@ -181,4 +185,4 @@ This structure sets up your portfolio for the design system work we're doing thi
 
 - `variables.css` will hold your design tokens
 - The organized structure matches professional projects
-- Next week, you'll add JavaScript to `js/script.js` for the theme toggle
+- Next week, you will add JavaScript to `js/script.js` for the theme toggle
