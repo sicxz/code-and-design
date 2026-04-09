@@ -2064,23 +2064,23 @@ body[data-course='1'] .text-gradient {
 /* ── Annotated skeleton breakdown ─────────────────────────── */
 .lesson-content .annotated-skeleton {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid #2d3748;
   font-family: var(--font-mono);
-  font-size: 100%;
+  font-size: 13px;
   margin: 0.75rem 0 1.25rem;
 }
 
 .lesson-content .annotated-code {
   background: #1e293b;
   color: #e2e8f0;
-  padding: 0.6rem 1rem;
-  white-space: pre;
+  padding: 0.55rem 1rem 0.35rem;
+  white-space: pre-wrap;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: none;
 }
 
 .lesson-content .annotated-code.i1 {
@@ -2092,44 +2092,30 @@ body[data-course='1'] .text-gradient {
 }
 
 .lesson-content .annotated-code.dim {
-  color: rgba(226,232,240,0.4);
+  color: rgba(226,232,240,0.35);
 }
 
 .lesson-content .annotated-label {
   background: var(--bg-subtle);
-  color: var(--text-primary);
-  padding: 0.6rem 1rem;
+  color: var(--text-secondary);
+  padding: 0.3rem 1rem 0.55rem 1rem;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 13px;
   line-height: 1.4;
   display: flex;
   align-items: center;
   border-left: 3px solid var(--eagle-blue-text);
-  border-bottom: 1px solid rgba(57,62,65,0.1);
+  border-bottom: 4px solid #1e293b;
+}
+
+.lesson-content .annotated-label:last-child {
+  border-bottom: none;
 }
 
 .lesson-content .annotated-label.dim {
   color: var(--text-muted);
   border-left-color: var(--border-light);
   font-style: italic;
-}
-
-@media (max-width: 640px) {
-  .lesson-content .annotated-skeleton {
-    grid-template-columns: 1fr;
-    overflow-x: auto;
-  }
-  .lesson-content .annotated-code {
-    white-space: pre-wrap;
-    border-bottom: none;
-  }
-  .lesson-content .annotated-label {
-    border-left: none;
-    border-top: 3px solid var(--eagle-blue-text);
-  }
-  .lesson-content .annotated-label.dim {
-    border-top-color: var(--border-light);
-  }
 }
 
 /* ── Quick reference table ────────────────────────────────── */
@@ -2422,7 +2408,7 @@ body[data-layout="workspace"] {
 }
 
 .lesson-panel-left {
-  width: 550px;
+  width: 700px;
   min-width: 300px;
   max-width: 900px;
   overflow-y: auto;
