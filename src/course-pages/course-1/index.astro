@@ -5,17 +5,16 @@ import { withCoursePrefix } from '../../lib/courseRegistry';
 
 // Define the weeks data directly for now
 const weeks = [
-    { number: 0, title: "S3tup & 0nb04rd1ng", subtitle: "Environment Configuration - Dev tools mastery", status: "available" },
-    { number: 1, title: "HTML Fundamentals & Internet Basics", subtitle: "Understanding the Internet & HTML Foundations", status: "locked"},
-    { number: 2, title: "D0cum3nt 4rch1t3ctur3", subtitle: "Structure Before Style - Valid HTML foundations", status: "locked" },
-    { number: 3, title: "Th3 C4sc4d3 B3g1n5", subtitle: "CSS Separation of Concerns", status: "locked" },
-    { number: 4, title: "F0rm5 & 1nput5", subtitle: "User Interaction Patterns", status: "locked" },
-    { number: 5, title: "Fl3xb0x M45t3ry", subtitle: "One-dimensional Layouts", status: "locked" },
-    { number: 6, title: "Tr1but3 P4g3", subtitle: "First Complete Project", status: "locked" },
-    { number: 7, title: "Gr1d Sy5t3m5", subtitle: "Two-dimensional Thinking", status: "locked" },
-    { number: 8, title: "Pr0duct L4nd1ng", subtitle: "Professional Product Page", status: "locked", link: "/1/assignments" },
-    { number: 9, title: "P0rtf0l10 Sy5t3m", subtitle: "Personal Brand Development (2 weeks)", status: "locked" },
-    { number: 11, title: "Sh1p 1t", subtitle: "Launch & Deploy", status: "locked" }
+    { number: 1, title: "HTML Elements", subtitle: "Codedex.io — Learn the building blocks of every web page", status: "available" },
+    { number: 2, title: "HTML 101 — Document Structure", subtitle: "7-lesson series: skeleton, nesting, attributes, classes, and more", status: "available", link: "/1/html-101/" },
+    { number: 3, title: "The Cascade Begins", subtitle: "CSS Separation of Concerns", status: "locked" },
+    { number: 4, title: "Forms & Inputs", subtitle: "User Interaction Patterns", status: "locked" },
+    { number: 5, title: "Flexbox Mastery", subtitle: "One-dimensional Layouts", status: "locked" },
+    { number: 6, title: "Tribute Page", subtitle: "First Complete Project", status: "locked" },
+    { number: 7, title: "Grid Systems", subtitle: "Two-dimensional Thinking", status: "locked" },
+    { number: 8, title: "Product Landing", subtitle: "Professional Product Page", status: "locked" },
+    { number: 9, title: "Portfolio System", subtitle: "Personal Brand Development (2 weeks)", status: "locked" },
+    { number: 11, title: "Ship It", subtitle: "Launch & Deploy", status: "locked" }
 ];
 ---
 
@@ -83,7 +82,7 @@ const weeks = [
                     <span class="icon-enhanced">
                         <Icon name="book" size={20} />
                     </span>
-                    Course Structure: 11 Weeks of Foundation
+                    Course Structure: 10 Weeks of Foundation
                 </h2>
                 <div class="week-list">
                     {weeks.map((week) => (
@@ -301,19 +300,24 @@ const weeks = [
                 </div>
 
                 <!-- Firefox DevTools Block -->
-                <div class="tool-block tool-block-featured">
-                    <div class="tool-block-featured-header">
-                        <h4>Firefox DevTools</h4>
-                        <span class="badge badge-primary">Browser Lab</span>
-                    </div>
-                    <p>Inspect live HTML, trace CSS, and debug layouts directly in the browser while you build.</p>
-                    <div class="tool-block-featured-actions">
-                        <a href="https://firefox-source-docs.mozilla.org/devtools-user/" class="btn btn-primary" target="_blank" rel="noreferrer">Open DevTools Guide</a>
-                        <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools" class="tool-block-inline-link" target="_blank" rel="noreferrer">New to browser tools? Start with the basics.</a>
-                    </div>
-                    <div class="tool-block-note">
-                        <strong>Best use in this class</strong>
-                        <p>Keep DevTools open while you work so you can inspect structure, test changes, and study how real interfaces are assembled.</p>
+                <div class="tool-block-mozilla">
+                    <a href="https://firefox-source-docs.mozilla.org/devtools-user/" class="tool-block-mozilla-header" target="_blank">Learn Firefox DevTools</a>
+                    <div class="tool-block-mozilla-body">
+                        <p><a href="https://firefox-source-docs.mozilla.org/devtools-user/" class="devtools-link" target="_blank">Firefox Developer Tools</a> is a comprehensive set of web developer tools built directly into Firefox. Inspect, debug, and optimize your HTML, CSS, and JavaScript.</p>
+
+                        <div class="mozilla-note">
+                            <div class="mozilla-note-content">
+                                <svg class="mozilla-note-icon" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="16" x2="12" y2="12"/>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                                </svg>
+                                <div class="mozilla-note-body">
+                                    <strong>Note</strong>
+                                    <p>If you are just getting started with web development and browser developer tools, check out our <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools" target="_blank">What are browser developer tools?</a> guide for good starting points.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -533,64 +537,6 @@ const weeks = [
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-        }
-
-        .tool-block-featured {
-            background: var(--gradient-accent);
-            border-left: 4px solid var(--brand-primary);
-        }
-
-        .tool-block-featured-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-
-        .tool-block-featured-header h4 {
-            margin: 0;
-        }
-
-        .tool-block-featured-actions {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .tool-block-inline-link {
-            color: var(--brand-primary);
-            font-size: 13px;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .tool-block-inline-link:hover {
-            text-decoration: underline;
-        }
-
-        .tool-block-note {
-            margin-top: 14px;
-            padding: 14px 16px;
-            border-left: 3px solid var(--brand-red);
-            border-radius: 8px;
-            background: rgba(183, 20, 46, 0.08);
-        }
-
-        .tool-block-note strong {
-            display: block;
-            margin-bottom: 6px;
-            color: var(--text-primary);
-            font-size: 13px;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-
-        .tool-block-note p {
-            margin: 0;
-            font-size: 13px;
-            color: var(--text-secondary);
         }
 
         .philosophy-quote-card {
