@@ -1,0 +1,121 @@
+---
+title: "Tagging Your Content"
+slug: attributes
+lesson: 4
+description: "Attributes add meaning and behavior to elements — from links to images to accessibility labels."
+---
+
+<div class="lesson-exercise-featured">
+  <h3>Exercise: Profile Card</h3>
+  <ul>
+    <li><strong>First:</strong> make sure you're signed into <a href="https://codepen.io" target="_blank">CodePen</a>, then name your pen <strong>HTML 101 — Tagging Your Content</strong></li>
+    <li>Build a profile card for a real or fictional person</li>
+    <li>Must include: a name in a heading, a short bio in a paragraph, an image with descriptive <code>alt</code> text, and a link to an external page</li>
+    <li>Use <code>id</code> on the card container and <code>class</code> on at least two elements inside it</li>
+    <li>No styling yet — focus entirely on correct, meaningful markup</li>
+    <li>Save the pen — you'll submit the link to Canvas when all 7 lessons are done</li>
+  </ul>
+</div>
+
+## What Attributes Do
+
+- A `<a>` tag creates a link — but to *where*? An `<img>` tag shows an image — but *which* image?
+- **Elements** tell the browser what *type* of content you have
+- **Attributes** tell the browser more about that specific instance of it
+- Attributes are name-value pairs written inside the opening tag:
+
+```html
+<tagname attribute-name="attribute-value">content</tagname>
+```
+
+## The Most Important Attributes
+
+### `href` — Where a Link Goes
+
+```html
+<!-- External link -->
+<a href="https://developer.mozilla.org">MDN Web Docs</a>
+
+<!-- Internal link (same site) -->
+<a href="/about">About Us</a>
+
+<!-- Anchor link (jumps to a section on the same page) -->
+<a href="#contact">Jump to Contact</a>
+```
+
+- Without `href`, an `<a>` has no destination and won't navigate anywhere
+
+### `src` — Where an Image Comes From
+
+```html
+<!-- Image from the same folder -->
+<img src="headshot.jpg" alt="Portrait of Maya Chen, lead designer">
+
+<!-- Image from a subfolder -->
+<img src="images/logo.png" alt="Studio logo">
+
+<!-- Image from an external URL -->
+<img src="https://example.com/banner.jpg" alt="Conference banner">
+```
+
+### `alt` — What an Image Means
+
+- Read aloud by screen readers for blind and low-vision users
+- Displayed when the image fails to load
+- Indexed by search engines — affects SEO
+
+```html
+<!-- Descriptive: explains what the image communicates -->
+<img src="chart.png" alt="Bar chart showing sales growth of 42% from Q1 to Q4">
+
+<!-- Decorative: alt="" tells screen readers to skip it entirely -->
+<img src="decorative-swirl.png" alt="">
+
+<!-- WRONG: missing alt attribute entirely — fails WCAG accessibility -->
+<img src="photo.jpg">
+```
+
+- Empty `alt=""` is correct for purely decorative images
+- Missing `alt` is always wrong — it's an accessibility failure
+
+### `class` and `id`
+
+- These give elements names so CSS can target them — covered in depth in the next lesson
+- `class` — can be shared by multiple elements
+- `id` — unique; only one element per page can have a given ID
+
+```html
+<p class="intro-text">Welcome to the site.</p>
+<p class="intro-text">This paragraph also uses that class.</p>
+
+<section id="contact-form">
+  ...
+</section>
+```
+
+## Putting It Together
+
+- Multiple attributes can stack on a single element
+- Each attribute on its own line improves readability — the browser doesn't care about whitespace between attributes
+
+```html
+<div id="profile-card" class="card">
+  <img
+    src="avatar.jpg"
+    alt="Photo of Jordan Wells"
+    class="avatar"
+  >
+  <h2 class="profile-name">Jordan Wells</h2>
+  <p class="profile-bio">UX designer based in Seattle.</p>
+  <a href="https://jordanwells.design" class="profile-link">View Portfolio</a>
+</div>
+```
+
+<div class="lesson-note">
+  <h4>Designer Note</h4>
+  <ul>
+    <li>Alt text is one of the most skipped parts of web design — and one of the most important</li>
+    <li>Screen readers depend on it; search engines index it; failed images display only it</li>
+    <li>Writing good alt text is a design skill — it requires understanding what the image <em>communicates</em>, not just what it shows</li>
+  </ul>
+</div>

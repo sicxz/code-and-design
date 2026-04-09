@@ -3,7 +3,7 @@ import '../styles/styles.css';
 import Icon from '../components/Icon.astro';
 import { getCourseFromPathname } from '../lib/courseRegistry';
 
-const { title = 'code-and-design.org' } = Astro.props;
+const { title = 'code-and-design.org', workspaceMode = false } = Astro.props;
 const course = getCourseFromPathname(Astro.url.pathname);
 const footerYear = course?.term.match(/20\d{2}/)?.[0] ?? '2026';
 ---
@@ -33,9 +33,9 @@ const footerYear = course?.term.match(/20\d{2}/)?.[0] ?? '2026';
     <!-- CSS is automatcially injected by the import -->
 
 </head>
-<body data-course={course?.themeId ?? 'home'}>
+<body data-course={course?.themeId ?? 'home'} data-layout={workspaceMode ? 'workspace' : undefined}>
     <!-- Mobile Notice Banner -->
-    <div id="mobile-notice" class="mobile-notice">
+    <div id="mobile-notice" class="mobile-notice" style={workspaceMode ? 'display:none' : undefined}>
         <div class="mobile-notice-content">
             <span class="mobile-notice-text">
                 📱 Best viewed on desktop. Mobile navigation available at bottom.
@@ -48,7 +48,7 @@ const footerYear = course?.term.match(/20\d{2}/)?.[0] ?? '2026';
         </div>
     </div>
 
-    <header class="course-header">
+    {!workspaceMode && <header class="course-header">
         <div class="header-container">
             <div class="header-top">
                 <div class="course-title-group">
@@ -116,14 +116,13 @@ const footerYear = course?.term.match(/20\d{2}/)?.[0] ?? '2026';
                 )}
             </div>
         </div>
-    </header>
-
+    </header>}
 
     <!-- This is where page content goes -->
     <slot />
 
     <!-- Footer -->
-    <footer class="site-footer">
+    {!workspaceMode && <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-brand">
@@ -156,7 +155,7 @@ const footerYear = course?.term.match(/20\d{2}/)?.[0] ?? '2026';
                 <span>{course ? course.term : 'Shared course hub'}</span>
             </div>
         </div>
-    </footer>
+    </footer>}
 
     <script>
         // Quick Reference toggle functionality

@@ -1,0 +1,131 @@
+---
+title: "Addressing Your Elements"
+slug: classes-and-ids
+lesson: 5
+description: "Classes and IDs give your elements names — so CSS and links can find them precisely."
+---
+
+<div class="lesson-exercise-featured">
+  <h3>Exercise: Named Sections</h3>
+  <ul>
+    <li><strong>First:</strong> make sure you're signed into <a href="https://codepen.io" target="_blank">CodePen</a>, then name your pen <strong>HTML 101 — Addressing Your Elements</strong></li>
+    <li>Build an HTML page with at least 3 distinct sections — each with a unique <code>id</code></li>
+    <li>Give all sections at least one shared <code>class</code> (e.g. <code>page-section</code>)</li>
+    <li>Add a navigation at the top with anchor links (<code>href="#section-id"</code>) that jump to each section</li>
+    <li>No styles needed — just structure; prove you understand <code>id</code> vs <code>class</code> by using both correctly</li>
+    <li>Save the pen — you'll submit the link to Canvas when all 7 lessons are done</li>
+  </ul>
+</div>
+
+## The Problem: How Does CSS Know What to Style?
+
+- Without a way to address specific elements, CSS can only make sweeping rules: "all paragraphs look like this"
+- You want some paragraphs large, some small — one heading red, another blue
+- **Classes and IDs are the addressing system** that lets you say: *these specific elements get these specific styles*
+
+## `class` — Group Membership
+
+- A class is a label you give to elements that share something in common
+- Multiple elements can share the same class
+- One element can have multiple classes (space-separated)
+
+```html
+<article class="post-card">
+  <h3 class="post-title">The Rise of Brutalist Web Design</h3>
+  <p class="post-excerpt">An aesthetic movement that rejects decoration...</p>
+</article>
+
+<article class="post-card">
+  <h3 class="post-title">Typography Rules for Developers</h3>
+  <p class="post-excerpt">The five rules designers wish coders knew...</p>
+</article>
+```
+
+One CSS rule styles both cards:
+
+```css
+.post-card {
+  border: 1px solid #ccc;
+  padding: 1.5rem;
+  border-radius: 6px;
+}
+```
+
+**Multiple classes on one element** — separate them with spaces:
+
+```html
+<!-- This card is both a "post-card" and "featured" -->
+<article class="post-card featured">
+  <h3 class="post-title">Editor's Pick</h3>
+</article>
+```
+
+```css
+.featured {
+  border-color: #b7142e;
+  background: #fff5f6;
+}
+```
+
+## `id` — Unique Identity
+
+- An ID belongs to exactly one element on the page — think of it as a proper name, not a category
+- Use IDs for major landmarks and navigation anchors
+
+```html
+<header id="site-header">
+  <nav id="main-nav">
+    <a href="/">Home</a>
+    <a href="/work">Work</a>
+    <a href="/contact">Contact</a>
+  </nav>
+</header>
+
+<main id="page-content">
+  ...
+</main>
+
+<footer id="site-footer">
+  ...
+</footer>
+```
+
+IDs serve two purposes:
+- **CSS targeting** — `#site-header { ... }` selects that one element
+- **Anchor links** — `<a href="#contact">` jumps to the element with `id="contact"`
+
+## Choosing Between Class and ID
+
+| Use `class` when… | Use `id` when… |
+|---|---|
+| Multiple elements share a visual pattern | There's only ever one of this element per page |
+| You're defining a reusable component | You need a page anchor (`href="#section-name"`) |
+| You want to combine styles (card + featured + dark) | You need a guaranteed unique selector |
+
+- **Default rule**: use `class` for almost everything
+- Use `id` sparingly — mainly for navigation anchors and major page landmarks
+
+## The `<div>` Container
+
+- When no semantic element fits, use `<div>` to group elements for layout or styling
+- `<div>` has no visual appearance and no semantic meaning — it's a blank container
+- It gets its meaning from its class or ID
+
+```html
+<div class="grid-container">
+  <div class="grid-item">Item 1</div>
+  <div class="grid-item">Item 2</div>
+  <div class="grid-item">Item 3</div>
+</div>
+```
+
+Without classes, these divs are invisible and identical. With classes, they become a named, styleable system.
+
+<div class="lesson-note">
+  <h4>Designer Note</h4>
+  <ul>
+    <li>Class naming is a design system decision — names like <code>btn-primary</code>, <code>card</code>, and <code>text-muted</code> create a shared vocabulary for the whole team</li>
+    <li>Avoid names tied to appearance: <code>red-box</code> or <code>left-column</code> become misleading when the design changes</li>
+    <li>Name things by their <em>role</em>, not their current visual state</li>
+  </ul>
+</div>

@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Card from '../../../components/Card.astro';
+import SectionHeader from '../../../components/SectionHeader.astro';
+import Badge from '../../../components/Badge.astro';
+import LessonSidebar from '../../../components/LessonSidebar.astro';
+import Icon from '../../../components/Icon.astro';
+import { LESSONS, type LessonMeta } from './lessonRegistry';
+
+// Per-lesson MDX imports — Astro requires static import paths
+import HtmlSkeleton from './lessons/html-skeleton.mdx';
+import Nesting from './lessons/nesting.mdx';
+import Annotations from './lessons/annotations.mdx';
+import Attributes from './lessons/attributes.mdx';
+import ClassesAndIds from './lessons/classes-and-ids.mdx';
+import InlineStyles from './lessons/inline-styles.mdx';
+import BuildingBlocks from './lessons/building-blocks.mdx';
+
+export interface Props {
+  lesson: LessonMeta;
+}
+
+const { lesson } = Astro.props;
+
+const mdnRefs = lesson.slug === 'html-skeleton'
+  ? [
+      { label: 'DOCTYPE declaration', url: 'https://developer.mozilla.org/en-US/docs/Glossary/Doctype' },
+      { label: '<html>', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html' },
+      { label: '<head>', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head' },
+      { label: '<meta>', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta' },
+      { label: '<title>', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title' },
+      { label: '<body>', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body' },
+    ]
+  : undefined;
+
+const contentMap: Record<string, any> = {
+  'html-skeleton': HtmlSkeleton,
+  'nesting': Nesting,
+  'annotations': Annotations,
+  'attributes': Attributes,
+  'classes-and-ids': ClassesAndIds,
+  'inline-styles': InlineStyles,
+  'building-blocks': BuildingBlocks,
+};
+
+const Content = contentMap[lesson.slug];
+---
+
+<BaseLayout title={`${lesson.title} — HTML 101 — DESN368`} workspaceMode={true}>
+
+  <!-- Slim topbar: replaces full site header -->
+  <nav class="workspace-topbar">
+    <a href="/1/html-101/" class="workspace-back">
+      <Icon name="chevron-down" size={14} class="workspace-back-icon" />
+      HTML 101
+    </a>
+    <span class="workspace-title">{lesson.title}</span>
+    <button class="drawer-toggle" id="drawer-toggle" aria-label="Open navigation" aria-expanded="false">
+      <Icon name="menu" size={15} />
+      Navigation
+    </button>
+  </nav>
+
+  <!-- Two-panel workspace -->
+  <div class="lesson-workspace" id="lesson-workspace">
+
+    <!-- Left panel: scrollable tutorial content -->
+    <div class="lesson-panel-left" id="lesson-panel-left">
+      <Card variant="accent" class="card-enhanced">
+        <div class="color-bar color-bar-red"></div>
+        <SectionHeader level={1} icon="code" badge={{ text: `Lesson ${lesson.order} of 7`, variant: 'info' }}>
+          {lesson.title}
+        </SectionHeader>
+        <p style="color: var(--text-muted); margin: 0; font-size: 15px;">{lesson.description}</p>
+        <div style="margin-top: 1rem;">
+          <Badge variant="secondary">HTML 101</Badge>
+          &nbsp;
+          <Badge variant="info">DESN 368</Badge>
+        </div>
+      </Card>
+
+      <Card class="card-enhanced">
+        <div class="lesson-nav-bar">
+          {lesson.prev ? (
+            <a href={lesson.prev}>&larr; Previous</a>
+          ) : (
+            <a href="/1/html-101/">&larr; All Lessons</a>
+          )}
+          <span class="lesson-nav-spacer"></span>
+          {lesson.next ? (
+            <a href={lesson.next}>Next &rarr;</a>
+          ) : (
+            <a href="https://canvas.ewu.edu/courses/1907214" target="_blank">Submit Your Work &rarr;</a>
+          )}
+        </div>
+        <div class="lesson-content">
+          <Content />
+        </div>
+        <div class="lesson-nav-bar">
+          {lesson.prev ? (
+            <a href={lesson.prev}>&larr; Previous</a>
+          ) : (
+            <a href="/1/html-101/">&larr; All Lessons</a>
+          )}
+          <span class="lesson-nav-spacer"></span>
+          {lesson.next ? (
+            <a href={lesson.next}>Next &rarr;</a>
+          ) : (
+            <a href="https://canvas.ewu.edu/courses/1907214" target="_blank">Submit Your Work &rarr;</a>
+          )}
+        </div>
+      </Card>
+    </div>
+
+    <!-- Drag handle (temp — remove once width is decided) -->
+    <div class="panel-resizer" id="panel-resizer" title="Drag to resize">
+      <div class="panel-resizer-grip"></div>
+    </div>
+
+    <!-- Right panel: CodePen workspace -->
+    <div class="lesson-panel-right">
+      <iframe
+        src={lesson.codepenUrl}
+        title={`${lesson.title} — CodePen Exercise`}
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- Temp width display (remove with resizer when width is decided) -->
+  <div class="width-display" id="width-display" aria-hidden="true">550px</div>
+
+  <!-- Overlay -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <!-- Drawer (slides in from right) -->
+  <div class="lesson-drawer" id="lesson-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span>Navigation</span>
+      <button class="drawer-close" id="drawer-close" aria-label="Close navigation">
+        <Icon name="x" size={16} />
+      </button>
+    </div>
+    <div class="drawer-content">
+      <LessonSidebar lessons={LESSONS} activeSlug={lesson.slug} mdnRefs={mdnRefs} />
+    </div>
+  </div>
+
+  <script>
+    // ── Drawer ───────────────────────────────────────────────
+    const toggle = document.getElementById('drawer-toggle');
+    const drawer = document.getElementById('lesson-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const closeBtn = document.getElementById('drawer-close');
+
+    function openDrawer() {
+      drawer?.classList.add('open');
+      overlay?.classList.add('active');
+      toggle?.setAttribute('aria-expanded', 'true');
+      drawer?.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeDrawer() {
+      drawer?.classList.remove('open');
+      overlay?.classList.remove('active');
+      toggle?.setAttribute('aria-expanded', 'false');
+      drawer?.setAttribute('aria-hidden', 'true');
+    }
+
+    toggle?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    overlay?.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    // ── Panel resizer (temp) ─────────────────────────────────
+    const resizer = document.getElementById('panel-resizer');
+    const leftPanel = document.getElementById('lesson-panel-left');
+    const workspace = document.getElementById('lesson-workspace');
+    const widthDisplay = document.getElementById('width-display');
+
+    if (resizer && leftPanel && workspace) {
+      let isResizing = false;
+
+      resizer.addEventListener('mousedown', (e) => {
+        isResizing = true;
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+        widthDisplay?.classList.add('active');
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isResizing) return;
+        const rect = workspace.getBoundingClientRect();
+        const newWidth = Math.max(300, Math.min(900, e.clientX - rect.left));
+        leftPanel.style.width = newWidth + 'px';
+        if (widthDisplay) widthDisplay.textContent = Math.round(newWidth) + 'px';
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (!isResizing) return;
+        isResizing = false;
+        document.body.style.cursor = '';
+        document.body.style.userSelect = '';
+        setTimeout(() => widthDisplay?.classList.remove('active'), 2000);
+      });
+    }
+  </script>
+
+</BaseLayout>

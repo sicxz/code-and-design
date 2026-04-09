@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Card from '../../../components/Card.astro';
+import SectionHeader from '../../../components/SectionHeader.astro';
+import Badge from '../../../components/Badge.astro';
+import Alert from '../../../components/Alert.astro';
+import Icon from '../../../components/Icon.astro';
+import { LESSONS } from './lessonRegistry';
+---
+
+<BaseLayout title="HTML Structure 101 — DESN368">
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb-nav">
+    <div class="breadcrumb-container">
+      <div class="breadcrumb">
+        <a href="/1">Course Overview</a>
+        <span class="breadcrumb-separator">&gt;</span>
+        <span class="breadcrumb-current">HTML Structure 101</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="course-content">
+    <div class="main-content fade-in">
+      <!-- Series Header -->
+      <Card variant="accent" class="card-enhanced">
+        <div class="color-bar color-bar-red"></div>
+        <SectionHeader level={1} icon="code" badge={{ text: '7 Lessons', variant: 'info' }}>
+          HTML Structure 101
+        </SectionHeader>
+        <p style="font-size: 1.0625rem; line-height: 1.7; margin: 0 0 1rem 0;">
+          Before you can style a page, you need to build one. This series covers the seven structural concepts every HTML author needs to know — from the required document skeleton down to the building blocks you'll use for every layout you ever create.
+        </p>
+        <p style="font-size: 0.9375rem; color: var(--text-muted); margin: 0;">
+          Each lesson has a concept explanation, one or more code examples, and a short CodePen exercise. Work through them in order, then submit your CodePen links to the Canvas assignment.
+        </p>
+        <div style="margin-top: 1.25rem;">
+          <Badge variant="secondary">HTML 101</Badge>
+          &nbsp;
+          <Badge variant="info">DESN 368 · Spring 2026</Badge>
+        </div>
+      </Card>
+
+      <!-- CodePen Sign-In Notice -->
+      <Card variant="accent-subtle" class="card-enhanced">
+        <Alert icon="info">
+          <strong>Before you start:</strong> Make sure you're signed into <a href="https://codepen.io" target="_blank">CodePen</a> with your account. You'll need to be logged in to save your work and submit links to Canvas. If you don't have an account, create a free one at <a href="https://codepen.io/signup" target="_blank">codepen.io/signup</a>.
+        </Alert>
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <!-- Lesson List -->
+      <Card class="card-enhanced">
+        <SectionHeader level={2} icon="book">
+          The 7 Lessons
+        </SectionHeader>
+
+        <div class="week-list" style="margin-top: 1rem;">
+          {LESSONS.map((lesson) => (
+            <div class="week-item">
+              <div>
+                <h3>
+                  <span class="status-dot status-available"></span>
+                  <a href={`/1/html-101/${lesson.slug}`}>
+                    Lesson {lesson.order}: {lesson.title}
+                  </a>
+                </h3>
+                <p>{lesson.description}</p>
+              </div>
+              <a href={`/1/html-101/${lesson.slug}`} class="btn btn-secondary" style="white-space: nowrap; font-size: 13px;">
+                Start →
+              </a>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      <div class="section-divider"></div>
+
+      <!-- Submission Note -->
+      <Card variant="accent-subtle" class="card-enhanced">
+        <Alert icon="info">
+          <strong>Submission:</strong> You don't submit after each lesson. Work through all 7 lessons in CodePen, then paste your CodePen URLs into the Canvas assignment when you're done.
+        </Alert>
+        <div style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+          <a href={LESSONS[0] ? `/1/html-101/${LESSONS[0].slug}` : '/1/html-101/'} class="btn btn-start">
+            <Icon name="play" size={16} class="btn-icon" />
+            Start Lesson 1
+          </a>
+          <a href="https://canvas.ewu.edu/courses/1907214" class="btn btn-secondary" target="_blank">
+            View Canvas Assignment
+          </a>
+        </div>
+      </Card>
+    </div>
+  </main>
+</BaseLayout>

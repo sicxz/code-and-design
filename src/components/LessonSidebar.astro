@@ -1,0 +1,75 @@
+---
+import type { LessonMeta } from '../course-pages/course-1/html-101/lessonRegistry';
+import Icon from './Icon.astro';
+
+export interface Props {
+  lessons: LessonMeta[];
+  activeSlug: string;
+  mdnRefs?: Array<{ label: string; url: string }>;
+}
+
+const { lessons, activeSlug, mdnRefs } = Astro.props;
+---
+
+<aside class="sidebar">
+  <section class="card card-enhanced">
+    <h3>
+      <Icon name="book" size={18} class="section-icon" />
+      HTML Structure 101
+    </h3>
+    <nav aria-label="Lesson navigation">
+      <ol class="lesson-nav-list">
+        {lessons.map((lesson) => {
+          const isActive = lesson.slug === activeSlug;
+          return (
+            <li class={`lesson-nav-item${isActive ? ' lesson-nav-active' : ''}`}>
+              <a
+                href={`/1/html-101/${lesson.slug}`}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                <span class="lesson-nav-number">{lesson.order}</span>
+                <span class="lesson-nav-title">{lesson.title}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  </section>
+
+  <section class="card card-enhanced">
+    <h3>
+      <Icon name="link" size={18} class="section-icon" />
+      Quick Links
+    </h3>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <a href="/1/html-101/" style="font-size: 14px;">← All Lessons</a>
+      <a href="/1/html-101/cheatsheet" style="font-size: 14px;">HTML Cheatsheet</a>
+      <a href="https://codepen.io/editor/pen?template=23ae8cdfb3e1bc9caaca1ed624990289" target="_blank" style="font-size: 14px;">Open CodePen Starter</a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" style="font-size: 14px;">MDN HTML Reference</a>
+      <a href="https://validator.w3.org/" target="_blank" style="font-size: 14px;">W3C Validator</a>
+    </div>
+  </section>
+
+  {mdnRefs && mdnRefs.length > 0 && (
+    <section class="card card-enhanced">
+      <h3>
+        <Icon name="book" size={18} class="section-icon" />
+        References
+      </h3>
+      <div class="sidebar-mdn-refs-list">
+        {mdnRefs.map(ref => (
+          <a href={ref.url} target="_blank" rel="noopener" class="sidebar-mdn-refs-link">{ref.label}</a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="card card-accent">
+    <h3>
+      <Icon name="zap" size={18} class="section-icon" />
+      Exercise Tip
+    </h3>
+    <p style="font-size: 14px; line-height: 1.6;">Use CodePen for all exercises. Save your work as you go — you'll submit selected pens to Canvas when you finish all 7 lessons.</p>
+  </section>
+</aside>

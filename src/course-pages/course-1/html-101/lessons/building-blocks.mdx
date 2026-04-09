@@ -1,0 +1,128 @@
+---
+title: "Building Blocks"
+slug: building-blocks
+lesson: 7
+description: "The div element is a generic container with no meaning of its own — until you give it one."
+---
+
+<div class="lesson-exercise-featured">
+  <h3>Exercise: Personal Homepage Layout</h3>
+  <ul>
+    <li><strong>First:</strong> make sure you're signed into <a href="https://codepen.io" target="_blank">CodePen</a>, then name your pen <strong>HTML 101 — Building Blocks</strong></li>
+    <li>Build the structure of a simple personal homepage using only <code>&lt;div&gt;</code> elements (no <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, etc. — we'll add those later)</li>
+    <li>Must include: a header div with your name + a nav with at least 2 links; a hero div with a headline and short description; a content div with at least 2 project cards (each in their own div); a footer div with a copyright line</li>
+    <li>Give every major div a unique <code>id</code></li>
+    <li>Give repeated elements (like the cards) a shared <code>class</code> — no styling needed, just structure</li>
+    <li>Save the pen — you'll submit the link to Canvas when all 7 lessons are done</li>
+  </ul>
+</div>
+
+## The Blank Container
+
+Every previous lesson introduced elements with built-in meaning:
+- `<h1>` is a heading — browsers display it large and bold
+- `<p>` is a paragraph
+- `<a>` is a link
+- `<img>` is an image
+
+These are **semantic elements** — the browser and screen readers understand what they are without explanation.
+
+**`<div>` is different:**
+- A blank container with no label, no default style, no implied meaning
+- By itself it does nothing visible
+- With a class or ID, it becomes whatever you name it
+
+```html
+<!-- A div alone does nothing visible -->
+<div></div>
+
+<!-- A div with a class becomes a named structure -->
+<div class="site-header">
+  <a href="/" class="site-logo">Studio Name</a>
+  <nav class="site-nav">
+    <a href="/work">Work</a>
+    <a href="/about">About</a>
+  </nav>
+</div>
+```
+
+## Using `<div>` for Layout
+
+- Real page layouts require grouping elements together — header, sidebar, content area, footer
+- `<div>` is the fundamental grouping tool for visual structure
+- Semantic elements (`<header>`, `<main>`, `<aside>`, `<footer>`) are preferred for major landmarks — but `<div>` is still essential inside those regions
+
+A basic page layout built from `<div>` elements:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Home — Maya Chen Design</title>
+  </head>
+  <body>
+
+    <div id="page-header" class="page-region">
+      <div class="header-inner">
+        <span class="site-name">Maya Chen Design</span>
+        <div id="main-nav" class="nav-links">
+          <a href="/">Home</a>
+          <a href="/work">Work</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-hero" class="page-region hero">
+      <h1>Visual Design & Brand Strategy</h1>
+      <p>I help small companies communicate with clarity.</p>
+    </div>
+
+    <div id="page-content" class="page-region">
+      <div class="project-grid">
+        <div class="project-card">
+          <h2>Saltline Coffee</h2>
+          <p>Brand identity and packaging system.</p>
+        </div>
+        <div class="project-card">
+          <h2>Vessel Architecture</h2>
+          <p>Website redesign and visual language.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-footer" class="page-region">
+      <p>&copy; 2026 Maya Chen. All rights reserved.</p>
+    </div>
+
+  </body>
+</html>
+```
+
+- Every section has an `id` (unique landmark) and a `class` (shared styles)
+- The structure reads top to bottom: header → hero → content → footer
+
+## Semantic HTML vs. `<div>`
+
+`<div>` does the job — but HTML5 introduced elements that carry meaning on their own:
+
+| Instead of | Use | Why |
+|---|---|---|
+| `<div id="header">` | `<header>` | Screen readers recognize it as the page header |
+| `<div id="main-nav">` | `<nav>` | Identified as navigation for keyboard users |
+| `<div id="page-content">` | `<main>` | Marks the primary content region |
+| `<div id="sidebar">` | `<aside>` | Secondary content, related to the main |
+| `<div id="footer">` | `<footer>` | Page or section footer |
+
+- Semantic elements are essentially named `<div>` elements with built-in roles
+- Understanding `<div>` first helps you see *why* those semantic elements exist
+
+<div class="lesson-note">
+  <h4>Designer Note</h4>
+  <ul>
+    <li>A well-structured HTML document mirrors a well-organized design</li>
+    <li>If you look at your markup and can't tell which parts are the header, content, and footer without reading the class names — the structure needs work</li>
+    <li>Good HTML is self-documenting: the code should communicate the page's architecture to anyone who reads it</li>
+  </ul>
+</div>

@@ -1,0 +1,113 @@
+---
+title: "Nesting & Hierarchy"
+slug: nesting
+lesson: 2
+description: "HTML elements live inside other elements. Learn how parent-child relationships shape the DOM."
+---
+
+<div class="lesson-exercise-featured">
+  <h3>Exercise: Nested Outline</h3>
+  <ul>
+    <li><strong>First:</strong> make sure you're signed into <a href="https://codepen.io" target="_blank">CodePen</a>, then name your pen <strong>HTML 101 — Nesting &amp; Hierarchy</strong></li>
+    <li>Build a two-level HTML outline — choose a topic with at least 3 main items, each with 2–3 sub-items</li>
+    <li>Use <code>&lt;ul&gt;</code> with a nested <code>&lt;ul&gt;</code> inside each <code>&lt;li&gt;</code></li>
+    <li>Indent your code to clearly show which elements are children of which parents</li>
+    <li>Topic ideas: a music playlist with albums + tracks, a recipe with sections + steps, a trip itinerary with days + activities</li>
+    <li>Save the pen — you'll submit the link to Canvas when all 7 lessons are done</li>
+  </ul>
+</div>
+
+## Everything Is Inside Something
+
+- Almost every HTML element either contains other elements — or is contained by them
+- This is **nesting**: how HTML creates structure and hierarchy
+- Think of folders on your computer — a folder holds files and other folders, and those hold more
+- Every element has a **parent** (the element it lives inside) and may have **children** (elements nested inside it)
+
+Common parent-child relationships:
+- A `<ul>` contains `<li>` elements
+- A `<div>` contains paragraphs and headings
+- A `<nav>` contains links
+
+## The DOM Tree
+
+- When a browser reads your HTML, it builds an internal model: the **Document Object Model (DOM)**
+- The DOM is a tree — `<html>` is the root, `<head>` and `<body>` are its two main branches
+
+```html
+<html>
+  <body>
+    <section>
+      <h1>Jazz Playlist</h1>
+      <ul>
+        <li>Kind of Blue — Miles Davis</li>
+        <li>A Love Supreme — John Coltrane</li>
+        <li>Maiden Voyage — Herbie Hancock</li>
+      </ul>
+    </section>
+  </body>
+</html>
+```
+
+That structure as a tree:
+- `html`
+  - `body`
+    - `section`
+      - `h1`
+      - `ul`
+        - `li` (×3)
+
+Key vocabulary:
+- **Child** — an element directly inside another element
+- **Sibling** — an element at the same level, sharing the same parent
+- Above: `<h1>` and `<ul>` are siblings — both are children of `<section>`
+
+## Rules of Nesting
+
+**Open before you close** — tags must nest properly; never close a parent before closing its children:
+
+```html
+<!-- Wrong: p closes before strong -->
+<p>The concert was <strong>incredible</p></strong>
+
+<!-- Right: strong closes inside p -->
+<p>The concert was <strong>incredible</strong>.</p>
+```
+
+**Indent to show structure** — browsers ignore whitespace, but humans depend on it:
+- Use 2 or 4 spaces consistently
+- This is the single most important habit for readable HTML
+
+```html
+<!-- Hard to read — no indentation -->
+<article><h2>The Record Store</h2><p>Vinyl only.</p><ul><li>Jazz</li><li>Soul</li></ul></article>
+
+<!-- Easy to read — proper indentation -->
+<article>
+  <h2>The Record Store</h2>
+  <p>Vinyl only. No streaming.</p>
+  <ul>
+    <li>Jazz</li>
+    <li>Soul</li>
+  </ul>
+</article>
+```
+
+**Siblings example** — three `<a>` elements, all children of `<nav>`:
+
+```html
+<nav>
+  <a href="/">Home</a>       <!-- child of nav, sibling of the other two -->
+  <a href="/work">Work</a>   <!-- child of nav, sibling of the other two -->
+  <a href="/about">About</a> <!-- child of nav, sibling of the other two -->
+</nav>
+```
+
+<div class="lesson-note">
+  <h4>Designer Note</h4>
+  <ul>
+    <li>Visual hierarchy in design and structural hierarchy in HTML reinforce each other</li>
+    <li>A heading that's visually "inside" a section should be structurally inside it too</li>
+    <li>When your HTML structure matches your design hierarchy, the code is easier to maintain, style, and hand off</li>
+  </ul>
+</div>

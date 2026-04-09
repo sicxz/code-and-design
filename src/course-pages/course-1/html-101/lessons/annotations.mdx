@@ -1,0 +1,109 @@
+---
+title: "Annotating Your Code"
+slug: annotations
+lesson: 3
+description: "HTML comments let you leave notes in your source code that browsers ignore."
+---
+
+<div class="lesson-exercise-featured">
+  <h3>Exercise: Annotate a File</h3>
+  <ul>
+    <li><strong>First:</strong> make sure you're signed into <a href="https://codepen.io" target="_blank">CodePen</a>, then name your pen <strong>HTML 101 — Annotating Your Code</strong></li>
+    <li>Take any HTML file you've written — from a previous exercise or from class — and paste it into CodePen</li>
+    <li>Add a comment header above every major section (nav, hero, footer, etc.)</li>
+    <li>Add at least two inline comments explaining a specific element or attribute choice</li>
+    <li>Goal: someone new to the file should understand its structure from the comments alone, without reading every tag</li>
+    <li>Save the pen — you'll submit the link to Canvas when all 7 lessons are done</li>
+  </ul>
+</div>
+
+## Why Comments Matter
+
+- You'll write a piece of HTML once — you'll read it dozens of times
+- Comments are notes to your future self and anyone who inherits your code
+- They're invisible to users but visible in the page source
+- When you return to a project weeks later, good comments save significant debugging time
+
+## The Comment Syntax
+
+- Comments start with `<!--` and end with `-->`
+- Everything between those delimiters is ignored by the browser
+
+```html
+<!-- This is a single-line comment -->
+
+<!--
+  This is a multi-line comment.
+  It can span as many lines as needed.
+  Browsers skip all of it.
+-->
+```
+
+- Comments can appear anywhere in your HTML — inside `<head>`, inside `<body>`, between elements
+
+## What Comments Are For
+
+**Section labels** — in a long file, comments act as headers so you can scan quickly:
+
+```html
+<!-- ============================
+     NAVIGATION
+     ============================ -->
+<nav>
+  <a href="/">Home</a>
+  <a href="/work">Work</a>
+</nav>
+
+<!-- ============================
+     HERO SECTION
+     ============================ -->
+<section id="hero">
+  <h1>Portfolio</h1>
+</section>
+
+<!-- ============================
+     PROJECT GRID
+     ============================ -->
+<section id="projects">
+  ...
+</section>
+```
+
+**Explaining non-obvious decisions** — when something needs context:
+
+```html
+<!-- Empty alt because this image is decorative, not content -->
+<img src="divider-wave.svg" alt="">
+
+<!-- tabindex="-1" removes this from keyboard tab order intentionally -->
+<div class="modal" tabindex="-1">
+  ...
+</div>
+```
+
+**Temporarily disabling code** — hide a block without deleting it:
+
+```html
+<!-- 
+  <section id="promo-banner">
+    <p>Summer sale — 30% off!</p>
+  </section>
+-->
+```
+
+## What Comments Are Not For
+
+- **Not private** — anyone can view your page source; never put passwords, API keys, or sensitive notes in comments
+- **Not essays** — keep them short and useful
+  - `<!-- Navigation section -->` ✓
+  - `<!-- This is the navigation section which contains the main nav links for the website -->` ✗
+- **Not a substitute for clear code** — if your HTML is so confusing it needs comments everywhere, simplify the structure first
+
+<div class="lesson-note">
+  <h4>Designer Note</h4>
+  <ul>
+    <li>In collaborative projects, commenting your HTML is a form of documentation</li>
+    <li>A developer who inherits your code shouldn't have to reverse-engineer its structure</li>
+    <li>Well-placed section labels are considered professional practice — they're a sign you wrote the code for the next person, not just for yourself</li>
+  </ul>
+</div>

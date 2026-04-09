@@ -1,0 +1,157 @@
+---
+title: "The HTML Skeleton"
+slug: html-skeleton
+lesson: 1
+description: "Every web page starts with the same bones. Learn the required document structure that browsers expect."
+---
+
+<div class="lesson-exercise-featured">
+  <h3>Exercise: Your First Document</h3>
+  <ul>
+    <li><strong>First:</strong> make sure you're signed into <a href="https://codepen.io" target="_blank">CodePen</a>, then name your pen <strong>HTML 101 — The HTML Skeleton</strong></li>
+    <li>Write a complete HTML document boilerplate using the infromation from the lesson below — doctype, html, head, body, title, one heading, one paragraph</li>
+    <li>Give the page a <strong>specific, meaningful title</strong> — not "My Page"</li>
+    <li>Save the pen — you'll submit the link to Canvas when all 7 lessons are done</li>
+  </ul>
+</div>
+
+## What Every Page Has in Common
+
+- Open any website's source code — news, portfolio, banking app — same structure at the top
+- Not the same content, not the same design — the same **skeleton**
+- Browsers expect this structure to be present and in the right order
+
+<div class="lesson-note">
+  <h4>Also called: Boilerplate</h4>
+  <ul>
+    <li><strong>Boilerplate</strong> = standard code you copy as a starting point for every new project, with little or no modification</li>
+    <li>The term comes from printing — boilerplate plates were reused blocks of standard text</li>
+    <li>In web dev, "HTML boilerplate" means this exact skeleton — you'll type or paste it at the start of every new page</li>
+    <li>Many editors (VS Code, <a href="https://codepen.io/" target="_blank" rel="noopener">CodePen</a>) generate it automatically when you type <code>!</code> and hit Tab</li>
+  </ul>
+</div>
+
+## The Required Structure
+
+Every line, annotated:
+
+<div class="annotated-skeleton" role="table" aria-label="HTML skeleton structure breakdown">
+  <div class="annotated-code" role="cell">{'<!DOCTYPE html>'}</div>
+  <div class="annotated-label" role="cell">Tells the browser: this is HTML5</div>
+
+  <div class="annotated-code" role="cell">{'<html lang="en">'}</div>
+  <div class="annotated-label" role="cell"><code>lang</code> attribute sets screen reader language</div>
+
+  <div class="annotated-code i1" role="cell">{'<head>'}</div>
+  <div class="annotated-label" role="cell">Metadata container — invisible to users</div>
+
+  <div class="annotated-code i2" role="cell">{'<meta charset="UTF-8">'}</div>
+  <div class="annotated-label" role="cell">Character encoding: supports every language</div>
+
+  <div class="annotated-code i2" role="cell">{'<meta name="viewport" …>'}</div>
+  <div class="annotated-label" role="cell">Prevents mobile zoom-out on phones</div>
+
+  <div class="annotated-code i2" role="cell">{'<title>My First Page</title>'}</div>
+  <div class="annotated-label" role="cell">Browser tab · bookmarks · search results</div>
+
+  <div class="annotated-code i1 dim" role="cell">{'</head>'}</div>
+  <div class="annotated-label dim" role="cell">structural close</div>
+
+  <div class="annotated-code i1" role="cell">{'<body> … </body>'}</div>
+  <div class="annotated-label" role="cell">Everything visible in the browser window</div>
+
+  <div class="annotated-code dim" role="cell">{'</html>'}</div>
+  <div class="annotated-label dim" role="cell">structural close</div>
+</div>
+
+## Quick Reference
+
+<table class="element-ref-table">
+  <colgroup>
+    <col width="17%" />
+    <col width="48%" />
+    <col width="13%" />
+    <col width="22%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>Purpose</th>
+      <th>Required</th>
+      <th>MDN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>{'<!DOCTYPE>'}</code></td>
+      <td>Declares HTML5 — must be first, or browsers enter quirks mode</td>
+      <td><span class="badge-required-yes">Yes</span></td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Glossary/Doctype" target="_blank" rel="noopener">MDN →</a></td>
+    </tr>
+    <tr>
+      <td><code>{'<html>'}</code></td>
+      <td>Root element; <code>lang</code> attribute enables correct screen reader pronunciation</td>
+      <td><span class="badge-required-yes">Yes</span></td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html" target="_blank" rel="noopener">MDN →</a></td>
+    </tr>
+    <tr>
+      <td><code>{'<head>'}</code></td>
+      <td>Container for metadata — invisible to users, read by browsers and search engines</td>
+      <td><span class="badge-required-yes">Yes</span></td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head" target="_blank" rel="noopener">MDN →</a></td>
+    </tr>
+    <tr>
+      <td><code>{'<meta>'}</code></td>
+      <td>Charset (UTF-8 supports every language) and viewport (prevents mobile zoom-out)</td>
+      <td><span class="badge-required-yes">Yes</span></td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta" target="_blank" rel="noopener">MDN →</a></td>
+    </tr>
+    <tr>
+      <td><code>{'<title>'}</code></td>
+      <td>Page name in browser tab, bookmarks, and search results — read aloud by screen readers first</td>
+      <td><span class="badge-required-yes">Yes</span></td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title" target="_blank" rel="noopener">MDN →</a></td>
+    </tr>
+    <tr>
+      <td><code>{'<body>'}</code></td>
+      <td>Everything visible in the browser — headings, paragraphs, images, forms</td>
+      <td><span class="badge-required-yes">Yes</span></td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body" target="_blank" rel="noopener">MDN →</a></td>
+    </tr>
+  </tbody>
+</table>
+
+## A More Complete Example
+
+Here's the skeleton with real content added — notice the hierarchy stays intact:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramen Recipe — Cooking Lab</title>
+  </head>
+  <body>
+    <h1>Classic Shoyu Ramen</h1>
+    <p>A rich, clear broth with soy sauce and toppings.</p>
+
+    <h2>Ingredients</h2>
+    <ul>
+      <li>4 cups chicken stock</li>
+      <li>2 tbsp soy sauce</li>
+      <li>2 portions ramen noodles</li>
+    </ul>
+  </body>
+</html>
+```
+
+<div class="lesson-note">
+  <h4>Designer Note</h4>
+  <ul>
+    <li>The skeleton is invisible to users — but it's critical infrastructure</li>
+    <li>Missing doctype or charset breaks silently — correct in one browser, garbled in another</li>
+    <li>Getting this right is the professional baseline, not optional</li>
+  </ul>
+</div>
