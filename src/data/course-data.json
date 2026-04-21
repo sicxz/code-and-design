@@ -1259,12 +1259,14 @@
     {
       "name": "Project 1: Signal + State",
       "path": "curriculum/projects/project-1-signal-and-state/project-1-brief.md",
-      "checklist": "curriculum/projects/project-1-signal-and-state/checklist.md"
+      "checklist": "curriculum/projects/project-1-signal-and-state/checklist.md",
+      "contentDir": "src/content/projects/project-1-signal-and-state"
     },
     {
       "name": "Project 2: Lost in the Scroll",
       "path": "curriculum/projects/project-2-lost-in-the-scroll/project-2-brief.md",
-      "checklist": "curriculum/projects/project-2-lost-in-the-scroll/project-2-student-hub/docs/02-project-completion-checklist.md"
+      "checklist": "curriculum/projects/project-2-lost-in-the-scroll/project-2-student-hub/docs/02-project-completion-checklist.md",
+      "contentDir": "src/content/projects/project-2-lost-in-the-scroll"
     }
   ]
 }

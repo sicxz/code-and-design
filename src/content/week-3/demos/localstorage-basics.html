@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>localStorage Basics Demo</title>
+  <style>
+    :root {
+      --color-surface: #ffffff;
+      --color-text: #1a1a1a;
+      --color-accent: #0066cc;
+      --color-surface-alt: #f5f5f5;
+      --color-border: #e0e0e0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--color-surface);
+      color: var(--color-text);
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .demo-section {
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .demo-section h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button.secondary {
+      background: var(--color-text);
+    }
+
+    button.danger {
+      background: #dc3545;
+    }
+
+    .output {
+      background: #1a1a1a;
+      color: #00ff00;
+      font-family: 'Monaco', 'Consolas', monospace;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      white-space: pre-wrap;
+      font-size: 0.85rem;
+    }
+
+    .explanation {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    code {
+      background: var(--color-surface-alt);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>localStorage Basics</h1>
+
+  <p>This demo shows how localStorage saves data in the browser. Try it, then refresh the page — your data is still there!</p>
+
+  <div class="demo-section">
+    <h2>1. Save Something</h2>
+    <label for="saveKey">Key:</label>
+    <input type="text" id="saveKey" value="username" placeholder="Key name">
+    <label for="saveValue">Value:</label>
+    <input type="text" id="saveValue" placeholder="Enter a value">
+    <button id="saveBtn">Save to localStorage</button>
+    <div id="saveOutput" class="output"></div>
+  </div>
+
+  <div class="demo-section">
+    <h2>2. Retrieve Something</h2>
+    <label for="getKey">Key to retrieve:</label>
+    <input type="text" id="getKey" value="username" placeholder="Key name">
+    <button id="getBtn">Get from localStorage</button>
+    <div id="getOutput" class="output"></div>
+  </div>
+
+  <div class="demo-section">
+    <h2>3. See Everything</h2>
+    <button id="showAllBtn">Show all localStorage</button>
+    <button id="clearBtn" class="danger">Clear all</button>
+    <div id="allOutput" class="output"></div>
+  </div>
+
+  <div class="explanation">
+    <strong>How it works:</strong><br>
+    <code>localStorage.setItem('key', 'value')</code> — saves data<br>
+    <code>localStorage.getItem('key')</code> — retrieves data<br>
+    <code>localStorage.removeItem('key')</code> — deletes one item<br>
+    <code>localStorage.clear()</code> — deletes everything
+  </div>
+
+  <div class="explanation">
+    <strong>DevTools tip:</strong> Open DevTools → Application tab → Local Storage to see your saved data!
+  </div>
+
+  <script>
+    // DOM elements
+    const saveKey = document.getElementById('saveKey');
+    const saveValue = document.getElementById('saveValue');
+    const saveBtn = document.getElementById('saveBtn');
+    const saveOutput = document.getElementById('saveOutput');
+
+    const getKey = document.getElementById('getKey');
+    const getBtn = document.getElementById('getBtn');
+    const getOutput = document.getElementById('getOutput');
+
+    const showAllBtn = document.getElementById('showAllBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const allOutput = document.getElementById('allOutput');
+
+    // Save to localStorage
+    saveBtn.addEventListener('click', () => {
+      const key = saveKey.value.trim();
+      const value = saveValue.value;
+
+      if (!key) {
+        saveOutput.textContent = '// Error: Key cannot be empty';
+        return;
+      }
+
+      localStorage.setItem(key, value);
+      saveOutput.textContent = `// Saved!\nlocalStorage.setItem('${key}', '${value}');\n// Refresh the page — it's still there!`;
+    });
+
+    // Get from localStorage
+    getBtn.addEventListener('click', () => {
+      const key = getKey.value.trim();
+      const value = localStorage.getItem(key);
+
+      if (value === null) {
+        getOutput.textContent = `// localStorage.getItem('${key}')\n// Result: null (key not found)`;
+      } else {
+        getOutput.textContent = `// localStorage.getItem('${key}')\n// Result: '${value}'`;
+      }
+    });
+
+    // Show all localStorage
+    showAllBtn.addEventListener('click', () => {
+      if (localStorage.length === 0) {
+        allOutput.textContent = '// localStorage is empty';
+        return;
+      }
+
+      let output = '// All stored items:\n';
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        output += `'${key}': '${value}'\n`;
+      }
+      allOutput.textContent = output;
+    });
+
+    // Clear localStorage
+    clearBtn.addEventListener('click', () => {
+      localStorage.clear();
+      allOutput.textContent = '// localStorage.clear()\n// All items deleted!';
+    });
+
+    // Show initial state on load
+    if (localStorage.length > 0) {
+      allOutput.textContent = `// Page loaded. Found ${localStorage.length} saved item(s).\n// Click "Show all" to see them.`;
+    } else {
+      allOutput.textContent = '// Page loaded. localStorage is empty.';
+    }
+  </script>
+</body>
+</html>

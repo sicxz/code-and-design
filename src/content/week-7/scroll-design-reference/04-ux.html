@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>04 UX + Accessibility — Scroll-Driven Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ─── VESTIBULAR BOX ─── */
+.vestibular-box {
+  background: var(--ink); color: var(--paper);
+  padding: 3rem 4rem; margin: 2rem 0;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center;
+}
+.vest-stat {
+  text-align: center;
+}
+.vest-num {
+  font-family: 'Libre Baskerville', serif; font-size: 4rem; font-weight: 700;
+  color: var(--accent); line-height: 1;
+}
+.vest-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: .6rem;
+  letter-spacing: .12em; text-transform: uppercase; color: #6a6258;
+  margin-top: .5rem;
+}
+.vest-content h3 { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; color: var(--paper); margin-bottom: .75rem; }
+.vest-content p { font-size: .875rem; color: #8a8070; line-height: 1.75; }
+
+/* ─── PREFERS-REDUCED-MOTION LIVE DEMO ─── */
+.prm-demo {
+  background: var(--warm); border: 1px solid var(--rule); padding: 2rem; margin: 1.5rem 0;
+}
+.prm-demo-header {
+  font-family: 'IBM Plex Mono', monospace; font-size: .6rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid var(--rule);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.prm-demo-status {
+  font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
+  padding: .2rem .6rem; border: 1px solid var(--rule);
+}
+.prm-demo-status.reduced { border-color: var(--accent); color: var(--accent); }
+.prm-demo-status.normal { border-color: var(--green); color: var(--green); }
+.prm-box {
+  width: 60px; height: 60px; background: var(--accent);
+  animation: wiggle 1.5s ease-in-out infinite;
+}
+@keyframes wiggle {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(40px) rotate(10deg); }
+  75% { transform: translateX(-20px) rotate(-5deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prm-box {
+    animation: none;
+  }
+  .prm-demo-status.normal { display: none; }
+  .prm-demo-status.reduced { display: block !important; }
+}
+.prm-demo-note { font-size: .8rem; color: var(--muted); margin-top: 1rem; line-height: 1.6; }
+
+/* ─── CHECKLIST ─── */
+.checklist {
+  margin: 1.5rem 0;
+  border: 1px solid var(--rule);
+}
+.check-item {
+  display: grid; grid-template-columns: 2.5rem 1fr;
+  padding: 1rem 1.5rem; border-bottom: 1px solid var(--rule); gap: .5rem;
+  align-items: start;
+}
+.check-item:last-child { border-bottom: none; }
+.check-box {
+  width: 18px; height: 18px; border: 1px solid var(--rule);
+  background: var(--paper); margin-top: .15rem;
+  flex-shrink: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; transition: background .15s, border-color .15s;
+}
+.check-box.checked { background: var(--green); border-color: var(--green); color: white; }
+.check-label { font-size: .9rem; color: var(--ink); line-height: 1.5; }
+.check-label span { display: block; font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+
+/* ─── PERFORMANCE PROPERTIES ─── */
+.perf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+.perf-cell { padding: 1.5rem; }
+.perf-cell.good { background: #f0faf4; border: 1px solid #c0e8d0; }
+.perf-cell.bad { background: #fdf4f2; border: 1px solid #f0c0b8; }
+.perf-head {
+  font-family: 'IBM Plex Mono', monospace; font-size: .6rem;
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: .75rem;
+}
+.perf-cell.good .perf-head { color: var(--green); }
+.perf-cell.bad .perf-head { color: var(--accent); }
+.perf-props { display: flex; flex-direction: column; gap: .4rem; }
+.perf-prop { font-family: 'IBM Plex Mono', monospace; font-size: .8rem; color: var(--ink); }
+.perf-cell.bad .perf-prop { text-decoration: line-through; color: var(--muted); }
+.perf-note { font-size: .8rem; color: var(--muted); margin-top: .75rem; line-height: 1.5; }
+
+/* ─── QUESTIONS GRID ─── */
+.audit-questions { display: flex; flex-direction: column; gap: 0; margin: 2rem 0; border: 1px solid var(--rule); }
+.aq-item {
+  display: grid; grid-template-columns: auto 1fr;
+  padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--rule); gap: 1.5rem;
+  align-items: center;
+}
+.aq-item:last-child { border-bottom: none; }
+.aq-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
+  letter-spacing: .1em; color: var(--muted); min-width: 1.5rem;
+}
+.aq-q { font-size: .9rem; color: var(--ink); line-height: 1.5; }
+.aq-q em { color: var(--accent); font-style: normal; font-weight: 500; }
+
+@media(max-width:768px){
+  .vestibular-box { grid-template-columns: 1fr; }
+  .perf-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="page-progress"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Scroll·<span>Driven</span>·Design</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="01-foundations.html">01 Foundations</a></li>
+    <li><a href="02-css-api.html">02 CSS API</a></li>
+    <li><a href="03-gsap.html">03 GSAP</a></li>
+    <li><a href="04-ux.html" class="active">04 UX + A11y</a></li>
+    <li><a href="05-reference.html">Reference</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="page-num">04</div>
+  <div>
+    <p class="page-eyebrow">UX + Accessibility</p>
+    <h1>Motion that harms<br>is never a <em>design choice.</em></h1>
+    <p class="page-intro">The technical capability to animate doesn't mean you should. Scroll-driven animation carries real responsibility: vestibular disorders, performance costs, narrative interference. Here's how to handle all three.</p>
+  </div>
+</header>
+
+<!-- VESTIBULAR RISK -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">The real risk</p>
+    <h2>Some users can't watch<br>your <em>animations.</em></h2>
+    <div class="vestibular-box">
+      <div class="vest-stat">
+        <div class="vest-num">35%</div>
+        <div class="vest-label">of adults over 40<br>have vestibular dysfunction</div>
+      </div>
+      <div class="vest-content">
+        <h3>Vestibular mismatch — what it is.</h3>
+        <p>Your eyes perceive motion. Your inner ear doesn't register it. The sensory conflict can cause dizziness, nausea, headaches — the same physiological response as motion sickness in a car. Large parallax effects, rapid movement, and scroll-hijacking are the most common triggers.</p>
+        <p style="margin-top:.75rem">Millions of people enable "Reduce Motion" in their system settings specifically because of this. When you respect that setting, you're not reducing your design — you're making it safe for everyone.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="callout-label">The number that matters</span>
+      <p>The Web Accessibility Initiative estimates vestibular disorders affect 35% of adults 40+. That's not a niche edge case. It's likely 20–30% of your actual audience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PREFERS-REDUCED-MOTION -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">The solution</p>
+    <h2>One media query.<br><em>Full responsibility.</em></h2>
+    <p style="max-width:58ch">The browser can tell you whether the user has requested reduced motion. <code style="font-family:'IBM Plex Mono',monospace;font-size:.85em">prefers-reduced-motion: reduce</code> is set when the user has enabled "Reduce Motion" in their operating system preferences.</p>
+
+    <!-- LIVE DEMO -->
+    <div class="prm-demo">
+      <div class="prm-demo-header">
+        <span>Live demo — prefers-reduced-motion</span>
+        <span class="prm-demo-status normal">Motion: normal</span>
+        <span class="prm-demo-status reduced" style="display:none">Reduced motion detected — animation disabled</span>
+      </div>
+      <div class="prm-box"></div>
+      <p class="prm-demo-note">The box above animates if your system motion preference is normal. If you've enabled "Reduce Motion" in System Settings, the animation is already disabled — that's the media query working. To test: on Mac, go to System Settings → Accessibility → Display → Reduce Motion.</p>
+    </div>
+
+    <h3 style="margin-top:2rem;margin-bottom:1rem">In CSS</h3>
+    <div class="annotated-wrap">
+      <div class="annotated-code"><span class="cm">/* Default: animations are on */</span>
+<span class="fn">.animated-element</span> {
+  <span class="kw">animation</span>: slide-in linear;
+  <span class="kw">animation-timeline</span>: <span class="st">view()</span>;
+  <span class="kw">animation-duration</span>: <span class="nu">1ms</span>;
+}
+
+<span class="cm">/* Fallback: disable for users who need it */</span>
+<span class="op">@media</span> (prefers-reduced-motion: reduce) {
+  <span class="fn">.animated-element</span> {
+    <span class="kw">animation</span>: none;
+    <span class="cm">/* element appears in its final state */</span>
+  }
+}</div>
+      <div class="annotated-notes">
+        <div class="note-row"><strong>Strategy A — disable</strong>The safest option. The element appears in its final visible state immediately. No motion at all. Suitable for most scroll reveal effects.</div>
+        <div class="note-row"><strong>Strategy B — reduce</strong>Replace the large, fast animation with something minimal — a simple fade with no position change, for example. Keeps visual feedback without vestibular risk.</div>
+        <div class="note-row"><strong>animation: none</strong>This cancels the animation entirely. The fill-mode ensures the element stays visible at its target state rather than disappearing.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2rem;margin-bottom:1rem">In GSAP</h3>
+    <div class="code-block">
+<span class="cm">// GSAP's matchMedia lets you define different behavior for different conditions</span>
+ScrollTrigger.<span class="fn">matchMedia</span>({
+
+  <span class="cm">// For users with normal motion preference</span>
+  <span class="st">"(prefers-reduced-motion: no-preference)"</span>: <span class="kw">function</span>() {
+    <span class="cm">// Set up all your complex GSAP animations here</span>
+    <span class="kw">gsap</span>.<span class="fn">timeline</span>({
+      scrollTrigger: { trigger: <span class="st">".scene"</span>, pin: <span class="kw">true</span>, scrub: <span class="nu">1</span> }
+    })
+    .<span class="fn">to</span>(<span class="st">".element"</span>, { x: <span class="nu">400</span>, rotation: <span class="nu">360</span> });
+  },
+
+  <span class="cm">// For users who prefer reduced motion — simpler or no animation</span>
+  <span class="st">"(prefers-reduced-motion: reduce)"</span>: <span class="kw">function</span>() {
+    <span class="cm">// Either skip animations, or use simple fades only</span>
+    <span class="kw">gsap</span>.<span class="fn">set</span>(<span class="st">".element"</span>, { opacity: <span class="nu">1</span> }); <span class="cm">// just make it visible</span>
+  }
+
+});</div>
+  </div>
+</section>
+
+<!-- PERFORMANCE -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">Performance</p>
+    <h2>Animate the right<br><em>properties.</em></h2>
+    <p style="max-width:58ch">Not all CSS properties perform equally when animated. Some trigger the browser to recalculate layout, repaint the screen, and composite layers. Others skip most of that work.</p>
+
+    <div class="perf-grid">
+      <div class="perf-cell good">
+        <div class="perf-head">✓ Animate these — GPU handled</div>
+        <div class="perf-props">
+          <div class="perf-prop">transform: translateX()</div>
+          <div class="perf-prop">transform: translateY()</div>
+          <div class="perf-prop">transform: scale()</div>
+          <div class="perf-prop">transform: rotate()</div>
+          <div class="perf-prop">opacity</div>
+          <div class="perf-prop">filter (with caution)</div>
+        </div>
+        <div class="perf-note">These run on the compositor thread, separate from the main browser thread. They can't trigger layout recalculation — which is why they're smooth.</div>
+      </div>
+      <div class="perf-cell bad">
+        <div class="perf-head">✗ Avoid these — trigger layout</div>
+        <div class="perf-props">
+          <div class="perf-prop">width / height</div>
+          <div class="perf-prop">top / left / right / bottom</div>
+          <div class="perf-prop">margin / padding</div>
+          <div class="perf-prop">font-size</div>
+          <div class="perf-prop">background-position (old trick)</div>
+        </div>
+        <div class="perf-note">These force the browser to recalculate layout for potentially the entire page on every animation frame. This is the source of "jank" — the stuttering you see on complex pages.</div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <span class="callout-label">will-change — use sparingly</span>
+      <p>Adding <code style="font-family:'IBM Plex Mono',monospace;font-size:.85em">will-change: transform</code> to an animated element hints to the browser to promote it to its own GPU layer. This can smooth animations — but applying it to many elements wastes memory. Only use it on elements you <em>know</em> will animate, and remove it after the animation completes if possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCROLL HIJACKING WARNING -->
+<section>
+  <div class="section-inner two-col">
+    <div>
+      <p class="section-label">The line not to cross</p>
+      <h2>Never hijack<br>the <em>scroll.</em></h2>
+      <p><strong>Scroll hijacking</strong> means taking control of the scrollbar — changing its speed, locking it, or making it move at an unnatural rate during animation. This is almost universally bad UX.</p>
+      <p>It breaks the user's expectation of how their own input device works. It can trap users who are trying to navigate quickly or skim content. And it's a significant accessibility failure.</p>
+      <p><strong>Scroll linking</strong> — the correct approach — connects animation progress to the natural scroll position without altering the scroll itself. The user scrolls at their own pace; the animation responds accordingly.</p>
+    </div>
+    <div>
+      <div class="callout" style="margin-bottom:1.5rem">
+        <span class="callout-label">Scroll hijacking (avoid)</span>
+        <p>JavaScript manually controls scroll position. User scrolls one "click" but the page jumps to a defined section. The scrollbar doesn't reflect where the user actually is. Users lose the ability to skim.</p>
+      </div>
+      <div class="callout tip">
+        <span class="callout-label">Scroll linking (use this)</span>
+        <p>Animation progress maps to scroll position, but scroll position is never overridden. User scrolls at their speed. The animation plays proportionally. Content is always accessible by skipping past.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHEN TO USE / AVOID -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">The judgment call</p>
+    <h2>When to use it.<br><em>When not to.</em></h2>
+    <div class="ua-grid">
+      <div class="ua-col">
+        <div class="ua-col-head use">Use scrollytelling when...</div>
+        <div class="ua-item">The narrative is linear and sequential — one thing leads to the next.</div>
+        <div class="ua-item">Visuals are essential to understanding — the animation explains, not decorates.</div>
+        <div class="ua-item">You want to control the pace of information delivery deliberately.</div>
+        <div class="ua-item">The content is long-form: an article, a data story, a product walkthrough.</div>
+        <div class="ua-item">Creating immersive, brand-forward experiences where engagement is the goal.</div>
+      </div>
+      <div class="ua-col">
+        <div class="ua-col-head avoid">Avoid scrollytelling when...</div>
+        <div class="ua-item">Users need to scan or find specific information quickly.</div>
+        <div class="ua-item">The page is primarily transactional: forms, checkout, sign-up.</div>
+        <div class="ua-item">Content hierarchy is complex and non-linear — users need to jump around.</div>
+        <div class="ua-item">Performance on low-end devices is a primary concern.</div>
+        <div class="ua-item">You can't provide a working reduced-motion fallback.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRE-LAUNCH CHECKLIST -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">Before you ship</p>
+    <h2>The pre-launch<br><em>checklist.</em></h2>
+    <p style="max-width:52ch;margin-bottom:1.5rem">Click each item to mark it done. Every item here is a real failure mode that ships to production regularly.</p>
+    <div class="checklist" id="checklist">
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-label">Reduced motion fallback implemented<span>Disable or simplify all animations inside @media (prefers-reduced-motion: reduce). Test it.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-label">Only transform and opacity animated<span>No width, height, top, left, margin, or padding changes on scrolling elements.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-label">No scroll hijacking<span>Scroll position is never overridden by JavaScript. User controls their own scroll speed.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-label">Text readable at all scroll positions<span>Check every frame of pinned sequences — text must always have sufficient contrast against its background.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-label">Performance tested on a low-end device<span>Or at 4× CPU throttle in Chrome DevTools. If it stutters there, it will stutter for real users.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-label">Cross-browser check (especially Safari)<span>CSS scroll-driven animations have partial Safari support in 2025. GSAP is safer for complex sequences.</span></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div class="check-label">Animation serves the content — not the other way around<span>Could you explain the content without the animation? If yes and the animation doesn't add clarity, cut it.</span></div>
+      </div>
+    </div>
+
+    <!-- THE FOUR QUESTIONS -->
+    <h3 style="margin-top:3rem;margin-bottom:1rem">Ask these before building.</h3>
+    <div class="audit-questions">
+      <div class="aq-item">
+        <div class="aq-num">01</div>
+        <div class="aq-q">Does this animation <em>serve the story</em>, or does it just look impressive?</div>
+      </div>
+      <div class="aq-item">
+        <div class="aq-num">02</div>
+        <div class="aq-q">Is the motion <em>subtle enough</em> that it won't distract from reading?</div>
+      </div>
+      <div class="aq-item">
+        <div class="aq-num">03</div>
+        <div class="aq-q">Have you written a <em>reduced-motion fallback</em>? Have you tested it?</div>
+      </div>
+      <div class="aq-item">
+        <div class="aq-num">04</div>
+        <div class="aq-q">Does this work smoothly on a <em>five-year-old phone</em>?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-nav">
+  <a href="03-gsap.html">← 03 GSAP</a>
+  <span class="page-pos">04 / 05</span>
+  <a href="05-reference.html">05 — Quick Reference →</a>
+</div>
+
+<script>
+const bar = document.getElementById('page-progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+});
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  el.textContent = el.classList.contains('checked') ? '✓' : '';
+}
+window.toggleCheck = toggleCheck;
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+/* ========================================
+   DESIGN TOKENS — One Source of Truth
+   ======================================== 
+   
+   These are your design decisions stored in one place.
+   Change a value here → everything using it updates.
+   
+   Vocabulary:
+   - Token = A design decision stored in one place
+   - Variable = The CSS syntax (--name: value)
+   - var() = How you use a token
+   - :root = The top of the document (global scope)
+*/
+
+:root {
+  /* ---- Color Tokens ---- */
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f8f9fa;
+  --color-text: #1a1a1a;
+  --color-text-muted: #6c757d;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-border: #e5e7eb;
+  
+  /* ---- Spacing Tokens ---- */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  
+  /* ---- Typography Tokens ---- */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+  
+  /* ---- Shape Tokens ---- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+  
+  /* ---- Shadow Tokens ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  /* ---- Transition Tokens ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+
+/* ========================================
+   DARK MODE — Same tokens, different values
+   ========================================
+   
+   When body has class "dark", these values override.
+   JavaScript toggles the class. CSS responds.
+*/
+
+body.dark {
+  --color-surface: #0f172a;
+  --color-surface-elevated: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-accent: #60a5fa;
+  --color-accent-hover: #93c5fd;
+  --color-border: #334155;
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ========================================
+   SYSTEM PREFERENCE — CSS-only detection
+   ========================================
+   
+   This responds to the OS setting automatically.
+   No JavaScript needed. But also no user override.
+   
+   Uncomment to enable:
+*/
+
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: #0f172a;
+    --color-surface-elevated: #1e293b;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-accent: #60a5fa;
+    --color-accent-hover: #93c5fd;
+    --color-border: #334155;
+  }
+}
+*/

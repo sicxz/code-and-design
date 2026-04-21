@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 Foundations — Scroll-Driven Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ─── MOTION PARALLAX DEMO (pure CSS) ─── */
+#parallax-demo {
+  height: 60vh; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ink);
+}
+.parallax-bg {
+  position: absolute; inset: -30%; 
+  background: repeating-linear-gradient(
+    -45deg,
+    #1c1a18 0, #1c1a18 2px,
+    #222018 2px, #222018 20px
+  );
+  animation: bg-drift linear both;
+  animation-timeline: view();
+  animation-range: entry 0% exit 100%;
+}
+@keyframes bg-drift {
+  from { transform: translateY(-15%); }
+  to   { transform: translateY(15%); }
+}
+.parallax-fg {
+  position: relative; z-index: 2; text-align: center; padding: 2rem;
+}
+.parallax-fg h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--paper); margin-bottom: 1rem;
+}
+.parallax-fg p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+  color: #6a6258;
+}
+.demo-label-bar {
+  background: var(--accent); color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .6rem; letter-spacing: .15em; text-transform: uppercase;
+  padding: .4rem 8vw; display: flex; justify-content: space-between;
+  align-items: center;
+}
+
+/* ─── MENTAL MODEL DIAGRAM ─── */
+.model-diagram {
+  display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center; gap: 0;
+  background: var(--warm); border: 1px solid var(--rule);
+  padding: 2.5rem 3rem; margin: 2rem 0;
+}
+.model-node {
+  text-align: center; background: var(--paper);
+  border: 1px solid var(--rule); padding: 1.5rem 1rem;
+}
+.model-node .n-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .55rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .4rem;
+}
+.model-node .n-val {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.1rem; font-weight: 700;
+}
+.model-arrow {
+  text-align: center; padding: 0 1rem;
+  font-size: 1.1rem; color: var(--accent);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.model-caption {
+  font-family: 'IBM Plex Mono', monospace; font-size: .62rem;
+  letter-spacing: .1em; color: var(--muted); text-align: center;
+  margin-top: 1rem;
+}
+
+/* ─── HISTORY TIMELINE ─── */
+.timeline { margin: 2rem 0; position: relative; }
+.timeline::before {
+  content: ''; position: absolute; left: 5rem; top: 0; bottom: 0;
+  width: 1px; background: var(--rule);
+}
+.tl-entry { display: grid; grid-template-columns: 5rem 1fr; gap: 2rem; padding: 1.5rem 0; position: relative; }
+.tl-year {
+  font-family: 'IBM Plex Mono', monospace; font-size: .7rem;
+  letter-spacing: .06em; color: var(--muted); text-align: right;
+  padding-top: .2rem; position: relative;
+}
+.tl-year::after {
+  content: ''; position: absolute; right: -2.5rem; top: .55rem;
+  width: .6rem; height: .6rem; border-radius: 50%;
+  background: var(--rule); border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+.tl-entry.highlight .tl-year::after { background: var(--accent); border-color: var(--paper); box-shadow: 0 0 0 1px var(--accent); }
+.tl-content {}
+.tl-content h4 { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
+.tl-content p { font-size: .85rem; color: var(--muted); margin: 0; }
+.tl-tag {
+  display: inline-block; margin-top: .4rem;
+  font-family: 'IBM Plex Mono', monospace; font-size: .55rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .15rem .5rem; border: 1px solid var(--rule); color: var(--muted);
+}
+.tl-tag.key { border-color: var(--accent); color: var(--accent); }
+
+/* ─── PERCEPTUAL SCIENCE BOX ─── */
+.science-box {
+  background: var(--ink); color: var(--paper); padding: 3rem 4rem; margin: 2rem 0;
+}
+.science-box h3 { font-family: 'Libre Baskerville', serif; font-size: 1.5rem; color: var(--paper); margin-bottom: 1rem; }
+.science-box p { font-size: .9rem; color: #8a8070; line-height: 1.8; }
+.science-box .sci-pull {
+  font-family: 'Libre Baskerville', serif; font-style: italic;
+  font-size: 1.1rem; color: var(--warm2); border-left: 2px solid var(--accent);
+  padding-left: 1.5rem; margin: 1.5rem 0;
+}
+
+/* ─── SNOWFALL REFERENCE ─── */
+.snowfall-card {
+  background: var(--warm); border: 1px solid var(--rule);
+  padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  margin: 2rem 0;
+}
+.snowfall-card .sf-meta {}
+.snowfall-card .sf-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: .58rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem;
+}
+.snowfall-card h3 { font-family: 'Libre Baskerville', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem; }
+.snowfall-card .sf-impact { font-size: .85rem; color: var(--muted); line-height: 1.7; }
+.snowfall-card .sf-facts { display: flex; flex-direction: column; gap: .75rem; }
+.fact-row { padding: .6rem 0; border-bottom: 1px solid var(--rule); font-size: .82rem; }
+.fact-row:last-child { border-bottom: none; }
+.fact-row strong { font-family: 'IBM Plex Mono', monospace; font-size: .62rem; letter-spacing: .08em; display: block; color: var(--muted); margin-bottom: .1rem; }
+</style>
+</head>
+<body>
+
+<div id="page-progress"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Scroll·<span>Driven</span>·Design</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="01-foundations.html" class="active">01 Foundations</a></li>
+    <li><a href="02-css-api.html">02 CSS API</a></li>
+    <li><a href="03-gsap.html">03 GSAP</a></li>
+    <li><a href="04-ux.html">04 UX + A11y</a></li>
+    <li><a href="05-reference.html">Reference</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="page-num">01</div>
+  <div>
+    <p class="page-eyebrow">Foundations</p>
+    <h1>Why scroll<br><em>feels like space.</em></h1>
+    <p class="page-intro">Before any code: the perceptual science that makes scroll-driven animation feel intuitive, not gimmicky — and the historical arc from Flash to native CSS.</p>
+  </div>
+</header>
+
+<!-- LIVE PARALLAX DEMO -->
+<div class="demo-label-bar">
+  <span>↓ Live demo — this uses CSS only (animation-timeline: view())</span>
+  <span>Scroll through to see parallax</span>
+</div>
+<div id="parallax-demo">
+  <div class="parallax-bg"></div>
+  <div class="parallax-fg">
+    <h2>Background moves.<br>Foreground stays.</h2>
+    <p>The depth illusion in action</p>
+  </div>
+</div>
+
+<!-- PERCEPTION -->
+<section>
+  <div class="section-inner sidebar-layout">
+    <div>
+      <p class="section-label">The perceptual science</p>
+      <h2>Your brain already<br><em>knows this.</em></h2>
+      <p>Look out the window of a moving car. Nearby telephone poles fly past. Mountains on the horizon barely seem to move at all. Your brain uses this difference in speed — called <strong>motion parallax</strong> — to judge distance.</p>
+      <p>Web parallax borrows that exact heuristic. Background layers move slowly; foreground layers move fast. The brain reads the speed difference as spatial separation — depth — even on a completely flat screen.</p>
+      <p>This is a <em>monocular depth cue</em>: it works with one eye, no stereoscopic vision required. It's hardwired, not learned.</p>
+    </div>
+    <div>
+      <div class="science-box">
+        <h3>The perceptual chain.</h3>
+        <div class="sci-pull">Closer objects move faster across the retina than distant ones.</div>
+        <p>This is the rule the physical world follows. Web parallax exploits it: if a background image scrolls at 0.5× the speed of the page, your visual system infers it must be farther away.</p>
+        <p>Motion parallax is one of the strongest monocular depth cues in perception science. It's why the effect feels convincing even when you know the screen is flat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MENTAL MODEL -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">The core mechanism</p>
+    <h2>Scroll distance maps to<br><em>animation state.</em></h2>
+    <p style="max-width:58ch">This is the one concept that explains all scroll-driven animation. It's not a timer controlling the animation — it's the user's scroll position. Distance replaces time.</p>
+    <div class="model-diagram">
+      <div class="model-node">
+        <div class="n-label">Input</div>
+        <div class="n-val">Scroll<br>Position</div>
+      </div>
+      <div class="model-arrow">→</div>
+      <div class="model-node">
+        <div class="n-label">Mapping Layer</div>
+        <div class="n-val">Timeline<br>Progress</div>
+      </div>
+      <div class="model-arrow">→</div>
+      <div class="model-node">
+        <div class="n-label">Output</div>
+        <div class="n-val">Animation<br>State</div>
+      </div>
+    </div>
+    <p class="model-caption">scroll() / view() in CSS · scrollTrigger + scrub in GSAP — both implement this same mapping</p>
+
+    <div class="two-col" style="margin-top:3rem">
+      <div>
+        <h3 style="margin-bottom:1rem">Three related terms, clearly separated.</h3>
+        <div class="term-grid">
+          <div class="term-card">
+            <div class="term-name">Parallax</div>
+            <div class="term-def">Visual effect where layers move at different speeds. Creates depth. Not inherently narrative.</div>
+          </div>
+          <div class="term-card">
+            <div class="term-name">Scrollytelling</div>
+            <div class="term-def">The story unfolds as you scroll. Narrative is the goal; scroll-driven animation is the tool.</div>
+          </div>
+          <div class="term-card" style="grid-column: 1/-1">
+            <div class="term-name">Scroll-Driven Animation</div>
+            <div class="term-def">The technical mechanism behind both. Animation progress = scroll progress. Not time-based.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="callout">
+          <span class="callout-label">Key distinction</span>
+          <p>Parallax creates spatial depth. Scrollytelling creates narrative progression. Scroll-driven animation is what makes both possible technically. You can have parallax without scrollytelling, and scrollytelling without parallax.</p>
+        </div>
+        <div class="callout tip" style="margin-top:1.5rem">
+          <span class="callout-label">The designer's read</span>
+          <p>Scrollytelling works best when the story has a clear beginning, middle, and end — a linear sequence. If users need to compare or scan non-linearly, scrollytelling is the wrong tool.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY TIMELINE -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">History</p>
+    <h2>From plugin-dependent<br>to <em>native browser.</em></h2>
+    <p style="max-width:52ch;margin-bottom:2rem">The technology changed. The goal — immersive, scroll-driven narrative — stayed constant. Here's the arc.</p>
+
+    <div class="timeline">
+      <div class="tl-entry">
+        <div class="tl-year">2000s</div>
+        <div class="tl-content">
+          <h4>The Flash Era</h4>
+          <p>Adobe Flash enabled timeline-based animations inside a browser plugin. Designers created elaborate, scroll-reactive experiences — but they required the plugin, were inaccessible to screen readers, and died on mobile.</p>
+          <span class="tl-tag">Plugin-based</span>
+        </div>
+      </div>
+      <div class="tl-entry highlight">
+        <div class="tl-year">2012</div>
+        <div class="tl-content">
+          <h4>New York Times — "Snow Fall"</h4>
+          <p>A long-form avalanche story combining scroll-triggered video, parallax backgrounds, and animated diagrams. It wasn't the first to use scroll effects, but its quality and reach made <em>scrollytelling</em> a named genre. It proved the technique could serve serious journalism.</p>
+          <span class="tl-tag key">Landmark moment</span>
+        </div>
+      </div>
+      <div class="tl-entry">
+        <div class="tl-year">2015+</div>
+        <div class="tl-content">
+          <h4>Apple's Product Pages</h4>
+          <p>Apple perfected the commercial scrollytelling pattern: pin a section, reveal features one-by-one as the user scrolls. This created a controlled, cinematic pacing that became an industry template.</p>
+          <span class="tl-tag">Commercial benchmark</span>
+        </div>
+      </div>
+      <div class="tl-entry">
+        <div class="tl-year">2017</div>
+        <div class="tl-content">
+          <h4>IntersectionObserver API</h4>
+          <p>Browsers shipped a native way to detect when elements enter the viewport without expensive scroll event listeners. Better than polling, but it didn't handle animation sync to scroll position — only entry/exit detection.</p>
+          <span class="tl-tag">Browser API</span>
+        </div>
+      </div>
+      <div class="tl-entry highlight">
+        <div class="tl-year">2018+</div>
+        <div class="tl-content">
+          <h4>GSAP ScrollTrigger</h4>
+          <p>GreenSock shipped ScrollTrigger, which became the industry standard for complex scroll animation. Pin, scrub, timeline sequencing — all tied to scroll position with cross-browser reliability. Free since Webflow acquired GSAP in 2024.</p>
+          <span class="tl-tag key">Industry standard</span>
+        </div>
+      </div>
+      <div class="tl-entry highlight">
+        <div class="tl-year">2023–</div>
+        <div class="tl-content">
+          <h4>Native CSS Scroll-Driven Animations</h4>
+          <p>The W3C spec stabilized and browsers shipped <code style="font-family:'IBM Plex Mono',monospace;font-size:.82em">animation-timeline</code>. Simple scroll effects now require zero JavaScript and run on the compositor thread — not the main thread. The future is declarative.</p>
+          <span class="tl-tag key">Now</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SNOW FALL DEEP DIVE -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">Case study</p>
+    <h2>"Snow Fall" — why it<br><em>changed everything.</em></h2>
+    <div class="snowfall-card">
+      <div class="sf-meta">
+        <div class="sf-label">NYT · December 2012</div>
+        <h3>Snow Fall: The Avalanche at Tunnel Creek</h3>
+        <p class="sf-impact">John Branch's story about a deadly Cascade avalanche used custom JavaScript to synchronize photography, video, and animated diagrams with the reader's scroll. It wasn't technically novel — but the execution was so polished it felt different in kind, not just degree. The web press called it a watershed moment.</p>
+        <p class="sf-impact" style="margin-top:.75rem">What made it work: the animations served the story. The parallax wasn't decoration — it placed the reader in terrain. The scroll-locked sections focused attention. The motion had meaning.</p>
+      </div>
+      <div class="sf-facts">
+        <div class="fact-row"><strong>What it used</strong>Custom JavaScript scroll event listeners — the hard, expensive way</div>
+        <div class="fact-row"><strong>Why it mattered</strong>High-profile proof that scroll-driven design could serve editorial journalism</div>
+        <div class="fact-row"><strong>What it named</strong>The term "scrollytelling" entered common usage after this piece</div>
+        <div class="fact-row"><strong>The lesson</strong>Motion with narrative purpose > motion as decoration. Always.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PUDDING -->
+<section>
+  <div class="section-inner two-col">
+    <div>
+      <p class="section-label">Modern scrollytelling</p>
+      <h2><em>The Pudding</em> model.</h2>
+      <p>The Pudding (pudding.cool) is the best working example of scroll-driven data journalism. They make complex information comprehensible by breaking it into a step-by-step scroll sequence.</p>
+      <p>Each scroll step reveals one piece of data, one comparison, one insight. The reader controls the pace. The scroll becomes a tool for comprehension — not a design flourish.</p>
+    </div>
+    <div>
+      <div class="callout">
+        <span class="callout-label">The pattern they use</span>
+        <p>Pin a data visualization on one side. Let explanatory text scroll past it on the other. As each text block enters view, the visualization updates. The static chart becomes a story told chapter by chapter.</p>
+      </div>
+      <div class="callout warn" style="margin-top:1.5rem">
+        <span class="callout-label">The failure mode to avoid</span>
+        <p>Scrollytelling where the animation is the point, not the content. If removing the animation would break comprehension, you've used it well. If it's still readable without it, the animation was just decoration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-nav">
+  <a href="index.html">← Overview</a>
+  <span class="page-pos">01 / 05</span>
+  <a href="02-css-api.html">02 — CSS Scroll API →</a>
+</div>
+
+<script>
+// Page progress bar
+const bar = document.getElementById('page-progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  bar.style.width = pct + '%';
+});
+</script>
+</body>
+</html>

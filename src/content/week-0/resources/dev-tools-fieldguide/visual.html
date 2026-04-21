@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Tools | Designer's DevTools Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="header-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="9" y1="21" x2="9" y2="9"/>
+      </svg>
+      DevTools Field Guide
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">Get Started</a>
+      <a href="console.html">Tutorials</a>
+      <a href="errors.html">Troubleshooting</a>
+      <a href="reference.html" class="active">Reference</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Get Started</div>
+        <a href="index.html" class="sidebar-link">Overview</a>
+        <a href="start.html" class="sidebar-link">Your First 15 Minutes</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Tutorials</div>
+        <a href="console.html" class="sidebar-link">The Console</a>
+        <a href="bridge.html" class="sidebar-link">The $0 Bridge</a>
+        <a href="behavioral.html" class="sidebar-link">Reading Element State</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Troubleshooting</div>
+        <a href="errors.html" class="sidebar-link">Reading Errors</a>
+        <a href="connecting.html" class="sidebar-link">Quick Reminders</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Reference</div>
+        <a href="visual.html" class="sidebar-link active">Visual Tools</a>
+        <a href="reference.html" class="sidebar-link">Keyboard Shortcuts</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <nav class="breadcrumb">
+        <a href="index.html">Docs</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Visual Tools</span>
+      </nav>
+
+      <h1>Visual Tools</h1>
+      <p class="lead">
+        The Inspector panel shows you what your design is made of. A reference for reading the DOM tree, finding elements, and understanding CSS rules.
+      </p>
+
+      <div class="callout callout-success">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Refresher from DESN 368
+        </div>
+        <p>
+          You learned to use the Inspector in DESN 368. This page is a reference when you need to look something up. If you're comfortable with the Inspector, skip to the <a href="console.html">Console tutorial</a> — that's the new material.
+        </p>
+      </div>
+
+      <h2 id="dom-tree">Reading the DOM Tree</h2>
+      <p>
+        The DOM tree is a visual representation of your HTML. Every element is a node, and the tree shows how they're nested.
+      </p>
+
+      <h3>What you'll see</h3>
+      <ul>
+        <li><strong>Triangles</strong> — Click to expand/collapse nested elements</li>
+        <li><strong>Tags</strong> — Element names like <code>&lt;div&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;button&gt;</code></li>
+        <li><strong>Attributes</strong> — Classes, IDs, and other attributes shown inline</li>
+        <li><strong>Badges</strong> — Special indicators for <span class="badge badge-flex">flex</span>, <span class="badge badge-grid">grid</span>, and <span class="badge badge-scroll">scroll</span></li>
+      </ul>
+
+      <div class="callout callout-note">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          The == $0 indicator
+        </div>
+        <p>
+          When you select an element, you'll see <code>== $0</code> next to it. This means you can access it in the Console by typing <code>$0</code>. This is the bridge between visual and behavioral tools.
+        </p>
+      </div>
+
+      <h2 id="finding">Finding Elements</h2>
+      <p>
+        Three ways to locate elements in the DOM:
+      </p>
+
+      <h3>1. The Element Picker</h3>
+      <p>
+        Click the cursor icon in DevTools (top-left of the toolbar) or press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>, then click any element on the page. This is the fastest way to find something you can see.
+      </p>
+
+      <h3>2. Search in the DOM</h3>
+      <p>
+        Press <kbd>Cmd</kbd>+<kbd>F</kbd> while in the Inspector panel to search. You can search by:
+      </p>
+      <ul>
+        <li>Tag name: <code>button</code></li>
+        <li>Class: <code>.card</code></li>
+        <li>ID: <code>#header</code></li>
+        <li>Text content: <code>Submit</code></li>
+        <li>CSS selector: <code>nav a.active</code></li>
+      </ul>
+
+      <h3>3. Navigate the tree</h3>
+      <p>
+        Use arrow keys to move through the DOM. Up/Down moves between siblings, Left collapses, Right expands.
+      </p>
+
+      <div class="exercise">
+        <div class="exercise-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Try it: Find an element three ways
+        </div>
+        <ol>
+          <li>Use the element picker to select this exercise box</li>
+          <li>Use <kbd>Cmd</kbd>+<kbd>F</kbd> and search for <code>.exercise</code></li>
+          <li>Navigate to it using keyboard arrows from a nearby element</li>
+        </ol>
+      </div>
+
+      <h2 id="styles">Reading Styles</h2>
+      <p>
+        When you select an element, the Rules panel (right side of Inspector) shows all CSS rules that apply to it. Rules are listed in cascade order—most specific at the top.
+      </p>
+
+      <h3>What you'll see</h3>
+      <ul>
+        <li><strong>element.style</strong> — Inline styles (from the <code>style</code> attribute)</li>
+        <li><strong>Selector blocks</strong> — Rules from stylesheets, with the selector shown</li>
+        <li><strong>Strikethrough</strong> — Properties that are overridden by more specific rules</li>
+        <li><strong>Inherited</strong> — Properties inherited from parent elements</li>
+      </ul>
+
+      <h2 id="inactive">Inactive CSS</h2>
+      <p>
+        Some CSS rules don't apply because of context. DevTools shows these as grayed out with an info icon.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Inactive Property</th>
+            <th>Why It's Inactive</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>justify-content</code></td>
+            <td>Parent isn't a flex or grid container</td>
+          </tr>
+          <tr>
+            <td><code>width</code> on inline</td>
+            <td>Inline elements ignore width</td>
+          </tr>
+          <tr>
+            <td><code>margin-top</code> on inline</td>
+            <td>Vertical margins don't work on inline elements</td>
+          </tr>
+          <tr>
+            <td><code>z-index</code></td>
+            <td>Element isn't positioned (needs position: relative/absolute)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-success">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Firefox Excels Here
+        </div>
+        <p>
+          Firefox DevTools has the best inactive CSS detection. It tells you <em>why</em> a property doesn't work and often suggests fixes. Worth switching browsers just for this feature when debugging layout issues.
+        </p>
+      </div>
+
+      <h2 id="computed">Computed Values</h2>
+      <p>
+        The Computed tab shows the final, resolved values after all cascade rules are applied. This is what the browser actually uses to render the element.
+      </p>
+      <p>
+        Useful for: seeing actual pixel values from relative units, checking inherited values, finding where a style came from.
+      </p>
+
+      <h2 id="layout">Layout Tools</h2>
+      <p>
+        Modern DevTools include visual overlays for Flexbox and Grid layouts.
+      </p>
+
+      <h3 id="flexbox">Flexbox Inspector</h3>
+      <p>
+        When an element has <code>display: flex</code>, you'll see a <span class="badge badge-flex">flex</span> badge in the DOM tree. Click it to toggle the overlay.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>What it shows</h4>
+          <p>Container boundaries, item boundaries, gap spacing, and alignment visualization.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Why it helps</h4>
+          <p>See exactly how flex-grow, justify-content, and align-items affect layout.</p>
+        </div>
+      </div>
+
+      <h3 id="grid">Grid Inspector</h3>
+      <p>
+        For <code>display: grid</code>, the <span class="badge badge-grid">grid</span> badge reveals grid lines, track sizes, and named areas.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>What it shows</h4>
+          <p>Row/column lines (numbered), track sizes, grid gaps, and named grid areas.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Why it helps</h4>
+          <p>Understand implicit vs explicit tracks, debug item placement, verify responsive grids.</p>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Try it: Toggle a layout overlay
+        </div>
+        <ol>
+          <li>Find a flex or grid container on any website</li>
+          <li>Look for the badge in the DOM tree</li>
+          <li>Click the badge to toggle the overlay</li>
+          <li>Resize the browser window and watch the overlay update</li>
+        </ol>
+      </div>
+
+      <h2 id="forcing">Forcing States</h2>
+      <p>
+        Some styles only appear on interaction—hover, focus, active. DevTools lets you force these states without holding your mouse in place.
+      </p>
+
+      <h3>How to force a state</h3>
+      <ol>
+        <li>Select an element in the Inspector</li>
+        <li>Click the <strong>:hov</strong> button in the Rules panel</li>
+        <li>Check the states you want to force: <code>:hover</code>, <code>:active</code>, <code>:focus</code>, <code>:visited</code></li>
+      </ol>
+
+      <div class="callout callout-note">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          Focus state debugging
+        </div>
+        <p>
+          This is essential for accessibility testing. Force <code>:focus</code> to check that focus indicators are visible and meet contrast requirements.
+        </p>
+      </div>
+
+      <h2 id="next">Next: Behavioral Tools</h2>
+      <p>
+        Now that you can read structure and styles, let's learn to read behavior. The Console and <code>$0</code> bridge let you see what elements are doing.
+      </p>
+      <p>
+        <a href="console.html">Continue to Behavioral Tools →</a>
+      </p>
+
+    </main>
+
+    <aside class="toc">
+      <div class="toc-title">On this page</div>
+      <a href="#dom-tree" class="toc-link">Reading the DOM Tree</a>
+      <a href="#finding" class="toc-link">Finding Elements</a>
+      <a href="#styles" class="toc-link">Reading Styles</a>
+      <a href="#inactive" class="toc-link">Inactive CSS</a>
+      <a href="#computed" class="toc-link">Computed Values</a>
+      <a href="#layout" class="toc-link">Layout Tools</a>
+      <a href="#flexbox" class="toc-link">Flexbox Inspector</a>
+      <a href="#grid" class="toc-link">Grid Inspector</a>
+      <a href="#forcing" class="toc-link">Forcing States</a>
+      <a href="#next" class="toc-link">Next Steps</a>
+    </aside>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Basic Anatomy Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .demo-section {
+      background: white;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .demo-section h2 {
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 0.5rem;
+    }
+
+    .demo-section p {
+      margin-bottom: 1rem;
+      color: #444;
+    }
+
+    .svg-container {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+
+    .svg-example {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .svg-example h3 {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .svg-display {
+      background: #fafafa;
+      border: 2px solid #e0e0e0;
+      padding: 1.5rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 150px;
+    }
+
+    code {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 4px;
+      display: block;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .keyword {
+      color: #66d9ef;
+    }
+
+    .attribute {
+      color: #a6e22e;
+    }
+
+    .string {
+      color: #e6db74;
+    }
+
+    .comment {
+      color: #75715e;
+      font-style: italic;
+    }
+
+    .highlight {
+      background: #f39c12;
+      color: #1a1a1a;
+      padding: 0 4px;
+      border-radius: 2px;
+    }
+
+    svg {
+      display: block;
+    }
+
+    /* SVG-specific styles for demo */
+    .circle-demo {
+      fill: #3498db;
+    }
+
+    .rect-demo {
+      fill: #e74c3c;
+    }
+
+    .path-demo {
+      fill: #2ecc71;
+    }
+
+    .stroke-demo {
+      fill: none;
+      stroke: #9b59b6;
+      stroke-width: 2;
+    }
+  </style>
+</head>
+<body>
+  <h1>SVG Basic Anatomy Demo</h1>
+  <p class="subtitle">Understanding viewBox, paths, and SVG structure</p>
+
+  <!-- Demo 1: viewBox Explained -->
+  <section class="demo-section">
+    <h2>1. Understanding viewBox</h2>
+    <p>The <code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">viewBox</code> defines the <strong>coordinate system</strong>, while <code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">width</code> and <code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">height</code> define the <strong>display size</strong>.</p>
+
+    <div class="svg-container">
+      <div class="svg-example">
+        <h3>Same viewBox, Different Display Size</h3>
+        <div class="svg-display">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" class="circle-demo" />
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;svg</span> <span class="attribute">width</span>=<span class="string">"100"</span> <span class="attribute">height</span>=<span class="string">"100"</span> <span class="attribute">viewBox</span>=<span class="string">"0 0 100 100"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;circle</span> <span class="attribute">cx</span>=<span class="string">"50"</span> <span class="attribute">cy</span>=<span class="string">"50"</span> <span class="attribute">r</span>=<span class="string">"40"</span> <span class="keyword">/&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span></code>
+      </div>
+
+      <div class="svg-example">
+        <h3>Same Coordinates, Scaled 2×</h3>
+        <div class="svg-display">
+          <svg width="200" height="200" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" class="circle-demo" />
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;svg</span> <span class="attribute">width</span>=<span class="string">"200"</span> <span class="attribute">height</span>=<span class="string">"200"</span> <span class="attribute">viewBox</span>=<span class="string">"0 0 100 100"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;circle</span> <span class="attribute">cx</span>=<span class="string">"50"</span> <span class="attribute">cy</span>=<span class="string">"50"</span> <span class="attribute">r</span>=<span class="string">"40"</span> <span class="keyword">/&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span></code>
+      </div>
+    </div>
+
+    <p><strong>Key insight:</strong> The circle's coordinates stay the same (<code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">cx="50" cy="50" r="40"</code>), but it displays larger because the canvas is bigger. Think of viewBox as the "camera frame" and width/height as the "print size."</p>
+  </section>
+
+  <!-- Demo 2: Basic Shapes -->
+  <section class="demo-section">
+    <h2>2. Basic SVG Shapes</h2>
+    <p>SVG provides primitive shapes: circle, rect, line, and more complex paths.</p>
+
+    <div class="svg-container">
+      <div class="svg-example">
+        <h3>Circle</h3>
+        <div class="svg-display">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" class="circle-demo" />
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;circle</span>
+  <span class="attribute">cx</span>=<span class="string">"60"</span>    <span class="comment">&lt;!-- center x --&gt;</span>
+  <span class="attribute">cy</span>=<span class="string">"60"</span>    <span class="comment">&lt;!-- center y --&gt;</span>
+  <span class="attribute">r</span>=<span class="string">"50"</span>     <span class="comment">&lt;!-- radius --&gt;</span>
+<span class="keyword">/&gt;</span></code>
+      </div>
+
+      <div class="svg-example">
+        <h3>Rectangle</h3>
+        <div class="svg-display">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <rect x="10" y="10" width="100" height="100" rx="10" class="rect-demo" />
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;rect</span>
+  <span class="attribute">x</span>=<span class="string">"10"</span> <span class="attribute">y</span>=<span class="string">"10"</span>      <span class="comment">&lt;!-- top-left --&gt;</span>
+  <span class="attribute">width</span>=<span class="string">"100"</span>       <span class="comment">&lt;!-- width --&gt;</span>
+  <span class="attribute">height</span>=<span class="string">"100"</span>      <span class="comment">&lt;!-- height --&gt;</span>
+  <span class="attribute">rx</span>=<span class="string">"10"</span>          <span class="comment">&lt;!-- corner radius --&gt;</span>
+<span class="keyword">/&gt;</span></code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo 3: Path Element -->
+  <section class="demo-section">
+    <h2>3. The Path Element</h2>
+    <p>The <code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">&lt;path&gt;</code> element is the most powerful — it can draw anything using commands.</p>
+
+    <div class="svg-container">
+      <div class="svg-example">
+        <h3>Triangle (Path)</h3>
+        <div class="svg-display">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <path d="M60 10 L110 100 L10 100 Z" class="path-demo" />
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;path</span> <span class="attribute">d</span>=<span class="string">"M60 10 L110 100 L10 100 Z"</span> <span class="keyword">/&gt;</span>
+
+<span class="comment">Path Commands:</span>
+<span class="comment">M60 10     = Move to (60, 10)</span>
+<span class="comment">L110 100   = Line to (110, 100)</span>
+<span class="comment">L10 100    = Line to (10, 100)</span>
+<span class="comment">Z          = Close path (back to start)</span></code>
+      </div>
+
+      <div class="svg-example">
+        <h3>Star (Complex Path)</h3>
+        <div class="svg-display">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <path d="M60 10 L70 45 L105 45 L77 65 L87 100 L60 80 L33 100 L43 65 L15 45 L50 45 Z" class="stroke-demo" />
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;path</span>
+  <span class="attribute">d</span>=<span class="string">"M60 10 L70 45 L105 45
+     L77 65 L87 100 L60 80
+     L33 100 L43 65 L15 45
+     L50 45 Z"</span>
+  <span class="attribute">fill</span>=<span class="string">"none"</span>
+  <span class="attribute">stroke</span>=<span class="string">"#9b59b6"</span>
+  <span class="attribute">stroke-width</span>=<span class="string">"2"</span>
+<span class="keyword">/&gt;</span></code>
+      </div>
+    </div>
+
+    <p><strong>Path commands:</strong></p>
+    <ul style="margin-left: 2rem; color: #444;">
+      <li><code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">M x y</code> — Move to (doesn't draw)</li>
+      <li><code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">L x y</code> — Line to</li>
+      <li><code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">H x</code> — Horizontal line to x</li>
+      <li><code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">V y</code> — Vertical line to y</li>
+      <li><code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">Z</code> — Close path (line back to start)</li>
+      <li><code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">C x1 y1, x2 y2, x y</code> — Cubic Bézier curve (Figma uses this for curves)</li>
+    </ul>
+  </section>
+
+  <!-- Demo 4: Groups -->
+  <section class="demo-section">
+    <h2>4. Groups and Structure</h2>
+    <p>The <code style="display: inline; padding: 2px 6px; font-size: 0.9rem;">&lt;g&gt;</code> element groups shapes together — like layers in Figma.</p>
+
+    <div class="svg-container">
+      <div class="svg-example">
+        <h3>Bookmark Icon (Grouped)</h3>
+        <div class="svg-display">
+          <svg class="bookmark-icon" width="80" height="80" viewBox="0 0 24 24">
+            <g class="bookmark-group">
+              <path class="bookmark-body" d="M5 2 L19 2 L19 22 L12 18 L5 22 Z" fill="#3498db" />
+            </g>
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;svg</span> <span class="attribute">class</span>=<span class="string">"bookmark-icon"</span> <span class="attribute">viewBox</span>=<span class="string">"0 0 24 24"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;g</span> <span class="attribute">class</span>=<span class="string">"bookmark-group"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;path</span>
+      <span class="attribute">class</span>=<span class="string">"bookmark-body"</span>
+      <span class="attribute">d</span>=<span class="string">"M5 2 L19 2 L19 22 L12 18 L5 22 Z"</span>
+    <span class="keyword">/&gt;</span>
+  <span class="keyword">&lt;/g&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span>
+
+<span class="comment">Why groups?</span>
+<span class="comment">- Apply transforms to multiple shapes</span>
+<span class="comment">- Organize complex icons</span>
+<span class="comment">- Target with CSS</span></code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo 5: viewBox "Camera Frame" -->
+  <section class="demo-section">
+    <h2>5. viewBox as Camera Frame</h2>
+    <p>Changing viewBox is like changing where the camera points.</p>
+
+    <div class="svg-container">
+      <div class="svg-example">
+        <h3>Full View</h3>
+        <div class="svg-display">
+          <svg width="150" height="150" viewBox="0 0 100 100">
+            <rect x="10" y="10" width="80" height="80" fill="#e0e0e0" />
+            <circle cx="50" cy="50" r="30" class="circle-demo" />
+            <text x="50" y="55" text-anchor="middle" fill="white" font-size="12">Full</text>
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;svg</span> <span class="attribute">viewBox</span>=<span class="string">"<span class="highlight">0 0 100 100</span>"</span><span class="keyword">&gt;</span>
+  <span class="comment">&lt;!-- Shows 0,0 to 100,100 --&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span></code>
+      </div>
+
+      <div class="svg-example">
+        <h3>Zoomed In (viewBox smaller)</h3>
+        <div class="svg-display">
+          <svg width="150" height="150" viewBox="25 25 50 50">
+            <rect x="10" y="10" width="80" height="80" fill="#e0e0e0" />
+            <circle cx="50" cy="50" r="30" class="circle-demo" />
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;svg</span> <span class="attribute">viewBox</span>=<span class="string">"<span class="highlight">25 25 50 50</span>"</span><span class="keyword">&gt;</span>
+  <span class="comment">&lt;!-- Shows 25,25 to 75,75 --&gt;</span>
+  <span class="comment">&lt;!-- Same shapes, cropped view --&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span></code>
+      </div>
+
+      <div class="svg-example">
+        <h3>Zoomed Out (viewBox larger)</h3>
+        <div class="svg-display">
+          <svg width="150" height="150" viewBox="0 0 200 200">
+            <rect x="10" y="10" width="80" height="80" fill="#e0e0e0" />
+            <circle cx="50" cy="50" r="30" class="circle-demo" />
+            <text x="50" y="55" text-anchor="middle" fill="white" font-size="24">Zoom</text>
+          </svg>
+        </div>
+        <code><span class="keyword">&lt;svg</span> <span class="attribute">viewBox</span>=<span class="string">"<span class="highlight">0 0 200 200</span>"</span><span class="keyword">&gt;</span>
+  <span class="comment">&lt;!-- Shows 0,0 to 200,200 --&gt;</span>
+  <span class="comment">&lt;!-- Same shapes, more space --&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span></code>
+      </div>
+    </div>
+
+    <p><strong>Key takeaway:</strong> Shapes don't change coordinates, but viewBox changes what portion of the coordinate system you see.</p>
+  </section>
+
+  <section class="demo-section" style="background: #fff3cd; border-left: 4px solid #f39c12;">
+    <h2 style="color: #856404;">💡 Key Concepts</h2>
+    <ul style="margin-left: 2rem; color: #856404; line-height: 2;">
+      <li><strong>viewBox</strong> = coordinate system (what the camera sees)</li>
+      <li><strong>width/height</strong> = display size (how big it prints)</li>
+      <li><strong>&lt;path&gt;</strong> = most flexible, can draw anything</li>
+      <li><strong>&lt;g&gt;</strong> = groups shapes (like Figma layers)</li>
+      <li><strong>Coordinates</strong> = always relative to viewBox, not pixels</li>
+    </ul>
+  </section>
+</body>
+</html>

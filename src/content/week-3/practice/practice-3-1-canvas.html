@@ -1,0 +1,292 @@
+<!--
+  PRACTICE 3-1: THE INHERITANCE — Canvas Assignment HTML
+  Uses GitHub Primer design system colors and spacing
+  Copy everything below into Canvas Rich Content Editor (HTML view)
+-->
+
+<h1 style="font-size: 32px; font-weight: 600; margin-bottom: 8px; color: #1F2328;">Practice 3-1: The Inheritance</h1>
+
+<p style="font-size: 20px; color: #656d76; margin-bottom: 8px;">Export your Figma variables to CSS</p>
+
+<div style="background: #dafbe1; border-left: 3px solid #1a7f37; padding: 16px; border-radius: 6px; margin-bottom: 16px;">
+  <p style="margin: 0; color: #1F2328;"><strong>In-Class Lab</strong> — Part of Project 1: Signal &amp; State</p>
+</div>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Overview</h2>
+
+<p style="margin-bottom: 16px; color: #1F2328;">Time to bring your Figma variables into code. You'll create a <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">variables.css</code> file that mirrors your Figma collections, then build a working theme toggle.</p>
+
+<p style="margin-bottom: 16px; color: #1F2328;"><strong>This is where design meets development</strong> — your Figma decisions become real CSS.</p>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Requirements</h2>
+
+<ul style="margin: 0 0 16px 0; padding-left: 24px; color: #1F2328;">
+  <li style="margin-bottom: 6px;"><input type="checkbox" disabled> Create a <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">variables.css</code> file with your brand tokens</li>
+  <li style="margin-bottom: 6px;"><input type="checkbox" disabled> Refactor at least one page to use these tokens</li>
+  <li style="margin-bottom: 0;"><input type="checkbox" disabled> Add a working theme toggle</li>
+</ul>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">From Figma to Code</h2>
+
+<p style="margin-bottom: 12px; color: #1F2328;">Your Figma collections become your CSS:</p>
+
+<table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+  <thead>
+    <tr>
+      <th style="text-align: left; padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; font-weight: 600; color: #1F2328;">Figma Collection</th>
+      <th style="text-align: left; padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; font-weight: 600; color: #1F2328;">CSS Section</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; color: #1F2328;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">color_primitives</code></td>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; color: #1F2328;">Color Tokens (primitives)</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; color: #1F2328;"><code style="background: #eaeef2; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">brand_colors</code></td>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; color: #1F2328;">Color Tokens (semantic)</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; color: #1F2328;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">typography</code></td>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; color: #1F2328;">Typography Tokens</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; color: #1F2328;"><code style="background: #eaeef2; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">spacing</code></td>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; color: #1F2328;">Spacing Tokens</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="margin-bottom: 16px; color: #1F2328;"><strong>Use your exact Figma variable names in your CSS.</strong> This creates a 1:1 relationship between your design file and your code.</p>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Using the Export Plugin</h2>
+
+<ol style="margin: 0 0 16px 0; padding-left: 24px; color: #1F2328;">
+  <li style="margin-bottom: 8px;"><strong>Install a plugin</strong> (each works to an extent, none are perfect):
+    <ul style="margin-top: 6px; padding-left: 24px;">
+      <li style="margin-bottom: 4px;"><a href="https://www.figma.com/community/plugin/1332412206147274506" target="_blank" rel="noopener" style="color: #0969da;">Export Styles and Variables to CSS</a></li>
+      <li style="margin-bottom: 4px;"><a href="https://www.figma.com/community/plugin/1470777269812001046" target="_blank" rel="noopener" style="color: #0969da;">CSS variables import/export</a></li>
+      <li style="margin-bottom: 0;"><a href="https://www.figma.com/community/plugin/1256552240995753259" target="_blank" rel="noopener" style="color: #0969da;">Variables to CSS</a></li>
+    </ul>
+  </li>
+  <li style="margin-bottom: 8px;"><strong>Open your portfolio file</strong> in Figma (the one with your variables from Build 2-1)</li>
+  <li style="margin-bottom: 8px;"><strong>Make sure you're in Design mode</strong> (not Dev mode)</li>
+  <li style="margin-bottom: 8px;"><strong>Run the plugin:</strong> Right-click → Plugins → [Your chosen plugin]</li>
+  <li style="margin-bottom: 8px;"><strong>Export your tokens:</strong>
+    <ul style="margin-top: 6px; padding-left: 24px;">
+      <li style="margin-bottom: 4px;">Copy the Variables output into a new <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">variables.css</code> file</li>
+      <li style="margin-bottom: 0;">Copy Styles into <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">figma-styles-temp.css</code> (optional reference)</li>
+    </ul>
+  </li>
+</ol>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Organizing Your Token File</h2>
+
+<p style="margin-bottom: 12px; color: #1F2328;">Organize your exported variables into a clean structure:</p>
+
+<pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; border: 1px solid #d0d7de; font-family: ui-monospace, monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; margin-bottom: 16px; color: #1F2328;">/* Design Tokens — [Your Name]'s Portfolio */
+
+/* Color Tokens */
+:root {
+  /* Your light mode colors go here */
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] {
+  /* Same variable names, different values */
+}
+
+/* Typography Tokens */
+:root {
+  /* Your font families and sizes */
+}
+
+/* Spacing Tokens */
+:root {
+  /* Your spacing scale */
+}</pre>
+
+<p style="margin-bottom: 8px; color: #1F2328;"><strong>Key points:</strong></p>
+<ul style="margin: 0 0 16px 0; padding-left: 24px; color: #1F2328;">
+  <li style="margin-bottom: 4px;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">:root</code> holds your light mode (default) values</li>
+  <li style="margin-bottom: 4px;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">[data-theme="dark"]</code> overrides only colors that change</li>
+  <li style="margin-bottom: 0;">Keep the same variable names your Figma export gave you</li>
+</ul>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Step-by-Step Guide</h2>
+
+<h3 style="font-size: 20px; font-weight: 600; color: #1F2328; margin-top: 24px; margin-bottom: 12px;">Step 1: Audit Your Current CSS</h3>
+
+<p style="margin-bottom: 12px; color: #1F2328;">Look at your existing stylesheets:</p>
+<ol style="margin: 0 0 16px 0; padding-left: 24px; color: #1F2328;">
+  <li style="margin-bottom: 4px;">How many different colors do you use?</li>
+  <li style="margin-bottom: 4px;">How many font sizes?</li>
+  <li style="margin-bottom: 0;">Are values repeated in multiple places?</li>
+</ol>
+
+<h3 style="font-size: 20px; font-weight: 600; color: #1F2328; margin-top: 24px; margin-bottom: 12px;">Step 2: Import Your Variables</h3>
+
+<p style="margin-bottom: 12px; color: #1F2328;">Import your variables.css into your styles.css:</p>
+
+<pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; border: 1px solid #d0d7de; font-family: ui-monospace, monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; margin-bottom: 16px; color: #1F2328;">/* My Style Sheet */
+@import "./variables.css";</pre>
+
+<p style="margin-bottom: 8px; color: #1F2328;">This gives you:</p>
+<ul style="margin: 0 0 16px 0; padding-left: 24px; color: #1F2328;">
+  <li style="margin-bottom: 4px;">Single source of truth</li>
+  <li style="margin-bottom: 4px;">Predictable cascade</li>
+  <li style="margin-bottom: 4px;">Reusable across pages and projects</li>
+  <li style="margin-bottom: 0;">Easy theming</li>
+</ul>
+
+<h3 style="font-size: 20px; font-weight: 600; color: #1F2328; margin-top: 24px; margin-bottom: 12px;">Step 3: Refactor Your CSS</h3>
+
+<p style="margin-bottom: 12px; color: #1F2328;">Find hardcoded values and replace them with variables:</p>
+
+<p style="margin-bottom: 8px; color: #1F2328;"><strong>Before:</strong></p>
+<pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; border: 1px solid #d0d7de; font-family: ui-monospace, monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; margin-bottom: 16px; color: #1F2328;">body {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  padding: 32px;
+}</pre>
+
+<p style="margin-bottom: 8px; color: #1F2328;"><strong>After:</strong></p>
+<pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; border: 1px solid #d0d7de; font-family: ui-monospace, monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; margin-bottom: 16px; color: #1F2328;">body {
+  background-color: var(--color-surface-primary);
+  color: var(--color-text-primary);
+  padding: var(--space-xl);
+}</pre>
+
+<div style="background: #ddf4ff; border-left: 3px solid #0969da; padding: 16px; border-radius: 6px; margin-bottom: 16px;">
+  <p style="margin: 0; color: #1F2328;"><strong>Tip:</strong> This is a good opportunity to use GitHub Copilot. Ask it to "find hardcoded colors in my CSS and replace them with variables from variables.css"</p>
+</div>
+
+<h3 style="font-size: 20px; font-weight: 600; color: #1F2328; margin-top: 24px; margin-bottom: 12px;">Step 4: Upgrade the Theme Toggle</h3>
+
+<div style="background: #dafbe1; border-left: 3px solid #1a7f37; padding: 16px; border-radius: 6px; margin-bottom: 16px;">
+  <p style="margin: 0; color: #1F2328;">You already built a basic toggle in <strong>Practice 2-1: The Switch</strong> using <code style="background: #eaeef2; padding: 2px 4px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 13px;">classList.toggle</code>. Now we upgrade it to use <code style="background: #eaeef2; padding: 2px 4px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 13px;">data-theme</code>.</p>
+</div>
+
+<p style="margin-bottom: 8px; color: #1F2328;"><strong>Add a toggle button:</strong></p>
+<pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; border: 1px solid #d0d7de; font-family: ui-monospace, monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; margin-bottom: 16px; color: #1F2328;">&lt;button class="theme-toggle" data-theme-toggle&gt;
+  Toggle Theme
+&lt;/button&gt;</pre>
+
+<p style="margin-bottom: 8px; color: #1F2328;"><strong>Add the JavaScript (in main.js):</strong></p>
+<pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; border: 1px solid #d0d7de; font-family: ui-monospace, monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; margin-bottom: 16px; color: #1F2328;">const toggle = document.querySelector('[data-theme-toggle]');
+
+toggle.addEventListener('click', () =&gt; {
+  const currentTheme = document.documentElement.dataset.theme;
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = newTheme;
+});</pre>
+
+<p style="margin-bottom: 16px; color: #656d76; font-size: 14px;"><em>Note: We're using <code style="background: #f6f8fa; padding: 2px 4px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 13px;">data-theme</code> on <code style="background: #f6f8fa; padding: 2px 4px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 13px;">&lt;html&gt;</code> instead of a class on <code style="background: #f6f8fa; padding: 2px 4px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 13px;">&lt;body&gt;</code>. This is the pattern we'll build on in Practice 3-2.</em></p>
+
+<h3 style="font-size: 20px; font-weight: 600; color: #1F2328; margin-top: 24px; margin-bottom: 12px;">Step 5: Test Everything</h3>
+
+<ol style="margin: 0 0 16px 0; padding-left: 24px; color: #1F2328;">
+  <li style="margin-bottom: 4px;">Click the toggle — do colors change?</li>
+  <li style="margin-bottom: 4px;">Check DevTools Elements panel — does <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">data-theme</code> appear on <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">&lt;html&gt;</code>?</li>
+  <li style="margin-bottom: 4px;">Check for console errors</li>
+  <li style="margin-bottom: 0;">Verify your page looks correct in both modes</li>
+</ol>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Complete Criteria</h2>
+
+<div style="background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px; padding: 16px; margin-bottom: 16px;">
+  <p style="margin: 0 0 8px 0; color: #1F2328;"><strong>Your lab is complete when:</strong></p>
+  <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #1F2328;">
+    <li style="margin-bottom: 4px;"><input type="checkbox" disabled> <code style="background: #eaeef2; padding: 2px 4px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 13px;">variables.css</code> exists with at least 5 tokens</li>
+    <li style="margin-bottom: 4px;"><input type="checkbox" disabled> At least one page uses the tokens (no hardcoded colors)</li>
+    <li style="margin-bottom: 4px;"><input type="checkbox" disabled> Theme toggle works</li>
+    <li style="margin-bottom: 0;"><input type="checkbox" disabled> No console errors</li>
+  </ul>
+</div>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Submission</h2>
+
+<p style="margin-bottom: 12px; color: #1F2328;"><strong>Submit screenshots showing:</strong></p>
+<ol style="margin: 0 0 16px 0; padding-left: 24px; color: #1F2328;">
+  <li style="margin-bottom: 6px;">Your <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">variables.css</code> file with your tokens</li>
+  <li style="margin-bottom: 0;">DevTools Elements panel showing <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">data-theme</code> attribute on <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">&lt;html&gt;</code> when toggled</li>
+</ol>
+
+<div style="background: #fff8c5; border-left: 3px solid #9a6700; padding: 16px; border-radius: 6px; margin-bottom: 16px;">
+  <p style="margin: 0; color: #1F2328;">This is a <strong>progress checkpoint</strong> — Project 1 is the full submission.</p>
+</div>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Naming Conventions</h2>
+
+<p style="margin-bottom: 12px; color: #1F2328;"><strong>Semantic vs. Literal:</strong></p>
+
+<table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+  <thead>
+    <tr>
+      <th style="text-align: left; padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; font-weight: 600; color: #1F2328;">Literal (avoid)</th>
+      <th style="text-align: left; padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; font-weight: 600; color: #1F2328;">Semantic (prefer)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; color: #1F2328;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">--color-blue</code></td>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; color: #1F2328;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">--color-accent</code></td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; color: #1F2328;"><code style="background: #eaeef2; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">--color-dark-gray</code></td>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; background: #f6f8fa; color: #1F2328;"><code style="background: #eaeef2; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">--color-text-secondary</code></td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; color: #1F2328;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">--font-size-16</code></td>
+      <td style="padding: 8px 12px; border: 1px solid #d0d7de; color: #1F2328;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 13px;">--font-size-base</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="margin-bottom: 16px; color: #1F2328;">Semantic names describe <em>purpose</em>, not <em>appearance</em>. When your brand color changes from blue to green, <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 14px; border: 1px solid #d0d7de;">--color-accent</code> still makes sense.</p>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">File Organization</h2>
+
+<pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; border: 1px solid #d0d7de; font-family: ui-monospace, monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; margin-bottom: 16px; color: #1F2328;">portfolio/
+├── index.html
+├── css/
+│   ├── variables.css    ← tokens
+│   └── styles.css       ← imports variables.css
+└── js/
+    └── main.js          ← toggle logic</pre>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Resources</h2>
+
+<ul style="margin: 0 0 16px 0; padding-left: 24px; color: #1F2328;">
+  <li style="margin-bottom: 6px;"><a href="https://open-props.style/" target="_blank" rel="noopener" style="color: #0969da;">Open Props</a> — See how a mature token system is organized</li>
+  <li style="margin-bottom: 6px;"><a href="https://css-tricks.com/what-are-design-tokens/" target="_blank" rel="noopener" style="color: #0969da;">CSS-Tricks: What are Design Tokens?</a></li>
+  <li style="margin-bottom: 0;"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank" rel="noopener" style="color: #0969da;">MDN: CSS Custom Properties</a></li>
+</ul>
+
+<hr style="border: none; border-top: 1px solid #d0d7de; margin: 32px 0;">
+
+<h2 style="font-size: 24px; font-weight: 600; color: #1F2328; padding-bottom: 8px; border-bottom: 1px solid #d0d7de; margin-bottom: 16px;">Connection to Project 1</h2>
+
+<p style="margin-bottom: 16px; color: #1F2328;">This lab covers the <strong>Figma-to-CSS export portion</strong> of Project 1: Signal &amp; State. Next up: <strong>Practice 3-2: The Preference</strong> — where we add localStorage and system preference detection.</p>

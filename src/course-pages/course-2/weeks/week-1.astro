@@ -22,6 +22,7 @@ function walkMarkdown(dir: string): string[] {
   const entries = readdirSync(dir);
   const output: string[] = [];
   for (const entry of entries) {
+    if (entry.startsWith('_') || entry.startsWith('.')) continue;
     const full = join(dir, entry);
     const stats = statSync(full);
     if (stats.isDirectory()) {
@@ -41,18 +42,12 @@ function slugify(input: string) {
 }
 
 function categoryForPath(relPath: string): string {
-  const first = relPath.split('/')[0];
-  if (first === 'week-1-overview.md') return 'overview';
-  if (first === 'WEEK-1-WALKTHROUGH.md') return 'walkthrough';
-  if (first === 'desn378-wk-1-details.md') return 'details';
-  if (first === '_instructor-notes') return 'instructor-notes';
-  return first;
+  const parts = relPath.split('/');
+  if (parts.length === 1) return 'overview';
+  return parts[0];
 }
 
-marked.setOptions({
-  gfm: true,
-  breaks: false,
-});
+marked.setOptions({ gfm: true, breaks: false });
 
 const allDocs: Doc[] = walkMarkdown(weekRoot)
   .map((fullPath) => {
@@ -63,20 +58,11 @@ const allDocs: Doc[] = walkMarkdown(weekRoot)
     const fileName = basename(relPath);
     const id = slugify(relPath);
     const category = categoryForPath(relPath);
-
-    return {
-      id,
-      title,
-      category,
-      relPath,
-      fileName,
-      html: marked.parse(raw) as string,
-    };
+    return { id, title, category, relPath, fileName, html: marked.parse(raw) as string };
   })
-  .filter((doc) => doc.category !== 'instructor-notes')
   .sort((a, b) => a.relPath.localeCompare(b.relPath));
 
-const categoryOrder = ['overview', 'lectures', 'engage', 'learn', 'practice', 'build', 'reflect', 'resources', 'walkthrough', 'details'];
+const categoryOrder = ['overview', 'lectures', 'engage', 'learn', 'practice', 'build', 'reflect', 'resources'];
 const categoryLabel: Record<string, string> = {
   overview: 'Overview',
   lectures: 'Lectures',
@@ -86,17 +72,23 @@ const categoryLabel: Record<string, string> = {
   build: 'Build',
   reflect: 'Reflect',
   resources: 'Resources',
-  walkthrough: 'Walkthrough',
-  details: 'Details',
 };
 
-const groupedDocs = categoryOrder
+const allCategories = [...new Set(allDocs.map((d) => d.category))];
+const orderedCategories = [
+  ...categoryOrder.filter((c) => allCategories.includes(c)),
+  ...allCategories.filter((c) => !categoryOrder.includes(c)),
+];
+
+const groupedDocs = orderedCategories
   .map((category) => ({
     category,
     label: categoryLabel[category] ?? category,
     docs: allDocs.filter((doc) => doc.category === category),
   }))
   .filter((group) => group.docs.length > 0);
+
+const firstDocId = allDocs[0]?.id ?? '';
 ---
 
 <BaseLayout title="Week 1: First Light - DESN378">
@@ -116,52 +108,89 @@ const groupedDocs = categoryOrder
         <Icon name="book" size={16} class="section-icon" />
         <span>week-1/</span>
       </div>
-      <p class="browser-subtitle">Pretend file browser</p>
-      <div class="tree">
-        {groupedDocs.map((group) => (
-          <details open>
-            <summary>{group.label}/</summary>
-            <ul>
-              {group.docs.map((doc) => (
-                <li>
-                  <a href={`#${doc.id}`}>
-                    <span class="entry-title">{doc.title}</span>
-                    <span class="entry-file">{doc.fileName}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </details>
-        ))}
+      <p class="browser-subtitle">Click a file to open it</p>
+
+      {groupedDocs.length > 0 ? (
+        <div class="tree">
+          {groupedDocs.map((group) => (
+            <details open>
+              <summary>{group.label}/</summary>
+              <ul>
+                {group.docs.map((doc) => (
+                  <li>
+                    <a href={`#${doc.id}`} data-doc={doc.id}>
+                      <span class="entry-title">{doc.title}</span>
+                      <span class="entry-file">{doc.fileName}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+      ) : (
+        <p class="browser-empty">No content files yet.</p>
+      )}
+
+      <div class="week-nav-links">
+        <a href="/2/weeks/week-0">← Week 0</a>
+        <a href="/2/weeks/week-2">Week 2 →</a>
       </div>
     </aside>
 
     <div class="week-content">
-      <Card variant="accent" class="card-enhanced">
+      <Card variant="accent" class="card-enhanced week-header-card">
         <SectionHeader level={1} icon="calendar" badge={{ text: 'Week 1', variant: 'success' }}>
           Week 1: First Light
         </SectionHeader>
-        <p class="subtitle">
-          Full Week 1 assignment content pulled into the site. Click files in the sidebar to jump directly to each assignment.
-        </p>
       </Card>
 
-      {groupedDocs.map((group) => (
-        <section class="category-section">
-          <h2>{group.label}</h2>
-          {group.docs.map((doc) => (
-            <article id={doc.id} class="doc-panel">
-              <header class="doc-header">
-                <h3>{doc.title}</h3>
-                <code>{doc.relPath}</code>
-              </header>
-              <div class="markdown-view" set:html={doc.html}></div>
-            </article>
-          ))}
-        </section>
-      ))}
+      <div class="doc-viewer">
+        {allDocs.length === 0 && (
+          <div class="doc-empty">
+            <p>Content for this week is coming soon.</p>
+          </div>
+        )}
+
+        {allDocs.map((doc) => (
+          <article id={doc.id} class="doc-panel" hidden>
+            <header class="doc-header">
+              <h2>{doc.title}</h2>
+              <code>{doc.relPath}</code>
+            </header>
+            <div class="markdown-view" set:html={doc.html}></div>
+          </article>
+        ))}
+      </div>
     </div>
   </main>
+
+  <script define:vars={{ firstDocId }} is:inline>
+    const panels = document.querySelectorAll('.doc-panel');
+    const links = document.querySelectorAll('.file-browser a[data-doc]');
+
+    function showDoc(id) {
+      panels.forEach((p) => { p.hidden = true; });
+      links.forEach((l) => l.classList.remove('active'));
+
+      const panel = document.getElementById(id);
+      const link = document.querySelector(`.file-browser a[data-doc="${id}"]`);
+      if (panel) panel.hidden = false;
+      if (link) link.classList.add('active');
+    }
+
+    const hash = location.hash.slice(1);
+    showDoc(hash && document.getElementById(hash) ? hash : firstDocId);
+
+    links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = link.dataset.doc;
+        showDoc(id);
+        history.pushState(null, '', '#' + id);
+      });
+    });
+  </script>
 
   <style>
     .week-browser-layout {
@@ -169,7 +198,7 @@ const groupedDocs = categoryOrder
       margin: 0 auto;
       padding: 1.25rem 1.25rem 3rem;
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 280px 1fr;
       gap: 1rem;
     }
 
@@ -188,14 +217,23 @@ const groupedDocs = categoryOrder
     .browser-head {
       display: flex;
       align-items: center;
+      gap: 0.4rem;
       font-weight: 600;
       color: var(--text-primary);
+      font-size: 0.9rem;
     }
 
     .browser-subtitle {
       margin: 0.3rem 0 0.75rem;
       color: var(--text-muted);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
+      font-style: italic;
+    }
+
+    .browser-empty {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
     }
 
     .tree details {
@@ -205,18 +243,24 @@ const groupedDocs = categoryOrder
     .tree summary {
       cursor: pointer;
       color: var(--text-secondary);
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       font-weight: 600;
       list-style: none;
+      padding: 0.2rem 0.3rem;
+      border-radius: 4px;
     }
 
     .tree summary::-webkit-details-marker {
       display: none;
     }
 
+    .tree summary:hover {
+      color: var(--text-primary);
+    }
+
     .tree ul {
       list-style: none;
-      margin: 0.35rem 0 0.45rem 0.65rem;
+      margin: 0.25rem 0 0.35rem 0.65rem;
       padding: 0;
       border-left: 1px dashed var(--border-color);
     }
@@ -228,27 +272,13 @@ const groupedDocs = categoryOrder
 
     .tree a {
       display: block;
-      padding: 0.2rem 0.45rem;
-      color: var(--text-link);
+      padding: 0.25rem 0.45rem;
       text-decoration: none;
       font-size: 0.78rem;
       border-radius: 6px;
       overflow-wrap: anywhere;
-    }
-
-    .entry-title {
-      display: block;
-      color: var(--text-secondary);
-      font-size: 0.78rem;
-      line-height: 1.25;
-      margin-bottom: 0.15rem;
-    }
-
-    .entry-file {
-      display: block;
-      color: var(--text-muted);
-      font-size: 0.69rem;
-      line-height: 1.2;
+      border-left: 2px solid transparent;
+      transition: background 0.1s, border-color 0.1s;
     }
 
     .tree a:hover {
@@ -259,38 +289,94 @@ const groupedDocs = categoryOrder
       color: var(--text-primary);
     }
 
+    .tree a.active {
+      background: var(--bg-tertiary);
+      border-left-color: var(--brand-primary);
+    }
+
+    .tree a.active .entry-title {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .entry-title {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      line-height: 1.25;
+      margin-bottom: 0.1rem;
+    }
+
+    .entry-file {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      line-height: 1.2;
+    }
+
+    .week-nav-links {
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .week-nav-links a {
+      color: var(--text-link);
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .week-nav-links a:hover {
+      text-decoration: underline;
+    }
+
     .week-content {
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .week-header-card {
+      flex-shrink: 0;
     }
 
     .subtitle {
-      margin-top: 0.5rem;
+      margin-top: 0.4rem;
       color: var(--text-secondary);
     }
 
-    .category-section {
-      margin-top: 1rem;
+    .doc-viewer {
+      flex: 1;
     }
 
-    .category-section h2 {
-      color: var(--text-primary);
-      margin: 0 0 0.65rem 0;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 0.4rem;
+    .doc-empty {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 1.5rem;
+      color: var(--text-secondary);
     }
 
     .doc-panel {
       background: var(--bg-card);
       border: 1px solid var(--border-light);
       border-radius: 10px;
-      padding: 0.9rem 1rem;
-      margin-bottom: 0.9rem;
+      padding: 1.25rem 1.5rem;
     }
 
-    .doc-header h3 {
-      margin: 0 0 0.25rem 0;
+    .doc-header {
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .doc-header h2 {
+      margin: 0 0 0.3rem 0;
       color: var(--text-primary);
-      font-size: 1.05rem;
+      font-size: 1.2rem;
     }
 
     .doc-header code {
@@ -300,9 +386,8 @@ const groupedDocs = categoryOrder
     }
 
     .markdown-view {
-      margin-top: 0.8rem;
       color: var(--text-secondary);
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .markdown-view :global(h1),
@@ -310,12 +395,17 @@ const groupedDocs = categoryOrder
     .markdown-view :global(h3),
     .markdown-view :global(h4) {
       color: var(--text-primary);
-      margin-top: 1rem;
-      margin-bottom: 0.45rem;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .markdown-view :global(h1:first-child),
+    .markdown-view :global(h2:first-child) {
+      margin-top: 0;
     }
 
     .markdown-view :global(p) {
-      margin: 0.45rem 0;
+      margin: 0.5rem 0;
     }
 
     .markdown-view :global(ul),
@@ -324,15 +414,16 @@ const groupedDocs = categoryOrder
     }
 
     .markdown-view :global(li) {
-      margin: 0.2rem 0;
+      margin: 0.25rem 0;
     }
 
     .markdown-view :global(pre) {
       background: var(--bg-tertiary);
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      padding: 0.7rem;
+      padding: 0.75rem 1rem;
       overflow-x: auto;
+      margin: 0.75rem 0;
     }
 
     .markdown-view :global(code) {
@@ -343,19 +434,39 @@ const groupedDocs = categoryOrder
     .markdown-view :global(table) {
       width: 100%;
       border-collapse: collapse;
-      margin: 0.7rem 0;
+      margin: 0.75rem 0;
       font-size: 0.9rem;
     }
 
     .markdown-view :global(th),
     .markdown-view :global(td) {
       border: 1px solid var(--border-color);
-      padding: 0.45rem 0.5rem;
+      padding: 0.5rem 0.6rem;
       vertical-align: top;
+    }
+
+    .markdown-view :global(th) {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .markdown-view :global(blockquote) {
+      border-left: 3px solid var(--brand-primary);
+      margin: 0.75rem 0;
+      padding: 0.5rem 1rem;
+      background: var(--bg-tertiary);
+      border-radius: 0 6px 6px 0;
     }
 
     .markdown-view :global(a) {
       color: var(--text-link);
+    }
+
+    .markdown-view :global(hr) {
+      border: none;
+      border-top: 1px solid var(--border-color);
+      margin: 1rem 0;
     }
 
     @media (max-width: 980px) {

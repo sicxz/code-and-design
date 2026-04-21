@@ -8,6 +8,7 @@ type CourseProject = {
   title: string;
   path?: string;
   checklist?: string;
+  contentDir?: string;
 };
 
 type CourseWeek = {
@@ -41,6 +42,7 @@ type Course2ProjectSource = {
   name: string;
   path: string;
   checklist: string;
+  contentDir?: string;
 };
 
 type Course2WeekSource = {
@@ -61,6 +63,7 @@ const course2Projects = (course2Data.projects as Course2ProjectSource[]).map((pr
   title: project.name,
   path: project.path,
   checklist: project.checklist,
+  contentDir: project.contentDir,
 }));
 
 const course2Weeks = (course2Data.weeks as Course2WeekSource[]).map((week) => ({

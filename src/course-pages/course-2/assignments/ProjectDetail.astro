@@ -3,15 +3,107 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Card from '../../../components/Card.astro';
 import SectionHeader from '../../../components/SectionHeader.astro';
 import Icon from '../../../components/Icon.astro';
+import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
+import { join, relative, basename } from 'node:path';
+import { marked } from 'marked';
 
 type Project = {
   slug: string;
   title: string;
   path?: string;
   checklist?: string;
+  contentDir?: string;
 };
 
 const { project } = Astro.props as { project: Project };
+
+type Doc = {
+  id: string;
+  title: string;
+  category: string;
+  relPath: string;
+  fileName: string;
+  html: string;
+};
+
+function walkMarkdown(dir: string): string[] {
+  if (!existsSync(dir)) return [];
+  const entries = readdirSync(dir);
+  const output: string[] = [];
+  for (const entry of entries) {
+    if (entry.startsWith('_') || entry.startsWith('.')) continue;
+    const full = join(dir, entry);
+    const stats = statSync(full);
+    if (stats.isDirectory()) {
+      output.push(...walkMarkdown(full));
+      continue;
+    }
+    if (entry.toLowerCase().endsWith('.md')) output.push(full);
+  }
+  return output;
+}
+
+function slugify(input: string) {
+  return input
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '');
+}
+
+function categoryForPath(relPath: string): string {
+  const parts = relPath.split('/');
+  if (parts.length === 1) return 'brief';
+  const first = parts[0];
+  if (first === 'student-hub') return 'student-hub';
+  if (first.startsWith('week-')) return first;
+  return first;
+}
+
+marked.setOptions({ gfm: true, breaks: false });
+
+const contentRoot = project.contentDir
+  ? join(process.cwd(), project.contentDir)
+  : null;
+
+const allDocs: Doc[] = contentRoot
+  ? walkMarkdown(contentRoot)
+      .map((fullPath) => {
+        const relPath = relative(contentRoot, fullPath).replaceAll('\\', '/');
+        const raw = readFileSync(fullPath, 'utf-8');
+        const headingMatch = raw.match(/^#\s+(.+)$/m);
+        const title = headingMatch ? headingMatch[1].trim() : basename(relPath, '.md');
+        const fileName = basename(relPath);
+        const id = slugify(relPath);
+        const category = categoryForPath(relPath);
+        return { id, title, category, relPath, fileName, html: marked.parse(raw) as string };
+      })
+      .sort((a, b) => a.relPath.localeCompare(b.relPath))
+  : [];
+
+const categoryOrder = ['brief', 'student-hub', 'week-8', 'week-9', 'week-10'];
+const categoryLabel: Record<string, string> = {
+  brief: 'Brief + Checklist',
+  'student-hub': 'Student Hub',
+  'week-8': 'Week 8',
+  'week-9': 'Week 9',
+  'week-10': 'Week 10',
+};
+
+const allCategories = [...new Set(allDocs.map((d) => d.category))];
+const orderedCategories = [
+  ...categoryOrder.filter((c) => allCategories.includes(c)),
+  ...allCategories.filter((c) => !categoryOrder.includes(c)),
+];
+
+const groupedDocs = orderedCategories
+  .map((category) => ({
+    category,
+    label: categoryLabel[category] ?? category,
+    docs: allDocs.filter((doc) => doc.category === category),
+  }))
+  .filter((group) => group.docs.length > 0);
+
+const firstDocId = allDocs[0]?.id ?? '';
 ---
 
 <BaseLayout title={`${project.title} - DESN378`}>
@@ -27,94 +119,354 @@ const { project } = Astro.props as { project: Project };
     </div>
   </nav>
 
-  <main class="course-content two-column">
-    <div class="main-content fade-in">
-      <Card variant="accent" class="card-enhanced">
+  <main class="week-browser-layout">
+    <aside class="file-browser">
+      <div class="browser-head">
+        <Icon name="book" size={16} class="section-icon" />
+        <span>{project.slug}/</span>
+      </div>
+      <p class="browser-subtitle">Click a file to open it</p>
+
+      {groupedDocs.length > 0 ? (
+        <div class="tree">
+          {groupedDocs.map((group) => (
+            <details open>
+              <summary>{group.label}/</summary>
+              <ul>
+                {group.docs.map((doc) => (
+                  <li>
+                    <a href={`#${doc.id}`} data-doc={doc.id}>
+                      <span class="entry-title">{doc.title}</span>
+                      <span class="entry-file">{doc.fileName}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+      ) : (
+        <p class="browser-empty">No content files found.</p>
+      )}
+    </aside>
+
+    <div class="week-content">
+      <Card variant="accent" class="card-enhanced week-header-card">
         <SectionHeader icon="clipboard-list" level={1} badge={{ text: 'Project', variant: 'success' }}>
           {project.title}
         </SectionHeader>
-        <p>
-          This detail page keeps the shared `/2/assignments/...` route structure in sync with the
-          consolidated curriculum docs already stored in the repo.
-        </p>
       </Card>
 
-      <div class="section-divider"></div>
+      <div class="doc-viewer">
+        {allDocs.length === 0 && (
+          <div class="doc-empty">
+            <p>No content files found for this project.</p>
+          </div>
+        )}
 
-      <Card variant="enhanced">
-        <SectionHeader icon="book">
-          Canonical Source Files
-        </SectionHeader>
-        <div class="project-detail-grid">
-          {project.path && (
-            <div class="detail-block">
-              <h3>Brief</h3>
-              <code>{project.path}</code>
-            </div>
-          )}
-          {project.checklist && (
-            <div class="detail-block">
-              <h3>Checklist</h3>
-              <code>{project.checklist}</code>
-            </div>
-          )}
-        </div>
-      </Card>
-
-      <div class="section-divider"></div>
-
-      <Card variant="accent-subtle" class="card-enhanced">
-        <SectionHeader icon="layers">
-          Next Step
-        </SectionHeader>
-        <p>
-          Open the project source files in the repo for the full brief and checklist, then use the
-          week pages for pacing and day-by-day assignment context.
-        </p>
-        <p>
-          <a href="/2/assignments">← Back to projects + assignments hub</a>
-        </p>
-      </Card>
+        {allDocs.map((doc) => (
+          <article id={doc.id} class="doc-panel" hidden>
+            <header class="doc-header">
+              <h2>{doc.title}</h2>
+              <code>{doc.relPath}</code>
+            </header>
+            <div class="markdown-view" set:html={doc.html}></div>
+          </article>
+        ))}
+      </div>
     </div>
-
-    <aside class="sidebar">
-      <section class="card card-enhanced">
-        <h3>
-          <Icon name="target" size={18} class="section-icon" />
-          Course Context
-        </h3>
-        <ul class="sidebar-concepts">
-          <li>Behavior-first design decisions</li>
-          <li>Portfolio work with real deployment expectations</li>
-          <li>Use the weekly course routes for pacing</li>
-        </ul>
-      </section>
-    </aside>
   </main>
 
+  <script define:vars={{ firstDocId }} is:inline>
+    const panels = document.querySelectorAll('.doc-panel');
+    const links = document.querySelectorAll('.file-browser a[data-doc]');
+
+    function showDoc(id) {
+      panels.forEach((p) => { p.hidden = true; });
+      links.forEach((l) => l.classList.remove('active'));
+
+      const panel = document.getElementById(id);
+      const link = document.querySelector(`.file-browser a[data-doc="${id}"]`);
+      if (panel) panel.hidden = false;
+      if (link) link.classList.add('active');
+    }
+
+    const hash = location.hash.slice(1);
+    showDoc(hash && document.getElementById(hash) ? hash : firstDocId);
+
+    links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = link.dataset.doc;
+        showDoc(id);
+        history.pushState(null, '', '#' + id);
+      });
+    });
+  </script>
+
   <style>
-    .project-detail-grid {
+    .week-browser-layout {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 3rem;
       display: grid;
-      gap: 0.9rem;
+      grid-template-columns: 280px 1fr;
+      gap: 1rem;
     }
 
-    .detail-block {
-      background: var(--bg-tertiary);
+    .file-browser {
+      position: sticky;
+      top: 1rem;
+      align-self: start;
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      padding: 0.95rem 0.9rem;
+      max-height: calc(100vh - 2rem);
+      overflow: auto;
     }
 
-    .detail-block h3 {
+    .browser-head {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .browser-subtitle {
+      margin: 0.3rem 0 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-style: italic;
+    }
+
+    .browser-empty {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .tree details {
       margin-bottom: 0.45rem;
     }
 
-    .detail-block code {
-      display: block;
-      white-space: pre-wrap;
-      word-break: break-word;
-      font-size: 0.8rem;
+    .tree summary {
+      cursor: pointer;
       color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      list-style: none;
+      padding: 0.2rem 0.3rem;
+      border-radius: 4px;
+    }
+
+    .tree summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .tree summary:hover {
+      color: var(--text-primary);
+    }
+
+    .tree ul {
+      list-style: none;
+      margin: 0.25rem 0 0.35rem 0.65rem;
+      padding: 0;
+      border-left: 1px dashed var(--border-color);
+    }
+
+    .tree li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .tree a {
+      display: block;
+      padding: 0.25rem 0.45rem;
+      text-decoration: none;
+      font-size: 0.78rem;
+      border-radius: 6px;
+      overflow-wrap: anywhere;
+      border-left: 2px solid transparent;
+      transition: background 0.1s, border-color 0.1s;
+    }
+
+    .tree a:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .tree a:hover .entry-title {
+      color: var(--text-primary);
+    }
+
+    .tree a.active {
+      background: var(--bg-tertiary);
+      border-left-color: var(--brand-primary);
+    }
+
+    .tree a.active .entry-title {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .entry-title {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      line-height: 1.25;
+      margin-bottom: 0.1rem;
+    }
+
+    .entry-file {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      line-height: 1.2;
+    }
+
+    .week-content {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .week-header-card {
+      flex-shrink: 0;
+    }
+
+    .doc-viewer {
+      flex: 1;
+    }
+
+    .doc-empty {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .doc-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .doc-header {
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .doc-header h2 {
+      margin: 0 0 0.3rem 0;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+    }
+
+    .doc-header code {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      word-break: break-word;
+    }
+
+    .markdown-view {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .markdown-view :global(h1),
+    .markdown-view :global(h2),
+    .markdown-view :global(h3),
+    .markdown-view :global(h4) {
+      color: var(--text-primary);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .markdown-view :global(h1:first-child),
+    .markdown-view :global(h2:first-child) {
+      margin-top: 0;
+    }
+
+    .markdown-view :global(p) {
+      margin: 0.5rem 0;
+    }
+
+    .markdown-view :global(ul),
+    .markdown-view :global(ol) {
+      margin: 0.4rem 0 0.6rem 1.2rem;
+    }
+
+    .markdown-view :global(li) {
+      margin: 0.25rem 0;
+    }
+
+    .markdown-view :global(pre) {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+    }
+
+    .markdown-view :global(code) {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+    }
+
+    .markdown-view :global(table) {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0;
+      font-size: 0.9rem;
+    }
+
+    .markdown-view :global(th),
+    .markdown-view :global(td) {
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 0.6rem;
+      vertical-align: top;
+    }
+
+    .markdown-view :global(th) {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .markdown-view :global(blockquote) {
+      border-left: 3px solid var(--brand-primary);
+      margin: 0.75rem 0;
+      padding: 0.5rem 1rem;
+      background: var(--bg-tertiary);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .markdown-view :global(a) {
+      color: var(--text-link);
+    }
+
+    .markdown-view :global(hr) {
+      border: none;
+      border-top: 1px solid var(--border-color);
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 980px) {
+      .week-browser-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .file-browser {
+        position: static;
+        max-height: none;
+      }
     }
   </style>
 </BaseLayout>

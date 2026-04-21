@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designer's DevTools Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="header-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="9" y1="21" x2="9" y2="9"/>
+      </svg>
+      DevTools Field Guide
+    </a>
+    <nav class="header-nav">
+      <a href="index.html" class="active">Get Started</a>
+      <a href="console.html">Tutorials</a>
+      <a href="errors.html">Troubleshooting</a>
+      <a href="reference.html">Reference</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Get Started</div>
+        <a href="index.html" class="sidebar-link active">Overview</a>
+        <a href="start.html" class="sidebar-link">Your First 15 Minutes</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Tutorials</div>
+        <a href="console.html" class="sidebar-link">The Console</a>
+        <a href="bridge.html" class="sidebar-link">The $0 Bridge</a>
+        <a href="behavioral.html" class="sidebar-link">Reading Element State</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Troubleshooting</div>
+        <a href="errors.html" class="sidebar-link">Reading Errors</a>
+        <a href="connecting.html" class="sidebar-link">Quick Reminders</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Reference</div>
+        <a href="visual.html" class="sidebar-link">Visual Tools</a>
+        <a href="reference.html" class="sidebar-link">Keyboard Shortcuts</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <nav class="breadcrumb">
+        <a href="index.html">Docs</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Get Started</span>
+      </nav>
+
+      <h1>Overview</h1>
+      <p class="lead">
+        DevTools let you see what your design is actually doing. This guide connects what you already know about inspecting HTML and CSS to understanding how JavaScript behavior works.
+      </p>
+
+      <div class="callout callout-success">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          New here? Start with the tutorial
+        </div>
+        <p>
+          <strong><a href="start.html">Your First 15 Minutes</a></strong> is a hands-on walkthrough using the Console Playground. You'll open DevTools, run your first JavaScript, and discover the hidden message. Takes about 15 minutes.
+        </p>
+      </div>
+
+      <h2 id="what-you-know">What You Already Know</h2>
+      <p>
+        From DESN368, you're comfortable using Firefox's Inspector to examine HTML structure and CSS styles. You know how to:
+      </p>
+      <ul>
+        <li>Right-click → Inspect to select elements</li>
+        <li>Read the DOM tree to see how elements are nested</li>
+        <li>Check the Rules panel to see which CSS applies</li>
+        <li>Use the Box Model to understand spacing</li>
+      </ul>
+      <p>
+        This guide builds on that foundation. Everything here uses <strong>Firefox DevTools</strong>—the same tools you already know.
+      </p>
+
+      <h2 id="mental-model">The Two Sides of DevTools</h2>
+      <p>
+        DevTools has two sides that work together. You already know one of them:
+      </p>
+
+      <div class="diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────┐
+│                        THE PAGE                                  │
+│                                                                  │
+│   <span class="diagram-label">What you SEE</span>                    <span class="diagram-label">What it's DOING</span>               │
+│   (Inspector)                  (Console)                        │
+│                                                                  │
+│   ┌─────────────┐               ┌─────────────┐                 │
+│   │ HTML Tree   │<span class="diagram-arrow">◄────────────►</span>│ DOM Objects │                 │
+│   │ CSS Rules   │               │ Events      │                 │
+│   │ Layout      │               │ State       │                 │
+│   └─────────────┘               └─────────────┘                 │
+│          │                             │                         │
+│          ▼                             ▼                         │
+│   "This element has                "When I click,                │
+│    these styles"                    this happens"                │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</pre>
+      </div>
+
+      <p>
+        The <strong>Inspector</strong> shows you structure and appearance. The <strong>Console</strong> shows you behavior and state. The bridge between them is a simple tool called <code>$0</code>.
+      </p>
+
+      <h2 id="bridge">The $0 Bridge</h2>
+      <p>
+        When you select an element in the Inspector, you'll see <code>== $0</code> next to it. This means you can type <code>$0</code> in the Console to reference that exact element.
+      </p>
+
+      <div class="exercise">
+        <div class="exercise-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Try it now
+        </div>
+        <ol>
+          <li>Right-click any element on this page → <strong>Inspect</strong></li>
+          <li>Notice the <code>== $0</code> indicator next to it in the DOM tree</li>
+          <li>Click the <strong>Console</strong> tab (or press <kbd>Esc</kbd> for the split view)</li>
+          <li>Type <code>$0</code> and press Enter</li>
+          <li>The Console shows you the same element you selected visually</li>
+        </ol>
+      </div>
+
+      <p>
+        This is the bridge. Visual selection becomes code access. Once you have <code>$0</code>, you can ask questions:
+      </p>
+
+<pre><code><span class="code-comment">// What classes does this element have?</span>
+$0.<span class="code-property">classList</span>
+
+<span class="code-comment">// What data attributes?</span>
+$0.<span class="code-property">dataset</span>
+
+<span class="code-comment">// Add a class and watch the Inspector update</span>
+$0.<span class="code-property">classList</span>.<span class="code-keyword">add</span>(<span class="code-string">'active'</span>)</code></pre>
+
+      <h2 id="what-to-learn">What You'll Learn</h2>
+
+      <div class="concept-grid">
+        <a href="console.html" class="concept-card" style="text-decoration: none; color: inherit;">
+          <h4>The Console</h4>
+          <p>Watch messages, read errors, and understand what your code is doing.</p>
+        </a>
+        <a href="bridge.html" class="concept-card" style="text-decoration: none; color: inherit;">
+          <h4>The $0 Bridge</h4>
+          <p>Connect visual selection to code access. Test changes before writing them.</p>
+        </a>
+        <a href="behavioral.html" class="concept-card" style="text-decoration: none; color: inherit;">
+          <h4>Reading Element State</h4>
+          <p>Check classes, attributes, and computed styles through the Console.</p>
+        </a>
+        <a href="errors.html" class="concept-card" style="text-decoration: none; color: inherit;">
+          <h4>Reading Errors</h4>
+          <p>Understand what error messages mean and how to fix common problems.</p>
+        </a>
+      </div>
+
+      <h2 id="what-to-skip">What This Guide Skips</h2>
+      <p>
+        Traditional DevTools tutorials focus on debugging complex JavaScript. That's not where designers start. Here's what we're setting aside for now:
+      </p>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Engineering Focus</th>
+            <th>Designer Focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="skip">Breakpoints and step debugging</td>
+            <td class="keep">Reading what changed</td>
+          </tr>
+          <tr>
+            <td class="skip">Call stack analysis</td>
+            <td class="keep">Watching events fire</td>
+          </tr>
+          <tr>
+            <td class="skip">Memory profiling</td>
+            <td class="keep">Checking element state</td>
+          </tr>
+          <tr>
+            <td class="skip">Network request debugging</td>
+            <td class="keep">Understanding errors</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        The engineering tools exist and you may need them later. But for learning how behavior works, we start simpler.
+      </p>
+
+      <h2 id="next-steps">Next Steps</h2>
+      <p>
+        If you haven't done the tutorial yet, start there:
+      </p>
+      <p>
+        <a href="start.html" style="font-weight: 600;">Your First 15 Minutes →</a>
+      </p>
+      <p>
+        Otherwise, explore the sections that match what you're trying to do:
+      </p>
+      <ul>
+        <li><strong>Building a theme toggle?</strong> Start with <a href="bridge.html">The $0 Bridge</a></li>
+        <li><strong>Something not working?</strong> Check <a href="errors.html">Reading Errors</a></li>
+        <li><strong>Need a quick lookup?</strong> See the <a href="reference.html">Reference</a></li>
+      </ul>
+
+      <div class="callout callout-note">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          Bookmark This Guide
+        </div>
+        <p>
+          You'll use DevTools throughout this course—for Lab 0-2 this week, for the theme toggle in Week 1, and for every project after. Keep this guide handy.
+        </p>
+      </div>
+
+    </main>
+
+    <aside class="toc">
+      <div class="toc-title">On this page</div>
+      <a href="#what-you-know" class="toc-link">What You Already Know</a>
+      <a href="#mental-model" class="toc-link">Two Sides of DevTools</a>
+      <a href="#bridge" class="toc-link">The $0 Bridge</a>
+      <a href="#what-to-learn" class="toc-link">What You'll Learn</a>
+      <a href="#what-to-skip" class="toc-link">What This Guide Skips</a>
+      <a href="#next-steps" class="toc-link">Next Steps</a>
+    </aside>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

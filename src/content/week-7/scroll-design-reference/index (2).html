@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll-Driven Design — DESN 374</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ─── HERO ─── */
+#hero {
+  min-height: calc(100vh - var(--nav-h));
+  display: grid; grid-template-columns: 3fr 2fr;
+  border-bottom: 1px solid var(--rule);
+}
+.hero-left {
+  padding: 8vw 6vw 8vw 8vw;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid var(--rule);
+}
+.hero-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 2rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.hero-kicker::before { content: ''; width: 2.5rem; height: 1px; background: var(--accent); }
+.hero-deck { max-width: 50ch; font-size: 1rem; line-height: 1.85; color: var(--muted); margin: 2rem 0 3rem; }
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  font-family: 'IBM Plex Mono', monospace; font-size: .68rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  background: var(--ink); color: var(--paper);
+  padding: .75rem 1.5rem; text-decoration: none; transition: background .2s;
+}
+.btn-primary:hover { background: var(--accent); }
+.btn-ghost {
+  font-family: 'IBM Plex Mono', monospace; font-size: .68rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 1px solid var(--rule); color: var(--muted);
+  padding: .75rem 1.5rem; text-decoration: none; transition: all .2s;
+}
+.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+/* Chapter list */
+.hero-right { padding: 5vw; display: flex; flex-direction: column; justify-content: center; }
+.chapter-list { list-style: none; }
+.chapter-link {
+  display: grid; grid-template-columns: 2.5rem 1fr auto;
+  align-items: center; gap: 1rem;
+  padding: 1.2rem 0; border-top: 1px solid var(--rule);
+  text-decoration: none; color: inherit;
+  transition: gap .15s;
+}
+.chapter-link:hover { gap: 1.4rem; }
+.chapter-link .ch-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: .6rem;
+  color: var(--muted); letter-spacing: .1em;
+}
+.chapter-link .ch-title {
+  font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 700;
+}
+.chapter-link .ch-sub { font-size: .75rem; color: var(--muted); margin-top: .15rem; }
+.chapter-link .ch-arrow { color: var(--muted); font-size: .9rem; }
+
+/* ─── THE PITCH ─── */
+#pitch { border-bottom: 1px solid var(--rule); }
+.pitch-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.pitch-cell {
+  padding: 3.5vw 4vw; border-right: 1px solid var(--rule);
+}
+.pitch-cell:last-child { border-right: none; }
+.pitch-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
+  letter-spacing: .15em; color: var(--accent); margin-bottom: 1.2rem;
+}
+.pitch-cell h3 { font-size: 1.05rem; margin-bottom: .6rem; }
+.pitch-cell p { font-size: .85rem; color: var(--muted); }
+
+/* ─── THE STACK ─── */
+#the-stack { border-bottom: 1px solid var(--rule); }
+.stack-inner { padding: 5vw 8vw; }
+.stack-row {
+  display: grid; grid-template-columns: 3rem 1fr 12rem;
+  gap: 2rem; align-items: start;
+  padding: 1.5rem 0; border-top: 1px solid var(--rule);
+}
+.stack-yr {
+  font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
+  letter-spacing: .08em; color: var(--muted); padding-top: .2rem;
+}
+.stack-body h4 {
+  font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700;
+  margin-bottom: .3rem;
+}
+.stack-body p { font-size: .82rem; color: var(--muted); margin: 0; }
+.stack-tag {
+  font-family: 'IBM Plex Mono', monospace; font-size: .55rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .2rem .6rem; border: 1px solid var(--rule); color: var(--muted);
+  text-align: center; align-self: start; margin-top: .15rem;
+}
+.stack-tag.now { border-color: var(--accent); color: var(--accent); }
+
+/* ─── VOCAB STRIP ─── */
+#vocab { background: var(--ink); color: var(--paper); border-bottom: 1px solid var(--rule); }
+.vocab-inner { padding: 4vw 8vw; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+.vocab-item { border-top: 1px solid #3a3830; padding-top: 1rem; }
+.vocab-term {
+  font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700;
+  color: var(--paper); margin-bottom: .5rem;
+}
+.vocab-def { font-size: .82rem; color: #8a8070; line-height: 1.65; }
+.vocab-head {
+  padding: 3vw 8vw 1vw; display: flex; align-items: center; justify-content: space-between;
+}
+.vocab-head h2 { font-family: 'Libre Baskerville', serif; font-size: 1.2rem; color: var(--paper); }
+.vocab-head span { font-family: 'IBM Plex Mono', monospace; font-size: .6rem; color: #5a5248; letter-spacing: .1em; }
+
+/* ─── QUOTE HERO ─── */
+#pullquote {
+  padding: 6vw 15vw; text-align: center; border-bottom: 1px solid var(--rule);
+}
+#pullquote blockquote {
+  border: none; padding: 0;
+  font-size: clamp(1rem, 2.2vw, 1.4rem); color: var(--muted);
+}
+#pullquote cite { text-align: center; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 2rem 8vw; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-brand { font-family: 'IBM Plex Mono', monospace; font-size: .6rem; color: var(--muted); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a {
+  font-family: 'IBM Plex Mono', monospace; font-size: .58rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+}
+.footer-links a:hover { color: var(--ink); }
+
+@media(max-width:900px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { border-top: 1px solid var(--rule); }
+  .pitch-grid { grid-template-columns: 1fr; }
+  .pitch-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+  .vocab-inner { grid-template-columns: 1fr; }
+  .stack-row { grid-template-columns: 2rem 1fr; }
+  .stack-tag { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Scroll·<span>Driven</span>·Design</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="01-foundations.html">01 Foundations</a></li>
+    <li><a href="02-css-api.html">02 CSS API</a></li>
+    <li><a href="03-gsap.html">03 GSAP</a></li>
+    <li><a href="04-ux.html">04 UX + A11y</a></li>
+    <li><a href="05-reference.html">Reference</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-kicker">DESN 374 · Mastering Scroll-Driven Design</p>
+    <h1>When scrolling<br>becomes a<br><em>design tool.</em></h1>
+    <p class="hero-deck">Scroll-driven animation turns the scrollbar from a navigation mechanism into a creative instrument. This guide covers the perceptual science behind why it works, the CSS-native APIs that power it, and the GSAP toolkit that makes complex sequences possible.</p>
+    <div class="hero-cta">
+      <a href="01-foundations.html" class="btn-primary">Start from the beginning →</a>
+      <a href="05-reference.html" class="btn-ghost">Quick Reference</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <ul class="chapter-list">
+      <li><a href="01-foundations.html" class="chapter-link">
+        <span class="ch-num">01</span>
+        <div><div class="ch-title">Foundations</div><div class="ch-sub">Perception, history, core vocabulary</div></div>
+        <span class="ch-arrow">→</span>
+      </a></li>
+      <li><a href="02-css-api.html" class="chapter-link">
+        <span class="ch-num">02</span>
+        <div><div class="ch-title">CSS Scroll API</div><div class="ch-sub">animation-timeline, scroll(), view()</div></div>
+        <span class="ch-arrow">→</span>
+      </a></li>
+      <li><a href="03-gsap.html" class="chapter-link">
+        <span class="ch-num">03</span>
+        <div><div class="ch-title">GSAP ScrollTrigger</div><div class="ch-sub">Trigger, scrub, pin, timelines</div></div>
+        <span class="ch-arrow">→</span>
+      </a></li>
+      <li><a href="04-ux.html" class="chapter-link">
+        <span class="ch-num">04</span>
+        <div><div class="ch-title">UX + Accessibility</div><div class="ch-sub">Motion sickness, reduced-motion, checklist</div></div>
+        <span class="ch-arrow">→</span>
+      </a></li>
+      <li><a href="05-reference.html" class="chapter-link">
+        <span class="ch-num">↗</span>
+        <div><div class="ch-title">Quick Reference</div><div class="ch-sub">All properties, values, comparisons</div></div>
+        <span class="ch-arrow">→</span>
+      </a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- THE PITCH -->
+<section id="pitch">
+  <div class="pitch-grid">
+    <div class="pitch-cell">
+      <div class="pitch-num">Why bother?</div>
+      <h3>Scroll is the most natural input on the web.</h3>
+      <p>Every user knows how to scroll. Scroll-driven design doesn't add a new interaction — it gives meaning to one that already exists.</p>
+    </div>
+    <div class="pitch-cell">
+      <div class="pitch-num">Two paths.</div>
+      <h3>Native CSS or JavaScript library?</h3>
+      <p>Modern CSS handles many scroll effects natively and with better performance. GSAP handles everything else — complex sequences, cross-browser reliability, pinning.</p>
+    </div>
+    <div class="pitch-cell">
+      <div class="pitch-num">The risk.</div>
+      <h3>Motion that harms is never a design choice.</h3>
+      <p>Parallax and scroll animations can trigger vestibular disorders. Responsible implementation requires a reduced-motion fallback — full stop.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE STACK TIMELINE -->
+<section id="the-stack">
+  <div class="stack-inner">
+    <p class="section-label">A brief history</p>
+    <h2 style="max-width:18ch;margin-bottom:2rem;">From Flash to<br><em>native CSS.</em></h2>
+    <div class="stack-row">
+      <span class="stack-yr">2000s</span>
+      <div class="stack-body">
+        <h4>The Flash Era</h4>
+        <p>Timeline-based animations inside a browser plugin. Immersive, but inaccessible, plugin-dependent, and dead on mobile.</p>
+      </div>
+      <span class="stack-tag">Plugin</span>
+    </div>
+    <div class="stack-row">
+      <span class="stack-yr">2012</span>
+      <div class="stack-body">
+        <h4>NYT "Snow Fall"</h4>
+        <p>The New York Times published a landmark avalanche story combining scroll-triggered animations, video, and text. It named scrollytelling as a genre and proved it could serve journalism.</p>
+      </div>
+      <span class="stack-tag">Milestone</span>
+    </div>
+    <div class="stack-row">
+      <span class="stack-yr">2017</span>
+      <div class="stack-body">
+        <h4>IntersectionObserver API</h4>
+        <p>Browsers added a way to detect when elements enter the viewport without expensive scroll event listeners. Better for triggering animations, but not for syncing them to scroll position.</p>
+      </div>
+      <span class="stack-tag">API</span>
+    </div>
+    <div class="stack-row">
+      <span class="stack-yr">2018+</span>
+      <div class="stack-body">
+        <h4>GSAP ScrollTrigger</h4>
+        <p>GreenSock released ScrollTrigger, which became the industry standard for complex scroll-controlled animation — pin, scrub, sequence, full timeline control.</p>
+      </div>
+      <span class="stack-tag">Library</span>
+    </div>
+    <div class="stack-row">
+      <span class="stack-yr">2023–</span>
+      <div class="stack-body">
+        <h4>Native CSS Scroll-Driven Animations</h4>
+        <p>The W3C spec stabilized. Browsers shipped <code style="font-family:'IBM Plex Mono',monospace;font-size:.82em">animation-timeline</code>. Simple scroll effects now need zero JavaScript — and run off the main thread.</p>
+      </div>
+      <span class="stack-tag now">Current</span>
+    </div>
+  </div>
+</section>
+
+<!-- VOCAB STRIP -->
+<section id="vocab">
+  <div class="vocab-head">
+    <h2>Three terms you need first.</h2>
+    <span>Core vocabulary</span>
+  </div>
+  <div class="vocab-inner">
+    <div class="vocab-item">
+      <div class="vocab-term">Parallax</div>
+      <div class="vocab-def">Layers moving at different speeds during scroll. The perceptual illusion of depth on a flat screen — borrowed from how we see the physical world.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-term">Scrollytelling</div>
+      <div class="vocab-def">A narrative that unfolds as the user scrolls. The scroll action drives story progression: text reveals, visuals evolve, sequences advance.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-term">Scroll-Driven Animation</div>
+      <div class="vocab-def">The mechanism behind both. Animation progress is mapped directly to scroll position — not a timer. Scroll down: forward. Scroll up: back.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PULLQUOTE -->
+<section id="pullquote">
+  <blockquote>
+    "Scroll-driven animations have evolved from janky, main-thread JavaScript implementations to smooth, accessible, off-main-thread experiences using modern CSS and UI features like Scroll Timelines and View Timelines."
+    <cite>— Chrome for Developers, NRK Case Study</cite>
+  </blockquote>
+</section>
+
+<footer>
+  <span class="footer-brand">Scroll-Driven Design Guide · DESN 374 · Eastern Washington University</span>
+  <div class="footer-links">
+    <a href="https://gsap.com/docs/v3/Plugins/ScrollTrigger/" target="_blank">GSAP Docs</a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-driven-animations" target="_blank">MDN Reference</a>
+    <a href="05-reference.html">Quick Reference</a>
+  </div>
+</footer>
+
+</body>
+</html>

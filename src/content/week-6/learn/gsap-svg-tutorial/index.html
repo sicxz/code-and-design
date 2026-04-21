@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animating SVG Icons with GSAP + AI &mdash; Prompt-First Mode</title>
+  <link rel="stylesheet" href="tutorial-styles.css">
+</head>
+<body>
+  <header>
+    <h1>Animating SVG Icons with GSAP + AI</h1>
+    <p>Build two animated bell icons by learning to prompt an AI model effectively. The bells are the vehicle &mdash; the real skill is learning to drive the model.</p>
+
+    <div class="goal-box">
+      <h2>How this works:</h2>
+      <ul>
+        <li>Each part gives you a <strong>goal</strong> and a <strong>starter prompt</strong> to try with your AI model (ChatGPT, Claude, or Gemini).</li>
+        <li>You&rsquo;ll <strong>evaluate</strong> what the model gives you, <strong>test it</strong> in CodePen, and <strong>refine your prompt</strong> if it doesn&rsquo;t work.</li>
+        <li><strong>Prompt Strategy</strong> boxes teach you reusable techniques for getting better results from any model.</li>
+        <li><strong>Show Solution</strong> is there if you get stuck &mdash; but the learning is in the prompting, not the answer.</li>
+        <li>Parts A&ndash;D cover GSAP basics. Parts E&ndash;G introduce <strong>DrawSVGPlugin</strong> and <strong>ScrollTrigger</strong>.</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Progress Tracking -->
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 0%"></div>
+    </div>
+    <p class="progress-text">Progress: 0/7 sections &bull; 0%</p>
+  </div>
+
+  <div class="tutorial-container">
+    <!-- Tutorial Sections (Left Side) -->
+    <main class="tutorial-sections">
+
+      <!-- ============================================================ -->
+      <!-- PART A: Rendering the Icon -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-a">
+        <h2><span class="part-number">A</span> Rendering the Icon</h2>
+
+        <p><strong>Goal:</strong> Get a Lucide bell icon rendering in CodePen, make it bigger, and change its color.</p>
+
+        <p><strong>Context you have:</strong> You know you want to use Lucide icons in a CodePen project. You&rsquo;ve never used Lucide before. You need the icon to show up, be resizable, and be a custom color.</p>
+
+        <!-- STEP 1: First prompt -->
+        <h3>Step 1: Get the bell rendering</h3>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: State your environment</h4>
+          <p>AI models give better answers when you tell them <em>where</em> you&rsquo;re working. &ldquo;How do I use Lucide?&rdquo; gets a different answer than &ldquo;How do I use Lucide in CodePen?&rdquo; &mdash; the first might give you <code>npm install</code> instructions you can&rsquo;t use.</p>
+        </div>
+
+        <p><strong>Try this prompt</strong> (copy it, or write your own version):</p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>I'm working in CodePen (no npm or imports). I want to render a Lucide bell icon. What CDN do I need, what HTML markup, and what JavaScript call?</code></pre>
+        </div>
+
+        <p><strong>After you get a response:</strong></p>
+        <ol>
+          <li>Add the CDN to Settings &rarr; JS &rarr; External Scripts</li>
+          <li>Add the HTML to your HTML panel</li>
+          <li>Add the JS to your JS panel</li>
+          <li><strong>Right-click the bell and choose &ldquo;Inspect.&rdquo;</strong> What element is actually in the DOM? The model probably told you, but verify it yourself.</li>
+        </ol>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="a-step-1">
+            <span>Bell icon renders in CodePen</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: Refining the prompt -->
+        <h3>Step 2: Make it bigger and change its color</h3>
+
+        <p>Now you need two more things. You could ask two separate questions, or combine them. Try combining:</p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>The bell rendered but it's tiny (24px). I want it around 120px and a different color. It's a Lucide SVG icon. What CSS do I need?</code></pre>
+        </div>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: Tell the model what you already know</h4>
+          <p>Notice the prompt says &ldquo;It&rsquo;s a Lucide SVG icon.&rdquo; This gives the model context about the element type, which matters because SVG coloring works differently than regular HTML elements. Without this, you might get advice for changing text color.</p>
+        </div>
+
+        <p><strong>Evaluate the response:</strong></p>
+        <ol>
+          <li>Did the model suggest <code>stroke</code> or <code>color</code> for the color change? Try both &mdash; which works, and does the model explain why?</li>
+          <li>Did the CSS selector target the right element? (Remember what you saw in the inspector.)</li>
+        </ol>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="a-step-2">
+            <span>Bell is larger and a custom color</span>
+          </label>
+        </div>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>Paste the prompt you actually used (whether you modified the suggested one or wrote your own). Did the model&rsquo;s first response work, or did you need a follow-up? What information in your prompt helped the model give a useful answer?</p>
+          <textarea class="response-area"
+                    data-section="part-a"
+                    data-question="1"
+                    placeholder="Paste your prompt and describe what happened..."
+                    rows="4"></textarea>
+          <p class="save-indicator">Auto-saved &#10003;</p>
+        </div>
+
+        <button class="show-solution" data-solution="a-final">Show Working Solution</button>
+        <div class="solution-box hidden" data-solution-id="a-final">
+          <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="bell-container"&gt;
+  &lt;i data-lucide="bell"&gt;&lt;/i&gt;
+&lt;/div&gt;
+
+/* CSS */
+.bell-container svg {
+  width: 120px;
+  height: 120px;
+  stroke: #e53e3e;
+  /* OR color: #e53e3e; works too because Lucide uses currentColor */
+}
+
+// JS
+lucide.createIcons();</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="a-complete">
+            <span>Part A Complete &mdash; Bell renders, sized, and colored</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART B: GSAP Ring Animation -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-b">
+        <h2><span class="part-number">B</span> GSAP Ring Animation</h2>
+
+        <p><strong>Goal:</strong> Use GSAP to animate the bell so it rings &mdash; swinging back and forth from the top like a real bell.</p>
+
+        <p><strong>Context you have:</strong> You have a rendered SVG bell icon in CodePen. You want to add GSAP and animate it. You&rsquo;ve never used GSAP before.</p>
+
+        <!-- STEP 1: Asking for GSAP setup -->
+        <h3>Step 1: Get GSAP set up and the bell ringing</h3>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: Describe the behavior, not just the tool</h4>
+          <p>Instead of &ldquo;How do I use GSAP timeline?&rdquo;, describe <em>what you want to see happen</em>. The model can suggest the right GSAP tools for the job rather than you guessing which API to ask about.</p>
+        </div>
+
+        <p><strong>Try this prompt:</strong></p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>I have a Lucide bell SVG icon in CodePen (no npm). I want to animate it with GSAP so it swings back and forth like a ringing bell. It should swing from the top, not the center. What CDN do I need and what JS code?</code></pre>
+        </div>
+
+        <p><strong>Before you paste the code into CodePen, read the response and look for:</strong></p>
+        <ol>
+          <li>Did the model mention <code>transformOrigin</code>? That&rsquo;s the property that controls where rotation pivots from.</li>
+          <li>Does the rotation decay? (A real bell swings less and less, not the same amount forever.)</li>
+          <li>Does it use a <code>timeline</code>? Timelines let you chain multiple animations in sequence.</li>
+        </ol>
+
+        <p>Now paste the code in and test it. Does the bell ring from the top?</p>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="b-step-1">
+            <span>GSAP added and bell swings from the top</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: Debugging with the model -->
+        <h3>Step 2: If it doesn&rsquo;t look right</h3>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: Describe the gap between expected and actual</h4>
+          <p>When debugging with a model, the most effective pattern is: &ldquo;I expected [X]. Instead I&rsquo;m seeing [Y]. Here&rsquo;s my code.&rdquo; This gives the model everything it needs to diagnose the issue.</p>
+        </div>
+
+        <p>If the bell is spinning from the center, rotating weirdly, or not animating at all, try a follow-up like:</p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>The bell is rotating from the center instead of swinging from the top. I'm using transformOrigin but it doesn't seem to work on the SVG. Here's my code: [paste your code]</code></pre>
+        </div>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>What did the model get right on the first try? What did you need to fix or follow up on? If you had to debug, paste the follow-up prompt that worked.</p>
+          <textarea class="response-area"
+                    data-section="part-b"
+                    data-question="1"
+                    placeholder="Describe what the model got right and what needed fixing..."
+                    rows="4"></textarea>
+          <p class="save-indicator">Auto-saved &#10003;</p>
+        </div>
+
+        <button class="show-solution" data-solution="b-final">Show Working Solution</button>
+        <div class="solution-box hidden" data-solution-id="b-final">
+          <pre><code>// Add GSAP CDN to external scripts first:
+// https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+
+const bellSvg = document.querySelector(".bell-container svg");
+gsap.set(bellSvg, { transformOrigin: "top center" });
+
+const ringTimeline = gsap.timeline();
+ringTimeline
+  .to(bellSvg, { rotation: 20, duration: 0.1, ease: "power1.inOut" })
+  .to(bellSvg, { rotation: -20, duration: 0.1, ease: "power1.inOut", repeat: 3, yoyo: true })
+  .to(bellSvg, { rotation: 0, duration: 0.15 });</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="b-complete">
+            <span>Part B Complete &mdash; Bell rings with correct pivot</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART C: Two Bells, Stacked -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-c">
+        <h2><span class="part-number">C</span> Two Bells, Stacked</h2>
+
+        <p><strong>Goal:</strong> Add a second bell, give each a different color, and stack them on top of each other.</p>
+
+        <p><strong>Context you have:</strong> You have one working bell. You need to add a second one and control them independently. You also need them visually overlapping.</p>
+
+        <h3>Step 1: Ask the model to help restructure</h3>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: Share your current code</h4>
+          <p>When you want to <em>modify</em> existing work, always paste your current code into the prompt. Without it, the model will write something from scratch that might conflict with what you already have.</p>
+        </div>
+
+        <p><strong>Try this prompt:</strong></p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>I have one Lucide bell icon in a .bell-container div. I need to:
+1. Add a second bell icon
+2. Give each its own class (.bell-1 and .bell-2) so I can target them separately
+3. Make them different colors
+4. Stack them on top of each other with CSS
+
+Here's my current HTML:
+[paste your HTML here]
+
+And my current CSS:
+[paste your CSS here]
+
+What changes do I need?</code></pre>
+        </div>
+
+        <p><strong>Evaluate the response:</strong></p>
+        <ol>
+          <li>Did the model restructure your HTML or just add to it?</li>
+          <li>Does it still only call <code>lucide.createIcons()</code> once? (Calling it twice is a common model mistake.)</li>
+          <li>For the stacking &mdash; does it use <code>position: absolute</code>? That&rsquo;s the standard approach.</li>
+        </ol>
+
+        <div class="info-box warning">
+          <h4>Common model mistake</h4>
+          <p>Some models will put classes directly on the <code>&lt;i&gt;</code> tag. That works, but check: after Lucide runs, does the rendered <code>&lt;svg&gt;</code> keep the class? Inspect the DOM to verify. If not, wrapping each icon in a classed <code>&lt;div&gt;</code> is more reliable.</p>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="c-step-1">
+            <span>Two bells render with different colors</span>
+          </label>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="c-step-2">
+            <span>Bells are visually stacked on top of each other</span>
+          </label>
+        </div>
+
+        <button class="show-solution" data-solution="c-final">Show Working Solution</button>
+        <div class="solution-box hidden" data-solution-id="c-final">
+          <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="bell-container"&gt;
+  &lt;div class="bell-1"&gt;
+    &lt;i data-lucide="bell"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;div class="bell-2"&gt;
+    &lt;i data-lucide="bell"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS */
+.bell-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.bell-1, .bell-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.bell-1 svg { stroke: #e53e3e; width: 120px; height: 120px; }
+.bell-2 svg { stroke: #3182ce; width: 120px; height: 120px; }</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="c-complete">
+            <span>Part C Complete &mdash; Two bells stacked with different colors</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART D: Click to Ring -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-d">
+        <h2><span class="part-number">D</span> Click to Ring</h2>
+
+        <p><strong>Goal:</strong> Make Bell 1 ring only when clicked, not on page load.</p>
+
+        <p><strong>Context you have:</strong> Your ring animation plays automatically. You want it to wait for a click instead.</p>
+
+        <h3>Step 1: Ask the model to change the trigger</h3>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: Ask &ldquo;how do I change X&rdquo; not &ldquo;how do I do X&rdquo;</h4>
+          <p>When modifying existing behavior, framing it as a change gets you a more targeted response. &ldquo;How do I make a GSAP timeline play on click?&rdquo; might get a generic answer. &ldquo;My timeline auto-plays. How do I make it only play when the user clicks?&rdquo; tells the model exactly what to change.</p>
+        </div>
+
+        <p><strong>Try this prompt:</strong></p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>My GSAP ring animation plays automatically when the page loads. I want it to only play when the user clicks on .bell-1. If they click while it's already ringing, it should restart from the beginning. Here's my current JS:
+
+[paste your JS here]</code></pre>
+        </div>
+
+        <p><strong>Look for these in the response:</strong></p>
+        <ol>
+          <li>Does it add <code>paused: true</code> to the timeline config?</li>
+          <li>Does it use <code>.restart()</code> or <code>.play()</code>? Ask the model what the difference is if it doesn&rsquo;t explain.</li>
+          <li>Does it add an event listener on the right element?</li>
+        </ol>
+
+        <h3>Test it</h3>
+        <p>Click the first bell. It should ring. Click again mid-ring. Does it restart cleanly?</p>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>The prompt specifically said &ldquo;if they click while it&rsquo;s already ringing, it should restart.&rdquo; Did the model pick up on that detail? How did specifying the edge case in the prompt affect the response?</p>
+          <textarea class="response-area"
+                    data-section="part-d"
+                    data-question="1"
+                    placeholder="Did the model handle the edge case? What did you notice..."
+                    rows="4"></textarea>
+          <p class="save-indicator">Auto-saved &#10003;</p>
+        </div>
+
+        <button class="show-solution" data-solution="d-final">Show Working Solution</button>
+        <div class="solution-box hidden" data-solution-id="d-final">
+          <pre><code>const bell1 = document.querySelector(".bell-1");
+const bell1Svg = document.querySelector(".bell-1 svg");
+gsap.set(bell1Svg, { transformOrigin: "top center" });
+
+const ringTimeline = gsap.timeline({ paused: true });
+ringTimeline
+  .to(bell1Svg, { rotation: 20, duration: 0.1, ease: "power1.inOut" })
+  .to(bell1Svg, { rotation: -20, duration: 0.1, ease: "power1.inOut", repeat: 3, yoyo: true })
+  .to(bell1Svg, { rotation: 0, duration: 0.15 });
+
+bell1.addEventListener("click", () => ringTimeline.restart());</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="d-complete">
+            <span>Part D Complete &mdash; Bell 1 rings on click</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- CHECKPOINT SECTION -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section checkpoint-section">
+        <h2>Checkpoint: Prompting Foundations</h2>
+        <p>Parts A&ndash;D got you working with an AI model to build interactive animations. Look at the prompting strategies you&rsquo;ve practiced so far:</p>
+
+        <ol>
+          <li><strong>State your environment</strong> &mdash; &ldquo;I&rsquo;m in CodePen, no npm&rdquo;</li>
+          <li><strong>Describe behavior, not just tools</strong> &mdash; &ldquo;swings like a real bell&rdquo;</li>
+          <li><strong>Share your current code</strong> &mdash; always paste what you have</li>
+          <li><strong>Describe the gap</strong> &mdash; &ldquo;I expected X, got Y&rdquo;</li>
+          <li><strong>Specify edge cases</strong> &mdash; &ldquo;if they click mid-ring&hellip;&rdquo;</li>
+        </ol>
+
+        <p><strong>Parts E&ndash;G introduce two GSAP plugins you&rsquo;ve never used.</strong> This is where the prompting gets more interesting &mdash; you&rsquo;re asking the model about tools that are genuinely new to you.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART E: DrawSVGPlugin -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-e">
+        <h2><span class="part-number">E</span> DrawSVGPlugin &mdash; Stroke Animation</h2>
+
+        <p><strong>Goal:</strong> Make Bell 2 look like it&rsquo;s being drawn by hand, with the strokes animating in one at a time.</p>
+
+        <p><strong>Context you have:</strong> You know GSAP has a plugin called DrawSVGPlugin that animates SVG strokes. It&rsquo;s a paid plugin, but free trial versions exist for CodePen. You&rsquo;ve never used it.</p>
+
+        <h3>Step 1: Ask the model to set it up</h3>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: Name the constraints</h4>
+          <p>DrawSVGPlugin is paid, but has a CodePen trial. If you don&rsquo;t mention this, the model might tell you to install it via npm (which you can&rsquo;t do) or give you a generic CDN that doesn&rsquo;t work. Naming the constraint up front saves a round-trip.</p>
+        </div>
+
+        <p><strong>Try this prompt:</strong></p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>I want to use GSAP's DrawSVGPlugin to animate a Lucide bell icon so it looks hand-drawn. I'm in CodePen, so I need the free trial CDN URL that GSAP provides for CodePen. I also need to know:
+1. How to register the plugin
+2. How to start with the strokes hidden and animate them to fully drawn
+3. How to stagger the animation so each path draws one at a time
+
+My bell is inside a div with class .bell-2</code></pre>
+        </div>
+
+        <p><strong>Evaluate the response:</strong></p>
+        <ol>
+          <li>Does the CDN URL look like it&rsquo;s from <code>assets.codepen.io</code>? That&rsquo;s the CodePen trial host.</li>
+          <li>Does it use <code>gsap.registerPlugin(DrawSVGPlugin)</code>?</li>
+          <li>Does it target both <code>path</code> and <code>line</code> elements inside the SVG? Lucide bells have both.</li>
+          <li>Does the code use <code>drawSVG: "0%"</code> and <code>drawSVG: "100%"</code>?</li>
+        </ol>
+
+        <div class="info-box warning">
+          <h4>Watch for this</h4>
+          <p>If you get a <code>DrawSVGPlugin is not defined</code> error, the CDN didn&rsquo;t load. Check that the URL is correct and that it&rsquo;s listed <strong>after</strong> GSAP core in your external scripts. Ask your model: &ldquo;I&rsquo;m getting DrawSVGPlugin is not defined. The CDN URL is [URL]. What could be wrong?&rdquo;</p>
+        </div>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>This was the first time you asked the model about a tool you&rsquo;d never used. How did you decide whether the model&rsquo;s response was correct? What did you look for to evaluate the output?</p>
+          <textarea class="response-area"
+                    data-section="part-e"
+                    data-question="1"
+                    placeholder="How did you evaluate the model's response on an unfamiliar tool..."
+                    rows="4"></textarea>
+          <p class="save-indicator">Auto-saved &#10003;</p>
+        </div>
+
+        <button class="show-solution" data-solution="e-final">Show Working Solution</button>
+        <div class="solution-box hidden" data-solution-id="e-final">
+          <pre><code>// External script CDN (add after GSAP core):
+// https://assets.codepen.io/16327/DrawSVGPlugin3.min.js
+
+gsap.registerPlugin(DrawSVGPlugin);
+
+const paths = document.querySelectorAll(".bell-2 svg path, .bell-2 svg line");
+gsap.set(paths, { drawSVG: "0%" });
+
+const drawTimeline = gsap.timeline();
+drawTimeline.to(paths, {
+  drawSVG: "100%",
+  duration: 1.5,
+  stagger: 0.2,
+  ease: "power2.inOut"
+});</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="e-complete">
+            <span>Part E Complete &mdash; Bell 2 draws itself in</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART F: ScrollTrigger -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-f">
+        <h2><span class="part-number">F</span> ScrollTrigger &mdash; Scroll-Driven Animation</h2>
+
+        <p><strong>Goal:</strong> Tie the draw animation to scroll position. Then add an &ldquo;undraw&rdquo; phase so the bell draws in, then undraws as you keep scrolling.</p>
+
+        <p><strong>Context you have:</strong> You have a working draw animation from Part E. You want scroll position to control it instead of it playing automatically. You need the page to be scrollable.</p>
+
+        <h3>Step 1: Ask the model to add scroll control</h3>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: Build on what you have</h4>
+          <p>You&rsquo;re not starting from scratch &mdash; you&rsquo;re modifying working code. Always tell the model what already works so it modifies rather than replaces. Include the code.</p>
+        </div>
+
+        <p><strong>Try this prompt:</strong></p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>I have a working DrawSVG animation that plays automatically. I want to change it so:
+1. It's driven by scroll position (scrubbed, so scrolling forward draws it, scrolling back undraws it)
+2. I need the GSAP ScrollTrigger plugin set up in CodePen (CDN)
+3. The page needs to be scrollable — right now it's not tall enough
+
+Here's my current code:
+[paste your HTML, CSS, and JS]
+
+What do I need to change?</code></pre>
+        </div>
+
+        <p><strong>Evaluate the response:</strong></p>
+        <ol>
+          <li>Does it add spacer divs (or height) to make the page scrollable?</li>
+          <li>Does it use <code>scrub: true</code> in the ScrollTrigger config?</li>
+          <li>Does it register ScrollTrigger alongside DrawSVGPlugin?</li>
+          <li>Does it suggest <code>markers: true</code> for debugging? If not, add it yourself &mdash; you&rsquo;ll want the visual feedback.</li>
+        </ol>
+
+        <div class="info-box warning">
+          <h4>If scrolling does nothing</h4>
+          <p>The most common problem is the page isn&rsquo;t tall enough to scroll, so ScrollTrigger has nothing to work with. Ask the model: &ldquo;My ScrollTrigger animation isn&rsquo;t working. I have markers: true but I don&rsquo;t see any markers. Could the page not be scrollable?&rdquo;</p>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="f-step-1">
+            <span>Draw animation is controlled by scroll</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: Add undraw -->
+        <h3>Step 2: Add the undraw phase</h3>
+
+        <p>Once the bell is fully drawn, you want it to undraw (strokes disappear) if the user keeps scrolling. This is a good test of follow-up prompting.</p>
+
+        <p><strong>Try this prompt:</strong></p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>The scroll-driven draw works. Now I want a second phase: once the bell is fully drawn at 100%, if the user keeps scrolling, it should undraw back to 0%. Both phases should be scrubbed. Here's my current code:
+
+[paste your code]</code></pre>
+        </div>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: Describe the full sequence</h4>
+          <p>When you want multi-step behavior, describe the complete sequence in one prompt: &ldquo;first this, then this.&rdquo; Splitting it into multiple prompts often results in code that works for step 1 but needs restructuring for step 2.</p>
+        </div>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>How did the model handle the idea of &ldquo;two phases in one scrubbed timeline&rdquo;? Did it add a second tween to the existing timeline, or try a different approach? If you had asked about both phases in one prompt (instead of splitting it), do you think you&rsquo;d have gotten a better response?</p>
+          <textarea class="response-area"
+                    data-section="part-f"
+                    data-question="1"
+                    placeholder="Reflect on multi-step prompting and the model's response..."
+                    rows="4"></textarea>
+          <p class="save-indicator">Auto-saved &#10003;</p>
+        </div>
+
+        <button class="show-solution" data-solution="f-final">Show Working Solution</button>
+        <div class="solution-box hidden" data-solution-id="f-final">
+          <pre><code>// External scripts (in order):
+// 1. Lucide CDN
+// 2. https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+// 3. https://assets.codepen.io/16327/DrawSVGPlugin3.min.js
+// 4. https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js
+
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
+
+const paths = document.querySelectorAll(".bell-2 svg path, .bell-2 svg line");
+gsap.set(paths, { drawSVG: "0%" });
+
+const drawTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".bell-container",
+    start: "top 80%",
+    end: "bottom+=300 20%",
+    scrub: true,
+    markers: true
+  }
+});
+
+// Phase 1: Draw in
+drawTimeline.to(paths, {
+  drawSVG: "100%",
+  duration: 1.5,
+  stagger: 0.2,
+  ease: "none"
+});
+
+// Phase 2: Undraw
+drawTimeline.to(paths, {
+  drawSVG: "0%",
+  duration: 1.5,
+  stagger: 0.2,
+  ease: "none"
+});</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="f-complete">
+            <span>Part F Complete &mdash; Draw and undraw on scroll</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PART G: The Combo — Ring at Full Draw -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section" id="part-g">
+        <h2><span class="part-number">G</span> The Combo &mdash; Ring at Full Draw</h2>
+
+        <p><strong>Goal:</strong> When the bell reaches 100% drawn (the midpoint of your scroll), trigger the ring animation. The ring should play at normal speed, not be scrubbed.</p>
+
+        <p><strong>Context you have:</strong> You have a scrubbed draw/undraw timeline. You want a separate ring animation that fires freely at a specific moment in the scrubbed timeline. This is a genuinely tricky problem &mdash; two different animation paradigms need to work together.</p>
+
+        <h3>Step 1: Frame the problem precisely</h3>
+
+        <div class="info-box research">
+          <h4>Prompt Strategy: Name the tension</h4>
+          <p>This is the hardest part of the tutorial because there&rsquo;s a conflict: the scroll timeline is scrubbed (tied to scroll), but the ring should play freely (tied to time). When you name this tension in your prompt, the model understands the actual problem instead of giving you a generic answer.</p>
+        </div>
+
+        <p><strong>Try this prompt:</strong></p>
+        <div class="code-block-wrapper">
+          <button class="copy-code-btn">
+            <span class="icon">&nbsp;</span>
+            <span>Copy</span>
+          </button>
+          <pre><code>I have two animation needs that conflict:
+
+1. A scrubbed ScrollTrigger timeline that draws and undraws a bell SVG based on scroll position
+2. A ring animation that should play freely at normal speed (NOT scrubbed) when the draw reaches 100%
+
+The ring can't be part of the scrubbed timeline because scrubbing a fast ring animation would look weird. How do I fire a separate, non-scrubbed animation at a specific point in a scrubbed timeline?
+
+Here's my current code:
+[paste your code]</code></pre>
+        </div>
+
+        <p><strong>The model should suggest one of these approaches:</strong></p>
+        <ol>
+          <li>Using GSAP&rsquo;s <code>onComplete</code> callback on the draw-in tween</li>
+          <li>Using ScrollTrigger&rsquo;s <code>onEnter</code>/<code>onLeave</code> callbacks</li>
+          <li>A custom scroll position check</li>
+        </ol>
+
+        <p>The cleanest approach is <code>onComplete</code> on the first tween. If the model suggests something else, try asking: &ldquo;Would an onComplete callback on the draw tween work here?&rdquo;</p>
+
+        <div class="info-box warning">
+          <h4>Syntax traps</h4>
+          <p>The <code>onComplete</code> callback goes inside the tween&rsquo;s config object, which means every property needs a comma after it. If you get <code>Unexpected identifier</code>, you&rsquo;re probably missing a comma. Ask the model: &ldquo;I&rsquo;m getting Unexpected identifier on the onComplete line. Here&rsquo;s my code:&rdquo;</p>
+        </div>
+
+        <h3>Test it</h3>
+        <ol>
+          <li>Scroll down slowly through the trigger zone</li>
+          <li>Watch the bell draw itself in</li>
+          <li>When it reaches 100% drawn, it should ring freely at normal speed</li>
+          <li>Continue scrolling &mdash; the bell undraws</li>
+          <li>Scroll back up &mdash; everything reverses</li>
+        </ol>
+
+        <div class="reflection-box">
+          <h4>Reflection:</h4>
+          <p>This was the most complex prompt in the tutorial. Compare it to your Part A prompt. How did the specificity change? What did naming the conflict between &ldquo;scrubbed&rdquo; and &ldquo;free-playing&rdquo; do for the quality of the response?</p>
+          <textarea class="response-area"
+                    data-section="part-g"
+                    data-question="1"
+                    placeholder="Compare your early prompts to this one..."
+                    rows="4"></textarea>
+          <p class="save-indicator">Auto-saved &#10003;</p>
+        </div>
+
+        <button class="show-solution" data-solution="g-final">Show Working Solution</button>
+        <div class="solution-box hidden" data-solution-id="g-final">
+          <pre><code>// Separate ring timeline (not scrubbed)
+const bell2Svg = document.querySelector(".bell-2 svg");
+gsap.set(bell2Svg, { transformOrigin: "top center" });
+
+const ring2Timeline = gsap.timeline({ paused: true });
+ring2Timeline
+  .to(bell2Svg, { rotation: 20, duration: 0.1, ease: "power1.inOut" })
+  .to(bell2Svg, { rotation: -20, duration: 0.1, ease: "power1.inOut", repeat: 3, yoyo: true })
+  .to(bell2Svg, { rotation: 0, duration: 0.15 });
+
+// Scrubbed draw/undraw timeline with callback
+const drawTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".bell-container",
+    start: "top 80%",
+    end: "bottom+=300 20%",
+    scrub: true,
+    markers: true
+  }
+});
+
+// Phase 1: Draw in — fires ring on complete
+drawTimeline.to(paths, {
+  drawSVG: "100%",
+  duration: 1.5,
+  stagger: 0.2,
+  ease: "none",
+  onComplete: () => ring2Timeline.restart()
+});
+
+// Phase 2: Undraw
+drawTimeline.to(paths, {
+  drawSVG: "0%",
+  duration: 1.5,
+  stagger: 0.2,
+  ease: "none"
+});</code></pre>
+        </div>
+
+        <div class="checkpoint">
+          <label>
+            <input type="checkbox" data-checkpoint="g-complete">
+            <span>Part G Complete &mdash; Ring fires at full draw</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- COMPLETION SECTION -->
+      <!-- ============================================================ -->
+      <section class="tutorial-section completion-section">
+        <h2>You Built It!</h2>
+        <p>Two animated bell icons &mdash; one click-triggered, one scroll-driven with a callback combo. And you built it by driving the model, not by following a recipe.</p>
+
+        <div class="info-box success">
+          <h4>Prompting strategies you practiced:</h4>
+          <ol>
+            <li><strong>State your environment</strong> &mdash; &ldquo;I&rsquo;m in CodePen, no npm&rdquo;</li>
+            <li><strong>Describe behavior, not tools</strong> &mdash; &ldquo;swings like a bell from the top&rdquo;</li>
+            <li><strong>Share your current code</strong> &mdash; paste what you have, every time</li>
+            <li><strong>Tell the model what you know</strong> &mdash; &ldquo;It&rsquo;s a Lucide SVG icon&rdquo;</li>
+            <li><strong>Describe expected vs. actual</strong> &mdash; &ldquo;I expected X, got Y&rdquo;</li>
+            <li><strong>Specify edge cases</strong> &mdash; &ldquo;if they click mid-ring, restart&rdquo;</li>
+            <li><strong>Name constraints</strong> &mdash; &ldquo;paid plugin, but CodePen trial exists&rdquo;</li>
+            <li><strong>Build on what works</strong> &mdash; modify, don&rsquo;t replace</li>
+            <li><strong>Describe the full sequence</strong> &mdash; &ldquo;first draw, then undraw&rdquo;</li>
+            <li><strong>Name the tension</strong> &mdash; &ldquo;scrubbed vs. free-playing&rdquo;</li>
+          </ol>
+        </div>
+
+        <div class="info-box">
+          <h4>These strategies transfer to any project:</h4>
+          <p>The prompting patterns you used here work the same whether you&rsquo;re building a scrollytelling site, debugging a layout, or asking a model to help you learn a framework you&rsquo;ve never seen before. The skill isn&rsquo;t knowing GSAP syntax. The skill is knowing how to describe what you want, what you have, and what&rsquo;s going wrong.</p>
+        </div>
+
+        <div class="reflection-box">
+          <h4>Final Reflection:</h4>
+          <p>Look back at your prompts from Part A compared to Part G. How did they change? What would you do differently if you started this tutorial over?</p>
+          <textarea class="response-area"
+                    data-section="final"
+                    data-question="1"
+                    placeholder="Compare your prompting approach from start to finish..."
+                    rows="5"></textarea>
+          <p class="save-indicator">Auto-saved &#10003;</p>
+        </div>
+
+        <div class="info-box warning">
+          <h4>Final Step: Document Your Thinking</h4>
+          <ol>
+            <li>Click the <strong>&ldquo;Copy All My Responses&rdquo;</strong> button below</li>
+            <li>Open your CodePen&rsquo;s JavaScript panel</li>
+            <li>Paste your responses at the top as a comment block:</li>
+          </ol>
+          <pre><code>/*
+  MY REFLECTIONS
+  ==============
+  [Paste your copied responses here]
+*/</code></pre>
+          <p style="margin-top: 1rem; margin-bottom: 0;"><strong>Why?</strong> Your reflections show your learning process. The prompts you wrote, the problems you hit, and how you resolved them are more valuable than the final code.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- CodePen Workspace (Right Side, Sticky) -->
+    <aside class="codepen-area">
+      <div class="codepen-header">
+        <div class="codepen-header-content">
+          <div>
+            <h3>Your Workspace</h3>
+            <p>Code along as you follow the tutorial &rarr;</p>
+          </div>
+          <button id="toggle-focus" class="toggle-focus-btn">
+            <span class="icon">&#x1f441;&#xfe0f;</span>
+            <span class="text">Focus Mode</span>
+          </button>
+        </div>
+      </div>
+      <iframe
+        id="codepen-embed"
+        src="https://codepen.io/tmasingale/pen/wBWLeNZ"
+        loading="lazy"
+        allowfullscreen
+        title="GSAP SVG Icons Practice CodePen workspace">
+      </iframe>
+    </aside>
+  </div>
+
+  <!-- Export Responses Section -->
+  <div class="export-section">
+    <button id="export-responses">Copy All My Responses</button>
+  </div>
+
+  <footer>
+    <p>Animating SVG Icons with GSAP + AI &mdash; Prompt-First Mode | Week 6, Learn 6-2</p>
+    <p>The prompting strategies from this tutorial transfer to every project. The GSAP skills &mdash; especially ScrollTrigger and DrawSVG &mdash; are tools you&rsquo;ll use to bring your scrollytelling site to life.</p>
+  </footer>
+
+  <script src="tutorial.js"></script>
+</body>
+</html>

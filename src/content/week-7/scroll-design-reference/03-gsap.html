@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>03 GSAP ScrollTrigger — Scroll-Driven Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ─── TRIGGER DEMO ─── */
+#trigger-demo { padding: 4vw 8vw; background: var(--warm); }
+.trig-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+.trig-card {
+  background: var(--paper); border: 1px solid var(--rule);
+  padding: 1.8rem; opacity: 0; transform: translateY(35px);
+  transition: none;
+}
+.trig-card.dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.trig-card .tc-tag {
+  font-family: 'IBM Plex Mono', monospace; font-size: .58rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: .6rem;
+}
+.trig-card h4 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: .4rem; }
+.trig-card p { font-size: .82rem; color: var(--muted); margin: 0; line-height: 1.6; }
+.trig-card.dark p { color: #8a8070; }
+
+/* ─── SCRUB DEMO ─── */
+#scrub-demo {
+  padding: 4vw 8vw;
+  background: var(--ink); color: var(--paper); min-height: 50vh;
+  position: relative;
+}
+.scrub-progress-bar {
+  height: 3px; background: #2a2820; width: 100%; margin-bottom: 2rem; position: relative;
+}
+.scrub-progress-fill {
+  height: 100%; background: var(--accent); width: 0%;
+  transition: width .05s;
+}
+.scrub-pct {
+  position: absolute; right: 0; top: -1.4rem;
+  font-family: 'IBM Plex Mono', monospace; font-size: .62rem;
+  letter-spacing: .1em; color: var(--muted);
+}
+.scrub-words { overflow: hidden; }
+.scrub-line { overflow: hidden; margin-bottom: .5rem; }
+.scrub-word {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 900; line-height: 1; display: block;
+  transform: translateX(-110%);
+  color: var(--paper);
+}
+.scrub-word.right { transform: translateX(110%); }
+.scrub-note {
+  margin-top: 2rem; font-family: 'IBM Plex Mono', monospace;
+  font-size: .65rem; letter-spacing: .12em; color: #4a4840;
+  text-transform: uppercase;
+}
+
+/* ─── PIN DEMO ─── */
+#pin-stage {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 200vh;
+}
+.pin-left {
+  background: var(--ink); position: sticky; top: var(--nav-h);
+  height: calc(100vh - var(--nav-h));
+  display: flex; align-items: center; justify-content: center;
+  padding: 4vw;
+}
+.pin-card-visual {
+  width: 100%; max-width: 320px;
+}
+.pin-card {
+  aspect-ratio: 3/4; background: #2a2820; border: 1px solid #3a3830;
+  position: relative; overflow: hidden;
+}
+.pin-stripe {
+  position: absolute; left: 0; right: 0; height: 2px;
+  background: var(--accent); top: 30%; opacity: 0;
+  transform: scaleX(0); transform-origin: left;
+}
+.pin-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; }
+.pin-card-kicker {
+  font-family: 'IBM Plex Mono', monospace; font-size: .55rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: .5rem;
+}
+.pin-title {
+  font-family: 'Libre Baskerville', serif; font-size: 1.6rem; font-weight: 900;
+  color: var(--paper); line-height: 1.1; opacity: 0; transform: translateY(15px);
+}
+.pin-sub {
+  font-size: .8rem; color: #8a8070; margin-top: .6rem;
+  line-height: 1.5; opacity: 0; transform: translateY(10px);
+}
+.pin-cta {
+  display: inline-block; margin-top: 1rem;
+  font-family: 'IBM Plex Mono', monospace; font-size: .6rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--paper); border: 1px solid var(--paper);
+  padding: .35rem .75rem; opacity: 0; transform: translateY(8px);
+}
+.pin-dots {
+  display: flex; gap: .4rem; justify-content: center; margin-top: 1.2rem;
+}
+.pin-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: #3a3830;
+  transition: background .3s;
+}
+.pin-dot.on { background: var(--accent); }
+
+.pin-right { padding: 0; }
+.pin-step {
+  min-height: calc((200vh - 0px) / 3);
+  padding: 6vw 4vw; display: flex; flex-direction: column; justify-content: center;
+  border-bottom: 1px solid var(--rule);
+}
+.pin-step:last-child { border-bottom: none; }
+.pin-step .ps-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: .58rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: .8rem;
+}
+.pin-step h3 { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: .75rem; }
+.pin-step h3 em { color: var(--accent); }
+.pin-step p { font-size: .9rem; color: var(--muted); max-width: 42ch; }
+
+/* ─── DEMO LABEL BAR ─── */
+.demo-bar {
+  background: var(--accent); color: #fff;
+  padding: .5rem 8vw;
+  font-family: 'IBM Plex Mono', monospace; font-size: .58rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  display: flex; justify-content: space-between;
+}
+
+/* ─── TOGGLE ACTIONS GRID ─── */
+.ta-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;
+}
+.ta-cell { background: var(--code-bg); padding: 1.2rem 1.5rem; }
+.ta-cell .ta-pos {
+  font-family: 'IBM Plex Mono', monospace; font-size: .55rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem;
+}
+.ta-cell .ta-val { font-family: 'IBM Plex Mono', monospace; font-size: .8rem; color: var(--code-fg); }
+.ta-cell .ta-note { font-size: .75rem; color: #6a6258; margin-top: .2rem; }
+
+/* ─── START/END VISUAL ─── */
+.se-diagram {
+  background: var(--code-bg); padding: 2rem; margin: 1.5rem 0; font-family: 'IBM Plex Mono', monospace; font-size: .72rem; color: var(--code-fg);
+}
+.se-viewport { border: 1px solid #3a3830; padding: 1.5rem; position: relative; margin-bottom: .5rem; }
+.se-viewport::before { content: 'VIEWPORT'; position: absolute; top: -.7rem; left: 1rem; background: var(--code-bg); padding: 0 .4rem; font-size: .58rem; color: var(--muted); letter-spacing: .12em; }
+.se-line { position: relative; margin: .3rem 0; }
+.se-line-bar { height: 1px; background: #3a3830; }
+.se-line-bar.accent { background: var(--accent); }
+.se-line-label { position: absolute; right: 0; top: -.85rem; font-size: .58rem; color: var(--muted); }
+.se-line-label.acc { color: var(--accent); }
+.se-el { border: 1px dashed #4a4840; padding: .5rem 1rem; margin: .5rem 0; font-size: .65rem; color: #7a7260; }
+
+@media(max-width:768px){
+  .trig-cards { grid-template-columns: 1fr; }
+  #pin-stage { grid-template-columns: 1fr; }
+  .pin-left { position: relative; height: 50vh; top: 0; }
+  .ta-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="page-progress"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Scroll·<span>Driven</span>·Design</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="01-foundations.html">01 Foundations</a></li>
+    <li><a href="02-css-api.html">02 CSS API</a></li>
+    <li><a href="03-gsap.html" class="active">03 GSAP</a></li>
+    <li><a href="04-ux.html">04 UX + A11y</a></li>
+    <li><a href="05-reference.html">Reference</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="page-num">03</div>
+  <div>
+    <p class="page-eyebrow">GSAP ScrollTrigger</p>
+    <h1>The industry<br><em>standard.</em></h1>
+    <p class="page-intro">When CSS isn't enough — complex sequences, pinned sections, cross-browser reliability — GSAP ScrollTrigger is the tool. Free since 2024. Runs everywhere. Think in timelines, not keyframes.</p>
+  </div>
+</header>
+
+<!-- WHAT IS GSAP -->
+<section>
+  <div class="section-inner two-col">
+    <div>
+      <p class="section-label">The case for GSAP</p>
+      <h2>Why reach for<br>a library?</h2>
+      <p>CSS handles many scroll patterns well. But it can't pin elements, it struggles with complex multi-element sequencing, and browser support for scroll-driven animations is still incomplete (especially Safari).</p>
+      <p>GSAP ScrollTrigger was built specifically for the patterns that CSS can't handle: pinning, scrubbing through a choreographed timeline, reversing on scroll-up, and synchronizing multiple animations with precise control.</p>
+      <p>Since Webflow acquired GSAP in 2024, it's completely free — including commercial use.</p>
+    </div>
+    <div>
+      <div class="callout">
+        <span class="callout-label">Setup — two lines</span>
+        <p>Load GSAP, load ScrollTrigger, register it once. That's the entire setup.</p>
+      </div>
+      <div class="code-block tight" style="margin-top:0">
+<span class="cm">&lt;!-- Load both from CDN --&gt;</span>
+&lt;script src=<span class="st">"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"</span>&gt;&lt;/script&gt;
+&lt;script src=<span class="st">"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"</span>&gt;&lt;/script&gt;
+
+<span class="cm">// Register the plugin — do this once, before any animations</span>
+<span class="kw">gsap</span>.<span class="fn">registerPlugin</span>(ScrollTrigger);</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT 1: TRIGGER -->
+<div class="demo-bar">
+  <span>↓ Live demo — Concept 1: Basic Trigger</span>
+  <span>Scroll down past these cards to see them animate in</span>
+</div>
+<section id="trigger-demo">
+  <p class="section-label">Concept 01</p>
+  <h2>Cross a line.<br><em>Fire the animation.</em></h2>
+  <p style="max-width:52ch">The simplest use: an element enters the viewport, the animation runs. Scroll up enough and the cards below will have reset — scroll back down to watch them animate in again.</p>
+  <div class="trig-cards">
+    <div class="trig-card dark">
+      <div class="tc-tag">Feature Lead</div>
+      <h4>The Trigger</h4>
+      <p>Define a DOM element. When it crosses the threshold you set, your animation fires. Nothing else required.</p>
+    </div>
+    <div class="trig-card">
+      <div class="tc-tag">Mechanism</div>
+      <h4>Threshold Logic</h4>
+      <p>start and end define the active zone in human-readable format: "top 80%" means the element's top edge hits 80% down the screen.</p>
+    </div>
+    <div class="trig-card">
+      <div class="tc-tag">Control</div>
+      <h4>toggleActions</h4>
+      <p>Four values control what happens at each scroll boundary: enter, leave, re-enter, re-leave. "play none none reverse" is the most common.</p>
+    </div>
+  </div>
+  <div class="code-block" style="margin-top:2rem">
+<span class="cm">// Shorthand: element triggers itself when it enters view</span>
+<span class="kw">gsap</span>.<span class="fn">from</span>(<span class="st">".trig-card"</span>, {
+  <span class="kw">scrollTrigger</span>: {
+    trigger: <span class="st">".trig-cards"</span>,
+    start: <span class="st">"top 80%"</span>,              <span class="cm">// cards' top edge hits 80% down the screen</span>
+    toggleActions: <span class="st">"play none none reverse"</span>
+  },
+  <span class="kw">opacity</span>: <span class="nu">0</span>,
+  <span class="kw">y</span>: <span class="nu">35</span>,
+  <span class="kw">duration</span>: <span class="nu">0.6</span>,
+  <span class="kw">stagger</span>: <span class="nu">0.12</span>,  <span class="cm">// each card delays slightly</span>
+  <span class="kw">ease</span>: <span class="st">"power2.out"</span>
+});</div>
+</section>
+
+<!-- START/END SYNTAX EXPLAINER -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">Reading start and end</p>
+    <h2>Two words.<br><em>Two positions.</em></h2>
+    <p style="max-width:56ch">The start and end values follow a consistent pattern. Read each one as two words: the trigger element's edge, then the viewport position where it crosses.</p>
+    <div class="se-diagram">
+      <div class="se-viewport">
+        <div class="se-line" style="margin-bottom:1rem">
+          <div class="se-line-bar accent"></div>
+          <span class="se-line-label acc">← viewport top (start: "top top")</span>
+        </div>
+        <div style="height:1rem"></div>
+        <div class="se-el">← trigger element top (enters here)</div>
+        <div style="height:.5rem"></div>
+        <div class="se-line">
+          <div class="se-line-bar accent"></div>
+          <span class="se-line-label acc">← viewport center (start: "top center")</span>
+        </div>
+        <div style="height:1rem"></div>
+        <div class="se-el">← trigger element bottom</div>
+        <div style="height:1rem"></div>
+        <div class="se-line">
+          <div class="se-line-bar"></div>
+          <span class="se-line-label">viewport bottom</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;color:#8a8070;font-size:.68rem">
+        <div><span style="color:var(--accent)">"top 80%"</span> → element's top edge hits 80% down the screen<br><span style="color:#5a5248">most common for reveal animations</span></div>
+        <div><span style="color:var(--accent)">"top top"</span> → element's top edge reaches the top of the screen<br><span style="color:#5a5248">used for pin: true sequences</span></div>
+        <div><span style="color:var(--accent)">"bottom center"</span> → element's bottom reaches the center<br><span style="color:#5a5248">good for staggered list items</span></div>
+        <div><span style="color:var(--accent)">"+=500"</span> → 500px after the start point<br><span style="color:#5a5248">relative end for pinned sections</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOGGLE ACTIONS -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">toggleActions</p>
+    <h2>Four events.<br><em>Four responses.</em></h2>
+    <p style="max-width:56ch">toggleActions takes four values, each corresponding to a different scroll event. Read them left to right as the four moments a scroll trigger can fire.</p>
+    <div class="code-block tight"><span class="kw">toggleActions</span>: <span class="st">"onEnter  onLeave  onEnterBack  onLeaveBack"</span>
+<span class="cm">//               ↓        ↓        ↓            ↓</span>
+<span class="cm">// Valid values: play | pause | resume | reverse | restart | reset | complete | none</span></div>
+    <div class="ta-grid">
+      <div class="ta-cell">
+        <div class="ta-pos">Most common</div>
+        <div class="ta-val">"play none none reverse"</div>
+        <div class="ta-note">Plays forward on enter. Reverses when you scroll back past the top edge. The "feels natural" default.</div>
+      </div>
+      <div class="ta-cell">
+        <div class="ta-pos">One-shot</div>
+        <div class="ta-val">"play none none none"</div>
+        <div class="ta-note">Fires once and stays. The animation doesn't reverse when you scroll back up.</div>
+      </div>
+      <div class="ta-cell">
+        <div class="ta-pos">Full control</div>
+        <div class="ta-val">"play reverse play reverse"</div>
+        <div class="ta-note">Plays when entering from either direction, reverses when leaving from either direction.</div>
+      </div>
+      <div class="ta-cell">
+        <div class="ta-pos">Scrub replaces this</div>
+        <div class="ta-val">scrub: true</div>
+        <div class="ta-note">When scrub is set, toggleActions is ignored. Scrub directly links animation progress to scroll position — no events needed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT 2: SCRUB -->
+<div class="demo-bar">
+  <span>↓ Live demo — Concept 2: Scrub</span>
+  <span>The scrollbar controls the animation — try scrolling slowly</span>
+</div>
+<section id="scrub-demo">
+  <p class="section-label" style="color:#5a5248">Concept 02 — Scrub</p>
+  <h2 style="color:var(--paper);max-width:18ch;margin-bottom:2rem">The scrollbar<br><em style="color:var(--accent)">is the playhead.</em></h2>
+  <div class="scrub-progress-bar">
+    <div class="scrub-progress-fill" id="scrub-fill"></div>
+    <span class="scrub-pct" id="scrub-pct">0%</span>
+  </div>
+  <div class="scrub-words" id="scrub-words">
+    <div class="scrub-line"><span class="scrub-word" id="sw1">SCROLL</span></div>
+    <div class="scrub-line"><span class="scrub-word right" id="sw2">DOWN</span></div>
+    <div class="scrub-line"><span class="scrub-word" id="sw3">TO REVEAL</span></div>
+  </div>
+  <div class="scrub-note" id="scrub-note">scrub: 1 — the animation "catches up" over 1 second for a smoother feel</div>
+</section>
+
+<section>
+  <div class="section-inner">
+    <p class="section-label">How scrub works</p>
+    <h2>Scroll position <em>drives</em><br>animation progress.</h2>
+    <div class="annotated-wrap">
+      <div class="annotated-code"><span class="kw">gsap</span>.<span class="fn">timeline</span>({
+  <span class="kw">scrollTrigger</span>: {
+    trigger: <span class="st">"#scrub-demo"</span>,
+    start: <span class="st">"top 60%"</span>,
+    end: <span class="st">"bottom 40%"</span>,
+    <span class="kw">scrub</span>: <span class="nu">1</span>  <span class="cm">// 1 second lag for smoothness</span>
+  }
+})
+.<span class="fn">to</span>(<span class="st">"#sw1"</span>, { x: <span class="nu">0</span>, duration: <span class="nu">1</span> })
+.<span class="fn">to</span>(<span class="st">"#sw2"</span>, { x: <span class="nu">0</span>, duration: <span class="nu">1</span> }, <span class="st">"&lt;0.2"</span>)
+.<span class="fn">to</span>(<span class="st">"#sw3"</span>, { x: <span class="nu">0</span>, duration: <span class="nu">1</span> }, <span class="st">"&lt;0.2"</span>);</div>
+      <div class="annotated-notes">
+        <div class="note-row"><strong>scrub: true</strong>Direct 1-to-1 link. The animation progress equals scroll progress instantly. Can feel mechanical.</div>
+        <div class="note-row"><strong>scrub: 1</strong>The animation "catches up" over 1 second. Feels smoother, more cinematic. Higher numbers = more lag.</div>
+        <div class="note-row"><strong>"&lt;0.2"</strong>Timeline position offset. "&lt;" means "start at the same time as the previous tween, offset by 0.2 seconds." Creates overlapping reveals.</div>
+        <div class="note-row"><strong>When to use scrub</strong>When scroll controls the story — product walkthroughs, data reveals, parallax sequences. Not for simple entrance animations (use toggleActions instead).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT 3: PIN + TIMELINE -->
+<div class="demo-bar">
+  <span>↓ Live demo — Concept 3: Pin + Timeline</span>
+  <span>Left panel stays fixed while right side scrolls</span>
+</div>
+<div id="pin-stage">
+  <div class="pin-left">
+    <div class="pin-card-visual">
+      <div class="pin-card">
+        <div class="pin-stripe" id="pin-stripe"></div>
+        <div class="pin-card-body">
+          <div class="pin-card-kicker">Feature Story</div>
+          <div class="pin-title" id="pin-title">The Long Read</div>
+          <div class="pin-sub" id="pin-sub">A deep investigation into how motion design shapes editorial narrative on the modern web.</div>
+          <div class="pin-cta" id="pin-cta">Read Now →</div>
+        </div>
+      </div>
+      <div class="pin-dots">
+        <div class="pin-dot on" id="dot-0"></div>
+        <div class="pin-dot" id="dot-1"></div>
+        <div class="pin-dot" id="dot-2"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pin-right">
+    <div class="pin-step" data-step="0">
+      <p class="ps-num">Step 01 / The pin</p>
+      <h3>The left card stays.<br>You scroll the right.</h3>
+      <p>The card is pinned using CSS <code style="font-family:'IBM Plex Mono',monospace;font-size:.85em">position: sticky</code>. It remains visible as you scroll through all three steps. This is how Apple product pages hold a device image in view while feature text scrolls by.</p>
+    </div>
+    <div class="pin-step" data-step="1">
+      <p class="ps-num">Step 02 / The timeline</p>
+      <h3>Each step triggers a<br>reveal <em>inside</em> the card.</h3>
+      <p>GSAP's <code style="font-family:'IBM Plex Mono',monospace;font-size:.85em">toggleActions</code> fires when this text block enters view. The headline in the pinned card fades in. The visual updates as the narrative advances.</p>
+    </div>
+    <div class="pin-step" data-step="2">
+      <p class="ps-num">Step 03 / The payoff</p>
+      <h3>The full composition<br><em>arrives.</em></h3>
+      <p>Sub-copy and the call-to-action complete the card. Three scroll steps. One visual. Multiple triggers. This is the complete scrollytelling pattern — deconstructed into its parts.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PIN CODE EXPLANATION -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">The pin pattern — deconstructed</p>
+    <h2>Two triggers.<br><em>One experience.</em></h2>
+    <p style="max-width:58ch">The pin pattern separates concerns: one trigger holds the visual in place; separate triggers fire changes inside it as the reader scrolls through each chapter.</p>
+    <div class="annotated-wrap">
+      <div class="annotated-code"><span class="cm">// TRIGGER 1: Pin the visual for the full section duration</span>
+ScrollTrigger.<span class="fn">create</span>({
+  trigger: <span class="st">"#pin-stage"</span>,
+  start: <span class="st">"top top"</span>,
+  end: <span class="st">"bottom bottom"</span>,
+  pin: <span class="st">"#pin-left"</span>,      <span class="cm">// what gets pinned</span>
+  pinSpacing: <span class="kw">false</span>   <span class="cm">// don't add padding (layout-dependent)</span>
+});
+
+<span class="cm">// TRIGGER 2: Fire changes on each step</span>
+<span class="kw">gsap</span>.<span class="fn">timeline</span>({
+  scrollTrigger: {
+    trigger: <span class="st">"[data-step='1']"</span>,
+    start: <span class="st">"top center"</span>,
+    toggleActions: <span class="st">"play none none reverse"</span>
+  }
+})
+.<span class="fn">to</span>(<span class="st">"#pin-title"</span>, { opacity: <span class="nu">1</span>, y: <span class="nu">0</span>, duration: <span class="nu">0.5</span> })
+.<span class="fn">to</span>(<span class="st">"#pin-sub"</span>,   { opacity: <span class="nu">1</span>, y: <span class="nu">0</span>, duration: <span class="nu">0.4</span> }, <span class="st">"&lt;0.15"</span>);</div>
+      <div class="annotated-notes">
+        <div class="note-row"><strong>pin: "#pin-left"</strong>The element to pin. It gets position: fixed while the trigger zone is active, then releases when you scroll past.</div>
+        <div class="note-row"><strong>pinSpacing: false</strong>GSAP adds padding by default to compensate for the pinned element. Set false when you're using a side-by-side layout with its own height.</div>
+        <div class="note-row"><strong>Separate triggers</strong>The pin trigger and the chapter triggers are independent. The pin handles position; the chapter triggers handle content state. Clean separation of concerns.</div>
+        <div class="note-row"><strong>toggleClass alternative</strong>Instead of animating properties directly, you can use toggleClass to add/remove CSS classes on the visual — a clean, performant way to manage visual state changes.</div>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top:2rem">
+      <span class="callout-label">Common bug: the layout jump</span>
+      <p>When pin activates, GSAP switches the element to <code style="font-family:'IBM Plex Mono',monospace;font-size:.85em">position: fixed</code>, which removes it from normal flow. GSAP adds padding to the parent to compensate. If your layout jumps when pinning, check: (1) the parent has a defined height, (2) pinSpacing is set correctly, (3) no conflicting CSS transform on the pinned element.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINES -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">GSAP Timelines</p>
+    <h2>Sequence. Overlap.<br><em>Choreograph.</em></h2>
+    <p style="max-width:58ch">A GSAP timeline is a container for multiple animations. You add tweens to it — each one relative to the previous — and control the whole sequence with a single ScrollTrigger.</p>
+    <div class="annotated-wrap">
+      <div class="annotated-code"><span class="kw">let</span> tl = <span class="kw">gsap</span>.<span class="fn">timeline</span>({
+  <span class="kw">scrollTrigger</span>: {
+    trigger: <span class="st">".scene"</span>,
+    pin: <span class="kw">true</span>,
+    scrub: <span class="nu">1</span>,
+    start: <span class="st">"top top"</span>,
+    end: <span class="st">"+=2000"</span>  <span class="cm">// 2000px of scroll controls the whole timeline</span>
+  }
+});
+
+<span class="cm">// Add animations — each runs AFTER the previous by default</span>
+tl.<span class="fn">to</span>(<span class="st">".box-a"</span>, { x: <span class="nu">400</span>, rotation: <span class="nu">360</span> })
+  .<span class="fn">to</span>(<span class="st">".box-b"</span>, { y: <span class="nu">200</span>, scale: <span class="nu">1.5</span> })
+  .<span class="fn">to</span>(<span class="st">".box-a"</span>, { backgroundColor: <span class="st">"#c93820"</span> }); <span class="cm">// runs after box-b finishes</span>
+
+<span class="cm">// Position parameter: when to start relative to the timeline</span>
+tl.<span class="fn">to</span>(<span class="st">".box-c"</span>, { x: <span class="nu">100</span> }, <span class="st">"+=0.5"</span>)   <span class="cm">// 0.5s after previous ends</span>
+  .<span class="fn">to</span>(<span class="st">".box-d"</span>, { x: <span class="nu">100</span> }, <span class="st">"&lt;"</span>)      <span class="cm">// same time as previous</span>
+  .<span class="fn">to</span>(<span class="st">".box-e"</span>, { x: <span class="nu">100</span> }, <span class="st">"&lt;0.2"</span>);  <span class="cm">// overlap by 0.2s</span></div>
+      <div class="annotated-notes">
+        <div class="note-row"><strong>tl.to().to().to()</strong>Animations chain sequentially by default. Each runs after the previous ends. The whole chain is mapped to the scroll distance defined in scrollTrigger.</div>
+        <div class="note-row"><strong>Duration as proportion</strong>With scrub, tween duration values define the proportion of scroll distance each tween gets. Longer duration = takes more scroll to complete.</div>
+        <div class="note-row"><strong>Position parameter</strong>The third argument to .to() controls timing relative to the timeline. "&lt;" = same start. "&lt;0.2" = offset by 0.2. "+=0.5" = 0.5 after end. "-=0.3" = 0.3 before end.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-nav">
+  <a href="02-css-api.html">← 02 CSS API</a>
+  <span class="page-pos">03 / 05</span>
+  <a href="04-ux.html">04 — UX + Accessibility →</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Page progress
+const bar = document.getElementById('page-progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+});
+
+// DEMO 1: Trigger cards
+gsap.to('.trig-card', {
+  scrollTrigger: {
+    trigger: '.trig-cards',
+    start: 'top 82%',
+    toggleActions: 'play none none reverse'
+  },
+  opacity: 1, y: 0,
+  duration: 0.6, stagger: 0.12, ease: 'power2.out'
+});
+
+// DEMO 2: Scrub words
+const scrubTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '#scrub-demo',
+    start: 'top 65%',
+    end: 'bottom 35%',
+    scrub: 1,
+    onUpdate: self => {
+      const pct = Math.round(self.progress * 100);
+      document.getElementById('scrub-fill').style.width = pct + '%';
+      document.getElementById('scrub-pct').textContent = pct + '%';
+    }
+  }
+});
+scrubTl
+  .to('#sw1', { x: 0, duration: 1 })
+  .to('#sw2', { x: 0, duration: 1 }, '<0.2')
+  .to('#sw3', { x: 0, duration: 1 }, '<0.2');
+
+// DEMO 3: Pin + chapter triggers
+// Step 1 trigger — headline
+gsap.timeline({
+  scrollTrigger: {
+    trigger: '[data-step="1"]',
+    start: 'top 55%',
+    toggleActions: 'play none none reverse',
+    onEnter: () => setDot(1),
+    onLeaveBack: () => setDot(0)
+  }
+})
+.to('#pin-stripe', { opacity: 1, scaleX: 1, duration: 0.4 })
+.to('#pin-title',  { opacity: 1, y: 0, duration: 0.4 }, '<0.1');
+
+// Step 2 trigger — sub + cta
+gsap.timeline({
+  scrollTrigger: {
+    trigger: '[data-step="2"]',
+    start: 'top 55%',
+    toggleActions: 'play none none reverse',
+    onEnter: () => setDot(2),
+    onLeaveBack: () => setDot(1)
+  }
+})
+.to('#pin-sub',  { opacity: 1, y: 0, duration: 0.4 })
+.to('#pin-cta',  { opacity: 1, y: 0, duration: 0.3 }, '<0.15');
+
+function setDot(n) {
+  document.querySelectorAll('.pin-dot').forEach((d, i) => {
+    d.classList.toggle('on', i === n);
+  });
+}
+</script>
+</body>
+</html>

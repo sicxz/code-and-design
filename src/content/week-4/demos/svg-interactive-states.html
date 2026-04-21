@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Interactive States Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .demo-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .demo-card h2 {
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .demo-card .instructions {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem;
+      background: #f8f9fa;
+      border-left: 3px solid #3498db;
+      border-radius: 4px;
+    }
+
+    .demo-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
+      background: #fafafa;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      min-height: 200px;
+    }
+
+    code {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 4px;
+      display: block;
+      overflow-x: auto;
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .keyword {
+      color: #66d9ef;
+    }
+
+    .attribute {
+      color: #a6e22e;
+    }
+
+    .string {
+      color: #e6db74;
+    }
+
+    .comment {
+      color: #75715e;
+      font-style: italic;
+    }
+
+    .highlight {
+      background: #f39c12;
+      color: #1a1a1a;
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+
+    /* Demo 1: Hover State */
+    .btn-hover {
+      background: none;
+      border: 2px solid #3498db;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #3498db;
+      transition: all 300ms ease;
+    }
+
+    .btn-hover svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .btn-hover .icon-shape {
+      fill: #3498db;
+      transition: fill 300ms ease;
+    }
+
+    .btn-hover:hover {
+      background: #3498db;
+      color: white;
+    }
+
+    .btn-hover:hover .icon-shape {
+      fill: white;
+    }
+
+    /* Demo 2: Focus State */
+    .btn-focus {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 200ms ease;
+    }
+
+    .btn-focus svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .btn-focus .icon-shape {
+      fill: white;
+    }
+
+    .btn-focus:focus-visible {
+      outline: 3px solid #f39c12;
+      outline-offset: 4px;
+      transform: scale(1.05);
+    }
+
+    .btn-focus:hover {
+      transform: scale(1.05);
+    }
+
+    /* Demo 3: Active/Click State */
+    .btn-active {
+      background: white;
+      border: 2px solid #e0e0e0;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #666;
+      transition: all 200ms ease;
+    }
+
+    .btn-active svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .btn-active .icon-shape {
+      fill: #666;
+      transition: all 200ms ease;
+    }
+
+    .btn-active:active {
+      transform: scale(0.95);
+      background: #f5f5f5;
+    }
+
+    .btn-active:active .icon-shape {
+      fill: #3498db;
+    }
+
+    /* Demo 4: Toggle State */
+    .btn-toggle {
+      background: white;
+      border: 2px solid #e0e0e0;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #666;
+      transition: all 300ms ease;
+    }
+
+    .btn-toggle svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .btn-toggle .icon-shape {
+      fill: none;
+      stroke: #666;
+      stroke-width: 2;
+      transition: all 300ms ease;
+    }
+
+    .btn-toggle.active {
+      background: #3498db;
+      color: white;
+      border-color: #3498db;
+    }
+
+    .btn-toggle.active .icon-shape {
+      fill: white;
+      stroke: white;
+    }
+
+    /* Demo 5: SVG Animation on Hover */
+    .icon-link {
+      display: inline-flex;
+      padding: 1rem;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid #e0e0e0;
+      transition: all 300ms ease;
+      cursor: pointer;
+    }
+
+    .icon-link svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .icon-link .icon-shape {
+      fill: #3498db;
+      transform-origin: center;
+      transition: transform 300ms ease;
+    }
+
+    .icon-link:hover {
+      border-color: #3498db;
+      background: #f0f8ff;
+    }
+
+    .icon-link:hover .icon-shape {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    .icon-link:focus-visible {
+      outline: 3px solid #f39c12;
+      outline-offset: 4px;
+    }
+
+    /* Demo 6: Loading State */
+    .btn-loading {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      min-width: 180px;
+      justify-content: center;
+    }
+
+    .btn-loading svg {
+      width: 24px;
+      height: 24px;
+      display: none;
+    }
+
+    .btn-loading .icon-shape {
+      fill: white;
+    }
+
+    .btn-loading.loading {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .btn-loading.loading svg {
+      display: block;
+      animation: spin 1s linear infinite;
+    }
+
+    .btn-loading.loading .btn-text {
+      display: none;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    .accessibility-note {
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      padding: 1.5rem;
+      border-radius: 4px;
+      margin-top: 2rem;
+    }
+
+    .accessibility-note h3 {
+      color: #2e7d32;
+      margin-bottom: 0.75rem;
+    }
+
+    .accessibility-note ul {
+      margin-left: 2rem;
+      color: #1b5e20;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <h1>SVG Interactive States Demo</h1>
+  <p class="subtitle">Hover, focus, click, and keyboard-test all the examples below</p>
+
+  <div class="demo-grid">
+    <!-- Demo 1: Hover State -->
+    <div class="demo-card">
+      <h2>1. Hover State</h2>
+      <p class="instructions">💡 <strong>Try:</strong> Hover over the button</p>
+
+      <div class="demo-showcase">
+        <button class="btn-hover">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="icon-shape" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span>Add to Favorites</span>
+        </button>
+      </div>
+
+      <code><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="keyword">&lt;button</span> <span class="attribute">class</span>=<span class="string">"btn-hover"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;svg</span> <span class="attribute">aria-hidden</span>=<span class="string">"true"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;path</span> <span class="attribute">class</span>=<span class="string">"icon-shape"</span> ... <span class="keyword">/&gt;</span>
+  <span class="keyword">&lt;/svg&gt;</span>
+  Add to Favorites
+<span class="keyword">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="keyword">.btn-hover</span> {
+  <span class="attribute">border</span>: <span class="string">2px solid #3498db</span>;
+  <span class="attribute">color</span>: <span class="string">#3498db</span>;
+}
+
+<span class="highlight"><span class="keyword">.btn-hover:hover</span></span> {
+  <span class="attribute">background</span>: <span class="string">#3498db</span>;
+  <span class="attribute">color</span>: <span class="string">white</span>;
+}
+
+<span class="highlight"><span class="keyword">.btn-hover:hover .icon-shape</span></span> {
+  <span class="attribute">fill</span>: <span class="string">white</span>;
+}</code>
+    </div>
+
+    <!-- Demo 2: Focus State -->
+    <div class="demo-card">
+      <h2>2. Focus State (Keyboard)</h2>
+      <p class="instructions">⌨️ <strong>Try:</strong> Tab to button, see outline</p>
+
+      <div class="demo-showcase">
+        <button class="btn-focus">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="icon-shape" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>Confirm</span>
+        </button>
+      </div>
+
+      <code><span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="highlight"><span class="keyword">.btn-focus:focus-visible</span></span> {
+  <span class="attribute">outline</span>: <span class="string">3px solid #f39c12</span>;
+  <span class="attribute">outline-offset</span>: <span class="string">4px</span>;
+  <span class="attribute">transform</span>: <span class="string">scale(1.05)</span>;
+}
+
+<span class="comment">&lt;!-- :focus-visible = keyboard only</span>
+<span class="comment">     :focus = mouse + keyboard --&gt;</span></code>
+    </div>
+
+    <!-- Demo 3: Active/Click State -->
+    <div class="demo-card">
+      <h2>3. Active/Click State</h2>
+      <p class="instructions">🖱️ <strong>Try:</strong> Click and hold the button</p>
+
+      <div class="demo-showcase">
+        <button class="btn-active">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="icon-shape" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </svg>
+          <span>Add Item</span>
+        </button>
+      </div>
+
+      <code><span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="highlight"><span class="keyword">.btn-active:active</span></span> {
+  <span class="attribute">transform</span>: <span class="string">scale(0.95)</span>;
+  <span class="attribute">background</span>: <span class="string">#f5f5f5</span>;
+}
+
+<span class="highlight"><span class="keyword">.btn-active:active .icon-shape</span></span> {
+  <span class="attribute">fill</span>: <span class="string">#3498db</span>;
+}
+
+<span class="comment">&lt;!-- :active = pressed down state --&gt;</span></code>
+    </div>
+
+    <!-- Demo 4: Toggle State (JS) -->
+    <div class="demo-card">
+      <h2>4. Toggle State (JavaScript)</h2>
+      <p class="instructions">🔄 <strong>Try:</strong> Click to toggle bookmark on/off</p>
+
+      <div class="demo-showcase">
+        <button class="btn-toggle" onclick="this.classList.toggle('active')">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="icon-shape" d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+          </svg>
+          <span>Bookmark</span>
+        </button>
+      </div>
+
+      <code><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="keyword">&lt;button</span>
+  <span class="attribute">class</span>=<span class="string">"btn-toggle"</span>
+  <span class="attribute">onclick</span>=<span class="string">"this.classList.toggle('active')"</span>
+<span class="keyword">&gt;</span>...
+<span class="keyword">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="keyword">.btn-toggle .icon-shape</span> {
+  <span class="attribute">fill</span>: <span class="string">none</span>;
+  <span class="attribute">stroke</span>: <span class="string">#666</span>;
+}
+
+<span class="highlight"><span class="keyword">.btn-toggle.active .icon-shape</span></span> {
+  <span class="attribute">fill</span>: <span class="string">white</span>;
+  <span class="attribute">stroke</span>: <span class="string">white</span>;
+}</code>
+    </div>
+
+    <!-- Demo 5: SVG Transform on Hover -->
+    <div class="demo-card">
+      <h2>5. SVG Animation (Transform)</h2>
+      <p class="instructions">✨ <strong>Try:</strong> Hover to see icon rotate and scale</p>
+
+      <div class="demo-showcase">
+        <a href="#" class="icon-link" aria-label="Settings">
+          <svg viewBox="0 0 24 24">
+            <path class="icon-shape" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+        </a>
+      </div>
+
+      <code><span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="keyword">.icon-link .icon-shape</span> {
+  <span class="attribute">transform-origin</span>: <span class="string">center</span>;
+  <span class="attribute">transition</span>: <span class="string">transform 300ms ease</span>;
+}
+
+<span class="highlight"><span class="keyword">.icon-link:hover .icon-shape</span></span> {
+  <span class="attribute">transform</span>: <span class="string">rotate(15deg) scale(1.1)</span>;
+}
+
+<span class="comment">&lt;!-- SVG transforms work on individual paths! --&gt;</span></code>
+    </div>
+
+    <!-- Demo 6: Loading State -->
+    <div class="demo-card">
+      <h2>6. Loading State (Spinner)</h2>
+      <p class="instructions">⏳ <strong>Try:</strong> Click to simulate loading</p>
+
+      <div class="demo-showcase">
+        <button class="btn-loading" onclick="simulateLoading(this)">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="icon-shape" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+          </svg>
+          <span class="btn-text">Save Changes</span>
+          <span class="loading-text" style="display: none;">Saving...</span>
+        </button>
+      </div>
+
+      <code><span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="keyword">.btn-loading svg</span> {
+  <span class="attribute">display</span>: <span class="string">none</span>;
+}
+
+<span class="highlight"><span class="keyword">.btn-loading.loading svg</span></span> {
+  <span class="attribute">display</span>: <span class="string">block</span>;
+  <span class="attribute">animation</span>: <span class="string">spin 1s linear infinite</span>;
+}
+
+<span class="keyword">@keyframes spin</span> {
+  <span class="keyword">from</span> { <span class="attribute">transform</span>: <span class="string">rotate(0deg)</span>; }
+  <span class="keyword">to</span> { <span class="attribute">transform</span>: <span class="string">rotate(360deg)</span>; }
+}
+
+<span class="comment">&lt;!-- JS toggles .loading class --&gt;</span></code>
+    </div>
+  </div>
+
+  <div class="accessibility-note">
+    <h3>♿ Accessibility Best Practices</h3>
+    <ul>
+      <li><strong>Use :focus-visible</strong> — Shows outline for keyboard, not mouse</li>
+      <li><strong>Add aria-label</strong> — For icon-only buttons (screen readers)</li>
+      <li><strong>Use aria-hidden="true"</strong> — For decorative icons (with text)</li>
+      <li><strong>Respect prefers-reduced-motion</strong> — Disable animations if requested</li>
+      <li><strong>Ensure contrast</strong> — Focus outlines must be visible in all themes</li>
+      <li><strong>Test with keyboard</strong> — Tab, Enter, Space should all work</li>
+      <li><strong>Test with screen reader</strong> — VoiceOver (macOS) or NVDA (Windows)</li>
+    </ul>
+  </div>
+
+  <script>
+    // Simulate loading state
+    function simulateLoading(button) {
+      button.classList.add('loading');
+      button.disabled = true;
+
+      setTimeout(() => {
+        button.classList.remove('loading');
+        button.disabled = false;
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

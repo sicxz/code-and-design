@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reduced Motion Foundation</title>
+
+  <!-- ===========================================
+       DEMO: Reduced Motion Foundation
+       Week 3 — Signal & State
+
+       What this demonstrates:
+       - prefers-reduced-motion media query
+       - CSS-first approach (no JavaScript needed)
+       - "Nuclear" option vs targeted approach
+       - Functional vs decorative motion
+
+       Test: System Preferences > Accessibility > Display > Reduce motion
+       Or: DevTools > Rendering > Emulate CSS media feature
+
+       CodePen: Copy CSS to CSS panel, JS to JS panel,
+       body content to HTML panel
+       =========================================== -->
+
+  <style>
+    /* -----------------------------------------
+       DESIGN TOKENS
+       ----------------------------------------- */
+    :root {
+      --color-surface: #ffffff;
+      --color-surface-alt: #f5f5f5;
+      --color-text: #1a1a1a;
+      --color-accent: #0066cc;
+      --color-border: #e0e0e0;
+      --color-muted: #666666;
+      --color-success: #008844;
+      --color-warning: #cc6600;
+
+      --font-family: system-ui, -apple-system, sans-serif;
+
+      /* Motion tokens */
+      --transition-fast: 150ms;
+      --transition-base: 300ms;
+      --transition-slow: 500ms;
+      --ease-default: ease-in-out;
+    }
+
+    [data-theme="dark"] {
+      --color-surface: #1a1a1a;
+      --color-surface-alt: #252525;
+      --color-text: #f0f0f0;
+      --color-accent: #66b3ff;
+      --color-border: #333333;
+      --color-muted: #a0a0a0;
+    }
+
+    /* -----------------------------------------
+       REDUCED MOTION — "Nuclear" Option
+       Uncomment to kill ALL motion
+       ----------------------------------------- */
+    /*
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    */
+
+    /* -----------------------------------------
+       REDUCED MOTION — Targeted Approach
+       Only removes decorative motion
+       ----------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+      /* Remove decorative animations */
+      .animate-bounce,
+      .animate-pulse,
+      .animate-slide {
+        animation: none;
+      }
+
+      /* Reduce transitions to near-instant */
+      .card,
+      .button-demo {
+        transition-duration: 0.01ms;
+      }
+
+      /* Keep functional motion like focus rings */
+    }
+
+    /* -----------------------------------------
+       BASE STYLES
+       ----------------------------------------- */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--color-surface);
+      color: var(--color-text);
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 2rem;
+      min-height: 100vh;
+      transition:
+        background-color var(--transition-base) var(--ease-default),
+        color var(--transition-base) var(--ease-default);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    /* -----------------------------------------
+       THEME TOGGLE
+       ----------------------------------------- */
+    .theme-toggle {
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform var(--transition-fast) ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.05);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .theme-toggle:hover {
+        transform: none;
+      }
+    }
+
+    /* -----------------------------------------
+       DEMO SECTIONS
+       ----------------------------------------- */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    /* -----------------------------------------
+       DECORATIVE MOTION — Should be reduced
+       ----------------------------------------- */
+    .card {
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition:
+        transform var(--transition-base) ease,
+        box-shadow var(--transition-base) ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card:hover {
+        transform: none;
+        /* Keep shadow for visual feedback, just no motion */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    /* Bouncing animation */
+    .animate-bounce {
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Pulsing animation */
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Sliding animation */
+    .animate-slide {
+      animation: slide 3s infinite;
+    }
+
+    @keyframes slide {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(20px); }
+    }
+
+    .animation-demo {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem;
+      background: var(--color-surface-alt);
+      border-radius: 4px;
+    }
+
+    .dot {
+      width: 20px;
+      height: 20px;
+      background: var(--color-accent);
+      border-radius: 50%;
+    }
+
+    /* -----------------------------------------
+       FUNCTIONAL MOTION — Should be kept
+       ----------------------------------------- */
+    .button-demo {
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button-demo:focus {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    /* Loading spinner — functional, consider keeping */
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--color-border);
+      border-top-color: var(--color-accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* For reduced motion: show static loading indicator instead */
+    @media (prefers-reduced-motion: reduce) {
+      .spinner {
+        animation: none;
+        border-top-color: var(--color-accent);
+        /* Add a pulsing dot or text instead */
+      }
+
+      .spinner::after {
+        content: '...';
+        position: absolute;
+        font-weight: bold;
+      }
+    }
+
+    .loading-demo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* -----------------------------------------
+       STATUS INDICATOR
+       ----------------------------------------- */
+    .status-indicator {
+      margin-top: 2rem;
+      padding: 1rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .status-indicator.motion-on {
+      background: rgba(0, 136, 68, 0.1);
+      border: 1px solid var(--color-success);
+    }
+
+    .status-indicator.motion-reduced {
+      background: rgba(204, 102, 0, 0.1);
+      border: 1px solid var(--color-warning);
+    }
+
+    .status-icon {
+      font-size: 1.5rem;
+    }
+
+    /* -----------------------------------------
+       EXPLANATION
+       ----------------------------------------- */
+    .note {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: var(--color-surface-alt);
+      border-left: 3px solid var(--color-accent);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .note strong {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    code {
+      background: var(--color-border);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'SF Mono', Consolas, monospace;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reduced Motion Foundation</h1>
+  <p>Respecting user preferences for less motion.</p>
+
+  <button class="theme-toggle" id="theme-toggle">Toggle Theme</button>
+
+  <div id="motion-status" class="status-indicator motion-on">
+    <span class="status-icon">—</span>
+    <span>Checking motion preference...</span>
+  </div>
+
+  <h2>Decorative Motion (Should Be Reduced)</h2>
+  <p>These animations are purely decorative. They should be disabled or minimized when reduced motion is preferred.</p>
+
+  <div class="demo-grid">
+    <div class="card">
+      <h3>Hover Card</h3>
+      <p>Hover over me. The lift effect is decorative — it adds delight but isn't essential.</p>
+    </div>
+
+    <div class="card">
+      <h3>Continuous Animations</h3>
+      <div class="animation-demo">
+        <div class="dot animate-bounce"></div>
+        <div class="dot animate-pulse"></div>
+        <div class="dot animate-slide"></div>
+      </div>
+      <p>Bouncing, pulsing, sliding — all decorative.</p>
+    </div>
+  </div>
+
+  <h2>Functional Motion (Consider Keeping)</h2>
+  <p>Some motion serves a purpose: loading indicators, progress feedback, focus states.</p>
+
+  <div class="demo-grid">
+    <div class="card">
+      <h3>Loading Spinner</h3>
+      <div class="loading-demo">
+        <div class="spinner"></div>
+        <span>Loading data...</span>
+      </div>
+      <p>A spinner tells users something is happening. Without it, they might think the page is broken.</p>
+    </div>
+
+    <div class="card">
+      <h3>Button Focus State</h3>
+      <button class="button-demo">Click Me</button>
+      <p>Focus rings (the outline when you Tab to an element) should always be visible. They're essential for keyboard navigation.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>The Question to Ask:</strong>
+    Is this motion necessary for understanding, or just decoration?
+    <br><br>
+    <strong>Test it:</strong> Enable reduced motion in your OS settings, or use DevTools: <code>Rendering > Emulate CSS media feature > prefers-reduced-motion: reduce</code>
+  </div>
+
+  <script>
+    /* -----------------------------------------
+       JAVASCRIPT
+       ----------------------------------------- */
+
+    // Theme toggle
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.dataset.theme;
+      document.documentElement.dataset.theme = current === 'dark' ? 'light' : 'dark';
+    });
+
+    // Motion status indicator
+    const statusEl = document.getElementById('motion-status');
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function updateMotionStatus() {
+      if (motionQuery.matches) {
+        statusEl.className = 'status-indicator motion-reduced';
+        statusEl.innerHTML = `
+          <span class="status-icon">🐢</span>
+          <span><strong>Reduced motion active.</strong> Decorative animations are disabled.</span>
+        `;
+      } else {
+        statusEl.className = 'status-indicator motion-on';
+        statusEl.innerHTML = `
+          <span class="status-icon">✨</span>
+          <span><strong>Motion enabled.</strong> All animations playing normally.</span>
+        `;
+      }
+    }
+
+    // Listen for changes
+    motionQuery.addEventListener('change', updateMotionStatus);
+
+    // Initial check
+    updateMotionStatus();
+  </script>
+</body>
+</html>

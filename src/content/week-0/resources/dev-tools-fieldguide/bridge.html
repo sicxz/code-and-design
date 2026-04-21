@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The $0 Bridge | Designer's DevTools Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="header-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="9" y1="21" x2="9" y2="9"/>
+      </svg>
+      DevTools Field Guide
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">Get Started</a>
+      <a href="console.html" class="active">Tutorials</a>
+      <a href="errors.html">Troubleshooting</a>
+      <a href="reference.html">Reference</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Get Started</div>
+        <a href="index.html" class="sidebar-link">Overview</a>
+        <a href="start.html" class="sidebar-link">Your First 15 Minutes</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Tutorials</div>
+        <a href="console.html" class="sidebar-link">The Console</a>
+        <a href="bridge.html" class="sidebar-link active">The $0 Bridge</a>
+        <a href="behavioral.html" class="sidebar-link">Reading Element State</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Troubleshooting</div>
+        <a href="errors.html" class="sidebar-link">Reading Errors</a>
+        <a href="connecting.html" class="sidebar-link">Quick Reminders</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Reference</div>
+        <a href="visual.html" class="sidebar-link">Visual Tools</a>
+        <a href="reference.html" class="sidebar-link">Keyboard Shortcuts</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <nav class="breadcrumb">
+        <a href="index.html">Docs</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="console.html">Behavioral Tools</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>The $0 Bridge</span>
+      </nav>
+
+      <h1>The $0 Bridge</h1>
+      <p class="lead">
+        The most powerful concept in DevTools: turning a visual selection into behavioral access. Select something you can see, control it with code.
+      </p>
+
+      <div class="bridge-visual">
+        <div class="bridge-panels">
+          <div class="bridge-panel">
+            <div class="bridge-panel-title">Elements Panel</div>
+            <div class="bridge-panel-content">&lt;div class="card"&gt; <span style="color: var(--accent);">== $0</span></div>
+          </div>
+          <div class="bridge-arrow">⟷</div>
+          <div class="bridge-panel">
+            <div class="bridge-panel-title">Console</div>
+            <div class="bridge-panel-content">$0</div>
+          </div>
+        </div>
+        <div class="bridge-label">Same Element, Two Access Points</div>
+        <div class="bridge-sublabel">Visual selection becomes code reference</div>
+      </div>
+
+      <h2 id="what-is-it">What is $0?</h2>
+      <p>
+        When you select any element in the Elements panel, DevTools automatically creates a reference to it called <code>$0</code>. This reference is available in the Console—type <code>$0</code> and you're talking to that exact element.
+      </p>
+      <p>
+        This is the bridge between <strong>what you see</strong> and <strong>what you can do</strong>.
+      </p>
+
+      <div class="callout callout-note">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          Historical References
+        </div>
+        <p>
+          DevTools also keeps <code>$1</code>, <code>$2</code>, <code>$3</code>, and <code>$4</code>—your previous four selections. Useful when comparing elements, but <code>$0</code> is what you'll use 99% of the time.
+        </p>
+      </div>
+
+      <h2 id="workflow">The Three-Step Workflow</h2>
+      <p>
+        This pattern will become second nature: <strong>Select → Reference → Interact</strong>
+      </p>
+
+      <div class="step-cards">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Select Visually</h4>
+            <p>Right-click any element → Inspect. Or use Firefox's element picker: click the cursor icon in DevTools (top-left) or press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Reference in Console</h4>
+            <p>Press <kbd>Esc</kbd> to open the Console drawer. Type <code>$0</code> — you now have code access to that element.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Interact or Inspect</h4>
+            <p>Ask questions (<code>$0.classList</code>) or make changes (<code>$0.classList.add('active')</code>). Watch both panels update.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 id="asking-questions">Asking Questions About Elements</h2>
+      <p>
+        Once you have <code>$0</code>, you can interrogate the element. These are the questions designers ask most:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Console Command</th>
+            <th>Returns</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>What classes does it have?</td>
+            <td><code>$0.classList</code></td>
+            <td>List of all classes</td>
+          </tr>
+          <tr>
+            <td>Does it have a specific class?</td>
+            <td><code>$0.classList.contains('active')</code></td>
+            <td><code>true</code> or <code>false</code></td>
+          </tr>
+          <tr>
+            <td>What data attributes?</td>
+            <td><code>$0.dataset</code></td>
+            <td>Object with all <code>data-*</code> values</td>
+          </tr>
+          <tr>
+            <td>What's the text content?</td>
+            <td><code>$0.textContent</code></td>
+            <td>The text inside</td>
+          </tr>
+          <tr>
+            <td>What's the computed width?</td>
+            <td><code>getComputedStyle($0).width</code></td>
+            <td>Actual rendered width</td>
+          </tr>
+          <tr>
+            <td>Is it visible?</td>
+            <td><code>getComputedStyle($0).display</code></td>
+            <td><code>none</code> if hidden</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="exercise">
+        <div class="exercise-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Try it: Interrogate the Color Box
+        </div>
+        <p>Open the <a href="../../demos/console-playground.html" target="_blank">Console Playground</a> and try this:</p>
+        <ol>
+          <li>Use the element picker (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>) to select the color box</li>
+          <li>Open Console with <kbd>Esc</kbd></li>
+          <li>Type <code>$0.classList</code> — you should see <code>["color-box"]</code></li>
+          <li>Type <code>getComputedStyle($0).backgroundColor</code> — what color is it?</li>
+          <li>Try: <code>$0.style.backgroundColor = 'coral'</code> — watch it change!</li>
+        </ol>
+      </div>
+
+      <h2 id="making-changes">Making Changes</h2>
+      <p>
+        The real power: you can <em>change</em> elements through <code>$0</code>, and watch the page update in real-time.
+      </p>
+
+<pre><code><span class="code-comment">// Add a class</span>
+$0.<span class="code-property">classList</span>.<span class="code-keyword">add</span>(<span class="code-string">'highlighted'</span>)
+
+<span class="code-comment">// Remove a class</span>
+$0.<span class="code-property">classList</span>.<span class="code-keyword">remove</span>(<span class="code-string">'hidden'</span>)
+
+<span class="code-comment">// Toggle a class (add if missing, remove if present)</span>
+$0.<span class="code-property">classList</span>.<span class="code-keyword">toggle</span>(<span class="code-string">'active'</span>)
+
+<span class="code-comment">// Change inline style</span>
+$0.<span class="code-property">style</span>.<span class="code-property">backgroundColor</span> = <span class="code-string">'coral'</span>
+
+<span class="code-comment">// Change text</span>
+$0.<span class="code-property">textContent</span> = <span class="code-string">'New text!'</span>
+
+<span class="code-comment">// Set a data attribute</span>
+$0.<span class="code-property">dataset</span>.<span class="code-property">state</span> = <span class="code-string">'open'</span></code></pre>
+
+      <div class="callout callout-warning">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          These changes are temporary
+        </div>
+        <p>
+          Changes made through the Console (or Elements panel) don't modify your actual files. Refresh the page and they're gone. This is for <strong>testing and exploring</strong>, not permanent editing.
+        </p>
+      </div>
+
+      <h2 id="testing-predictions">Testing Predictions</h2>
+      <p>
+        Here's where <code>$0</code> becomes a design tool. Before you write code, you can test whether your idea will work.
+      </p>
+
+      <div class="callout callout-note">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          Week 1 Preview
+        </div>
+        <p>
+          When you build your theme toggle, you'll use exactly this workflow: select the <code>&lt;html&gt;</code> element, check its <code>dataset.theme</code>, then toggle it with <code>$0.dataset.theme = 'dark'</code>. Test it in the Console first, then write the code.
+        </p>
+      </div>
+
+      <h3>Scenario: "Will adding .active change the appearance?"</h3>
+
+<pre><code><span class="code-comment">// 1. Check current state</span>
+$0.<span class="code-property">classList</span>
+<span class="code-result">→ DOMTokenList ["card", "featured"]</span>
+
+<span class="code-comment">// 2. Add the class</span>
+$0.<span class="code-property">classList</span>.<span class="code-keyword">add</span>(<span class="code-string">'active'</span>)
+
+<span class="code-comment">// 3. See the page update (or not!)</span>
+<span class="code-comment">// If nothing changed, .active has no CSS rules</span>
+
+<span class="code-comment">// 4. Check the Elements panel — see the class appear</span>
+
+<span class="code-comment">// 5. Remove it to reset</span>
+$0.<span class="code-property">classList</span>.<span class="code-keyword">remove</span>(<span class="code-string">'active'</span>)</code></pre>
+
+      <h3>Scenario: "What's the current state of this dropdown?"</h3>
+
+<pre><code><span class="code-comment">// Check its classes</span>
+$0.<span class="code-property">classList</span>
+<span class="code-result">→ DOMTokenList ["dropdown", "is-open"]</span>
+
+<span class="code-comment">// Aha! It uses "is-open" for state</span>
+
+<span class="code-comment">// Close it</span>
+$0.<span class="code-property">classList</span>.<span class="code-keyword">remove</span>(<span class="code-string">'is-open'</span>)
+
+<span class="code-comment">// Open it again</span>
+$0.<span class="code-property">classList</span>.<span class="code-keyword">add</span>(<span class="code-string">'is-open'</span>)</code></pre>
+
+      <div class="callout callout-success">
+        <div class="callout-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          The Design Loop
+        </div>
+        <p>
+          <strong>Select → Question → Test → Verify</strong>. This is how you explore behavior without writing code. Once you understand what works, <em>then</em> write the JavaScript.
+        </p>
+      </div>
+
+      <h2 id="both-panels">Watching Both Panels</h2>
+      <p>
+        The magic happens when you watch both panels at once:
+      </p>
+      <ol>
+        <li>Position your Elements panel to show the selected element</li>
+        <li>Open the Console drawer with <kbd>Esc</kbd></li>
+        <li>Type <code>$0.classList.add('test')</code></li>
+        <li>Watch the class appear <em>instantly</em> in the Elements panel</li>
+        <li>Watch any CSS rules for <code>.test</code> apply to the page</li>
+      </ol>
+
+      <p>
+        This bidirectional view is why DevTools is a design tool, not just a debugging tool. You can see structure AND behavior responding together.
+      </p>
+
+      <h2 id="reference">Quick Reference</h2>
+
+<pre><code><span class="code-comment">// === READING ===</span>
+$0.<span class="code-property">classList</span>            <span class="code-comment">// All classes</span>
+$0.<span class="code-property">className</span>            <span class="code-comment">// Classes as string</span>
+$0.<span class="code-property">id</span>                   <span class="code-comment">// Element ID</span>
+$0.<span class="code-property">dataset</span>              <span class="code-comment">// All data-* attributes</span>
+$0.<span class="code-property">textContent</span>          <span class="code-comment">// Text inside</span>
+$0.<span class="code-property">innerHTML</span>            <span class="code-comment">// HTML inside</span>
+$0.<span class="code-property">style</span>                <span class="code-comment">// Inline styles</span>
+<span class="code-keyword">getComputedStyle</span>($0)  <span class="code-comment">// All computed CSS</span>
+
+<span class="code-comment">// === CHANGING CLASSES ===</span>
+$0.<span class="code-property">classList</span>.<span class="code-keyword">add</span>(<span class="code-string">'name'</span>)
+$0.<span class="code-property">classList</span>.<span class="code-keyword">remove</span>(<span class="code-string">'name'</span>)
+$0.<span class="code-property">classList</span>.<span class="code-keyword">toggle</span>(<span class="code-string">'name'</span>)
+$0.<span class="code-property">classList</span>.<span class="code-keyword">contains</span>(<span class="code-string">'name'</span>)  <span class="code-comment">// → true/false</span>
+
+<span class="code-comment">// === CHANGING DATA ATTRIBUTES ===</span>
+$0.<span class="code-property">dataset</span>.<span class="code-property">state</span> = <span class="code-string">'open'</span>    <span class="code-comment">// Sets data-state="open"</span>
+$0.<span class="code-property">dataset</span>.<span class="code-property">state</span>             <span class="code-comment">// Reads data-state</span>
+
+<span class="code-comment">// === CHANGING STYLE ===</span>
+$0.<span class="code-property">style</span>.<span class="code-property">color</span> = <span class="code-string">'red'</span>
+$0.<span class="code-property">style</span>.<span class="code-property">display</span> = <span class="code-string">'none'</span>
+$0.<span class="code-property">style</span>.<span class="code-property">backgroundColor</span> = <span class="code-string">'#f0f'</span></code></pre>
+
+      <nav class="page-nav">
+        <a href="console.html" class="page-nav-link page-nav-prev">
+          <span class="page-nav-label">Previous</span>
+          <span class="page-nav-title">The Console</span>
+        </a>
+        <a href="behavioral.html" class="page-nav-link page-nav-next">
+          <span class="page-nav-label">Next</span>
+          <span class="page-nav-title">Reading Element State</span>
+        </a>
+      </nav>
+
+    </main>
+
+    <aside class="toc">
+      <div class="toc-title">On this page</div>
+      <a href="#what-is-it" class="toc-link">What is $0?</a>
+      <a href="#workflow" class="toc-link">The Three-Step Workflow</a>
+      <a href="#asking-questions" class="toc-link">Asking Questions</a>
+      <a href="#making-changes" class="toc-link">Making Changes</a>
+      <a href="#testing-predictions" class="toc-link">Testing Predictions</a>
+      <a href="#both-panels" class="toc-link">Watching Both Panels</a>
+      <a href="#reference" class="toc-link">Quick Reference</a>
+      <a href="#next" class="toc-link">Next Steps</a>
+    </aside>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

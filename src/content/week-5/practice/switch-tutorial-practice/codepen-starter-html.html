@@ -1,0 +1,48 @@
+<!-- CodePen HTML Template for Theme Switcher Tutorial -->
+<!-- Copy this entire file and paste into the HTML panel of your CodePen -->
+
+<div class="theme-dropdown">
+  <button class="theme-trigger">
+    <span>Theme</span>
+  </button>
+  <div class="theme-menu">
+    <ul class="theme-list">
+      <li>
+        <button class="color-theme-option" data-theme="system">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="14" rx="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+          OS default
+        </button>
+      </li>
+      <li>
+        <button class="color-theme-option" data-theme="light">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4" />
+            <line x1="12" y1="2" x2="12" y2="5" />
+            <line x1="12" y1="19" x2="12" y2="22" />
+            <line x1="2" y1="12" x2="5" y2="12" />
+            <line x1="19" y1="12" x2="22" y2="12" />
+          </svg>
+          Light
+        </button>
+      </li>
+      <li>
+        <button class="color-theme-option" data-theme="dark">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="8" />
+            <circle cx="16" cy="8" r="6" fill="var(--color-surface, #fff)" stroke="var(--color-surface, #fff)" />
+          </svg>
+          Dark
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<main class="card">
+  <h1>Theme Toggle Demo</h1>
+  <p>This text will change color when the theme switches.</p>
+</main>

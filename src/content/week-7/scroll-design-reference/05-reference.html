@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Reference — Scroll-Driven Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ─── REFERENCE LAYOUT ─── */
+.ref-section { padding: 3vw 8vw; border-bottom: 1px solid var(--rule); }
+.ref-section h2 {
+  font-family: 'Libre Baskerville', serif; font-size: 1.3rem; font-weight: 700;
+  margin-bottom: 1.5rem; padding-bottom: .75rem;
+  border-bottom: 1px solid var(--rule);
+}
+.ref-section h2 span {
+  font-family: 'IBM Plex Mono', monospace; font-size: .58rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--muted); margin-right: 1rem; font-weight: 400;
+}
+
+/* ─── PROPERTY ROWS ─── */
+.ref-table { width: 100%; border-collapse: collapse; }
+.ref-table tr { border-bottom: 1px solid var(--rule); }
+.ref-table tr:last-child { border-bottom: none; }
+.ref-table td { padding: .8rem 1rem; font-size: .85rem; vertical-align: top; }
+.ref-table .t-prop {
+  font-family: 'IBM Plex Mono', monospace; font-size: .78rem;
+  color: var(--accent); width: 16rem; white-space: nowrap;
+}
+.ref-table .t-type {
+  font-family: 'IBM Plex Mono', monospace; font-size: .68rem;
+  color: var(--muted); width: 10rem; white-space: nowrap;
+}
+.ref-table .t-desc { color: #3a3530; line-height: 1.6; }
+.ref-table .t-example {
+  font-family: 'IBM Plex Mono', monospace; font-size: .7rem;
+  color: var(--ink); background: var(--warm); padding: .15rem .4rem;
+  white-space: nowrap;
+}
+
+/* ─── CODE CHEAT BLOCK ─── */
+.cheat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.cheat-block {}
+.cheat-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: .58rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: .5rem;
+}
+.cheat-code {
+  background: var(--code-bg); color: var(--code-fg);
+  padding: 1.4rem; font-family: 'IBM Plex Mono', monospace;
+  font-size: .72rem; line-height: 1.85;
+}
+.cm{color:#556044}.kw{color:#c8895a}.fn{color:#6ab5b8}
+.st{color:#8cb850}.nu{color:#b898cc}.op{color:#7a9060}
+
+/* ─── VOCAB QUICK GLOSSARY ─── */
+.glossary { columns: 2; gap: 2rem; }
+.gloss-item { break-inside: avoid; margin-bottom: 1.5rem; }
+.gloss-term {
+  font-family: 'IBM Plex Mono', monospace; font-size: .78rem;
+  color: var(--accent); font-weight: 500; margin-bottom: .25rem;
+}
+.gloss-def { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+/* ─── DECISION TREE ─── */
+.decision-tree { border: 1px solid var(--rule); }
+.dt-row {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  border-bottom: 1px solid var(--rule); align-items: stretch;
+}
+.dt-row:last-child { border-bottom: none; }
+.dt-q {
+  padding: 1rem 1.5rem; background: var(--warm);
+  font-size: .875rem; color: var(--ink); display: flex; align-items: center;
+}
+.dt-arrow {
+  padding: 1rem; background: var(--warm2); display: flex;
+  align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace; font-size: .7rem; color: var(--muted);
+  border-left: 1px solid var(--rule); border-right: 1px solid var(--rule);
+  min-width: 6rem; text-align: center;
+}
+.dt-a {
+  padding: 1rem 1.5rem; font-size: .875rem;
+  display: flex; align-items: center; font-family: 'IBM Plex Mono', monospace;
+  font-size: .78rem; color: var(--ink);
+}
+.dt-a .css { color: var(--accent2); }
+.dt-a .gsap { color: var(--accent); }
+.dt-a .both { color: var(--green); }
+
+/* ─── LINKS ─── */
+.links-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+.link-card {
+  border: 1px solid var(--rule); padding: 1.2rem 1.5rem;
+  text-decoration: none; color: inherit; display: block;
+  transition: border-color .15s, background .15s;
+}
+.link-card:hover { border-color: var(--ink); background: var(--warm); }
+.link-card .lc-type {
+  font-family: 'IBM Plex Mono', monospace; font-size: .55rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: .4rem;
+}
+.link-card .lc-title { font-size: .9rem; font-weight: 500; color: var(--ink); margin-bottom: .2rem; }
+.link-card .lc-url { font-family: 'IBM Plex Mono', monospace; font-size: .6rem; color: var(--muted); word-break: break-all; }
+
+@media(max-width:768px){
+  .cheat-grid { grid-template-columns: 1fr; }
+  .glossary { columns: 1; }
+  .links-grid { grid-template-columns: 1fr; }
+  .dt-row { grid-template-columns: 1fr; }
+  .dt-arrow { border: none; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .ref-table .t-type { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="page-progress"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Scroll·<span>Driven</span>·Design</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="01-foundations.html">01 Foundations</a></li>
+    <li><a href="02-css-api.html">02 CSS API</a></li>
+    <li><a href="03-gsap.html">03 GSAP</a></li>
+    <li><a href="04-ux.html">04 UX + A11y</a></li>
+    <li><a href="05-reference.html" class="active">Reference</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="page-num" style="font-size:clamp(2rem,6vw,5rem);color:var(--warm2)">Ref</div>
+  <div>
+    <p class="page-eyebrow">Quick Reference</p>
+    <h1>Everything in<br><em>one place.</em></h1>
+    <p class="page-intro">CSS properties, GSAP properties, start/end syntax, the decision tree, and a glossary. Bookmark this page.</p>
+  </div>
+</header>
+
+<!-- DECISION TREE -->
+<div class="ref-section">
+  <h2><span>Start here</span>CSS or GSAP?</h2>
+  <div class="decision-tree">
+    <div class="dt-row">
+      <div class="dt-q">Simple fade-in or slide-in as element enters view?</div>
+      <div class="dt-arrow">→</div>
+      <div class="dt-a"><span class="css">CSS: animation-timeline: view() + animation-range</span></div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-q">Reading progress bar or full-page parallax?</div>
+      <div class="dt-arrow">→</div>
+      <div class="dt-a"><span class="css">CSS: animation-timeline: scroll(root)</span></div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-q">Multiple elements in a container animating in parallax?</div>
+      <div class="dt-arrow">→</div>
+      <div class="dt-a"><span class="css">CSS: Named scroll-timeline</span></div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-q">Pin an element while content scrolls past it?</div>
+      <div class="dt-arrow">→</div>
+      <div class="dt-a"><span class="gsap">GSAP: pin: true</span></div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-q">Sequence multiple elements with precise overlap/timing?</div>
+      <div class="dt-arrow">→</div>
+      <div class="dt-a"><span class="gsap">GSAP: Timeline + scrub</span></div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-q">Needs to work in Safari today?</div>
+      <div class="dt-arrow">→</div>
+      <div class="dt-a"><span class="gsap">GSAP: full cross-browser support</span></div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-q">SVG path line-drawing animation tied to scroll?</div>
+      <div class="dt-arrow">→</div>
+      <div class="dt-a"><span class="gsap">GSAP: strokeDashoffset + scrub</span></div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-q">Simple effect, performance is critical, no Safari requirement?</div>
+      <div class="dt-arrow">→</div>
+      <div class="dt-a"><span class="css">CSS: off main thread, zero JS</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS PROPERTIES -->
+<div class="ref-section">
+  <h2><span>CSS API</span>Scroll-Driven Animation Properties</h2>
+  <table class="ref-table">
+    <tbody>
+      <tr>
+        <td class="t-prop">animation-timeline</td>
+        <td class="t-type">scroll() | view() | --name</td>
+        <td class="t-desc">Links a CSS animation to a scroll timeline instead of a clock. This is the core property. <span class="t-example">animation-timeline: view()</span></td>
+      </tr>
+      <tr>
+        <td class="t-prop">animation-range</td>
+        <td class="t-type">keyword% keyword%</td>
+        <td class="t-desc">Controls when a view() animation starts and ends. Format: "[entry-keyword] [%] [exit-keyword] [%]". Keywords: entry, exit, cover, contain. <span class="t-example">animation-range: entry 0% cover 40%</span></td>
+      </tr>
+      <tr>
+        <td class="t-prop">animation-duration</td>
+        <td class="t-type">time (any)</td>
+        <td class="t-desc">Still required by the spec when using animation-timeline, but its value is meaningless — scroll position controls timing. Set to <span class="t-example">1ms</span> and ignore it.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">animation-fill-mode</td>
+        <td class="t-type">both | forwards | backwards</td>
+        <td class="t-desc">Use <span class="t-example">both</span> to keep the animated state at 0% and 100% scroll. Without this, the animation resets when scrolled back to start.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">scroll-timeline-name</td>
+        <td class="t-type">--custom-name</td>
+        <td class="t-desc">Applied to a scroll container. Names the scroll timeline so child elements can reference it. Must start with --. <span class="t-example">scroll-timeline-name: --my-scroller</span></td>
+      </tr>
+      <tr>
+        <td class="t-prop">scroll-timeline-axis</td>
+        <td class="t-type">block | inline | x | y</td>
+        <td class="t-desc">Specifies the scroll direction for a named timeline. Use <span class="t-example">block</span> for vertical scroll (most common), <span class="t-example">inline</span> for horizontal.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">view-timeline-name</td>
+        <td class="t-type">--custom-name</td>
+        <td class="t-desc">Names a view timeline on an element so other elements can react to its visibility. <span class="t-example">view-timeline-name: --card-view</span></td>
+      </tr>
+      <tr>
+        <td class="t-prop">scroll()</td>
+        <td class="t-type">function</td>
+        <td class="t-desc">Creates an anonymous scroll progress timeline. <span class="t-example">scroll(root)</span> watches the page, <span class="t-example">scroll()</span> watches the nearest scrollable ancestor.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">view()</td>
+        <td class="t-type">function</td>
+        <td class="t-desc">Creates an anonymous view progress timeline for the element — based on its visibility in the viewport. Each element gets its own independent timeline.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- GSAP PROPERTIES -->
+<div class="ref-section">
+  <h2><span>GSAP</span>ScrollTrigger Properties</h2>
+  <table class="ref-table">
+    <tbody>
+      <tr>
+        <td class="t-prop">trigger</td>
+        <td class="t-type">selector | element</td>
+        <td class="t-desc">The element ScrollTrigger watches. When it crosses the start/end thresholds, actions fire. Defaults to the animated element if not set.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">start</td>
+        <td class="t-type">"edge position"</td>
+        <td class="t-desc">When the trigger zone activates. Format: <span class="t-example">"[trigger-edge] [viewport-position]"</span>. E.g. <span class="t-example">"top 80%"</span> = element's top hits 80% down the screen.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">end</td>
+        <td class="t-type">"edge position" | "+=px"</td>
+        <td class="t-desc">When the trigger zone deactivates. Same format as start, or relative: <span class="t-example">"+=500"</span> = 500px after the start point.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">scrub</td>
+        <td class="t-type">boolean | number</td>
+        <td class="t-desc"><span class="t-example">true</span> = direct 1:1 link to scroll position. A number (e.g. <span class="t-example">1</span>) = animation catches up over that many seconds. Smoother feel.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">pin</td>
+        <td class="t-type">boolean | selector</td>
+        <td class="t-desc"><span class="t-example">true</span> = pin the trigger element. A selector = pin a specific element. Switches to position: fixed for the trigger duration.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">pinSpacing</td>
+        <td class="t-type">boolean | "padding"</td>
+        <td class="t-desc">Whether GSAP adds padding to the parent to compensate for the pinned element's removal from flow. Default: true. Set false for side-by-side layouts.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">toggleActions</td>
+        <td class="t-type">"e l re rl"</td>
+        <td class="t-desc">Four values: onEnter onLeave onEnterBack onLeaveBack. Options: play | pause | resume | reverse | restart | reset | complete | none. <span class="t-example">"play none none reverse"</span> is the most common.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">toggleClass</td>
+        <td class="t-type">object</td>
+        <td class="t-desc">Add/remove a CSS class when the trigger activates. <span class="t-example">{ targets: ".el", className: "is-active" }</span> — performant for state-based visual changes.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">markers</td>
+        <td class="t-type">boolean</td>
+        <td class="t-desc">Shows start/end/scrub marker lines for debugging. Set <span class="t-example">markers: true</span> during development. Remove before shipping.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">animation</td>
+        <td class="t-type">tween | timeline</td>
+        <td class="t-desc">Attach a pre-built GSAP tween or timeline to this ScrollTrigger instance. Useful when creating the ScrollTrigger with ScrollTrigger.create() separately.</td>
+      </tr>
+      <tr>
+        <td class="t-prop">onEnter / onLeave</td>
+        <td class="t-type">function</td>
+        <td class="t-desc">Callback functions that fire when the trigger zone is entered or exited. Use for side-effects like updating state, switching classes, or triggering external events.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- START/END SYNTAX -->
+<div class="ref-section">
+  <h2><span>GSAP</span>start / end Syntax</h2>
+  <div class="cheat-grid">
+    <div>
+      <div class="cheat-label">Common start values</div>
+      <div class="cheat-code"><span class="kw">start</span>: <span class="st">"top 80%"</span>     <span class="cm">// top of element hits 80% down screen</span>
+<span class="kw">start</span>: <span class="st">"top center"</span>  <span class="cm">// top of element hits screen center</span>
+<span class="kw">start</span>: <span class="st">"top top"</span>     <span class="cm">// top of element hits top of screen</span>
+<span class="kw">start</span>: <span class="st">"bottom 80%"</span>  <span class="cm">// bottom of element hits 80% down</span>
+<span class="kw">start</span>: <span class="st">"center center"</span> <span class="cm">// midpoints align</span></div>
+    </div>
+    <div>
+      <div class="cheat-label">Common end values</div>
+      <div class="cheat-code"><span class="kw">end</span>: <span class="st">"bottom top"</span>    <span class="cm">// element's bottom hits top of screen</span>
+<span class="kw">end</span>: <span class="st">"bottom bottom"</span> <span class="cm">// element's bottom hits bottom of screen</span>
+<span class="kw">end</span>: <span class="st">"+=500"</span>         <span class="cm">// 500px after the start point</span>
+<span class="kw">end</span>: <span class="st">"+=100%"</span>        <span class="cm">// 100% of trigger element's height</span>
+<span class="kw">end</span>: <span class="st">"+=2000"</span>        <span class="cm">// 2000px — common for pin durations</span></div>
+    </div>
+    <div>
+      <div class="cheat-label">Timeline position parameter (3rd arg)</div>
+      <div class="cheat-code">tl.<span class="fn">to</span>(el, { ... })          <span class="cm">// after previous ends (default)</span>
+tl.<span class="fn">to</span>(el, { ... }, <span class="st">"&lt;"</span>)     <span class="cm">// same time as previous starts</span>
+tl.<span class="fn">to</span>(el, { ... }, <span class="st">"&lt;0.2"</span>)  <span class="cm">// 0.2s after previous starts</span>
+tl.<span class="fn">to</span>(el, { ... }, <span class="st">"-=0.3"</span>) <span class="cm">// 0.3s before previous ends</span>
+tl.<span class="fn">to</span>(el, { ... }, <span class="st">"+=0.5"</span>) <span class="cm">// 0.5s after previous ends</span>
+tl.<span class="fn">to</span>(el, { ... }, <span class="nu">0</span>)       <span class="cm">// at absolute time 0</span></div>
+    </div>
+    <div>
+      <div class="cheat-label">toggleActions reference</div>
+      <div class="cheat-code"><span class="st">"play none none reverse"</span>    <span class="cm">// most common</span>
+<span class="st">"play none none none"</span>       <span class="cm">// one-shot</span>
+<span class="st">"play pause resume reverse"</span> <span class="cm">// full control</span>
+<span class="st">"restart none none none"</span>    <span class="cm">// restarts every entry</span>
+
+<span class="cm">// Available actions:</span>
+<span class="cm">// play | pause | resume | reverse</span>
+<span class="cm">// restart | reset | complete | none</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SVG LINE DRAWING PATTERN -->
+<div class="ref-section">
+  <h2><span>Pattern</span>SVG Line Drawing</h2>
+  <div class="cheat-grid">
+    <div>
+      <div class="cheat-label">The setup (JS)</div>
+      <div class="cheat-code"><span class="cm">// 1. Select path and measure it</span>
+<span class="kw">const</span> path = document.<span class="fn">querySelector</span>(<span class="st">"#my-path"</span>);
+<span class="kw">const</span> len = path.<span class="fn">getTotalLength</span>();
+
+<span class="cm">// 2. Hide the line by offsetting the dash pattern</span>
+path.style.strokeDasharray = len;
+path.style.strokeDashoffset = len;
+
+<span class="cm">// 3. Animate offset to 0 — line "draws" itself</span>
+<span class="kw">gsap</span>.<span class="fn">to</span>(path, {
+  strokeDashoffset: <span class="nu">0</span>,
+  scrollTrigger: {
+    trigger: <span class="st">"#container"</span>,
+    start: <span class="st">"top top"</span>,
+    end: <span class="st">"bottom bottom"</span>,
+    scrub: <span class="kw">true</span>
+  }
+});</div>
+    </div>
+    <div>
+      <div class="cheat-label">How the stroke trick works</div>
+      <div class="cheat-code"><span class="cm">// stroke-dasharray: the dash + gap pattern
+// Setting it to the full path length = one long dash</span>
+
+<span class="cm">// stroke-dashoffset: shifts the start of the pattern</span>
+<span class="cm">// Setting it equal to the length = dash pushed off screen</span>
+<span class="cm">// Setting it to 0 = full line visible</span>
+
+<span class="cm">// So: offset goes from [length] → 0</span>
+<span class="cm">// Result: line appears to draw itself</span>
+
+<span class="cm">// Critical: always use getTotalLength()</span>
+<span class="cm">// Never hardcode the path length</span>
+<span class="cm">// Paths change; hardcoded values break silently</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div class="ref-section">
+  <h2><span>Vocab</span>Glossary</h2>
+  <div class="glossary">
+    <div class="gloss-item">
+      <div class="gloss-term">Motion Parallax</div>
+      <div class="gloss-def">Perceptual depth cue where closer objects appear to move faster. Web parallax exploits this to imply spatial depth on flat screens.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Scrollytelling</div>
+      <div class="gloss-def">Narrative technique where the story unfolds as the user scrolls. Scroll action drives content progression, not just page position.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Scroll-Driven Animation</div>
+      <div class="gloss-def">Animation whose progress is mapped to scroll position rather than time. Scroll down = animate forward. Scroll up = animate backward.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Scrubbing</div>
+      <div class="gloss-def">Linking animation progress directly to the scrollbar. The scrollbar becomes a playhead that controls a timeline forward and backward.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Pinning</div>
+      <div class="gloss-def">Locking an element in the viewport for a set scroll distance. Content scrolls past or within it while it stays fixed on screen.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Scroll Progress Timeline</div>
+      <div class="gloss-def">CSS timeline based on how far a scroll container has been scrolled. 0% = top, 100% = bottom. Used with scroll().</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">View Progress Timeline</div>
+      <div class="gloss-def">CSS timeline based on a specific element's visibility in the viewport. Starts when element enters, ends when it exits. Used with view().</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">animation-timeline</div>
+      <div class="gloss-def">Core CSS property that links an animation to a scroll source instead of a clock. Accepts scroll(), view(), or a named timeline.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">prefers-reduced-motion</div>
+      <div class="gloss-def">CSS media query that detects if the user has enabled "Reduce Motion" in system settings. Always implement this for scroll animations.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">toggleActions</div>
+      <div class="gloss-def">GSAP ScrollTrigger property defining behavior at four scroll events: onEnter, onLeave, onEnterBack, onLeaveBack.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Jank</div>
+      <div class="gloss-def">Visible stuttering or frame drops during animation. Usually caused by animating layout-triggering properties (width, height, top, left) or main-thread blocking.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Scroll Hijacking</div>
+      <div class="gloss-def">Overriding the browser's native scroll behavior. Breaks user expectations and accessibility. Never do it. Different from scroll linking.</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXTERNAL RESOURCES -->
+<div class="ref-section" style="border-bottom:none">
+  <h2><span>Further reading</span>Essential Resources</h2>
+  <div class="links-grid">
+    <a href="https://gsap.com/docs/v3/Plugins/ScrollTrigger/" target="_blank" class="link-card">
+      <div class="lc-type">Official Docs</div>
+      <div class="lc-title">GSAP ScrollTrigger</div>
+      <div class="lc-url">gsap.com/docs/v3/Plugins/ScrollTrigger</div>
+    </a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-driven-animations" target="_blank" class="link-card">
+      <div class="lc-type">MDN Reference</div>
+      <div class="lc-title">CSS Scroll-Driven Animations</div>
+      <div class="lc-url">developer.mozilla.org</div>
+    </a>
+    <a href="https://scroll-driven-animations.style/" target="_blank" class="link-card">
+      <div class="lc-type">Demo Collection</div>
+      <div class="lc-title">Scroll-Driven Animations Gallery</div>
+      <div class="lc-url">scroll-driven-animations.style</div>
+    </a>
+    <a href="https://developer.chrome.com/docs/css-ui/scroll-driven-animations" target="_blank" class="link-card">
+      <div class="lc-type">Google Developers</div>
+      <div class="lc-title">Scroll-Driven Animations Guide</div>
+      <div class="lc-url">developer.chrome.com</div>
+    </a>
+    <a href="https://gsapify.com/gsap-scrolltrigger" target="_blank" class="link-card">
+      <div class="lc-type">20+ Examples</div>
+      <div class="lc-title">GSAP ScrollTrigger Examples</div>
+      <div class="lc-url">gsapify.com/gsap-scrolltrigger</div>
+    </a>
+    <a href="https://pudding.cool/" target="_blank" class="link-card">
+      <div class="lc-type">Inspiration</div>
+      <div class="lc-title">The Pudding — Data Scrollytelling</div>
+      <div class="lc-url">pudding.cool</div>
+    </a>
+    <a href="https://www.nytimes.com/projects/2012/snow-fall/" target="_blank" class="link-card">
+      <div class="lc-type">Landmark Reference</div>
+      <div class="lc-title">NYT Snow Fall (2012)</div>
+      <div class="lc-url">nytimes.com/projects/2012/snow-fall</div>
+    </a>
+    <a href="https://www.nngroup.com/articles/parallax-scrolling/" target="_blank" class="link-card">
+      <div class="lc-type">UX Research</div>
+      <div class="lc-title">Nielsen Norman — Parallax UX</div>
+      <div class="lc-url">nngroup.com</div>
+    </a>
+    <a href="https://drafts.csswg.org/scroll-animations-1/" target="_blank" class="link-card">
+      <div class="lc-type">W3C Spec</div>
+      <div class="lc-title">Scroll-Linked Animations Spec</div>
+      <div class="lc-url">drafts.csswg.org</div>
+    </a>
+  </div>
+</div>
+
+<div class="page-nav">
+  <a href="04-ux.html">← 04 UX + Accessibility</a>
+  <span class="page-pos">05 / 05</span>
+  <a href="index.html">↑ Back to Overview</a>
+</div>
+
+<script>
+const bar = document.getElementById('page-progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+});
+</script>
+</body>
+</html>

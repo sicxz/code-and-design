@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>localStorage Persistence</title>
+
+  <!-- ===========================================
+       DEMO: localStorage Persistence
+       Week 3 — Signal & State
+
+       What this demonstrates:
+       - data-theme attribute (state on html element)
+       - localStorage.setItem / getItem
+       - Loading saved preference on page load
+       - Multiple toggle buttons with data attributes
+
+       CodePen: Copy CSS to CSS panel, JS to JS panel,
+       body content to HTML panel
+       =========================================== -->
+
+  <style>
+    /* -----------------------------------------
+       DESIGN TOKENS — Light Mode (Default)
+       ----------------------------------------- */
+    :root {
+      --color-surface: #ffffff;
+      --color-text: #1a1a1a;
+      --color-accent: #0066cc;
+      --color-border: #e0e0e0;
+      --color-muted: #666666;
+
+      --font-family: system-ui, -apple-system, sans-serif;
+      --transition-speed: 0.3s;
+    }
+
+    /* -----------------------------------------
+       DARK MODE OVERRIDE
+       Using data attribute selector
+       ----------------------------------------- */
+    [data-theme="dark"] {
+      --color-surface: #1a1a1a;
+      --color-text: #f0f0f0;
+      --color-accent: #66b3ff;
+      --color-border: #333333;
+      --color-muted: #a0a0a0;
+    }
+
+    /* -----------------------------------------
+       BASE STYLES
+       ----------------------------------------- */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--color-surface);
+      color: var(--color-text);
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 2rem;
+      min-height: 100vh;
+      transition:
+        background-color var(--transition-speed) ease,
+        color var(--transition-speed) ease;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    /* -----------------------------------------
+       TOGGLE BUTTONS
+       ----------------------------------------- */
+    .theme-buttons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .theme-btn {
+      background: var(--color-surface);
+      color: var(--color-text);
+      border: 2px solid var(--color-border);
+      padding: 0.75rem 1.25rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--color-accent);
+    }
+
+    .theme-btn:focus {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    .theme-btn.active {
+      background: var(--color-accent);
+      color: var(--color-surface);
+      border-color: var(--color-accent);
+    }
+
+    /* -----------------------------------------
+       STATUS DISPLAY
+       ----------------------------------------- */
+    .status {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      max-width: 400px;
+    }
+
+    .status p {
+      margin: 0.5rem 0;
+    }
+
+    .status code {
+      background: var(--color-border);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'SF Mono', Consolas, monospace;
+      font-size: 0.9em;
+    }
+
+    .clear-btn {
+      margin-top: 1rem;
+      background: transparent;
+      color: var(--color-muted);
+      border: 1px solid var(--color-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    .clear-btn:hover {
+      color: var(--color-text);
+      border-color: var(--color-text);
+    }
+  </style>
+</head>
+<body>
+  <h1>localStorage Persistence</h1>
+  <p>Choose a theme. Refresh the page. Your choice is remembered.</p>
+
+  <div class="theme-buttons">
+    <button class="theme-btn" data-theme-toggle="light" aria-label="Light theme">
+      Light
+    </button>
+    <button class="theme-btn" data-theme-toggle="dark" aria-label="Dark theme">
+      Dark
+    </button>
+  </div>
+
+  <div class="status">
+    <p><strong>Current theme:</strong> <code id="current-theme">—</code></p>
+    <p><strong>localStorage value:</strong> <code id="storage-value">—</code></p>
+    <button class="clear-btn" id="clear-storage">Clear localStorage</button>
+  </div>
+
+  <script>
+    /* -----------------------------------------
+       JAVASCRIPT — localStorage Persistence
+       ----------------------------------------- */
+
+    // Elements
+    const buttons = document.querySelectorAll('[data-theme-toggle]');
+    const currentThemeDisplay = document.getElementById('current-theme');
+    const storageValueDisplay = document.getElementById('storage-value');
+    const clearBtn = document.getElementById('clear-storage');
+
+    // -----------------------------------------
+    // LOAD THEME ON PAGE LOAD
+    // Check if there's a saved preference
+    // -----------------------------------------
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('theme');
+
+      if (savedTheme) {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+
+      updateDisplay();
+      updateActiveButton();
+    }
+
+    // -----------------------------------------
+    // SET THEME
+    // Apply theme and save to localStorage
+    // -----------------------------------------
+    function setTheme(theme) {
+      // Update the data attribute on <html>
+      document.documentElement.dataset.theme = theme;
+
+      // Save to localStorage
+      localStorage.setItem('theme', theme);
+
+      updateDisplay();
+      updateActiveButton();
+    }
+
+    // -----------------------------------------
+    // UPDATE DISPLAY
+    // Show current values in the status box
+    // -----------------------------------------
+    function updateDisplay() {
+      const currentTheme = document.documentElement.dataset.theme || 'not set';
+      const storedValue = localStorage.getItem('theme') || 'null';
+
+      currentThemeDisplay.textContent = currentTheme;
+      storageValueDisplay.textContent = storedValue;
+    }
+
+    // -----------------------------------------
+    // UPDATE ACTIVE BUTTON
+    // Highlight the button matching current theme
+    // -----------------------------------------
+    function updateActiveButton() {
+      const currentTheme = document.documentElement.dataset.theme;
+
+      buttons.forEach(btn => {
+        if (btn.dataset.themeToggle === currentTheme) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // -----------------------------------------
+    // EVENT LISTENERS
+    // -----------------------------------------
+
+    // Theme buttons
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const theme = button.dataset.themeToggle;
+        setTheme(theme);
+      });
+    });
+
+    // Clear localStorage button
+    clearBtn.addEventListener('click', () => {
+      localStorage.removeItem('theme');
+      updateDisplay();
+      console.log('localStorage cleared. Refresh to see default behavior.');
+    });
+
+    // -----------------------------------------
+    // INITIALIZE
+    // -----------------------------------------
+    loadTheme();
+  </script>
+</body>
+</html>

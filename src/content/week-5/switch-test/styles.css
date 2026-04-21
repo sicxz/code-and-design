@@ -1,0 +1,116 @@
+:root {
+  --color-surface: #ffffff;
+  --color-text: #111111;
+}
+
+
+
+body {
+  margin: 0;
+  padding: 2rem;
+  font-family: system-ui, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+
+[data-theme="light"] {
+  --color-surface: #ffffff;
+  --color-text: #111111;
+}
+
+[data-theme="dark"] {
+  --color-surface: #1a1a1a;
+  --color-text: #f0f0f0;
+}
+
+.theme-dropdown {
+  position: relative;
+}
+
+/* Style the dropdown button */
+.theme-trigger {
+  background-color: #000000;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+/*
+.theme-menu {
+ display: none;
+  position: absolute;
+  background-color: #000000;
+  min-width: 200px;
+  box-shadow: 0 8px 16px 0px rgba(0,0,0,0.2);
+}
+*/
+
+.theme-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #000;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  z-index: 10;
+}
+/*
+.theme-trigger:hover .theme-menu {
+  display: block;
+}
+*/
+
+.color-theme-option {
+  align-items: center;
+  border: none;
+  color: white;
+
+  cursor: pointer;
+
+  background-color: #000000;
+
+  display: flex;
+  column-gap: 0.25rem;
+  font-size: 16px;
+
+  margin: 0;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+.color-theme-option:hover {
+  background-color: #333;
+}
+
+.theme-list {
+  list-style: none;
+   margin: 0;
+  padding: 0;
+}
+
+.color-theme-option {
+  outline: 2px solid red;
+}
+
+li {
+  outline: 2px solid blue;
+}
+
+/*
+/* COMMENT OUT: .theme-dropdown:hover .theme-menu 
+.theme-dropdown:hover .theme-menu {
+  display: block;
+}
+*/
+
+/* YOU HAVE TO HAVE THIS PIECED OF CSS FOR THIS TO WORK */
+.theme-dropdown.open .theme-menu {
+  display: block !important;
+  border: 3px solid red;
+}

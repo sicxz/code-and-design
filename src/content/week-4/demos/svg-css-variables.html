@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG + CSS Variables Demo</title>
+  <style>
+    /* Design Tokens */
+    :root {
+      --color-background: #ffffff;
+      --color-text: #1a1a1a;
+      --color-accent: #3498db;
+      --color-muted: #666666;
+      --color-surface: #f5f5f5;
+      --color-border: #e0e0e0;
+    }
+
+    [data-theme="dark"] {
+      --color-background: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-accent: #5dade2;
+      --color-muted: #aaaaaa;
+      --color-surface: #2d2d2d;
+      --color-border: #444444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      background: var(--color-background);
+      color: var(--color-text);
+      transition: background 300ms ease, color 300ms ease;
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--color-muted);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .controls {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 100;
+    }
+
+    .theme-toggle {
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 24px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .theme-toggle:active {
+      transform: translateY(0);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+      max-width: 1400px;
+    }
+
+    .demo-card {
+      background: var(--color-surface);
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+      transition: background 300ms ease, border-color 300ms ease;
+    }
+
+    .demo-card h2 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .demo-card p {
+      color: var(--color-muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .icon-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
+      background: var(--color-background);
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      border: 2px dashed var(--color-border);
+      transition: background 300ms ease, border-color 300ms ease;
+    }
+
+    code {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 4px;
+      display: block;
+      overflow-x: auto;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .keyword {
+      color: #66d9ef;
+    }
+
+    .attribute {
+      color: #a6e22e;
+    }
+
+    .string {
+      color: #e6db74;
+    }
+
+    .comment {
+      color: #75715e;
+      font-style: italic;
+    }
+
+    .highlight {
+      background: #f39c12;
+      color: #1a1a1a;
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+
+    /* Approach 1: CSS Variable for Fill */
+    .icon-basic {
+      width: 80px;
+      height: 80px;
+      --icon-color: var(--color-text);
+    }
+
+    .icon-basic path {
+      fill: var(--icon-color);
+      transition: fill 300ms ease;
+    }
+
+    /* Approach 2: currentColor */
+    .icon-current-color {
+      width: 80px;
+      height: 80px;
+      color: var(--color-text);
+      transition: color 300ms ease;
+    }
+
+    .icon-current-color path {
+      fill: currentColor;
+    }
+
+    /* Approach 3: Multi-part with different colors */
+    .icon-multipart {
+      width: 100px;
+      height: 100px;
+    }
+
+    .icon-multipart .icon-background {
+      fill: var(--color-surface);
+      transition: fill 300ms ease;
+    }
+
+    .icon-multipart .icon-foreground {
+      fill: var(--color-accent);
+      transition: fill 300ms ease;
+    }
+
+    /* Approach 4: Stroke + Fill */
+    .icon-outlined {
+      width: 80px;
+      height: 80px;
+    }
+
+    .icon-outlined .outline {
+      fill: none;
+      stroke: var(--color-text);
+      stroke-width: 2;
+      transition: stroke 300ms ease;
+    }
+
+    .icon-outlined .fill-area {
+      fill: var(--color-accent);
+      opacity: 0.2;
+      transition: fill 300ms ease, opacity 300ms ease;
+    }
+
+    /* Interactive example */
+    .interactive-card {
+      cursor: pointer;
+      transition: transform 200ms ease;
+    }
+
+    .interactive-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .interactive-card:hover .icon-basic {
+      --icon-color: var(--color-accent);
+    }
+
+    .note-box {
+      background: var(--color-accent);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      max-width: 1400px;
+    }
+
+    .note-box h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .note-box ul {
+      margin-left: 2rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <span id="theme-label">Switch to Dark Mode</span>
+    </button>
+  </div>
+
+  <h1>SVG + CSS Variables Demo</h1>
+  <p class="subtitle">Click "Switch to Dark Mode" to see SVGs adapt</p>
+
+  <div class="demo-grid">
+    <!-- Approach 1: CSS Variables -->
+    <div class="demo-card">
+      <h2>Approach 1: CSS Variables</h2>
+      <p>SVG uses custom properties, changes with theme</p>
+
+      <div class="icon-showcase">
+        <svg class="icon-basic" viewBox="0 0 24 24">
+          <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+        </svg>
+      </div>
+
+      <code><span class="comment">&lt;!-- SVG --&gt;</span>
+<span class="keyword">&lt;svg</span> <span class="attribute">class</span>=<span class="string">"icon-basic"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;path</span> <span class="attribute">d</span>=<span class="string">"..."</span> <span class="keyword">/&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span>
+
+<span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="keyword">.icon-basic</span> {
+  <span class="highlight"><span class="attribute">--icon-color</span>: <span class="keyword">var</span>(<span class="string">--color-text</span>);</span>
+}
+
+<span class="keyword">.icon-basic path</span> {
+  <span class="attribute">fill</span>: <span class="highlight"><span class="keyword">var</span>(<span class="string">--icon-color</span>)</span>;
+  <span class="attribute">transition</span>: fill <span class="string">300ms ease</span>;
+}</code>
+    </div>
+
+    <!-- Approach 2: currentColor -->
+    <div class="demo-card">
+      <h2>Approach 2: currentColor</h2>
+      <p>SVG inherits parent text color automatically</p>
+
+      <div class="icon-showcase">
+        <svg class="icon-current-color" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+
+      <code><span class="comment">&lt;!-- SVG --&gt;</span>
+<span class="keyword">&lt;svg</span> <span class="attribute">class</span>=<span class="string">"icon-current-color"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;path</span> <span class="attribute">d</span>=<span class="string">"..."</span> <span class="keyword">/&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span>
+
+<span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="keyword">.icon-current-color</span> {
+  <span class="attribute">color</span>: <span class="keyword">var</span>(<span class="string">--color-text</span>);
+}
+
+<span class="keyword">.icon-current-color path</span> {
+  <span class="attribute">fill</span>: <span class="highlight">currentColor</span>;  <span class="comment">&lt;!-- Inherits --&gt;</span>
+}</code>
+    </div>
+
+    <!-- Approach 3: Multi-part -->
+    <div class="demo-card">
+      <h2>Approach 3: Multi-Part Icon</h2>
+      <p>Different colors for different parts</p>
+
+      <div class="icon-showcase">
+        <svg class="icon-multipart" viewBox="0 0 24 24">
+          <circle class="icon-background" cx="12" cy="12" r="10"/>
+          <path class="icon-foreground" d="M12 6v6l4 2"/>
+        </svg>
+      </div>
+
+      <code><span class="comment">&lt;!-- SVG --&gt;</span>
+<span class="keyword">&lt;svg</span> <span class="attribute">class</span>=<span class="string">"icon-multipart"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;circle</span> <span class="attribute">class</span>=<span class="string">"icon-background"</span> ... <span class="keyword">/&gt;</span>
+  <span class="keyword">&lt;path</span> <span class="attribute">class</span>=<span class="string">"icon-foreground"</span> ... <span class="keyword">/&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span>
+
+<span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="keyword">.icon-background</span> {
+  <span class="attribute">fill</span>: <span class="highlight"><span class="keyword">var</span>(<span class="string">--color-surface</span>)</span>;
+}
+
+<span class="keyword">.icon-foreground</span> {
+  <span class="attribute">fill</span>: <span class="highlight"><span class="keyword">var</span>(<span class="string">--color-accent</span>)</span>;
+}</code>
+    </div>
+
+    <!-- Approach 4: Stroke + Fill -->
+    <div class="demo-card">
+      <h2>Approach 4: Outline + Fill</h2>
+      <p>Stroke and fill independently themed</p>
+
+      <div class="icon-showcase">
+        <svg class="icon-outlined" viewBox="0 0 24 24">
+          <path class="fill-area" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          <path class="outline" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </div>
+
+      <code><span class="comment">&lt;!-- SVG (two layers) --&gt;</span>
+<span class="keyword">&lt;svg</span> <span class="attribute">class</span>=<span class="string">"icon-outlined"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;path</span> <span class="attribute">class</span>=<span class="string">"fill-area"</span> ... <span class="keyword">/&gt;</span>
+  <span class="keyword">&lt;path</span> <span class="attribute">class</span>=<span class="string">"outline"</span> ... <span class="keyword">/&gt;</span>
+<span class="keyword">&lt;/svg&gt;</span>
+
+<span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="keyword">.outline</span> {
+  <span class="attribute">fill</span>: none;
+  <span class="attribute">stroke</span>: <span class="highlight"><span class="keyword">var</span>(<span class="string">--color-text</span>)</span>;
+}
+
+<span class="keyword">.fill-area</span> {
+  <span class="attribute">fill</span>: <span class="highlight"><span class="keyword">var</span>(<span class="string">--color-accent</span>)</span>;
+  <span class="attribute">opacity</span>: <span class="string">0.2</span>;
+}</code>
+    </div>
+
+    <!-- Interactive Example -->
+    <div class="demo-card interactive-card">
+      <h2>Bonus: Hover Interaction</h2>
+      <p>Hover over this card to change icon color</p>
+
+      <div class="icon-showcase">
+        <svg class="icon-basic" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+
+      <code><span class="comment">&lt;!-- CSS --&gt;</span>
+<span class="keyword">.interactive-card:hover .icon-basic</span> {
+  <span class="highlight"><span class="attribute">--icon-color</span>: <span class="keyword">var</span>(<span class="string">--color-accent</span>);</span>
+}
+
+<span class="comment">&lt;!-- Icon color changes on card hover --&gt;</span></code>
+    </div>
+
+    <!-- System Integration -->
+    <div class="demo-card">
+      <h2>System Integration</h2>
+      <p>All icons respond to theme system</p>
+
+      <div class="icon-showcase" style="display: flex; gap: 1.5rem;">
+        <svg class="icon-basic" viewBox="0 0 24 24" style="width: 48px; height: 48px;">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+
+        <svg class="icon-current-color" viewBox="0 0 24 24" style="width: 48px; height: 48px;">
+          <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+        </svg>
+
+        <svg class="icon-basic" viewBox="0 0 24 24" style="width: 48px; height: 48px;">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+        </svg>
+      </div>
+
+      <code><span class="comment">&lt;!-- Design Tokens (root) --&gt;</span>
+<span class="keyword">:root</span> {
+  <span class="attribute">--color-text</span>: <span class="string">#1a1a1a</span>;
+  <span class="attribute">--color-accent</span>: <span class="string">#3498db</span>;
+}
+
+<span class="keyword">[data-theme="dark"]</span> {
+  <span class="attribute">--color-text</span>: <span class="string">#f5f5f5</span>;
+  <span class="attribute">--color-accent</span>: <span class="string">#5dade2</span>;
+}
+
+<span class="comment">&lt;!-- All icons inherit these tokens --&gt;</span></code>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <h3>🎯 Key Takeaways</h3>
+    <ul>
+      <li><strong>CSS Variables:</strong> Most flexible, lets you change colors dynamically</li>
+      <li><strong>currentColor:</strong> Simple, inherits text color (like icon fonts)</li>
+      <li><strong>Multi-part:</strong> When different parts need different colors</li>
+      <li><strong>Transitions:</strong> Add smooth theme switching (300ms ease)</li>
+      <li><strong>No inline fills:</strong> Remove <code style="display: inline; padding: 2px 6px; background: rgba(0,0,0,0.2);">fill="#000"</code> from SVG, use CSS instead</li>
+      <li><strong>Design tokens:</strong> Define colors once, use everywhere (from Project 1!)</li>
+    </ul>
+  </div>
+
+  <script>
+    // Theme toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.dataset.theme;
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+      html.dataset.theme = newTheme;
+
+      const label = document.getElementById('theme-label');
+      label.textContent = newTheme === 'light'
+        ? 'Switch to Dark Mode'
+        : 'Switch to Light Mode';
+    }
+
+    // Detect system preference on load
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDark) {
+      document.documentElement.dataset.theme = 'dark';
+      document.getElementById('theme-label').textContent = 'Switch to Light Mode';
+    }
+  </script>
+</body>
+</html>

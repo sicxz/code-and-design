@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02 CSS Scroll API — Scroll-Driven Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+
+/* ─── LIVE DEMO: Reading Progress Bar ─── */
+#reading-bar-demo {
+  position: sticky; top: var(--nav-h); z-index: 50;
+  height: 4px; background: var(--rule);
+  overflow: hidden;
+}
+#reading-bar-fill {
+  height: 100%; background: var(--accent);
+  transform-origin: left;
+  animation: fill-bar linear both;
+  animation-timeline: scroll(root);
+}
+@keyframes fill-bar { from { scaleX: 0; } to { transform: scaleX(1); } }
+
+/* ─── LIVE DEMO: Scroll progress number ─── */
+.scroll-counter-demo {
+  position: sticky; top: calc(var(--nav-h) + 4px);
+  height: 0; overflow: visible; z-index: 40; pointer-events: none;
+  display: flex; justify-content: flex-end; padding-right: 2rem;
+}
+
+/* ─── VIEW TIMELINE DEMO CARDS ─── */
+.view-demo-cards {
+  display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0;
+}
+.vdc {
+  background: var(--warm); border: 1px solid var(--rule);
+  padding: 2rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: center;
+  animation: card-reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 35%;
+}
+@keyframes card-reveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vdc { animation: none; }
+}
+.vdc .card-type {
+  font-family: 'IBM Plex Mono', monospace; font-size: .6rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: .5rem;
+}
+.vdc h4 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; }
+.vdc p { font-size: .85rem; color: var(--muted); margin: 0; }
+.vdc .vdc-viz {
+  height: 80px; background: var(--ink); position: relative; overflow: hidden;
+}
+.vdc .vdc-bar {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--accent); width: 0%;
+}
+
+/* ─── PROPERTIES TABLE ─── */
+.prop-table { margin: 1.5rem 0; }
+.prop-row {
+  display: grid; grid-template-columns: 14rem 1fr;
+  gap: 0; border-bottom: 1px solid var(--rule);
+}
+.prop-row:first-child { border-top: 1px solid var(--rule); }
+.prop-name {
+  font-family: 'IBM Plex Mono', monospace; font-size: .78rem;
+  color: var(--accent); padding: 1rem 1.5rem; background: var(--warm);
+  border-right: 1px solid var(--rule); word-break: break-all;
+}
+.prop-desc { padding: 1rem 1.5rem; font-size: .85rem; line-height: 1.65; color: var(--muted); }
+.prop-desc strong { color: var(--ink); }
+
+/* ─── TIMELINE TYPE SPLIT ─── */
+.tl-split {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border: 1px solid var(--rule); margin: 2rem 0;
+}
+.tl-half { padding: 2rem; }
+.tl-half:first-child { border-right: 1px solid var(--rule); }
+.tl-half-head {
+  font-family: 'IBM Plex Mono', monospace; font-size: .6rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem; padding-bottom: .75rem;
+  border-bottom: 1px solid var(--rule);
+}
+.tl-half h3 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+.tl-half p { font-size: .85rem; color: var(--muted); margin-bottom: .75rem; }
+.tl-half .example { font-family: 'IBM Plex Mono', monospace; font-size: .72rem; color: var(--ink); }
+
+/* ─── ANIMATION RANGE VISUAL ─── */
+.range-diagram {
+  background: var(--ink); padding: 2.5rem 3rem; margin: 1.5rem 0; color: var(--code-fg);
+  font-family: 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+.range-bar-wrap { position: relative; margin: 1rem 0 2rem; }
+.range-bar {
+  height: 8px; background: #2a2820; width: 100%; position: relative; margin-bottom: .5rem;
+}
+.range-segment {
+  position: absolute; height: 100%; background: var(--accent); opacity: .5;
+}
+.range-segment.active { opacity: 1; }
+.range-label {
+  position: absolute; bottom: -1.4rem; font-size: .58rem;
+  letter-spacing: .1em; color: var(--muted); transform: translateX(-50%);
+}
+.range-tick { position: absolute; width: 1px; height: 14px; background: #5a5248; bottom: -3px; }
+.range-row { display: flex; justify-content: space-between; color: #5a5248; font-size: .65rem; }
+.range-example { margin-top: 2rem; }
+.range-example .re-val { color: var(--accent); margin-bottom: .5rem; }
+.range-example .re-desc { color: #8a8070; font-size: .68rem; line-height: 1.6; }
+
+/* ─── SUPPORT NOTE ─── */
+.support-note {
+  background: var(--warm); border: 1px solid var(--rule);
+  padding: 1.2rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start;
+  margin: 1.5rem 0;
+}
+.support-icon { font-size: 1.2rem; }
+.support-text { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+.support-text strong { color: var(--ink); }
+
+/* ─── LIVE DEMO STRIPS ─── */
+.demo-strip {
+  background: var(--code-bg); padding: 1.5rem 8vw;
+  display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
+}
+.demo-strip-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: .58rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--muted);
+  flex-shrink: 0;
+}
+.demo-strip-note {
+  font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
+  color: #5a5248;
+}
+.demo-strip-accent { color: var(--accent); }
+
+@media(max-width:768px){
+  .tl-split { grid-template-columns: 1fr; }
+  .tl-half:first-child { border-right: none; border-bottom: 1px solid var(--rule); }
+  .prop-row { grid-template-columns: 1fr; }
+  .prop-name { border-right: none; border-bottom: 1px solid var(--rule); }
+}
+</style>
+</head>
+<body>
+
+<!-- LIVE: sticky reading progress bar (CSS only) -->
+<div id="reading-bar-demo">
+  <div id="reading-bar-fill"></div>
+</div>
+
+<div id="page-progress"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Scroll·<span>Driven</span>·Design</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="01-foundations.html">01 Foundations</a></li>
+    <li><a href="02-css-api.html" class="active">02 CSS API</a></li>
+    <li><a href="03-gsap.html">03 GSAP</a></li>
+    <li><a href="04-ux.html">04 UX + A11y</a></li>
+    <li><a href="05-reference.html">Reference</a></li>
+  </ul>
+</nav>
+
+<div class="demo-strip">
+  <span class="demo-strip-label">↑ Live demo</span>
+  <span class="demo-strip-note">The red progress bar above is a <span class="demo-strip-accent">CSS-only</span> scroll-driven animation — no JavaScript.</span>
+  <span class="demo-strip-note">It uses <span class="demo-strip-accent">animation-timeline: scroll(root)</span></span>
+</div>
+
+<header class="page-header">
+  <div class="page-num">02</div>
+  <div>
+    <p class="page-eyebrow">CSS Scroll-Driven API</p>
+    <h1>Animations the<br><em>browser controls.</em></h1>
+    <p class="page-intro">Modern CSS can link an animation directly to scroll position. No JavaScript. No event listeners. The browser handles it — off the main thread — for smooth, declarative scroll effects.</p>
+  </div>
+</header>
+
+<!-- THE BIG SHIFT -->
+<section>
+  <div class="section-inner two-col">
+    <div>
+      <p class="section-label">The shift</p>
+      <h2>From <em>JavaScript</em><br>to CSS declaration.</h2>
+      <p>Old approach: A JavaScript scroll event fires many times per second. It reads the scroll position, calculates a new CSS value, and applies it. All of that runs on the main browser thread — the same thread handling user input.</p>
+      <p>New approach: You declare the relationship in CSS. The browser maps scroll position to animation progress internally, on the compositor thread, without JavaScript ever being called.</p>
+      <p>The result: smoother animations, simpler code, no layout thrashing.</p>
+    </div>
+    <div>
+      <div class="callout">
+        <span class="callout-label">The one-sentence model</span>
+        <p>Scroll distance replaces time as the thing that drives an animation forward. Instead of "this animation runs for 1 second," you're saying "this animation runs over 500px of scroll."</p>
+      </div>
+      <div class="support-note" style="margin-top:1.5rem">
+        <span class="support-icon">⚠</span>
+        <div class="support-text"><strong>Browser support note:</strong> CSS scroll-driven animations are supported in Chrome 115+, Edge 115+, and Firefox 110+ (behind a flag). Safari support is in progress. For production work requiring broad support, use GSAP. Check <a href="https://caniuse.com/css-scroll-driven-animations" target="_blank" style="color:var(--accent)">caniuse.com</a> for current status.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TWO TIMELINE TYPES -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">The two timeline types</p>
+    <h2>Scroll Progress vs.<br><em>View Progress.</em></h2>
+    <p style="max-width:58ch;margin-bottom:1.5rem">These are the two ways to define what drives an animation. They answer different questions.</p>
+    <div class="tl-split">
+      <div class="tl-half">
+        <div class="tl-half-head">Scroll Progress Timeline</div>
+        <h3>How far has the container scrolled?</h3>
+        <p>The timeline runs from 0% (top of scroll container) to 100% (bottom). The animation progresses as the user scrolls the entire page.</p>
+        <p>Use this for: reading progress bars, parallax backgrounds, elements that animate across the full page scroll.</p>
+        <div class="example">animation-timeline: scroll();</div>
+      </div>
+      <div class="tl-half">
+        <div class="tl-half-head">View Progress Timeline</div>
+        <h3>How far has this element traveled through view?</h3>
+        <p>The timeline starts when the element enters the viewport and ends when it leaves. Each element has its own timeline — based on its own visibility.</p>
+        <p>Use this for: reveal-on-scroll, per-element entrance animations, triggering when content is in view.</p>
+        <div class="example">animation-timeline: view();</div>
+      </div>
+    </div>
+    <div class="callout tip">
+      <span class="callout-label">Quick rule of thumb</span>
+      <p>If the animation should reflect how far the <strong>page</strong> has scrolled → use <code style="font-family:'IBM Plex Mono',monospace;font-size:.85em">scroll()</code>. If it should reflect where a <strong>specific element</strong> is on screen → use <code style="font-family:'IBM Plex Mono',monospace;font-size:.85em">view()</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE KEY PROPERTIES -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">The CSS Properties</p>
+    <h2>Four properties.<br><em>One idea each.</em></h2>
+    <div class="prop-table">
+      <div class="prop-row">
+        <div class="prop-name">animation-timeline</div>
+        <div class="prop-desc">The core property. Tells an animation to use scroll progress instead of a clock. Accepts <strong>scroll()</strong>, <strong>view()</strong>, or a <strong>named timeline</strong>. This is the one that unlocks everything else.</div>
+      </div>
+      <div class="prop-row">
+        <div class="prop-name">scroll-timeline-name</div>
+        <div class="prop-desc">Applied to a scroll container. Gives the container a name (must start with <strong>--</strong>) so other elements can reference it. Essential for parallax effects where multiple elements animate from the same scroll source.</div>
+      </div>
+      <div class="prop-row">
+        <div class="prop-name">view-timeline-name</div>
+        <div class="prop-desc">Applied to an element. Names a view-based timeline so other elements can reference this element's scroll visibility. Useful when an element's position in view should drive an animation somewhere else on the page.</div>
+      </div>
+      <div class="prop-row">
+        <div class="prop-name">animation-range</div>
+        <div class="prop-desc">Only works with <strong>view()</strong> timelines. Controls when the animation starts and ends relative to the element entering and exiting the viewport. Format: <strong>"[keyword] [%] [keyword] [%]"</strong></div>
+      </div>
+    </div>
+    <div class="callout warn">
+      <span class="callout-label">Required but irrelevant</span>
+      <p>When using animation-timeline, the spec still requires animation-duration to be set. The value doesn't matter — scroll position is now in control, not time. Set it to <strong>1ms</strong> and forget it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CODE EXAMPLES -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">The code</p>
+    <h2>Three patterns you'll<br><em>use constantly.</em></h2>
+
+    <h3 style="margin-bottom:1rem;margin-top:2rem">Pattern 1 — Reading progress bar (scroll)</h3>
+    <p>The entire page scroll drives a progress bar from 0 to full width. This is what's running at the top of this page.</p>
+    <div class="annotated-wrap">
+      <div class="annotated-code"><span class="cm">/* 1. Define what the animation does */</span>
+<span class="op">@keyframes</span> grow-bar {
+  <span class="kw">from</span> { transform: scaleX(<span class="nu">0</span>); }
+  <span class="kw">to</span>   { transform: scaleX(<span class="nu">1</span>); }
+}
+
+<span class="cm">/* 2. Apply it and link to scroll */</span>
+<span class="fn">#progress-bar</span> {
+  <span class="kw">transform-origin</span>: left center;
+  <span class="kw">animation-name</span>: grow-bar;
+  <span class="kw">animation-timeline</span>: <span class="st">scroll(root)</span>;  <span class="cm">/* page scroll */</span>
+  <span class="kw">animation-duration</span>: <span class="nu">1ms</span>;            <span class="cm">/* required, ignored */</span>
+  <span class="kw">animation-fill-mode</span>: both;
+}</div>
+      <div class="annotated-notes">
+        <div class="note-row"><strong>scroll(root)</strong>Watches the root scroll container — the page itself. Use scroll() with no args for the nearest scrollable ancestor.</div>
+        <div class="note-row"><strong>transform: scaleX()</strong>Always animate with transform and opacity when possible. These run on the GPU and don't trigger layout recalculation.</div>
+        <div class="note-row"><strong>animation-fill-mode: both</strong>Keeps the animated state before and after. Without this, the element snaps back when scroll is at 0%.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:1rem;margin-top:3rem">Pattern 2 — Reveal on scroll (view)</h3>
+    <p>An element fades in as it enters the viewport. The scroll section of this page uses this pattern — watch the cards below as they scroll into view.</p>
+    <div class="annotated-wrap">
+      <div class="annotated-code"><span class="op">@keyframes</span> reveal {
+  <span class="kw">from</span> { opacity: <span class="nu">0</span>; transform: translateY(<span class="nu">30px</span>); }
+  <span class="kw">to</span>   { opacity: <span class="nu">1</span>; transform: translateY(<span class="nu">0</span>); }
+}
+
+<span class="fn">.card</span> {
+  <span class="kw">animation</span>: reveal linear both;
+  <span class="kw">animation-timeline</span>: <span class="st">view()</span>;         <span class="cm">/* this element's visibility */</span>
+  <span class="kw">animation-range</span>: <span class="st">entry 0% cover 40%</span>; <span class="cm">/* start entering → 40% covered */</span>
+  <span class="kw">animation-duration</span>: <span class="nu">1ms</span>;
+}</div>
+      <div class="annotated-notes">
+        <div class="note-row"><strong>view()</strong>Creates a timeline based on this specific element's position in the viewport. Each card gets its own independent timeline.</div>
+        <div class="note-row"><strong>animation-range</strong>Controls precisely when the animation starts and ends. "entry 0%" = element begins entering. "cover 40%" = 40% of the way through the viewport.</div>
+        <div class="note-row"><strong>linear</strong>The easing for the animation itself. With scroll control, 'linear' feels natural. Time-based easing is less important here.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:1rem;margin-top:3rem">Pattern 3 — Named timeline for parallax</h3>
+    <p>Multiple elements animate in response to the same scroll container. You name the timeline on the container and reference it by name.</p>
+    <div class="annotated-wrap">
+      <div class="annotated-code"><span class="cm">/* Container defines and names the timeline */</span>
+<span class="fn">.scroll-section</span> {
+  <span class="kw">scroll-timeline-name</span>: <span class="st">--section-scroll</span>;
+  <span class="kw">scroll-timeline-axis</span>: block; <span class="cm">/* vertical */</span>
+  <span class="kw">overflow-y</span>: scroll;
+  <span class="kw">height</span>: <span class="nu">400px</span>;
+}
+
+<span class="cm">/* Children reference the named timeline */</span>
+<span class="fn">.bg-layer</span> {
+  <span class="kw">animation-name</span>: drift-slow;
+  <span class="kw">animation-timeline</span>: <span class="st">--section-scroll</span>; <span class="cm">/* by name */</span>
+  <span class="kw">animation-duration</span>: <span class="nu">1ms</span>;
+}
+<span class="fn">.fg-layer</span> {
+  <span class="kw">animation-name</span>: drift-fast;
+  <span class="kw">animation-timeline</span>: <span class="st">--section-scroll</span>; <span class="cm">/* same source */</span>
+  <span class="kw">animation-duration</span>: <span class="nu">1ms</span>;
+}</div>
+      <div class="annotated-notes">
+        <div class="note-row"><strong>--section-scroll</strong>Named timelines start with double dash, like CSS custom properties. They're scoped to the element and its descendants.</div>
+        <div class="note-row"><strong>Both layers, same source</strong>Both fg-layer and bg-layer respond to the same scroll container's progress — but with different keyframe values, creating the speed differential that produces depth.</div>
+        <div class="note-row"><strong>When to use named</strong>When multiple elements need to react to the same scroll source — especially useful for parallax depth effects inside a bounded container.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANIMATION RANGE EXPLAINER -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">Deep dive — animation-range</p>
+    <h2>Precise control over<br><em>when things happen.</em></h2>
+    <p style="max-width:58ch">animation-range only applies to view() timelines. It defines when in the element's viewport journey the animation starts and ends.</p>
+    <div class="range-diagram">
+      <p style="color:#8a8070;margin-bottom:1.5rem;font-size:.7rem">THE ELEMENT'S JOURNEY THROUGH THE VIEWPORT</p>
+      <div class="range-bar-wrap">
+        <div class="range-bar">
+          <div class="range-tick" style="left:0%"></div>
+          <div class="range-tick" style="left:25%"></div>
+          <div class="range-tick" style="left:50%"></div>
+          <div class="range-tick" style="left:75%"></div>
+          <div class="range-tick" style="left:100%"></div>
+          <div class="range-label" style="left:0%">entry 0%</div>
+          <div class="range-label" style="left:25%">entry 100%</div>
+          <div class="range-label" style="left:50%">cover 50%</div>
+          <div class="range-label" style="left:75%">exit 0%</div>
+          <div class="range-label" style="left:100%">exit 100%</div>
+        </div>
+      </div>
+      <div style="margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+        <div class="range-example">
+          <div class="re-val">entry 0% cover 50%</div>
+          <div class="re-desc">Starts when the element first peeks into the viewport. Finishes when it's 50% visible. Classic "reveal" timing.</div>
+        </div>
+        <div class="range-example">
+          <div class="re-val">cover 0% exit 100%</div>
+          <div class="re-desc">Starts when the element fully enters the viewport. Runs through until it exits. Good for sustained effects.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE VIEW DEMO CARDS -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">Watch it work</p>
+    <h2>These cards use<br><em>animation-timeline: view()</em></h2>
+    <p style="max-width:52ch;margin-bottom:1rem">Each card animates independently as it enters the viewport — no JavaScript, no class toggling, no IntersectionObserver. Scroll up and back down: they repeat.</p>
+    <div class="view-demo-cards">
+      <div class="vdc">
+        <div class="vdc-viz"><div class="vdc-bar" style="width:100%;background:#c93820"></div></div>
+        <div>
+          <div class="card-type">Type · scroll()</div>
+          <h4>Reading Progress Timeline</h4>
+          <p>Tracks the overall scroll position of the page from top to bottom. Used for progress bars, background parallax, anything that spans the whole page.</p>
+        </div>
+      </div>
+      <div class="vdc">
+        <div class="vdc-viz" style="background:#1a5fa8">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+            <div style="width:40px;height:40px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="card-type">Type · view()</div>
+          <h4>View Progress Timeline</h4>
+          <p>Tracks an element's visibility in the viewport. Each element gets its own timeline. Perfect for reveal-on-scroll animations and entrance effects.</p>
+        </div>
+      </div>
+      <div class="vdc">
+        <div class="vdc-viz" style="background:#2a7a4a">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.25rem;padding:.5rem">
+            <div style="height:4px;width:80%;background:rgba(255,255,255,.2)"></div>
+            <div style="height:4px;width:60%;background:rgba(255,255,255,.3)"></div>
+            <div style="height:4px;width:70%;background:rgba(255,255,255,.4)"></div>
+          </div>
+        </div>
+        <div>
+          <div class="card-type">Type · Named timeline</div>
+          <h4>Named Scroll Timeline</h4>
+          <p>A timeline defined on a scroll container and named with a CSS custom property. Child elements reference it by name — essential for multi-element parallax.</p>
+        </div>
+      </div>
+    </div>
+    <div class="code-block tight" style="margin-top:1rem">
+<span class="cm">/* The CSS powering these exact cards */</span>
+<span class="fn">.vdc</span> {
+  <span class="kw">animation</span>: card-reveal linear both;
+  <span class="kw">animation-timeline</span>: view();
+  <span class="kw">animation-range</span>: <span class="st">entry 0% cover 35%</span>;
+  <span class="kw">animation-duration</span>: <span class="nu">1ms</span>;
+}
+
+<span class="op">@keyframes</span> card-reveal {
+  <span class="kw">from</span> { opacity: <span class="nu">0</span>; transform: translateY(<span class="nu">30px</span>); }
+  <span class="kw">to</span>   { opacity: <span class="nu">1</span>; transform: translateY(<span class="nu">0</span>); }
+}</div>
+  </div>
+</section>
+
+<!-- CSS VS GSAP BRIDGE -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">Knowing the limit</p>
+    <h2>When CSS isn't <em>enough.</em></h2>
+    <p style="max-width:58ch;margin-bottom:1.5rem">CSS scroll-driven animations handle many patterns well. But there are things they can't do — and that's where GSAP comes in.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th>CSS Native</th>
+          <th>GSAP ScrollTrigger</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Reveal on scroll (fade in)</td>
+          <td class="yes">✓ view() + animation-range</td>
+          <td class="yes">✓ scrollTrigger + toggleActions</td>
+        </tr>
+        <tr>
+          <td>Reading progress bar</td>
+          <td class="yes">✓ scroll(root)</td>
+          <td class="yes">✓ scrub</td>
+        </tr>
+        <tr>
+          <td>Multi-layer parallax</td>
+          <td class="yes">✓ Named timelines</td>
+          <td class="yes">✓ Multiple tweens</td>
+        </tr>
+        <tr>
+          <td>Pin element in place</td>
+          <td class="no">✗ Not supported</td>
+          <td class="yes">✓ pin: true</td>
+        </tr>
+        <tr>
+          <td>Complex sequenced timelines</td>
+          <td class="partial">⚠ Multiple @keyframes</td>
+          <td class="yes">✓ GSAP Timeline + scrub</td>
+        </tr>
+        <tr>
+          <td>Reverse on scroll up</td>
+          <td class="partial">⚠ Inconsistent browser support</td>
+          <td class="yes">✓ scrub handles it natively</td>
+        </tr>
+        <tr>
+          <td>Safari support (2025)</td>
+          <td class="partial">⚠ Partial, improving</td>
+          <td class="yes">✓ Full cross-browser</td>
+        </tr>
+        <tr>
+          <td>Performance</td>
+          <td class="yes">✓ Off main thread</td>
+          <td class="yes">✓ rAF, highly optimized</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="page-nav">
+  <a href="01-foundations.html">← 01 Foundations</a>
+  <span class="page-pos">02 / 05</span>
+  <a href="03-gsap.html">03 — GSAP ScrollTrigger →</a>
+</div>
+
+<script>
+const bar = document.getElementById('page-progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preference Hierarchy Demo</title>
+  <style>
+    :root {
+      --color-surface: #ffffff;
+      --color-surface-alt: #f5f5f5;
+      --color-text: #1a1a1a;
+      --color-text-muted: #666666;
+      --color-accent: #0066cc;
+      --color-border: #e0e0e0;
+    }
+
+    [data-theme="dark"] {
+      --color-surface: #1a1a1a;
+      --color-surface-alt: #2a2a2a;
+      --color-text: #f0f0f0;
+      --color-text-muted: #aaaaaa;
+      --color-accent: #66b3ff;
+      --color-border: #444444;
+    }
+
+    [data-theme="light"] {
+      --color-surface: #ffffff;
+      --color-surface-alt: #f5f5f5;
+      --color-text: #1a1a1a;
+      --color-text-muted: #666666;
+      --color-accent: #0066cc;
+      --color-border: #e0e0e0;
+    }
+
+    /* System preference fallback (when no data-theme set) */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --color-surface: #1a1a1a;
+        --color-surface-alt: #2a2a2a;
+        --color-text: #f0f0f0;
+        --color-text-muted: #aaaaaa;
+        --color-accent: #66b3ff;
+        --color-border: #444444;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--color-surface);
+      color: var(--color-text);
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .theme-controls {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .theme-btn {
+      background: var(--color-surface-alt);
+      color: var(--color-text);
+      border: 2px solid var(--color-border);
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--color-accent);
+    }
+
+    .theme-btn[aria-pressed="true"] {
+      background: var(--color-accent);
+      color: white;
+      border-color: var(--color-accent);
+    }
+
+    .status-card {
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .status-card h2 {
+      margin-top: 0;
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .status-item:last-child {
+      border-bottom: none;
+    }
+
+    .status-label {
+      color: var(--color-text-muted);
+    }
+
+    .status-value {
+      font-weight: 600;
+      font-family: 'Monaco', 'Consolas', monospace;
+    }
+
+    .hierarchy-diagram {
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.85rem;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .hierarchy-step {
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 4px;
+    }
+
+    .hierarchy-step.active {
+      background: var(--color-accent);
+      color: white;
+    }
+
+    .hierarchy-step.skipped {
+      opacity: 0.4;
+      text-decoration: line-through;
+    }
+
+    .explanation {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    [data-theme="dark"] .explanation {
+      background: #3d3200;
+      border-color: #ffc107;
+    }
+
+    code {
+      background: var(--color-surface-alt);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+
+    .reset-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Preference Hierarchy</h1>
+
+  <p>This demo shows how we decide which theme to use. The order matters!</p>
+
+  <div class="theme-controls">
+    <button class="theme-btn" data-theme-toggle="light" aria-pressed="false">
+      Light
+    </button>
+    <button class="theme-btn" data-theme-toggle="dark" aria-pressed="false">
+      Dark
+    </button>
+    <button class="theme-btn" data-theme-toggle="system" aria-pressed="false">
+      System
+    </button>
+  </div>
+
+  <div class="status-card">
+    <h2>Current Status</h2>
+    <div class="status-item">
+      <span class="status-label">Applied theme:</span>
+      <span class="status-value" id="appliedTheme">—</span>
+    </div>
+    <div class="status-item">
+      <span class="status-label">localStorage value:</span>
+      <span class="status-value" id="storedTheme">—</span>
+    </div>
+    <div class="status-item">
+      <span class="status-label">System prefers:</span>
+      <span class="status-value" id="systemPref">—</span>
+    </div>
+    <div class="status-item">
+      <span class="status-label">Decision source:</span>
+      <span class="status-value" id="decisionSource">—</span>
+    </div>
+  </div>
+
+  <div class="status-card">
+    <h2>Decision Flow</h2>
+    <div id="hierarchySteps">
+      <div class="hierarchy-step" id="step1">1. Check localStorage for saved choice</div>
+      <div class="hierarchy-step" id="step2">2. Check system preference (prefers-color-scheme)</div>
+      <div class="hierarchy-step" id="step3">3. Use default (light)</div>
+    </div>
+  </div>
+
+  <div class="explanation">
+    <strong>Try this:</strong>
+    <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+      <li>Click "Dark" — localStorage saves your choice</li>
+      <li>Refresh the page — your choice persists!</li>
+      <li>Click "System" — localStorage is cleared, follows OS</li>
+      <li>Change your OS dark mode setting and refresh</li>
+    </ol>
+  </div>
+
+  <p style="margin-top: 2rem;">
+    <button class="reset-btn" id="resetBtn">Clear localStorage & Refresh</button>
+  </p>
+
+  <script>
+    // DOM elements
+    const buttons = document.querySelectorAll('[data-theme-toggle]');
+    const appliedThemeEl = document.getElementById('appliedTheme');
+    const storedThemeEl = document.getElementById('storedTheme');
+    const systemPrefEl = document.getElementById('systemPref');
+    const decisionSourceEl = document.getElementById('decisionSource');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Check system preference
+    function getSystemPreference() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    // Determine theme based on hierarchy
+    function getThemeWithSource() {
+      const saved = localStorage.getItem('theme');
+
+      if (saved && saved !== 'system') {
+        return { theme: saved, source: 'localStorage (user choice)' };
+      }
+
+      const systemPref = getSystemPreference();
+      return { theme: systemPref, source: 'System preference' };
+    }
+
+    // Apply theme and update UI
+    function applyTheme(theme) {
+      if (theme === 'system') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'system');
+      } else {
+        document.documentElement.dataset.theme = theme;
+        localStorage.setItem('theme', theme);
+      }
+      updateStatus();
+    }
+
+    // Update the status display
+    function updateStatus() {
+      const saved = localStorage.getItem('theme');
+      const systemPref = getSystemPreference();
+      const { theme, source } = getThemeWithSource();
+
+      // Update status values
+      const actualTheme = document.documentElement.dataset.theme || systemPref;
+      appliedThemeEl.textContent = actualTheme;
+      storedThemeEl.textContent = saved || 'null (not set)';
+      systemPrefEl.textContent = systemPref;
+      decisionSourceEl.textContent = source;
+
+      // Update button states
+      buttons.forEach(btn => {
+        const isActive = btn.dataset.themeToggle === saved ||
+                        (btn.dataset.themeToggle === 'system' && !saved);
+        btn.setAttribute('aria-pressed', isActive);
+      });
+
+      // Update hierarchy visualization
+      step1.className = 'hierarchy-step';
+      step2.className = 'hierarchy-step';
+      step3.className = 'hierarchy-step';
+
+      if (saved && saved !== 'system') {
+        step1.classList.add('active');
+        step2.classList.add('skipped');
+        step3.classList.add('skipped');
+      } else if (systemPref) {
+        step1.classList.add('skipped');
+        step2.classList.add('active');
+        step3.classList.add('skipped');
+      } else {
+        step1.classList.add('skipped');
+        step2.classList.add('skipped');
+        step3.classList.add('active');
+      }
+    }
+
+    // Initialize on page load
+    function init() {
+      const { theme } = getThemeWithSource();
+      const saved = localStorage.getItem('theme');
+
+      if (saved === 'system' || !saved) {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.dataset.theme = saved;
+      }
+
+      updateStatus();
+    }
+
+    // Event listeners
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const theme = button.dataset.themeToggle;
+        applyTheme(theme);
+      });
+    });
+
+    resetBtn.addEventListener('click', () => {
+      localStorage.removeItem('theme');
+      location.reload();
+    });
+
+    // Listen for system preference changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      updateStatus();
+      // If following system, update the applied theme
+      if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'system') {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    });
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>

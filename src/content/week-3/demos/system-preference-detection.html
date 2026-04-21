@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Preference Detection</title>
+
+  <!-- ===========================================
+       DEMO: System Preference Detection
+       Week 3 — Signal & State
+
+       What this demonstrates:
+       - window.matchMedia() for detecting system preference
+       - Preference hierarchy (saved > system > default)
+       - System mode that follows OS changes
+       - Live listener for preference changes
+
+       CodePen: Copy CSS to CSS panel, JS to JS panel,
+       body content to HTML panel
+       =========================================== -->
+
+  <style>
+    /* -----------------------------------------
+       DESIGN TOKENS
+       ----------------------------------------- */
+    :root {
+      --color-surface: #ffffff;
+      --color-surface-alt: #f5f5f5;
+      --color-text: #1a1a1a;
+      --color-accent: #0066cc;
+      --color-border: #e0e0e0;
+      --color-muted: #666666;
+      --color-success: #008844;
+
+      --font-family: system-ui, -apple-system, sans-serif;
+      --transition-speed: 0.3s;
+    }
+
+    [data-theme="dark"] {
+      --color-surface: #1a1a1a;
+      --color-surface-alt: #252525;
+      --color-text: #f0f0f0;
+      --color-accent: #66b3ff;
+      --color-border: #333333;
+      --color-muted: #a0a0a0;
+      --color-success: #44bb77;
+    }
+
+    /* -----------------------------------------
+       BASE STYLES
+       ----------------------------------------- */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--color-surface);
+      color: var(--color-text);
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 2rem;
+      min-height: 100vh;
+      transition:
+        background-color var(--transition-speed) ease,
+        color var(--transition-speed) ease;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    /* -----------------------------------------
+       TOGGLE BUTTONS
+       ----------------------------------------- */
+    .theme-buttons {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .theme-btn {
+      background: var(--color-surface);
+      color: var(--color-text);
+      border: 2px solid var(--color-border);
+      padding: 0.75rem 1.25rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--color-accent);
+    }
+
+    .theme-btn:focus {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    .theme-btn.active {
+      background: var(--color-accent);
+      color: var(--color-surface);
+      border-color: var(--color-accent);
+    }
+
+    /* -----------------------------------------
+       STATUS PANEL
+       ----------------------------------------- */
+    .status-panel {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      max-width: 500px;
+    }
+
+    .status-panel h2 {
+      margin-top: 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-muted);
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .status-row:last-child {
+      border-bottom: none;
+    }
+
+    .status-label {
+      color: var(--color-muted);
+    }
+
+    .status-value {
+      font-family: 'SF Mono', Consolas, monospace;
+      font-weight: 600;
+    }
+
+    .status-value.highlight {
+      color: var(--color-success);
+    }
+
+    /* -----------------------------------------
+       EXPLANATION
+       ----------------------------------------- */
+    .explanation {
+      margin-top: 2rem;
+      max-width: 600px;
+    }
+
+    .explanation h2 {
+      font-size: 1.25rem;
+    }
+
+    .hierarchy {
+      background: var(--color-surface-alt);
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'SF Mono', Consolas, monospace;
+      font-size: 0.875rem;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <h1>System Preference Detection</h1>
+  <p>Three modes: Light, Dark, or follow your System preference.</p>
+
+  <div class="theme-buttons">
+    <button class="theme-btn" data-theme-toggle="light" aria-label="Light theme">
+      Light
+    </button>
+    <button class="theme-btn" data-theme-toggle="dark" aria-label="Dark theme">
+      Dark
+    </button>
+    <button class="theme-btn" data-theme-toggle="system" aria-label="System theme">
+      System
+    </button>
+  </div>
+
+  <div class="status-panel">
+    <h2>Current State</h2>
+    <div class="status-row">
+      <span class="status-label">Applied theme:</span>
+      <span class="status-value" id="applied-theme">—</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">User preference:</span>
+      <span class="status-value" id="user-pref">—</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">System preference:</span>
+      <span class="status-value" id="system-pref">—</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Source:</span>
+      <span class="status-value highlight" id="source">—</span>
+    </div>
+  </div>
+
+  <div class="explanation">
+    <h2>Preference Hierarchy</h2>
+    <div class="hierarchy">1. User's saved choice (highest priority)
+      ↓ if none saved
+2. System preference
+      ↓ if unknown
+3. Default (light)</div>
+    <p>
+      <strong>Try this:</strong> Click "System" then change your OS dark mode setting.
+      The page updates live without refresh.
+    </p>
+  </div>
+
+  <script>
+    /* -----------------------------------------
+       JAVASCRIPT — System Preference Detection
+       ----------------------------------------- */
+
+    // Elements
+    const buttons = document.querySelectorAll('[data-theme-toggle]');
+    const appliedThemeEl = document.getElementById('applied-theme');
+    const userPrefEl = document.getElementById('user-pref');
+    const systemPrefEl = document.getElementById('system-pref');
+    const sourceEl = document.getElementById('source');
+
+    // System preference media query
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    // -----------------------------------------
+    // GET SYSTEM PREFERENCE
+    // -----------------------------------------
+    function getSystemPreference() {
+      return darkModeQuery.matches ? 'dark' : 'light';
+    }
+
+    // -----------------------------------------
+    // INITIALIZE THEME
+    // Apply preference hierarchy on page load
+    // -----------------------------------------
+    function initTheme() {
+      const savedPref = localStorage.getItem('theme-preference');
+
+      if (savedPref && savedPref !== 'system') {
+        // User chose light or dark explicitly
+        applyTheme(savedPref, 'user choice');
+      } else if (savedPref === 'system') {
+        // User chose to follow system
+        applyTheme(getSystemPreference(), 'system (user selected)');
+      } else {
+        // No saved preference — use system
+        applyTheme(getSystemPreference(), 'system (default)');
+      }
+
+      updateDisplay();
+      updateActiveButton();
+    }
+
+    // -----------------------------------------
+    // APPLY THEME
+    // Set the data-theme attribute
+    // -----------------------------------------
+    function applyTheme(theme, source) {
+      document.documentElement.dataset.theme = theme;
+      sourceEl.textContent = source;
+    }
+
+    // -----------------------------------------
+    // SET PREFERENCE
+    // Handle button clicks
+    // -----------------------------------------
+    function setPreference(preference) {
+      if (preference === 'system') {
+        // Save that user wants system mode
+        localStorage.setItem('theme-preference', 'system');
+        applyTheme(getSystemPreference(), 'system (user selected)');
+      } else {
+        // Save explicit choice
+        localStorage.setItem('theme-preference', preference);
+        applyTheme(preference, 'user choice');
+      }
+
+      updateDisplay();
+      updateActiveButton();
+    }
+
+    // -----------------------------------------
+    // UPDATE DISPLAY
+    // -----------------------------------------
+    function updateDisplay() {
+      const appliedTheme = document.documentElement.dataset.theme;
+      const savedPref = localStorage.getItem('theme-preference');
+      const systemPref = getSystemPreference();
+
+      appliedThemeEl.textContent = appliedTheme;
+      userPrefEl.textContent = savedPref || 'none';
+      systemPrefEl.textContent = systemPref;
+    }
+
+    // -----------------------------------------
+    // UPDATE ACTIVE BUTTON
+    // -----------------------------------------
+    function updateActiveButton() {
+      const savedPref = localStorage.getItem('theme-preference');
+
+      buttons.forEach(btn => {
+        const btnPref = btn.dataset.themeToggle;
+
+        if (savedPref === btnPref) {
+          btn.classList.add('active');
+        } else if (!savedPref && btnPref === 'system') {
+          // No saved pref means we're using system by default
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // -----------------------------------------
+    // LISTEN FOR SYSTEM PREFERENCE CHANGES
+    // Updates live when OS preference changes
+    // -----------------------------------------
+    darkModeQuery.addEventListener('change', (event) => {
+      const savedPref = localStorage.getItem('theme-preference');
+
+      // Only update if user is following system preference
+      if (!savedPref || savedPref === 'system') {
+        const newTheme = event.matches ? 'dark' : 'light';
+        applyTheme(newTheme, savedPref === 'system' ? 'system (user selected)' : 'system (default)');
+        updateDisplay();
+      }
+    });
+
+    // -----------------------------------------
+    // EVENT LISTENERS
+    // -----------------------------------------
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        setPreference(button.dataset.themeToggle);
+      });
+    });
+
+    // -----------------------------------------
+    // INITIALIZE
+    // -----------------------------------------
+    initTheme();
+  </script>
+</body>
+</html>
