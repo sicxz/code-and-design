@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>box-sizing — an interactive lesson</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0D1117; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
+    #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #0D1117; z-index: 9999; }
+    #__bundler_thumbnail svg { width: 100%; height: 100%; object-fit: contain; }
+    #__bundler_placeholder { color: #999; font-size: 14px; }
+  </style>
+  <noscript>
+    <style>#__bundler_loading { display: none; }</style>
+    <div style="position:fixed;bottom:12px;left:12px;font:13px/1.4 -apple-system,BlinkMacSystemFont,sans-serif;color:#999;background:rgba(255,255,255,0.9);padding:6px 12px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.08);z-index:10000;">
+      This page requires JavaScript to display.
+    </div>
+  </noscript>
+</head>
+<body>
+  <div id="__bundler_thumbnail">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect x="300" y="260" width="280" height="200" fill="none" stroke="#F04E64" stroke-width="14"></rect>
+    <rect x="620" y="260" width="280" height="200" fill="none" stroke="#33C8F2" stroke-width="14"></rect>
+    <text x="440" y="560" font-family="SFMono-Regular, Menlo, monospace" font-size="22" fill="#8B949E" text-anchor="middle">content-box</text>
+    <text x="760" y="560" font-family="SFMono-Regular, Menlo, monospace" font-size="22" fill="#8B949E" text-anchor="middle">border-box</text>
+    <text x="600" y="680" font-family="-apple-system, Helvetica, sans-serif" font-weight="800" font-size="42" fill="#E6EDF3" text-anchor="middle">box-sizing</text>
+  </svg>
+</div>
+  <div id="__bundler_loading">Unpacking...</div>
+
+  <script>
+    
+document.addEventListener('DOMContentLoaded', async function() {
+  const loading = document.getElementById('__bundler_loading');
+  function setStatus(msg) { if (loading) loading.textContent = msg; }
+
+  // Error sink persists across replaceWith since it's on window, not the DOM.
+  window.addEventListener('error', function(e) {
+    var p = document.body || document.documentElement;
+    var d = document.getElementById('__bundler_err') || p.appendChild(document.createElement('div'));
+    d.id = '__bundler_err';
+    d.style.cssText = 'position:fixed;bottom:12px;left:12px;right:12px;font:12px/1.4 ui-monospace,monospace;background:#2a1215;color:#ff8a80;padding:10px 14px;border-radius:8px;border:1px solid #5c2b2e;z-index:99999;white-space:pre-wrap;max-height:40vh;overflow:auto';
+    d.textContent = (d.textContent ? d.textContent + String.fromCharCode(10) : '') +
+      '[bundle] ' + (e.message || e.type) +
+      (e.filename ? ' (' + e.filename.slice(0, 60) + ':' + e.lineno + ')' : '');
+  }, true);
+
+  try {
+    const manifestEl = document.querySelector('script[type="__bundler/manifest"]');
+    const templateEl = document.querySelector('script[type="__bundler/template"]');
+    if (!manifestEl || !templateEl) {
+      setStatus('Error: missing bundle data');
+      console.error('[bundler] Missing script tags — manifestEl:', !!manifestEl, 'templateEl:', !!templateEl);
+      return;
+    }
+
+    const manifest = JSON.parse(manifestEl.textContent);
+    let template = JSON.parse(templateEl.textContent);
+
+    const uuids = Object.keys(manifest);
+    setStatus('Unpacking ' + uuids.length + ' assets...');
+
+    const blobUrls = {};
+    await Promise.all(uuids.map(async (uuid) => {
+      const entry = manifest[uuid];
+      try {
+        const binaryStr = atob(entry.data);
+        const bytes = new Uint8Array(binaryStr.length);
+        for (let i = 0; i < binaryStr.length; i++) bytes[i] = binaryStr.charCodeAt(i);
+
+        let finalBytes = bytes;
+        if (entry.compressed) {
+          if (typeof DecompressionStream !== 'undefined') {
+            const ds = new DecompressionStream('gzip');
+            const writer = ds.writable.getWriter();
+            const reader = ds.readable.getReader();
+            writer.write(bytes);
+            writer.close();
+            const chunks = [];
+            let totalLen = 0;
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+              chunks.push(value);
+              totalLen += value.length;
+            }
+            finalBytes = new Uint8Array(totalLen);
+            let offset = 0;
+            for (const chunk of chunks) { finalBytes.set(chunk, offset); offset += chunk.length; }
+          } else {
+            console.warn('DecompressionStream not available, asset ' + uuid + ' may not render');
+          }
+        }
+
+        blobUrls[uuid] = URL.createObjectURL(new Blob([finalBytes], { type: entry.mime }));
+      } catch (err) {
+        console.error('Failed to decode asset ' + uuid + ':', err);
+        blobUrls[uuid] = URL.createObjectURL(new Blob([], { type: entry.mime }));
+      }
+    }));
+
+    const extResEl = document.querySelector('script[type="__bundler/ext_resources"]');
+    const extResources = extResEl ? JSON.parse(extResEl.textContent) : [];
+    const resourceMap = {};
+    for (const entry of extResources) {
+      if (blobUrls[entry.uuid]) resourceMap[entry.id] = blobUrls[entry.uuid];
+    }
+
+    setStatus('Rendering...');
+    for (const uuid of uuids) template = template.split(uuid).join(blobUrls[uuid]);
+
+    // Strip integrity + crossorigin — blob URLs from a file:// document inherit
+    // a null origin, so crossorigin forces a CORS fetch that SRI then rejects.
+    // The manifest bytes are ours; SRI protects against CDN compromise, not this.
+    template = template.replace(/\s+integrity="[^"]*"/gi, '').replace(/\s+crossorigin="[^"]*"/gi, '');
+
+    const resourceScript = '<script>window.__resources = ' +
+      JSON.stringify(resourceMap).split('</' + 'script>').join('<\\/' + 'script>') +
+      ';</' + 'script>';
+    // Inject after <head> so the DOCTYPE stays first; prepending the script
+    // would push the parser into quirks mode. DOMParser always emits a <head>
+    // (synthesizing one if the source HTML omitted it) but may carry
+    // attributes through, so match the full opening tag. slice() rather than
+    // replace() keeps us clear of $-pattern substitution in resourceScript.
+    const headOpen = template.match(/<head[^>]*>/i);
+    if (headOpen) {
+      const i = headOpen.index + headOpen[0].length;
+      template = template.slice(0, i) + resourceScript + template.slice(i);
+    }
+
+    // Parse the template and swap the root element. Scripts inserted via
+    // DOMParser/replaceWith are inert per spec — re-create each with
+    // createElement so they execute, awaiting onload for src scripts to
+    // preserve ordering (React before ReactDOM before Babel before text/babel).
+    const doc = new DOMParser().parseFromString(template, 'text/html');
+    document.documentElement.replaceWith(doc.documentElement);
+    const dead = Array.from(document.scripts);
+    for (const old of dead) {
+      const s = document.createElement('script');
+      for (const a of old.attributes) s.setAttribute(a.name, a.value);
+      s.textContent = old.textContent;
+      // text/babel scripts with a src: fetch and inline. transformScriptTags
+      // does XHR against the src, but blob:null/ from a file:// origin is
+      // silently dropped. Inlining makes it a plain inline babel script,
+      // which transformScriptTags handles unconditionally.
+      if ((s.type === 'text/babel' || s.type === 'text/jsx') && s.src) {
+        const r = await fetch(s.src);
+        s.textContent = await r.text();
+        s.removeAttribute('src');
+      }
+      const p = s.src ? new Promise(function(r) { s.onload = s.onerror = r; }) : null;
+      old.replaceWith(s);
+      if (p) await p;
+    }
+    // Babel standalone auto-transforms type=text/babel on DOMContentLoaded,
+    // which fired before we swapped the document. Trigger manually if present.
+    if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
+      window.Babel.transformScriptTags();
+    }
+  } catch (err) {
+    setStatus('Error unpacking: ' + err.message);
+    console.error('Bundle unpack error:', err);
+  }
+});
+
+  </script>
+
+  <script type="__bundler/manifest">
+{}
+  </script>
+
+  <script type="__bundler/ext_resources">
+[]
+  </script>
+
+  <script type="__bundler/template">
+"<!DOCTYPE html>\n<html lang=\"en\"><head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>box-sizing — an interactive lesson<\u002Ftitle>\n<style>\n  /* ---------- DESN 368 dark tokens (inlined, dark-only) ---------- */\n  :root{\n    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;\n    --font-mono: 'SFMono-Regular','SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;\n\n    --bg:          #0D1117;\n    --bg-card:     #161B22;\n    --bg-surface:  #1C2128;\n    --bg-subtle:   #21262D;\n\n    --border:      #30363D;\n    --border-light:#21262D;\n\n    --fg1:#E6EDF3;\n    --fg2:#8B949E;\n    --fg3:#858E98;\n\n    --red:        #F04E64;\n    --red-subtle: #2C2029;\n    --red-border: #6F3E49;\n    --red-soft:   rgba(240,78,100,0.12);\n\n    --blue:       #33C8F2;\n    --blue-accent:#01BAEF;\n    --blue-subtle:#142832;\n    --blue-border:#2D5563;\n    --blue-soft:  rgba(1,186,239,0.10);\n\n    --green:      #7FDE45;\n    --green-subtle:#1D2A22;\n\n    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;\n    --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:64px;\n  }\n\n  *{ box-sizing: border-box; }\n  html,body{ margin:0; padding:0; }\n  body{\n    background: var(--bg);\n    color: var(--fg1);\n    font-family: var(--font-sans);\n    line-height: 1.6;\n    -webkit-font-smoothing: antialiased;\n  }\n\n  /* ---------- Layout ---------- */\n  .wrap{\n    max-width: 1080px;\n    margin: 0 auto;\n    padding: 0 var(--sp-5);\n  }\n  header.page{\n    padding: var(--sp-8) var(--sp-5) var(--sp-6);\n    border-bottom: 1px solid var(--border-light);\n  }\n  header.page .inner{ max-width:1080px; margin:0 auto; }\n  .badge{\n    display:inline-block;\n    background: var(--red);\n    color:#fff;\n    font-family: var(--font-mono);\n    font-size: 12px;\n    font-weight: 600;\n    letter-spacing: 0.05em;\n    text-transform: uppercase;\n    padding: 6px 12px;\n    border-radius: 20px;\n    margin-bottom: var(--sp-4);\n  }\n  h1{\n    font-size: clamp(32px, 5vw, 48px);\n    font-weight: 800;\n    letter-spacing: -0.02em;\n    line-height: 1.1;\n    margin: 0 0 var(--sp-3);\n    color: var(--fg1);\n  }\n  h1 .mono{ font-family: var(--font-mono); font-weight:700; color: var(--red); font-size:0.85em; }\n  .sub{\n    color: var(--fg2);\n    font-size: 18px;\n    max-width: 640px;\n    margin: 0;\n  }\n  .meta{\n    font-family: var(--font-mono);\n    font-size: 12px;\n    letter-spacing: 0.05em;\n    text-transform: uppercase;\n    color: var(--fg2);\n    margin-top: var(--sp-4);\n  }\n  .meta span + span::before{\n    content:\"·\";\n    margin: 0 10px;\n    color: var(--fg3);\n  }\n\n  section.lesson{\n    padding: var(--sp-8) 0 var(--sp-7);\n    border-bottom: 1px solid var(--border-light);\n  }\n  .section-label{\n    font-family: var(--font-mono);\n    font-size: 12px;\n    letter-spacing: 0.08em;\n    text-transform: uppercase;\n    color: var(--fg2);\n    margin: 0 0 var(--sp-3);\n  }\n  .section-label .num{\n    display:inline-block;\n    width: 24px; height: 24px;\n    border-radius: 50%;\n    border: 1px solid var(--border);\n    text-align:center;\n    line-height: 22px;\n    margin-right: var(--sp-2);\n    color: var(--fg1);\n    font-weight: 600;\n  }\n  h2{\n    font-size: clamp(24px, 3.4vw, 32px);\n    font-weight: 700;\n    letter-spacing: -0.015em;\n    line-height: 1.2;\n    margin: 0 0 var(--sp-3);\n    color: var(--fg1);\n  }\n  h2 .mono{ font-family: var(--font-mono); font-weight:700; font-size:0.9em; }\n  h2 .red{ color: var(--red); }\n  h2 .blue{ color: var(--blue); }\n  p.lead{\n    color: var(--fg2);\n    font-size: 16px;\n    max-width: 640px;\n    margin: 0 0 var(--sp-6);\n  }\n\n  /* ---------- Section 1 — the surprise ---------- */\n  .stage{\n    background: var(--bg-card);\n    border: 1px solid var(--border);\n    border-radius: 6px;\n    padding: var(--sp-6) var(--sp-5);\n    margin-bottom: var(--sp-4);\n  }\n  .boxes{\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: var(--sp-5);\n    align-items: start;\n  }\n  @media (max-width: 640px){\n    .boxes{ grid-template-columns: 1fr; }\n  }\n  .box-col{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: var(--sp-3);\n  }\n  .box-label{\n    font-family: var(--font-mono);\n    font-size: 12px;\n    letter-spacing: 0.06em;\n    text-transform: uppercase;\n    color: var(--fg2);\n  }\n  .box-label .model-red{ color: var(--red); }\n  .box-label .model-blue{ color: var(--blue); }\n\n  /* measure rail */\n  .rail{\n    position: relative;\n    width: 100%;\n    max-width: 420px;\n    display:flex;\n    flex-direction:column;\n    align-items:center;\n  }\n  .ruler{\n    position: relative;\n    height: 24px;\n    width: 100%;\n    font-family: var(--font-mono);\n    font-size: 11px;\n    color: var(--fg3);\n    margin-top: var(--sp-2);\n  }\n  .ruler .target{\n    position:absolute; top:0; bottom:0;\n    left: 0;\n    width: 300px;\n    border-left: 1px dashed var(--fg3);\n    border-right: 1px dashed var(--fg3);\n  }\n  .ruler .target-label{\n    position:absolute;\n    top:50%;\n    left:300px;\n    transform: translate(-50%, -50%);\n    background: var(--bg-card);\n    padding: 0 6px;\n    white-space: nowrap;\n    color: var(--fg3);\n  }\n\n  /* the demo boxes */\n  .demo{\n    font-family: var(--font-mono);\n    font-size: 13px;\n    text-align: center;\n    transition: padding .35s ease, border-width .35s ease, width .35s ease;\n  }\n  .demo.content-box{\n    box-sizing: content-box;\n    width: 300px;\n    background: #F2D272;\n    color: #393E41;\n    border: 0 solid var(--red);\n    padding: 18px 0;\n  }\n  .demo.border-box{\n    box-sizing: border-box;\n    width: 300px;\n    background: #F2D272;\n    color: #393E41;\n    border: 0 solid var(--blue);\n    padding: 18px 0;\n  }\n  .stage[data-toggled=\"true\"] .demo.content-box{\n    padding: 18px 20px;\n    border-width: 10px;\n  }\n  .stage[data-toggled=\"true\"] .demo.border-box{\n    padding: 18px 20px;\n    border-width: 10px;\n  }\n\n  /* overflow indicator */\n  .overflow-mark{\n    margin-top: var(--sp-2);\n    font-family: var(--font-mono);\n    font-size: 12px;\n    color: var(--red);\n    opacity: 0;\n    transition: opacity .3s ease .2s;\n  }\n  .stage[data-toggled=\"true\"] .demo.content-box + .overflow-mark{ opacity: 1; }\n\n  .measurement{\n    font-family: var(--font-mono);\n    font-size: 12px;\n    color: var(--fg2);\n    margin-top: var(--sp-2);\n  }\n  .measurement .px{\n    color: var(--fg1);\n    font-weight: 600;\n  }\n  .measurement .px.bad{ color: var(--red); }\n  .measurement .px.good{ color: var(--blue); }\n\n  /* toggle */\n  .toggle-row{\n    display:flex;\n    align-items:center;\n    justify-content:center;\n    gap: var(--sp-3);\n    margin-top: var(--sp-6);\n    flex-wrap: wrap;\n  }\n  button.primary{\n    font-family: var(--font-sans);\n    font-size: 14px;\n    font-weight: 600;\n    background: transparent;\n    color: var(--red);\n    border: 1px solid var(--red);\n    border-radius: 6px;\n    padding: 10px 20px;\n    cursor: pointer;\n    transition: background .15s ease;\n  }\n  button.primary:hover{ background: var(--red-soft); }\n  button.primary:focus-visible{ outline: 2px solid var(--red); outline-offset: 2px; }\n  .status-hint{\n    font-family: var(--font-mono);\n    font-size: 12px;\n    color: var(--fg2);\n    letter-spacing: 0.04em;\n  }\n\n  /* ---------- Section 2 — the why ---------- */\n  .why-grid{\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: var(--sp-5);\n    margin-bottom: var(--sp-5);\n  }\n  @media (max-width: 820px){\n    .why-grid{ grid-template-columns: 1fr; }\n  }\n  .model-card{\n    background: var(--bg-card);\n    border: 1px solid var(--border);\n    border-left-width: 6px;\n    border-radius: 0;\n    padding: var(--sp-5);\n  }\n  .model-card.red{ border-left-color: var(--red); }\n  .model-card.blue{ border-left-color: var(--blue); }\n  .model-card h3{\n    font-family: var(--font-mono);\n    font-size: 13px;\n    letter-spacing: 0.05em;\n    text-transform: uppercase;\n    margin: 0 0 var(--sp-1);\n    color: var(--fg1);\n  }\n  .model-card.red h3 .v{ color: var(--red); }\n  .model-card.blue h3 .v{ color: var(--blue); }\n  .model-card .rule{\n    font-size: 13px;\n    color: var(--fg2);\n    margin: 0 0 var(--sp-4);\n    min-height: 38px;\n  }\n\n  /* diagram */\n  .diagram-wrap{\n    display:flex;\n    justify-content:center;\n    padding: var(--sp-4) 0 var(--sp-2);\n  }\n  .diagram{\n    position: relative;\n    transition: width .2s ease, padding .2s ease, border-width .2s ease;\n    font-family: var(--font-mono);\n    font-size: 12px;\n    text-align:center;\n  }\n  .diagram .content-label{\n    display:block;\n    padding: 18px 10px;\n    background: #F2D272;\n    color: #393E41;\n    font-weight: 600;\n  }\n  .diagram.cb{\n    box-sizing: content-box;\n    background: transparent;\n    border-style: solid;\n    border-color: var(--red);\n  }\n  .diagram.bb{\n    box-sizing: border-box;\n    background: transparent;\n    border-style: solid;\n    border-color: var(--blue);\n  }\n  .diagram.cb{ background-color: var(--red-subtle); }\n  .diagram.bb{ background-color: var(--blue-subtle); }\n\n  .total-bar{\n    margin-top: var(--sp-4);\n    height: 22px;\n    position: relative;\n    background: var(--bg-subtle);\n    border-radius: 3px;\n    overflow: hidden;\n  }\n  .total-bar .fill{\n    position:absolute; top:0; left:0; bottom:0;\n    transition: width .2s ease, background .2s ease;\n  }\n  .total-bar .fill.red{ background: var(--red); }\n  .total-bar .fill.blue{ background: var(--blue); }\n  .total-bar .tick{\n    position:absolute; top:-4px; bottom:-4px;\n    border-left: 1px dashed var(--fg3);\n  }\n  .bar-row{\n    display:flex;\n    justify-content: space-between;\n    font-family: var(--font-mono);\n    font-size: 11px;\n    color: var(--fg2);\n    margin-top: 6px;\n  }\n\n  .math{\n    margin-top: var(--sp-4);\n    font-family: var(--font-mono);\n    font-size: 14px;\n    color: var(--fg1);\n    background: var(--bg-subtle);\n    padding: var(--sp-3) var(--sp-4);\n    border-radius: 6px;\n    line-height: 1.7;\n  }\n  .math .op{ color: var(--fg3); margin: 0 4px; }\n  .math .r{ color: var(--red); }\n  .math .b{ color: var(--blue); }\n  .math .tag{\n    font-family: var(--font-mono);\n    font-size: 11px;\n    text-transform: uppercase;\n    letter-spacing: 0.06em;\n    color: var(--fg3);\n    display:block;\n    margin-bottom: 4px;\n  }\n\n  /* sliders */\n  .controls{\n    background: var(--bg-card);\n    border: 1px solid var(--border);\n    border-radius: 6px;\n    padding: var(--sp-5);\n  }\n  .controls h3{\n    font-family: var(--font-mono);\n    font-size: 12px;\n    letter-spacing: 0.06em;\n    text-transform: uppercase;\n    margin: 0 0 var(--sp-4);\n    color: var(--fg2);\n  }\n  .slider-row{\n    display:grid;\n    grid-template-columns: 100px 1fr 64px;\n    align-items: center;\n    gap: var(--sp-4);\n    margin-bottom: var(--sp-3);\n  }\n  .slider-row label{\n    font-family: var(--font-mono);\n    font-size: 13px;\n    color: var(--fg1);\n  }\n  .slider-row .val{\n    font-family: var(--font-mono);\n    font-size: 13px;\n    color: var(--fg1);\n    text-align: right;\n    font-weight: 600;\n  }\n  input[type=\"range\"]{\n    -webkit-appearance: none;\n    appearance: none;\n    width: 100%;\n    background: transparent;\n  }\n  input[type=\"range\"]::-webkit-slider-runnable-track{\n    height: 4px;\n    background: var(--bg-subtle);\n    border-radius: 2px;\n  }\n  input[type=\"range\"]::-moz-range-track{\n    height: 4px;\n    background: var(--bg-subtle);\n    border-radius: 2px;\n  }\n  input[type=\"range\"]::-webkit-slider-thumb{\n    -webkit-appearance: none;\n    appearance: none;\n    width: 16px; height: 16px;\n    border-radius: 50%;\n    background: var(--fg1);\n    border: 2px solid var(--bg);\n    margin-top: -6px;\n    cursor: pointer;\n  }\n  input[type=\"range\"]::-moz-range-thumb{\n    width: 14px; height: 14px;\n    border-radius: 50%;\n    background: var(--fg1);\n    border: 2px solid var(--bg);\n    cursor: pointer;\n  }\n  input[type=\"range\"]:focus-visible{\n    outline: 2px solid var(--red);\n    outline-offset: 4px;\n    border-radius: 2px;\n  }\n\n  /* ---------- Section 3 — the fix ---------- */\n  .fix-grid{\n    display:grid;\n    grid-template-columns: 1.1fr 1fr;\n    gap: var(--sp-5);\n    align-items: start;\n  }\n  @media (max-width: 820px){ .fix-grid{ grid-template-columns: 1fr; } }\n\n  pre.code{\n    background: var(--bg-card);\n    border: 1px solid var(--border);\n    border-radius: 6px;\n    padding: var(--sp-5);\n    margin: 0;\n    font-family: var(--font-mono);\n    font-size: 14px;\n    line-height: 1.7;\n    color: var(--fg1);\n    overflow-x: auto;\n  }\n  pre.code .c{ color: var(--fg3); }\n  pre.code .sel{ color: var(--red); }\n  pre.code .prop{ color: var(--blue); }\n  pre.code .val{ color: var(--green); }\n\n  .note{\n    background: var(--bg-card);\n    border: 1px solid var(--border);\n    border-left: 6px solid var(--blue);\n    padding: var(--sp-5);\n  }\n  .note .tag{\n    font-family: var(--font-mono);\n    font-size: 12px;\n    letter-spacing: 0.08em;\n    text-transform: uppercase;\n    color: var(--blue);\n    margin-bottom: var(--sp-2);\n  }\n  .note p{\n    margin: 0;\n    font-size: 15px;\n    color: var(--fg1);\n    line-height: 1.7;\n  }\n\n  footer.page{\n    padding: var(--sp-6) 0 var(--sp-8);\n    color: var(--fg3);\n    font-family: var(--font-mono);\n    font-size: 12px;\n    letter-spacing: 0.05em;\n    text-transform: uppercase;\n    text-align: center;\n  }\n<\u002Fstyle>\n<\u002Fhead>\n<body>\n\n\n\n<header class=\"page\">\n  <div class=\"inner\">\n    <span class=\"badge\">DESN 368<\u002Fspan>\n    <h1>box-sizing <span class=\"mono\">· the one property that fixes CSS layout<\u002Fspan><\u002Fh1>\n    <p class=\"sub\">Three short interactions. You'll watch the bug happen, understand why it happens, then write one line that fixes it everywhere.<\u002Fp>\n    <div class=\"meta\">\n      <span>Week 5<\u002Fspan><span>CSS Box Model<\u002Fspan><span>~3 min<\u002Fspan>\n    <\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fheader>\n\n<!-- ========== 1. THE SURPRISE ========== -->\n<section class=\"lesson\">\n  <div class=\"wrap\">\n    <p class=\"section-label\"><span class=\"num\">1<\u002Fspan>The surprise<\u002Fp>\n    <h2>Two boxes. Both <span class=\"mono\">width: 300px<\u002Fspan>.<\u002Fh2>\n    <p class=\"lead\">Click the button. Watch what happens.<\u002Fp>\n\n    <div class=\"stage\" id=\"stage1\" data-toggled=\"false\">\n      <div class=\"boxes\">\n        <div class=\"box-col\">\n          <div class=\"box-label\"><span class=\"model-red\">content-box<\u002Fspan> (default)<\u002Fdiv>\n          <div class=\"rail\">\n            <div class=\"demo content-box\" id=\"cbDemo\">width: 300px<\u002Fdiv>\n            <div class=\"overflow-mark\">↑ overflowed the 300px target<\u002Fdiv>\n            <div class=\"ruler\">\n              <div class=\"target\"><\u002Fdiv>\n              <div class=\"target-label\">300px target<\u002Fdiv>\n            <\u002Fdiv>\n            <div class=\"measurement\">rendered: <span class=\"px\" id=\"cbPx\">300px<\u002Fspan><\u002Fdiv>\n          <\u002Fdiv>\n        <\u002Fdiv>\n\n        <div class=\"box-col\">\n          <div class=\"box-label\"><span class=\"model-blue\">border-box<\u002Fspan><\u002Fdiv>\n          <div class=\"rail\">\n            <div class=\"demo border-box\" id=\"bbDemo\">width: 300px<\u002Fdiv>\n            <div class=\"overflow-mark\" style=\"visibility:hidden\">placeholder<\u002Fdiv>\n            <div class=\"ruler\">\n              <div class=\"target\"><\u002Fdiv>\n              <div class=\"target-label\">300px target<\u002Fdiv>\n            <\u002Fdiv>\n            <div class=\"measurement\">rendered: <span class=\"px\" id=\"bbPx\">300px<\u002Fspan><\u002Fdiv>\n          <\u002Fdiv>\n        <\u002Fdiv>\n      <\u002Fdiv>\n\n      <div class=\"toggle-row\">\n        <button class=\"primary\" id=\"toggleBtn\">Add 20px padding + 10px border<\u002Fbutton>\n        <span class=\"status-hint\" id=\"statusHint\">both still 300px · untouched<\u002Fspan>\n      <\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fsection>\n\n<!-- ========== 2. THE WHY ========== -->\n<section class=\"lesson\">\n  <div class=\"wrap\">\n    <p class=\"section-label\"><span class=\"num\">2<\u002Fspan>The why<\u002Fp>\n    <h2>Where does <span class=\"mono\">width<\u002Fspan> actually apply?<\u002Fh2>\n    <p class=\"lead\">Drag the sliders. Watch the total rendered width update on both sides.<\u002Fp>\n\n    <div class=\"why-grid\">\n      <div class=\"model-card red\">\n        <h3><span class=\"v\">content-box<\u002Fspan> · default<\u002Fh3>\n        <p class=\"rule\">width = content only. Padding and border add on top.<\u002Fp>\n\n        <div class=\"diagram-wrap\">\n          <div class=\"diagram cb\" id=\"cbDiag\">\n            <span class=\"content-label\">content · 300px<\u002Fspan>\n          <\u002Fdiv>\n        <\u002Fdiv>\n\n        <div class=\"total-bar\" id=\"cbBar\">\n          <div class=\"fill red\" id=\"cbFill\"><\u002Fdiv>\n          <div class=\"tick\" id=\"cbTick\"><\u002Fdiv>\n        <\u002Fdiv>\n        <div class=\"bar-row\"><span>0<\u002Fspan><span id=\"cbBarMax\">500px<\u002Fspan><\u002Fdiv>\n\n        <div class=\"math\">\n          <span class=\"tag\">rendered width<\u002Fspan>\n          <span>300<\u002Fspan><span class=\"op\">+<\u002Fspan><span class=\"r\" id=\"cbPad\">40<\u002Fspan><span class=\"op\">+<\u002Fspan><span class=\"r\" id=\"cbBor\">20<\u002Fspan><span class=\"op\">=<\u002Fspan><strong class=\"r\" id=\"cbTotal\">360px<\u002Fstrong>\n        <\u002Fdiv>\n      <\u002Fdiv>\n\n      <div class=\"model-card blue\">\n        <h3><span class=\"v\">border-box<\u002Fspan><\u002Fh3>\n        <p class=\"rule\">width = content + padding + border. Padding eats into content.<\u002Fp>\n\n        <div class=\"diagram-wrap\">\n          <div class=\"diagram bb\" id=\"bbDiag\">\n            <span class=\"content-label\" id=\"bbContentLabel\">content · 240px<\u002Fspan>\n          <\u002Fdiv>\n        <\u002Fdiv>\n\n        <div class=\"total-bar\" id=\"bbBar\">\n          <div class=\"fill blue\" id=\"bbFill\"><\u002Fdiv>\n          <div class=\"tick\" id=\"bbTick\"><\u002Fdiv>\n        <\u002Fdiv>\n        <div class=\"bar-row\"><span>0<\u002Fspan><span id=\"bbBarMax\">500px<\u002Fspan><\u002Fdiv>\n\n        <div class=\"math\">\n          <span class=\"tag\">rendered width<\u002Fspan>\n          <strong class=\"b\" id=\"bbTotal\">300px<\u002Fstrong><span class=\"op\">·<\u002Fspan><span style=\"color:var(--fg3)\">always<\u002Fspan>\n        <\u002Fdiv>\n      <\u002Fdiv>\n    <\u002Fdiv>\n\n    <div class=\"controls\">\n      <h3>Tweak the values<\u002Fh3>\n      <div class=\"slider-row\">\n        <label for=\"padInput\">padding<\u002Flabel>\n        <input type=\"range\" id=\"padInput\" min=\"0\" max=\"60\" value=\"20\" step=\"1\">\n        <span class=\"val\"><span id=\"padVal\">20<\u002Fspan>px<\u002Fspan>\n      <\u002Fdiv>\n      <div class=\"slider-row\">\n        <label for=\"borInput\">border<\u002Flabel>\n        <input type=\"range\" id=\"borInput\" min=\"0\" max=\"30\" value=\"10\" step=\"1\">\n        <span class=\"val\"><span id=\"borVal\">10<\u002Fspan>px<\u002Fspan>\n      <\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fsection>\n\n<!-- ========== 3. THE FIX ========== -->\n<section class=\"lesson\">\n  <div class=\"wrap\">\n    <p class=\"section-label\"><span class=\"num\">3<\u002Fspan>The fix<\u002Fp>\n    <h2>One reset. Every stylesheet. Every time.<\u002Fh2>\n    <p class=\"lead\">Put this at the top of your CSS. You'll never calculate overflow math again.<\u002Fp>\n\n    <div class=\"fix-grid\">\n<pre class=\"code\"><span class=\"c\">/* The universal reset — first rule in every stylesheet */<\u002Fspan>\n<span class=\"sel\">*<\u002Fspan> {\n  <span class=\"prop\">box-sizing<\u002Fspan>: <span class=\"val\">border-box<\u002Fspan>;\n}<\u002Fpre>\n\n      <div class=\"note\">\n        <div class=\"tag\">Why isn't this the default?<\u002Fdiv>\n        <p>When CSS shipped in 1996, <span style=\"color:var(--red)\">content-box<\u002Fspan> was the spec. Millions of sites were built against it. Browsers can't change the default now — older layouts would break overnight. So the standard stays, and we opt in at the top of every stylesheet ourselves.<\u002Fp>\n      <\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fsection>\n\n<footer class=\"page\">DESN 368 · Web Design Fundamentals · Spring 2026<\u002Ffooter>\n\n<script>\n  // ---------- Section 1: the surprise ----------\n  const stage1 = document.getElementById('stage1');\n  const toggleBtn = document.getElementById('toggleBtn');\n  const statusHint = document.getElementById('statusHint');\n  const cbPx = document.getElementById('cbPx');\n  const bbPx = document.getElementById('bbPx');\n  const cbDemo = document.getElementById('cbDemo');\n  const bbDemo = document.getElementById('bbDemo');\n\n  function measure(){\n    cbPx.textContent = cbDemo.offsetWidth + 'px';\n    bbPx.textContent = bbDemo.offsetWidth + 'px';\n    const toggled = stage1.dataset.toggled === 'true';\n    cbPx.classList.toggle('bad', toggled);\n    bbPx.classList.toggle('good', toggled);\n  }\n  measure();\n\n  toggleBtn.addEventListener('click', () => {\n    const on = stage1.dataset.toggled === 'true';\n    stage1.dataset.toggled = on ? 'false' : 'true';\n    toggleBtn.textContent = on\n      ? 'Add 20px padding + 10px border'\n      : 'Reset';\n    statusHint.textContent = on\n      ? 'both still 300px · untouched'\n      : 'same width property · different results';\n    // wait for transition to finish before measuring final values\n    setTimeout(measure, 400);\n    // but also measure immediately for snappy reset\n    requestAnimationFrame(measure);\n  });\n  window.addEventListener('resize', measure);\n\n  // ---------- Section 2: the why ----------\n  const padInput = document.getElementById('padInput');\n  const borInput = document.getElementById('borInput');\n  const padVal = document.getElementById('padVal');\n  const borVal = document.getElementById('borVal');\n\n  const cbDiag = document.getElementById('cbDiag');\n  const bbDiag = document.getElementById('bbDiag');\n  const bbContentLabel = document.getElementById('bbContentLabel');\n\n  const cbPad = document.getElementById('cbPad');\n  const cbBor = document.getElementById('cbBor');\n  const cbTotal = document.getElementById('cbTotal');\n  const bbTotal = document.getElementById('bbTotal');\n\n  const cbFill = document.getElementById('cbFill');\n  const bbFill = document.getElementById('bbFill');\n  const cbTick = document.getElementById('cbTick');\n  const bbTick = document.getElementById('bbTick');\n\n  const CONTENT = 300;\n  const BAR_MAX = 500;\n\n  function update(){\n    const p = +padInput.value;\n    const b = +borInput.value;\n    padVal.textContent = p;\n    borVal.textContent = b;\n\n    // content-box diagram: grows with padding + border\n    cbDiag.style.width = CONTENT + 'px';\n    cbDiag.style.padding = p + 'px';\n    cbDiag.style.borderWidth = b + 'px';\n\n    // border-box diagram: total stays 300, inner shrinks\n    bbDiag.style.width = CONTENT + 'px';\n    bbDiag.style.padding = p + 'px';\n    bbDiag.style.borderWidth = b + 'px';\n\n    const cbTotalPx = CONTENT + (p * 2) + (b * 2);\n    const bbTotalPx = CONTENT;\n    const bbInner = Math.max(0, CONTENT - (p * 2) - (b * 2));\n\n    // math display\n    cbPad.textContent = p * 2;\n    cbBor.textContent = b * 2;\n    cbTotal.textContent = cbTotalPx + 'px';\n    bbTotal.textContent = bbTotalPx + 'px';\n    bbContentLabel.textContent = 'content · ' + bbInner + 'px';\n\n    // bars\n    const cbPct = Math.min(100, (cbTotalPx / BAR_MAX) * 100);\n    const bbPct = (bbTotalPx / BAR_MAX) * 100;\n    cbFill.style.width = cbPct + '%';\n    bbFill.style.width = bbPct + '%';\n\n    // 300px reference ticks\n    const tickPct = (CONTENT / BAR_MAX) * 100;\n    cbTick.style.left = tickPct + '%';\n    bbTick.style.left = tickPct + '%';\n  }\n\n  padInput.addEventListener('input', update);\n  borInput.addEventListener('input', update);\n  update();\n<\u002Fscript>\n\n\n\n<\u002Fbody><\u002Fhtml>"
+  </script>
+</body>
+</html>

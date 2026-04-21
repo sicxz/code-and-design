@@ -97,6 +97,7 @@ export const COURSE_REGISTRY: Record<CourseId, CourseDefinition> = {
       { slug: 'week-0', title: 'Week 0: Setup', route: '/1/weeks/week-0' },
       { slug: 'week-1', title: 'Week 1: HTML Fundamentals & Internet Basics', route: '/1/weeks/week-1' },
       { slug: 'week-2', title: 'Week 2: From Cloud to Code', route: '/1/weeks/week-2' },
+      { slug: 'week-4', title: 'Week 4: <UL>TR4 L1STS, 4NCH0R P0W3R, & B0X M4G1C', route: '/1/weeks/week-4' },
     ],
   },
   '2': {

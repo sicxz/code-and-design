@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+import Card from '../../../components/Card.astro';
+import SectionHeader from '../../../components/SectionHeader.astro';
+---
+
+<BaseLayout title="Week 4: <UL>TR4 L1STS, 4NCH0R P0W3R, & B0X M4G1C - DESN368">
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb">
+                <a href="/1">Course Overview</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Week 4: The CSS Box Model</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-content two-column">
+        <div class="main-content fade-in">
+            <Card variant="accent" class="card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <SectionHeader level={1} icon="layers" badge={{ text: "Available", variant: "success" }}>
+                    Week 4: &lt;UL&gt;TR4 L1STS, 4NCH0R P0W3R, &amp; B0X M4G1C
+                </SectionHeader>
+                <p class="subtitle">Spring 2026 · Week 4</p>
+                <p>Lists, anchor tags, and the CSS box model — the three tools that make real pages feel real.</p>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <Card variant="enhanced" class="card-enhanced">
+                <SectionHeader icon="book" badge={{ text: "This Week", variant: "info" }}>
+                    Readings &amp; Tutorials
+                </SectionHeader>
+
+                <div class="resource-list">
+                    <a href="/tutorials/a-box-story/" class="resource-item" target="_blank" rel="noreferrer">
+                        <div class="resource-icon">
+                            <Icon name="book" size={20} />
+                        </div>
+                        <div class="resource-body">
+                            <div class="resource-title">The Story of the Box</div>
+                            <div class="resource-desc">An interactive explainer — hover and click elements to see their content, padding, border, and margin live. Includes alignment checks and a box-model diagram.</div>
+                        </div>
+                        <Icon name="link" size={16} class="resource-arrow" />
+                    </a>
+
+                    <a href="/tutorials/box-sizing/" class="resource-item" target="_blank" rel="noreferrer">
+                        <div class="resource-icon">
+                            <Icon name="code" size={20} />
+                        </div>
+                        <div class="resource-body">
+                            <div class="resource-title">box-sizing: an interactive lesson</div>
+                            <div class="resource-desc">Step through how <code>box-sizing: content-box</code> vs <code>border-box</code> changes the way width and height are calculated.</div>
+                        </div>
+                        <Icon name="link" size={16} class="resource-arrow" />
+                    </a>
+
+                    <a href="/tutorials/fonts-and-google-fonts/" class="resource-item" target="_blank" rel="noreferrer">
+                        <div class="resource-icon">
+                            <Icon name="file-text" size={20} />
+                        </div>
+                        <div class="resource-body">
+                            <div class="resource-title">Fonts &amp; Google Fonts</div>
+                            <div class="resource-desc">How web fonts work, how to load Google Fonts, and how to apply them with CSS.</div>
+                        </div>
+                        <Icon name="link" size={16} class="resource-arrow" />
+                    </a>
+                </div>
+            </Card>
+        </div>
+
+        <aside class="sidebar">
+            <section class="card card-action card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <h3>
+                    <span class="icon-enhanced icon-primary">
+                        <Icon name="zap" size={20} />
+                    </span>
+                    Quick Actions
+                </h3>
+                <div class="quick-action-stack">
+                    <a href="/1" class="btn btn-secondary">
+                        <Icon name="book" size={16} class="btn-icon" />
+                        Course Overview
+                    </a>
+                    <a href="/tutorials/a-box-story/" class="btn btn-start" target="_blank" rel="noreferrer">
+                        <Icon name="play" size={16} class="btn-icon" />
+                        Open Box Story
+                    </a>
+                    <a href="/tutorials/box-sizing/" class="btn btn-primary" target="_blank" rel="noreferrer">
+                        <Icon name="play" size={16} class="btn-icon" />
+                        Open box-sizing lesson
+                    </a>
+                </div>
+            </section>
+        </aside>
+    </main>
+
+    <style>
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: -8px;
+            margin-bottom: 16px;
+        }
+
+        .resource-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            background: var(--surface-alt);
+            transition: border-color 0.15s, background 0.15s;
+        }
+
+        .resource-item:hover {
+            border-color: var(--brand-primary);
+            background: var(--surface);
+        }
+
+        .resource-icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--eagle-red-light);
+            border-radius: 8px;
+            color: var(--eagle-red-text);
+        }
+
+        .resource-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .resource-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .resource-arrow {
+            flex-shrink: 0;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .quick-action-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    </style>
+</BaseLayout>
