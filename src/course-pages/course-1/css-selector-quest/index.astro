@@ -36,11 +36,10 @@ const chapters = [
       ['Descendant selector', helpLinks.descendant],
     ],
     missions: [
-      ['h1', 'color #2c3e50, font-size 3em, text-align center.'],
-      ['h2', 'color #555.'],
-      ['.bio p', 'line-height 1.8.'],
+      ['h1', 'create a clear main title using color, font size, and text alignment.'],
+      ['h2', 'adjust the chapter heading color.'],
+      ['.bio p', 'improve paragraph readability with line height.'],
     ],
-    hint: ['h1 { }', 'h2 { }', '.bio p { }'],
     open: true,
   },
   {
@@ -59,11 +58,10 @@ const chapters = [
       ['Descendant selector', helpLinks.descendant],
     ],
     missions: [
-      ['figure', 'margin 40px auto.'],
-      ['figure img', 'max-width 100%, height auto, border 2px solid #ddd.'],
-      ['figcaption', 'text-align center, font-style italic, padding-top 10px, color #666.'],
+      ['figure', 'position the image-and-caption group so it feels centered and intentional.'],
+      ['figure img', 'make the image responsive and add a visible frame.'],
+      ['figcaption', 'style the caption so it feels connected to the image but quieter than the main text.'],
     ],
-    hint: ['figure { }', 'figure img { }', 'figcaption { }'],
   },
   {
     number: 3,
@@ -84,13 +82,12 @@ const chapters = [
       [':visited', helpLinks.visited],
     ],
     missions: [
-      ['a:link', 'color #3498db, text-decoration none.'],
-      ['a:visited', 'color #8e44ad.'],
-      ['a:focus', 'outline 2px solid #3498db, background #e8f4f8.'],
-      ['a:hover', 'color #2980b9, text-decoration underline.'],
-      ['a:active', 'color #1c5980.'],
+      ['a:link', 'style unvisited links.'],
+      ['a:visited', 'style visited links.'],
+      ['a:focus', 'create a clear keyboard focus state.'],
+      ['a:hover', 'create a visible hover state.'],
+      ['a:active', 'create a pressed or activated state.'],
     ],
-    hint: ['a:link { }', 'a:visited { }', 'a:focus { }', 'a:hover { }', 'a:active { }'],
   },
   {
     number: 4,
@@ -106,10 +103,9 @@ const chapters = [
       ['Descendant selector', helpLinks.descendant],
     ],
     missions: [
-      ['.timeline', 'list-style none.'],
-      ['.timeline li', 'border-left 3px solid #3498db, padding-left 20px, margin-bottom 15px.'],
+      ['.timeline', 'remove the default list styling.'],
+      ['.timeline li', 'make each timeline item feel like part of a visual trail.'],
     ],
-    hint: ['.timeline { }', '.timeline li { }'],
   },
   {
     number: 5,
@@ -126,11 +122,10 @@ const chapters = [
       ['Descendant selector', helpLinks.descendant],
     ],
     missions: [
-      ['blockquote', 'font-size 1.5em, font-style italic, color #555.'],
-      ['blockquote', 'border-left 4px solid #3498db, padding 20px, margin 40px 0.'],
-      ['blockquote cite', 'font-size 0.8em, color #999, font-style normal.'],
+      ['blockquote', 'make the quotation feel different from regular paragraph text.'],
+      ['blockquote', 'add spacing and a visual edge so it reads like a pull quote.'],
+      ['blockquote cite', 'make the citation smaller and quieter than the quotation.'],
     ],
-    hint: ['blockquote { }', 'blockquote cite { }'],
   },
   {
     number: 6,
@@ -147,14 +142,11 @@ const chapters = [
       ['Full selectors reference', helpLinks.selectorsReference],
     ],
     missions: [
-      ['section', 'background-color lightgreen.'],
-      ['section', 'margin-bottom 40px.'],
-      ['section', 'border 2px solid #333.'],
-      ['section', 'padding 20px.'],
-      ['header', 'padding 30px, background #ecf0f1.'],
-      ['main', 'padding 40px 20px.'],
+      ['section', 'make each content section visibly separate.'],
+      ['section', 'use background, margin, border, and padding to explore the box model.'],
+      ['header', 'create deliberate spacing and background treatment for the opening area.'],
+      ['main', 'add spacing around the main content area.'],
     ],
-    hint: ['section { }', 'header { }', 'main { }'],
   },
 ];
 
@@ -176,7 +168,7 @@ const spellbookRows = [
           <p class="selector-quest__eyebrow">CSS Selectors</p>
           <h1 id="sq-page-title">CSS Selector Quest: The Selector Guild</h1>
           <p class="selector-quest__intro">
-            In the city of Markup, every element is waiting to be found. A CSS selector is a search spell: it tells the browser exactly which parts of the page should change. Complete each chapter by choosing the right selector, writing the CSS rule, and checking the result in the CodePen.
+            In the city of Markup, every element is waiting to be found. A CSS selector is a search spell: it tells the browser exactly which parts of the page should change. Complete each chapter by choosing the right selector block, adding CSS declarations, and checking the result in the CodePen.
           </p>
         </header>
 
@@ -206,15 +198,14 @@ const spellbookRows = [
 
                 <h2>Mission</h2>
                 <ul class="selector-quest__mission-list">
-                  {chapter.missions.map(([selector, declaration]) => (
-                    <li><code>{selector}</code>: {declaration}</li>
+                  {chapter.missions.map(([selector, task]) => (
+                    <li>In the <code>{selector}</code> rule, {task}</li>
                   ))}
                 </ul>
 
-                <details class="selector-quest__hint">
-                  <summary>Hint selector shape</summary>
-                  <pre><code>{chapter.hint.join('\n')}</code></pre>
-                </details>
+                <p class="selector-quest__hint-note">
+                  Find this selector block in the CSS panel and complete the missing declarations.
+                </p>
 
                 <h2>Help Links</h2>
                 <ul class="selector-quest__help-links">

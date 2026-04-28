@@ -47,6 +47,56 @@ import SectionHeader from '../../../components/SectionHeader.astro';
                     </a>
                 </div>
             </Card>
+
+            <div class="section-divider"></div>
+
+            <Card variant="enhanced" class="card-enhanced assignment-card">
+                <SectionHeader icon="clipboard-list" badge={{ text: "Practice", variant: "info" }}>
+                    Assignment
+                </SectionHeader>
+
+                <div class="important-note">
+                    <strong>Important:</strong>
+                    You may use AI as a reference or tutor, but you may not use AI to generate your completed CSS. This assignment is about making your own CSS decisions, testing them, and understanding how selectors affect the page.
+                </div>
+
+                <section class="assignment-section" aria-labelledby="selector-quest-instructions">
+                    <h2 id="selector-quest-instructions">Instructions</h2>
+                    <ol class="assignment-list">
+                        <li>Log in to CodePen.</li>
+                        <li>Open CSS Selector Quest: The Selector Guild.</li>
+                        <li>Read each chapter in the left panel.</li>
+                        <li>In the CSS panel, complete the empty selector blocks.</li>
+                        <li>Use the comments to know which CSS properties to practice.</li>
+                        <li>Choose your own values and test them in the preview.</li>
+                        <li>Work one chapter at a time.</li>
+                        <li>When finished, click Fork.</li>
+                        <li>Rename your Pen: <strong>CSS Selector Quest LastName FirstName - f25</strong></li>
+                        <li>Submit the URL of your forked CodePen.</li>
+                    </ol>
+                </section>
+
+                <section class="assignment-section" aria-labelledby="selector-quest-practice">
+                    <h2 id="selector-quest-practice">What You'll Practice</h2>
+                    <ul class="practice-list">
+                        <li>type selectors</li>
+                        <li>class selectors</li>
+                        <li>descendant selectors</li>
+                        <li>link pseudo-classes</li>
+                        <li>semantic HTML elements</li>
+                        <li>typography</li>
+                        <li>responsive images</li>
+                        <li>lists</li>
+                        <li>blockquotes</li>
+                        <li>the CSS box model</li>
+                    </ul>
+                </section>
+
+                <section class="assignment-section" aria-labelledby="selector-quest-submission">
+                    <h2 id="selector-quest-submission">Submission</h2>
+                    <p class="submission-note">Submit your forked CodePen URL.</p>
+                </section>
+            </Card>
         </div>
 
         <aside class="sidebar">
@@ -144,6 +194,53 @@ import SectionHeader from '../../../components/SectionHeader.astro';
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+        }
+
+        .assignment-card {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .important-note {
+            padding: 14px 16px;
+            border: 1px solid var(--eagle-red-border);
+            border-radius: 8px;
+            background: var(--eagle-red-subtle);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .assignment-section {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .assignment-section h2 {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .assignment-list,
+        .practice-list {
+            margin: 0;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .practice-list {
+            columns: 2;
+        }
+
+        .submission-note {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 700px) {
+            .practice-list {
+                columns: 1;
+            }
         }
     </style>
 </BaseLayout>
