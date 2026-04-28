@@ -1,0 +1,274 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/selector-quest.css';
+
+const codepenEmbedUrl = 'https://codepen.io/editor/tmasingale/pen/019dd4c7-6216-7eaa-8caf-d056f6e6f77f?default-tab=css,result&editable=true';
+
+const helpLinks = {
+  basic: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Basic_selectors',
+  descendant: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Descendant_combinator',
+  classSelectors: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Class_selectors',
+  pseudoClasses: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes',
+  hover: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:hover',
+  focus: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus',
+  visited: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:visited',
+  figure: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/figure',
+  figcaption: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/figcaption',
+  blockquote: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/blockquote',
+  cite: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/cite',
+  boxModel: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model',
+  selectorsReference: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors',
+};
+
+const chapters = [
+  {
+    number: 1,
+    title: 'Chapter 1: The City of Markup',
+    subtitle: 'Type selectors and a descendant selector',
+    story: 'In Markup, every building has a tag name. The grand tower is an h1. The chapter signs are h2 elements. The ordinary citizens are paragraphs, moving through the page with quiet structure. Your first job is to teach CSS how to recognize them.',
+    selectorMap: [
+      ['h1', 'Finds the main page title.'],
+      ['h2', 'Finds each chapter heading.'],
+      ['.bio p', 'Finds paragraphs only when they live inside the bio section.'],
+    ],
+    help: [
+      ['Basic selectors', helpLinks.basic],
+      ['Descendant selector', helpLinks.descendant],
+    ],
+    missions: [
+      ['h1', 'color #2c3e50, font-size 3em, text-align center.'],
+      ['h2', 'color #555.'],
+      ['.bio p', 'line-height 1.8.'],
+    ],
+    hint: ['h1 { }', 'h2 { }', '.bio p { }'],
+    open: true,
+  },
+  {
+    number: 2,
+    title: 'Chapter 2: The Portrait of the Selector',
+    subtitle: 'Semantic media elements and responsive images',
+    story: 'The Selector Guild keeps a portrait in the archive. The image and its caption belong together, so the figure needs to behave like a single exhibit piece.',
+    selectorMap: [
+      ['figure', 'Finds the full image-and-caption group.'],
+      ['figure img', 'Finds only images inside a figure.'],
+      ['figcaption', 'Finds the caption text attached to the figure.'],
+    ],
+    help: [
+      ['figure', helpLinks.figure],
+      ['figcaption', helpLinks.figcaption],
+      ['Descendant selector', helpLinks.descendant],
+    ],
+    missions: [
+      ['figure', 'margin 40px auto.'],
+      ['figure img', 'max-width 100%, height auto, border 2px solid #ddd.'],
+      ['figcaption', 'text-align center, font-style italic, padding-top 10px, color #666.'],
+    ],
+    hint: ['figure { }', 'figure img { }', 'figcaption { }'],
+  },
+  {
+    number: 3,
+    title: 'Chapter 3: The Link Portals',
+    subtitle: 'Pseudo-classes for link states',
+    story: 'In Markup, links are portals. Some have never been opened. Some have already been visited. Some glow when hovered, focused, or pressed. Pseudo-classes let CSS detect those moments.',
+    selectorMap: [
+      ['a:link', 'Finds links that have not been visited.'],
+      ['a:visited', 'Finds links the browser recognizes as visited.'],
+      ['a:focus', 'Finds a link selected by keyboard or click focus.'],
+      ['a:hover', 'Finds a link while the pointer is over it.'],
+      ['a:active', 'Finds a link while it is being activated.'],
+    ],
+    help: [
+      ['Pseudo-classes', helpLinks.pseudoClasses],
+      [':hover', helpLinks.hover],
+      [':focus', helpLinks.focus],
+      [':visited', helpLinks.visited],
+    ],
+    missions: [
+      ['a:link', 'color #3498db, text-decoration none.'],
+      ['a:visited', 'color #8e44ad.'],
+      ['a:focus', 'outline 2px solid #3498db, background #e8f4f8.'],
+      ['a:hover', 'color #2980b9, text-decoration underline.'],
+      ['a:active', 'color #1c5980.'],
+    ],
+    hint: ['a:link { }', 'a:visited { }', 'a:focus { }', 'a:hover { }', 'a:active { }'],
+  },
+  {
+    number: 4,
+    title: 'Chapter 4: The Timeline Trail',
+    subtitle: 'Class selector plus descendant list items',
+    story: 'The Guild records its discoveries on a timeline. A normal list is too plain for this trail, so CSS must find the timeline and then find only the list items inside it.',
+    selectorMap: [
+      ['.timeline', 'Finds the list with the class name timeline.'],
+      ['.timeline li', 'Finds list items only when they are inside the timeline.'],
+    ],
+    help: [
+      ['Class selectors', helpLinks.classSelectors],
+      ['Descendant selector', helpLinks.descendant],
+    ],
+    missions: [
+      ['.timeline', 'list-style none.'],
+      ['.timeline li', 'border-left 3px solid #3498db, padding-left 20px, margin-bottom 15px.'],
+    ],
+    hint: ['.timeline { }', '.timeline li { }'],
+  },
+  {
+    number: 5,
+    title: 'Chapter 5: The Quotation Chamber',
+    subtitle: 'Pull quote styling and a nested cite selector',
+    story: 'The oldest rule in the Guild is written as a quotation. It should sound different from the surrounding text. The citation should be quieter than the quote itself.',
+    selectorMap: [
+      ['blockquote', 'Finds the full quotation block.'],
+      ['blockquote cite', 'Finds the citation only when it appears inside a blockquote.'],
+    ],
+    help: [
+      ['blockquote', helpLinks.blockquote],
+      ['cite', helpLinks.cite],
+      ['Descendant selector', helpLinks.descendant],
+    ],
+    missions: [
+      ['blockquote', 'font-size 1.5em, font-style italic, color #555.'],
+      ['blockquote', 'border-left 4px solid #3498db, padding 20px, margin 40px 0.'],
+      ['blockquote cite', 'font-size 0.8em, color #999, font-style normal.'],
+    ],
+    hint: ['blockquote { }', 'blockquote cite { }'],
+  },
+  {
+    number: 6,
+    title: 'Chapter 6: The Box Model Castle',
+    subtitle: 'Semantic layout selectors and spacing',
+    story: 'The final lesson takes place inside the Box Model Castle. Every room has content, padding, border, and margin. Use semantic selectors to make those spaces visible.',
+    selectorMap: [
+      ['section', 'Finds each major content room.'],
+      ['header', 'Finds the opening banner area.'],
+      ['main', 'Finds the main content wrapper.'],
+    ],
+    help: [
+      ['Box model', helpLinks.boxModel],
+      ['Full selectors reference', helpLinks.selectorsReference],
+    ],
+    missions: [
+      ['section', 'background-color lightgreen.'],
+      ['section', 'margin-bottom 40px.'],
+      ['section', 'border 2px solid #333.'],
+      ['section', 'padding 20px.'],
+      ['header', 'padding 30px, background #ecf0f1.'],
+      ['main', 'padding 40px 20px.'],
+    ],
+    hint: ['section { }', 'header { }', 'main { }'],
+  },
+];
+
+const spellbookRows = [
+  ['Type selector', 'h1', 'Finds every matching HTML element.'],
+  ['Class selector', '.timeline', 'Finds every element with that class name.'],
+  ['Descendant selector', '.bio p', 'Finds matching elements nested inside another selector.'],
+  ['Pseudo-class', 'a:hover', 'Finds an element in a specific state or interaction moment.'],
+];
+---
+
+<BaseLayout title="CSS Selector Quest: The Selector Guild - DESN368" workspaceMode={true}>
+  <main class="selector-quest" aria-labelledby="sq-page-title">
+    <div class="selector-quest__layout">
+      <aside class="selector-quest__story-panel" aria-label="CSS selector quest instructions">
+        <a class="selector-quest__back-link" href="/1/weeks/week-5">&larr; Week 5</a>
+
+        <header class="selector-quest__hero">
+          <p class="selector-quest__eyebrow">CSS Selectors</p>
+          <h1 id="sq-page-title">CSS Selector Quest: The Selector Guild</h1>
+          <p class="selector-quest__intro">
+            In the city of Markup, every element is waiting to be found. A CSS selector is a search spell: it tells the browser exactly which parts of the page should change. Complete each chapter by choosing the right selector, writing the CSS rule, and checking the result in the CodePen.
+          </p>
+        </header>
+
+        <section class="selector-quest__chapters" aria-label="Selector Guild story chapters">
+          {chapters.map((chapter) => (
+            <details class="selector-quest__chapter" open={chapter.open}>
+              <summary>
+                <span class="selector-quest__chapter-number">{chapter.number}</span>
+                <span class="selector-quest__chapter-heading">
+                  <span class="selector-quest__chapter-title">{chapter.title}</span>
+                  <span class="selector-quest__chapter-subtitle">{chapter.subtitle}</span>
+                </span>
+              </summary>
+
+              <div class="selector-quest__chapter-content">
+                <p class="selector-quest__story">{chapter.story}</p>
+
+                <h2>Selector Map</h2>
+                <dl class="selector-quest__selector-map">
+                  {chapter.selectorMap.map(([selector, description]) => (
+                    <div>
+                      <dt><code>{selector}</code></dt>
+                      <dd>{description}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <h2>Mission</h2>
+                <ul class="selector-quest__mission-list">
+                  {chapter.missions.map(([selector, declaration]) => (
+                    <li><code>{selector}</code>: {declaration}</li>
+                  ))}
+                </ul>
+
+                <details class="selector-quest__hint">
+                  <summary>Hint selector shape</summary>
+                  <pre><code>{chapter.hint.join('\n')}</code></pre>
+                </details>
+
+                <h2>Help Links</h2>
+                <ul class="selector-quest__help-links">
+                  {chapter.help.map(([label, url]) => (
+                    <li>
+                      <a href={url} target="_blank" rel="noopener noreferrer">
+                        {label}
+                        <span aria-hidden="true">&#8599;</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </details>
+          ))}
+        </section>
+
+        <section class="selector-quest__spellbook" aria-labelledby="sq-spellbook-title">
+          <h2 id="sq-spellbook-title">Selector Spellbook</h2>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Selector Type</th>
+                <th scope="col">Example</th>
+                <th scope="col">What It Finds</th>
+              </tr>
+            </thead>
+            <tbody>
+              {spellbookRows.map(([type, example, description]) => (
+                <tr>
+                  <td>{type}</td>
+                  <td><code>{example}</code></td>
+                  <td>{description}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p>
+            <a href={helpLinks.selectorsReference} target="_blank" rel="noopener noreferrer">
+              Open the full MDN selectors reference
+              <span aria-hidden="true">&#8599;</span>
+            </a>
+          </p>
+        </section>
+      </aside>
+
+      <section class="selector-quest__pen-panel" aria-label="CodePen practice area">
+        <iframe
+          title="CSS Selector Quest CodePen"
+          src={codepenEmbedUrl}
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

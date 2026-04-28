@@ -1,0 +1,140 @@
+/* CSS Selector Quest: paste this into the CodePen CSS panel.
+   Complete each selector block. The comments tell you what to add. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f8fb;
+  color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-header {
+  text-align: center;
+}
+
+.kicker,
+.tagline {
+  color: #666;
+}
+
+code {
+  background: #eef0f3;
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+}
+
+img {
+  display: block;
+}
+
+/* Chapter 1: The City of Markup */
+
+h1 {
+  /* color: #2c3e50; */
+  /* font-size: 3em; */
+  /* text-align: center; */
+}
+
+h2 {
+  /* color: #555; */
+}
+
+.bio p {
+  /* line-height: 1.8; */
+}
+
+/* Chapter 2: The Portrait of a Target */
+
+figure {
+  /* margin: 40px auto; */
+}
+
+figure img {
+  /* max-width: 100%; */
+  /* height: auto; */
+  /* border: 2px solid #ddd; */
+}
+
+figcaption {
+  /* text-align: center; */
+  /* font-style: italic; */
+  /* padding-top: 10px; */
+  /* color: #666; */
+}
+
+/* Chapter 3: The Link Portal
+   Recommended order: link, visited, focus, hover, active */
+
+a:link {
+  /* color: #3498db; */
+  /* text-decoration: none; */
+}
+
+a:visited {
+  /* color: #8e44ad; */
+}
+
+a:focus {
+  /* outline: 2px solid #3498db; */
+  /* background: #e8f4f8; */
+}
+
+a:hover {
+  /* color: #2980b9; */
+  /* text-decoration: underline; */
+}
+
+a:active {
+  /* color: #1c5980; */
+}
+
+/* Chapter 4: The Selector Timeline */
+
+.timeline {
+  /* list-style: none; */
+}
+
+.timeline li {
+  /* border-left: 3px solid #3498db; */
+  /* padding-left: 20px; */
+  /* margin-bottom: 15px; */
+}
+
+/* Chapter 5: The Rule of Specificity */
+
+blockquote {
+  /* font-size: 1.5em; */
+  /* font-style: italic; */
+  /* color: #555; */
+  /* border-left: 4px solid #3498db; */
+  /* padding: 20px; */
+  /* margin: 40px 0; */
+}
+
+blockquote cite {
+  /* font-size: 0.8em; */
+  /* color: #999; */
+  /* font-style: normal; */
+}
+
+/* Chapter 6: The Box Model District */
+
+section {
+  /* background-color: lightgreen; */
+  /* margin-bottom: 40px; */
+  /* border: 2px solid #333; */
+  /* padding: 20px; */
+}
+
+header {
+  /* padding: 30px; */
+  /* background: #ecf0f1; */
+}
+
+main {
+  /* padding: 40px 20px; */
+}

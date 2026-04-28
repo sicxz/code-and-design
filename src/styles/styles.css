@@ -783,6 +783,13 @@ body {
   font-weight: 600;
 }
 
+.state-label-active {
+  background: var(--eagle-blue-light);
+  color: var(--eagle-blue-text);
+  border: 1px solid rgba(1, 186, 239, 0.35);
+  font-weight: 700;
+}
+
 .state-label-coming {
   background-color: var(--color-neutral-subtle);
   color: var(--text-secondary);
@@ -1271,6 +1278,7 @@ body[data-course='1'] .text-gradient {
 .status-available {
   background: var(--color-success-emphasis);
 }
+.status-active { background: var(--eagle-blue-text); }
 .status-coming { background: var(--text-muted); }
 .status-locked { background: var(--text-muted); }
 .status-coming-soon { background: var(--color-attention-emphasis); }

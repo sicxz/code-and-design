@@ -1,0 +1,69 @@
+<!-- CSS Selector Quest: paste this into the CodePen HTML panel. -->
+<header class="site-header">
+  <p class="kicker">A tiny story about CSS</p>
+  <h1>The Selector Guild</h1>
+  <p class="tagline">In the city of Markup, every element is waiting to be found.</p>
+</header>
+
+<main>
+  <section class="bio">
+    <h2>Chapter 1: The City of Markup</h2>
+    <p>
+      In Markup, every building has a tag name. The grand tower is an <code>h1</code>. The chapter signs are <code>h2</code> elements. The ordinary citizens are paragraphs, moving through the page with quiet structure.
+    </p>
+    <p>
+      A selector is a search spell. It tells CSS exactly who should change. Some spells find every element of one kind. Others find only the elements living inside a particular neighborhood, like paragraphs inside <code>.bio</code>.
+    </p>
+  </section>
+
+  <section class="portrait-room">
+    <h2>Chapter 2: The Portrait of a Target</h2>
+    <figure>
+      <img src="https://code-and-design.org/assets/images/selectors/selector-guild-image.jpg" alt="An illustrated fantasy city where CSS selectors point to HTML elements such as h1, h2, figure, blockquote, and links">
+      <figcaption>The Selector Guild studies the city of Markup, where every spell needs a precise target.</figcaption>
+    </figure>
+  </section>
+
+  <section class="links-room">
+    <h2>Chapter 3: The Link Portal</h2>
+    <p>
+      The selector apprentices discover that links have states. One link is new, one has been visited, one reacts to the mouse, one responds to the keyboard, and one changes while being clicked.
+    </p>
+    <p>
+      Open the field guide for
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors" target="_blank" rel="noopener noreferrer">CSS selectors</a>,
+      study the map of
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes" target="_blank" rel="noopener noreferrer">pseudo-classes</a>,
+      or jump to the
+      <a href="#timeline">selector timeline</a>.
+    </p>
+  </section>
+
+  <section id="timeline" class="timeline-room">
+    <h2>Chapter 4: The Selector Timeline</h2>
+    <ul class="timeline">
+      <li><strong>Type selector:</strong> finds every matching tag, like <code>h1</code>, <code>h2</code>, or <code>section</code>.</li>
+      <li><strong>Class selector:</strong> finds every element with a shared class name, like <code>.timeline</code>.</li>
+      <li><strong>Descendant selector:</strong> finds an element only when it lives inside another element, like <code>.bio p</code>.</li>
+      <li><strong>Pseudo-class selector:</strong> finds an element in a specific state, like <code>a:hover</code> or <code>a:focus</code>.</li>
+    </ul>
+  </section>
+
+  <section class="quote-room">
+    <h2>Chapter 5: The Rule of Specificity</h2>
+    <blockquote>
+      <p>"The clearer the selector, the easier the page is to understand."</p>
+      <cite>- The Selector Guild</cite>
+    </blockquote>
+  </section>
+
+  <section class="box-room">
+    <h2>Chapter 6: The Box Model Castle</h2>
+    <p>
+      Every element lives in a box. The content sits in the center. Padding creates space inside the walls. The border marks the edge. Margin creates space between one element and the next.
+    </p>
+    <p>
+      When you style <code>section</code>, <code>header</code>, and <code>main</code>, you are not just changing colors. You are revealing the invisible structure of the page.
+    </p>
+  </section>
+</main>
