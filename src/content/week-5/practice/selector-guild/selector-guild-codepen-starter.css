@@ -1,6 +1,7 @@
 /* CSS Selector Quest: paste this into the CodePen CSS panel.
    Students should complete the empty selector blocks below.
-   There is no single correct visual answer. Make your choices intentional and test them in the preview. */
+   Type the listed properties, choose your own values, and test the preview.
+   There is no single correct visual answer. */
 
 * {
   box-sizing: border-box;
@@ -29,84 +30,102 @@ img {
 /* Chapter 1: The City of Markup */
 
 h1 {
-  /* Add color, font-size, and text-align here. */
+  /* Type: color, font-size, text-align.
+     Choose values that make the main title clear and intentional. */
 }
 
 h2 {
-  /* Add color here. */
+  /* Type: color.
+     Choose a color for chapter headings. */
 }
 
 .bio p {
-  /* Add line-height here. */
+  /* Type: line-height.
+     Choose a value that makes paragraphs easier to read. */
 }
 
 /* Chapter 2: The Portrait of the Selector */
 
 figure {
-  /* Add margin here. */
+  /* Type: margin.
+     Choose spacing that places the image-and-caption group intentionally. */
 }
 
 figure img {
-  /* Add max-width, height, and border here. */
+  /* Type: width, border.
+     Use width to control the image size, then add a visible frame. */
 }
 
 figcaption {
-  /* Add text-align, font-style, padding-top, and color here. */
+  /* Type: text-align, font-style, padding-top, color.
+     Make the caption feel connected to the image but quieter than the main text. */
 }
 
 /* Chapter 3: The Link Portals
    Recommended order: link, visited, focus, hover, active */
 
 a:link {
-  /* Add color and text-decoration here. */
+  /* Type: color, text-decoration.
+     Decide how unvisited links should look. */
 }
 
 a:visited {
-  /* Add color here. */
+  /* Type: color.
+     Pick a different color for visited links. */
 }
 
 a:focus {
-  /* Add outline and background here. */
+  /* Type: outline, background.
+     Make keyboard focus easy to see. */
 }
 
 a:hover {
-  /* Add color and text-decoration here. */
+  /* Type: color, text-decoration.
+     Make the link visibly respond on hover. */
 }
 
 a:active {
-  /* Add color here. */
+  /* Type: color.
+     Pick a pressed or activated link color. */
 }
 
 /* Chapter 4: The Timeline Trail */
 
 .timeline {
-  /* Add list-style here. */
+  /* Type: list-style.
+     Change the default bullets so this can become a custom timeline. */
 }
 
 .timeline li {
-  /* Add border-left, padding-left, and margin-bottom here. */
+  /* Type: border-left, padding-left, margin-bottom.
+     Build a vertical trail, move text away from the trail line, and separate each item. */
 }
 
 /* Chapter 5: The Quotation Chamber */
 
 blockquote {
-  /* Add font-size, font-style, color, border-left, padding, and margin here. */
+  /* Type: font-size, font-style, color, border-left, padding, margin.
+     Make the quote stand apart from normal paragraph text. */
 }
 
 blockquote cite {
-  /* Add font-size, color, and font-style here. */
+  /* Type: font-size, color, font-style.
+     Make the citation smaller and quieter than the quote. */
 }
 
 /* Chapter 6: The Box Model Castle */
 
 section {
-  /* Add background-color, margin-bottom, border, and padding here. */
+  /* Type: background-color, margin-bottom, border, padding.
+     Make each section visibly separate and explore the box model. */
 }
 
 header {
-  /* Add padding and background here. */
+  /* Type: padding, background.
+     Give the opening area deliberate space and a background treatment. */
 }
 
 main {
-  /* Add padding here. */
+  /* Type: padding.
+     Add inside space around the main content area. */
 }

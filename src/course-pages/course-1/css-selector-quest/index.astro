@@ -20,6 +20,16 @@ const helpLinks = {
   selectorsReference: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors',
 };
 
+function formatPropertyList(properties: string[]) {
+  if (properties.length === 1) return properties;
+  if (properties.length === 2) return [properties[0], ' and ', properties[1]];
+  return properties.flatMap((property, index) => {
+    if (index === 0) return [property];
+    if (index === properties.length - 1) return [', and ', property];
+    return [', ', property];
+  });
+}
+
 const chapters = [
   {
     number: 1,
@@ -36,16 +46,28 @@ const chapters = [
       ['Descendant selector', helpLinks.descendant],
     ],
     missions: [
-      ['h1', 'create a clear main title using color, font size, and text alignment.'],
-      ['h2', 'adjust the chapter heading color.'],
-      ['.bio p', 'improve paragraph readability with line height.'],
+      {
+        selector: 'h1',
+        properties: ['color', 'font-size', 'text-align'],
+        guidance: 'Choose a title color, make the title noticeably larger than the body text, and decide how it should align.',
+      },
+      {
+        selector: 'h2',
+        properties: ['color'],
+        guidance: 'Choose a chapter-heading color that stands apart from regular paragraph text.',
+      },
+      {
+        selector: '.bio p',
+        properties: ['line-height'],
+        guidance: 'Choose a line height that makes the story paragraphs easier to read.',
+      },
     ],
     open: true,
   },
   {
     number: 2,
     title: 'Chapter 2: The Portrait of the Selector',
-    subtitle: 'Semantic media elements and responsive images',
+    subtitle: 'Semantic media elements and image styling',
     story: 'The Selector Guild keeps a portrait in the archive. The image and its caption belong together, so the figure needs to behave like a single exhibit piece.',
     selectorMap: [
       ['figure', 'Finds the full image-and-caption group.'],
@@ -58,9 +80,21 @@ const chapters = [
       ['Descendant selector', helpLinks.descendant],
     ],
     missions: [
-      ['figure', 'position the image-and-caption group so it feels centered and intentional.'],
-      ['figure img', 'make the image responsive and add a visible frame.'],
-      ['figcaption', 'style the caption so it feels connected to the image but quieter than the main text.'],
+      {
+        selector: 'figure',
+        properties: ['margin'],
+        guidance: 'Use margin to create space around the whole image-and-caption group and help it feel intentionally placed.',
+      },
+      {
+        selector: 'figure img',
+        properties: ['width', 'border'],
+        guidance: 'Use width to control how large the image appears, then add a visible frame with border.',
+      },
+      {
+        selector: 'figcaption',
+        properties: ['text-align', 'font-style', 'padding-top', 'color'],
+        guidance: 'Align the caption, make it feel like caption text, add a little space above it, and choose a quieter color.',
+      },
     ],
   },
   {
@@ -82,11 +116,31 @@ const chapters = [
       [':visited', helpLinks.visited],
     ],
     missions: [
-      ['a:link', 'style unvisited links.'],
-      ['a:visited', 'style visited links.'],
-      ['a:focus', 'create a clear keyboard focus state.'],
-      ['a:hover', 'create a visible hover state.'],
-      ['a:active', 'create a pressed or activated state.'],
+      {
+        selector: 'a:link',
+        properties: ['color', 'text-decoration'],
+        guidance: 'Choose how unvisited links should look before anyone opens them.',
+      },
+      {
+        selector: 'a:visited',
+        properties: ['color'],
+        guidance: 'Choose a different color for links the browser recognizes as visited.',
+      },
+      {
+        selector: 'a:focus',
+        properties: ['outline', 'background'],
+        guidance: 'Make keyboard focus easy to see when a link is selected.',
+      },
+      {
+        selector: 'a:hover',
+        properties: ['color', 'text-decoration'],
+        guidance: 'Make the link visibly respond when the pointer is over it.',
+      },
+      {
+        selector: 'a:active',
+        properties: ['color'],
+        guidance: 'Choose a color for the moment the link is being pressed or activated.',
+      },
     ],
   },
   {
@@ -103,8 +157,16 @@ const chapters = [
       ['Descendant selector', helpLinks.descendant],
     ],
     missions: [
-      ['.timeline', 'remove the default list styling.'],
-      ['.timeline li', 'make each timeline item feel like part of a visual trail.'],
+      {
+        selector: '.timeline',
+        properties: ['list-style'],
+        guidance: 'Change the default bullets so the list can become a custom timeline.',
+      },
+      {
+        selector: '.timeline li',
+        properties: ['border-left', 'padding-left', 'margin-bottom'],
+        guidance: 'Use these properties to create a vertical trail, move text away from the trail line, and separate each item.',
+      },
     ],
   },
   {
@@ -122,9 +184,16 @@ const chapters = [
       ['Descendant selector', helpLinks.descendant],
     ],
     missions: [
-      ['blockquote', 'make the quotation feel different from regular paragraph text.'],
-      ['blockquote', 'add spacing and a visual edge so it reads like a pull quote.'],
-      ['blockquote cite', 'make the citation smaller and quieter than the quotation.'],
+      {
+        selector: 'blockquote',
+        properties: ['font-size', 'font-style', 'color', 'border-left', 'padding', 'margin'],
+        guidance: 'Make the quote feel different from paragraph text, give it a visual edge, and add breathing room around it.',
+      },
+      {
+        selector: 'blockquote cite',
+        properties: ['font-size', 'color', 'font-style'],
+        guidance: 'Make the citation smaller and quieter than the quotation itself.',
+      },
     ],
   },
   {
@@ -142,10 +211,21 @@ const chapters = [
       ['Full selectors reference', helpLinks.selectorsReference],
     ],
     missions: [
-      ['section', 'make each content section visibly separate.'],
-      ['section', 'use background, margin, border, and padding to explore the box model.'],
-      ['header', 'create deliberate spacing and background treatment for the opening area.'],
-      ['main', 'add spacing around the main content area.'],
+      {
+        selector: 'section',
+        properties: ['background-color', 'margin-bottom', 'border', 'padding'],
+        guidance: 'Make each section visibly separate while exploring outside space, edges, and inside space.',
+      },
+      {
+        selector: 'header',
+        properties: ['padding', 'background'],
+        guidance: 'Give the opening area deliberate inside space and a background treatment.',
+      },
+      {
+        selector: 'main',
+        properties: ['padding'],
+        guidance: 'Add inside space around the main content area.',
+      },
     ],
   },
 ];
@@ -198,8 +278,14 @@ const spellbookRows = [
 
                 <h2>Mission</h2>
                 <ul class="selector-quest__mission-list">
-                  {chapter.missions.map(([selector, task]) => (
-                    <li>In the <code>{selector}</code> rule, {task}</li>
+                  {chapter.missions.map((mission) => (
+                    <li>
+                      In the <code>{mission.selector}</code> rule, type{' '}
+                      {formatPropertyList(mission.properties).map((part) => (
+                        mission.properties.includes(part) ? <code>{part}</code> : part
+                      ))}
+                      . {mission.guidance}
+                    </li>
                   ))}
                 </ul>
 
