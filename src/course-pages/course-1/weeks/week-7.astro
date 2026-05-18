@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+import Card from '../../../components/Card.astro';
+import SectionHeader from '../../../components/SectionHeader.astro';
+---
+
+<BaseLayout title="Week 7: Flexbox Layout - DESN368">
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb">
+                <a href="/1">Course Overview</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Week 7: Flexbox Layout</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-content two-column">
+        <div class="main-content fade-in">
+            <Card variant="accent" class="card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <SectionHeader level={1} icon="layers" badge={{ text: "Available", variant: "success" }}>
+                    Week 7: Flexbox Layout
+                </SectionHeader>
+                <p class="subtitle">Spring 2026 · Week 7</p>
+                <p>Build a two-column page with a sticky sidebar, anchor navigation, responsive spacing, and a live CodePen workspace.</p>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <Card variant="enhanced" class="card-enhanced">
+                <SectionHeader icon="book" badge={{ text: "This Week", variant: "info" }}>
+                    Tutorial
+                </SectionHeader>
+
+                <div class="resource-list">
+                    <a href="/tutorials/flexbox-tutorial/" class="resource-item" target="_blank" rel="noreferrer">
+                        <div class="resource-icon">
+                            <Icon name="layers" size={20} />
+                        </div>
+                        <div class="resource-body">
+                            <div class="resource-title">Interactive Flexbox Tutorial</div>
+                            <div class="resource-desc">A split-view tutorial for practicing flex containers, fixed and flexible columns, sticky positioning, anchor links, decorative image placement, and responsive wrap behavior.</div>
+                        </div>
+                        <Icon name="link" size={16} class="resource-arrow" />
+                    </a>
+                </div>
+            </Card>
+
+            <div class="section-divider"></div>
+
+            <Card variant="enhanced" class="card-enhanced assignment-card">
+                <SectionHeader icon="clipboard-list" badge={{ text: "Practice", variant: "info" }}>
+                    Assignment
+                </SectionHeader>
+
+                <div class="important-note">
+                    <strong>Important:</strong>
+                    Sign in to CodePen before you start, then fork the starter so your work saves to your own account.
+                </div>
+
+                <section class="assignment-section" aria-labelledby="flexbox-instructions">
+                    <h2 id="flexbox-instructions">Instructions</h2>
+                    <ol class="assignment-list">
+                        <li>Open the Interactive Flexbox Tutorial.</li>
+                        <li>Sign in to CodePen and fork the starter Pen.</li>
+                        <li>Work through Parts A-F in order.</li>
+                        <li>Write the required CSS in the CodePen CSS panel.</li>
+                        <li>Complete the reflection prompts in Part G.</li>
+                        <li>Save your Pen and submit the public CodePen URL.</li>
+                    </ol>
+                </section>
+
+                <section class="assignment-section" aria-labelledby="flexbox-practice">
+                    <h2 id="flexbox-practice">What You'll Practice</h2>
+                    <ul class="practice-list">
+                        <li>display: flex</li>
+                        <li>fixed and flexible columns</li>
+                        <li>gap, padding, and layout rhythm</li>
+                        <li>position: sticky</li>
+                        <li>anchor navigation and scroll polish</li>
+                        <li>decorative image placement</li>
+                        <li>responsive wrapping with media queries</li>
+                    </ul>
+                </section>
+            </Card>
+        </div>
+
+        <aside class="sidebar">
+            <section class="card card-action card-enhanced">
+                <div class="color-bar color-bar-red"></div>
+                <h3>
+                    <span class="icon-enhanced icon-primary">
+                        <Icon name="zap" size={20} />
+                    </span>
+                    Quick Actions
+                </h3>
+                <div class="quick-action-stack">
+                    <a href="/1" class="btn btn-secondary">
+                        <Icon name="book" size={16} class="btn-icon" />
+                        Course Overview
+                    </a>
+                    <a href="/tutorials/flexbox-tutorial/" class="btn btn-start" target="_blank" rel="noreferrer">
+                        <Icon name="play" size={16} class="btn-icon" />
+                        Open Flexbox Tutorial
+                    </a>
+                    <a href="https://codepen.io/tmasingale/pen/vEygJPY" class="btn btn-primary" target="_blank" rel="noreferrer">
+                        <Icon name="code" size={16} class="btn-icon" />
+                        Open Starter Pen
+                    </a>
+                </div>
+            </section>
+        </aside>
+    </main>
+
+    <style>
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: -8px;
+            margin-bottom: 16px;
+        }
+
+        .resource-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            background: var(--surface-alt);
+            transition: border-color 0.15s, background 0.15s;
+        }
+
+        .resource-item:hover {
+            border-color: var(--brand-primary);
+            background: var(--surface);
+        }
+
+        .resource-icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--eagle-red-light);
+            border-radius: 8px;
+            color: var(--eagle-red-text);
+        }
+
+        .resource-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .resource-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .resource-arrow {
+            flex-shrink: 0;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .quick-action-stack,
+        .assignment-card,
+        .assignment-section {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .assignment-card {
+            gap: 1.25rem;
+        }
+
+        .important-note {
+            padding: 14px 16px;
+            border: 1px solid var(--eagle-red-border);
+            border-radius: 8px;
+            background: var(--eagle-red-subtle);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .assignment-section h2 {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .assignment-list,
+        .practice-list {
+            margin: 0;
+            padding-left: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+    </style>
+</BaseLayout>
