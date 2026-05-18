@@ -220,6 +220,34 @@ body.col-resizing iframe {
   color: var(--accent-color);
 }
 
+.workspace-instructions {
+  background: #fff7ed;
+  border: 2px solid #fb923c;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.workspace-instructions > strong {
+  display: block;
+  color: #9a3412;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.workspace-instructions ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.workspace-instructions li {
+  margin: 0.3rem 0;
+}
+
 .codepen-embed {
   flex: 1;
   border-radius: 8px;
@@ -535,7 +563,8 @@ body.col-resizing iframe {
 .btn-primary,
 .btn-secondary,
 .btn-toggle-solution,
-.btn-save-reflection {
+.btn-save-reflection,
+.copy-reflections-btn {
   padding: 0.625rem 1.25rem;
   border: none;
   border-radius: 6px;
@@ -590,7 +619,8 @@ body.col-resizing iframe {
 .btn-primary:focus-visible,
 .btn-secondary:focus-visible,
 .btn-toggle-solution:focus-visible,
-.btn-save-reflection:focus-visible {
+.btn-save-reflection:focus-visible,
+.copy-reflections-btn:focus-visible {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
@@ -1402,7 +1432,7 @@ flex-basis: 0;   /* starting size before grow/shrink */</code></pre>
         </ol>
 
         <div class="reflection-export" style="margin: 2rem 0;">
-          <button class="btn-primary" id="copyReflections">📋 Copy All Reflections</button>
+          <button class="btn-primary copy-reflections-btn" id="copyReflections" type="button">📋 Copy Reflections as HTML Comment</button>
         </div>
 
         <div class="tip-box">
@@ -1435,9 +1465,18 @@ flex-basis: 0;   /* starting size before grow/shrink */</code></pre>
           <strong>⚠️ Before submitting:</strong>
           <ul>
             <li>Verify your CodePen is saved (not showing "unsaved changes")</li>
+            <li>Click <strong>Fork</strong> in CodePen when you are done so the Pen is copied into your CodePen account</li>
             <li>Test that your CodePen link opens correctly in a new browser tab</li>
             <li>Confirm your reflections are pasted at the bottom of your HTML</li>
           </ul>
+        </div>
+
+        <div class="reflection-export" style="margin: 2rem 0;">
+          <button class="btn-primary copy-reflections-btn" id="copyReflectionsFinal" type="button">📋 Copy Reflections Before Submitting</button>
+        </div>
+
+        <div class="tip-box">
+          <strong>Final reflection step:</strong> Click the button above, go to the bottom of the HTML panel in CodePen, paste the copied comment after your code, then submit your CodePen link to Canvas.
         </div>
 
         <h3>Add to your homepage</h3>
@@ -1484,7 +1523,17 @@ flex-basis: 0;   /* starting size before grow/shrink */</code></pre>
     <div class="codepen-workspace">
       <div class="codepen-sticky">
         <h2>Your Workspace</h2>
-        <p class="codepen-hint">Code along as you follow the tutorial. For saving your work, use the template link.</p>
+        <p class="codepen-hint">Code along as you follow the tutorial.</p>
+        <div class="workspace-instructions">
+          <strong>Before You Start</strong>
+          <ol>
+            <li>Make sure you are signed into CodePen.</li>
+            <li>Use the starter template or work in the embedded Pen below.</li>
+            <li>When you are finished, click <strong>Fork</strong> in CodePen so the Pen is copied into your account.</li>
+            <li>Before submitting, copy your reflections and paste them as an HTML comment at the bottom of the HTML panel.</li>
+            <li>Submit your finished CodePen link to Canvas.</li>
+          </ol>
+        </div>
         <a class="codepen-template-link" href="https://codepen.io/pen?template=vEygJPY" target="_blank" rel="noreferrer">Use Starter Template on CodePen</a>
 
         <div class="codepen-embed">
@@ -1676,11 +1725,10 @@ const Reflections = {
       });
     });
 
-    // Copy all reflections button
-    const copyButton = document.getElementById('copyReflections');
-    if (copyButton) {
-      copyButton.addEventListener('click', () => this.copyAll());
-    }
+    // Copy all reflections buttons
+    document.querySelectorAll('.copy-reflections-btn').forEach(button => {
+      button.addEventListener('click', () => this.copyAll());
+    });
   },
 
   save(step) {
@@ -1721,6 +1769,15 @@ const Reflections = {
   },
 
   copyAll() {
+    document.querySelectorAll('.reflection-input').forEach(textarea => {
+      const step = textarea.dataset.step;
+      const content = textarea.value.trim();
+      if (step && content) {
+        TutorialState.reflections[step] = content;
+      }
+    });
+    Storage.save();
+
     const steps = ['a', 'b', 'c', 'd', 'e', 'f'];
     const labels = {
       a: 'Part A: Meet Your Starter Code',
@@ -1757,7 +1814,7 @@ const Reflections = {
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        alert('All reflections copied as HTML comment! Paste at the bottom of your HTML file.');
+        alert('All reflections copied as an HTML comment. Paste them at the bottom of the HTML panel in CodePen before you submit.');
       })
       .catch(err => {
         console.error('Failed to copy:', err);
