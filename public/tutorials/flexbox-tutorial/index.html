@@ -196,6 +196,7 @@ body.col-resizing iframe {
   position: sticky;
   top: 140px;
   height: calc(100vh - 140px);
+  min-height: 720px;
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -665,36 +666,33 @@ body.col-resizing iframe {
   flex-wrap: wrap;
 }
 
-/* ===== Responsive Design ===== */
+/* ===== Smaller Screens ===== */
 @media (max-width: 1024px) {
-  /* Stack columns vertically on tablets and below */
+  /* Keep the tutorial and CodePen side by side; this tutorial is desktop-first. */
   .tutorial-container {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .tutorial-steps {
-    flex: none;
-    max-width: 100%;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
+    flex: 0 0 var(--steps-width);
+    max-width: var(--steps-width);
+    height: calc(100vh - 140px);
     padding: 1.5rem 1rem;
   }
 
-  /* No column resizing when the layout is stacked */
   .col-resizer {
-    display: none;
+    display: block;
   }
 
   .codepen-workspace {
-    flex: none;
+    flex: 1;
   }
 
   .codepen-sticky {
-    position: relative;
-    top: 0;
-    height: 600px;
-    padding: 1rem;
+    position: sticky;
+    top: 140px;
+    height: calc(100vh - 140px);
+    padding: 0.75rem;
   }
 }
 
@@ -740,7 +738,7 @@ body.col-resizing iframe {
   }
 
   .codepen-sticky {
-    height: 500px;
+    height: calc(100vh - 140px);
   }
 }
 
@@ -773,7 +771,7 @@ body.col-resizing iframe {
   }
 
   .codepen-sticky {
-    height: 400px;
+    height: calc(100vh - 140px);
   }
 }
 
