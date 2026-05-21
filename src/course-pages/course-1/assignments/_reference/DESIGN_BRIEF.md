@@ -17,12 +17,14 @@ This project builds on your knowledge of HTML tables and forms from Web Code 1. 
 
 | Date | Deliverable | Details |
 |------|-------------|---------|
-| **Wednesday, Nov 19** | Style Guide & Theme Rough Draft | Typography, colors, spacing system defined in Figma |
-| **Sunday, Nov 24** | Design Rough Draft | Complete desktop + mobile designs in Figma |
-| **Monday, Nov 25** | Figma Critique | Group feedback session (assigned groups) |
-| **Tuesday, Dec 3** | Final Code | Completed HTML/CSS implementation |
+| **Thursday, May 21** | Style Guide & Theme Rough Draft | Typography, colors, spacing system defined in Figma |
+| **Tuesday, May 26 at 10:00am** | Design Rough Draft | Complete desktop + mobile designs in Figma |
+| **Tuesday, May 26** | Figma Critique | Group feedback session (assigned groups) |
+| **Tuesday, June 2** | Final Code | Completed HTML/CSS implementation |
 
-**Important:** Design and code are graded separately. This brief covers the design phase (due Nov 24).
+**Important:** Design and code are graded separately. This brief covers the design phase (due May 26 at 10:00am).
+
+**Figma Template:** Duplicate the [P4 Product Landing Page Student Template](https://www.figma.com/design/mEkSvyHbLx8Gin1lgqXF34) so the 01 Pre-Design page, style tile, desktop and mobile starter frames, component states, and critique notes all live in one file.
 
 ---
 
@@ -31,9 +33,9 @@ This project builds on your knowledge of HTML tables and forms from Web Code 1. 
 **Phase 1: Design (You are here)**
 1. Research landing page examples (see Resources below)
 2. Choose your product/service
-3. Create style guide (due Nov 19)
-4. Design complete layout for desktop and mobile (due Nov 24)
-5. Participate in critique session (Nov 25)
+3. Create style guide (due May 21)
+4. Design complete layout for desktop and mobile (due May 26 at 10:00am)
+5. Participate in critique session (May 26)
 
 **Phase 2: Implementation (starts after design approval)**
 6. Build HTML structure
@@ -386,15 +388,14 @@ Tools like ChatGPT, Claude, or Gemini can create:
 - Video explanation included in article
 
 ### Visual Inspiration & Examples:
-**Milanote Board:** [Landing Page Info & Examples](https://app.milanote.com/1Vl1yK1rLjfkdv/landing-page-info?p=jHMkPcMB5W4)
+**Figma Template:** [P4 Product Landing Page Student Template](https://www.figma.com/design/mEkSvyHbLx8Gin1lgqXF34)
 
 Contains:
-- Landing page concepts and principles
-- Student examples from previous quarters
-- Component tutorials (cards, navigation, forms)
-- Icon library resources
-- CSS Grid and Flexbox tutorials
-- Responsive design guides
+- Pre-design planning prompts
+- Style tile structure
+- Desktop and mobile starter frames
+- Component state templates
+- Critique notes page
 
 ### Local Resources:
 - [figma-style-guide-template.png](screenshots/figma-style-guide-template.png) - Example style guide
@@ -402,9 +403,8 @@ Contains:
 - [student-examples-set-2.png](screenshots/student-examples-set-2.png) - More student examples
 - [landing-page-concepts.png](screenshots/landing-page-concepts.png) - Layout concepts
 - [responsive-design-principles.png](screenshots/responsive-design-principles.png) - Mobile strategies
-- [milanote-resources-overview.png](screenshots/milanote-resources-overview.png) - Resource overview
 
-### Icon Resources (from Milanote board):
+### Icon Resources:
 - Font Awesome
 - Heroicons
 - Feather Icons
@@ -418,7 +418,7 @@ Contains:
 Before beginning your Figma design:
 
 - [ ] Read the Unbounce article on landing pages
-- [ ] Explore the Milanote board for inspiration
+- [ ] Complete the 01 Pre-Design page in your duplicated Figma template
 - [ ] Choose your product/service
 - [ ] Decide which table type fits your product best
 - [ ] Find or plan video content for your product
@@ -429,7 +429,7 @@ Before beginning your Figma design:
 
 ## Before You Submit Checklist
 
-Before submitting your Figma link on Nov 24:
+Before submitting your Figma link on May 26 at 10:00am:
 
 **Style Guide Page:**
 - [ ] Typography hierarchy defined (H1, H2, H3, body)
@@ -534,7 +534,7 @@ Your design will be graded on:
 
 **During class:** Ask questions about design decisions, layout strategies, or Figma techniques.
 
-**Critique session (Nov 25):** You'll receive feedback in assigned groups. Be prepared to:
+**Critique session (May 26):** You'll receive feedback in assigned groups. Be prepared to:
 - Share your design (screen share)
 - Explain your design decisions
 - Give constructive feedback to peers
@@ -546,10 +546,10 @@ Your design will be graded on:
 
 ## What's Next?
 
-After Nov 25 critique:
+After May 26 critique:
 1. Incorporate feedback into your Figma design
 2. Begin HTML/CSS implementation (see [CODE_REQUIREMENTS.md](CODE_REQUIREMENTS.md))
 3. Reference your Figma design throughout coding process
-4. Submit final code on Dec 3
+4. Submit final code on June 2
 
 **Remember:** Your Figma design is your roadmap. The closer your code matches your design, the more cohesive your final project will be.

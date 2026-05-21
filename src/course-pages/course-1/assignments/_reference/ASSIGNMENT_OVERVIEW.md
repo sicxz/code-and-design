@@ -28,10 +28,10 @@ This assignment assesses students' ability to:
 
 | Date | Deliverable | Phase |
 |------|-------------|-------|
-| **Wednesday, Nov 19** | Style Guide & Theme Rough Draft | Design Phase |
-| **Sunday, Nov 24** | Design Rough Draft (Figma) | Design Phase |
-| **Monday, Nov 25** | Figma Critique Session | Design Phase |
-| **Tuesday, Dec 3** | Final Code | Implementation Phase |
+| **Thursday, May 21** | Style Guide & Theme Rough Draft | Design Phase |
+| **Tuesday, May 26 at 10:00am** | Design Rough Draft (Figma) | Design Phase |
+| **Tuesday, May 26** | Figma Critique Session | Design Phase |
+| **Tuesday, June 2** | Final Code | Implementation Phase |
 
 ## Project Phases
 
@@ -39,15 +39,15 @@ This assignment assesses students' ability to:
 Students create a complete visual design before writing any code. See [DESIGN_BRIEF.md](DESIGN_BRIEF.md) for details.
 
 **Deliverables:**
-- Nov 19: Style guide with typography, colors, spacing system
-- Nov 24: Complete desktop (1440px) and mobile (375-425px) designs
-- Nov 25: Participate in group critique session
+- May 21: Style guide with typography, colors, spacing system
+- May 26 at 10:00am: Complete desktop (1440px) and mobile (375-425px) designs
+- May 26: Participate in group critique session
 
 ### Phase 2: Implementation (HTML/CSS)
 Students build their designed landing page using semantic HTML and CSS. See [CODE_REQUIREMENTS.md](CODE_REQUIREMENTS.md) for technical specifications.
 
 **Deliverable:**
-- Dec 3: Final code with GitHub repository, deployed site, and documentation
+- June 2: Final code with GitHub repository, deployed site, and documentation
 
 ### Phase 3 (Optional): JavaScript Enhancement
 Advanced students can add interactive features using JavaScript. See [STRETCH_GOALS.md](STRETCH_GOALS.md) for options.
@@ -232,7 +232,7 @@ landing-page/
 
 **Important:** Design and code are graded separately.
 
-### Design Grade (Figma - Due Nov 24)
+### Design Grade (Figma - Due May 26 at 10:00am)
 See [DESIGN_BRIEF.md](DESIGN_BRIEF.md) for detailed assessment criteria:
 - Visual Consistency & Design System (25%)
 - Layout & Hierarchy (25%)
@@ -240,7 +240,7 @@ See [DESIGN_BRIEF.md](DESIGN_BRIEF.md) for detailed assessment criteria:
 - Interaction Design & Polish (15%)
 - Documentation & Presentation (10%)
 
-### Code Grade (HTML/CSS - Due Dec 3)
+### Code Grade (HTML/CSS - Due June 2)
 
 **HTML Structure: 25%**
 - Semantic HTML5 elements used appropriately
@@ -274,36 +274,36 @@ See [DESIGN_BRIEF.md](DESIGN_BRIEF.md) for detailed assessment criteria:
 
 ## Timeline Recommendations
 
-### Design Phase (Nov 13-24)
-- **Week 1 (Nov 13-17):**
-  - Research landing pages (Unbounce article, Milanote board)
+### Design Phase (May 21-26)
+- **May 21:**
+  - Research landing pages (Unbounce article + 01 Pre-Design page in the Figma template)
   - Choose product/service
   - Begin style guide in Figma
-  - **Due Wed Nov 19:** Style guide & theme rough draft
+  - **Due Thu May 21:** Style guide & theme rough draft
 
-- **Week 2 (Nov 18-24):**
+- **May 22-26:**
   - Complete desktop design (1440px)
   - Complete mobile design (375-425px)
   - Design interaction states and form validation states
   - Annotate animations/transforms
-  - **Due Sun Nov 24:** Design rough draft in Figma
-  - **Mon Nov 25:** Figma critique session
+  - **Due Tue May 26 at 10:00am:** Design rough draft in Figma
+  - **Tue May 26:** Figma critique session
 
-### Implementation Phase (Nov 25-Dec 3)
-- **Week 3 (Nov 25-Dec 1):**
+### Implementation Phase (May 26-June 2)
+- **May 26-June 1:**
   - Build HTML structure with semantic markup
   - Implement CSS styling and layout
   - Create responsive design with media queries
   - Style form validation states
   - Style and make table responsive
 
-- **Week 4 (Dec 2-3):**
+- **June 2:**
   - Add CSS transforms and animations
   - Test on multiple devices/browsers
   - Check accessibility (contrast, labels, alt text)
   - Deploy to Netlify/GitHub Pages/Vercel
   - Write README documentation
-  - **Due Tue Dec 3:** Final code submission
+  - **Due Tue June 2:** Final code submission
 
 **Total Estimated Time:** 10-15 hours
 
@@ -326,11 +326,11 @@ See [DESIGN_BRIEF.md](DESIGN_BRIEF.md) for detailed assessment criteria:
 
 ### Landing Page Fundamentals:
 - **Unbounce Article:** [What Is a Landing Page?](https://unbounce.com/landing-page-articles/what-is-a-landing-page/)
-- **Milanote Board:** [Landing Page Info & Examples](https://app.milanote.com/1Vl1yK1rLjfkdv/landing-page-info?p=jHMkPcMB5W4)
-  - Student examples from previous quarters
-  - Component tutorials
-  - Icon libraries
-  - CSS Grid/Flexbox resources
+- **Figma Template:** [P4 Product Landing Page Student Template](https://www.figma.com/design/mEkSvyHbLx8Gin1lgqXF34)
+  - Pre-design planning page
+  - Style tile template
+  - Desktop and mobile starter frames
+  - Component states and critique notes
 
 ### HTML/CSS Reference:
 - MDN Web Docs

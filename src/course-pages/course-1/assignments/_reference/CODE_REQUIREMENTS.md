@@ -5,7 +5,7 @@
 You've completed your Figma design—now it's time to bring it to life with HTML and CSS.
 
 **What you're building:** The product landing page you designed in Figma
-**When it's due:** Tuesday, December 3, 2024
+**When it's due:** Tuesday, June 2, 2026
 **What's graded:** Your code implementation (this is separate from your design grade)
 
 **Your Figma design is your roadmap.** Reference it constantly as you code. The closer your implementation matches your design, the better your final result.
@@ -551,7 +551,7 @@ A responsive landing page for [product] built with HTML and CSS.
 
 ### 3. Canvas Submission
 
-**Due: Tuesday, December 3, 2024**
+**Due: Tuesday, June 2, 2026**
 
 Submit all three URLs:
 1. GitHub repository URL
@@ -567,11 +567,11 @@ Submit all three URLs:
 - Your Figma file - Your visual roadmap for implementation
 
 ### Learning Resources
-- **Milanote Board:** [Landing Page Info & Examples](https://app.milanote.com/1Vl1yK1rLjfkdv/landing-page-info?p=jHMkPcMB5W4)
-  - Student examples
-  - Component tutorials
-  - Icon libraries
-  - CSS resources
+- **Figma Template:** [P4 Product Landing Page Student Template](https://www.figma.com/design/mEkSvyHbLx8Gin1lgqXF34)
+  - Pre-design planning
+  - Style tile
+  - Desktop and mobile starter frames
+  - Component states and critique notes
 
 ### HTML/CSS Reference
 - [MDN Web Docs](https://developer.mozilla.org/) - Complete HTML/CSS documentation
@@ -702,7 +702,7 @@ Your code will be graded on:
 
 ## Final Checklist
 
-Before submitting on December 3:
+Before submitting on June 2:
 
 **Code Complete:**
 - [ ] All required sections implemented
@@ -743,7 +743,7 @@ Before submitting on December 3:
 - [ ] Live site URL
 - [ ] Figma design URL
 - [ ] All URLs submitted on Canvas
-- [ ] Submitted by Dec 3
+- [ ] Submitted by June 2
 
 ---
 
