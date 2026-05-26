@@ -273,7 +273,7 @@ footer.foot {
   <ol>
     <li><a href="#why">Why this exists (and the deal we're making)</a></li>
     <li><a href="#setup">Setup &mdash; get Antigravity running (5 min)</a></li>
-    <li><a href="#step1">Step 1 &mdash; The Architectural Map</a></li>
+    <li><a href="#step1">Step 1 &mdash; Prime Antigravity with the brief + your Figma</a></li>
     <li><a href="#step2">Step 2 &mdash; The Constraint Cut</a></li>
     <li><a href="#step3">Step 3 &mdash; The Logic Implementation (table + form)</a></li>
     <li><a href="#step4">Step 4 &mdash; The Motion Audit</a></li>
@@ -334,46 +334,80 @@ footer.foot {
 
 <!-- ============================================================ -->
 <section class="module" id="step1">
-  <div class="kicker"><span class="step-num">01</span> The Architectural Map</div>
-  <h2>Map Figma layers &rarr; semantic HTML5</h2>
+  <div class="kicker"><span class="step-num">01</span> Prime Antigravity with the brief + your Figma</div>
+  <h2>One setup message &mdash; loads the rules and the design</h2>
 
-  <p>You aren't asking the AI to write code yet. You're asking it to <strong>think out loud about structure</strong> &mdash; which Figma layers are <code>&lt;section&gt;</code> vs. <code>&lt;article&gt;</code>, where the <code>&lt;header&gt;</code> and <code>&lt;main&gt;</code> boundaries fall, and which groups are reusable.</p>
+  <p>Before you write any code prompts, give Antigravity the <strong>P4 brief</strong> and <strong>your Figma file</strong> in a single first message. This way it has the rules in context for every prompt that follows &mdash; you won't have to re-state the required IDs or sections four times in a row.</p>
 
-  <p>Paste your Figma URL into the AI chat panel along with this prompt:</p>
+  <p>Open the Antigravity AI chat panel and paste this as your very first message. Replace the two bracketed parts with your real Figma URL and (optionally) any Figma motion notes you wrote during design:</p>
 
-  <div class="prompt">Here is my P4 product landing page Figma file: [PASTE FIGMA URL]
+  <div class="prompt">You are helping me cut a Figma design into a P4 landing page for DESN 368.
+Hold the following P4 rules in context for every reply that follows.
 
-Map the layers to the P4 required semantic HTML5 structure. The required outer structure is:
-  &lt;header&gt;, &lt;main&gt;, &lt;footer&gt;
+== P4 REQUIRED STRUCTURE ==
+Outer:
+  &lt;header id="header"&gt;
+    &lt;img id="header-img" alt="..."&gt;
+    &lt;nav id="nav-bar"&gt;
+      &lt;a class="nav-link"&gt;...&lt;/a&gt; (minimum 3 nav-link anchors)
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;main&gt; ... &lt;/main&gt;
+  &lt;footer&gt; ... &lt;/footer&gt;
 
-Inside &lt;main&gt; I need exactly five &lt;section&gt; tags with these IDs:
-  #hero, #video, #features, #data, #contact
+Inside &lt;main&gt;, exactly five sections in this order:
+  &lt;section id="hero"&gt;     -- value proposition + primary CTA
+  &lt;section id="video"&gt;    -- embedded video
+  &lt;section id="features"&gt; -- repeating &lt;article&gt; cards
+  &lt;section id="data"&gt;     -- contains &lt;table id="data-table"&gt;
+  &lt;section id="contact"&gt;  -- contact form
 
-Rule of thumb for &lt;article&gt;: if the content is self-contained and could
-be pulled out and reused independently (like a feature card), use &lt;article&gt;.
-Otherwise use a div or just a heading + paragraph.
+== TAG RULES ==
+- Use &lt;article&gt; for repeating self-contained items (feature cards).
+- Use &lt;section&gt; for thematic groupings with a heading.
+- Every &lt;img&gt; needs descriptive alt text (5-10 words). Never alt="".
+- Every form &lt;input&gt; has a paired &lt;label for=id&gt;. No placeholder-as-label.
+- Email input: type="email" required.
+- Submit button: id="submit".
+- Data table: id="data-table" with &lt;thead&gt; and &lt;tbody&gt;.
+- The data table must scroll horizontally on mobile (wrap in a div with
+  overflow-x: auto).
 
-Tell me:
-  1. Which Figma layer maps to each of the 5 required sections.
-  2. Which repeating groups in my Figma should become &lt;article&gt; tags.
-  3. Any Figma layer that DOESN'T fit the P4 required structure
-     (so I know what to cut or rework).
+== MOTION ==
+Wrap @keyframes animations in @media (prefers-reduced-motion: no-preference).
 
-Do not write code yet. Just give me the map.</div>
+== MY DESIGN ==
+Here is the Figma file I am cutting: [PASTE YOUR FIGMA URL]
 
-  <p>Read the response carefully. The AI will tell you, for example: <em>"The 'Why Choose Us' frame contains three repeating cards &mdash; each card should be an <code>&lt;article&gt;</code> inside <code>#features</code>."</em> That sentence is the design decision you needed to make.</p>
+Figma motion annotations I want to implement:
+  - [PASTE NOTE 1, e.g. "primary CTA lifts on hover"]
+  - [PASTE NOTE 2, e.g. "hero headline fades in on load"]
+
+== CONFIRMATION ==
+Do not write any HTML yet. First, reply with:
+  1. The 5 section IDs you'll put inside &lt;main&gt;, in order, matching my Figma.
+  2. The required IDs/classes you'll bake into the scaffold (list them).
+  3. Which Figma layers/frames you intend to map to &lt;article&gt; tags.
+  4. Any Figma layer that does NOT fit the P4 required structure
+     (so I know what I need to cut or rework on the design side).</div>
+
+  <div class="callout green">
+    <strong>Read the AI's reply line by line.</strong>
+    Verify it lists all five section IDs in the right order, every required ID/class above, and that the article mapping matches what's actually in your Figma. <kbd>Cmd/Ctrl + F</kbd> the reply for each ID. If anything is missing or wrong, say so before moving on &mdash; for example: <em>"You missed id='header-img'. Add it."</em> or <em>"I don't actually have a video section. Drop it from the plan and tell me what I'm missing."</em>
+  </div>
 
   <div class="gotcha">
-    <strong>What the AI gets wrong here:</strong> It will sometimes invent sections you don't have, or merge two of your sections into one. If the map doesn't match your Figma, say so: <em>"I don't have a video section. Remove it from the map and tell me what's missing."</em> The AI is a junior collaborator; you're the senior.
+    <strong>Why this priming step matters:</strong>
+    Without it, every later prompt has to re-state the P4 rules &mdash; tedious and easy to forget one. With it, you can write prompts like "scaffold the HTML" or "build the form" in one short line, and the AI already knows what's required. <strong>You only do this priming once per Antigravity session.</strong>
   </div>
 </section>
 
 <!-- ============================================================ -->
 <section class="module blue" id="step2">
   <div class="kicker"><span class="step-num">02</span> The Constraint Cut</div>
-  <h2>Generate the scaffold with required IDs and classes</h2>
+  <h2>Generate the scaffold</h2>
 
-  <p>Now you cash in the map. The P4 brief specifies exact IDs and classes that <strong>must</strong> appear in your HTML &mdash; this is what your code is graded on. Paste them into the prompt so the AI bakes them in from the start:</p>
+  <p>Now that Antigravity has the P4 rules and your Figma in context, asking for the scaffold is one short prompt. Here's the checklist you'll <em>verify the output against</em> &mdash; you don't need to paste it into the prompt:</p>
 
   <table class="spec">
     <thead><tr><th>Where</th><th>Required selector</th><th>Notes</th></tr></thead>
@@ -390,19 +424,14 @@ Do not write code yet. Just give me the map.</div>
 
   <p>Now ask Antigravity to scaffold:</p>
 
-  <div class="prompt">Using the architectural map you just gave me, write the full HTML for index.html.
+  <div class="prompt">Using the rules and map you confirmed, write the full HTML for index.html.
 
-REQUIREMENTS (must appear in the output):
-  - &lt;header id="header"&gt; containing &lt;img id="header-img" ...&gt; and &lt;nav id="nav-bar"&gt;
-  - At least 3 nav links, each with class="nav-link"
-  - &lt;main&gt; containing five &lt;section&gt; tags with IDs: #hero, #video, #features, #data, #contact
-  - Inside #features, use &lt;article&gt; for each feature card
-  - A &lt;footer&gt; at the bottom
-  - DOCTYPE, lang="en", viewport meta, &lt;title&gt;, link to css/styles.css
+Start with DOCTYPE, lang="en", viewport meta, &lt;title&gt;, and a link to css/styles.css.
+Pull real placeholder text from my Figma where possible (headlines, button labels,
+nav link labels). Write descriptive alt text on every image based on what the
+image actually shows in Figma &mdash; not generic "image" or "icon".
 
-Use real placeholder text from my Figma where possible (headlines, button labels).
-Use descriptive alt text on every image based on what the image actually shows in Figma.
-Do NOT write any CSS yet &mdash; HTML only.</div>
+HTML only. No CSS yet.</div>
 
   <div class="callout green">
     <strong>Open the output file.</strong>
@@ -430,16 +459,12 @@ Do NOT write any CSS yet &mdash; HTML only.</div>
 
   <h3>The Data Table</h3>
 
-  <div class="prompt">Inside the &lt;section id="data"&gt; in my index.html, replace the placeholder with a real HTML &lt;table&gt; using the columns and rows shown in my Figma data section.
+  <div class="prompt">Inside &lt;section id="data"&gt;, replace the placeholder with a real
+&lt;table&gt; using the columns and rows shown in my Figma data section.
 
-Requirements:
-  - &lt;table id="data-table"&gt;
-  - Use &lt;thead&gt; for the header row and &lt;tbody&gt; for the data rows
-  - Each header cell uses &lt;th scope="col"&gt;
-  - On mobile, the table should scroll horizontally instead of breaking layout.
-    Wrap the &lt;table&gt; in a &lt;div class="table-scroll"&gt; with this inline CSS
-    for now: style="overflow-x: auto; -webkit-overflow-scrolling: touch;"
-    (we'll move it to the stylesheet later)
+Use &lt;th scope="col"&gt; for the header row. Wrap the table in
+&lt;div class="table-scroll" style="overflow-x: auto;"&gt; so it scrolls
+on mobile. (Apply the rest of the P4 table rules you already have.)
 
 Do not change anything else in the file.</div>
 
@@ -450,17 +475,14 @@ Do not change anything else in the file.</div>
 
   <h3>The Contact Form</h3>
 
-  <div class="prompt">Inside the &lt;section id="contact"&gt;, build the contact form shown in my Figma.
+  <div class="prompt">Inside &lt;section id="contact"&gt;, build the contact form using the
+P4 form rules you already have (paired label/input, type="email" required,
+id="submit", no placeholder-as-label).
 
-Requirements:
-  - Every &lt;input&gt; must have a matching &lt;label&gt;. Pair them with for/id.
-  - The email field must use type="email" and be required (HTML5 validation).
-  - The submit button must have id="submit".
-  - Add aria-label or visible label on every field &mdash; no placeholder-only labels.
-  - The form's action="#" for now (we don't have a backend).
+Match the fields shown in my Figma: [list the fields from your design, e.g.
+"Name, Email, Company (optional), Message"].
 
-Match the fields shown in my Figma: [list the fields from your design, e.g.,
-"Name, Email, Company (optional), Message"].</div>
+Use action="#" for now (no backend).</div>
 
   <div class="gotcha">
     <strong>What the AI gets wrong here:</strong>
@@ -477,13 +499,9 @@ Match the fields shown in my Figma: [list the fields from your design, e.g.,
   <div class="kicker"><span class="step-num">04</span> The Motion Audit</div>
   <h2>Translate Figma motion notes into CSS</h2>
 
-  <p>You wrote motion notes on your Figma during the design phase (<em>"button lifts on hover," "hero text fades in"</em>). The brief asks for <strong>one <code>@keyframes</code> animation</strong> and <strong>one <code>transform</code> property</strong>. Pick the two most important and let Antigravity translate.</p>
+  <p>You already gave Antigravity your two Figma motion notes in the priming step. The brief asks for <strong>one <code>@keyframes</code> animation</strong> and <strong>one <code>transform</code> property</strong>. Now ask the AI to translate them into CSS.</p>
 
-  <div class="prompt">In my Figma, I have these motion notes:
-  - [PASTE NOTE 1 from your Figma]
-  - [PASTE NOTE 2 from your Figma]
-
-Write CSS that implements:
+  <div class="prompt">Implement the two Figma motion notes I gave you in the priming step:
   1. ONE @keyframes animation matching the first note, applied to the
      relevant element by class.
   2. ONE transform on :hover (or :focus) matching the second note, applied
@@ -491,10 +509,8 @@ Write CSS that implements:
 
 Add the CSS to a new file css/styles.css and link it from index.html if
 the link isn't there already. Use class names that already exist in my HTML &mdash;
-don't invent new ones.
-
-Respect prefers-reduced-motion: wrap the @keyframes rule in
-@media (prefers-reduced-motion: no-preference).</div>
+don't invent new ones. Respect prefers-reduced-motion (per the rule you
+already have).</div>
 
   <div class="callout">
     <strong>Accessibility note</strong>
@@ -561,7 +577,7 @@ Respect prefers-reduced-motion: wrap the @keyframes rule in
     <li><strong>Your <code>index.html</code></strong> &mdash; the generated scaffold. CSS is not graded yet. Submit the file or a link to your repo.</li>
     <li><strong>A prompt log</strong> (one short markdown or text file, ~150-300 words) containing:
       <ul>
-        <li>The 3-4 prompts you actually ran (copy-paste them in).</li>
+        <li>The 4-5 prompts you actually ran &mdash; including your priming message (copy-paste them in).</li>
         <li>One specific thing the AI got wrong and how you fixed it (2-3 sentences).</li>
         <li>One sentence on what step in your Figma was missing or weak that made the cut-up harder than it should have been &mdash; or "my Figma was tight, the cut-up was clean," if that's true.</li>
       </ul>
