@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P4 Cut-Up Tutorial — Figma → Semantic HTML5 with Antigravity · DESN 368</title>
+<style>
+/* ============================================================
+   DESN 368 · P4 Cut-Up Tutorial (Antigravity)
+   Single-file. Embedded style only. file:// viewable.
+   Palette follows S26-368 styleguide (red/blue/green).
+   ============================================================ */
+:root {
+  --bg: #FDFFFC;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F5F8F5;
+  --bg-code: #1C2128;
+  --border: rgba(57,62,65,0.22);
+  --border-light: rgba(57,62,65,0.14);
+  --text: #393E41;
+  --text-2: #656D76;
+  --text-muted: #848D97;
+  --red: #B7142E;
+  --red-subtle: #FBF3F5;
+  --blue: #006BA6;
+  --blue-subtle: #F2FCFE;
+  --green: #2B7015;
+  --green-subtle: #F8FDF4;
+  --warning: #9A6700;
+  --warning-bg: #FFF9F2;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 920px; margin: 0 auto; padding: 32px 24px 96px; }
+
+/* Header */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px 24px;
+  background: var(--bg-card);
+  position: sticky; top: 0; z-index: 10;
+}
+.topbar .brand {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 12px; background: var(--red); color: #fff; border-radius: 20px;
+}
+.topbar .crumbs { font-family: var(--mono); font-size: 12px; color: var(--text-2); }
+
+/* Hero */
+.hero {
+  padding: 48px 0 24px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 32px;
+}
+.hero h1 {
+  font-size: 40px; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+.hero .lede {
+  font-size: 19px; color: var(--text-2); margin: 0 0 16px; max-width: 680px;
+}
+.hero .meta {
+  font-family: var(--mono); font-size: 12px; color: var(--text-muted);
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+
+/* Section / module cards */
+.module {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-top: 4px solid var(--red);
+  border-radius: 6px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+.module.blue { border-top-color: var(--blue); }
+.module.green { border-top-color: var(--green); }
+
+.module h2 {
+  font-size: 26px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2;
+  margin: 0 0 8px;
+}
+.module .kicker {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 8px;
+}
+.module.blue .kicker { color: var(--blue); }
+.module.green .kicker { color: var(--green); }
+
+.module h3 {
+  font-size: 18px; font-weight: 700; margin: 24px 0 8px;
+}
+
+.module p { margin: 12px 0; }
+.module ul, .module ol { padding-left: 22px; margin: 12px 0; }
+.module li { margin: 6px 0; }
+
+/* Callouts */
+.callout {
+  border-left: 4px solid var(--blue);
+  background: var(--blue-subtle);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 15.5px;
+}
+.callout.warn { border-left-color: var(--warning); background: var(--warning-bg); }
+.callout.red { border-left-color: var(--red); background: var(--red-subtle); }
+.callout.green { border-left-color: var(--green); background: var(--green-subtle); }
+.callout strong { display: block; font-weight: 700; margin-bottom: 4px; }
+
+/* Code */
+code, pre, kbd { font-family: var(--mono); }
+code {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  padding: 1px 6px; border-radius: 3px;
+  font-size: 0.92em;
+}
+pre {
+  background: var(--bg-code);
+  color: #d6deeb;
+  padding: 16px 18px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 12px 0;
+}
+pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+
+/* Prompt block — what students paste into Antigravity */
+.prompt {
+  background: #F8FAF8;
+  border: 1px dashed var(--green);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin: 12px 0;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.prompt::before {
+  content: "PROMPT — paste into Antigravity";
+  display: block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--green); margin-bottom: 8px;
+}
+
+/* Step header */
+.step-num {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 13px; font-weight: 700;
+  background: var(--red); color: #fff;
+  padding: 2px 10px; border-radius: 12px;
+  margin-right: 8px; vertical-align: 2px;
+}
+
+/* Tables — for the required-elements summary */
+table.spec {
+  width: 100%; border-collapse: collapse; margin: 16px 0;
+  font-size: 14.5px;
+}
+table.spec th, table.spec td {
+  text-align: left; padding: 10px 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+table.spec th {
+  background: var(--bg-subtle);
+  font-weight: 700;
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--text-2);
+}
+table.spec td code { font-size: 0.9em; }
+
+/* TOC */
+.toc {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin-bottom: 32px;
+}
+.toc h2 {
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-2); margin: 0 0 10px;
+}
+.toc ol { padding-left: 22px; margin: 0; }
+.toc a { color: var(--text); text-decoration: none; }
+.toc a:hover { color: var(--red); text-decoration: underline; }
+
+/* Mini "What the AI gets wrong" */
+.gotcha {
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--warning);
+  background: var(--warning-bg);
+  padding: 14px 18px;
+  margin: 14px 0;
+  border-radius: 0 4px 4px 0;
+}
+.gotcha strong { color: var(--warning); }
+
+/* Submit / outro */
+.submit-card {
+  background: var(--red-subtle);
+  border: 1px solid var(--red);
+  border-left: 6px solid var(--red);
+  padding: 24px 28px;
+  border-radius: 6px;
+  margin-top: 32px;
+}
+.submit-card h2 { color: var(--red); margin-top: 0; }
+
+/* Footer */
+footer.foot {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-family: var(--mono);
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 30px; }
+  .module { padding: 22px 20px; }
+  .wrap { padding: 24px 16px 64px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand">DESN 368 · P4</span>
+  <span class="crumbs">week-9 / cut-up tutorial</span>
+</div>
+
+<div class="wrap">
+
+<section class="hero">
+  <h1>The P4 Cut-Up</h1>
+  <p class="lede">Use Antigravity to turn your finished Figma into a P4-compliant semantic HTML5 scaffold &mdash; in minutes, not hours. Today you watch one cut live. Tuesday, you run the same workflow on your own design.</p>
+  <p class="meta">
+    <span>Spring 2026 &middot; Web Design Fundamentals</span>
+    <span>Tutorial &middot; ~45 min self-paced</span>
+    <span>Checkpoint due before Tuesday class</span>
+  </p>
+</section>
+
+<div class="toc">
+  <h2>What's in this tutorial</h2>
+  <ol>
+    <li><a href="#why">Why this exists (and the deal we're making)</a></li>
+    <li><a href="#setup">Setup &mdash; get Antigravity running (5 min)</a></li>
+    <li><a href="#step1">Step 1 &mdash; The Architectural Map</a></li>
+    <li><a href="#step2">Step 2 &mdash; The Constraint Cut</a></li>
+    <li><a href="#step3">Step 3 &mdash; The Logic Implementation (table + form)</a></li>
+    <li><a href="#step4">Step 4 &mdash; The Motion Audit</a></li>
+    <li><a href="#wrong">What the AI gets wrong (and how you catch it)</a></li>
+    <li><a href="#submit">Submit the checkpoint</a></li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<section class="module red" id="why">
+  <div class="kicker">The Deal</div>
+  <h2>Why this tutorial exists</h2>
+
+  <p>You have two jobs in P4: <strong>design it in Figma</strong>, then <strong>build it in code</strong>. Most of the class is stuck between those two jobs &mdash; the Figma isn't quite done, and the code feels like a mountain.</p>
+
+  <p>This tutorial shows you the shortcut: when your Figma file is <em>actually finished</em> &mdash; layers named, sections grouped, motion notes written &mdash; you can use an AI IDE (Antigravity) to scaffold the entire semantic HTML5 structure of your landing page in about 15 minutes. The hard part isn't the code. The hard part is the design decisions, and you've already made those in Figma.</p>
+
+  <div class="callout red">
+    <strong>The catch</strong>
+    AI can't read what isn't there. If your Figma layers are named <code>Frame 47</code>, <code>Rectangle 12</code>, <code>Group 3</code> &mdash; the cut-up will be slop. The cleaner your Figma, the cleaner the code. <strong>Finishing the design IS doing the code.</strong>
+  </div>
+
+  <p>Today in class you'll watch one finished Figma get cut up live. Once your own Figma is ready, you run the four steps below yourself and submit the result as the <strong>P4 Cut-Up Checkpoint</strong> before Tuesday.</p>
+</section>
+
+<!-- ============================================================ -->
+<section class="module green" id="setup">
+  <div class="kicker">Setup &mdash; ~5 min</div>
+  <h2>Get Antigravity running</h2>
+
+  <p>Antigravity is the AI IDE we're using for the cut-up. If you've never opened it before, do this once:</p>
+
+  <ol>
+    <li><strong>Download &amp; install</strong> Antigravity for your OS (instructor will share the link in Discord &mdash; it's free for students).</li>
+    <li><strong>Sign in</strong> with your Google or GitHub account when prompted.</li>
+    <li><strong>Make a project folder</strong> on your machine called <code>p4-landing-page/</code>. Inside it, create an empty file: <code>index.html</code>.</li>
+    <li><strong>Open the folder</strong> in Antigravity (<em>File &rsaquo; Open Folder&hellip;</em>). You should see <code>index.html</code> in the sidebar.</li>
+    <li><strong>Open the AI chat panel</strong> (usually a sidebar or the keyboard shortcut shown on first launch).</li>
+    <li><strong>Open your finished Figma file in your browser.</strong> Copy the URL from the address bar &mdash; you'll paste it into prompts.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Stuck on install?</strong>
+    Drop a message in <code>#help</code> on Discord before class ends today. You don't want to fight install bugs on Tuesday. If you absolutely can't install in time, you can run the same prompts in Claude.ai or Cursor &mdash; the prompts are the workflow, the IDE is just the host.
+  </div>
+
+  <div class="callout warn">
+    <strong>Figma readiness check</strong>
+    Before you start the cut-up, your Figma should have:
+    <ul>
+      <li>Layer names that mean something (<code>Hero</code>, <code>Feature Card</code>, <code>Nav Link</code>) &mdash; not <code>Frame 47</code>.</li>
+      <li>Frames grouped by section (hero / video / features / data / contact).</li>
+      <li>Motion annotations written as text labels next to the elements (e.g., <em>"button lifts on hover"</em>).</li>
+    </ul>
+    If your Figma fails this check, the cut-up will be slow and wrong. Fix the Figma first.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module" id="step1">
+  <div class="kicker"><span class="step-num">01</span> The Architectural Map</div>
+  <h2>Map Figma layers &rarr; semantic HTML5</h2>
+
+  <p>You aren't asking the AI to write code yet. You're asking it to <strong>think out loud about structure</strong> &mdash; which Figma layers are <code>&lt;section&gt;</code> vs. <code>&lt;article&gt;</code>, where the <code>&lt;header&gt;</code> and <code>&lt;main&gt;</code> boundaries fall, and which groups are reusable.</p>
+
+  <p>Paste your Figma URL into the AI chat panel along with this prompt:</p>
+
+  <div class="prompt">Here is my P4 product landing page Figma file: [PASTE FIGMA URL]
+
+Map the layers to the P4 required semantic HTML5 structure. The required outer structure is:
+  &lt;header&gt;, &lt;main&gt;, &lt;footer&gt;
+
+Inside &lt;main&gt; I need exactly five &lt;section&gt; tags with these IDs:
+  #hero, #video, #features, #data, #contact
+
+Rule of thumb for &lt;article&gt;: if the content is self-contained and could
+be pulled out and reused independently (like a feature card), use &lt;article&gt;.
+Otherwise use a div or just a heading + paragraph.
+
+Tell me:
+  1. Which Figma layer maps to each of the 5 required sections.
+  2. Which repeating groups in my Figma should become &lt;article&gt; tags.
+  3. Any Figma layer that DOESN'T fit the P4 required structure
+     (so I know what to cut or rework).
+
+Do not write code yet. Just give me the map.</div>
+
+  <p>Read the response carefully. The AI will tell you, for example: <em>"The 'Why Choose Us' frame contains three repeating cards &mdash; each card should be an <code>&lt;article&gt;</code> inside <code>#features</code>."</em> That sentence is the design decision you needed to make.</p>
+
+  <div class="gotcha">
+    <strong>What the AI gets wrong here:</strong> It will sometimes invent sections you don't have, or merge two of your sections into one. If the map doesn't match your Figma, say so: <em>"I don't have a video section. Remove it from the map and tell me what's missing."</em> The AI is a junior collaborator; you're the senior.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module blue" id="step2">
+  <div class="kicker"><span class="step-num">02</span> The Constraint Cut</div>
+  <h2>Generate the scaffold with required IDs and classes</h2>
+
+  <p>Now you cash in the map. The P4 brief specifies exact IDs and classes that <strong>must</strong> appear in your HTML &mdash; this is what your code is graded on. Paste them into the prompt so the AI bakes them in from the start:</p>
+
+  <table class="spec">
+    <thead><tr><th>Where</th><th>Required selector</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Outer header</td><td><code>&lt;header id="header"&gt;</code></td><td>Fixed position</td></tr>
+      <tr><td>Logo image</td><td><code>id="header-img"</code></td><td>Inside the header</td></tr>
+      <tr><td>Nav element</td><td><code>&lt;nav id="nav-bar"&gt;</code></td><td>Inside the header</td></tr>
+      <tr><td>Each nav link</td><td><code>class="nav-link"</code></td><td>Minimum 3 links</td></tr>
+      <tr><td>Each feature card</td><td><code>&lt;article&gt;&hellip;&lt;/article&gt;</code></td><td>Inside <code>#features</code></td></tr>
+      <tr><td>Data table</td><td><code>&lt;table id="data-table"&gt;</code></td><td>With <code>&lt;thead&gt;</code> + <code>&lt;tbody&gt;</code></td></tr>
+      <tr><td>Form submit button</td><td><code>id="submit"</code></td><td>Inside the contact form</td></tr>
+    </tbody>
+  </table>
+
+  <p>Now ask Antigravity to scaffold:</p>
+
+  <div class="prompt">Using the architectural map you just gave me, write the full HTML for index.html.
+
+REQUIREMENTS (must appear in the output):
+  - &lt;header id="header"&gt; containing &lt;img id="header-img" ...&gt; and &lt;nav id="nav-bar"&gt;
+  - At least 3 nav links, each with class="nav-link"
+  - &lt;main&gt; containing five &lt;section&gt; tags with IDs: #hero, #video, #features, #data, #contact
+  - Inside #features, use &lt;article&gt; for each feature card
+  - A &lt;footer&gt; at the bottom
+  - DOCTYPE, lang="en", viewport meta, &lt;title&gt;, link to css/styles.css
+
+Use real placeholder text from my Figma where possible (headlines, button labels).
+Use descriptive alt text on every image based on what the image actually shows in Figma.
+Do NOT write any CSS yet &mdash; HTML only.</div>
+
+  <div class="callout green">
+    <strong>Open the output file.</strong>
+    Antigravity may write directly into <code>index.html</code> or print the code to chat. Either way: open the file, scroll top to bottom, and verify the seven items in the table above are present. <kbd>Cmd/Ctrl + F</kbd> for each ID is your friend.
+  </div>
+
+  <div class="gotcha">
+    <strong>What the AI gets wrong here:</strong>
+    <ul>
+      <li>Wraps everything in <code>&lt;div&gt;</code>s instead of <code>&lt;section&gt;</code> / <code>&lt;article&gt;</code>.</li>
+      <li>Forgets <code>alt</code> attributes, or writes lazy alt like <code>alt="image"</code>.</li>
+      <li>Uses <code>class="header"</code> instead of <code>id="header"</code>.</li>
+      <li>Skips the <code>&lt;footer&gt;</code> entirely.</li>
+    </ul>
+    Fix these <em>now</em>. Don't move to Step 3 until the scaffold is clean. One follow-up prompt &mdash; <em>"You used divs instead of section tags inside main. Rewrite using the required semantic structure."</em> &mdash; usually does it.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module" id="step3">
+  <div class="kicker"><span class="step-num">03</span> The Logic Implementation</div>
+  <h2>Build the table and the form</h2>
+
+  <p>The data table and the contact form are the two pieces graders look at hardest, because they have the strictest structural requirements. Do them in their own prompt so the AI doesn't shortcut.</p>
+
+  <h3>The Data Table</h3>
+
+  <div class="prompt">Inside the &lt;section id="data"&gt; in my index.html, replace the placeholder with a real HTML &lt;table&gt; using the columns and rows shown in my Figma data section.
+
+Requirements:
+  - &lt;table id="data-table"&gt;
+  - Use &lt;thead&gt; for the header row and &lt;tbody&gt; for the data rows
+  - Each header cell uses &lt;th scope="col"&gt;
+  - On mobile, the table should scroll horizontally instead of breaking layout.
+    Wrap the &lt;table&gt; in a &lt;div class="table-scroll"&gt; with this inline CSS
+    for now: style="overflow-x: auto; -webkit-overflow-scrolling: touch;"
+    (we'll move it to the stylesheet later)
+
+Do not change anything else in the file.</div>
+
+  <div class="callout">
+    <strong>Why horizontal scroll?</strong>
+    Your table has 4-6 columns of product specs. On a phone, stacking each row into a card is a real design choice &mdash; but it requires custom CSS per column. <strong>Horizontal scroll is the responsible default:</strong> it preserves the tabular reading and it works the moment you ship. The modal version stays optional. If you want it, do it after the checkpoint.
+  </div>
+
+  <h3>The Contact Form</h3>
+
+  <div class="prompt">Inside the &lt;section id="contact"&gt;, build the contact form shown in my Figma.
+
+Requirements:
+  - Every &lt;input&gt; must have a matching &lt;label&gt;. Pair them with for/id.
+  - The email field must use type="email" and be required (HTML5 validation).
+  - The submit button must have id="submit".
+  - Add aria-label or visible label on every field &mdash; no placeholder-only labels.
+  - The form's action="#" for now (we don't have a backend).
+
+Match the fields shown in my Figma: [list the fields from your design, e.g.,
+"Name, Email, Company (optional), Message"].</div>
+
+  <div class="gotcha">
+    <strong>What the AI gets wrong here:</strong>
+    <ul>
+      <li>Uses <code>placeholder="Email"</code> as a label substitute. Placeholders are <em>not</em> labels &mdash; screen readers don't read them as labels and they disappear when the user types.</li>
+      <li>Forgets the <code>for</code>/<code>id</code> pairing between <code>&lt;label&gt;</code> and <code>&lt;input&gt;</code>.</li>
+      <li>Misses <code>type="email"</code> &mdash; you lose the free browser validation.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module green" id="step4">
+  <div class="kicker"><span class="step-num">04</span> The Motion Audit</div>
+  <h2>Translate Figma motion notes into CSS</h2>
+
+  <p>You wrote motion notes on your Figma during the design phase (<em>"button lifts on hover," "hero text fades in"</em>). The brief asks for <strong>one <code>@keyframes</code> animation</strong> and <strong>one <code>transform</code> property</strong>. Pick the two most important and let Antigravity translate.</p>
+
+  <div class="prompt">In my Figma, I have these motion notes:
+  - [PASTE NOTE 1 from your Figma]
+  - [PASTE NOTE 2 from your Figma]
+
+Write CSS that implements:
+  1. ONE @keyframes animation matching the first note, applied to the
+     relevant element by class.
+  2. ONE transform on :hover (or :focus) matching the second note, applied
+     to the relevant element by class.
+
+Add the CSS to a new file css/styles.css and link it from index.html if
+the link isn't there already. Use class names that already exist in my HTML &mdash;
+don't invent new ones.
+
+Respect prefers-reduced-motion: wrap the @keyframes rule in
+@media (prefers-reduced-motion: no-preference).</div>
+
+  <div class="callout">
+    <strong>Accessibility note</strong>
+    The <code>prefers-reduced-motion</code> wrapper means users who get nauseous from animation will never see your keyframes fire. It's one line. Add it. Every. Time.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module" id="wrong">
+  <div class="kicker">Read your output</div>
+  <h2>What the AI gets wrong (the short list)</h2>
+
+  <p>Antigravity is fast, but it's also confident when it's wrong. The whole point of being a designer-coder is that <strong>you read the output</strong>. Here's the short list of failures that show up most often. Spot them, fix them, and submit only after.</p>
+
+  <table class="spec">
+    <thead><tr><th>Failure</th><th>How to spot it</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Divs instead of semantic tags</td>
+        <td>Cmd-F for <code>&lt;section</code> &mdash; should hit 5+ times</td>
+        <td>Re-prompt with the exact required tags</td>
+      </tr>
+      <tr>
+        <td>Missing or lazy alt text</td>
+        <td>Cmd-F for <code>alt=""</code> or <code>alt="image"</code></td>
+        <td>Rewrite alt to describe what's in the image, in 5-10 words</td>
+      </tr>
+      <tr>
+        <td>Placeholder used as label</td>
+        <td>No <code>&lt;label for="..."&gt;</code> in form HTML</td>
+        <td>Add a real label per input, pair with for/id</td>
+      </tr>
+      <tr>
+        <td>Wrong ID on submit button</td>
+        <td>Cmd-F for <code>id="submit"</code></td>
+        <td>One re-prompt: "Submit must have id='submit'"</td>
+      </tr>
+      <tr>
+        <td>Class used where ID was required</td>
+        <td>Cmd-F for <code>id="header"</code>, <code>id="nav-bar"</code></td>
+        <td>Re-prompt with required ID list</td>
+      </tr>
+      <tr>
+        <td>Made-up sections you don't have</td>
+        <td>Compare scaffold against your Figma section-by-section</td>
+        <td>"Remove the X section &mdash; my design doesn't have it."</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout red">
+    <strong>The submission asks you to name ONE thing the AI got wrong.</strong>
+    Pick the one that mattered most for your project and write 2-3 sentences in your prompt log about what it was, how you noticed, and what you changed. Generic answers ("it forgot some tags") don't count; specific ones ("it used divs for my three feature cards instead of <code>&lt;article&gt;</code>, I caught it by Cmd-F'ing for <code>&lt;article</code>, and I re-prompted with the exact P4 rule") do.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="submit-card" id="submit">
+  <h2>Submit the P4 Cut-Up Checkpoint</h2>
+
+  <p>Upload to the Canvas assignment <strong>"P4 Cut-Up &mdash; First-Pass HTML + Prompt Log"</strong> before Tuesday's class.</p>
+
+  <ol>
+    <li><strong>Your <code>index.html</code></strong> &mdash; the generated scaffold. CSS is not graded yet. Submit the file or a link to your repo.</li>
+    <li><strong>A prompt log</strong> (one short markdown or text file, ~150-300 words) containing:
+      <ul>
+        <li>The 3-4 prompts you actually ran (copy-paste them in).</li>
+        <li>One specific thing the AI got wrong and how you fixed it (2-3 sentences).</li>
+        <li>One sentence on what step in your Figma was missing or weak that made the cut-up harder than it should have been &mdash; or "my Figma was tight, the cut-up was clean," if that's true.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p style="margin-bottom:0;"><strong>What I'm grading:</strong> structural correctness (the required IDs, classes, semantic tags all present) and evidence that you read the AI's output critically. This is a checkpoint &mdash; the full styled landing page is still due via the existing P4 Code submission.</p>
+</section>
+
+<footer class="foot">
+  DESN 368 &middot; Spring 2026 &middot; Travis Masingale &middot; <a href="/1/weeks/week-9" style="color: inherit;">Back to Week 9</a>
+</footer>
+
+</div>
+</body>
+</html>
