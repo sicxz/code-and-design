@@ -263,7 +263,7 @@ footer.foot {
   <div class="kicker">Setup &mdash; one-time, ~10 min</div>
   <h2>opencode Desktop + Figma MCP</h2>
 
-  <p>You'll set up three things, and <strong>none of it needs the terminal</strong>: download the <strong>opencode Desktop</strong> app, get a <strong>Figma personal access token</strong>, and drop a small config file in your project folder so opencode can read your Figma. Everything happens in your browser, Finder, and a code editor.</p>
+  <p>You'll set up three things, and <strong>none of it needs the terminal</strong>: download the <strong>opencode Desktop</strong> app, get a <strong>Figma personal access token</strong>, and paste that token into opencode so it can read your Figma. Everything happens in your browser, in Finder, and in the opencode app &mdash; no code editor, no config files, no commands.</p>
 
   <h3>1. Download and install opencode Desktop</h3>
 
@@ -291,46 +291,22 @@ footer.foot {
 
   <div class="callout warn">
     <strong>Treat this token like a password.</strong>
-    Don't paste it into Discord, don't commit it to git. We'll put it in a local config file that stays on your machine.
+    Don't paste it into Discord, don't share it. You'll paste it straight into opencode in the next step &mdash; it stays on your machine.
   </div>
 
-  <h3>3. Make your project folder and add the config</h3>
+  <h3>3. Make your project folder</h3>
 
-  <p>No terminal here either &mdash; do it all in <strong>Finder</strong> and your code editor (VS Code, the one we use in class).</p>
+  <p>Still no terminal &mdash; just <strong>Finder</strong>. Right-click on your Desktop &rarr; <strong>New Folder</strong> &rarr; name it <code>p4-landing-page</code>. That's the whole step. opencode will create your <code>index.html</code> inside this folder for you in a moment &mdash; you don't make any files by hand.</p>
+
+  <h3>4. Open the folder in opencode and paste your Figma key</h3>
 
   <ol>
-    <li>In Finder, make a new folder for the project: right-click on your Desktop &rarr; <strong>New Folder</strong> &rarr; name it <code>p4-landing-page</code>.</li>
-    <li>Open VS Code &rarr; <strong>File &rarr; Open Folder&hellip;</strong> &rarr; pick that folder.</li>
-    <li>In VS Code's file sidebar, create two new files inside the folder: <code>index.html</code> (leave it empty for now) and <code>opencode.json</code>.</li>
+    <li>In OpenCode Desktop, choose <strong>Open Folder</strong> / <strong>Open Project</strong> and pick your <code>p4-landing-page</code> folder. On first launch it asks which model provider to use &mdash; pick whichever you have access to (Anthropic, OpenAI, OpenRouter, etc.).</li>
+    <li>Open opencode's <strong>Settings &rarr; MCP / Connections</strong> and add the <strong>Figma</strong> connection.</li>
+    <li>When it asks for a key, <strong>paste your <code>figd_</code> token</strong> &mdash; the one you copied in Step 2 &mdash; and save. No config files, no editing &mdash; just paste it in.</li>
   </ol>
 
-  <p>Open <code>opencode.json</code> and paste this. <strong>Replace</strong> <code>figd_YOUR_KEY_HERE</code> with the token you just copied, then save (<kbd>Cmd + S</kbd>):</p>
-
-  <pre><code>{
-  "$schema": "https://opencode.ai/config.json",
-  "mcp": {
-    "figma": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "figma-developer-mcp",
-        "--figma-api-key=figd_YOUR_KEY_HERE",
-        "--stdio"
-      ],
-      "enabled": true,
-      "env": { "OUTPUT_FORMAT": "yaml" }
-    }
-  }
-}</code></pre>
-
-  <p>This tells opencode: <em>"every time I open this project, start the Figma MCP server with my API key so I can ask about my Figma file."</em></p>
-
-  <h3>4. Open your project in opencode Desktop</h3>
-
-  <p>In OpenCode Desktop, open the project folder you just made (the one containing <code>opencode.json</code>) using its <strong>Open Folder</strong> / <strong>Open Project</strong> option. On first launch it asks which model provider to use &mdash; pick whichever you have access to (Anthropic, OpenAI, OpenRouter, Groq, etc.).</p>
-
-  <p>opencode reads <code>opencode.json</code> automatically and starts the Figma connection. Check the app's <strong>MCP / connections</strong> panel &mdash; you should see <code>figma</code> listed as <strong>connected</strong> before you go on.</p>
+  <p>opencode connects to Figma with that key. You should see <code>figma</code> listed as <strong>connected</strong> in the MCP / Connections panel before you go on.</p>
 
   <div class="callout green">
     <strong>Already pay for ChatGPT or Claude? Use those instead.</strong>
