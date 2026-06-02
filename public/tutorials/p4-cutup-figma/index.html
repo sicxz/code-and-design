@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>P4 Cut-Up Tutorial — Figma → Semantic HTML5 with opencode + MCP · DESN 368</title>
+<title>P4 Cut-Up Tutorial — Figma → Semantic HTML5 with AI · DESN 368</title>
 <style>
 /* ============================================================
-   DESN 368 · P4 Cut-Up Tutorial (opencode + Figma MCP)
+   DESN 368 · P4 Cut-Up Tutorial (AI image-paste + optional Figma MCP)
    Single-file. Embedded style only. file:// viewable.
    Palette follows S26-368 styleguide (red/blue/green).
    ============================================================ */
@@ -120,7 +120,7 @@ pre code { background: none; border: none; padding: 0; color: inherit; font-size
   white-space: pre-wrap;
 }
 .prompt::before {
-  content: "PROMPT — paste into opencode";
+  content: "PROMPT — paste into your AI chat";
   display: block;
   font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
   color: var(--green); margin-bottom: 8px;
@@ -217,7 +217,7 @@ footer.foot {
 
 <section class="hero">
   <h1>The P4 Cut-Up</h1>
-  <p class="lede">Use <strong>opencode</strong> with the <strong>Figma MCP</strong> to turn your finished Figma into a P4-compliant semantic HTML5 scaffold. The agent reads your design directly through the API &mdash; no copy-pasting, no guessing from a URL.</p>
+  <p class="lede">Hand your finished Figma to an AI and turn it into a P4-compliant semantic HTML5 scaffold. The easy way needs <strong>zero setup</strong>: export your design as an image and paste it into a chat you already have. (Want the AI to read your <em>live</em> Figma file instead? That's the optional <a href="#mcp">MCP track</a> at the end.)</p>
   <p class="meta">
     <span>Spring 2026 &middot; Web Design Fundamentals</span>
     <span>Tutorial &middot; ~45 min self-paced</span>
@@ -229,12 +229,13 @@ footer.foot {
   <h2>What's in this tutorial</h2>
   <ol>
     <li><a href="#why">Why this exists (and the deal we're making)</a></li>
-    <li><a href="#setup">Setup &mdash; opencode + Figma MCP (~10 min, one-time)</a></li>
-    <li><a href="#step1">Step 1 &mdash; Prime opencode with the brief + your Figma file</a></li>
+    <li><a href="#setup">Setup &mdash; the easy path (~2 min)</a></li>
+    <li><a href="#step1">Step 1 &mdash; Prime the AI with the brief + your design</a></li>
     <li><a href="#step2">Step 2 &mdash; The Constraint Cut</a></li>
     <li><a href="#step3">Step 3 &mdash; The Logic Implementation (table + form)</a></li>
     <li><a href="#step4">Step 4 &mdash; The Motion Audit</a></li>
     <li><a href="#wrong">What the AI gets wrong (and how you catch it)</a></li>
+    <li><a href="#mcp">Advanced &mdash; wire Figma into opencode (MCP)</a></li>
     <li><a href="#submit">Submit the checkpoint</a></li>
   </ol>
 </div>
@@ -246,13 +247,13 @@ footer.foot {
 
   <p>You have two jobs in P4: <strong>design it in Figma</strong>, then <strong>build it in code</strong>. Most of the class is stuck between those two jobs &mdash; the Figma isn't quite done, and the code feels like a mountain.</p>
 
-  <p>This tutorial shows you the shortcut: when your Figma file is <em>actually finished</em> &mdash; layers named, sections grouped, motion notes written &mdash; you can point an AI coding agent (<strong>opencode</strong>) at it through the <strong>Figma MCP</strong>, and the agent will read your real layer structure and write a P4-compliant semantic HTML5 scaffold in about 15 minutes.</p>
+  <p>This tutorial shows you the shortcut: when your Figma file is <em>actually finished</em> &mdash; sections laid out, real text in place, motion notes written &mdash; you can hand it to an AI (a screenshot is enough) and it will write a P4-compliant semantic HTML5 scaffold in about 15 minutes.</p>
 
-  <p>This is different from pasting a Figma URL into a chat. With MCP, the agent <em>queries the Figma API directly</em> &mdash; it sees your actual frame names, layer hierarchy, and component instances. That means cleaner code, no hallucinated sections, and far less back-and-forth.</p>
+  <p>The AI builds what your design <em>shows</em>. A clean, finished design produces clean code with little back-and-forth; a half-done one produces slop. For exact text and layer names you can later wire Figma directly into the agent &mdash; see the <a href="#mcp">advanced MCP track</a> &mdash; but a good screenshot gets you most of the way with none of the setup.</p>
 
   <div class="callout red">
     <strong>The catch</strong>
-    AI can't read what isn't there. If your Figma layers are named <code>Frame 47</code>, <code>Rectangle 12</code>, <code>Group 3</code> &mdash; the cut-up will be slop, because that's what the MCP sees. The cleaner your Figma, the cleaner the code. <strong>Finishing the design IS doing the code.</strong>
+    AI can't build what your design doesn't show. If your screenshot is a jumble of unlabeled boxes and "Lorem ipsum," the cut-up will be slop &mdash; that's all the AI has to go on. The clearer the design, the cleaner the code. <strong>Finishing the design IS doing the code.</strong>
   </div>
 
   <p>Today in class you'll watch one finished Figma get cut up live. Once your own Figma is ready, run the four steps below yourself and submit the result as the <strong>P4 Cut-Up Checkpoint</strong> before Tuesday.</p>
@@ -260,84 +261,53 @@ footer.foot {
 
 <!-- ============================================================ -->
 <section class="module green" id="setup">
-  <div class="kicker">Setup &mdash; one-time, ~10 min</div>
-  <h2>opencode Desktop + Figma MCP</h2>
+  <div class="kicker">Setup &mdash; the easy path, ~2 min</div>
+  <h2>You need a finished design and an AI chat</h2>
 
-  <p>You'll set up three things, and <strong>none of it needs the terminal</strong>: download the <strong>opencode Desktop</strong> app, get a <strong>Figma personal access token</strong>, and paste that token into opencode so it can read your Figma. Everything happens in your browser, in Finder, and in the opencode app &mdash; no code editor, no config files, no commands.</p>
+  <p>The whole setup is this: have your <strong>finished Figma</strong> open so you can export a picture of it, and open an <strong>AI chat you already have</strong>. <strong>No token, no install, no terminal, no config files.</strong> You hand the AI a screenshot of your design and it writes the HTML.</p>
 
-  <h3>1. Download and install opencode Desktop</h3>
+  <h3>1. Pick your AI</h3>
+
+  <p>Use whichever you already have &mdash; both read a design screenshot extremely well:</p>
+  <ul>
+    <li><strong>Claude</strong> &mdash; <a href="https://claude.ai" target="_blank" rel="noreferrer">claude.ai</a> (the free tier is fine).</li>
+    <li><strong>ChatGPT</strong> &mdash; <a href="https://chatgpt.com" target="_blank" rel="noreferrer">chatgpt.com</a> (the free tier is fine).</li>
+  </ul>
+  <p>The web version is all you need &mdash; nothing to download. (If you'd rather the AI write the <code>index.html</code> file <em>for</em> you instead of copy-pasting, the Claude or ChatGPT/Codex desktop apps do that &mdash; but that's optional.)</p>
+
+  <h3>2. Export your design as an image</h3>
 
   <ol>
-    <li>Go to <a href="https://opencode.ai/download" target="_blank" rel="noreferrer">opencode.ai/download</a>.</li>
-    <li>Download the Mac app. <strong>Apple Silicon</strong> Macs (M1-M4, basically anything recent) get <code>opencode-desktop-mac-arm64.dmg</code>; older <strong>Intel</strong> Macs get <code>opencode-desktop-mac-x64.dmg</code>.
-      <br><em>Not sure which you have? Apple menu &rarr; About This Mac. If the chip says "Apple M-something," you're on Apple Silicon.</em></li>
-    <li>Double-click the downloaded <code>.dmg</code>, then drag <strong>OpenCode Desktop</strong> into your <strong>Applications</strong> folder.</li>
-    <li>Open it from Applications (or Launchpad). That's it &mdash; no commands to type.</li>
+    <li>In Figma, click the <strong>top frame</strong> of your design in the layers panel (the whole page).</li>
+    <li>Right-click &rarr; <strong>Copy/Paste as &rarr; Copy as PNG</strong> (you can paste it straight into the chat), or <strong>File &rarr; Export</strong> &rarr; PNG at 2x.</li>
+    <li>If your landing page is tall, export it in <strong>sections</strong> (hero / video / features / data / contact) so each part stays readable &mdash; you can drag several images into one message.</li>
   </ol>
 
   <div class="callout warn">
-    <strong>"opencode can't be opened because Apple cannot check it for malicious software"?</strong>
-    That's just macOS Gatekeeper being cautious about a fresh download. Right-click (or Control-click) the app in Applications &rarr; <strong>Open</strong> &rarr; <strong>Open</strong>. You only have to do this once.
-  </div>
-
-  <h3>2. Get a Figma personal access token</h3>
-
-  <ol>
-    <li>Go to <a href="https://www.figma.com/settings" target="_blank" rel="noreferrer">figma.com/settings</a> &rarr; <strong>Security</strong> tab.</li>
-    <li>Scroll to <strong>Personal access tokens</strong> &rarr; <em>"Generate new token."</em></li>
-    <li>Name it <code>desn368-p4-cutup</code>. Scope: leave the defaults (<code>File content</code> read access is required).</li>
-    <li>Copy the token immediately (starts with <code>figd_</code>). You won't see it again.</li>
-  </ol>
-
-  <div class="callout warn">
-    <strong>Treat this token like a password.</strong>
-    Don't paste it into Discord, don't share it. You'll paste it straight into opencode in the next step &mdash; it stays on your machine.
-  </div>
-
-  <h3>3. Make your project folder</h3>
-
-  <p>Still no terminal &mdash; just <strong>Finder</strong>. Right-click on your Desktop &rarr; <strong>New Folder</strong> &rarr; name it <code>p4-landing-page</code>. That's the whole step. opencode will create your <code>index.html</code> inside this folder for you in a moment &mdash; you don't make any files by hand.</p>
-
-  <h3>4. Open the folder in opencode and paste your Figma key</h3>
-
-  <ol>
-    <li>In OpenCode Desktop, choose <strong>Open Folder</strong> / <strong>Open Project</strong> and pick your <code>p4-landing-page</code> folder. On first launch it asks which model provider to use &mdash; pick whichever you have access to (Anthropic, OpenAI, OpenRouter, etc.).</li>
-    <li>Open opencode's <strong>Settings &rarr; MCP / Connections</strong> and add the <strong>Figma</strong> connection.</li>
-    <li>When it asks for a key, <strong>paste your <code>figd_</code> token</strong> &mdash; the one you copied in Step 2 &mdash; and save. No config files, no editing &mdash; just paste it in.</li>
-  </ol>
-
-  <p>opencode connects to Figma with that key. You should see <code>figma</code> listed as <strong>connected</strong> in the MCP / Connections panel before you go on.</p>
-
-  <div class="callout green">
-    <strong>Already pay for ChatGPT or Claude? Use those instead.</strong>
-    The exact same workflow works with <strong>Codex</strong> (ChatGPT Plus / Pro) and <strong>Claude</strong> (Claude Pro / Max) &mdash; and both ship a <strong>desktop app you just download</strong>, exactly like opencode, so you still never open the terminal:
+    <strong>Design readiness check</strong>
+    The AI builds what your picture <em>shows</em>. Before you export, your design should have:
     <ul>
-      <li><strong>Codex:</strong> download the Codex desktop app, sign in with your ChatGPT account, then add the Figma MCP from the app's <strong>Settings &rarr; Connectors / MCP</strong>.</li>
-      <li><strong>Claude:</strong> download the Claude desktop app, sign in with your Claude account, then add the Figma MCP from <strong>Settings &rarr; Connectors</strong>.</li>
+      <li>The five sections clearly laid out top to bottom (hero / video / features / data / contact).</li>
+      <li>Real text &mdash; actual headlines, button labels, nav links, table data &mdash; not "Lorem ipsum."</li>
+      <li>Any motion intentions written as visible text labels next to the element (e.g., <em>"button lifts on hover"</em>).</li>
     </ul>
-    All three read Figma the same way once the Figma MCP is connected. The prompts below work unchanged &mdash; just paste your Figma token / access when the app asks for it.
+    Vague picture in = vague HTML out. <strong>Finishing the design IS doing the code.</strong>
   </div>
 
-  <div class="callout warn">
-    <strong>Figma readiness check</strong>
-    Before you start the cut-up, your Figma should have:
-    <ul>
-      <li>Layer names that mean something (<code>Hero</code>, <code>Feature Card</code>, <code>Nav Link</code>) &mdash; not <code>Frame 47</code>.</li>
-      <li>Frames grouped by section (hero / video / features / data / contact).</li>
-      <li>Motion annotations written as text labels next to the elements (e.g., <em>"button lifts on hover"</em>).</li>
-    </ul>
-    The MCP shows the agent <em>your real layer names</em>. Garbage names in = garbage HTML out.
+  <div class="callout">
+    <strong>Want the AI to read your live Figma file instead of a screenshot?</strong>
+    That's the MCP path &mdash; the agent queries Figma directly for exact text and layer names, and writes the files for you. It's more powerful but it is real setup. We've moved it to the end as an <a href="#mcp">advanced track</a>, because the screenshot path above gets you a clean scaffold with zero setup.
   </div>
 </section>
 
 <!-- ============================================================ -->
 <section class="module" id="step1">
-  <div class="kicker"><span class="step-num">01</span> Prime opencode with the brief + your Figma file</div>
-  <h2>One setup message &mdash; loads the rules and the design</h2>
+  <div class="kicker"><span class="step-num">01</span> Prime the AI with the brief + your design</div>
+  <h2>One setup message &mdash; loads the rules and your design</h2>
 
-  <p>Grab your Figma file's <strong>URL</strong> from the browser (the part that looks like <code>figma.com/design/&lt;FILE_KEY&gt;/&lt;file-name&gt;</code>). You'll paste it into the priming message below. Opencode will use the MCP to call the Figma API and read your real layer structure &mdash; no guessing.</p>
+  <p>Start a fresh chat. In one message you'll do two things: paste the P4 rules below, and <strong>attach the screenshot(s) of your design</strong> you exported in setup &mdash; drag them right into the message box. That gives the AI both the constraints and the picture it's building from.</p>
 
-  <p>Open the opencode chat and paste this as your very first message:</p>
+  <p>Paste this as your first message, with your design image(s) attached:</p>
 
   <div class="prompt">You are helping me cut a Figma design into a P4 landing page for DESN 368.
 Hold the following P4 rules in context for every reply that follows.
@@ -375,36 +345,35 @@ Inside &lt;main&gt;, exactly five sections in this order:
 Wrap @keyframes animations in @media (prefers-reduced-motion: no-preference).
 
 == MY DESIGN ==
-Here is my Figma file: [PASTE YOUR FIGMA URL]
-
-Use the Figma MCP (get_figma_data or equivalent) to read the file. Then,
-based on the real layer/frame names you find, do the mapping.
+I've attached screenshot(s) of my finished design. Read the layout, the
+sections, and the real text directly from the image(s). Do not invent
+content that isn't shown in the design.
 
 == CONFIRMATION ==
 Do not write any HTML yet. First, reply with:
   1. The 5 section IDs you'll put inside &lt;main&gt;, in order, mapped to
-     the actual top-level frames you found in my Figma.
+     the sections you can see in my design, top to bottom.
   2. The required IDs/classes you'll bake into the scaffold (list them).
-  3. Which Figma frames/components you intend to map to &lt;article&gt; tags
-     (cite their real layer names from the file).
-  4. Any Figma frame that does NOT fit the P4 required structure
+  3. Which parts of my design you'll map to &lt;article&gt; tags
+     (the repeating feature cards).
+  4. Anything in my design that does NOT fit the P4 required structure
      (so I know what to cut or rework on the design side).
-  5. Any motion annotations or text labels you saw in the Figma that
-     describe animation or hover behavior.</div>
+  5. Any motion notes or text labels in the design that describe
+     animation or hover behavior.</div>
 
   <div class="callout green">
-    <strong>Watch opencode call the MCP.</strong>
-    You'll see opencode invoke the Figma MCP tool right in the chat &mdash; it'll show the tool name and its arguments. Approve the call. The agent then has your real layer structure, not a guess.
+    <strong>The AI reads the picture, not your mind.</strong>
+    It's working only from the screenshot(s) you attached &mdash; so the more your design shows (real text, clear sections, labels), the better the read. If the reply describes sections that aren't in your design, your image was probably cut off or low-res &mdash; re-export and try again.
   </div>
 
   <div class="callout">
-    <strong>Read the agent's reply line by line.</strong>
-    Verify it cites <em>real layer names from your file</em> (not generic placeholders), lists all five section IDs in the right order, every required ID/class above, and that the article mapping matches what's actually in your Figma. If anything is missing or wrong, say so before moving on &mdash; for example: <em>"You missed id='header-img'. Add it."</em> or <em>"I don't actually have a video section. Drop it from the plan and tell me what I'm missing."</em>
+    <strong>Read the AI's reply line by line.</strong>
+    Verify it matches <em>what's actually in your design</em> &mdash; all five section IDs in the right order, every required ID/class above, and an article mapping that matches your real feature cards. If anything is missing or wrong, say so before moving on &mdash; for example: <em>"You missed id='header-img'. Add it."</em> or <em>"I don't actually have a video section. Tell me what I'm missing instead."</em>
   </div>
 
   <div class="gotcha">
     <strong>Why this priming step matters:</strong>
-    Without it, every later prompt has to re-state the P4 rules and re-paste the Figma URL &mdash; tedious and easy to forget one. With it, you can write prompts like "scaffold the HTML" or "build the form" in one short line, and the agent already knows the rules <em>and</em> has direct access to your design. <strong>You only do this priming once per opencode session.</strong>
+    Without it, every later prompt has to re-state the P4 rules and re-attach your design &mdash; tedious and easy to forget one. With it, you can write short prompts like "scaffold the HTML" or "build the form," and the AI already knows the rules <em>and</em> has your design in the conversation. <strong>You only prime once per chat.</strong>
   </div>
 </section>
 
@@ -413,7 +382,7 @@ Do not write any HTML yet. First, reply with:
   <div class="kicker"><span class="step-num">02</span> The Constraint Cut</div>
   <h2>Generate the scaffold</h2>
 
-  <p>Now that opencode has the P4 rules in context and a live read on your Figma via the MCP, asking for the scaffold is one short prompt. Here's the checklist you'll <em>verify the output against</em> &mdash; you don't need to paste it into the prompt:</p>
+  <p>Now that the AI has the P4 rules in context and your design in the conversation, asking for the scaffold is one short prompt. Here's the checklist you'll <em>verify the output against</em> &mdash; you don't need to paste it into the prompt:</p>
 
   <table class="spec">
     <thead><tr><th>Where</th><th>Required selector</th><th>Notes</th></tr></thead>
@@ -431,19 +400,19 @@ Do not write any HTML yet. First, reply with:
   <p>Now ask opencode to scaffold:</p>
 
   <div class="prompt">Using the rules and the map you confirmed, write the full HTML for
-index.html in this folder.
+index.html.
 
 Start with DOCTYPE, lang="en", viewport meta, &lt;title&gt;, and a link to
-css/styles.css. Pull real text from my Figma via the MCP for headlines,
-button labels, and nav link labels &mdash; don't invent placeholder text if the
-real content is in the file. Write descriptive alt text on every image
-based on what each image actually shows in Figma.
+css/styles.css. Pull real text from my design (the screenshots) for
+headlines, button labels, and nav link labels &mdash; don't invent placeholder
+text if the real content is shown. Write descriptive alt text on every
+image based on what each image actually shows in the design.
 
-HTML only. No CSS yet. Write the file directly using your file-edit tool.</div>
+HTML only. No CSS yet. Give me the complete file.</div>
 
   <div class="callout green">
-    <strong>The agent writes the file directly.</strong>
-    Opencode has file-editing tools. You'll see it propose changes to <code>index.html</code> &mdash; approve them and the file appears on disk. No copy-paste needed. Open <code>index.html</code> in your editor or browser and verify the seven items in the table above are present. <kbd>Cmd/Ctrl + F</kbd> for each ID.
+    <strong>Save the output as <code>index.html</code>.</strong>
+    In a chat (Claude/ChatGPT web), the AI returns the full HTML in a code block &mdash; click <strong>copy</strong>, paste it into a new plain-text file, and save it as <code>index.html</code> (a folder called <code>p4-landing-page</code> on your Desktop is a fine home for it). If you're using a desktop coding agent with file tools, it can write the file for you &mdash; just approve the change. Then open <code>index.html</code> in your browser and verify the seven items in the table above. <kbd>Cmd/Ctrl + F</kbd> for each ID.
   </div>
 
   <div class="gotcha">
@@ -468,15 +437,14 @@ HTML only. No CSS yet. Write the file directly using your file-edit tool.</div>
   <h3>The Data Table</h3>
 
   <div class="prompt">Inside &lt;section id="data"&gt;, replace any placeholder with a real
-&lt;table&gt; using the columns and rows shown in my Figma data section.
-Read those columns and rows from the Figma file via the MCP if they're
-laid out as text in the design.
+&lt;table&gt; using the columns and rows shown in my design's data section
+(read them from the screenshot).
 
 Use &lt;th scope="col"&gt; for the header row. Wrap the table in
 &lt;div class="table-scroll" style="overflow-x: auto;"&gt; so it scrolls
 on mobile. (Apply the rest of the P4 table rules you already have.)
 
-Update index.html directly. Don't change anything else in the file.</div>
+Give me the updated index.html. Don't change anything else.</div>
 
   <div class="callout">
     <strong>Why horizontal scroll?</strong>
@@ -489,10 +457,10 @@ Update index.html directly. Don't change anything else in the file.</div>
 P4 form rules you already have (paired label/input, type="email"
 required, id="submit", no placeholder-as-label).
 
-Match the fields shown in my Figma &mdash; check the form section via the
-MCP for the actual field labels. Use action="#" for now (no backend).
+Match the fields shown in my design's contact section &mdash; use the actual
+field labels from the screenshot. Use action="#" for now (no backend).
 
-Update index.html directly.</div>
+Give me the updated index.html.</div>
 
   <div class="gotcha">
     <strong>What the AI gets wrong here:</strong>
@@ -509,22 +477,22 @@ Update index.html directly.</div>
   <div class="kicker"><span class="step-num">04</span> The Motion Audit</div>
   <h2>Translate Figma motion notes into CSS</h2>
 
-  <p>If you wrote motion annotations on your Figma during the design phase (<em>"button lifts on hover," "hero text fades in"</em>), opencode saw them when it called the MCP. The brief asks for <strong>one <code>@keyframes</code> animation</strong> and <strong>one <code>transform</code> property</strong>. Pick the two most important.</p>
+  <p>If you wrote motion notes on your design during the design phase (<em>"button lifts on hover," "hero text fades in"</em>), they're in the screenshots you gave the AI. The brief asks for <strong>one <code>@keyframes</code> animation</strong> and <strong>one <code>transform</code> property</strong>. Pick the two most important.</p>
 
-  <div class="prompt">Look at the motion notes/annotations from my Figma (you saw them via
-the MCP). Implement two of them:
+  <div class="prompt">Look at the motion notes/labels in my design (in the screenshots I
+gave you). Implement two of them:
 
   1. ONE @keyframes animation matching one note, applied to the
      relevant element by class.
   2. ONE transform on :hover (or :focus) matching another note, applied
      to the relevant element by class.
 
-Create css/styles.css if it doesn't exist and link it from index.html
-if the link isn't there already. Use class names that already exist in
-my HTML &mdash; don't invent new ones. Respect prefers-reduced-motion (per
-the rule you already have).
+Create css/styles.css and link it from index.html if the link isn't
+there already. Use class names that already exist in my HTML &mdash; don't
+invent new ones. Respect prefers-reduced-motion (per the rule you
+already have).
 
-Write the files directly.</div>
+Give me both files.</div>
 
   <div class="callout">
     <strong>No motion notes in your Figma?</strong>
@@ -573,9 +541,9 @@ Write the files directly.</div>
         <td>"Reorder the sections in main to match the Figma top-to-bottom."</td>
       </tr>
       <tr>
-        <td>Skipped the MCP entirely</td>
-        <td>Agent invented frame names or content that aren't in your file</td>
-        <td>"Call get_figma_data on my file first, then redo the mapping using the real layer names."</td>
+        <td>Invented content not in your design</td>
+        <td>Headlines, labels, or sections that aren't in your screenshot</td>
+        <td>"Only use text and sections visible in the design I gave you. Redo the mapping from the image."</td>
       </tr>
     </tbody>
   </table>
@@ -584,6 +552,84 @@ Write the files directly.</div>
     <strong>The submission asks you to name ONE thing the AI got wrong.</strong>
     Pick the one that mattered most for your project and write 2-3 sentences in your prompt log about what it was, how you noticed, and what you changed. Generic answers ("it forgot some tags") don't count; specific ones ("it skipped <code>id='header-img'</code> on the logo image, I caught it by Cmd-F'ing for <code>header-img</code>, and I re-prompted with the exact requirement") do.
   </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============================================================ -->
+<section class="module blue" id="mcp">
+  <div class="kicker">Advanced &mdash; optional, expect to tinker</div>
+  <h2>Wire Figma directly into opencode (MCP)</h2>
+
+  <p>The screenshot path above is the easy 90% and it's all you need for the checkpoint. The <strong>Model Context Protocol (MCP)</strong> is the power-user upgrade: instead of pasting a picture, you connect the agent to Figma so it reads your <em>live file</em> &mdash; exact text, real layer names, table data &mdash; and writes the files for you.</p>
+
+  <div class="callout warn">
+    <strong>Be honest with yourself: this is the advanced track, and it will probably not be straightforward.</strong>
+    MCP tooling changes fast, every machine is a little different, and the error messages are cryptic. Budget time to <em>troubleshoot</em>. The good news: the AI is your debugging partner here &mdash; <strong>paste the exact error back into ChatGPT/Claude, or ask opencode itself</strong> ("opencode won't connect to my Figma MCP, here's my <code>opencode.json</code> and the error &mdash; what's wrong?"). Expect a few rounds of back-and-forth before it connects. If you just need the checkpoint done, use the screenshot path and skip this.
+  </div>
+
+  <div class="callout red">
+    <strong>Reality check before you start.</strong>
+    Figma's <em>official</em> remote MCP (<code>mcp.figma.com</code>) uses OAuth and <strong>does not accept a <code>figd_</code> personal-access token</strong> &mdash; and it currently <strong>refuses opencode</strong> (you'll get a <code>403</code>, because Figma only allows a short list of clients while it's in beta). So for <strong>opencode specifically</strong>, use one of the two working options below. If you'd rather use Figma's smooth official OAuth server, it works today in <strong>Claude Code, Cursor, or VS Code</strong> &mdash; e.g. <code>claude mcp add --transport http figma https://mcp.figma.com/mcp</code>, then <code>/mcp</code> &rarr; Authenticate.
+  </div>
+
+  <h3>First: there's no "paste your key" button in opencode</h3>
+
+  <p>opencode doesn't have a Settings panel where you paste a Figma key. MCP servers live in a config file called <code>opencode.json</code> in your project folder. Both options below are "create that one file, then restart opencode." If you don't have a project folder yet, make one (a <code>p4-landing-page</code> folder on your Desktop is fine).</p>
+
+  <h3>Option A &mdash; Figma desktop app, no token (the cleaner one)</h3>
+
+  <ol>
+    <li>Install the <strong>Figma desktop app</strong> and open your file.</li>
+    <li>Turn on the local server: Figma menu &rarr; <strong>Preferences &rarr; Enable Dev Mode MCP Server</strong>. Figma shows you a local URL (usually <code>http://127.0.0.1:3845/mcp</code>).</li>
+    <li>In your project folder, create a file named <code>opencode.json</code> containing:
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "figma": {
+      "type": "remote",
+      "url": "http://127.0.0.1:3845/mcp",
+      "enabled": true
+    }
+  }
+}</code></pre></li>
+    <li>Restart opencode. In the terminal, <code>opencode mcp list</code> should show <code>figma</code> connected.</li>
+    <li><strong>Select the frame</strong> you want in the Figma desktop app, then prompt opencode &mdash; it reads the <em>selected</em> frame. No token, no URL.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Trade-offs:</strong> needs the Figma desktop app running, reads the frame you currently have <em>selected</em> (not a whole file by URL), and Dev Mode may require a Dev/Full seat on some plans (student Education plans usually qualify).
+  </div>
+
+  <h3>Option B &mdash; community server + your <code>figd_</code> token (reads by URL)</h3>
+
+  <p>This is the path the priming prompt's <code>get_figma_data</code> tool is written for. It reads any file by URL, but it needs <strong>Node.js installed</strong> (the server runs via <code>npx</code>) plus a Figma token.</p>
+
+  <ol>
+    <li>Get a token: <a href="https://www.figma.com/settings" target="_blank" rel="noreferrer">figma.com/settings</a> &rarr; <strong>Security</strong> &rarr; <strong>Personal access tokens</strong> &rarr; generate one (it starts with <code>figd_</code> and needs <em>File content</em> read). Copy it &mdash; treat it like a password.</li>
+    <li>In your project folder, create <code>opencode.json</code> containing:
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "figma": {
+      "type": "local",
+      "command": ["npx", "-y", "figma-developer-mcp", "--stdio"],
+      "enabled": true,
+      "environment": {
+        "FIGMA_API_KEY": "figd_PASTE_YOUR_TOKEN_HERE"
+      }
+    }
+  }
+}</code></pre></li>
+    <li>Restart opencode and run <code>opencode mcp list</code> to confirm it connected. The <code>get_figma_data</code> tool is now available.</li>
+    <li>In your prompt, give it your file URL (<code>figma.com/design/&lt;FILE_KEY&gt;/...</code>) and ask it to read the design via <code>get_figma_data</code>, then do the mapping.</li>
+  </ol>
+
+  <div class="callout warn">
+    <strong>Don't commit your token.</strong>
+    Your <code>figd_</code> token sits in <code>opencode.json</code> in plain text. If you ever put this folder in a public Git repo, the token leaks &mdash; regenerate it immediately if that happens. Keep the folder private, or use Option A (no token) instead.
+  </div>
+
+  <p>Once MCP is connected either way, the Step 1&ndash;4 prompts work the same &mdash; the agent just pulls from your live Figma instead of a screenshot, and (in opencode) writes <code>index.html</code> and <code>css/styles.css</code> directly with its file tools. And again: when it doesn't connect on the first try, <strong>that's expected</strong> &mdash; feed the error to an LLM and iterate.</p>
 </section>
 
 <!-- ============================================================ -->
