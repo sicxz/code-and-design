@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wk7: Creating and Implementing Favicons -- DESN 368</title>
+<style>
+  html,body{margin:0;padding:0;background:#FDFFFC;}
+  body{color:#393E41;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.6;}
+  .cd-embed-back{position:sticky;top:0;z-index:50;background:#FDFFFC;border-bottom:1px solid rgba(57,62,65,0.15);padding:10px 20px;font-family:'SFMono-Regular','SF Mono',Consolas,Menlo,monospace;font-size:13px;}
+  .cd-embed-back a{color:#9A1125;text-decoration:none;font-weight:600;}
+  .cd-embed-back a:hover{text-decoration:underline;}
+  .cd-embed-wrap{max-width:1040px;margin:0 auto;padding:28px 20px 72px;}
+  .cd-embed-wrap img{max-width:100%;height:auto;}
+</style></head>
+<body><div class="cd-embed-back"><a href="/1/weeks/week-7/">&larr; Week 7</a></div>
+<div class="cd-embed-wrap">
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.2); border-top: 4px solid #B7142E; border-radius: 6px; padding: 32px; margin-bottom: 24px;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+<div><span style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 12px; padding: 4px 12px; background: #B7142E; color: #ffffff; border-radius: 20px; margin-bottom: 12px;">DESN 368</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 32px; line-height: 1.2; color: #393e41; margin: 0;">wk7: Creating and Implementing Favicons</h2>
+<p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; margin-top: 8px;">Web Design Fundamentals · Spring 2026</p>
+</div>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">TL;DR</h2>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Design a favicon in Figma</li>
+<li style="margin-bottom: 8px;">Generate cross-browser files with <a style="color: #006ba6; text-decoration: underline;" href="https://realfavicongenerator.net/">Real Favicon Generator</a></li>
+<li style="margin-bottom: 8px;">Create an assets folder in the root of your repo</li>
+<li style="margin-bottom: 8px;">create/upload <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">my-favicon/</code> folder in your repo</li>
+<li>Paste the provided code into your <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;head&gt;</code>, and verify it works live<br>i.e. make sure the link/path is correct.&nbsp;</li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Overview</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0;">A <strong>favicon</strong> is the small icon that appears in browser tabs, bookmarks, and mobile home screens. This assignment walks you through creating and implementing one.</p>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Part 1: Create Your Favicon</h2>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Step 1: Design in Figma</h3>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Create a simple, recognizable icon (favicons are tiny—keep it bold)</li>
+<li style="margin-bottom: 8px;">Google "favicon design inspiration" if you need ideas</li>
+<li>Export as <strong>PNG</strong> (square format, at least 512×512px works well)</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">Step 2: Generate Favicon Files</h3>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Go to <a style="color: #006ba6; text-decoration: underline;" href="https://realfavicongenerator.net/">Real Favicon Generator</a></li>
+<li style="margin-bottom: 8px;">Upload your PNG</li>
+<li style="margin-bottom: 8px;"><strong>Important:</strong> When asked for "Favicon path," type: <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">my-favicon</code></li>
+<li style="margin-bottom: 8px;">Adjust any appearance settings (iOS, Android, etc.)</li>
+<li style="margin-bottom: 8px;">Click "Generate your Favicons and HTML code"</li>
+<li>Download the favicon package (zip file)</li>
+</ol>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 16px 0;"><strong>What you get:</strong> Multiple file formats (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">.ico</code>, <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">.png</code>, <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">.svg</code>, <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">.webmanifest</code>) for different browsers and devices.</p>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Part 2: Add to Your GitHub Repo</h2>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Step 1: Open Your Code and Design Workspace Repo</h3>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Go to your GitHub repo</li>
+<li>Launch <strong>Codespaces</strong> (or open locally)</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">Step 2: Create a Folder &amp; Upload the Files</h3>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">In your <strong>root directory</strong> (same level as <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">index.html</code>), create a folder named <strong><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">my-favicon</code></strong></li>
+<li style="margin-bottom: 8px;">Unzip the downloaded package</li>
+<li>Upload <strong>all files</strong> into the <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">my-favicon/</code> folder</li>
+</ol>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">Step 3: Add Code to index.html</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;">Open your <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">index.html</code> and <strong>paste this code generated for you by <a style="color: #006ba6; text-decoration: underline;" href="https://realfavicongenerator.net/">Real Favicon Generator</a> inside the <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;head&gt;</code> section:</strong></p>
+<div style="background: #FBF3F5; border: 1px solid #E9B8C0; border-left: 6px solid #B7142E; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #9a1125; margin-bottom: 6px;">Important</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">NOTE!!! You will need to remove the forward slashes for the code to work. Go from <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">href="/my-favicon/favicon-96x96.png"</code> to <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">href="my-favicon/favicon-96x96.png"</code></p>
+</div>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); border-radius: 6px; padding: 16px; margin-bottom: 16px; overflow-x: auto;">
+<pre style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393e41; margin: 0; white-space: pre-wrap;"><code>&lt;!-- Favicon --&gt;
+&lt;link rel="icon" type="image/png" href="my-favicon/favicon-96x96.png" sizes="96x96" /&gt;
+&lt;link rel="icon" type="image/svg+xml" href="my-favicon/favicon.svg" /&gt;
+&lt;link rel="shortcut icon" href="my-favicon/favicon.ico" /&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="my-favicon/apple-touch-icon.png" /&gt;
+&lt;link rel="manifest" href="my-favicon/site.webmanifest" /&gt;</code></pre>
+</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 16px 0 12px 0;"><strong>Placement example:</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); border-radius: 6px; padding: 16px; margin-bottom: 16px; overflow-x: auto;">
+<pre style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393e41; margin: 0; white-space: pre-wrap;"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Your Site&lt;/title&gt;
+
+  &lt;!-- Favicon --&gt;
+  &lt;link rel="icon" type="image/png" href="my-favicon/favicon-96x96.png" sizes="96x96" /&gt;
+  &lt;link rel="icon" type="image/svg+xml" href="my-favicon/favicon.svg" /&gt;
+  &lt;link rel="shortcut icon" href="my-favicon/favicon.ico" /&gt;
+  &lt;link rel="apple-touch-icon" sizes="180x180" href="my-favicon/apple-touch-icon.png" /&gt;
+  &lt;link rel="manifest" href="my-favicon/site.webmanifest" /&gt;
+
+  &lt;link rel="stylesheet" href="styles/main.css"&gt;
+&lt;/head&gt;</code></pre>
+</div>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">Step 4: Commit &amp; Push</h3>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Stage your changes (new folder + modified <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">index.html</code>)</li>
+<li style="margin-bottom: 8px;">Commit message: <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">Add favicon with cross-browser support</code></li>
+<li>Push to GitHub</li>
+</ol>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Verify It Works</h2>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;"><strong>In your repo:</strong> Confirm <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">my-favicon/</code> folder exists with all files</li>
+<li style="margin-bottom: 8px;"><strong>In index.html:</strong> Confirm the 5 <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;link&gt;</code> tags are in your <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;head&gt;</code></li>
+<li>Navigate to your live site and verify the favicon is in the browser tab.</li>
+</ol>
+<div style="background: #F2FCFE; border: 1px solid #B3EAFA; border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-top: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #006ba6; margin-bottom: 6px;">Troubleshooting</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">If favicon doesn't appear, do a hard refresh (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">Cmd+Shift+R</code> on Mac, <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">Ctrl+Shift+R</code> on Windows). Browsers cache favicons aggressively.</p>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Submission</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;">Submit <strong>two things:</strong></p>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Your site URL</li>
+<li>Screenshot showing your favicon in the browser tab</li>
+</ol>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Key Considerations</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;"><strong>Why so many files?</strong> Different browsers and devices prefer different formats. The generator creates optimized versions for Safari (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">.svg</code>), Chrome (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">.png</code>), iOS home screen (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">.apple-touch-icon</code>), etc.</p>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;"><strong>The <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">my-favicon/</code> path:</strong> The leading slash (when used in your repo) means "start from root directory." This ensures links work whether you're on <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">index.html</code> or <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(57,62,65,0.1); padding: 2px 6px; border-radius: 3px; color: #393e41;">week-7/some-page.html</code>. However, remove the leading slash for local testing.</p>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0;"><strong>Hard refresh if testing locally:</strong> Your browser might show an old cached version. The hard refresh forces it to fetch the new icon.</p>
+</div>
+</div></body></html>

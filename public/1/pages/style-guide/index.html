@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STYLE GUIDE -- DESN 368</title>
+<style>
+  html,body{margin:0;padding:0;background:#FDFFFC;}
+  body{color:#393E41;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.6;}
+  .cd-embed-back{position:sticky;top:0;z-index:50;background:#FDFFFC;border-bottom:1px solid rgba(57,62,65,0.15);padding:10px 20px;font-family:'SFMono-Regular','SF Mono',Consolas,Menlo,monospace;font-size:13px;}
+  .cd-embed-back a{color:#9A1125;text-decoration:none;font-weight:600;}
+  .cd-embed-back a:hover{text-decoration:underline;}
+  .cd-embed-wrap{max-width:1040px;margin:0 auto;padding:28px 20px 72px;}
+  .cd-embed-wrap img{max-width:100%;height:auto;}
+</style></head>
+<body><div class="cd-embed-back"><a href="/1/">&larr; Resources</a></div>
+<div class="cd-embed-wrap">
+
+
+
+  
+  
+  S26 Design System — DESN 368 Variant
+  
+
+
+
+
+<div class="page-header">
+  <h1>S26 · DESN 368</h1>
+  <p>Canvas Design System — DESN 368 Course Variant</p>
+  <div class="badge-row">
+    <span>v1.0</span>
+    <span>WCAG 2.1 AA</span>
+    <span>Canvas Sans + Canvas Mono</span>
+    <span>EWU Eagle Colors</span>
+  </div>
+</div>
+
+<div class="container">
+
+
+<div class="section-gap">
+  <div class="section-label">Design Philosophy</div>
+  <div class="demo-card">
+    <h2 style="font-size: 22px;  margin-bottom: 16px; ">Card-Based · Multi-Color · Warm</h2>
+    <p style="margin-bottom: 16px;">The 368 variant shares the S26 backbone (spacing, tables, data rows, WCAG compliance) but replaces the base system's brutalist monospace aesthetic with a <strong>card-based, multi-color, warmer</strong> visual language rooted in the EWU Eagle brand.</p>
+    <p style="color: #656D76; font-size: 14px;">If S26 base is a government form, 368 is a modern dashboard. Same information density, different emotional register. Students immediately know which course they're in.</p>
+  </div>
+</div>
+
+
+<div class="section-gap">
+  <div class="section-label">Color Tokens — Light Mode</div>
+  <div class="s26-368-light small-gap">
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-color" style="background: #FDFFFC; border-bottom: 1px solid rgba(57,62,65,0.15);"></div><div class="swatch-label"><span class="name">bg</span><span class="hex">#FDFFFC</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #F5F8F5;"></div><div class="swatch-label"><span class="name">bg-surface</span><span class="hex">#F5F8F5</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #F8FAF8;"></div><div class="swatch-label"><span class="name">bg-subtle</span><span class="hex">#F8FAF8</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #393E41;"></div><div class="swatch-label"><span class="name">text</span><span class="hex">#393E41</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #656D76;"></div><div class="swatch-label"><span class="name">text-secondary</span><span class="hex">#656D76</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #848D97;"></div><div class="swatch-label"><span class="name">text-muted</span><span class="hex">#848D97</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #B7142E;"></div><div class="swatch-label"><span class="name">eagle-red</span><span class="hex">#B7142E</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #9A1125;"></div><div class="swatch-label"><span class="name">eagle-red-text</span><span class="hex">#9A1125</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #01BAEF;"></div><div class="swatch-label"><span class="name">eagle-blue</span><span class="hex">#01BAEF</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #006BA6;"></div><div class="swatch-label"><span class="name">eagle-blue-text</span><span class="hex">#006BA6</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #6BD425;"></div><div class="swatch-label"><span class="name">eagle-green</span><span class="hex">#6BD425</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #2B7015;"></div><div class="swatch-label"><span class="name">eagle-green-text</span><span class="hex">#2B7015</span></div></div>
+    </div>
+  </div>
+
+  <div class="section-label">Color Tokens — Dark Mode</div>
+  <div class="s26-368-dark">
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-color" style="background: #0D1117; border-bottom: 1px solid #30363D;"></div><div class="swatch-label"><span class="name">bg</span><span class="hex">#0D1117</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #161B22;"></div><div class="swatch-label"><span class="name">bg-card</span><span class="hex">#161B22</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #1C2128;"></div><div class="swatch-label"><span class="name">bg-surface</span><span class="hex">#1C2128</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #E6EDF3;"></div><div class="swatch-label"><span class="name">text</span><span class="hex">#E6EDF3</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #8B949E;"></div><div class="swatch-label"><span class="name">text-secondary</span><span class="hex">#8B949E</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #858E98;"></div><div class="swatch-label"><span class="name">text-muted</span><span class="hex">#858E98</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #B7142E;"></div><div class="swatch-label"><span class="name">eagle-red</span><span class="hex">#F04E64</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #01BAEF;"></div><div class="swatch-label"><span class="name">eagle-blue</span><span class="hex">#01BAEF</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #33C8F2;"></div><div class="swatch-label"><span class="name">eagle-blue-text</span><span class="hex">#33C8F2</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background: #7FDE45;"></div><div class="swatch-label"><span class="name">eagle-green</span><span class="hex">#7FDE45</span></div></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-gap">
+  <div class="section-label">Typography Scale</div>
+  <div class="grid-2">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 20px;">Light Mode</div>
+      <div class="type-demo">
+        <h1 style="font-size: 32px;   line-height: 1.2; color: #393E41;">H1 — Page Title</h1>
+        <h2 style="font-size: 22px;   line-height: 1.3; color: #393E41;">H2 — Section Title</h2>
+        <h3 style="font-size: 18px;  line-height: 1.3; color: #393E41;">H3 — Subsection</h3>
+        <h4 style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #656D76;">H4 — Label / Meta</h4>
+        <p style="font-size: 16px; line-height: 1.7; color: #393E41;">Body text in the Canvas-native sans stack. Clean, warm, and sturdy enough to survive LMS font substitution without losing hierarchy.</p>
+        <p style="font-size: 14px; line-height: 1.5; color: #656D76;">Body small — secondary descriptive text with reduced emphasis.</p>
+        <p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656D76;">Meta text in the Canvas-native mono stack for dates, file sizes, and technical labels.</p>
+      </div>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 20px;">Dark Mode</div>
+      <div class="type-demo">
+        <h1 style="font-size: 32px;   line-height: 1.2; color: #E6EDF3;">H1 — Page Title</h1>
+        <h2 style="font-size: 22px;   line-height: 1.3; color: #E6EDF3;">H2 — Section Title</h2>
+        <h3 style="font-size: 18px;  line-height: 1.3; color: #E6EDF3;">H3 — Subsection</h3>
+        <h4 style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #858E98;">H4 — Label / Meta</h4>
+        <p style="font-size: 16px; line-height: 1.7; color: #E6EDF3;">Body text in the Canvas-native sans stack. The rounded 368 personality now comes from layout, color, and spacing instead of imported fonts.</p>
+        <p style="font-size: 14px; line-height: 1.5; color: #8B949E;">Body small — secondary descriptive text with reduced emphasis.</p>
+        <p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #858E98;">Meta text in the Canvas-native mono stack for dates, file sizes, and technical labels.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-gap">
+  <div class="section-label">Spacing Scale (4px base)</div>
+  <div class="grid-2">
+    <div class="s26-368-light">
+      <div class="spacing-demo">
+        <div class="spacing-block" style="width: 4px; height: 4px;" title="sp-1: 4px"></div>
+        <div class="spacing-block" style="width: 8px; height: 8px;" title="sp-2: 8px"></div>
+        <div class="spacing-block" style="width: 12px; height: 12px;">12</div>
+        <div class="spacing-block" style="width: 16px; height: 16px;">16</div>
+        <div class="spacing-block" style="width: 24px; height: 24px;">24</div>
+        <div class="spacing-block" style="width: 32px; height: 32px;">32</div>
+        <div class="spacing-block" style="width: 48px; height: 48px;">48</div>
+        <div class="spacing-block" style="width: 64px; height: 64px;">64</div>
+      </div>
+    </div>
+    <div class="s26-368-dark">
+      <div class="spacing-demo">
+        <div class="spacing-block" style="width: 4px; height: 4px;"></div>
+        <div class="spacing-block" style="width: 8px; height: 8px;"></div>
+        <div class="spacing-block" style="width: 12px; height: 12px;">12</div>
+        <div class="spacing-block" style="width: 16px; height: 16px;">16</div>
+        <div class="spacing-block" style="width: 24px; height: 24px;">24</div>
+        <div class="spacing-block" style="width: 32px; height: 32px;">32</div>
+        <div class="spacing-block" style="width: 48px; height: 48px;">48</div>
+        <div class="spacing-block" style="width: 64px; height: 64px;">64</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-gap">
+  <div class="section-label">Components</div>
+
+  
+  <div class="grid-2 small-gap">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 16px;">Course Header Card</div>
+      <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.2); border-top: 4px solid #B7142E; border-radius: 6px; padding: 24px; ">
+        <div style="margin-bottom: 12px;">
+          <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 4px 12px; background: #B7142E; color: #FFFFFF; border-radius: 20px; margin-bottom: 12px;">DESN 368</span>
+          <h1 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 28px;  line-height: 1.2;  color: #393E41; margin: 0;">Week 5: Responsive Layouts</h1>
+          <p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656D76; margin-top: 6px;">Web Design Fundamentals · Spring 2026</p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656D76;">Due: 2026-04-15</span>
+          <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656D76;">Points: 50</span>
+          <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #B7142E; color: #9A1125; border-radius: 20px;">Active</span>
+        </div>
+      </div>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 16px;">Course Header Card</div>
+      <div style="background: #161B22; border: 1px solid #30363D; border-top: 4px solid #F04E64; border-radius: 6px; padding: 24px; ">
+        <div style="margin-bottom: 12px;">
+          <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 4px 12px; background: #B7142E; color: #FFFFFF; border-radius: 20px; margin-bottom: 12px;">DESN 368</span>
+          <h1 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 28px;  line-height: 1.2;  color: #E6EDF3; margin: 0;">Week 5: Responsive Layouts</h1>
+          <p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #858E98; margin-top: 6px;">Web Design Fundamentals · Spring 2026</p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #858E98;">Due: 2026-04-15</span>
+          <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #858E98;">Points: 50</span>
+          <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #F04E64; color: #F04E64; border-radius: 20px;">Active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="grid-2 small-gap">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 16px;">Section Cards — Color System</div>
+
+      
+      <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 20px; margin-bottom: 12px;">
+        <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 20px;  color: #393E41; margin: 0 0 8px 0;">Assignment Brief</h2>
+        <p style="font-size: 14px; color: #656D76; margin: 0;">Red sections — action items, requirements, due dates, rubrics.</p>
+      </div>
+
+      
+      <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 20px; margin-bottom: 12px;">
+        <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 20px;  color: #393E41; margin: 0 0 8px 0;">Resources &amp; Links</h2>
+        <p style="font-size: 14px; color: #656D76; margin: 0;">Blue sections — readings, external tools, info, references.</p>
+      </div>
+
+      
+      <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 20px; margin-bottom: 12px;">
+        <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 20px;  color: #393E41; margin: 0 0 8px 0;">Tools &amp; Setup</h2>
+        <p style="font-size: 14px; color: #656D76; margin: 0;">Green sections — technical guides, tool setup, success criteria.</p>
+      </div>
+
+      
+      <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-radius: 6px; padding: 20px;">
+        <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 20px;  color: #393E41; margin: 0 0 8px 0;">General Content</h2>
+        <p style="font-size: 14px; color: #656D76; margin: 0;">Neutral sections — no colored left border, standard card.</p>
+      </div>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 16px;">Section Cards — Color System</div>
+
+      <div style="background: #161B22; border: 1px solid #30363D; border-left: 6px solid #F04E64; border-radius: 0; padding: 20px; margin-bottom: 12px;">
+        <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 20px;  color: #E6EDF3; margin: 0 0 8px 0;">Assignment Brief</h2>
+        <p style="font-size: 14px; color: #8B949E; margin: 0;">Red sections — action items, requirements, due dates, rubrics.</p>
+      </div>
+
+      <div style="background: #161B22; border: 1px solid #30363D; border-left: 6px solid #01BAEF; border-radius: 0; padding: 20px; margin-bottom: 12px;">
+        <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 20px;  color: #E6EDF3; margin: 0 0 8px 0;">Resources &amp; Links</h2>
+        <p style="font-size: 14px; color: #8B949E; margin: 0;">Blue sections — readings, external tools, info, references.</p>
+      </div>
+
+      <div style="background: #161B22; border: 1px solid #30363D; border-left: 6px solid #6BD425; border-radius: 0; padding: 20px; margin-bottom: 12px;">
+        <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 20px;  color: #E6EDF3; margin: 0 0 8px 0;">Tools &amp; Setup</h2>
+        <p style="font-size: 14px; color: #8B949E; margin: 0;">Green sections — technical guides, tool setup, success criteria.</p>
+      </div>
+
+      <div style="background: #161B22; border: 1px solid #30363D; border-radius: 6px; padding: 20px;">
+        <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 20px;  color: #E6EDF3; margin: 0 0 8px 0;">General Content</h2>
+        <p style="font-size: 14px; color: #8B949E; margin: 0;">Neutral sections — no colored left border, standard card.</p>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="grid-2 small-gap">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 16px;">Banners / Callouts</div>
+
+      <div style="background: rgba(1,186,239,0.05); border: 1px solid rgba(1,186,239,0.3); border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-bottom: 12px;">
+        <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #006BA6; margin-bottom: 6px;">Note</div>
+        <p style="font-size: 14px; line-height: 1.5; color: #393E41; margin: 0;">This is an informational callout using the blue accent.</p>
+      </div>
+
+      <div style="background: rgba(183,20,46,0.05); border: 1px solid rgba(183,20,46,0.3); border-left: 6px solid #B7142E; border-radius: 0; padding: 16px 20px; margin-bottom: 12px;">
+        <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #9A1125; margin-bottom: 6px;">Important</div>
+        <p style="font-size: 14px; line-height: 1.5; color: #393E41; margin: 0;">This is a danger/important callout using the red accent.</p>
+      </div>
+
+      <div style="background: rgba(107,212,37,0.05); border: 1px solid rgba(107,212,37,0.3); border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin-bottom: 12px;">
+        <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #2B7015; margin-bottom: 6px;">Success</div>
+        <p style="font-size: 14px; line-height: 1.5; color: #393E41; margin: 0;">This is a success callout using the green accent.</p>
+      </div>
+
+      <div style="background: rgba(251,133,0,0.05); border: 1px solid rgba(251,133,0,0.3); border-left: 6px solid #9A6700; border-radius: 0; padding: 16px 20px;">
+        <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #9A6700; margin-bottom: 6px;">Warning</div>
+        <p style="font-size: 14px; line-height: 1.5; color: #393E41; margin: 0;">This is a warning callout using the amber accent.</p>
+      </div>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 16px;">Banners / Callouts</div>
+
+      <div style="background: rgba(1,186,239,0.08); border: 1px solid rgba(1,186,239,0.25); border-left: 6px solid #01BAEF; border-radius: 0; padding: 16px 20px; margin-bottom: 12px;">
+        <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #33C8F2; margin-bottom: 6px;">Note</div>
+        <p style="font-size: 14px; line-height: 1.5; color: #E6EDF3; margin: 0;">This is an informational callout using the blue accent.</p>
+      </div>
+
+      <div style="background: rgba(240,78,100,0.08); border: 1px solid rgba(240,78,100,0.25); border-left: 6px solid #F04E64; border-radius: 0; padding: 16px 20px; margin-bottom: 12px;">
+        <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #F04E64; margin-bottom: 6px;">Important</div>
+        <p style="font-size: 14px; line-height: 1.5; color: #E6EDF3; margin: 0;">This is a danger/important callout using the red accent.</p>
+      </div>
+
+      <div style="background: rgba(107,212,37,0.08); border: 1px solid rgba(107,212,37,0.25); border-left: 6px solid #6BD425; border-radius: 0; padding: 16px 20px; margin-bottom: 12px;">
+        <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #7FDE45; margin-bottom: 6px;">Success</div>
+        <p style="font-size: 14px; line-height: 1.5; color: #E6EDF3; margin: 0;">This is a success callout using the green accent.</p>
+      </div>
+
+      <div style="background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.25); border-left: 6px solid #D29922; border-radius: 0; padding: 16px 20px;">
+        <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #D29922; margin-bottom: 6px;">Warning</div>
+        <p style="font-size: 14px; line-height: 1.5; color: #E6EDF3; margin: 0;">This is a warning callout using the amber accent.</p>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="grid-2 small-gap">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 16px;">Badges (Pill)</div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; background: #B7142E; color: #FFFFFF; border-radius: 20px;">DESN 368</span>
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #B7142E; color: #9A1125; border-radius: 20px;">Required</span>
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #006BA6; color: #006BA6; border-radius: 20px;">Resource</span>
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #2B7015; color: #2B7015; border-radius: 20px;">Tool</span>
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #9A6700; color: #9A6700; border-radius: 20px;">Draft</span>
+      </div>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 16px;">Badges (Pill)</div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; background: #B7142E; color: #FFFFFF; border-radius: 20px;">DESN 368</span>
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #F04E64; color: #F04E64; border-radius: 20px;">Required</span>
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #01BAEF; color: #33C8F2; border-radius: 20px;">Resource</span>
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #6BD425; color: #7FDE45; border-radius: 20px;">Tool</span>
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #D29922; color: #D29922; border-radius: 20px;">Draft</span>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="grid-2 small-gap">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 16px;">Gradient Feature Card</div>
+      <div style="background: linear-gradient(135deg, rgba(1,186,239,0.05) 0%, rgba(107,212,37,0.05) 100%); border: 1px solid rgba(57,62,65,0.15); border-radius: 6px; padding: 24px;">
+        <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  color: #393E41; margin: 0 0 8px 0;">Browser DevTools Workshop</h3>
+        <p style="font-size: 14px; line-height: 1.5; color: #656D76; margin: 0 0 12px 0;">Learn to inspect, debug, and optimize responsive layouts using Chrome and Firefox developer tools.</p>
+        <a href="#" style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;  padding: 8px 16px; border: 1px solid #006BA6; color: #006BA6; border-radius: 6px; text-decoration: none;">Open Workshop</a>
+      </div>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 16px;">Gradient Feature Card</div>
+      <div style="background: linear-gradient(135deg, rgba(1,186,239,0.06) 0%, rgba(107,212,37,0.06) 100%); border: 1px solid #30363D; border-radius: 6px; padding: 24px;">
+        <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  color: #E6EDF3; margin: 0 0 8px 0;">Browser DevTools Workshop</h3>
+        <p style="font-size: 14px; line-height: 1.5; color: #8B949E; margin: 0 0 12px 0;">Learn to inspect, debug, and optimize responsive layouts using Chrome and Firefox developer tools.</p>
+        <a href="#" style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;  padding: 8px 16px; border: 1px solid #01BAEF; color: #33C8F2; border-radius: 6px; text-decoration: none;">Open Workshop</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="grid-2 small-gap">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 16px;">Data Rows</div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(57,62,65,0.15);">
+        <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #656D76;">Course</span>
+        <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; color: #393E41;">DESN 368</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(57,62,65,0.15);">
+        <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #656D76;">Quarter</span>
+        <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; color: #393E41;">Spring 2026</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(57,62,65,0.15);">
+        <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #656D76;">Credits</span>
+        <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; color: #393E41;">5</span>
+      </div>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 16px;">Data Rows</div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #30363D;">
+        <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #858E98;">Course</span>
+        <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; color: #E6EDF3;">DESN 368</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #30363D;">
+        <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #858E98;">Quarter</span>
+        <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; color: #E6EDF3;">Spring 2026</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #30363D;">
+        <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #858E98;">Credits</span>
+        <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; color: #E6EDF3;">5</span>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="grid-2 small-gap">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 16px;">Blockquote</div>
+      <blockquote style="border-left: 6px solid #B7142E; padding: 16px 20px; margin: 0; background: rgba(183,20,46,0.03); border-radius: 0;">
+        <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; font-style: italic; line-height: 1.7; color: #393E41; margin: 0;">Design is not just what it looks like and feels like. Design is how it works.</p>
+        <cite style="display: block; margin-top: 8px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656D76; font-style: normal;">— Steve Jobs</cite>
+      </blockquote>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 16px;">Blockquote</div>
+      <blockquote style="border-left: 6px solid #F04E64; padding: 16px 20px; margin: 0; background: rgba(240,78,100,0.05); border-radius: 0;">
+        <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; font-style: italic; line-height: 1.7; color: #E6EDF3; margin: 0;">Design is not just what it looks like and feels like. Design is how it works.</p>
+        <cite style="display: block; margin-top: 8px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #858E98; font-style: normal;">— Steve Jobs</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  
+  <div class="grid-2 small-gap">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 16px;">Table</div>
+      <table role="table" style="width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid rgba(57,62,65,0.2); border-radius: 6px; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;">
+        <thead>
+          <tr style="background: #F5F8F5;">
+            <th scope="col" style="text-align: left; padding: 10px 14px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px;    color: #656D76; border-bottom: 1px solid rgba(57,62,65,0.2);">Week</th>
+            <th scope="col" style="text-align: left; padding: 10px 14px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px;    color: #656D76; border-bottom: 1px solid rgba(57,62,65,0.2);">Topic</th>
+            <th scope="col" style="text-align: left; padding: 10px 14px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px;    color: #656D76; border-bottom: 1px solid rgba(57,62,65,0.2);">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 14px; color: #393E41; border-bottom: 1px solid rgba(57,62,65,0.1);">1</td>
+            <td style="padding: 10px 14px; color: #393E41; border-bottom: 1px solid rgba(57,62,65,0.1);">HTML Foundations</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(57,62,65,0.1);"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 10px;    padding: 2px 8px; border: 1px solid #2B7015; color: #2B7015; border-radius: 20px;">Complete</span></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 14px; color: #393E41; border-bottom: 1px solid rgba(57,62,65,0.1);">2</td>
+            <td style="padding: 10px 14px; color: #393E41; border-bottom: 1px solid rgba(57,62,65,0.1);">CSS Box Model</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid rgba(57,62,65,0.1);"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 10px;    padding: 2px 8px; border: 1px solid #B7142E; color: #9A1125; border-radius: 20px;">Active</span></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 14px; color: #393E41;">3</td>
+            <td style="padding: 10px 14px; color: #393E41;">Flexbox &amp; Grid</td>
+            <td style="padding: 10px 14px;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 10px;    padding: 2px 8px; border: 1px solid rgba(57,62,65,0.3); color: #656D76; border-radius: 20px;">Upcoming</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 16px;">Table</div>
+      <table role="table" style="width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #30363D; border-radius: 6px; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;">
+        <thead>
+          <tr style="background: #1C2128;">
+            <th scope="col" style="text-align: left; padding: 10px 14px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px;    color: #858E98; border-bottom: 1px solid #30363D;">Week</th>
+            <th scope="col" style="text-align: left; padding: 10px 14px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px;    color: #858E98; border-bottom: 1px solid #30363D;">Topic</th>
+            <th scope="col" style="text-align: left; padding: 10px 14px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px;    color: #858E98; border-bottom: 1px solid #30363D;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 14px; color: #E6EDF3; border-bottom: 1px solid #21262D;">1</td>
+            <td style="padding: 10px 14px; color: #E6EDF3; border-bottom: 1px solid #21262D;">HTML Foundations</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid #21262D;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 10px;    padding: 2px 8px; border: 1px solid #6BD425; color: #7FDE45; border-radius: 20px;">Complete</span></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 14px; color: #E6EDF3; border-bottom: 1px solid #21262D;">2</td>
+            <td style="padding: 10px 14px; color: #E6EDF3; border-bottom: 1px solid #21262D;">CSS Box Model</td>
+            <td style="padding: 10px 14px; border-bottom: 1px solid #21262D;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 10px;    padding: 2px 8px; border: 1px solid #F04E64; color: #F04E64; border-radius: 20px;">Active</span></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 14px; color: #E6EDF3;">3</td>
+            <td style="padding: 10px 14px; color: #E6EDF3;">Flexbox &amp; Grid</td>
+            <td style="padding: 10px 14px;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 10px;    padding: 2px 8px; border: 1px solid #30363D; color: #858E98; border-radius: 20px;">Upcoming</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="grid-2 small-gap">
+    <div class="s26-368-light">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 16px;">Buttons &amp; Links</div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;">
+        <a href="#" style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;  padding: 10px 20px; border: 1px solid #B7142E; color: #9A1125; border-radius: 6px; text-decoration: none;">Primary Action</a>
+        <a href="#" style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;  padding: 10px 20px; border: 1px solid #006BA6; color: #006BA6; border-radius: 6px; text-decoration: none;">Info / Link</a>
+        <a href="#" style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;  padding: 10px 20px; border: 1px solid rgba(57,62,65,0.3); color: #393E41; border-radius: 6px; text-decoration: none;">Neutral</a>
+      </div>
+      <p style="font-size: 14px; color: #393E41;">Inline <a href="#" style="color: #006BA6; text-decoration: underline;  ">blue link for resources</a> and <a href="#" style="color: #9A1125; text-decoration: underline;  ">red link for actions</a>.</p>
+    </div>
+    <div class="s26-368-dark">
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #858E98;   margin-bottom: 16px;">Buttons &amp; Links</div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;">
+        <a href="#" style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;  padding: 10px 20px; border: 1px solid #F04E64; color: #F04E64; border-radius: 6px; text-decoration: none;">Primary Action</a>
+        <a href="#" style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;  padding: 10px 20px; border: 1px solid #01BAEF; color: #33C8F2; border-radius: 6px; text-decoration: none;">Info / Link</a>
+        <a href="#" style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;  padding: 10px 20px; border: 1px solid #30363D; color: #E6EDF3; border-radius: 6px; text-decoration: none;">Neutral</a>
+      </div>
+      <p style="font-size: 14px; color: #E6EDF3;">Inline <a href="#" style="color: #33C8F2; text-decoration: underline;  ">blue link for resources</a> and <a href="#" style="color: #F04E64; text-decoration: underline;  ">red link for actions</a>.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-gap">
+  <div class="section-label">WCAG 2.1 AA Contrast Audit</div>
+  <div class="grid-2">
+    <div>
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 12px;">Light Mode on #FDFFFC</div>
+      <table class="contrast-table">
+        <thead><tr><th>Color</th><th>Hex</th><th>Ratio</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Text</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#393E41</td><td>10.77:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Text secondary</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#656D76</td><td>5.22:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Eagle Red</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#B7142E</td><td>6.62:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Eagle Red (text)</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#9A1125</td><td>8.42:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Eagle Blue (text)</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#006BA6</td><td>5.72:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Eagle Green (text)</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#2B7015</td><td>6.09:1</td><td class="pass">PASS</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; color: #656D76;   margin-bottom: 12px;">Dark Mode on #0D1117</div>
+      <table class="contrast-table">
+        <thead><tr><th>Color</th><th>Hex</th><th>Ratio</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Text</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#E6EDF3</td><td>13.86:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Text secondary</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#8B949E</td><td>6.15:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Text muted</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#858E98</td><td>5.07:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Eagle Red</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#F04E64</td><td>5.39:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Eagle Blue</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#33C8F2</td><td>9.63:1</td><td class="pass">PASS</td></tr>
+          <tr><td>Eagle Green</td><td style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;">#7FDE45</td><td>11.21:1</td><td class="pass">PASS</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-gap">
+  <div class="section-label">368 vs Base S26 — At a Glance</div>
+  <table class="contrast-table" style="max-width: 700px;">
+    <thead><tr><th>Property</th><th>Base S26</th><th>DESN 368</th></tr></thead>
+    <tbody>
+      <tr><td>Font pair</td><td>Canvas Sans + Canvas Mono</td><td>Canvas Sans + Canvas Mono</td></tr>
+      <tr><td>Accent color</td><td>Blue (#0969DA)</td><td>Red + Blue + Green (multi)</td></tr>
+      <tr><td>Header style</td><td>72px monospace number, 3px border</td><td>Red-top card with pill badge</td></tr>
+      <tr><td>Sections</td><td>Numbered counters with rules</td><td>Cards with colored left borders</td></tr>
+      <tr><td>Badges</td><td>Stamped (rectangular, 2px border)</td><td>Pill (rounded, 1px border)</td></tr>
+      <tr><td>Banners</td><td>Two-part slug + body</td><td>Card with label + body</td></tr>
+      <tr><td>Border weight</td><td>3px structural</td><td>1px subtle, 4px accent left</td></tr>
+      <tr><td>Border radius</td><td>3px</td><td>6px</td></tr>
+      <tr><td>Visual feel</td><td>Government form</td><td>Modern dashboard</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+
+<div style="background: #393E41; color: #FDFFFC; padding: 32px 24px; text-align: center;">
+  <p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;  margin: 0;">S26 Design System · DESN 368 Variant v1.0 · WCAG 2.1 AA Compliant · 2026-03-27</p>
+</div>
+
+
+
+
+</div></body></html>

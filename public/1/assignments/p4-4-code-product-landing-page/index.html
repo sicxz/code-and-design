@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P4.4 - Code // Product Landing Page -- DESN 368</title>
+<style>
+  html,body{margin:0;padding:0;background:#FDFFFC;}
+  body{color:#393E41;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.6;}
+  .cd-embed-back{position:sticky;top:0;z-index:50;background:#FDFFFC;border-bottom:1px solid rgba(57,62,65,0.15);padding:10px 20px;font-family:'SFMono-Regular','SF Mono',Consolas,Menlo,monospace;font-size:13px;}
+  .cd-embed-back a{color:#9A1125;text-decoration:none;font-weight:600;}
+  .cd-embed-back a:hover{text-decoration:underline;}
+  .cd-embed-wrap{max-width:1040px;margin:0 auto;padding:28px 20px 72px;}
+  .cd-embed-wrap img{max-width:100%;height:auto;}
+</style></head>
+<body><div class="cd-embed-back"><a href="/1/weeks/week-8/">&larr; Week 8</a></div>
+<div class="cd-embed-wrap">
+<div style="background: #F2FCFE; border: 1px solid #B3EAFA; border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #006ba6; margin-bottom: 8px;">Figma Template</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0 0 8px 0;"><strong><a style="color: #006ba6; text-decoration: underline;" href="https://www.figma.com/design/mEkSvyHbLx8Gin1lgqXF34">P4 Product Landing Page Student Template</a></strong></p>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Duplicate this file for style tile, desktop/mobile starter frames, component states, and critique notes.</p>
+</div>
+<div style="background: #FDFFFC; color: #393e41; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; padding: 32px; min-height: 100vh;">
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.2); border-top: 4px solid #B7142E; border-radius: 6px; padding: 32px; margin-bottom: 32px;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+<div><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; padding: 4px 12px; background: #B7142E; color: #ffffff; border-radius: 20px; margin-bottom: 12px;">DESN 368</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 32px; line-height: 1.2; color: #393e41; margin: 0;">P4.4 - Code // Product Landing Page</h2>
+<p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; margin-top: 8px;">HTML/CSS Implementation · Phase 2</p>
+</div>
+</div>
+<div style="display: flex; gap: 16px; flex-wrap: wrap;"><span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76;">Due: Tuesday, June 2</span> <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; padding: 3px 10px; border: 1px solid #B7142E; color: #9a1125; border-radius: 20px;">Required</span></div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">About This Phase</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0;">You've completed your Figma design—now it's time to bring it to life with HTML and CSS.</p>
+</div>
+<div style="background: #FBF3F5; border: 1px solid #E9B8C0; border-left: 6px solid #B7142E; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #b7142e; margin-bottom: 6px;">💡 Reference Your Design</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Your Figma design is your roadmap. Reference it constantly as you code. The closer your implementation matches your design, the better your final result.</p>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Important Resources</h2>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 24px;">
+<li style="margin-bottom: 8px;">Brief: <a style="color: #006ba6; text-decoration: underline;" href="https://code-and-design.org/1/assignments/">https://code-and-design.org/1/assignments/</a></li>
+<li style="margin-bottom: 8px;">Code Validator (before submission): <a style="color: #006ba6; text-decoration: underline;" href="https://validator.w3.org/">https://validator.w3.org/</a></li>
+<li>CSS Validator: <a style="color: #006ba6; text-decoration: underline;" href="https://jigsaw.w3.org/css-validator/">https://jigsaw.w3.org/css-validator/</a></li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Page Structure: Semantic HTML</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;">Your landing page should use semantic HTML5 elements to create a clear, accessible structure.</p>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">Required Outer Structure</h3>
+<pre style="background: #F5F8F5; color: #393e41; padding: 16px; overflow-x: auto; border-radius: 4px; border: 1px solid rgba(57,62,65,0.1); font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.5; margin: 0 0 16px 0;">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Your Product Name&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header id="header"&gt;
+    &lt;!-- Navigation goes here --&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;!-- All your main content sections go here --&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;!-- Footer content goes here --&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">Inside &lt;main&gt;: Use Sections</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;">Break your content into logical <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;section&gt;</code> elements:</p>
+<pre style="background: #F5F8F5; color: #393e41; padding: 16px; overflow-x: auto; border-radius: 4px; border: 1px solid rgba(57,62,65,0.1); font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.5; margin: 0 0 16px 0;">&lt;main&gt;
+  &lt;section id="hero"&gt;
+    &lt;!-- Hero content --&gt;
+  &lt;/section&gt;
+
+  &lt;section id="video"&gt;
+    &lt;!-- Embedded video --&gt;
+  &lt;/section&gt;
+
+  &lt;section id="features"&gt;
+    &lt;!-- Feature cards using &lt;article&gt; elements --&gt;
+  &lt;/section&gt;
+
+  &lt;section id="data"&gt;
+    &lt;!-- Product data table --&gt;
+  &lt;/section&gt;
+
+  &lt;section id="contact"&gt;
+    &lt;!-- Contact form --&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</pre>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">Understanding &lt;article&gt; vs &lt;section&gt;</h3>
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid rgba(57,62,65,0.2); border-radius: 6px; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; margin-bottom: 16px;" role="table">
+<thead>
+<tr style="background: #F5F8F5;">
+<th style="text-align: left; padding: 12px 16px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; border-bottom: 1px solid rgba(57,62,65,0.2);" scope="col">Use &lt;section&gt; for:</th>
+<th style="text-align: left; padding: 12px 16px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; border-bottom: 1px solid rgba(57,62,65,0.2);" scope="col">Use &lt;article&gt; for:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Thematic groupings of content</td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Self-contained, independent content</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Major page divisions</td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Content that could stand alone</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Content with a heading</td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Reusable components</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; color: #393e41;">Example: Features section, Contact section</td>
+<td style="padding: 12px 16px; color: #393e41;">Example: Feature cards, testimonials</td>
+</tr>
+</tbody>
+</table>
+<div style="background: #F8FDF4; border: 1px solid #D3F2BE; border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #2b7015; margin-bottom: 6px;">💡 Rule of Thumb</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">If the content could be pulled out and used somewhere else independently → use <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: rgba(43,112,21,0.1); padding: 2px 6px; border-radius: 3px;">&lt;article&gt;</code></p>
+</div>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">Example: Features Section with Articles</h3>
+<pre style="background: #F5F8F5; color: #393e41; padding: 16px; overflow-x: auto; border-radius: 4px; border: 1px solid rgba(57,62,65,0.1); font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.5; margin: 0;">&lt;section id="features"&gt;
+  &lt;h2&gt;Features&lt;/h2&gt;
+
+  &lt;article&gt;
+    &lt;img src="icon1.png" alt="Feature icon"&gt;
+    &lt;h3&gt;Feature Name&lt;/h3&gt;
+    &lt;p&gt;Feature description...&lt;/p&gt;
+  &lt;/article&gt;
+
+  &lt;article&gt;
+    &lt;img src="icon2.png" alt="Feature icon"&gt;
+    &lt;h3&gt;Feature Name&lt;/h3&gt;
+    &lt;p&gt;Feature description...&lt;/p&gt;
+  &lt;/article&gt;
+
+  &lt;article&gt;
+    &lt;img src="icon3.png" alt="Feature icon"&gt;
+    &lt;h3&gt;Feature Name&lt;/h3&gt;
+    &lt;p&gt;Feature description...&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/section&gt;</pre>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #656d76; margin: 16px 0 0 0;">Learn more: <a style="color: #006ba6; text-decoration: underline;" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article">MDN – &lt;article&gt; vs &lt;section&gt;</a></p>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Required Elements</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;">Your landing page must include all of the following elements with the specified IDs and classes.</p>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">1. Header/Navigation</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;"><strong>Requirements:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Fixed-position header (stays at top when scrolling)</li>
+<li>Header element with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">id="header"</code></li>
+<li>Logo/brand image with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">id="header-img"</code></li>
+<li>Navigation element with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">id="nav-bar"</code></li>
+<li>Minimum 3 navigation links with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">class="nav-link"</code></li>
+</ul>
+<div style="background: #F2FCFE; border: 1px solid #B3EAFA; border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #006ba6; margin-bottom: 6px;">💡 What You Implement</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">How your Figma design shows the navigation.</p>
+</div>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">2. Hero Section</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;"><strong>Requirements:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>H1 headline (your product's value proposition)</li>
+<li>Subheading/supporting text</li>
+<li>Primary call-to-action button</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">3. Video/Media Section</h3>
+<div style="background: #F8FDF4; border: 1px solid #D3F2BE; border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #2b7015; margin-bottom: 6px;">✅ Required</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Embed a video related to your product.</p>
+</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;"><strong>Requirements:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Embedded video with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">id="video"</code></li>
+<li>Can use YouTube/Vimeo <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;iframe&gt;</code> OR HTML5 <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;video&gt;</code> element</li>
+<li>Must be responsive (scales on mobile)</li>
+</ul>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;"><strong>Embedding a YouTube video:</strong></p>
+<pre style="background: #F5F8F5; color: #393e41; padding: 16px; overflow-x: auto; border-radius: 4px; border: 1px solid rgba(57,62,65,0.1); font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.5; margin: 0 0 16px 0;">&lt;iframe
+  id="video"
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/VIDEO_ID"
+  title="Product video"
+  frameborder="0"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</pre>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;"><strong>Making video responsive:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Wrap in a container with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">max-width</code></li>
+<li>Maintain 16:9 aspect ratio</li>
+<li>Consider <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">width: 100%; height: auto;</code> for simple scaling</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">4. Features Section</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;"><strong>Requirements:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Minimum 3 feature cards</li>
+<li>Each feature uses <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;article&gt;</code> element</li>
+<li>Each feature has: icon/image, H3 heading, description text</li>
+<li>Layout using CSS Grid or Flexbox</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">5. Data Table (In-Page)</h3>
+<div style="background: #FFF9F2; border: 1px solid #FEDAB2; border-left: 6px solid #9A6700; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #9a6700; margin-bottom: 6px;">⚠️ Important</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Table appears in the page (not in a modal). Modal implementation is a stretch goal.</p>
+</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;"><strong>Requirements:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Table with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">id="data-table"</code></li>
+<li>Contains product-specific data (specs, pricing, comparisons, testimonials)</li>
+<li>Minimum 3 columns, 4–5 rows</li>
+<li>Proper structure with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;thead&gt;</code>, <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;tbody&gt;</code>, <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;th&gt;</code>, and <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;td&gt;</code></li>
+<li><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;th&gt;</code> elements have <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">scope</code> attribute</li>
+<li>Responsive on mobile</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">6. Contact Form</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;"><strong>Requirements:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Form with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">id="contact-form"</code></li>
+<li>Name input (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">type="text"</code>, <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">required</code>)</li>
+<li>Email input (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">type="email"</code>, <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">required</code> – HTML5 validation)</li>
+<li>Message textarea (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">required</code>)</li>
+<li>Submit button with <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">id="submit"</code></li>
+<li>All inputs have associated <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">&lt;label&gt;</code> elements</li>
+<li>Form has <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">action</code> attribute (can use placeholder URL)</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">7. Footer</h3>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 24px;">
+<li>Navigation links/sitemap</li>
+<li>Copyright notice</li>
+<li>Optional: social media links</li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">CSS Requirements</h2>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">1. One CSS Transform</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;">Add visual interest with a transform effect. Examples:</p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">transform: translateY(-4px)</code> – Button hover lift effect</li>
+<li><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">transform: scale(1.05)</code> – Card scale on hover</li>
+<li><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">transform: rotate(45deg)</code> – Icon rotation</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">2. One CSS Animation</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;">Create motion with a <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">@keyframes</code> animation. Examples:</p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Page load fade-in</li>
+<li>Slide-up animation with stagger</li>
+<li>Pulse animation on CTA button</li>
+<li>Navigation link fade-in sequence</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">3. Responsive Design</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;">Your page must work on multiple screen sizes:</p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>At least one <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">@media</code> query (recommended: 768px breakpoint)</li>
+<li>Mobile-first or desktop-first approach</li>
+<li>Flexible layouts that adapt to screen size</li>
+<li>Images and video scale appropriately</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">4. Form Styling</h3>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Clear <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">:focus</code> states</li>
+<li>Validation state styling (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">:invalid</code>, <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">:valid</code>)</li>
+<li>Mobile-friendly (16px min font size to prevent iOS zoom)</li>
+<li>Distinct hover states on buttons</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">5. Table Styling</h3>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 24px;">
+<li>Border-collapse or border styling</li>
+<li>Differentiated header row</li>
+<li>Mobile responsive strategy (scroll, stack, or hide columns)</li>
+<li>Optional: zebra striping, hover states</li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Accessibility Requirements</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;"><strong>Required:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 24px;">
+<li>All images have descriptive <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">alt</code> attributes</li>
+<li>Form inputs have associated labels (explicit or implicit)</li>
+<li>Visible focus states on all interactive elements</li>
+<li>Semantic HTML with proper heading hierarchy (H1 → H2 → H3)</li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Deployment &amp; Submission</h2>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">1. Deploy Your Site</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;">Deploy your site as usual:</p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Upload all files and associated assets to a <strong>week-9</strong> folder in your GitHub workspace</li>
+<li>Link to your landing page from your course homepage (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">index.html</code>)</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">2. Create README.md</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;">Your README must include:</p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li>Project description</li>
+<li>Which CSS transform you implemented</li>
+<li>Which CSS animation you implemented</li>
+<li>Which table content type you chose</li>
+<li>Challenges encountered and solutions</li>
+<li>Key learnings</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 16px 0 12px 0;">3. Submit to Canvas</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 8px 0;">Submit all three URLs:</p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 24px;">
+<li>GitHub repository URL</li>
+<li>Live site URL</li>
+<li>Figma design file URL</li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Automated Penalties</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #656d76; margin: 0 0 12px 0;"><em>Manual deductions applied after calculation:</em></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 24px;">
+<li><strong><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">WR0NG_L1NK</code>:</strong> Link goes to Figma instead of GitHub/Live Site: <strong>−5 points</strong></li>
+<li><strong><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">404_ERR0R</code>:</strong> Live site link does not load: <strong>−20 points</strong></li>
+<li><strong><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px;">N0_R3ADM3</code>:</strong> README file missing from Repo: <strong>−5 points</strong></li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Before You Submit</h2>
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid rgba(57,62,65,0.2); border-radius: 6px; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px;" role="table">
+<thead>
+<tr style="background: #F5F8F5;">
+<th style="text-align: left; padding: 12px 16px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; border-bottom: 1px solid rgba(57,62,65,0.2); width: 40px;" scope="col">☐</th>
+<th style="text-align: left; padding: 12px 16px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; border-bottom: 1px solid rgba(57,62,65,0.2);" scope="col">Checklist Item</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1); text-align: center;">☐</td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">HTML validates (</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></body></html>

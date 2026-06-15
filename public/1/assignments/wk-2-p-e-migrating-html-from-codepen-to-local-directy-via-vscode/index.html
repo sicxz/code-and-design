@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wk 2 - p&e // Migrating HTML from CodePen to local directy via VSCode -- DESN 368</title>
+<style>
+  html,body{margin:0;padding:0;background:#FDFFFC;}
+  body{color:#393E41;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.6;}
+  .cd-embed-back{position:sticky;top:0;z-index:50;background:#FDFFFC;border-bottom:1px solid rgba(57,62,65,0.15);padding:10px 20px;font-family:'SFMono-Regular','SF Mono',Consolas,Menlo,monospace;font-size:13px;}
+  .cd-embed-back a{color:#9A1125;text-decoration:none;font-weight:600;}
+  .cd-embed-back a:hover{text-decoration:underline;}
+  .cd-embed-wrap{max-width:1040px;margin:0 auto;padding:28px 20px 72px;}
+  .cd-embed-wrap img{max-width:100%;height:auto;}
+</style></head>
+<body><div class="cd-embed-back"><a href="/1/weeks/week-2/">&larr; Week 2</a></div>
+<div class="cd-embed-wrap">
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.2); border-top: 4px solid #B7142E; border-radius: 6px; padding: 32px; margin-bottom: 24px;">
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+    <div style="flex: 1;">
+      <span style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 12px;    padding: 4px 12px; background: #B7142E; color: #FFFFFF; border-radius: 20px; margin-bottom: 12px;">DESN 368 · Week 2</span>
+      <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 32px;  line-height: 1.2;  color: #393E41; margin: 0;">Migrating HTML from CodePen to Local Directory via VSCode</h2>
+      <p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;  color: #656D76; margin-top: 8px;">Web Design Fundamentals · Practice &amp; Exercises</p>
+    </div>
+  </div>
+</div>
+
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+  <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px;  line-height: 1.3;  color: #393E41; margin: 0 0 12px 0;">Objective</h2>
+  <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0;">Practice using VS Code's HTML boilerplate shortcut and migrate your CodePen projects to local development with proper file organization.</p>
+</div>
+
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+  <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px;  line-height: 1.3;  color: #393E41; margin: 0 0 16px 0;">Part 1: Recipe Migration (Week 2 Folder)</h2>
+  <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0; padding-left: 24px;">
+    <li style="margin-bottom: 8px;">Open VS Code</li>
+    <li style="margin-bottom: 8px;">Drag and drop your <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">desn368</code> folder onto VS Code</li>
+    <li style="margin-bottom: 8px;">Navigate to your <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">week-2</code> folder</li>
+    <li style="margin-bottom: 8px;">Create a new file named <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">recipe.html</code></li>
+    <li style="margin-bottom: 8px;">Use the <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">!</code> + Tab shortcut to generate the HTML5 boilerplate</li>
+    <li style="margin-bottom: 8px;">Copy your recipe HTML content from CodePen into the <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">&lt;body&gt;</code> section</li>
+    <li style="margin-bottom: 8px;">Update the <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">&lt;title&gt;</code> tag to match your recipe</li>
+    <li style="margin-bottom: 8px;">Download your recipe image from snipboard.io (or find a new image)</li>
+    <li style="margin-bottom: 8px;">Save the image in your <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">week-2</code> folder</li>
+    <li style="margin-bottom: 0;">Update your <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">&lt;img&gt;</code> tag to reference the local image file (e.g., <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">&lt;img src="recipe-image.jpg"&gt;</code>)</li>
+  </ol>
+</div>
+
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+  <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px;  line-height: 1.3;  color: #393E41; margin: 0 0 16px 0;">Part 2: Previous Projects (Week 1 Folder)</h2>
+  <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0;">Repeat the migration process for your three previous assignments. Create these files in your <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">week-1</code> folder:</p>
+  <ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0; padding-left: 24px;">
+    <li style="margin-bottom: 8px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">newspaper.html</code></li>
+    <li style="margin-bottom: 8px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">lost-pet.html</code></li>
+    <li style="margin-bottom: 0;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">favorite-band.html</code></li>
+  </ul>
+  <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 16px 0 0 0;">For each file, copy the HTML content from your CodePen projects.</p>
+</div>
+
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+  <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px;  line-height: 1.3;  color: #393E41; margin: 0 0 16px 0;">Verify Your Folder Structure</h2>
+  <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0;">Your course folder should now look like this:</p>
+  <div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); border-radius: 0; padding: 16px; overflow-x: auto;">
+    <pre style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; line-height: 1.6; color: #393E41; margin: 0; white-space: pre;">desn368/
+├── week-1/
+│   ├── newspaper.html
+│   ├── lost-pet.html
+│   └── favorite-band.html
+└── week-2/
+    ├── recipe.html
+    └── [your-image-file.jpg]</pre>
+  </div>
+</div>
+
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+  <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px;  line-height: 1.3;  color: #393E41; margin: 0 0 16px 0;">Submission Requirements</h2>
+  
+  <div style="background: #FBF3F5; border: 1px solid #E9B8C0; border-left: 6px solid #B7142E; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+    <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #9A1125; margin-bottom: 6px;">Important</div>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393E41; margin: 0;">If you missed class, just upload the first screenshot.</p>
+  </div>
+
+  <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;">Take a screenshot of your VS Code Explorer panel showing:</p>
+  
+  <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+    <li style="margin-bottom: 8px;">Both <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">week-1</code> and <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); padding: 2px 6px; border-radius: 4px; color: #393E41;">week-2</code> folders expanded</li>
+    <li style="margin-bottom: 8px;">All HTML files visible (3 files in week-1, recipe.html in week-2)</li>
+    <li style="margin-bottom: 8px;">Your recipe image file in week-2</li>
+    <li style="margin-bottom: 0;">Clear, readable file names (widen the sidebar if needed)</li>
+  </ol>
+
+  <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;">If you were in class, also take a screenshot of your GitHub repo</p>
+
+  <div style="background: #F2FCFE; border: 1px solid #B3EAFA; border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-bottom: 0;">
+    <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #006BA6; margin-bottom: 6px;">Submission</div>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393E41; margin: 0;">Submit your screenshots to Canvas.</p>
+  </div>
+</div>
+</div></body></html>

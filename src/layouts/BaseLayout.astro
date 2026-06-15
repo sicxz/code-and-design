@@ -74,7 +74,9 @@ const footerYear = course?.term.match(/20\d{2}/)?.[0] ?? '2026';
                     {course ? (
                         <>
                             <a href="/" class="btn-fork">All Courses</a>
-                            <a href={course.canvasUrl} class="btn-fork" target="_blank">Canvas</a>
+                            {course.id !== '1' && (
+                                <a href={course.canvasUrl} class="btn-fork" target="_blank">Canvas</a>
+                            )}
                             <a href={course.milanoteUrl} class="btn btn-start" target="_blank">Milanote</a>
                         </>
                     ) : (

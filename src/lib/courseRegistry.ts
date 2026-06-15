@@ -1,4 +1,5 @@
 import course2Data from '../data/course-data.json';
+import course1Manifest from '../course-pages/course-1/courseManifest.json';
 
 export type CourseId = '1' | '2';
 export type CourseThemeId = CourseId;
@@ -72,6 +73,17 @@ const course2Weeks = (course2Data.weeks as Course2WeekSource[]).map((week) => ({
   route: week.route,
 }));
 
+const course1Weeks: CourseWeek[] = (course1Manifest.weeks as Array<{ key: string; number: number; title: string }>).map(
+  (week) => ({
+    slug: week.key,
+    title:
+      week.number === 0
+        ? 'Setup & Onboarding'
+        : `Week ${week.number}: ${(week.title || '').replace(/^week\s*\d+\s*:?\s*/i, '').trim() || `Week ${week.number}`}`,
+    route: `/1/weeks/${week.key}`,
+  }),
+);
+
 export const COURSE_REGISTRY: Record<CourseId, CourseDefinition> = {
   '1': {
     id: '1',
@@ -84,7 +96,7 @@ export const COURSE_REGISTRY: Record<CourseId, CourseDefinition> = {
     milanoteUrl: 'https://app.milanote.com/1W6e931MhvTVaN?p=1kaC1j7112i',
     repoUrl: 'https://github.com/sicxz/desn368-f25',
     studentCount: '14 students',
-    weekCount: 11,
+    weekCount: course1Weeks.length,
     workload: '5 hours/week in class · 10 hours/week at home',
     homePath: '/1',
     syllabusPath: '/1/syllabus',
@@ -96,14 +108,7 @@ export const COURSE_REGISTRY: Record<CourseId, CourseDefinition> = {
       { slug: 'requirements', title: 'Code Requirements' },
       { slug: 'goals', title: 'Stretch Goals' },
     ],
-    weeks: [
-      { slug: 'week-0', title: 'Week 0: Setup', route: '/1/weeks/week-0' },
-      { slug: 'week-1', title: 'Week 1: HTML Fundamentals & Internet Basics', route: '/1/weeks/week-1' },
-      { slug: 'week-2', title: 'Week 2: From Cloud to Code', route: '/1/weeks/week-2' },
-      { slug: 'week-4', title: 'Week 4: <UL>TR4 L1STS, 4NCH0R P0W3R, & B0X M4G1C', route: '/1/weeks/week-4' },
-      { slug: 'week-5', title: 'Week 5: CSS Selector Quest', route: '/1/weeks/week-5' },
-      { slug: 'week-7', title: 'Week 7: Flexbox Layout', route: '/1/weeks/week-7' },
-    ],
+    weeks: course1Weeks,
   },
   '2': {
     id: '2',

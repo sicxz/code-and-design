@@ -1,8 +1,9 @@
 ---
 import CourseTwoGenericWeek from '../../../course-pages/course-2/weeks/GenericWeek.astro';
+import CourseOneWeek from '../../../course-pages/course-1/weeks/CourseOneWeek.astro';
 import {
-  COURSE_ONE_WEEK_COMPONENTS,
-  isCourseOneWeekSlug,
+  COURSE_ONE_WEEKS,
+  getCourseOneWeek,
 } from '../../../course-pages/course-1/weeks/weekRegistry';
 import {
   COURSE_TWO_SPECIAL_WEEK_COMPONENTS,
@@ -13,8 +14,8 @@ import {
 import { isCourseId } from '../../../lib/courseRegistry';
 
 export function getStaticPaths() {
-  const courseOnePaths = Object.keys(COURSE_ONE_WEEK_COMPONENTS).map((week) => ({
-    params: { course: '1', week },
+  const courseOnePaths = COURSE_ONE_WEEKS.map((week) => ({
+    params: { course: '1', week: week.key },
   }));
 
   const courseTwoPaths = COURSE_TWO_WEEKS.map((week) => ({
@@ -27,19 +28,20 @@ export function getStaticPaths() {
 
 const { course, week } = Astro.params;
 const routeProps = Astro.props as { weekData?: CourseTwoWeekRecord };
-let weekData = routeProps.weekData;
-let WeekPage: any = null;
 
 if (!isCourseId(course)) {
   throw new Error(`Unknown course route: ${course}`);
 }
 
+let courseOneWeek = null;
+let weekData = routeProps.weekData;
+let WeekPage: any = null;
+
 if (course === '1') {
-  if (!isCourseOneWeekSlug(week)) {
+  courseOneWeek = getCourseOneWeek(week);
+  if (!courseOneWeek) {
     throw new Error(`Unknown Code + Design 1 week: ${week}`);
   }
-
-  WeekPage = (COURSE_ONE_WEEK_COMPONENTS as Record<string, any>)[week];
 } else {
   WeekPage = week ? (COURSE_TWO_SPECIAL_WEEK_COMPONENTS as Record<string, any>)[week] : null;
   weekData ??= getCourseTwoWeekData(week);
@@ -50,4 +52,6 @@ if (course === '1') {
 }
 ---
 
-{WeekPage ? <WeekPage /> : <CourseTwoGenericWeek weekData={weekData} />}
+{course === '1'
+  ? <CourseOneWeek week={courseOneWeek} />
+  : (WeekPage ? <WeekPage /> : <CourseTwoGenericWeek weekData={weekData} />)}

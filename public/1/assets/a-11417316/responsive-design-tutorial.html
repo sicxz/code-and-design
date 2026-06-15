@@ -1,0 +1,2545 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Responsive Design Day 1 - DESN 368</title>
+<style>
+/* ============================================================
+   DESN 368 · Responsive Design Day 1
+   Single-file interactive tutorial. No external libraries.
+   ============================================================ */
+
+:root {
+  --bg: #FDFFFC;
+  --bg-card: #FDFFFC;
+  --bg-surface: #F5F8F5;
+  --bg-subtle: #F8FAF8;
+  --bg-code: #1C2128;
+  --border: rgba(57,62,65,0.22);
+  --border-light: rgba(57,62,65,0.14);
+  --text: #393E41;
+  --text-2: #656D76;
+  --text-muted: #848D97;
+  --red: #B7142E;
+  --red-text: #9A1125;
+  --red-subtle: #FBF3F5;
+  --red-soft: #E9B8C0;
+  --blue: #006BA6;
+  --blue-subtle: #F2FCFE;
+  --blue-soft: #B3EAFA;
+  --green: #2B7015;
+  --green-subtle: #F8FDF4;
+  --green-soft: #D3F2BE;
+  --warning: #9A6700;
+  --warning-bg: #FFF9F2;
+  --shadow-sm: 0 1px 0 rgba(57,62,65,0.04);
+  --shadow: 0 4px 14px rgba(57,62,65,0.06), 0 1px 0 rgba(57,62,65,0.04);
+  --focus: #01BAEF;
+  --code-text: #d6deeb;
+  --code-key: #c792ea;
+  --code-sel: #82aaff;
+  --code-prop: #ffcb6b;
+  --code-val: #f78c6c;
+  --code-com: #9aa7a7;
+  --code-tag: #f07178;
+  --code-attr: #c792ea;
+  --code-str: #c3e88d;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+html[data-theme="dark"] {
+  --bg: #111418;
+  --bg-card: #171B21;
+  --bg-surface: #20262E;
+  --bg-subtle: #1B2027;
+  --bg-code: #0D1117;
+  --border: rgba(210,220,230,0.22);
+  --border-light: rgba(210,220,230,0.12);
+  --text: #E6EDF3;
+  --text-2: #B8C2CC;
+  --text-muted: #8B949E;
+  --red: #F05267;
+  --red-text: #FF8FA0;
+  --red-subtle: #30171D;
+  --red-soft: #6B2632;
+  --blue: #5DB7E8;
+  --blue-subtle: #102231;
+  --blue-soft: #1F4A65;
+  --green: #7DDF64;
+  --green-subtle: #142917;
+  --green-soft: #2D5A32;
+  --warning: #F0B849;
+  --warning-bg: #2C2415;
+  --shadow-sm: 0 1px 0 rgba(0,0,0,0.2);
+  --shadow: 0 8px 26px rgba(0,0,0,0.28);
+  --focus: #5DB7E8;
+  --code-text: #e6edf3;
+  --code-key: #d2a8ff;
+  --code-sel: #79c0ff;
+  --code-prop: #f2cc60;
+  --code-val: #ffa657;
+  --code-com: #8b949e;
+  --code-tag: #ff7b72;
+  --code-attr: #d2a8ff;
+  --code-str: #a5d6ff;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--blue); }
+button, input, textarea {
+  font: inherit;
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+a:focus-visible,
+.le-resize-handle:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---------- Top bar / progress ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  border-bottom: 1px solid var(--border-light);
+  backdrop-filter: saturate(140%) blur(6px);
+}
+.topbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 230px;
+}
+.badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  background: var(--red);
+  color: #fff;
+  border-radius: 999px;
+}
+.brand-title {
+  font-weight: 750;
+  font-size: 15px;
+}
+.brand-sub {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-2);
+}
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.progress-wrap {
+  flex: 1;
+  max-width: 420px;
+  min-width: 180px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.progress-rail {
+  flex: 1;
+  height: 7px;
+  background: var(--bg-surface);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--red), #d83b54);
+  transition: width 0.25s ease;
+}
+.progress-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.small-btn {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-2);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.small-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+
+/* ---------- Layout ---------- */
+.shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px 96px;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+.toc {
+  position: sticky;
+  top: 82px;
+  width: 240px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  flex: 0 0 240px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.toc h4 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin: 0 0 10px;
+}
+.toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc li {
+  position: relative;
+  padding: 6px 8px 6px 26px;
+  margin-bottom: 2px;
+  border-radius: 4px;
+}
+.toc li::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+}
+.toc li.done::before {
+  background: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-subtle);
+}
+.toc li.current {
+  background: var(--red-subtle);
+}
+.toc li.current::before {
+  background: var(--red);
+  border-color: var(--red);
+}
+.toc a {
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+}
+.toc a:hover {
+  color: var(--red-text);
+}
+main {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 940px) {
+  .topbar-inner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .brand {
+    flex: 1 1 100%;
+  }
+  .shell {
+    display: block;
+  }
+  .toc {
+    position: static;
+    width: auto;
+    max-height: none;
+    margin-bottom: 24px;
+  }
+}
+
+/* ---------- Course header / panels ---------- */
+.course-header,
+.panel,
+.module {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.course-header {
+  border-top: 4px solid var(--red);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+.course-header h1 {
+  font-size: 38px;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 12px 0 8px;
+}
+.course-header .meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-2);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.lede {
+  font-size: 17px;
+  color: var(--text-2);
+  max-width: 70ch;
+  line-height: 1.6;
+}
+.panel {
+  padding: 22px 24px;
+  margin-bottom: 24px;
+  border-left: 4px solid var(--blue);
+}
+.panel.success { border-left-color: var(--green); }
+.panel.warning { border-left-color: var(--warning); }
+.label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+
+/* ---------- Progress panel ---------- */
+.progress-panel {
+  border-left-color: var(--green);
+}
+.progress-panel-row {
+  display: flex;
+  gap: 18px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.field {
+  display: block;
+  min-width: 240px;
+}
+.field span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.field input[type="text"],
+.field input[type="file"] {
+  width: 100%;
+}
+input[type="text"],
+input[type="file"],
+textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 10px 12px;
+}
+.summary-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 16px 0 0;
+}
+.summary-pill {
+  border: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.status-line {
+  min-height: 1.6em;
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+/* ---------- Module card ---------- */
+.module {
+  border-left: 6px solid var(--red);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  scroll-margin-top: 92px;
+}
+.module.blue { border-left-color: var(--blue); }
+.module.green { border-left-color: var(--green); }
+.module-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.module h2 {
+  font-size: 26px;
+  font-weight: 750;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 4px 0 14px;
+}
+.module h3 {
+  font-size: 18px;
+  font-weight: 650;
+  margin: 28px 0 10px;
+}
+.module h4 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin: 24px 0 10px;
+}
+.module p {
+  margin: 12px 0;
+  max-width: 72ch;
+}
+.module ul,
+.module ol {
+  max-width: 72ch;
+  padding-left: 22px;
+}
+.module li { margin: 6px 0; }
+.module code,
+.inline-code {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  background: var(--bg-surface);
+  color: var(--red-text);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border-light);
+}
+.step-heading {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 26px;
+}
+.step-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-light);
+}
+.step-tag.observe { color: var(--blue); background: var(--blue-subtle); }
+.step-tag.concept { color: var(--red-text); background: var(--red-subtle); }
+.step-tag.practice { color: var(--green); background: var(--green-subtle); }
+
+/* ---------- Code blocks and color key ---------- */
+pre.code {
+  background: var(--bg-code);
+  color: var(--code-text);
+  padding: 16px 18px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.6;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+pre.code .c-key { color: var(--code-key); }
+pre.code .c-sel { color: var(--code-sel); }
+pre.code .c-prop { color: var(--code-prop); }
+pre.code .c-val { color: var(--code-val); }
+pre.code .c-com { color: var(--code-com); font-style: italic; }
+pre.code .c-tag { color: var(--code-tag); }
+pre.code .c-attr { color: var(--code-attr); }
+pre.code .c-str { color: var(--code-str); }
+.code-key-panel {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  max-width: 760px;
+}
+.code-key-item {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  border: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background: currentColor;
+}
+.ck-sel { color: var(--code-sel); }
+.ck-prop { color: var(--code-prop); }
+.ck-val { color: var(--code-val); }
+.ck-com { color: var(--code-com); }
+.ck-tag { color: var(--code-tag); }
+.ck-attr { color: var(--code-attr); }
+.ck-str { color: var(--code-str); }
+
+/* ---------- Live editor ---------- */
+.live-editor {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: 8px;
+  margin: 18px 0 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.live-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-2);
+}
+.le-btn,
+.preset-btn,
+.cp-check,
+.primary-btn,
+.danger-btn {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.primary-btn {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.final-submit-panel {
+  border: 2px solid var(--red);
+  border-top-width: 8px;
+  background: var(--bg-card);
+  border-radius: 8px;
+  padding: 28px;
+  margin: 36px 0 24px;
+  box-shadow: var(--shadow);
+}
+.final-submit-panel h2 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  line-height: 1.2;
+}
+.final-submit-panel p {
+  max-width: 760px;
+  margin: 0 0 18px;
+}
+.submit-cta-btn {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  background: var(--red);
+  color: #fff;
+  padding: 22px 24px;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 850;
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(183,20,46,0.26);
+}
+.submit-cta-btn:hover {
+  filter: brightness(1.06);
+}
+.danger-btn {
+  color: var(--red-text);
+  border-color: var(--red-soft);
+}
+.le-btn:hover,
+.preset-btn:hover,
+.cp-check:hover,
+.primary-btn:hover,
+.danger-btn:hover {
+  filter: brightness(0.97);
+}
+.live-editor-body {
+  display: block;
+}
+.le-code-pair {
+  display: flex;
+  min-height: 360px;
+  border-bottom: 1px solid var(--border-light);
+}
+.le-code-pane {
+  flex: 1 1 50%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.le-code-pane + .le-code-pane {
+  border-left: 1px solid var(--border-light);
+}
+.le-code-label {
+  padding: 8px 10px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+.le-textarea-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 320px;
+  background: var(--bg-code);
+  overflow: hidden;
+}
+.le-highlight,
+.le-textarea {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  border: 0;
+  border-radius: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.55;
+  padding: 14px;
+  tab-size: 2;
+  white-space: pre-wrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+.le-highlight {
+  margin: 0;
+  color: var(--code-text);
+  background: var(--bg-code);
+  overflow: hidden;
+  pointer-events: none;
+}
+.le-highlight .c-key { color: var(--code-key); }
+.le-highlight .c-sel { color: var(--code-sel); }
+.le-highlight .c-prop { color: var(--code-prop); }
+.le-highlight .c-val { color: var(--code-val); }
+.le-highlight .c-com { color: var(--code-com); font-style: italic; }
+.le-highlight .c-tag { color: var(--code-tag); }
+.le-highlight .c-attr { color: var(--code-attr); }
+.le-highlight .c-str { color: var(--code-str); }
+.le-textarea {
+  resize: none;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--code-text);
+  z-index: 2;
+  overflow: auto;
+}
+.le-textarea::selection {
+  background: rgba(93,183,232,0.35);
+  color: transparent;
+}
+.le-preview-toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 8px;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.le-preview-toolbar .label {
+  margin: 0;
+}
+.preset-btn {
+  padding: 5px 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.preset-btn.active {
+  color: #fff;
+  background: var(--blue);
+  border-color: var(--blue);
+}
+.width-display {
+  color: var(--text-2);
+  margin-left: auto;
+}
+.le-iframe-wrap {
+  overflow: hidden;
+  padding: 16px;
+  background:
+    linear-gradient(45deg, var(--bg-surface) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--bg-surface) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--bg-surface) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--bg-surface) 75%);
+  background-size: 18px 18px;
+  background-position: 0 0, 0 9px, 9px -9px, -9px 0;
+  min-height: 410px;
+}
+.le-preview-stage {
+  position: relative;
+  width: 900px;
+  height: 360px;
+}
+.le-iframe-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 900px;
+  min-width: 280px;
+  max-width: none;
+  height: 360px;
+  transform-origin: top left;
+  background: #fff;
+  border: 1px solid #9da7b1;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+.le-iframe-frame.tall {
+  height: 560px;
+}
+.le-iframe-frame.full-width {
+  width: 100%;
+}
+.le-iframe-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+.le-resize-handle {
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 24px;
+  height: 100%;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+  border: 0;
+  background: transparent;
+}
+.le-resize-handle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 4px;
+  height: 46px;
+  margin-top: -23px;
+  border-radius: 999px;
+  background: var(--red);
+  opacity: 0.7;
+}
+.le-resize-handle.dragging::before,
+.le-resize-handle:hover::before {
+  opacity: 1;
+  width: 5px;
+}
+body.is-resizing-preview {
+  cursor: ew-resize;
+  user-select: none;
+}
+
+@media (max-width: 820px) {
+  .le-code-pair {
+    display: block;
+  }
+  .le-code-pane + .le-code-pane {
+    border-left: 0;
+    border-top: 1px solid var(--border-light);
+  }
+}
+
+/* ---------- Reflection / reveal / quizzes ---------- */
+.reflection {
+  border: 1px solid var(--border);
+  background: var(--bg-subtle);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 18px 0 24px;
+}
+.reflection .prompt {
+  font-weight: 750;
+  margin-bottom: 8px;
+}
+.reflection textarea {
+  width: 100%;
+  min-height: 92px;
+  resize: vertical;
+}
+.reveal {
+  border: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  border-radius: 8px;
+  margin: 14px 0;
+}
+.reveal-summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 750;
+}
+.reveal-body {
+  padding: 0 14px 14px;
+}
+.checkpoint {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: 8px;
+  padding: 18px;
+  margin-top: 24px;
+}
+.cp-title {
+  margin-top: 0 !important;
+}
+.cp-intro {
+  color: var(--text-2);
+}
+.cp-q {
+  padding: 14px 0;
+  border-top: 1px solid var(--border-light);
+}
+.cp-q .q {
+  font-weight: 750;
+  margin-bottom: 8px;
+}
+.opts {
+  display: block;
+}
+.cp-opt {
+  display: block;
+  padding: 8px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  margin: 6px 0;
+  cursor: pointer;
+  background: var(--bg-subtle);
+}
+.cp-opt input {
+  margin-right: 8px;
+}
+.cp-opt.correct {
+  border-color: var(--green);
+  background: var(--green-subtle);
+}
+.cp-opt.incorrect {
+  border-color: var(--red);
+  background: var(--red-subtle);
+}
+.cp-fb {
+  min-height: 1.4em;
+  margin-top: 8px;
+  font-size: 14px;
+}
+.cp-fb.right { color: var(--green); }
+.cp-fb.wrong { color: var(--red-text); }
+.cp-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-light);
+  padding-top: 14px;
+}
+.cp-status {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-2);
+}
+.cp-status.passed {
+  color: var(--green);
+  font-weight: 800;
+}
+.tutorial-footer {
+  margin-top: 36px;
+  padding: 24px 0;
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: 12px;
+  border-top: 1px solid var(--border-light);
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="badge">DESN 368</span>
+      <div>
+        <div class="brand-title">Responsive Design Day 1</div>
+        <div class="brand-sub">fixed, fluid, viewport, queries</div>
+      </div>
+    </div>
+    <div class="progress-wrap" aria-label="Tutorial progress">
+      <span class="progress-label" id="progress-label">0 / 7</span>
+      <div class="progress-rail" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="small-btn" id="reset-progress" type="button">Reset</button>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="toc" aria-label="Tutorial sections">
+    <h4>Modules</h4>
+    <ol id="toc-list">
+      <li data-id="m0"><a href="#m0">0 · Why responsive?</a></li>
+      <li data-id="m1"><a href="#m1">1 · Fixed-width design</a></li>
+      <li data-id="m2"><a href="#m2">2 · Liquid layouts</a></li>
+      <li data-id="m3"><a href="#m3">3 · Viewport meta tag</a></li>
+      <li data-id="m4"><a href="#m4">4 · Media queries</a></li>
+      <li data-id="m5"><a href="#m5">5 · Choosing breakpoints</a></li>
+      <li data-id="mp"><a href="#mp">★ Final mini-project</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section class="course-header">
+      <span class="badge">Day 1 Tutorial</span>
+      <h1>Responsive Design Day 1</h1>
+      <p class="lede">Build the first layer of responsive thinking: fixed-width pages, fluid widths, the viewport meta tag, media queries, and content-driven breakpoints. You will finish with a small page that adapts from 320px to 1400px without advanced layout systems.</p>
+      <div class="meta">
+        <span>Estimated time: 45-60 minutes</span>
+        <span>·</span>
+        <span>6 modules + final mini-project</span>
+      </div>
+    </section>
+
+    <div class="panel">
+      <div class="label">How To Use This Tutorial</div>
+      <p>Each module follows the same rhythm: observe the problem, learn the concept, try a small edit, then pass the checkpoint. Drag the right edge of a preview to test different viewport widths. Your work autosaves in this browser, and you will download a completed HTML file for Canvas.</p>
+      <div class="code-key-panel" aria-label="Code color key">
+        <span class="code-key-item ck-sel"><span class="swatch"></span>selector</span>
+        <span class="code-key-item ck-prop"><span class="swatch"></span>property</span>
+        <span class="code-key-item ck-val"><span class="swatch"></span>value</span>
+        <span class="code-key-item ck-com"><span class="swatch"></span>comment</span>
+        <span class="code-key-item ck-tag"><span class="swatch"></span>HTML tag</span>
+        <span class="code-key-item ck-attr"><span class="swatch"></span>attribute</span>
+        <span class="code-key-item ck-str"><span class="swatch"></span>string</span>
+      </div>
+    </div>
+
+    <section class="panel progress-panel" aria-labelledby="progress-panel-title">
+      <div class="label" id="progress-panel-title">Student Progress / Submission</div>
+      <p>Use this panel before you submit. Progress saves locally as you work. Download the completed HTML file and upload it to Canvas. The HTML copy includes your saved progress inside the file.</p>
+      <div class="progress-panel-row">
+        <label class="field" for="student-name">
+          <span>Student name</span>
+          <input id="student-name" type="text" autocomplete="name" placeholder="First Last">
+        </label>
+        <button class="primary-btn" id="download-html-progress" type="button">Download Completed HTML</button>
+        <label class="field" for="import-progress">
+          <span>Import Completed HTML</span>
+          <input id="import-progress" type="file" accept="text/html,.html">
+        </label>
+        <button class="danger-btn" id="clear-progress" type="button">Clear / Reset Progress</button>
+      </div>
+      <div class="summary-list" aria-label="Progress summary">
+        <span class="summary-pill" id="summary-modules">Modules complete: 0 / 7</span>
+        <span class="summary-pill" id="summary-quizzes">Quizzes passed: 0 / 7</span>
+        <span class="summary-pill" id="summary-reflections">Reflections written: 0</span>
+        <span class="summary-pill" id="summary-editors">Live editors changed: 0</span>
+      </div>
+      <div class="status-line" id="autosave-status" aria-live="polite">Autosave ready.</div>
+      <div class="status-line" id="import-status" aria-live="polite"></div>
+    </section>
+
+    <div id="modules"></div>
+
+    <section class="final-submit-panel" aria-labelledby="final-submit-title">
+      <div class="label">Canvas Submission</div>
+      <h2 id="final-submit-title">Finished? Download your completed HTML file.</h2>
+      <p>Click this button, then upload the downloaded <code>.html</code> file to Canvas. This file includes your saved quizzes, reflections, and live-editor code.</p>
+      <button class="submit-cta-btn" id="download-html-progress-bottom" type="button">Download Completed HTML</button>
+    </section>
+
+    <footer class="tutorial-footer">
+      <div>DESN 368 · Spring 2026 · Responsive Design Day 1</div>
+      <div>Progress file: upload the downloaded completed HTML to Canvas.</div>
+    </footer>
+  </main>
+</div>
+
+<!-- ======================== Module Templates ======================== -->
+
+<template id="t-m0">
+<section class="module" id="m0" data-mid="m0">
+  <div class="module-tag">Module 0 · 6 min</div>
+  <h2>Why Responsive Design Exists</h2>
+  <p class="lede">A web page does not get one perfect canvas. It lands on narrow phones, tablets, laptops, and wide monitors. Responsive design means one codebase adapts to the viewport instead of assuming one fixed size.</p>
+
+  <div class="step-heading"><span class="step-tag observe">Observe</span><h3 class="step">A page that does not adapt</h3></div>
+  <p>Drag the preview narrower and wider. Watch the horizontal scrollbar, clipped text, and unused space.</p>
+
+  <live-editor data-id="m0-broken" data-startpreview="320">
+    <script type="text/x-html" data-html>
+<header class="site-head">
+  <h1>Studio Plant Sale</h1>
+  <nav>
+    <a href="#">Rare plants</a>
+    <a href="#">Care notes</a>
+    <a href="#">Pickup times</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+<main class="page">
+  <section class="hero">
+    <h2>Small greenhouse, big leaf energy.</h2>
+    <p>Browse student-grown cuttings, choose your pickup window, and bring home something alive.</p>
+  </section>
+  <section class="cards">
+    <article><h3>Monstera</h3><p>Bold leaves for bright rooms.</p></article>
+    <article><h3>Pothos</h3><p>Forgiving vines for busy weeks.</p></article>
+    <article><h3>Begonia</h3><p>Color and pattern for window sills.</p></article>
+  </section>
+</main>
+    </script>
+    <script type="text/x-css" data-css>
+body { margin: 0; font-family: Georgia, serif; background: #f8f3ea; color: #2f2924; }
+.site-head {
+  width: 1100px;
+  padding: 24px 40px;
+  background: #31533b;
+  color: white;
+}
+.site-head h1 { margin: 0 0 8px; }
+.site-head a { color: white; margin-right: 18px; text-decoration: none; }
+.page {
+  width: 1100px;
+  padding: 40px;
+}
+.hero {
+  width: 960px;
+  padding: 36px;
+  background: #e7d8b8;
+}
+.hero h2 { font-size: 42px; max-width: 620px; margin-top: 0; }
+.cards article {
+  display: inline-block;
+  vertical-align: top;
+  width: 310px;
+  margin: 24px 16px 0 0;
+  padding: 18px;
+  background: white;
+  border: 1px solid #d8cbb8;
+}
+    </script>
+  </live-editor>
+
+  <reflection-box data-id="m0-r1" data-prompt="What broke first when the preview became narrow? What felt wasteful when it became wide?"></reflection-box>
+
+  <div class="step-heading"><span class="step-tag concept">Concept</span><h3 class="step">One codebase, many widths</h3></div>
+  <p>Responsive design is not a separate phone page. It is the same HTML and CSS adapting to the available viewport. Today you will use the starter toolkit: fluid widths, max-width limits, viewport meta, media queries, and breakpoints chosen from the content.</p>
+
+  <checkpoint-quiz data-id="m0-cp" data-questions='[
+    {"q":"What causes the broken page to overflow on a narrow viewport?","opts":[
+      {"t":"The layout uses fixed pixel widths that stay wider than the viewport","ok":true,"fb":"Yes. The browser follows the fixed width even when there is not enough room."},
+      {"t":"The browser cannot display HTML on phones","ok":false,"fb":"Browsers can display small viewports. The CSS is the issue."},
+      {"t":"The page has too many headings","ok":false,"fb":"The headings are not the structural problem."}
+    ]},
+    {"q":"Responsive design means...","opts":[
+      {"t":"One codebase adapts to different viewport sizes","ok":true,"fb":"Right. The same source responds to the available space."},
+      {"t":"A separate site for every device","ok":false,"fb":"That is not the Day 1 responsive approach."},
+      {"t":"Hiding most content on small screens","ok":false,"fb":"The goal is readable adaptation, not removing the work."}
+    ]}
+  ]'></checkpoint-quiz>
+</section>
+</template>
+
+<template id="t-m1">
+<section class="module blue" id="m1" data-mid="m1">
+  <div class="module-tag">Module 1 · 7 min</div>
+  <h2>Fixed-Width Design</h2>
+  <p class="lede">Early web layouts often assumed a safe width. A fixed-width page can look controlled at the target size, but it only really works there.</p>
+
+  <div class="step-heading"><span class="step-tag observe">Observe</span><h3 class="step">Test one assumed width</h3></div>
+  <p>Use the preset buttons for 320, 768, and 1200. Then drag wider toward 1400. Identify what happens at each size.</p>
+
+  <live-editor data-id="m1-fixed" data-startpreview="768">
+    <script type="text/x-html" data-html>
+<article class="poster">
+  <p class="eyebrow">DESN Lecture</p>
+  <h1>Letters, Screens, and Scale</h1>
+  <p>A one-night talk about type systems, poster logic, and what changes when a layout leaves the artboard.</p>
+  <a href="#">Save a seat</a>
+</article>
+    </script>
+    <script type="text/x-css" data-css>
+body { margin: 0; background: #dde8ef; font-family: Arial, sans-serif; color: #17212b; }
+.poster {
+  width: 960px;
+  margin: 32px auto;
+  padding: 48px;
+  background: white;
+  border: 6px solid #17212b;
+}
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-weight: bold; }
+h1 { font-size: 56px; line-height: 1; margin: 10px 0 18px; }
+p { max-width: 560px; font-size: 20px; }
+a { display: inline-block; margin-top: 18px; padding: 12px 20px; background: #B7142E; color: white; text-decoration: none; }
+    </script>
+  </live-editor>
+
+  <reflection-box data-id="m1-r1" data-prompt="At 320px, 768px, and 1400px, what does the fixed width do to the reading experience?"></reflection-box>
+
+  <div class="step-heading"><span class="step-tag concept">Concept</span><h3 class="step">The target-width trap</h3></div>
+  <p>A fixed width such as <code>width: 960px</code> means the element is 960 pixels wide even when the viewport is smaller. On narrow screens it causes horizontal overflow. On wider screens it can waste space or create an awkward unused area.</p>
+
+  <checkpoint-quiz data-id="m1-cp" data-questions='[
+    {"q":"A fixed-width layout works best when...","opts":[
+      {"t":"The viewport is near the assumed width","ok":true,"fb":"Yes. It is tuned for one width."},
+      {"t":"The viewport is much narrower than the layout","ok":false,"fb":"That usually creates overflow."},
+      {"t":"The viewport is any possible width","ok":false,"fb":"That is what responsive techniques are for."}
+    ]},
+    {"q":"What often happens when width: 1100px appears on a 320px viewport?","opts":[
+      {"t":"The content gets a horizontal scrollbar or spills sideways","ok":true,"fb":"Correct. The element is wider than the viewport."},
+      {"t":"The browser rewrites the CSS automatically","ok":false,"fb":"The browser follows the CSS unless you give it responsive rules."},
+      {"t":"The content becomes a percentage automatically","ok":false,"fb":"Pixels stay pixels."}
+    ]}
+  ]'></checkpoint-quiz>
+</section>
+</template>
+
+<template id="t-m2">
+<section class="module green" id="m2" data-mid="m2">
+  <div class="module-tag">Module 2 · 9 min</div>
+  <h2>Liquid Layouts</h2>
+  <p class="lede">Liquid layouts use percentages so containers adapt to available space. That helps, but pure fluid width can stretch too far or compress too much. Pair fluid widths with limits and padding.</p>
+
+  <div class="step-heading"><span class="step-tag observe">Observe</span><h3 class="step">Fluid, then fluid with a ceiling</h3></div>
+  <p>Resize the preview. The first block is only percentage-based. The second adds a maximum width.</p>
+
+  <live-editor data-id="m2-fluid" data-startpreview="900">
+    <script type="text/x-html" data-html>
+<main>
+  <article class="pure">
+    <h2>Pure fluid width</h2>
+    <p>This article always takes ninety percent of the viewport. On a wide screen, that line can become too long to read comfortably.</p>
+  </article>
+  <article class="limited">
+    <h2>Fluid width with a ceiling</h2>
+    <p>This article also flows, but it stops growing when the line length becomes comfortable.</p>
+  </article>
+</main>
+    </script>
+    <script type="text/x-css" data-css>
+body { margin: 0; font-family: Georgia, serif; background: #f7f2e8; color: #2b2620; }
+article {
+  margin: 24px auto;
+  padding: 24px;
+  background: white;
+  border: 1px solid #dccfbd;
+}
+.pure {
+  width: 90%;
+}
+.limited {
+  width: 90%;
+  max-width: 720px;
+}
+    </script>
+  </live-editor>
+
+  <div class="step-heading"><span class="step-tag concept">Concept</span><h3 class="step">The fluid plus ceiling pattern</h3></div>
+<pre class="code"><span class="c-sel">.container</span> {
+  <span class="c-prop">width</span>: <span class="c-val">90%</span>;
+  <span class="c-prop">max-width</span>: <span class="c-val">720px</span>;
+  <span class="c-prop">margin</span>: <span class="c-val">0 auto</span>;
+  <span class="c-prop">padding</span>: <span class="c-val">24px</span>;
+}</pre>
+  <p><code>width: 90%</code> lets the container respond. <code>max-width</code> stops it from becoming too wide. Padding keeps content off the edges.</p>
+
+  <div class="step-heading"><span class="step-tag practice">Practice</span><h3 class="step">Fix the reading column</h3></div>
+  <p>The page below starts with a fixed-width content column. Replace it with a fluid width and a ceiling.</p>
+  <live-editor data-id="m2-practice" data-startpreview="360">
+    <script type="text/x-html" data-html>
+<section class="story">
+  <h1>Neighborhood Sound Walk</h1>
+  <p>Listen for machines, footsteps, voices, traffic, wind, and silence. Turn the list into a small field report.</p>
+  <p>Responsive reading starts with a column that fits the screen without becoming too stretched.</p>
+</section>
+    </script>
+    <script type="text/x-css" data-css>
+body { margin: 0; font-family: Arial, sans-serif; background: #eaf2f7; color: #24313d; }
+.story {
+  width: 800px; /* TODO: replace with fluid width plus max-width */
+  margin: 32px auto;
+  padding: 24px;
+  background: white;
+  border: 1px solid #bfccd8;
+}
+h1 { margin-top: 0; }
+    </script>
+  </live-editor>
+
+  <reveal-panel data-kind="hint" data-label="Hint">
+    <p>Try <code>width: 90%</code> and <code>max-width: 720px</code>. Keep <code>margin: 32px auto</code>.</p>
+  </reveal-panel>
+  <reveal-panel data-kind="solution" data-label="One possible solution">
+<pre class="code"><span class="c-sel">.story</span> {
+  <span class="c-prop">width</span>: <span class="c-val">90%</span>;
+  <span class="c-prop">max-width</span>: <span class="c-val">720px</span>;
+  <span class="c-prop">margin</span>: <span class="c-val">32px auto</span>;
+  <span class="c-prop">padding</span>: <span class="c-val">24px</span>;
+}</pre>
+  </reveal-panel>
+
+  <reflection-box data-id="m2-r1" data-prompt="Where did the fluid width help? Where did the max-width help?"></reflection-box>
+
+  <checkpoint-quiz data-id="m2-cp" data-questions='[
+    {"q":"What does width: 90% do?","opts":[
+      {"t":"Makes the element take 90 percent of its available parent width","ok":true,"fb":"Yes. It adapts as the available space changes."},
+      {"t":"Locks the element to 90 pixels","ok":false,"fb":"Percent and pixels are different units."},
+      {"t":"Stops the element from getting too wide","ok":false,"fb":"That is the role of max-width."}
+    ]},
+    {"q":"Why pair a fluid width with max-width?","opts":[
+      {"t":"To keep lines from stretching too far on wide screens","ok":true,"fb":"Correct. The layout flows until it reaches a useful ceiling."},
+      {"t":"To disable zoom","ok":false,"fb":"Never use layout CSS to block zoom."},
+      {"t":"To force every viewport to be the same size","ok":false,"fb":"Responsive design adapts to different sizes."}
+    ]}
+  ]'></checkpoint-quiz>
+</section>
+</template>
+
+<template id="t-m3">
+<section class="module blue" id="m3" data-mid="m3">
+  <div class="module-tag">Module 3 · 7 min</div>
+  <h2>Viewport Meta Tag</h2>
+  <p class="lede">Mobile browsers historically used a larger layout viewport, often around 980px, and scaled the page down. Responsive pages need to tell the browser to use the real device width.</p>
+
+  <div class="step-heading"><span class="step-tag concept">Concept</span><h3 class="step">The required line</h3></div>
+<pre class="code"><span class="c-tag">&lt;meta</span> <span class="c-attr">name</span>=<span class="c-str">"viewport"</span> <span class="c-attr">content</span>=<span class="c-str">"width=device-width, initial-scale=1"</span><span class="c-tag">&gt;</span></pre>
+  <p>Put this in the <code>&lt;head&gt;</code> of responsive pages. Do not use <code>user-scalable=no</code>, <code>maximum-scale=1</code>, or anything that disables zoom. People need zoom.</p>
+
+  <div class="panel warning">
+    <div class="label">Preview Note</div>
+    <p>The iframe preview may not perfectly reproduce old mobile browser behavior. Focus on the syntax and the reason: responsive CSS needs the browser to use the actual viewport width.</p>
+  </div>
+
+  <div class="step-heading"><span class="step-tag practice">Practice</span><h3 class="step">Add the viewport line</h3></div>
+  <live-editor data-id="m3-viewport" data-startpreview="375">
+    <script type="text/x-html" data-html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- TODO: add viewport meta tag here -->
+  <title>Viewport Practice</title>
+</head>
+<body>
+  <main class="note">
+    <h1>Viewport Practice</h1>
+    <p>This page is ready for responsive CSS once the viewport meta tag is in the head.</p>
+  </main>
+</body>
+</html>
+    </script>
+    <script type="text/x-css" data-css>
+body { margin: 0; font-family: Arial, sans-serif; background: #f6fbff; color: #23313f; }
+.note {
+  width: 90%;
+  max-width: 620px;
+  margin: 32px auto;
+  padding: 24px;
+  background: white;
+  border: 1px solid #bed3e5;
+}
+    </script>
+  </live-editor>
+
+  <checkpoint-quiz data-id="m3-cp" data-questions='[
+    {"q":"Which viewport meta tag should you use for this tutorial?","opts":[
+      {"t":"&lt;meta name=\&quot;viewport\&quot; content=\&quot;width=device-width, initial-scale=1\&quot;&gt;","ok":true,"fb":"Correct. This is the standard responsive starting point."},
+      {"t":"&lt;meta name=\&quot;viewport\&quot; content=\&quot;user-scalable=no\&quot;&gt;","ok":false,"fb":"Do not disable zoom."},
+      {"t":"&lt;meta name=\&quot;phone\&quot; content=\&quot;small\&quot;&gt;","ok":false,"fb":"That is not a viewport meta tag."}
+    ]},
+    {"q":"Why avoid maximum-scale=1 or user-scalable=no?","opts":[
+      {"t":"They can prevent people from zooming","ok":true,"fb":"Yes. Zoom is an accessibility need."},
+      {"t":"They make CSS files disappear","ok":false,"fb":"The problem is user access, not missing CSS."},
+      {"t":"They create media queries automatically","ok":false,"fb":"They do not create responsive rules."}
+    ]}
+  ]'></checkpoint-quiz>
+</section>
+</template>
+
+<template id="t-m4">
+<section class="module green" id="m4" data-mid="m4">
+  <div class="module-tag">Module 4 · 10 min</div>
+  <h2>Media Queries</h2>
+  <p class="lede">Media queries begin with <code>@media</code>. They let CSS apply only when a condition is true. Today we focus on width queries.</p>
+
+  <div class="step-heading"><span class="step-tag concept">Concept</span><h3 class="step">min-width and max-width</h3></div>
+<pre class="code"><span class="c-com">/* base styles: narrow viewport first */</span>
+<span class="c-sel">.card</span> { <span class="c-prop">width</span>: <span class="c-val">100%</span>; }
+
+<span class="c-key">@media</span> (min-width: <span class="c-val">700px</span>) {
+  <span class="c-sel">.card</span> {
+    <span class="c-prop">display</span>: <span class="c-val">inline-block</span>;
+    <span class="c-prop">width</span>: <span class="c-val">48%</span>;
+    <span class="c-prop">vertical-align</span>: <span class="c-val">top</span>;
+  }
+}</pre>
+  <p><code>min-width</code> means at this width and wider. <code>max-width</code> means at this width and narrower. A mobile-first approach starts with the narrow version, then enhances when there is room.</p>
+<pre class="code"><span class="c-key">@media</span> print {
+  <span class="c-sel">a</span> { <span class="c-prop">color</span>: <span class="c-val">black</span>; }
+}</pre>
+  <p>Media queries can also target print, but the rest of this lesson uses width.</p>
+
+  <div class="step-heading"><span class="step-tag practice">Practice</span><h3 class="step">Enhance when there is room</h3></div>
+  <live-editor data-id="m4-media" data-startpreview="360">
+    <script type="text/x-html" data-html>
+<main class="wrap">
+  <h1>Two Workshop Options</h1>
+  <article class="card">
+    <h2>Type Walk</h2>
+    <p>Photograph signs, labels, and letterforms around campus.</p>
+  </article>
+  <article class="card">
+    <h2>Layout Lab</h2>
+    <p>Turn one page of notes into a readable web page.</p>
+  </article>
+</main>
+    </script>
+    <script type="text/x-css" data-css>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f5f8f5; color: #253126; }
+.wrap {
+  width: 92%;
+  max-width: 840px;
+  margin: 24px auto;
+}
+.card {
+  width: 100%;
+  margin: 0 0 14px;
+  padding: 18px;
+  background: white;
+  border: 1px solid #c9d8c7;
+}
+/* TODO: at 700px and wider, make cards sit side by side.
+   Use inline-block, width: 48%, and vertical-align: top. */
+    </script>
+  </live-editor>
+
+  <reveal-panel data-kind="hint" data-label="Hint">
+    <p>Start with <code>@media (min-width: 700px)</code>. Inside it, change <code>.card</code>.</p>
+  </reveal-panel>
+  <reveal-panel data-kind="solution" data-label="One possible solution">
+<pre class="code"><span class="c-key">@media</span> (min-width: <span class="c-val">700px</span>) {
+  <span class="c-sel">.card</span> {
+    <span class="c-prop">display</span>: <span class="c-val">inline-block</span>;
+    <span class="c-prop">width</span>: <span class="c-val">48%</span>;
+    <span class="c-prop">vertical-align</span>: <span class="c-val">top</span>;
+  }
+}</pre>
+  </reveal-panel>
+
+  <reflection-box data-id="m4-r1" data-prompt="What changed at the breakpoint? Why is the narrow version the base style?"></reflection-box>
+
+  <checkpoint-quiz data-id="m4-cp" data-questions='[
+    {"q":"What does @media (min-width: 700px) mean?","opts":[
+      {"t":"Apply these CSS rules at 700px and wider","ok":true,"fb":"Correct. min-width opens upward."},
+      {"t":"Apply these CSS rules only below 700px","ok":false,"fb":"That would be max-width."},
+      {"t":"Set the page width to 700px","ok":false,"fb":"A media query tests a condition; it does not set the viewport."}
+    ]},
+    {"q":"In mobile-first CSS, what comes first?","opts":[
+      {"t":"Base styles for the narrow layout","ok":true,"fb":"Yes. Then media queries enhance when there is room."},
+      {"t":"A separate phone-only HTML file","ok":false,"fb":"This tutorial uses one codebase."},
+      {"t":"Only print styles","ok":false,"fb":"Print is a media type, but not the main layout strategy here."}
+    ]}
+  ]'></checkpoint-quiz>
+</section>
+</template>
+
+<template id="t-m5">
+<section class="module blue" id="m5" data-mid="m5">
+  <div class="module-tag">Module 5 · 8 min</div>
+  <h2>Choosing Breakpoints</h2>
+  <p class="lede">A breakpoint should come from the content, not from a device name. Resize until the layout becomes uncomfortable. That width is your evidence.</p>
+
+  <div class="step-heading"><span class="step-tag observe">Observe</span><h3 class="step">Find the uncomfortable width</h3></div>
+  <p>Drag the preview. Notice when the line length, navigation, or spacing stops feeling comfortable. Record the approximate width shown in the toolbar.</p>
+
+  <live-editor data-id="m5-breakpoint" data-startpreview="900">
+    <script type="text/x-html" data-html>
+<main class="feature">
+  <h1>Poster Archive</h1>
+  <p class="intro">A small archive of event posters, notes about type choices, and links to the source files.</p>
+  <nav class="links">
+    <a href="#">Spring</a>
+    <a href="#">Summer</a>
+    <a href="#">Fall</a>
+    <a href="#">Process Notes</a>
+  </nav>
+  <section class="note">
+    <h2>Breakpoint note</h2>
+    <p>When the navigation feels cramped, use that width as a breakpoint candidate.</p>
+  </section>
+</main>
+    </script>
+    <script type="text/x-css" data-css>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #fbf6ef; color: #2f2924; }
+.feature {
+  width: 92%;
+  max-width: 860px;
+  margin: 28px auto;
+  padding: 28px;
+  background: white;
+  border: 1px solid #dfd3c0;
+}
+.intro { font-size: 20px; }
+.links a {
+  display: inline-block;
+  margin: 0 12px 10px 0;
+  padding: 8px 10px;
+  background: #B7142E;
+  color: white;
+  text-decoration: none;
+}
+.note { margin-top: 18px; padding-top: 18px; border-top: 1px solid #dfd3c0; }
+/* TODO: choose a content-driven breakpoint.
+   Example:
+   @media (max-width: 600px) {
+     .links a { display: block; margin-right: 0; }
+   }
+*/
+    </script>
+  </live-editor>
+
+  <div class="step-heading"><span class="step-tag concept">Concept</span><h3 class="step">Device names are weak evidence</h3></div>
+  <p>Do not choose a breakpoint because someone said a specific phone is popular. Choose it because your content needs a change there. Most simple pages need one to three breakpoints. Round numbers like 600, 900, and 1200 are fine when they match what you observed.</p>
+
+  <reflection-box data-id="m5-r1" data-prompt="What width did you choose, and what content problem did that breakpoint solve?"></reflection-box>
+
+  <checkpoint-quiz data-id="m5-cp" data-questions='[
+    {"q":"The best reason to add a breakpoint is...","opts":[
+      {"t":"The content becomes uncomfortable at that width","ok":true,"fb":"Yes. Let the content tell you."},
+      {"t":"A device name sounds familiar","ok":false,"fb":"Device names change and do not describe your content."},
+      {"t":"Every page must use exactly five breakpoints","ok":false,"fb":"Most simple pages need only a few."}
+    ]},
+    {"q":"Which breakpoint choice is reasonable if it matches the content?","opts":[
+      {"t":"A rounded width such as 600px or 900px","ok":true,"fb":"Correct. Round numbers are fine when they match the layout."},
+      {"t":"Only the exact width of one phone model","ok":false,"fb":"That makes the design too device-specific."},
+      {"t":"A random number with no observation behind it","ok":false,"fb":"Breakpoints should have a reason."}
+    ]}
+  ]'></checkpoint-quiz>
+</section>
+</template>
+
+<template id="t-mp">
+<section class="module green" id="mp" data-mid="mp">
+  <div class="module-tag">Final mini-project · 15-20 min</div>
+  <h2>Final Mini-Project</h2>
+  <p class="lede">Build a small responsive page using only today&apos;s tools: viewport meta, fluid widths, max-width, padding, media queries, block and inline-block layout, percentage widths, box-sizing, and basic media overflow protection.</p>
+
+  <div class="panel">
+    <div class="label">Acceptance Criteria</div>
+    <ul>
+      <li>No horizontal scrollbar from 320px to 1400px.</li>
+      <li>The main content column has a max-width.</li>
+      <li>Images or media do not overflow their containers.</li>
+      <li>At least one content-driven breakpoint is used.</li>
+      <li>Student CSS does not use advanced layout systems from later lessons.</li>
+      <li>Download the completed HTML file for Canvas submission.</li>
+    </ul>
+  </div>
+
+  <live-editor data-id="mp-build" data-startpreview="360" data-tall="true">
+    <script type="text/x-html" data-html>
+<header class="site-head">
+  <h1>Micro Guide: Campus Quiet Spots</h1>
+  <p>Three places to read, sketch, or reset between classes.</p>
+</header>
+<main class="content">
+  <section class="intro">
+    <h2>Start Here</h2>
+    <p>Use the page width to decide when the cards need more room. Keep the reading column comfortable.</p>
+  </section>
+  <section class="spots">
+    <article class="spot">
+      <div class="media">Window seats</div>
+      <h3>Library Third Floor</h3>
+      <p>Good light, quiet corners, and enough table space for a laptop plus sketchbook.</p>
+    </article>
+    <article class="spot">
+      <div class="media">Courtyard</div>
+      <h3>Art Building Edge</h3>
+      <p>Best when the weather is soft and you need ten minutes away from screens.</p>
+    </article>
+    <article class="spot">
+      <div class="media">Long table</div>
+      <h3>Commons Back Wall</h3>
+      <p>Not silent, but useful for low-stakes work and people-watching notes.</p>
+    </article>
+  </section>
+</main>
+<footer class="site-foot">DESN 368 responsive mini-project</footer>
+    </script>
+    <script type="text/x-css" data-css>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #f7f1e7;
+  color: #2d2925;
+}
+.site-head {
+  padding: 28px 18px;
+  background: #24384a;
+  color: white;
+}
+.site-head h1,
+.site-head p {
+  width: 92%;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.content {
+  width: 92%;
+  max-width: 880px;
+  margin: 26px auto;
+}
+.spot {
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #dccfbd;
+}
+.media {
+  width: 100%;
+  min-height: 130px;
+  padding: 42px 12px;
+  text-align: center;
+  background: #d9e6ec;
+  color: #24384a;
+  font-weight: bold;
+}
+.site-foot {
+  padding: 22px 18px;
+  text-align: center;
+  background: #2d2925;
+  color: white;
+}
+/* TODO: Add one content-driven breakpoint.
+   At the width where the cards have enough room,
+   use inline-block and percentage widths to make them share a row. */
+    </script>
+  </live-editor>
+
+  <reveal-panel data-kind="hint" data-label="Hint">
+    <p>After testing, try a breakpoint around the width where two cards feel comfortable. Inside it, use <code>.spot { display: inline-block; width: 31%; vertical-align: top; }</code> and add a small right margin.</p>
+  </reveal-panel>
+  <reveal-panel data-kind="solution" data-label="One possible solution">
+<pre class="code"><span class="c-key">@media</span> (min-width: <span class="c-val">760px</span>) {
+  <span class="c-sel">.spot</span> {
+    <span class="c-prop">display</span>: <span class="c-val">inline-block</span>;
+    <span class="c-prop">width</span>: <span class="c-val">31%</span>;
+    <span class="c-prop">margin-right</span>: <span class="c-val">2%</span>;
+    <span class="c-prop">vertical-align</span>: <span class="c-val">top</span>;
+  }
+}</pre>
+  </reveal-panel>
+
+  <reflection-box data-id="mp-r1" data-prompt="Explain your breakpoint choice and your fluid-width decisions. What did you test from 320px to 1400px?"></reflection-box>
+
+  <checkpoint-quiz data-id="mp-cp" data-questions='[
+    {"q":"Which final-project requirement belongs in this Day 1 tutorial?","opts":[
+      {"t":"A max-width content column","ok":true,"fb":"Yes. That is one of today&apos;s core tools."},
+      {"t":"Several advanced layout systems","ok":false,"fb":"Those are later topics, not this mini-project."},
+      {"t":"A disabled zoom setting","ok":false,"fb":"Do not disable zoom."}
+    ]},
+    {"q":"What should you upload to Canvas for tutorial progress?","opts":[
+      {"t":"The downloaded completed HTML file","ok":true,"fb":"Correct. Use the progress panel to download it."},
+      {"t":"Only a screenshot of the browser toolbar","ok":false,"fb":"The completed HTML file contains the structured tutorial evidence."},
+      {"t":"Nothing, because autosave sends it automatically","ok":false,"fb":"Autosave is local. You still download and upload the file."}
+    ]}
+  ]'></checkpoint-quiz>
+</section>
+</template>
+
+<script>
+/* =================================================================
+   State and setup
+   ================================================================= */
+const ASSIGNMENT_TITLE = 'Responsive Design Day 1';
+const ASSIGNMENT_VERSION = '2.0.0';
+const STORAGE_KEY = 'desn368-responsive-day1-progress-v2';
+const MODULE_IDS = ['m0','m1','m2','m3','m4','m5','mp'];
+const EMBEDDED_PROGRESS = readEmbeddedProgress();
+
+let storageOk = true;
+let state = normalizeState(EMBEDDED_PROGRESS || safeReadJSON(STORAGE_KEY));
+const editorRegistry = new Map();
+const quizRegistry = new Map();
+
+function defaultState() {
+  return {
+    version: ASSIGNMENT_VERSION,
+    assignmentTitle: ASSIGNMENT_TITLE,
+    studentName: '',
+    completed: {},
+    reflections: {},
+    quizzes: {},
+    editors: {},
+    lastSavedAt: null
+  };
+}
+
+function isPlainObject(value) {
+  return value && typeof value === 'object' && !Array.isArray(value);
+}
+
+function normalizeState(raw) {
+  const base = defaultState();
+  if (!isPlainObject(raw)) return base;
+  return {
+    version: String(raw.version || ASSIGNMENT_VERSION),
+    assignmentTitle: String(raw.assignmentTitle || ASSIGNMENT_TITLE),
+    studentName: typeof raw.studentName === 'string' ? raw.studentName : '',
+    completed: filterModuleMap(raw.completed),
+    reflections: isPlainObject(raw.reflections) ? raw.reflections : {},
+    quizzes: isPlainObject(raw.quizzes) ? raw.quizzes : {},
+    editors: isPlainObject(raw.editors) ? raw.editors : (isPlainObject(raw.liveEditors) ? raw.liveEditors : {}),
+    lastSavedAt: typeof raw.lastSavedAt === 'string' ? raw.lastSavedAt : (typeof raw.exportedAt === 'string' ? raw.exportedAt : null)
+  };
+}
+
+function filterModuleMap(map) {
+  const out = {};
+  if (!isPlainObject(map)) return out;
+  MODULE_IDS.forEach(id => {
+    if (map[id]) out[id] = true;
+  });
+  return out;
+}
+
+function safeReadJSON(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    storageOk = false;
+    return null;
+  }
+}
+
+function safeWriteJSON(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    storageOk = true;
+    return true;
+  } catch (error) {
+    storageOk = false;
+    return false;
+  }
+}
+
+function safeRemove(key) {
+  try {
+    localStorage.removeItem(key);
+    return true;
+  } catch (error) {
+    storageOk = false;
+    return false;
+  }
+}
+
+function readEmbeddedProgress(doc=document) {
+  try {
+    const el = doc.getElementById('desn368-progress-snapshot');
+    return el ? JSON.parse(el.textContent || '{}') : null;
+  } catch (error) {
+    console.warn('Embedded progress snapshot could not be read.', error);
+    return null;
+  }
+}
+
+function saveState(message) {
+  state.version = ASSIGNMENT_VERSION;
+  state.assignmentTitle = ASSIGNMENT_TITLE;
+  state.lastSavedAt = new Date().toISOString();
+  const ok = safeWriteJSON(STORAGE_KEY, state);
+  refreshProgress();
+  updateAutosave(message || (ok ? 'Autosaved.' : 'Autosave unavailable. Progress is kept only until this page closes.'));
+}
+
+function updateAutosave(message) {
+  const el = document.getElementById('autosave-status');
+  if (!el) return;
+  const time = state.lastSavedAt ? new Date(state.lastSavedAt).toLocaleString() : 'not saved yet';
+  el.textContent = `${message || 'Autosave ready.'} Last saved: ${time}${storageOk ? '' : ' (localStorage unavailable)'}`;
+}
+
+function setComplete(id, value=true) {
+  if (!MODULE_IDS.includes(id)) return;
+  if (value) state.completed[id] = true;
+  else delete state.completed[id];
+  saveState(value ? 'Module marked complete.' : 'Module marked incomplete.');
+}
+
+function isComplete(id) {
+  return !!state.completed[id];
+}
+
+function knownQuizIds() {
+  return Array.from(document.querySelectorAll('checkpoint-quiz')).map(el => el.dataset.id).filter(Boolean);
+}
+
+function knownEditorIds() {
+  return Array.from(document.querySelectorAll('live-editor')).map(el => el.dataset.id).filter(Boolean);
+}
+
+function refreshProgress() {
+  const done = MODULE_IDS.filter(isComplete).length;
+  const total = MODULE_IDS.length;
+  const fill = document.getElementById('progress-fill');
+  const label = document.getElementById('progress-label');
+  if (fill) fill.style.width = `${(done / total) * 100}%`;
+  if (label) label.textContent = `${done} / ${total}`;
+
+  document.querySelectorAll('#toc-list li').forEach(li => {
+    li.classList.toggle('done', isComplete(li.dataset.id));
+  });
+
+  const qIds = knownQuizIds();
+  const quizzesPassed = qIds.filter(id => state.quizzes[id] && state.quizzes[id].passed).length;
+  const reflectionsWritten = Object.values(state.reflections).filter(v => String(v || '').trim().length > 0).length;
+  const eIds = knownEditorIds();
+  const editorsChanged = eIds.filter(id => state.editors[id] && state.editors[id].changed).length;
+
+  setText('summary-modules', `Modules complete: ${done} / ${total}`);
+  setText('summary-quizzes', `Quizzes passed: ${quizzesPassed} / ${qIds.length || total}`);
+  setText('summary-reflections', `Reflections written: ${reflectionsWritten}`);
+  setText('summary-editors', `Live editors changed: ${editorsChanged}`);
+}
+
+function setText(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
+
+function escapeHtml(value='') {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function highlightHtml(source='') {
+  let html = escapeHtml(source);
+  html = html.replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="c-com">$1</span>');
+  html = html.replace(/(&lt;\/?)([a-zA-Z][\w:-]*)([\s\S]*?)(\/?&gt;)/g, (match, open, tag, attrs, close) => {
+    const markedAttrs = attrs.replace(/([\w:-]+)(=)(&quot;.*?&quot;|&#39;.*?&#39;|[^\s&]+)?/g, (attrMatch, name, eq, value='') => {
+      return `<span class="c-attr">${name}</span>${eq}<span class="c-str">${value}</span>`;
+    });
+    return `<span class="c-tag">${open}${tag}</span>${markedAttrs}<span class="c-tag">${close}</span>`;
+  });
+  return html + (html.endsWith('\n') ? ' ' : '');
+}
+
+function highlightCss(source='') {
+  return escapeHtml(source)
+    .split('\n')
+    .map(line => {
+      let marked = line.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="c-com">$1</span>');
+      marked = marked.replace(/(@[\w-]+)/g, '<span class="c-key">$1</span>');
+      if (marked.includes('{')) {
+        marked = marked.replace(/^(\s*)([^{}]+)(\{)/, '$1<span class="c-sel">$2</span>$3');
+      }
+      marked = marked.replace(/([\w-]+)(\s*:)([^;{}]+)(;?)/g, '<span class="c-prop">$1</span>$2<span class="c-val">$3</span>$4');
+      return marked;
+    })
+    .join('\n') + ' ';
+}
+
+function slugify(value) {
+  const slug = String(value || 'student')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return slug || 'student';
+}
+
+function initTheme() {
+  document.documentElement.dataset.theme = 'dark';
+}
+
+/* =================================================================
+   Live editor
+   ================================================================= */
+class LiveEditor extends HTMLElement {
+  connectedCallback() {
+    if (this._mounted) return;
+    this._mounted = true;
+
+    this._id = this.dataset.id || `le-${Math.random().toString(36).slice(2,7)}`;
+    this._startPreview = parseInt(this.dataset.startpreview || '900', 10);
+    this._tall = this.dataset.tall === 'true';
+
+    const htmlSrc = this.querySelector('script[data-html]');
+    const cssSrc = this.querySelector('script[data-css]');
+    this._startHtml = htmlSrc ? htmlSrc.textContent.replace(/^\s*\n/, '').replace(/\s+$/, '') : '';
+    this._startCss = cssSrc ? cssSrc.textContent.replace(/^\s*\n/, '').replace(/\s+$/, '') : '';
+
+    const saved = state.editors[this._id] || {};
+    const currentHtml = typeof saved.html === 'string' ? saved.html : this._startHtml;
+    const currentCss = typeof saved.css === 'string' ? saved.css : this._startCss;
+
+    this.innerHTML = `
+      <div class="live-editor">
+        <div class="live-editor-header">
+          <span>Live editor · ${escapeHtml(this._id)}</span>
+          <button class="le-btn le-reset" type="button">Reset starter code</button>
+        </div>
+        <div class="live-editor-body">
+          <div class="le-code-pair">
+            <div class="le-code-pane">
+              <div class="le-code-label">HTML</div>
+              <div class="le-textarea-wrap" style="min-height:${this._tall ? '420px' : '320px'}">
+                <pre class="le-highlight le-html-highlight" aria-hidden="true"></pre>
+                <textarea class="le-textarea le-html" spellcheck="false" aria-label="HTML editor"></textarea>
+              </div>
+            </div>
+            <div class="le-code-pane">
+              <div class="le-code-label">CSS</div>
+              <div class="le-textarea-wrap" style="min-height:${this._tall ? '420px' : '320px'}">
+                <pre class="le-highlight le-css-highlight" aria-hidden="true"></pre>
+                <textarea class="le-textarea le-css" spellcheck="false" aria-label="CSS editor"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="le-preview-pane">
+            <div class="le-preview-toolbar">
+              <span class="label">Width</span>
+              <button class="preset-btn" type="button" data-w="320">320</button>
+              <button class="preset-btn" type="button" data-w="375">375</button>
+              <button class="preset-btn" type="button" data-w="600">600</button>
+              <button class="preset-btn" type="button" data-w="900">900</button>
+              <button class="preset-btn" type="button" data-w="1200">1200</button>
+              <button class="preset-btn" type="button" data-w="1400">1400</button>
+              <button class="preset-btn" type="button" data-w="100%">100%</button>
+              <span class="width-display">- px</span>
+            </div>
+            <div class="le-iframe-wrap">
+              <div class="le-preview-stage">
+                <div class="le-iframe-frame${this._tall ? ' tall' : ''}">
+                  <iframe title="Preview for ${escapeHtml(this._id)}"></iframe>
+                  <button class="le-resize-handle" type="button" aria-label="Resize preview width" role="separator" aria-orientation="vertical" aria-valuemin="280" aria-valuemax="1400" aria-valuenow="900"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    this.htmlTA = this.querySelector('.le-html');
+    this.cssTA = this.querySelector('.le-css');
+    this.htmlHighlight = this.querySelector('.le-html-highlight');
+    this.cssHighlight = this.querySelector('.le-css-highlight');
+    this.iframe = this.querySelector('iframe');
+    this.frame = this.querySelector('.le-iframe-frame');
+    this.stage = this.querySelector('.le-preview-stage');
+    this.wrap = this.querySelector('.le-iframe-wrap');
+    this.widthDisplay = this.querySelector('.width-display');
+    this.handle = this.querySelector('.le-resize-handle');
+    this.previewScale = 1;
+    this.htmlTA.value = currentHtml;
+    this.cssTA.value = currentCss;
+    this.updateHighlights();
+
+    let inputTimer;
+    const queue = () => {
+      clearTimeout(inputTimer);
+      inputTimer = setTimeout(() => {
+        this.updateHighlights();
+        this.render();
+        this.saveEditor();
+      }, 180);
+    };
+    this.htmlTA.addEventListener('input', queue);
+    this.cssTA.addEventListener('input', queue);
+    this.htmlTA.addEventListener('scroll', () => this.syncHighlightScroll(this.htmlTA, this.htmlHighlight));
+    this.cssTA.addEventListener('scroll', () => this.syncHighlightScroll(this.cssTA, this.cssHighlight));
+    this.querySelector('.le-reset').addEventListener('click', () => this.resetToStarter());
+    this.querySelectorAll('.preset-btn').forEach(button => {
+      button.addEventListener('click', () => this.setWidth(button.dataset.w));
+    });
+    this.setupResizeHandle();
+    if (window.ResizeObserver) {
+      this._resizeObserver = new ResizeObserver(() => this.updatePreviewScale());
+      this._resizeObserver.observe(this.wrap);
+    } else {
+      window.addEventListener('resize', () => this.updatePreviewScale());
+    }
+
+    editorRegistry.set(this._id, this);
+    this.setWidth(String(this._startPreview));
+    this.render();
+    this.saveEditor({silent: true});
+    requestAnimationFrame(() => this.updateWidthDisplay());
+  }
+
+  saveEditor(options={}) {
+    const changed = this.htmlTA.value !== this._startHtml || this.cssTA.value !== this._startCss;
+    state.editors[this._id] = {
+      html: this.htmlTA.value,
+      css: this.cssTA.value,
+      changed,
+      updatedAt: new Date().toISOString()
+    };
+    if (!options.silent) saveState('Live editor saved.');
+    else refreshProgress();
+  }
+
+  resetToStarter() {
+    this.htmlTA.value = this._startHtml;
+    this.cssTA.value = this._startCss;
+    this.updateHighlights();
+    this.render();
+    this.saveEditor();
+  }
+
+  syncFromState() {
+    const saved = state.editors[this._id];
+    this.htmlTA.value = saved && typeof saved.html === 'string' ? saved.html : this._startHtml;
+    this.cssTA.value = saved && typeof saved.css === 'string' ? saved.css : this._startCss;
+    this.updateHighlights();
+    this.render();
+    this.updateWidthDisplay();
+  }
+
+  setWidth(width) {
+    this.querySelectorAll('.preset-btn').forEach(button => {
+      button.classList.toggle('active', button.dataset.w === width);
+    });
+    if (width === '100%') {
+      this.frame.classList.add('full-width');
+      this.frame.style.width = '';
+      requestAnimationFrame(() => this.updatePreviewScale());
+    } else {
+      const px = Number.parseInt(width, 10);
+      if (Number.isFinite(px)) this.applyWidth(px);
+    }
+    this.updateWidthDisplay();
+  }
+
+  applyWidth(px) {
+    const width = Math.max(280, Math.min(1400, px));
+    this.frame.classList.remove('full-width');
+    this.frame.style.width = `${width}px`;
+    this.querySelectorAll('.preset-btn').forEach(button => button.classList.remove('active'));
+    this.updateWidthDisplay();
+  }
+
+  updateWidthDisplay() {
+    if (!this.frame) return;
+    this.updatePreviewScale();
+    const width = Math.round(this.getActualPreviewWidth());
+    const scaleNote = this.previewScale < 0.99 ? ` · fit ${Math.round(this.previewScale * 100)}%` : '';
+    this.widthDisplay.textContent = `${width} px${scaleNote}`;
+    this.handle?.setAttribute('aria-valuenow', String(width));
+  }
+
+  getActualPreviewWidth() {
+    if (this.frame.classList.contains('full-width')) {
+      return this.wrap ? Math.max(280, this.wrap.clientWidth - 32) : this.frame.getBoundingClientRect().width;
+    }
+    return Number.parseFloat(this.frame.style.width) || this._startPreview || this.frame.offsetWidth || 900;
+  }
+
+  getActualPreviewHeight() {
+    return this._tall ? 560 : 360;
+  }
+
+  updatePreviewScale() {
+    if (!this.wrap || !this.stage || !this.frame) return;
+    const actualWidth = this.getActualPreviewWidth();
+    const actualHeight = this.getActualPreviewHeight();
+    const available = Math.max(280, this.wrap.clientWidth - 32);
+    this.previewScale = Math.min(1, available / actualWidth);
+    this.frame.style.transform = `scale(${this.previewScale})`;
+    this.stage.style.width = `${Math.ceil(actualWidth * this.previewScale)}px`;
+    this.stage.style.height = `${Math.ceil(actualHeight * this.previewScale)}px`;
+    if (this.frame.classList.contains('full-width')) {
+      this.frame.style.width = `${actualWidth}px`;
+    }
+  }
+
+  updateHighlights() {
+    if (this.htmlHighlight) this.htmlHighlight.innerHTML = highlightHtml(this.htmlTA.value);
+    if (this.cssHighlight) this.cssHighlight.innerHTML = highlightCss(this.cssTA.value);
+    this.syncHighlightScroll(this.htmlTA, this.htmlHighlight);
+    this.syncHighlightScroll(this.cssTA, this.cssHighlight);
+  }
+
+  syncHighlightScroll(textarea, highlight) {
+    if (!textarea || !highlight) return;
+    highlight.scrollTop = textarea.scrollTop;
+    highlight.scrollLeft = textarea.scrollLeft;
+  }
+
+  setupResizeHandle() {
+    let activePointer = null;
+    let startX = 0;
+    let startW = 0;
+
+    const cleanup = () => {
+      activePointer = null;
+      this.handle.classList.remove('dragging');
+      document.body.classList.remove('is-resizing-preview');
+    };
+
+    this.handle.addEventListener('pointerdown', event => {
+      event.preventDefault();
+      activePointer = event.pointerId;
+      startX = event.clientX;
+      startW = this.getActualPreviewWidth();
+      try { this.handle.setPointerCapture(event.pointerId); } catch (error) {}
+      this.handle.classList.add('dragging');
+      document.body.classList.add('is-resizing-preview');
+    });
+
+    this.handle.addEventListener('pointermove', event => {
+      if (activePointer !== event.pointerId) return;
+      event.preventDefault();
+      this.applyWidth(startW + ((event.clientX - startX) / this.previewScale));
+    });
+
+    this.handle.addEventListener('pointerup', event => {
+      if (activePointer !== event.pointerId) return;
+      cleanup();
+    });
+
+    this.handle.addEventListener('pointercancel', cleanup);
+    this.handle.addEventListener('lostpointercapture', cleanup);
+
+    this.handle.addEventListener('keydown', event => {
+      const current = Math.round(this.getActualPreviewWidth());
+      const step = event.shiftKey ? 80 : 20;
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        this.applyWidth(current - step);
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        this.applyWidth(current + step);
+      }
+      if (event.key === 'Home') {
+        event.preventDefault();
+        this.applyWidth(320);
+      }
+      if (event.key === 'End') {
+        event.preventDefault();
+        this.applyWidth(1400);
+      }
+    });
+  }
+
+  render() {
+    const css = this.cssTA.value;
+    const html = this.htmlTA.value;
+    const fullDoc = /<!doctype/i.test(html) || /<html[\s>]/i.test(html);
+    if (fullDoc) {
+      let src = html;
+      if (/<head[^>]*>/i.test(src)) {
+        src = src.replace(/<head([^>]*)>/i, `<head$1><style>${css}</style>`);
+      } else {
+        src = `<head><style>${css}</style></head>${src}`;
+      }
+      this.iframe.srcdoc = src;
+    } else {
+      this.iframe.srcdoc = `<!doctype html><html><head><meta charset="utf-8"><style>${css}</style></head><body>${html}</body></html>`;
+    }
+    requestAnimationFrame(() => this.updateWidthDisplay());
+  }
+}
+customElements.define('live-editor', LiveEditor);
+
+/* =================================================================
+   Reflection box
+   ================================================================= */
+class ReflectionBox extends HTMLElement {
+  connectedCallback() {
+    if (this._mounted) return;
+    this._mounted = true;
+    this._id = this.dataset.id || `r-${Math.random().toString(36).slice(2,7)}`;
+    const prompt = this.dataset.prompt || 'Reflection';
+    this.innerHTML = `
+      <div class="reflection">
+        <label class="prompt" for="${escapeHtml(this._id)}">Reflect · ${escapeHtml(prompt)}</label>
+        <textarea id="${escapeHtml(this._id)}" placeholder="Write a sentence or two."></textarea>
+      </div>
+    `;
+    this.textarea = this.querySelector('textarea');
+    this.textarea.value = state.reflections[this._id] || '';
+    let timer;
+    this.textarea.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        state.reflections[this._id] = this.textarea.value;
+        saveState('Reflection saved.');
+      }, 220);
+    });
+  }
+
+  syncFromState() {
+    if (this.textarea) this.textarea.value = state.reflections[this._id] || '';
+  }
+}
+customElements.define('reflection-box', ReflectionBox);
+
+/* =================================================================
+   Reveal panel
+   ================================================================= */
+class RevealPanel extends HTMLElement {
+  connectedCallback() {
+    if (this._mounted) return;
+    this._mounted = true;
+    const kind = this.dataset.kind || 'hint';
+    const label = this.dataset.label || (kind === 'solution' ? 'Solution' : 'Hint');
+    const body = this.innerHTML;
+    this.innerHTML = `
+      <details class="reveal ${escapeHtml(kind)}">
+        <summary class="reveal-summary">${escapeHtml(label)}</summary>
+        <div class="reveal-body">${body}</div>
+      </details>
+    `;
+  }
+}
+customElements.define('reveal-panel', RevealPanel);
+
+/* =================================================================
+   Checkpoint quiz
+   ================================================================= */
+class CheckpointQuiz extends HTMLElement {
+  connectedCallback() {
+    if (this._mounted) return;
+    this._mounted = true;
+    this._id = this.dataset.id || `cp-${Math.random().toString(36).slice(2,7)}`;
+    this._questions = [];
+    try {
+      this._questions = JSON.parse(this.dataset.questions || '[]');
+    } catch (error) {
+      console.warn('Bad checkpoint JSON', this._id, error);
+    }
+    this._moduleId = this.closest('.module')?.dataset.mid || null;
+    if (!state.quizzes[this._id]) {
+      state.quizzes[this._id] = { answers: {}, attempts: 0, score: 0, total: this._questions.length, passed: false, checked: false };
+    }
+
+    this.innerHTML = `
+      <section class="checkpoint" aria-label="Checkpoint quiz">
+        <h4 class="cp-title">Checkpoint</h4>
+        <p class="cp-intro">Pick an answer for each question. Get all answers correct to complete this module.</p>
+        ${this._questions.map((question, index) => `
+          <div class="cp-q" data-index="${index}">
+            <div class="q">${index + 1}. ${escapeHtml(question.q)}</div>
+            <div class="opts">
+              ${question.opts.map((option, optIndex) => `
+                <label class="cp-opt">
+                  <input type="radio" name="${escapeHtml(this._id)}-q${index}" value="${optIndex}">
+                  <span>${escapeHtml(option.t)}</span>
+                </label>
+              `).join('')}
+            </div>
+            <div class="cp-fb"></div>
+          </div>
+        `).join('')}
+        <div class="cp-actions">
+          <button class="cp-check" type="button">Check answers</button>
+          <span class="cp-status" aria-live="polite"></span>
+        </div>
+      </section>
+    `;
+
+    this.status = this.querySelector('.cp-status');
+    this.querySelectorAll('input[type="radio"]').forEach(input => {
+      input.addEventListener('change', () => this.saveAnswer(input));
+    });
+    this.querySelector('.cp-check').addEventListener('click', () => this.checkAnswers());
+    quizRegistry.set(this._id, this);
+    this.syncFromState();
+  }
+
+  quizState() {
+    if (!state.quizzes[this._id]) {
+      state.quizzes[this._id] = { answers: {}, attempts: 0, score: 0, total: this._questions.length, passed: false, checked: false };
+    }
+    return state.quizzes[this._id];
+  }
+
+  saveAnswer(input) {
+    const qEl = input.closest('.cp-q');
+    const index = qEl.dataset.index;
+    const qState = this.quizState();
+    qState.answers[index] = Number.parseInt(input.value, 10);
+    qState.checked = false;
+    qState.passed = false;
+    qState.total = this._questions.length;
+    if (this._moduleId) delete state.completed[this._moduleId];
+    this.clearFeedback();
+    this.status.textContent = 'Answer saved. Check again when ready.';
+    this.status.classList.remove('passed');
+    saveState('Quiz answer saved.');
+  }
+
+  checkAnswers() {
+    const qState = this.quizState();
+    let score = 0;
+    let allCorrect = true;
+
+    this._questions.forEach((question, index) => {
+      const selected = qState.answers[index];
+      const selectedOption = Number.isInteger(selected) ? question.opts[selected] : null;
+      if (selectedOption && selectedOption.ok) score += 1;
+      else allCorrect = false;
+    });
+
+    qState.attempts = (Number(qState.attempts) || 0) + 1;
+    qState.score = score;
+    qState.total = this._questions.length;
+    qState.passed = allCorrect;
+    qState.checked = true;
+    qState.checkedAt = new Date().toISOString();
+
+    if (this._moduleId) {
+      if (allCorrect) state.completed[this._moduleId] = true;
+      else delete state.completed[this._moduleId];
+    }
+
+    this.applyFeedback();
+    saveState(allCorrect ? 'Checkpoint passed.' : 'Checkpoint checked.');
+  }
+
+  clearFeedback() {
+    this.querySelectorAll('.cp-opt').forEach(opt => opt.classList.remove('correct','incorrect'));
+    this.querySelectorAll('.cp-fb').forEach(fb => {
+      fb.className = 'cp-fb';
+      fb.textContent = '';
+    });
+  }
+
+  applyFeedback() {
+    const qState = this.quizState();
+    this.clearFeedback();
+
+    this._questions.forEach((question, index) => {
+      const qEl = this.querySelector(`.cp-q[data-index="${index}"]`);
+      const fb = qEl.querySelector('.cp-fb');
+      const selected = qState.answers[index];
+      const labels = qEl.querySelectorAll('.cp-opt');
+      if (!Number.isInteger(selected)) {
+        fb.className = 'cp-fb wrong';
+        fb.textContent = 'Pick an answer.';
+        return;
+      }
+      const option = question.opts[selected];
+      if (option && option.ok) {
+        labels[selected].classList.add('correct');
+        fb.className = 'cp-fb right';
+        fb.textContent = `Correct. ${option.fb || ''}`.trim();
+      } else {
+        if (labels[selected]) labels[selected].classList.add('incorrect');
+        question.opts.forEach((candidate, optIndex) => {
+          if (candidate.ok) labels[optIndex].classList.add('correct');
+        });
+        fb.className = 'cp-fb wrong';
+        fb.textContent = `Try again. ${(option && option.fb) || ''}`.trim();
+      }
+    });
+
+    if (qState.passed) {
+      this.status.textContent = `Module complete. Score ${qState.score}/${qState.total}. Attempts: ${qState.attempts}.`;
+      this.status.classList.add('passed');
+    } else {
+      this.status.textContent = `Score ${qState.score}/${qState.total}. Attempts: ${qState.attempts}.`;
+      this.status.classList.remove('passed');
+    }
+  }
+
+  syncFromState() {
+    const qState = this.quizState();
+    Object.entries(qState.answers || {}).forEach(([index, value]) => {
+      const input = this.querySelector(`.cp-q[data-index="${index}"] input[value="${value}"]`);
+      if (input) input.checked = true;
+    });
+    if (qState.checked) this.applyFeedback();
+    else if (qState.passed) {
+      this.status.textContent = 'Module complete.';
+      this.status.classList.add('passed');
+    } else {
+      this.status.textContent = '';
+      this.status.classList.remove('passed');
+      this.clearFeedback();
+    }
+  }
+}
+customElements.define('checkpoint-quiz', CheckpointQuiz);
+
+/* =================================================================
+   Progress import/export/reset
+   ================================================================= */
+function buildExportPayload() {
+  return {
+    assignmentTitle: ASSIGNMENT_TITLE,
+    version: ASSIGNMENT_VERSION,
+    exportedAt: new Date().toISOString(),
+    lastSavedAt: state.lastSavedAt || null,
+    studentName: state.studentName || '',
+    completed: filterModuleMap(state.completed),
+    reflections: state.reflections || {},
+    quizzes: state.quizzes || {},
+    liveEditors: state.editors || {}
+  };
+}
+
+function buildCompletedHtmlSource(payload) {
+  const clone = document.documentElement.cloneNode(true);
+  const mountedModules = clone.querySelector('#modules');
+  if (mountedModules) mountedModules.innerHTML = '';
+  clone.querySelectorAll('#desn368-progress-snapshot').forEach(el => el.remove());
+
+  const snapshot = document.createElement('script');
+  snapshot.id = 'desn368-progress-snapshot';
+  snapshot.type = 'application/json';
+  snapshot.textContent = JSON.stringify(payload, null, 2).replace(/<\/script/gi, '<\\/script');
+
+  const cloneSnapshot = clone.ownerDocument.importNode(snapshot, true);
+  const body = clone.querySelector('body');
+  const runtimeScript = body ? Array.from(body.children).find(el => el.tagName === 'SCRIPT' && !el.type) : null;
+  if (body && runtimeScript) body.insertBefore(cloneSnapshot, runtimeScript);
+  else if (body) body.appendChild(cloneSnapshot);
+
+  return `<!doctype html>\n${clone.outerHTML}`;
+}
+
+function downloadCompletedHtml() {
+  const payload = buildExportPayload();
+  const html = buildCompletedHtmlSource(payload);
+  const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `desn368-responsive-day1-progress-${slugify(state.studentName)}.html`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  updateAutosave('Completed HTML file downloaded.');
+}
+
+function parseProgressFileText(text) {
+  const raw = String(text || '').trim();
+  if (!raw) throw new Error('Progress file was empty.');
+  if (/^<!doctype html/i.test(raw) || /<html[\s>]/i.test(raw)) {
+    const doc = new DOMParser().parseFromString(raw, 'text/html');
+    const embedded = readEmbeddedProgress(doc);
+    if (!embedded) throw new Error('No embedded progress snapshot was found in this HTML file.');
+    return embedded;
+  }
+  return JSON.parse(raw);
+}
+
+function importProgress(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const payload = parseProgressFileText(reader.result);
+      if (!isPlainObject(payload)) throw new Error('Progress file was not an object.');
+      const looksCompatible = payload.assignmentTitle === ASSIGNMENT_TITLE || isPlainObject(payload.quizzes) || isPlainObject(payload.liveEditors);
+      if (!looksCompatible) throw new Error('This does not look like a Responsive Design Day 1 progress file.');
+
+      state = normalizeState({
+        version: payload.version || ASSIGNMENT_VERSION,
+        assignmentTitle: ASSIGNMENT_TITLE,
+        studentName: typeof payload.studentName === 'string' ? payload.studentName : '',
+        completed: payload.completed || {},
+        reflections: payload.reflections || {},
+        quizzes: payload.quizzes || {},
+        editors: payload.liveEditors || payload.editors || {},
+        lastSavedAt: payload.exportedAt || new Date().toISOString()
+      });
+
+      saveState('Progress imported.');
+      syncAllMountedUI();
+      setText('import-status', 'Import successful. Your saved tutorial work has been restored.');
+    } catch (error) {
+      setText('import-status', `Import failed: ${error.message}`);
+    }
+  };
+  reader.onerror = () => setText('import-status', 'Import failed: could not read the file.');
+  reader.readAsText(file);
+}
+
+function resetAllProgress() {
+  if (!confirm('Clear all saved progress for this tutorial? This cannot be undone unless you already downloaded a progress file.')) return;
+  safeRemove(STORAGE_KEY);
+  state = defaultState();
+  document.getElementById('student-name').value = '';
+  document.querySelectorAll('reflection-box').forEach(el => el.syncFromState && el.syncFromState());
+  editorRegistry.forEach(editor => editor.syncFromState());
+  quizRegistry.forEach(quiz => quiz.syncFromState());
+  refreshProgress();
+  updateAutosave('Progress cleared.');
+  setText('import-status', '');
+}
+
+function syncAllMountedUI() {
+  const name = document.getElementById('student-name');
+  if (name) name.value = state.studentName || '';
+  document.querySelectorAll('reflection-box').forEach(el => el.syncFromState && el.syncFromState());
+  editorRegistry.forEach(editor => editor.syncFromState());
+  quizRegistry.forEach(quiz => quiz.syncFromState());
+  refreshProgress();
+}
+
+function setupProgressPanel() {
+  const name = document.getElementById('student-name');
+  if (name) {
+    name.value = state.studentName || '';
+    let timer;
+    name.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        state.studentName = name.value;
+        saveState('Student name saved.');
+      }, 180);
+    });
+  }
+  document.getElementById('download-html-progress')?.addEventListener('click', downloadCompletedHtml);
+  document.getElementById('download-html-progress-bottom')?.addEventListener('click', downloadCompletedHtml);
+  document.getElementById('import-progress')?.addEventListener('change', event => {
+    importProgress(event.target.files && event.target.files[0]);
+    event.target.value = '';
+  });
+  document.getElementById('clear-progress')?.addEventListener('click', resetAllProgress);
+  document.getElementById('reset-progress')?.addEventListener('click', resetAllProgress);
+}
+
+/* =================================================================
+   Mount and navigation
+   ================================================================= */
+const target = document.getElementById('modules');
+MODULE_IDS.forEach(id => {
+  const template = document.getElementById(`t-${id}`);
+  if (template) target.appendChild(template.content.cloneNode(true));
+});
+
+const sections = MODULE_IDS.map(id => document.getElementById(id)).filter(Boolean);
+const tocLinks = Object.fromEntries(
+  Array.from(document.querySelectorAll('#toc-list li')).map(li => [li.dataset.id, li])
+);
+
+let tocRaf = 0;
+function updateCurrentSection() {
+  const readingLine = window.innerHeight * 0.28;
+  let active = sections[0];
+  for (const section of sections) {
+    const top = section.getBoundingClientRect().top;
+    if (top - readingLine <= 0) active = section;
+  }
+  Object.values(tocLinks).forEach(li => li.classList.remove('current'));
+  const current = active && tocLinks[active.id];
+  if (current) current.classList.add('current');
+}
+window.addEventListener('scroll', () => {
+  if (tocRaf) return;
+  tocRaf = requestAnimationFrame(() => {
+    tocRaf = 0;
+    updateCurrentSection();
+  });
+}, {passive: true});
+window.addEventListener('resize', updateCurrentSection);
+
+initTheme();
+setupProgressPanel();
+refreshProgress();
+if (EMBEDDED_PROGRESS) safeWriteJSON(STORAGE_KEY, state);
+updateAutosave(EMBEDDED_PROGRESS ? 'Embedded progress loaded.' : 'Autosave ready.');
+updateCurrentSection();
+</script>
+
+</body>
+</html>

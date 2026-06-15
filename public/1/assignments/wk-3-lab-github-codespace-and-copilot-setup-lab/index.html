@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wk 3 - lab // GitHub Codespace and CoPilot setup Lab -- DESN 368</title>
+<style>
+  html,body{margin:0;padding:0;background:#FDFFFC;}
+  body{color:#393E41;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.6;}
+  .cd-embed-back{position:sticky;top:0;z-index:50;background:#FDFFFC;border-bottom:1px solid rgba(57,62,65,0.15);padding:10px 20px;font-family:'SFMono-Regular','SF Mono',Consolas,Menlo,monospace;font-size:13px;}
+  .cd-embed-back a{color:#9A1125;text-decoration:none;font-weight:600;}
+  .cd-embed-back a:hover{text-decoration:underline;}
+  .cd-embed-wrap{max-width:1040px;margin:0 auto;padding:28px 20px 72px;}
+  .cd-embed-wrap img{max-width:100%;height:auto;}
+</style></head>
+<body><div class="cd-embed-back"><a href="/1/weeks/week-3/">&larr; Week 3</a></div>
+<div class="cd-embed-wrap">
+<div style="background: #FDFFFC; padding: 32px; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color: #393e41;">
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.2); border-top: 4px solid #B7142E; border-radius: 6px; padding: 32px; margin-bottom: 24px;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; padding: 4px 12px; background: #B7142E; color: #ffffff; border-radius: 20px; margin-bottom: 12px;">DESN 368</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 32px; line-height: 1.2; color: #393e41; margin: 0;">GitHub Setup Lab</h2>
+<p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; margin-top: 8px;">Week 3 · In-Class Lab · 30 pts</p>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; padding: 3px 10px; background: #B7142E; color: #ffffff; border-radius: 12px; margin-bottom: 8px;">Step 1</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Open Your Repo in Codespaces</h2>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li style="margin-bottom: 12px;">Go to your GitHub repository in your browser</li>
+<li style="margin-bottom: 12px;">Click the green <strong>Code</strong> button</li>
+<li style="margin-bottom: 12px;">Click the <strong>Codespaces</strong> tab</li>
+<li style="margin-bottom: 12px;">Click <strong>Create codespace on main</strong> (or open your existing codespace)</li>
+<li style="margin-bottom: 12px;">Wait for Codespaces to load — you'll see a VS Code editor in your browser</li>
+</ol>
+<p><img src="/1/assets/a-11387245/CleanShot_2026-04-16_at_09.04.23_402x.png" alt="image showing where to click to open a codespace in a github repo" width="809" height="397" loading="lazy"></p>
+<div style="background: #F8FDF4; border: 1px solid #C5E8B3; border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #2b7015; margin-bottom: 6px;">Done When</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">You have VS Code open in your browser via Codespaces, with your repo files visible in the sidebar.</p>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; padding: 3px 10px; background: #B7142E; color: #ffffff; border-radius: 12px; margin-bottom: 8px;">Step 2</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Organize Your Repo</h2>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li style="margin-bottom: 12px;">In the Codespaces file explorer (left sidebar), create three folders:
+<ul style="margin-top: 8px; padding-left: 20px; list-style-type: disc;">
+<li style="margin-bottom: 4px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">week-1/</code></li>
+<li style="margin-bottom: 4px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">week-2/</code></li>
+<li style="margin-bottom: 4px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">week-3/</code></li>
+</ul>
+</li>
+<li style="margin-bottom: 12px;">Inside <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">week-1/</code>, create a subfolder: <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">structure/</code></li>
+<li style="margin-bottom: 12px;">Inside <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">week-2/</code>, create a subfolder: <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">html-101/</code></li>
+</ol>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;">Your folder structure should look like this:</p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); border-radius: 4px; padding: 16px; margin: 8px 0 16px 0; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393e41; display: block; white-space: pre;">your-repo/
+├── week-1/
+│   └── structure/
+├── week-2/
+│   └── html-101/
+├── week-3/
+├── index.html       (we'll create this later)
+├── styles/
+│   └── style.css    (we'll create this later)
+└── README.md</code></div>
+<div style="background: #F8FDF4; border: 1px solid #C5E8B3; border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #2b7015; margin-bottom: 6px;">Done When</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Your repo has week-1/ (with structure/ inside), week-2/ (with html-101/ inside), and week-3/ folders visible in the sidebar.</p>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; padding: 3px 10px; background: #B7142E; color: #ffffff; border-radius: 12px; margin-bottom: 8px;">Step 3</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Port Your First CodePen Manually</h2>
+<div style="background: #F2FCFE; border: 1px solid #B3EAFA; border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #006ba6; margin-bottom: 6px;">Info</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">This is the ONE file you'll move by hand. The goal is to understand the process — copy, create, paste, save, link. After this, Copilot handles the rest.</p>
+</div>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li style="margin-bottom: 12px;">Open one of your CodePens in a browser tab (pick any — Newspaper, Lost Pet, or Favorite Band)</li>
+<li style="margin-bottom: 12px;">In CodePen, click the HTML panel and <strong>Select All → Copy</strong> the HTML code</li>
+<li style="margin-bottom: 12px;">In Codespaces, right-click on the <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">week-1/</code> folder → <strong>New File</strong></li>
+<li style="margin-bottom: 12px;">Name the file with a descriptive name (NOT <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">index.html</code>):
+<ul style="margin-top: 8px; padding-left: 20px; list-style-type: disc;">
+<li style="margin-bottom: 4px;">Newspaper → <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">newspaper.html</code></li>
+<li style="margin-bottom: 4px;">Lost Pet → <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">lost-pet.html</code></li>
+<li style="margin-bottom: 4px;">Favorite Band → <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">favorite-band.html</code></li>
+</ul>
+</li>
+<li style="margin-bottom: 12px;">Paste your HTML into the new file</li>
+<li style="margin-bottom: 12px;"><strong>Check for hidden dependencies:</strong> CodePen silently loads fonts and CSS resets for you. Look at your CodePen's <strong>Settings</strong> (gear icon) → <strong>CSS</strong> tab and <strong>HTML</strong> tab:
+<ul style="margin-top: 8px; padding-left: 20px; list-style-type: disc;">
+<li style="margin-bottom: 4px;">If you see a Google Font URL → add a <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">&lt;link&gt;</code> tag in your file's <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">&lt;head&gt;</code></li>
+<li style="margin-bottom: 4px;">If you see a CSS reset or external stylesheet → add a <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">&lt;link&gt;</code> tag for it too</li>
+<li style="margin-bottom: 4px;">If nothing is listed, you're good!</li>
+</ul>
+</li>
+</ol>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;">Example of adding a Google Font link tag:</p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); border-radius: 4px; padding: 16px; margin: 8px 0 16px 0; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393e41; display: block; white-space: pre;">&lt;head&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"&gt;
+  &lt;!-- your other head content --&gt;
+&lt;/head&gt;</code></div>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;" start="7">
+<li style="margin-bottom: 12px;">Save the file (Ctrl+S / Cmd+S)</li>
+</ol>
+<div style="background: #F8FDF4; border: 1px solid #C5E8B3; border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #2b7015; margin-bottom: 6px;">Done When</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">You have one CodePen file saved in your week-1/ folder with a descriptive name, and any external fonts/CSS are linked in the <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 4px; color: #393e41;">&lt;head&gt;</code>.</p>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; padding: 3px 10px; background: #B7142E; color: #ffffff; border-radius: 12px; margin-bottom: 8px;">Step 4</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Your First Commit — Save Your Work to GitHub</h2>
+<div style="background: #F2FCFE; border: 1px solid #B3EAFA; border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #006ba6; margin-bottom: 6px;">Info</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Every time you make meaningful progress, you should save it to GitHub. This is called committing. Think of it like saving a checkpoint in a game — you can always come back to it.</p>
+</div>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li style="margin-bottom: 12px;">Look at the <strong>left sidebar</strong> in Codespaces. See the icon that looks like a branch/fork? That's the <strong>Source Control</strong> panel. Click it (or press <strong>Ctrl+Shift+G</strong> / <strong>Cmd+Shift+G</strong>).</li>
+<li style="margin-bottom: 12px;">You'll see your new file listed under <strong>"Changes"</strong>. The <strong>"U"</strong> next to it means "untracked" — GitHub doesn't know about this file yet.</li>
+<li style="margin-bottom: 12px;">Click the <strong>+</strong> icon next to your file to <strong>stage</strong> it. Staging means "I want to include this file in my next save."
+<ul style="margin-top: 8px; padding-left: 20px; list-style-type: disc;">
+<li style="margin-bottom: 4px;">The file moves from "Changes" to "Staged Changes"</li>
+<li style="margin-bottom: 4px;">The letter changes from <strong>U</strong> to <strong>A</strong> (added)</li>
+</ul>
+</li>
+<li style="margin-bottom: 12px;">In the <strong>Message</strong> box at the top, type a short description of what you did:
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); border-radius: 4px; padding: 16px; margin: 8px 0 0 0; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393e41; display: block; white-space: pre;">Add newspaper.html from CodePen</code></div>
+</li>
+<li style="margin-bottom: 12px;">Click the <strong>checkmark</strong> (✓) button to <strong>commit</strong>. This saves a snapshot of your work locally.</li>
+<li style="margin-bottom: 12px;">Click <strong>Sync Changes</strong> (or the cloud icon with an arrow) to <strong>push</strong> your commit to GitHub.</li>
+<li style="margin-bottom: 12px;">Open your GitHub repo in a browser tab and verify — your new file should be there!</li>
+</ol>
+<div style="background: #F8FDF4; border: 1px solid #C5E8B3; border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #2b7015; margin-bottom: 6px;">Done When</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">You can see your file on GitHub.com in your repo. You just made your first commit! You'll do this after every major step from now on.</p>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; padding: 3px 10px; background: #B7142E; color: #ffffff; border-radius: 12px; margin-bottom: 8px;">Step 5</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Let Copilot Handle the Rest</h2>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li style="margin-bottom: 12px;">In Codespaces, open the <strong>Copilot Chat</strong> panel (click the Copilot icon in the sidebar, or press Ctrl+I / Cmd+I)</li>
+<li style="margin-bottom: 12px;">Switch to <strong>Ask mode</strong> if not already selected</li>
+<li style="margin-bottom: 12px;">Give Copilot this prompt:</li>
+</ol>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); border-radius: 4px; padding: 16px; margin: 8px 0 16px 0; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393e41; display: block; white-space: pre;">I need to migrate my remaining CodePen projects into this repo.
+Here's what I need:
+
+Week 1 files (in week-1/ folder):
+- newspaper.html (newspaper article layout) — SKIP if I already created this
+- lost-pet.html (lost pet flyer)
+- favorite-band.html (favorite band page)
+
+Week 2 files (in week-2/ folder):
+- recipe.html (recipe page)
+- html-skeleton.html (HTML skeleton exercise)
+
+Week 2 HTML 101 exercises (in week-2/html-101/ folder):
+- building-blocks.html
+- styling-inside-out.html
+- tagging-content.html
+- addressing-elements.html
+- annotating-code.html
+- nesting-hierarchy.html
+
+For each file, create a basic HTML5 template with a comment
+at the top saying "Migrated from CodePen" and a placeholder
+where I can paste my CodePen code. Use the project name as
+the &lt;title&gt;.</code></div>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;" start="4">
+<li style="margin-bottom: 12px;">Review Copilot's output — it should create the files with placeholder templates</li>
+<li style="margin-bottom: 12px;"><span style="color: #027634;"><strong><span style="font-size: 14pt;">For each file Copilot created, open your original CodePen and paste your actual code into the file</span></strong></span></li>
+<li style="margin-bottom: 12px;">If you skipped a CodePen or don't have one, that's fine — leave the placeholder. You can fill it in later.</li>
+</ol>
+<div style="background: #F2FCFE; border: 1px solid #B3EAFA; border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #006ba6; margin-bottom: 6px;">Info</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Copilot creates the file structure and boilerplate. You still paste your actual code from each CodePen. Think of Copilot as your assistant — it sets up the scaffolding, you bring the content.</p>
+</div>
+<div style="background: #F8FDF4; border: 1px solid #C5E8B3; border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #2b7015; margin-bottom: 6px;">Done When</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Your repo has all your CodePen files organized in the correct week folders. Placeholders are fine for any you haven't finished yet.</p>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;"><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; padding: 3px 10px; background: #B7142E; color: #ffffff; border-radius: 12px; margin-bottom: 8px;">Step 6</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Commit Everything</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;">You've done this before in Step 4. Now do it again with all your new files.</p>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li style="margin-bottom: 12px;">Open the <strong>Source Control</strong> panel (Ctrl+Shift+G / Cmd+Shift+G)</li>
+<li style="margin-bottom: 12px;">Click the <strong>+</strong> next to <strong>"Changes"</strong> to stage ALL files at once</li>
+<li style="margin-bottom: 12px;">Type your commit message:
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.15); border-radius: 4px; padding: 16px; margin: 8px 0 0 0; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393e41; display: block; white-space: pre;">Organize repo and migrate remaining CodePens</code></div>
+</li>
+<li style="margin-bottom: 12px;">Click the <strong>checkmark</strong> (✓) to commit</li>
+<li style="margin-bottom: 12px;">Click <strong>Sync Changes</strong> to push to GitHub</li>
+<li style="margin-bottom: 12px;">Verify on GitHub.com — all your week folders and files should be visible</li>
+</ol>
+<div style="background: #F8FDF4; border: 1px solid #C5E8B3; border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #2b7015; margin-bottom: 6px;">Done When</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Your GitHub repo shows all your week folders with your migrated CodePen files inside.</p>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Submission</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;">At the end of class, submit:</p>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 24px;">
+<li style="margin-bottom: 12px;">A <strong>screenshot</strong> of your Codespaces workspace showing your progress on your organized repo</li>
+<li style="margin-bottom: 12px;">Your <strong>GitHub repo URL</strong></li>
+</ol>
+<div style="background: #F2FCFE; border: 1px solid #B3EAFA; border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #006ba6; margin-bottom: 6px;">Info</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">These are due at the end of class. The remaining assignments (README cleanup + GitHub Pages) can be finished as homework.</p>
+</div>
+</div>
+</div>
+</div></body></html>

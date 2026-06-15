@@ -1,23 +1,27 @@
-import Week0 from './week-0.astro';
-import Week1 from './week-1.astro';
-import Week2 from './week-2.astro';
-import Week4 from './week-4.astro';
-import Week5 from './week-5.astro';
-import Week7 from './week-7.astro';
-import Week9 from './week-9.astro';
+import manifest from '../courseManifest.json';
 
-export const COURSE_ONE_WEEK_COMPONENTS = {
-  'week-0': Week0,
-  'week-1': Week1,
-  'week-2': Week2,
-  'week-4': Week4,
-  'week-5': Week5,
-  'week-7': Week7,
-  'week-9': Week9,
-} as const;
+// Course 1 (DESN 368) weeks are driven by the Canvas-synced manifest, so a single
+// data-driven component renders every week. No per-week .astro files to maintain.
 
-export type CourseOneWeekSlug = keyof typeof COURSE_ONE_WEEK_COMPONENTS;
+export type CourseOneWeek = {
+  key: string;
+  number: number;
+  title: string;
+  items: any[];
+};
 
-export function isCourseOneWeekSlug(value: string | undefined | null): value is CourseOneWeekSlug {
-  return Boolean(value && value in COURSE_ONE_WEEK_COMPONENTS);
+export const COURSE_ONE_WEEKS = manifest.weeks as CourseOneWeek[];
+
+const WEEK_BY_KEY: Record<string, CourseOneWeek> = Object.fromEntries(
+  COURSE_ONE_WEEKS.map((w) => [w.key, w]),
+);
+
+export const COURSE_ONE_WEEK_SLUGS = COURSE_ONE_WEEKS.map((w) => w.key);
+
+export function isCourseOneWeekSlug(value: string | undefined | null): boolean {
+  return Boolean(value && value in WEEK_BY_KEY);
+}
+
+export function getCourseOneWeek(slug: string | undefined | null): CourseOneWeek | null {
+  return slug && slug in WEEK_BY_KEY ? WEEK_BY_KEY[slug] : null;
 }

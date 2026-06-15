@@ -1,0 +1,708 @@
+{
+  "course": {
+    "id": "1",
+    "canvas_id": "1907214",
+    "name": "DESN 368-041:  Code + Design 1",
+    "term": "Spring 2026"
+  },
+  "generated": "2026-06-15",
+  "info_items": [
+    {
+      "type": "external",
+      "title": "Milanote Home Board",
+      "href": "https://app.milanote.com/1W6e931MhvTVaN?p=1kaC1j7112i"
+    },
+    {
+      "type": "subheader",
+      "title": "Office Hours \u2014 M/T/TH - 1:00  - 2:00 Pm // th 2:00 - 3:00 pm"
+    },
+    {
+      "type": "external",
+      "title": "Make an appointment with me",
+      "href": "https://calendly.com/tmasingale/office-hours-advising"
+    },
+    {
+      "type": "external",
+      "title": "Declare/Change Your Major or Minor",
+      "href": "https://inside.ewu.edu/records-and-registration/major-declaration/"
+    },
+    {
+      "type": "subheader",
+      "title": "Last Day to Drop Without Receiving a \"W\" \u2014 FRI, APRIL, 10th 2026"
+    },
+    {
+      "type": "subheader",
+      "title": "Fall 2026 Registration Begins \u2014 Mon, MAY 11th, 2026"
+    },
+    {
+      "type": "page",
+      "title": "How to Contact Your Advisor",
+      "href": "/1/pages/how-to-contact-your-advisor/",
+      "draft": false
+    },
+    {
+      "type": "subheader",
+      "title": "Final \u2014WEDNESDAY June. 10thth 10:30-1pm (updated 03.26.26)"
+    },
+    {
+      "type": "external",
+      "title": "Food, Housing, and Basic Needs Resources",
+      "href": "https://inside.ewu.edu/bewell/basic-needs/"
+    }
+  ],
+  "resources": [
+    {
+      "type": "page",
+      "title": "Final Portfolio Self-Assessment Checklist",
+      "href": "/1/pages/final-portfolio-self-assessment-checklist/"
+    },
+    {
+      "type": "page",
+      "title": "p3 Tribute Page - Design & Build",
+      "href": "/1/pages/p3-tribute-page-design-build/"
+    },
+    {
+      "type": "page",
+      "title": "README Template \u2014 Enhanced Version (With Tables & Process Links)",
+      "href": "/1/pages/readme-template-enhanced-version-with-tables-process-links/"
+    },
+    {
+      "type": "page",
+      "title": "README Template \u2014 Simple Version (No Tables)",
+      "href": "/1/pages/readme-template-simple-version-no-tables/"
+    },
+    {
+      "type": "page",
+      "title": "STYLE GUIDE",
+      "href": "/1/pages/style-guide/"
+    },
+    {
+      "type": "page",
+      "title": "Week 2 & 3 -  Lab - Repo sync, github codespaces, and netlify deployment",
+      "href": "/1/pages/week-2-3-lab-repo-sync-github-codespaces-and-netlify-deployment/"
+    }
+  ],
+  "weeks": [
+    {
+      "key": "week-0",
+      "number": 0,
+      "title": "day 1 // S3tup & 0nb04rd1ng",
+      "items": [
+        {
+          "type": "external",
+          "title": "edit access - spring26 figma team",
+          "href": "https://www.figma.com/team_invite/redeem/x4YhkxdsvcOhUte2KX7Zwm?t=i2xzmN0d6u7bh2K8-21"
+        },
+        {
+          "type": "assignment",
+          "title": "day 1 // Code + Design Workspace Setup",
+          "href": "/1/assignments/day-1-code-design-workspace-setup/",
+          "points": 50.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "day 1 - p&e // about-me.md",
+          "href": "/1/assignments/day-1-p-e-about-me-md/",
+          "points": 5.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 0 // weekly visual notes  // Just read one of these and have some thoughts for a brief discussion on Thursday. ",
+          "href": "/1/assignments/wk-0-weekly-visual-notes-just-read-one-of-these-and-have-some-thoughts/",
+          "points": null,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "day 1 - hw // Designer-Coder Manifesto: Heading Hierarchy Practice",
+          "href": "/1/assignments/day-1-hw-designer-coder-manifesto-heading-hierarchy-practice/",
+          "points": 10.0,
+          "draft": false
+        }
+      ]
+    },
+    {
+      "key": "week-1",
+      "number": 1,
+      "title": "week 1: Wh4t 15 W3b D35ign // Th3 F1r5t T4g",
+      "items": [
+        {
+          "type": "assignment",
+          "title": "wk 1 - p&e // Explore: Find 3 Sites That Catch Your Eye",
+          "href": "/1/assignments/wk-1-p-e-explore-find-3-sites-that-catch-your-eye/",
+          "points": 5.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 1 - p&e //  IP addresses and domain names",
+          "href": "/1/assignments/wk-1-p-e-ip-addresses-and-domain-names/",
+          "points": 5.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 1 - pr // figma 101 // moodz-vibe",
+          "href": "/1/assignments/wk-1-pr-figma-101-moodz-vibe/",
+          "points": 5.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 1 // weekly visual notes ",
+          "href": "/1/assignments/wk-1-weekly-visual-notes/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 1 - pr / Codedex.io - Elements",
+          "href": "/1/assignments/wk-1-pr-codedex-io-elements/",
+          "points": 25.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk1 - fix // Fix Github Repo Sync Issues",
+          "href": "/1/assignments/wk1-fix-fix-github-repo-sync-issues/",
+          "points": 5.0,
+          "draft": true
+        },
+        {
+          "type": "assignment",
+          "title": "wk 1 - Figma 101 part 6 //Create a Tablet or Desktop Version",
+          "href": "/1/assignments/wk-1-figma-101-part-6-create-a-tablet-or-desktop-version/",
+          "points": 5.0,
+          "draft": true
+        }
+      ]
+    },
+    {
+      "key": "week-2",
+      "number": 2,
+      "title": "week 2: D0cum3nt 4rch1t3ctur3",
+      "items": [
+        {
+          "type": "assignment",
+          "title": "p1 - design: Th3 W3b Th3n & N0w // Tim3 Trav3l Thr0ugh D35ign",
+          "href": "/1/assignments/p1-design-th3-w3b-th3n-n0w-tim3-trav3l-thr0ugh-d35ign/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 - p&e // view source",
+          "href": "/1/assignments/wk-2-p-e-view-source/",
+          "points": 5.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 \u2014 Figma 101: Complete Tutorial",
+          "href": "/1/assignments/wk-2-figma-101-complete-tutorial/",
+          "points": 30.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 - pr // recipe ",
+          "href": "/1/assignments/wk-2-pr-recipe/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 - pr / HTML 101 - Structure",
+          "href": "/1/assignments/wk-2-pr-html-101-structure/",
+          "points": 45.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 // weekly visual notes ",
+          "href": "/1/assignments/wk-2-weekly-visual-notes/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 - p&e // Migrating HTML from CodePen to local directy via VSCode",
+          "href": "/1/assignments/wk-2-p-e-migrating-html-from-codepen-to-local-directy-via-vscode/",
+          "points": 10.0,
+          "draft": true
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 - pr // Figma 101 part 2 - design an app screen",
+          "href": "/1/assignments/wk-2-pr-figma-101-part-2-design-an-app-screen/",
+          "points": 5.0,
+          "draft": true
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 - pr // Figma 101 part 3 - Logo and Icon Set & Design",
+          "href": "/1/assignments/wk-2-pr-figma-101-part-3-logo-and-icon-set-design/",
+          "points": 5.0,
+          "draft": true
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 - pr // Figma 101 part 4 -  Design the Next Two App Screens",
+          "href": "/1/assignments/wk-2-pr-figma-101-part-4-design-the-next-two-app-screens/",
+          "points": 5.0,
+          "draft": true
+        },
+        {
+          "type": "assignment",
+          "title": "wk 2 - pr // Figma 101 part 5 - Create and Test a Prototype",
+          "href": "/1/assignments/wk-2-pr-figma-101-part-5-create-and-test-a-prototype/",
+          "points": 5.0,
+          "draft": true
+        }
+      ]
+    },
+    {
+      "key": "week-3",
+      "number": 3,
+      "title": "week 3: Th3 C4sc4d3 B3g1n5",
+      "items": [
+        {
+          "type": "subheader",
+          "title": "Tuesday"
+        },
+        {
+          "type": "assignment",
+          "title": "wk2 - p&e // web 1.0 / 2.0 debrief  [make this a discussion? figma comments?)",
+          "href": "/1/assignments/wk2-p-e-web-1-0-2-0-debrief-make-this-a-discussion-figma-comments/",
+          "points": 5.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 3 - In Class // Semantics Challenge",
+          "href": "/1/assignments/wk-3-in-class-semantics-challenge/",
+          "points": 5.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 3 - lrn // codecademy learn CSS Introduction",
+          "href": "/1/assignments/wk-3-lrn-codecademy-learn-css-introduction/",
+          "points": 20.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 3 - r&d // weekly visual notes ",
+          "href": "/1/assignments/wk-3-r-d-weekly-visual-notes/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "subheader",
+          "title": "Thursday"
+        },
+        {
+          "type": "assignment",
+          "title": "wk 3 - lab // GitHub Codespace and CoPilot setup Lab",
+          "href": "/1/assignments/wk-3-lab-github-codespace-and-copilot-setup-lab/",
+          "points": 30.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 3 - lab // Make Your README Your Own",
+          "href": "/1/assignments/wk-3-lab-make-your-readme-your-own/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 3 - lab // GitHub Pages \u2014 Your Learning Log",
+          "href": "/1/assignments/wk-3-lab-github-pages-your-learning-log/",
+          "points": 30.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "p 2.1 Design a tibute site in figma",
+          "href": "/1/assignments/p-2-1-design-a-tibute-site-in-figma/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "subheader",
+          "title": "Decks week 3"
+        },
+        {
+          "type": "file",
+          "title": "wk3-day1-web-evolution-semantics.pptx",
+          "href": "/1/assets/files/wk3-day1-web-evolution-semantics.pptx"
+        },
+        {
+          "type": "file",
+          "title": "wk3-day2-github-css-basics-v2.pptx",
+          "href": "/1/assets/files/wk3-day2-github-css-basics-v2.pptx"
+        }
+      ]
+    },
+    {
+      "key": "week-4",
+      "number": 4,
+      "title": "week 4: <UL>TR4 L1STS, 4NCH0R P0W3R, & B0X M4G1C",
+      "items": [
+        {
+          "type": "external",
+          "title": "week 4 walk throughs",
+          "href": "/1/weeks/week-4/"
+        },
+        {
+          "type": "external",
+          "title": "week 4 / day 1 slide deck",
+          "href": "https://www.figma.com/deck/BR7tW9BEfeYNidugfINA2L"
+        },
+        {
+          "type": "external",
+          "title": "week 4 milanote",
+          "href": "https://app.milanote.com/1Wfc8c1MBQNCaG?p=1kaC1j7112i"
+        },
+        {
+          "type": "external",
+          "title": "Named Color Values",
+          "href": "https://htmlcolorcodes.com/color-names/"
+        },
+        {
+          "type": "subheader",
+          "title": "Day 1"
+        },
+        {
+          "type": "assignment",
+          "title": "wk4 - css // recipe in style ",
+          "href": "/1/assignments/wk4-css-recipe-in-style/",
+          "points": 30.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 4 - p&e // css foundations from TOP",
+          "href": "/1/assignments/wk-4-p-e-css-foundations-from-top/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 4 - r&d // weekly visual notes",
+          "href": "/1/assignments/wk-4-r-d-weekly-visual-notes/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "subheader",
+          "title": "Day 2"
+        },
+        {
+          "type": "assignment",
+          "title": "p 2.15 - tribute site peer review",
+          "href": "/1/assignments/p-2-15-tribute-site-peer-review/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 4 - Engagement: CSS Diner",
+          "href": "/1/assignments/wk-4-engagement-css-diner/",
+          "points": 5.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 4 - In Class: Mozilla DevTools Tutorial",
+          "href": "/1/assignments/wk-4-in-class-mozilla-devtools-tutorial/",
+          "points": 15.0,
+          "draft": false
+        }
+      ]
+    },
+    {
+      "key": "week-5",
+      "number": 5,
+      "title": "week 5: ",
+      "items": [
+        {
+          "type": "subheader",
+          "title": "Day 1"
+        },
+        {
+          "type": "assignment",
+          "title": "2.2 Certification Project // Tribute Page",
+          "href": "/1/assignments/2-2-certification-project-tribute-page/",
+          "points": 55.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 5 - CSS Selectors Quest - Tribute Page Prep",
+          "href": "/1/assignments/wk-5-css-selectors-quest-tribute-page-prep/",
+          "points": 24.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk-5 in-class // typography - your favorite book",
+          "href": "/1/assignments/wk-5-in-class-typography-your-favorite-book/",
+          "points": 15.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 5 - r&d // weekly visual notes : floats & flexbox",
+          "href": "/1/assignments/wk-5-r-d-weekly-visual-notes-floats-flexbox/",
+          "points": 10.0,
+          "draft": true
+        },
+        {
+          "type": "subheader",
+          "title": "Day 2"
+        },
+        {
+          "type": "assignment",
+          "title": "wk 5 - Important Change: Switching from Netlify to GitHub Pages",
+          "href": "/1/assignments/wk-5-important-change-switching-from-netlify-to-github-pages/",
+          "points": 24.0,
+          "draft": true
+        }
+      ]
+    },
+    {
+      "key": "week-6",
+      "number": 6,
+      "title": "week 6: PhL3Xb0x a tR1but3",
+      "items": [
+        {
+          "type": "assignment",
+          "title": "project 3.1 - Design Brief \u2013 Interactive Field Guide",
+          "href": "/1/assignments/project-3-1-design-brief-interactive-field-guide/",
+          "points": 50.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 6 - R&D // Responsive Design Research + Tutorial",
+          "href": "/1/assignments/wk-6-r-d-responsive-design-research-tutorial/",
+          "points": 20.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 6 - hw // Layout Challenge",
+          "href": "/1/assignments/wk-6-hw-layout-challenge/",
+          "points": 25.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 6 - p&e #3 // the Good and the Bad",
+          "href": "/1/assignments/wk-6-p-e-3-the-good-and-the-bad/",
+          "points": 5.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 6 // Flexbox Adventure // Lvl 1 - 24",
+          "href": "/1/assignments/wk-6-flexbox-adventure-lvl-1-24/",
+          "points": 15.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 6 - r&d // weekly visual notes - Responsive Design",
+          "href": "/1/assignments/wk-6-r-d-weekly-visual-notes-responsive-design/",
+          "points": 10.0,
+          "draft": true
+        }
+      ]
+    },
+    {
+      "key": "week-7",
+      "number": 7,
+      "title": "week 7: reset, favicons and responsive design. OH MY. ",
+      "items": [
+        {
+          "type": "assignment",
+          "title": "wk 7 -mobile nav tutorial",
+          "href": "/1/assignments/wk-7-mobile-nav-tutorial/",
+          "points": 25.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 7 - tutorial // flexbox tutorial",
+          "href": "/1/assignments/wk-7-tutorial-flexbox-tutorial/",
+          "points": 25.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 7 -Research & Make CSS Normlize and CSS reset ",
+          "href": "/1/assignments/wk-7-research-make-css-normlize-and-css-reset/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk7: Creating and Implementing Favicons",
+          "href": "/1/assignments/wk7-creating-and-implementing-favicons/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "p3.1 - Interactive Field Guide Critique",
+          "href": "/1/assignments/p3-1-interactive-field-guide-critique/",
+          "points": 10.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "p3.2 Certification Project // Field Guide Page",
+          "href": "/1/assignments/p3-2-certification-project-field-guide-page/",
+          "points": 100.0,
+          "draft": false
+        }
+      ]
+    },
+    {
+      "key": "week-8",
+      "number": 8,
+      "title": "week 8: Pr0duct L4nd1ng",
+      "items": [
+        {
+          "type": "page",
+          "title": "P4 Design Brief // Product Landing Page",
+          "href": "/1/pages/p4-design-brief-product-landing-page/",
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "P4.1 - Pre-Design // Product Landing Page",
+          "href": "/1/assignments/p4-1-pre-design-product-landing-page/",
+          "points": 20.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "P4.2 - Figma Design // Product Landing Page",
+          "href": "/1/assignments/p4-2-figma-design-product-landing-page/",
+          "points": 25.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "P4.3 - Critique // Product Landing Page via Figma Comments",
+          "href": "/1/assignments/p4-3-critique-product-landing-page-via-figma-comments/",
+          "points": 25.0,
+          "draft": true
+        },
+        {
+          "type": "assignment",
+          "title": "P4.4 - Code // Product Landing Page",
+          "href": "/1/assignments/p4-4-code-product-landing-page/",
+          "points": 100.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 8 - grid attack ",
+          "href": "/1/assignments/wk-8-grid-attack/",
+          "points": 15.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 8 - r&d // weekly visual notes - tables and forms OH MY!!!",
+          "href": "/1/assignments/wk-8-r-d-weekly-visual-notes-tables-and-forms-oh-my/",
+          "points": 40.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 8 -pr // css mini-challenges",
+          "href": "/1/assignments/wk-8-pr-css-mini-challenges/",
+          "points": 10.0,
+          "draft": false
+        }
+      ]
+    },
+    {
+      "key": "week-9",
+      "number": 9,
+      "title": "week 9: Pr0duct L4nd1ng - C0d3d",
+      "items": [
+        {
+          "type": "assignment",
+          "title": "P4.3 - Critique // Product Landing Page via Figma Comments",
+          "href": "/1/assignments/p4-3-critique-product-landing-page-via-figma-comments/",
+          "points": 25.0,
+          "draft": true
+        },
+        {
+          "type": "assignment",
+          "title": "wk 9 - EXTRA CREDIT == > r&d // weekly visual notes - variables, animations, and transforms",
+          "href": "/1/assignments/wk-9-extra-credit-r-d-weekly-visual-notes-variables-animations-and-tra/",
+          "points": null,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "P4.4 - Code // Product Landing Page",
+          "href": "/1/assignments/p4-4-code-product-landing-page/",
+          "points": 100.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "wk 9 - EXTRA CREDIT ==> tutorial // grid, transforms, and animations tutorial",
+          "href": "/1/assignments/wk-9-extra-credit-tutorial-grid-transforms-and-animations-tutorial/",
+          "points": 0.0,
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "P4 Cut-Up Checkpoint - agentic web design",
+          "href": "/1/assignments/p4-cut-up-checkpoint-agentic-web-design/",
+          "points": 30.0,
+          "draft": false
+        }
+      ]
+    },
+    {
+      "key": "week-10",
+      "number": 10,
+      "title": "week 10: P0rtf0l10 Sy5t3m // Personal Brand Development",
+      "items": [
+        {
+          "type": "assignment",
+          "title": "p5 - P0rtf0l10 Sy5t3m",
+          "href": "/1/assignments/p5-p0rtf0l10-sy5t3m/",
+          "points": 100.0,
+          "draft": false
+        },
+        {
+          "type": "page",
+          "title": "Wiring Up Your Contact Form",
+          "href": "/1/pages/wiring-up-your-contact-form/",
+          "draft": false
+        },
+        {
+          "type": "assignment",
+          "title": "Attend ONE Class session during week 10",
+          "href": "/1/assignments/attend-one-class-session-during-week-10/",
+          "points": 50.0,
+          "draft": false
+        }
+      ]
+    }
+  ]
+}

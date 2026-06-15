@@ -71,11 +71,11 @@ const courseLinks = COURSE_REGISTRY['1'];
                     </span>
                     Course Platforms
                 </h2>
-                <p>These are the primary course spaces for Spring 2026. Canvas handles submissions and grades, Milanote holds the quarter board, and GitHub is where we build in public.</p>
+                <p>These are the primary course spaces for Spring 2026. Everything you need — every week, assignment, and tutorial — lives on this site. Milanote holds the quarter board, and GitHub is where we build in public.</p>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 16px;">
-                    <a href={courseLinks.canvasUrl} target="_blank" class="card" style="text-decoration: none;">
-                        <strong>Canvas</strong>
-                        <p style="margin: 8px 0 0; color: var(--color-fg-muted);">Assignments, announcements, grades, and official submissions.</p>
+                    <a href="/1" class="card" style="text-decoration: none;">
+                        <strong>Course Site</strong>
+                        <p style="margin: 8px 0 0; color: var(--color-fg-muted);">Every week, assignment, and tutorial — all hosted here.</p>
                     </a>
                     <a href={courseLinks.milanoteUrl} target="_blank" class="card" style="text-decoration: none;">
                         <strong>Milanote</strong>
@@ -385,8 +385,6 @@ const courseLinks = COURSE_REGISTRY['1'];
                 </h3>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
                     <a href="/1" class="btn btn-primary">← Back to Hub</a>
-
-                    <a href={courseLinks.canvasUrl} class="btn btn-primary" target="_blank">Open Canvas</a>
 
                     <a href={courseLinks.milanoteUrl} class="btn btn-secondary" target="_blank">Open Milanote</a>
 

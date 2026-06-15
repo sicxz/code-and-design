@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiring Up Your Contact Form -- DESN 368</title>
+<style>
+  html,body{margin:0;padding:0;background:#FDFFFC;}
+  body{color:#393E41;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.6;}
+  .cd-embed-back{position:sticky;top:0;z-index:50;background:#FDFFFC;border-bottom:1px solid rgba(57,62,65,0.15);padding:10px 20px;font-family:'SFMono-Regular','SF Mono',Consolas,Menlo,monospace;font-size:13px;}
+  .cd-embed-back a{color:#9A1125;text-decoration:none;font-weight:600;}
+  .cd-embed-back a:hover{text-decoration:underline;}
+  .cd-embed-wrap{max-width:1040px;margin:0 auto;padding:28px 20px 72px;}
+  .cd-embed-wrap img{max-width:100%;height:auto;}
+</style></head>
+<body><div class="cd-embed-back"><a href="/1/weeks/week-10/">&larr; Week 10</a></div>
+<div class="cd-embed-wrap">
+<div style="width: 100%; font-family: -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color: #1a1a1a; line-height: 1.6;">
+<h2 style="font-size: 1.6em; margin: 0 0 0.2em 0; color: #1a1a1a;">Wiring Up Your Contact Form</h2>
+<p style="margin: 0 0 1.4em 0; color: #52525b; font-size: 1.05em;">Make the form on your portfolio actually send you email, with spam protection, no account, and no JavaScript.</p>
+<div style="width: 100%; background: #eff6ff; border-left: 4px solid #2563eb; padding: 0.9em 1.1em; margin: 0 0 1.6em 0; "><strong style="color: #1e40af;">Before you start:</strong> your site needs to be live (published) first. The activation step requires a real submission from your hosted page.</div>
+<h3 style="font-size: 1.2em; margin: 1.8em 0 0.6em 0; color: #1a1a1a;">The form code</h3>
+<p style="margin: 0 0 0.8em 0;">Paste this into your HTML file, then style it however you want. Do not delete the honeypot field or the <code style="background: #f4f4f5; padding: 0.1em 0.3em; border-radius: 3px;">name</code> attributes.</p>
+<pre style="width: 100%; background: #1e1e2e; color: #e4e4e7; padding: 1.1em; border-radius: 6px; overflow-x: auto; font-family: ui-monospace,Menlo,Consolas,monospace; font-size: 0.85em; line-height: 1.5; ">&lt;form class="contact-form"
+      action="https://formsubmit.co/YOUR_EMAIL_OR_ALIAS"
+      method="POST"&gt;
+
+  &lt;!-- Honeypot: keep hidden in CSS. Bots fill it, humans don't. --&gt;
+  &lt;div class="hp" aria-hidden="true"&gt;
+    &lt;label for="company"&gt;Company&lt;/label&gt;
+    &lt;input type="text" id="company" name="_honey" tabindex="-1" autocomplete="off"&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;label for="name"&gt;Name&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" autocomplete="name" required&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" autocomplete="email" required&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;label for="subject"&gt;Subject&lt;/label&gt;
+    &lt;input type="text" id="subject" name="subject"&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;label for="message"&gt;Message&lt;/label&gt;
+    &lt;textarea id="message" name="message" rows="6" required&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;input type="hidden" name="_subject" value="New portfolio message"&gt;
+  &lt;input type="hidden" name="_next" value="https://YOUR_SITE/thank-you.html"&gt;
+  &lt;input type="hidden" name="_template" value="table"&gt;
+
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Minimum CSS to hide the honeypot. Move this into your stylesheet. --&gt;
+&lt;style&gt;
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+&lt;/style&gt;</pre>
+<h3 style="font-size: 1.2em; margin: 2em 0 0.6em 0; color: #1a1a1a;">Setup steps</h3>
+<ol style="margin: 0 0 1.6em 0; padding-left: 1.4em;">
+<li style="margin-bottom: 0.9em;"><strong>Add your email to the form.</strong> Find the <code style="background: #f4f4f5; padding: 0.1em 0.3em; border-radius: 3px;">action</code> line and replace <code style="background: #f4f4f5; padding: 0.1em 0.3em; border-radius: 3px;">YOUR_EMAIL_OR_ALIAS</code> with your address, like <code style="background: #f4f4f5; padding: 0.1em 0.3em; border-radius: 3px;">https://formsubmit.co/you@example.com</code>. No signup, no password.</li>
+<li style="margin-bottom: 0.9em;"><strong>Publish your site, then submit the form once yourself.</strong> This first submission is what tells FormSubmit your address is real.</li>
+<li style="margin-bottom: 0.9em;"><strong>Check your inbox and click the confirmation link.</strong> Your form sends nothing until you do this. It happens once per address.</li>
+<li style="margin-bottom: 0.9em;"><strong>Switch to your private alias.</strong> After you confirm, FormSubmit gives you a random endpoint like <code style="background: #f4f4f5; padding: 0.1em 0.3em; border-radius: 3px;">https://formsubmit.co/el/randomstring</code>. Put that in the <code style="background: #f4f4f5; padding: 0.1em 0.3em; border-radius: 3px;">action</code> instead of your email, then republish. Your address never appears in the page source, so scrapers cannot harvest it. This is the step that protects you from spam at the source.</li>
+<li style="margin-bottom: 0.9em;"><strong>Set the redirect.</strong> Change the <code style="background: #f4f4f5; padding: 0.1em 0.3em; border-radius: 3px;">_next</code> value to a real page on your live site. Pointing it at a live URL prevents a submit error.</li>
+<li style="margin-bottom: 0.2em;"><strong>Test as a visitor.</strong> Submit again. You should get the email, and the visitor should land on your thank-you page.</li>
+</ol>
+<h3 style="font-size: 1.2em; margin: 2em 0 0.6em 0; color: #1a1a1a;">Good to know</h3>
+<ul style="margin: 0 0 1.6em 0; padding-left: 1.4em;">
+<li style="margin-bottom: 0.7em;">The honeypot is already wired in. You do not touch it. Spam filtering and a captcha run on FormSubmit's side automatically.</li>
+<li style="margin-bottom: 0.7em;">The free tier has a monthly submission cap. Plenty for a portfolio, which is why this is not a production e-commerce solution.</li>
+<li style="margin-bottom: 0.2em;">Never put a raw email address in a <code style="background: #f4f4f5; padding: 0.1em 0.3em; border-radius: 3px;">mailto:</code> link or visible text on a live page. Scrapers harvest it within hours. The alias step exists to avoid exactly this.</li>
+</ul>
+<div style="width: 100%; background: #f4f4f5; border-radius: 6px; padding: 0.9em 1.1em; margin: 0 0 0.5em 0; "><strong>Hosting on Netlify instead?</strong> You can skip FormSubmit. Add <code style="background: #e4e4e7; padding: 0.1em 0.3em; border-radius: 3px;">data-netlify="true"</code> to the <code style="background: #e4e4e7; padding: 0.1em 0.3em; border-radius: 3px;">&lt;form&gt;</code> tag, remove the <code style="background: #e4e4e7; padding: 0.1em 0.3em; border-radius: 3px;">action</code>, and Netlify catches submissions with no account and no email in your markup at all.</div>
+</div>
+</div></body></html>

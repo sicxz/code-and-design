@@ -184,10 +184,24 @@ body {
 
 .main {
   flex: 1;
+  /* min-width:0 lets this flex item shrink below the intrinsic width of wide
+     children (code blocks, tables) instead of forcing horizontal page overflow.
+     Width comes from flex:1 + the side margins, so it stays fluid at every
+     viewport -- no fixed max-width that overflowed between 900-1100px. */
+  min-width: 0;
   margin-left: var(--sidebar-width);
   margin-right: var(--toc-width);
   padding: 40px 60px;
-  max-width: calc(var(--layout-max) - var(--sidebar-width) - var(--toc-width));
+}
+
+/* Wide content scrolls inside the column instead of blowing out the layout. */
+.main pre,
+.main table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.main table {
+  display: block;
 }
 
 /* ========== Breadcrumb ========== */
@@ -798,6 +812,39 @@ th {
   .concept-grid,
   .feature-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* The fixed header wraps to two rows on small screens (logo row + a
+   horizontally scrollable nav row) instead of overflowing the viewport. */
+@media (max-width: 760px) {
+  .layout {
+    padding-top: 104px;
+  }
+  .header {
+    height: auto;
+    min-height: var(--header-height);
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+    row-gap: 6px;
+  }
+  .header-logo {
+    white-space: nowrap;
+  }
+  .header-nav {
+    margin-left: 0;
+    width: 100%;
+    gap: 4px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+  .header-nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 6px 10px;
   }
 }
 

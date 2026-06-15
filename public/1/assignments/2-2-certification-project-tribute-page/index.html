@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2.2 Certification Project // Tribute Page -- DESN 368</title>
+<style>
+  html,body{margin:0;padding:0;background:#FDFFFC;}
+  body{color:#393E41;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.6;}
+  .cd-embed-back{position:sticky;top:0;z-index:50;background:#FDFFFC;border-bottom:1px solid rgba(57,62,65,0.15);padding:10px 20px;font-family:'SFMono-Regular','SF Mono',Consolas,Menlo,monospace;font-size:13px;}
+  .cd-embed-back a{color:#9A1125;text-decoration:none;font-weight:600;}
+  .cd-embed-back a:hover{text-decoration:underline;}
+  .cd-embed-wrap{max-width:1040px;margin:0 auto;padding:28px 20px 72px;}
+  .cd-embed-wrap img{max-width:100%;height:auto;}
+</style></head>
+<body><div class="cd-embed-back"><a href="/1/weeks/week-5/">&larr; Week 5</a></div>
+<div class="cd-embed-wrap">
+<p>2.2 Certification Project // Tribute Page</p>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.2); border-top: 4px solid #B7142E; border-radius: 6px; padding: 32px; margin-bottom: 32px;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+<div><span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; padding: 4px 12px; background: #B7142E; color: #ffffff; border-radius: 20px; margin-bottom: 12px;">DESN 368</span>
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 32px; line-height: 1.2; color: #393e41; margin: 0;">Tribute Page - Part 2: HTML/CSS Build</h2>
+<p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; margin-top: 8px;">Web Design 1 · Certification Project</p>
+</div>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Project Overview</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;">Build your tribute page design using semantic HTML and CSS. Last week, you designed your page in Figma. This week, you'll transform that design into a live, functioning website.</p>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;"><strong>Your goal:</strong> Match your Figma design as closely as possible while writing clean, semantic code.</p>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;"><strong>This is Part 2 of a 2-week project:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">✅ <strong>Part 1 (Last Week):</strong> Figma design with typography, colors, and layout - COMPLETED</li>
+<li style="margin-bottom: 0;">📍 <strong>Part 2 (This Week):</strong> HTML/CSS build - THIS ASSIGNMENT</li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Learning Objectives</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;">By completing this project, you will:</p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Match design specifications with code</li>
+<li style="margin-bottom: 8px;">Write semantic HTML using appropriate HTML5 elements</li>
+<li style="margin-bottom: 8px;">Implement your custom typography system from Figma</li>
+<li style="margin-bottom: 8px;">Apply your color palette exactly (using color spec of choice, hex, rgb, or hsl)</li>
+<li style="margin-bottom: 0;">Style lists as designed in Figma</li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Design-to-Code Workflow</h2>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Before You Start Coding</h3>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 12px;"><strong>Open your Figma file</strong> in a separate window/tab</li>
+<li style="margin-bottom: 12px;"><strong>Review your design specifications:</strong>
+<ul style="margin-top: 8px; padding-left: 20px;">
+<li style="margin-bottom: 4px;">Typography system (fonts, sizes, weights)</li>
+<li style="margin-bottom: 4px;">Color palette (hex codes)</li>
+<li style="margin-bottom: 4px;">Spacing between elements</li>
+<li style="margin-bottom: 4px;">List styling</li>
+<li style="margin-bottom: 0;">Layout structure</li>
+</ul>
+</li>
+<li style="margin-bottom: 0;"><strong>Gather your assets:</strong>
+<ul style="margin-top: 8px; padding-left: 20px;">
+<li style="margin-bottom: 4px;">Export your image(s) from Figma</li>
+<li style="margin-bottom: 4px;">Create a file naming guide for your images</li>
+<li style="margin-bottom: 4px;">Note all color codes</li>
+<li style="margin-bottom: 0;">Note exact font names and sizes</li>
+</ul>
+</li>
+</ol>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">What Must Match Your Figma Design:</h3>
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid rgba(57,62,65,0.2); border-radius: 6px; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; margin-bottom: 16px;" role="table">
+<thead>
+<tr style="background: #F5F8F5;">
+<th style="text-align: left; padding: 12px 16px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; border-bottom: 1px solid rgba(57,62,65,0.2);" scope="col">Design Element</th>
+<th style="text-align: left; padding: 12px 16px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #656d76; border-bottom: 1px solid rgba(57,62,65,0.2);" scope="col">What to Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);"><strong>Typography</strong></td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Font families, sizes, weights, line-heights</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);"><strong>Colors</strong></td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Background colors, text colors, accent colors (use exact hex codes)</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);"><strong>Spacing</strong></td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Margins and padding between sections</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);"><strong>List Styling</strong></td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Custom bullets, numbers, or styling you designed</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);"><strong>Layout</strong></td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 1px solid rgba(57,62,65,0.1);">Overall structure and element positioning</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 0;"><strong>Images</strong></td>
+<td style="padding: 12px 16px; color: #393e41; border-bottom: 0;">Size, positioning, borders/shadows if designed</td>
+</tr>
+</tbody>
+</table>
+<div style="background: #F2FCFE; border: 1px solid #B3EAFA; border-left: 6px solid #006BA6; border-radius: 0; padding: 16px 20px; margin-bottom: 16px;">
+<div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #006ba6; margin-bottom: 6px;">Pro Tip</div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #393e41; margin: 0;">Keep Figma open while you code! Reference it constantly to check: "What font size is my h2?" "What hex code is my accent color?" "How much space is between these sections?"</p>
+</div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Required HTML Structure</h2>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Semantic Elements (Required)</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;">Your HTML <strong>must</strong> use these semantic elements.</p>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">HTML Requirements:</h3>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Proper DOCTYPE and HTML5 structure</li>
+<li style="margin-bottom: 8px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;header&gt;</code> for page title area</li>
+<li style="margin-bottom: 8px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;main&gt;</code> wraps all primary content</li>
+<li style="margin-bottom: 8px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;figure&gt;</code> and <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;figcaption&gt;</code> for images</li>
+<li style="margin-bottom: 8px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;article&gt;</code> or <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;section&gt;</code> for content blocks</li>
+<li style="margin-bottom: 8px;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;footer&gt;</code> for page footer</li>
+<li style="margin-bottom: 8px;">Proper heading hierarchy (h1, h2, h3)</li>
+<li style="margin-bottom: 8px;">Descriptive alt text on images</li>
+<li style="margin-bottom: 0;">External links have <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">target="_blank"</code> and <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">rel="noopener noreferrer"</code></li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Why Semantic HTML?</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Instead of this:</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">&lt;div class="header"&gt;
+    &lt;div class="title"&gt;Name&lt;/div&gt;
+    &lt;div class="image-box"&gt;
+        &lt;img src="photo.jpg"&gt;
+        &lt;div class="caption"&gt;Caption&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Write this:</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">&lt;header&gt;
+    &lt;h1&gt;Name&lt;/h1&gt;
+    &lt;figure&gt;
+        &lt;img src="photo.jpg" alt="Description"&gt;
+        &lt;figcaption&gt;Caption&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+&lt;/footer&gt;</code></div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Benefits:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">More accessible (screen readers understand structure)</li>
+<li style="margin-bottom: 8px;">Cleaner, more professional code</li>
+<li style="margin-bottom: 8px;">Easier for others to understand</li>
+<li style="margin-bottom: 0;">Better for search engines</li>
+</ul>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">CSS: Implementing Your Design</h2>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">External Stylesheet (Required)</h3>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Create <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">styles.css</code> file</li>
+<li style="margin-bottom: 8px;">Link it in your HTML <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;head&gt;</code></li>
+<li style="margin-bottom: 8px;"><strong>NO inline styles</strong> (<code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">style="..."</code>)</li>
+<li style="margin-bottom: 0;"><strong>NO <code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; background: #F5F8F5; padding: 2px 6px; border-radius: 3px; color: #393e41;">&lt;style&gt;</code> tags</strong> in HTML</li>
+</ul>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Step 1: Import Your Typography</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Go to your Figma file and check:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">What font did you use for headings?</li>
+<li style="margin-bottom: 0;">What font did you use for body text?</li>
+</ul>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Then go to Google Fonts and import them:</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">&lt;!-- In your HTML &lt;head&gt;, after your title --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=[YOUR-FONT-NAME]&amp;display=swap" rel="stylesheet"&gt;</code></div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Example:</strong> If you used "Playfair Display" for headings and "Lato" for body:</p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Lato:wght@400;700&amp;display=swap" rel="stylesheet"&gt;</code></div>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Step 2: Apply Your Typography System</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Open Figma → Select any text → Look at right panel for:</strong></p>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;">Font family name</li>
+<li style="margin-bottom: 8px;">Font size (in px)</li>
+<li style="margin-bottom: 8px;">Font weight (Regular = 400, Bold = 700)</li>
+<li style="margin-bottom: 8px;">Line height</li>
+<li style="margin-bottom: 0;">Color (hex code)</li>
+</ul>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Then write your CSS:</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">/* Base Typography - USE YOUR FONTS FROM FIGMA */
+body {
+    font-family: '[YOUR-BODY-FONT]', Arial, sans-serif;
+    font-size: [YOUR-SIZE]px;      /* Check Figma */
+    line-height: [YOUR-VALUE];     /* Check Figma */
+    color: [YOUR-HEX-CODE];        /* Check Figma */
+}
+
+/* Headings - USE YOUR HEADING FONT FROM FIGMA */
+h1, h2, h3 {
+    font-family: '[YOUR-HEADING-FONT]', Georgia, serif;
+    line-height: [YOUR-VALUE];     /* Check Figma */
+    color: [YOUR-HEX-CODE];        /* Check Figma */
+}
+
+/* Match Your Exact Sizes from Figma */
+h1 {
+    font-size: [YOUR-H1-SIZE]px;   /* Look in Figma */
+    font-weight: [YOUR-WEIGHT];     /* Look in Figma */
+}</code></div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Real example:</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">body {
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333333;  /* From Figma color palette */
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.2;
+    color: #1a1a1a;  /* From Figma color palette */
+}
+
+h1 {
+    font-size: 48px;  /* Measured in Figma */
+    font-weight: 700;
+}</code></div>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">How to Get Values from Figma:</h3>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 12px;"><strong>Click on a text element</strong></li>
+<li style="margin-bottom: 12px;"><strong>Look at the right panel:</strong>
+<ul style="margin-top: 8px; padding-left: 20px;">
+<li style="margin-bottom: 4px;">Font family is at the top</li>
+<li style="margin-bottom: 4px;">Font size is below that</li>
+<li style="margin-bottom: 4px;">Weight is listed (Regular, Bold, etc.)</li>
+<li style="margin-bottom: 0;">Line height is shown</li>
+</ul>
+</li>
+<li style="margin-bottom: 12px;"><strong>Click on the color square</strong> to see the hex code</li>
+<li style="margin-bottom: 0;"><strong>Write those exact values in your CSS</strong></li>
+</ol>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Step 3: Apply Your Color Palette</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>In Figma, you documented your color palette.</strong> Use those exact hex codes!</p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">/* Use YOUR hex codes from your Figma color palette */
+
+body {
+    background-color: [YOUR-BG-COLOR];
+    color: [YOUR-TEXT-COLOR];
+}
+
+main {
+    background-color: [YOUR-CONTENT-BG];
+}
+
+h1, h2, h3 {
+    color: [YOUR-HEADING-COLOR];
+}
+
+a {
+    color: [YOUR-LINK-COLOR];
+}</code></div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Example using Figma palette:</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">body {
+    background-color: #f5f5f5;  /* Background from palette */
+    color: #333333;              /* Text color from palette */
+}
+
+main {
+    background-color: #ffffff;   /* White content area */
+}
+
+h1, h2, h3 {
+    color: #1a1a1a;              /* Heading color */
+}
+
+a {
+    color: #0066cc;              /* Accent color for links */
+}</code></div>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">CSS: The Box Model (Required)</h2>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">What is the Box Model?</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;">Every HTML element is a box with four layers:</p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;">
+<pre style="margin: 0; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; color: #393e41;">┌─────────────────────────────────────┐
+│         MARGIN (outside)            │
+│  ┌───────────────────────────────┐  │
+│  │        BORDER                 │  │
+│  │  ┌─────────────────────────┐  │  │
+│  │  │      PADDING (inside)   │  │  │
+│  │  │  ┌───────────────────┐  │  │  │
+│  │  │  │     CONTENT       │  │  │  │
+│  │  │  └───────────────────┘  │  │  │
+│  │  └─────────────────────────┘  │  │
+│  └───────────────────────────────┘  │
+└─────────────────────────────────────┘</pre>
+</div>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Measuring Spacing in Figma</h3>
+<ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0; padding-left: 20px;">
+<li style="margin-bottom: 8px;"><strong>Select two elements in Figma</strong></li>
+<li style="margin-bottom: 8px;"><strong>Look at the space between them</strong> - Figma shows you the distance in px</li>
+<li style="margin-bottom: 0;"><strong>That's your margin or padding value!</strong></li>
+</ol>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Required: Apply Box Model</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;">You must demonstrate margin, border, and padding on <strong>at least 3 elements</strong>.</p>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Example 1: Main Container</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">main {
+    max-width: 900px;
+    margin: 40px auto;     /* 40px top/bottom, centered horizontally */
+    padding: 60px;         /* Space inside the container */
+    background-color: #ffffff;
+}</code></div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Example 2: Sections</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">.biography {
+    margin: 60px 0;           /* Space above and below section */
+    padding: 40px;            /* Space inside section */
+    border-left: 4px solid #0066cc;  /* Visual accent */
+    background-color: #f8f9fa;
+}</code></div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 12px 0;"><strong>Example 3: Image Figure</strong></p>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">.hero-image {
+    margin: 60px auto;        /* Vertical space, centered */
+    padding: 20px;            /* Space around image */
+    max-width: 800px;
+    border: 1px solid #ddd;   /* Border around figure */
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;      /* Space between image and caption */
+}</code></div>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Box Model Shorthand</h3>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">/* All sides the same */
+margin: 20px;
+
+/* Vertical | Horizontal */
+padding: 40px 20px;
+
+/* Top | Right | Bottom | Left (clockwise) */
+margin: 10px 20px 30px 20px;</code></div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0;">Match your Figma spacing! Measure the space between elements in your design.</p>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">CSS: List Styling (Required)</h2>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Implement Your Figma List Design</h3>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;">You styled a list in your Figma design. Now code it!</p>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">Common Patterns:</h3>
+<h4 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; color: #393e41; margin: 0 0 12px 0;">Pattern 1: Custom Bullets</h4>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">.achievements ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.achievements li {
+    padding-left: 40px;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.achievements li::before {
+    content: "●";              /* Or whatever symbol you used */
+    position: absolute;
+    left: 0;
+    color: [YOUR-ACCENT-COLOR]; /* From Figma */
+    font-size: 1.5rem;
+}</code></div>
+<h4 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; color: #393e41; margin: 0 0 12px 0;">Pattern 2: Timeline with Numbers</h4>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">.timeline {
+    counter-reset: timeline;
+    list-style: none;
+    padding-left: 0;
+}
+
+.timeline li {
+    counter-increment: timeline;
+    padding-left: 60px;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline li::before {
+    content: counter(timeline);
+    position: absolute;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background-color: [YOUR-COLOR]; /* From Figma */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}</code></div>
+<h4 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; color: #393e41; margin: 0 0 12px 0;">Pattern 3: Simple Styled List</h4>
+<div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.1); padding: 12px; border-radius: 4px; margin-bottom: 12px; overflow-x: auto;"><code style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; color: #393e41; white-space: pre-wrap; display: block;">ul {
+    list-style-type: square;     /* Or circle, disc, etc. */
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-left: 3px solid [YOUR-ACCENT-COLOR];
+}</code></div>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0;">Match the list style you designed in Figma!</p>
+</div>
+<div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+<h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1.3; color: #393e41; margin: 0 0 16px 0;">Design-to-Code Checklist</h2>
+<p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0 0 16px 0;">Before you start coding, check off these items:</p>
+<h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.3; color: #393e41; margin: 0 0 12px 0;">From Your Figma File, You Need:</h3>
+<ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393e41; margin: 0; padding-left: 20px;">
+<li style="margin-bottom: 12px;"><strong>Typography:</strong>
+<ul style="margin-top: 8px; padding-left: 20px;">
+<li style="margin-bottom: 4px;">[ ] Heading font name</li>
+<li style="margin-bottom: 4px;">[ ] Body font name</li>
+<li style="margin-bottom: 4px;">[ ] h1 size (px)</li>
+<li style="margin-bottom: 4px;">[ ] h2 size (px)</li>
+<li style="margin-bottom: 4px;">[ ] h3 size (px)</li>
+<li style="margin-bottom: 4px;">[ ] Body text size (px)</li>
+<li style="margin-bottom: 0;">[ ] Line heights</li>
+</ul>
+</li>
+<li style="margin-bottom: 12px;"><strong>Colors (hex codes):</strong>
+<ul style="margin-top: 8px; padding-left: 20px;">
+<li style="margin-bottom: 4px;">[ ] Background color</li>
+<li style="margin-bottom: 4px;">[ ] Main text color</li>
+<li style="margin-bottom: 4px;">[ ] Heading color</li>
+<li style="margin-bottom: 4px;">[ ] Accent color</li>
+<li style="margin-bottom: 0;">[ ] Link color</li>
+</ul>
+</li>
+<li style="margin-bottom: 12px;"><strong>Content:</strong>
+<ul style="margin-top: 8px; padding-left: 20px;">
+<li style="margin-bottom: 4px;">[ ] All text content</li>
+<li style="margin-bottom: 4px;">[ ] Image(s) exported from Figma</li>
+<li style="margin-bottom: 0;">[ ] Image captions</li>
+</ul>
+</li>
+<li style="margin-bottom: 12px;"><strong>Spacing:</strong>
+<ul style="margin-top: 8px; padding-left: 20px;">
+<li style="margin-bottom: 4px;">[ ] Space between sections</li>
+<li style="margin-bottom: 4px;">[ ] Padding inside containers</li>
+<li style="margin-bottom: 0;">[ ] Margins around elements</li>
+</ul>
+</li>
+<li style="margin-bottom: 0;"><strong>List Styling:</strong>
+<ul style="margin-top: 8px; padding-left: 20px;">
+<li style="margin-bottom: 4px;">[ ] What type of list? (bullets, numbers, custom)</li>
+<li style="margin-bottom: 0;">[ ] What colors/styling did you use?</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></body></html>

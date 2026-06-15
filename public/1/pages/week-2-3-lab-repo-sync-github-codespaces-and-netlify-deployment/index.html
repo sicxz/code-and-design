@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 2 & 3 -  Lab - Repo sync, github codespaces, and netlify deployment -- DESN 368</title>
+<style>
+  html,body{margin:0;padding:0;background:#FDFFFC;}
+  body{color:#393E41;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.6;}
+  .cd-embed-back{position:sticky;top:0;z-index:50;background:#FDFFFC;border-bottom:1px solid rgba(57,62,65,0.15);padding:10px 20px;font-family:'SFMono-Regular','SF Mono',Consolas,Menlo,monospace;font-size:13px;}
+  .cd-embed-back a{color:#9A1125;text-decoration:none;font-weight:600;}
+  .cd-embed-back a:hover{text-decoration:underline;}
+  .cd-embed-wrap{max-width:1040px;margin:0 auto;padding:28px 20px 72px;}
+  .cd-embed-wrap img{max-width:100%;height:auto;}
+</style></head>
+<body><div class="cd-embed-back"><a href="/1/">&larr; Resources</a></div>
+<div class="cd-embed-wrap">
+
+
+
+  
+  
+  Week 2 &amp; 3 – Lab
+
+
+
+  
+  <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.2); border-top: 4px solid #B7142E; border-radius: 6px; padding: 32px; margin-bottom: 32px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+      <div>
+        <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 4px 12px; background: #B7142E; color: #FFFFFF; border-radius: 20px; margin-bottom: 12px;">DESN 368</span>
+        <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 32px;  line-height: 1.2;  color: #393E41; margin: 0;">Week 2 &amp; 3 – Lab</h2>
+        <p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;  color: #656D76; margin-top: 8px;">Repo sync, GitHub Codespaces, and Netlify deployment</p>
+      </div>
+    </div>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+      <span style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;  color: #656D76;">In-class lab</span>
+      <span style="display: inline-block; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    padding: 3px 10px; border: 1px solid #B7142E; color: #9A1125; border-radius: 20px;">Required</span>
+    </div>
+  </div>
+
+  
+  <div style="background: #FBF3F5; border: 1px solid #E9B8C0; border-left: 6px solid #B7142E; border-radius: 0; padding: 16px 20px; margin-bottom: 24px;">
+    <div style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #9A1125; margin-bottom: 6px;">Important</div>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #393E41; margin: 0;">WE DID MOST OF THIS IN CLASS TODAY. IF YOU MISSED CLASS AND/OR NEED A REFRESHER, READ THIS. Follow these steps during class as your instructor demonstrates. You'll submit your final Netlify URL in the assignment after completing all steps.</p>
+  </div>
+
+  
+  <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+    <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px;  line-height: 1.3;  color: #393E41; margin: 0 0 16px 0;">Step 1: Organize Files on GitHub</h2>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0;"><strong>Goal:</strong> Add your week 1 and week 2 projects to your existing portfolio repository</p>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">1A. Navigate to Your Repository</h3>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Navigate to your code-design-workspace</li>
+    </ol>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">1B. Open Codespace (2 min)</h3>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Click the green "Code" button</li>
+      <li style="margin-bottom: 8px;">Click the "Codespaces" tab</li>
+      <li style="margin-bottom: 8px;">Click "Create codespace on main" (or "Resume" if you have an existing codespace)</li>
+      <li style="margin-bottom: 8px;">Wait 1-2 minutes for VS Code to load in your browser</li>
+    </ol>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">1C. Create Folder Structure &amp; Upload Files</h3>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;">We are now going to mimic what we just did locally. In the future I will show you how to work locally and just sync to repo. But for now we are doing things the long math way.</p>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;"><strong>Create your folders:</strong></p>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">In the Codespace file explorer (left sidebar) – this should be familiar, Codespaces uses VSCode (Microsoft owns GitHub btw):
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Right-click in the empty space → "New Folder" → name it <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">week-1</code></li>
+          <li style="margin-bottom: 8px;">Right-click again → "New Folder" → name it <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">week-2</code></li>
+        </ul>
+      </li>
+    </ol>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;"><strong>Upload your files:</strong></p>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Open your local file explorer (on your computer) to find the HTML files you created earlier</li>
+      <li style="margin-bottom: 8px;">Drag and drop into Codespace:
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Drag <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">newspaper.html</code>, <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">lost-pet.html</code>, <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">favorite-band.html</code> into the <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">week-1</code> folder</li>
+          <li style="margin-bottom: 8px;">Drag <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">recipe.html</code> and your recipe image into the <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">week-2</code> folder</li>
+        </ul>
+      </li>
+    </ol>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;"><strong>Commit your changes:</strong></p>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Click the Source Control icon in the left sidebar (looks like a branch/fork symbol)</li>
+      <li style="margin-bottom: 8px;">You'll see all your new files listed as changes</li>
+      <li style="margin-bottom: 8px;"><strong style="color: #B7142E;">!!! This is VERY IMPORTANT !!! If you don't add a commit message it messes things up!!!</strong><br>In the message box at the top, type: <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">Add week 1 and 2 projects</code></li>
+      <li style="margin-bottom: 8px;">Click the blue "Commit" button</li>
+      <li style="margin-bottom: 8px;">Click "Sync Changes" to push your files to GitHub</li>
+    </ol>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">1D. Verify on GitHub</h3>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Go back to your GitHub repository page in another browser tab</li>
+      <li style="margin-bottom: 8px;">Refresh the page</li>
+      <li style="margin-bottom: 8px;">You should now see your <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">week-1/</code> and <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">week-2/</code> folders with all your files inside!</li>
+    </ol>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 16px 0 12px 0;"><strong>Your repository structure should look like this:</strong></p>
+    <div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); border-radius: 4px; padding: 16px; overflow-x: auto; margin-bottom: 16px;">
+      <pre style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393E41; margin: 0; white-space: pre-wrap;">code-design-workspace/
+├── projects/
+├── setup/
+├── week-0/
+│   ├── about-me.md
+├── week-1/
+│   ├── newspaper.html
+│   ├── lost-pet.html
+│   ├── favorite-band.html
+│   └── img
+│       ├── band-photo.jpg
+│       └── pet-photo.jpg
+│
+└── week-2/
+    ├── recipe/
+        ├── recipe.html
+        └── img
+            └── recipe-photo.jpg</pre>
+    </div>
+
+    <div style="background: #FBF3F5; border: 1px solid #E9B8C0; border-left: 6px solid #B7142E; border-radius: 0; padding: 16px 20px; margin: 24px 0;">
+      <p style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px;    color: #9A1125; margin: 0 0 8px 0;">Stop Here</p>
+      <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #393E41; margin: 0;"><strong>WE WILL COMPLETE THIS LAB ON MONDAY OCT 13TH.</strong></p>
+    </div>
+  </div>
+
+  
+  <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #006BA6; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+    <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px;  line-height: 1.3;  color: #393E41; margin: 0 0 16px 0;">Step 2: Create Your Site Index with GitHub Copilot</h2>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0;"><strong>Goal:</strong> Use AI to help create a navigation page for your site</p>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">2A. Introduction to GitHub Copilot</h3>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;"><strong>What is GitHub Copilot?</strong></p>
+    <ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">AI pair programmer that helps you write code</li>
+      <li style="margin-bottom: 8px;">Suggests code as you type</li>
+      <li style="margin-bottom: 8px;">Answers questions in chat</li>
+      <li style="margin-bottom: 8px;">Free for students!</li>
+    </ul>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;"><strong>Week 2 AI Level: Reference and Validator</strong></p>
+    <ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Ask definitional questions</li>
+      <li style="margin-bottom: 8px;">Request explanations</li>
+      <li style="margin-bottom: 8px;">Validate code syntax</li>
+      <li style="margin-bottom: 8px;">Get help with errors</li>
+    </ul>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;"><strong>Copilot Chat Interface:</strong></p>
+    <ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Find it in the left sidebar (chat bubble icon)</li>
+      <li style="margin-bottom: 8px;">Type questions in natural language</li>
+      <li style="margin-bottom: 8px;">Review and customize suggestions</li>
+      <li style="margin-bottom: 8px;">Accept or reject code</li>
+    </ul>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">2B. Create index.html with Copilot Help</h3>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 12px 0;"><strong>Follow along with your instructor:</strong></p>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;"><strong>Open Copilot Chat</strong> (click the chat icon in the left sidebar)</li>
+      <li style="margin-bottom: 8px;"><strong>Copy and paste this prompt into Copilot Chat:</strong></li>
+    </ol>
+
+    <div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); border-radius: 4px; padding: 16px; overflow-x: auto; margin-bottom: 16px;">
+      <pre style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393E41; margin: 0; white-space: pre-wrap;">Create an index.html file with:
+- A heading that says "DESN368 - Code and Design Workspace"
+- A paragraph that says "This is the index page for mini-sites developed so far. Eventually this page will transform into my portfolio for the course. Please check back often."
+- Navigation links to:
+  - week-1/newspaper.html
+  - week-1/lost-pet.html
+  - week-1/favorite-band.html
+  - week-2/recipe.html</pre>
+    </div>
+
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;" start="3">
+      <li style="margin-bottom: 8px;"><strong>Review Copilot's suggestion</strong> – it should generate HTML code for you</li>
+      <li style="margin-bottom: 8px;"><strong>Create the file:</strong>
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Right-click in your file explorer → "New File"</li>
+          <li style="margin-bottom: 8px;">Name it <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">index.html</code> (at the root of your repository, not inside a folder)</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 8px;"><strong>Copy Copilot's code</strong> into your new <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">index.html</code> file</li>
+      <li style="margin-bottom: 8px;"><strong>Save the file</strong> (Ctrl+S or Cmd+S)</li>
+    </ol>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 16px 0 12px 0;"><strong>Your index.html should look something like this:</strong></p>
+    <div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); border-radius: 4px; padding: 16px; overflow-x: auto; margin-bottom: 16px;">
+      <pre style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393E41; margin: 0; white-space: pre-wrap;">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;DESN368 - Code and Design Workspace&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;DESN368 - Code and Design Workspace&lt;/h1&gt;
+    &lt;p&gt;This is the index page for mini-sites developed so far. Eventually this page will transform into my portfolio for the course. Please check back often.&lt;/p&gt;
+
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="week-1/newspaper.html"&gt;Newspaper Article&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="week-1/lost-pet.html"&gt;Lost Pet Poster&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="week-1/favorite-band.html"&gt;Favorite Band Page&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="week-2/recipe.html"&gt;My Favorite Recipe&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </div>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 16px 0 12px 0;"><strong>Preview your page:</strong></p>
+    <ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Right-click on <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">index.html</code> → "Open with Live Server" (or use the Simple Browser extension)</li>
+      <li style="margin-bottom: 8px;">Test all your links to ensure they work.</li>
+    </ul>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 16px 0 12px 0;"><strong>Commit your changes:</strong></p>
+    <ul style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Go to the Source Control panel</li>
+      <li style="margin-bottom: 8px;">Add commit message: <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">Add index.html with navigation to all projects</code></li>
+      <li style="margin-bottom: 8px;">Click "Commit" → "Sync Changes"</li>
+    </ul>
+  </div>
+
+  
+  <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #2B7015; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+    <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px;  line-height: 1.3;  color: #393E41; margin: 0 0 16px 0;">Step 3: Deploy with Netlify</h2>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0;"><strong>Goal:</strong> Get a live URL for your portfolio so anyone can see it on the web!</p>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">3A. Sign Up for Netlify</h3>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Go to <a href="https://app.netlify.com" style="color: #006BA6; text-decoration: underline; ">https://app.netlify.com</a></li>
+      <li style="margin-bottom: 8px;">Click "Sign up" and choose "Sign up with GitHub"</li>
+      <li style="margin-bottom: 8px;">Authorize Netlify to access your GitHub account</li>
+    </ol>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">3B. Import Your Project</h3>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Click "Add new site" → "Import an existing project"</li>
+      <li style="margin-bottom: 8px;">Click "Deploy with GitHub"</li>
+      <li style="margin-bottom: 8px;">You may need to authorize Netlify again</li>
+      <li style="margin-bottom: 8px;">Find and select your <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">code-design-workspace</code> repository from the list</li>
+    </ol>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">3C. Configure &amp; Deploy</h3>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;"><strong>Site settings:</strong>
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Site name: auto-generated (you can customize this later)</li>
+          <li style="margin-bottom: 8px;">Branch to deploy: <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">main</code></li>
+          <li style="margin-bottom: 8px;">Build command: leave empty</li>
+          <li style="margin-bottom: 8px;">Publish directory: leave empty</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 8px;">Click the blue "Deploy site" button</li>
+      <li style="margin-bottom: 8px;"><strong>Wait for deployment:</strong>
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Watch the build log (usually takes 30-60 seconds)</li>
+          <li style="margin-bottom: 8px;">You'll see "Site is live" when it's ready</li>
+          <li style="margin-bottom: 8px;">Your URL will look something like: <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">random-name-123.netlify.app</code></li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 18px;  line-height: 1.3; color: #393E41; margin: 24px 0 12px 0;">3D. Test Your Live Site</h3>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;">Click on your live site URL</li>
+      <li style="margin-bottom: 8px;">Navigate through all your pages:
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Click each link in your navigation menu</li>
+          <li style="margin-bottom: 8px;">Make sure all pages load correctly</li>
+          <li style="margin-bottom: 8px;">Check that your recipe image displays</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 8px;"><strong>Copy your URL</strong> – you'll need this for your assignment submission!</li>
+    </ol>
+
+    <div style="background: #F8FDF4; border: 1px solid #D3F2BE; border-left: 6px solid #2B7015; border-radius: 0; padding: 16px 20px; margin: 16px 0;">
+      <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #393E41; margin: 0;">🎉 <strong>Congratulations!</strong> Your site is now live on the internet!</p>
+    </div>
+  </div>
+
+  
+  <div style="background: #FDFFFC; border: 1px solid rgba(57,62,65,0.15); border-left: 6px solid #B7142E; border-radius: 0; padding: 24px; margin-bottom: 16px;">
+    <h2 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 22px;  line-height: 1.3;  color: #393E41; margin: 0 0 16px 0;">Step 4: Add Netlify Link to your index.html</h2>
+
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;">
+      <li style="margin-bottom: 8px;"><strong>Go to your GitHub repository page</strong> (not Codespace)
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Navigate to <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">code-design-workspace</code> on GitHub.com</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 8px;"><strong>Open your README file:</strong>
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Click on the <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">README.md</code> file (if you don't have one, click "Add file" → "Create new file" and name it <code style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); padding: 2px 6px; border-radius: 3px; font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 14px; color: #393E41;">README.md</code>)</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 8px;"><strong>Edit the README:</strong>
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Click the pencil icon (✏️) to edit</li>
+          <li style="margin-bottom: 8px;">Add your Netlify link at the top of the file</li>
+        </ul>
+      </li>
+    </ol>
+
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 16px 0 12px 0;"><strong>Example README content:</strong></p>
+    <div style="background: #F5F8F5; border: 1px solid rgba(57,62,65,0.2); border-radius: 4px; padding: 16px; overflow-x: auto; margin-bottom: 16px;">
+      <pre style="font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: #393E41; margin: 0; white-space: pre-wrap;"># DESN368 - Code and Design Workspace
+
+🌐 **Live Site:** https://your-site-name.netlify.app
+
+This repository contains my weekly projects for DESN368 as I learn HTML, CSS, and web development.</pre>
+    </div>
+
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; color: #393E41; margin: 0 0 16px 0; padding-left: 24px;" start="4">
+      <li style="margin-bottom: 8px;"><strong>Commit the changes:</strong>
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Scroll down and click "Commit changes"</li>
+          <li style="margin-bottom: 8px;">Add commit message: "Add Netlify link to README"</li>
+          <li style="margin-bottom: 8px;">Click "Commit changes"</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 8px;"><strong>Verify:</strong>
+        <ul style="padding-left: 24px; margin-top: 8px;">
+          <li style="margin-bottom: 8px;">Your README should now display on your repository homepage</li>
+          <li style="margin-bottom: 8px;">The Netlify link should be visible and clickable</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+
+
+</div></body></html>
