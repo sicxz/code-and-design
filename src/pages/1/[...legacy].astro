@@ -1,0 +1,19 @@
+---
+import HistoricalCourseRedirect from '../../components/HistoricalCourseRedirect.astro';
+import { readdirSync } from 'node:fs';
+import { resolve, relative } from 'node:path';
+export function getStaticPaths() {
+  const root = resolve('public/1-spring-2026');
+  const paths: string[] = [];
+  function walk(dir: string) {
+    for (const entry of readdirSync(dir, {withFileTypes:true})) {
+      const path = resolve(dir, entry.name);
+      if (entry.isDirectory()) walk(path);
+      else if (entry.name === 'index.html') paths.push(relative(root,path).replace(/\/index.html$/,''));
+    }
+  }
+  walk(root);
+  return paths.filter(path => /^(assignments|pages)\/.+/.test(path)).map(legacy=>({params:{legacy}}));
+}
+---
+<HistoricalCourseRedirect path={Astro.params.legacy} />

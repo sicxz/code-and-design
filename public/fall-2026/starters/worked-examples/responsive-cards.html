@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worked example: responsive cards</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; padding: 1.25rem; background: #f7f4ed; color: #202020; font: 1rem/1.6 system-ui, sans-serif; }
+header, nav, main, footer { max-width: 68rem; margin-inline: auto; }
+h1, h2 { line-height: 1.2; }
+a { color: #742137; }
+:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+nav ul { display: flex; flex-wrap: wrap; gap: 1rem; padding: 0; list-style: none; }
+.cards { display: grid; gap: 2rem; }
+.card { padding: 1.25rem; border: 2px solid #202020; background: white; }
+.card h2 { margin-top: 0; }
+@media (min-width: 48rem) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+<header><p>Worked example · reference only</p><h1>Reading a page</h1><p>This finished teaching example uses a 2rem gap and two equal columns at 48rem and wider. Below that width it remains one column. Your October 28 starter begins with different values.</p><a href="#main-content">Skip to examples</a></header>
+<nav aria-label="Example sections"><ul><li><a href="#structure">Structure</a></li><li><a href="#presentation">Presentation</a></li><li><a href="#verification">Verification</a></li></ul></nav>
+<main id="main-content"><div class="cards">
+<article class="card" id="structure"><h2>Structure</h2><p>HTML gives a heading, paragraph, and link their roles. These articles remain in a meaningful sequence when all CSS is removed.</p></article>
+<article class="card" id="presentation"><h2>Presentation</h2><p>The shared card class controls border and padding. The cards container controls the gap and columns. Changing one does not require rewriting the three articles.</p></article>
+<article class="card" id="verification"><h2>Verification</h2><p>At a wide width this third card begins a new row. At a narrow width all three stack. Inspect the media query to explain why. Longer content can make a row taller; the source does not clip it to a fixed height.</p></article>
+</div></main>
+<footer><p>Original course teaching example. View source to compare the container, children, and media query. Do not submit this reference as your own project.</p></footer>
+</body></html>

@@ -1,0 +1,604 @@
+{
+  "title": "Web Design + Code 1",
+  "courseCode": "DESN 368",
+  "term": "Fall 2026",
+  "tagline": "Peel Up the Pixels. Brick by brick. Tag by tag. Source-level fluency.",
+  "schedule": {
+    "days": "Monday / Wednesday",
+    "time": "1–3:30 p.m.",
+    "start": "2026-09-23",
+    "finalDate": "2026-12-09",
+    "finalTime": "1–3 p.m.",
+    "timezone": "America/Los_Angeles",
+    "noClassDates": [
+      "2026-11-11",
+      "2026-11-25"
+    ],
+    "asyncDates": [
+      "2026-10-28"
+    ]
+  },
+  "grading": [
+    {
+      "id": "participation",
+      "label": "Participation and engagement",
+      "weight": 20
+    },
+    {
+      "id": "weekly",
+      "label": "Weekly practice",
+      "weight": 30
+    },
+    {
+      "id": "projects",
+      "label": "Projects",
+      "weight": 40
+    },
+    {
+      "id": "portfolio",
+      "label": "Final portfolio",
+      "weight": 10
+    }
+  ],
+  "outcomes": [
+    "Explain how semantic HTML gives content a structure and CSS changes its presentation.",
+    "Build readable pages with meaningful headings, links, images, and accessible navigation.",
+    "Use selectors, the cascade, spacing, typography, Flexbox, and Grid to implement visual decisions.",
+    "Adapt a layout to narrow and wide viewports and test keyboard access and zoom.",
+    "Locate a fault, form a prediction, change source, and verify the result.",
+    "Maintain one repository, commit changes, and publish a working static website.",
+    "Credit sources and assets, disclose permitted AI assistance, and independently explain submitted code.",
+    "Curate a portfolio that communicates design intent and evidence of learning."
+  ],
+  "weeks": [
+    {
+      "id": "week-0",
+      "number": 0,
+      "title": "Peel up the pixels",
+      "startDate": "2026-09-23",
+      "endDate": "2026-09-27",
+      "summary": "Look beneath a designed surface; change one element and explain its effect.",
+      "outcomes": [
+        "Distinguish HTML structure from CSS presentation.",
+        "Find, predict, edit, and explain one source change."
+      ],
+      "estimatedHours": 2,
+      "sessions": [
+        {
+          "date": "2026-09-23",
+          "title": "A page has a source",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-0.md",
+      "assignmentIds": [
+        "practice-00"
+      ]
+    },
+    {
+      "id": "week-1",
+      "number": 1,
+      "title": "Give content a structure",
+      "startDate": "2026-09-28",
+      "endDate": "2026-10-04",
+      "summary": "Build a recipe with headings, ordered steps, meaningful links, and an image you can credit.",
+      "outcomes": [
+        "Choose elements by meaning.",
+        "Use correct nesting and useful text alternatives."
+      ],
+      "estimatedHours": 4,
+      "sessions": [
+        {
+          "date": "2026-09-28",
+          "title": "From words to elements",
+          "mode": "studio"
+        },
+        {
+          "date": "2026-09-30",
+          "title": "Links, images, and a recipe",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-1.md",
+      "assignmentIds": [
+        "practice-01"
+      ]
+    },
+    {
+      "id": "week-2",
+      "number": 2,
+      "title": "Make the structure visible",
+      "startDate": "2026-10-05",
+      "endDate": "2026-10-11",
+      "summary": "Use CSS to create hierarchy and breathing room, then demonstrate an independent change.",
+      "outcomes": [
+        "Explain a selector and declaration.",
+        "Distinguish margin from padding.",
+        "Build and explain the recipe without AI."
+      ],
+      "estimatedHours": 5,
+      "sessions": [
+        {
+          "date": "2026-10-05",
+          "title": "Selectors and the box model",
+          "mode": "studio"
+        },
+        {
+          "date": "2026-10-07",
+          "title": "Independent source check; recipe studio",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-2.md",
+      "assignmentIds": [
+        "practice-02",
+        "project-recipe"
+      ]
+    },
+    {
+      "id": "week-3",
+      "number": 3,
+      "title": "Build a place for your work",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-18",
+      "summary": "Migrate one page manually, publish it, and plan a small tribute page in Figma.",
+      "outcomes": [
+        "Trace a relative path from file to published URL.",
+        "Commit and publish a change.",
+        "Translate one visual hierarchy into source."
+      ],
+      "estimatedHours": 6,
+      "sessions": [
+        {
+          "date": "2026-10-12",
+          "title": "One repository, one publishing path",
+          "mode": "studio"
+        },
+        {
+          "date": "2026-10-14",
+          "title": "Tribute: content before composition",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-3.md",
+      "assignmentIds": [
+        "practice-03"
+      ]
+    },
+    {
+      "id": "week-4",
+      "number": 4,
+      "title": "Arrange the pieces",
+      "startDate": "2026-10-19",
+      "endDate": "2026-10-25",
+      "summary": "Use flexible layout for a tribute and practice fixing one rule at a time.",
+      "outcomes": [
+        "Use Flexbox without changing meaningful reading order.",
+        "Explain the cascade in a concrete debugging example."
+      ],
+      "estimatedHours": 6,
+      "sessions": [
+        {
+          "date": "2026-10-19",
+          "title": "Flexbox and reading order",
+          "mode": "studio"
+        },
+        {
+          "date": "2026-10-21",
+          "title": "Tribute critique and source repair",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-4.md",
+      "assignmentIds": [
+        "practice-04",
+        "project-tribute"
+      ]
+    },
+    {
+      "id": "week-5",
+      "number": 5,
+      "title": "Build a repeatable pattern",
+      "startDate": "2026-10-26",
+      "endDate": "2026-11-01",
+      "summary": "Build a small guide from reusable classes; consolidate known layout skills on October 28.",
+      "outcomes": [
+        "Reuse one card pattern consistently.",
+        "Predict and check a Grid change.",
+        "Record a precise question when blocked."
+      ],
+      "estimatedHours": 4,
+      "sessions": [
+        {
+          "date": "2026-10-26",
+          "title": "Field guide: one card becomes a system",
+          "mode": "studio"
+        },
+        {
+          "date": "2026-10-28",
+          "title": "Supported independent practice",
+          "mode": "async"
+        }
+      ],
+      "lesson": "weeks/week-5.md",
+      "assignmentIds": [
+        "practice-05"
+      ]
+    },
+    {
+      "id": "week-6",
+      "number": 6,
+      "title": "Let the page respond",
+      "startDate": "2026-11-02",
+      "endDate": "2026-11-08",
+      "summary": "Repair the practice together and adapt your guide as space and reading needs change.",
+      "outcomes": [
+        "Choose a breakpoint from content pressure.",
+        "Test links, focus, images, and text at narrow widths."
+      ],
+      "estimatedHours": 6,
+      "sessions": [
+        {
+          "date": "2026-11-02",
+          "title": "Return check and responsive decisions",
+          "mode": "studio"
+        },
+        {
+          "date": "2026-11-04",
+          "title": "Guide navigation and accessibility",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-6.md",
+      "assignmentIds": [
+        "practice-06"
+      ]
+    },
+    {
+      "id": "week-7",
+      "number": 7,
+      "title": "Debug and publish the guide",
+      "startDate": "2026-11-09",
+      "endDate": "2026-11-15",
+      "summary": "Use browser evidence to locate a fault and deliver a small, usable responsive guide.",
+      "outcomes": [
+        "Identify the source of overflow or a missing asset.",
+        "Publish and explain a tested guide."
+      ],
+      "estimatedHours": 5,
+      "sessions": [
+        {
+          "date": "2026-11-09",
+          "title": "Find the cause; finish the field guide",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-7.md",
+      "assignmentIds": [
+        "practice-07",
+        "project-field-guide"
+      ]
+    },
+    {
+      "id": "week-8",
+      "number": 8,
+      "title": "Design a clear invitation",
+      "startDate": "2026-11-16",
+      "endDate": "2026-11-22",
+      "summary": "Create a concise landing page that tells one audience what it offers and what to do next.",
+      "outcomes": [
+        "Align page hierarchy with a reader’s task.",
+        "Translate mobile and wide frames into one HTML structure."
+      ],
+      "estimatedHours": 6,
+      "sessions": [
+        {
+          "date": "2026-11-16",
+          "title": "Landing page: audience and action",
+          "mode": "studio"
+        },
+        {
+          "date": "2026-11-18",
+          "title": "From two Figma frames to one flexible page",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-8.md",
+      "assignmentIds": [
+        "practice-08"
+      ]
+    },
+    {
+      "id": "week-9",
+      "number": 9,
+      "title": "Make interactions honest",
+      "startDate": "2026-11-23",
+      "endDate": "2026-11-29",
+      "summary": "Make calls to action and an optional form practice understandable, keyboard usable, and truthful.",
+      "outcomes": [
+        "Choose a link, button, or form by its behavior.",
+        "Test focus and document an interaction accurately."
+      ],
+      "estimatedHours": 3,
+      "sessions": [
+        {
+          "date": "2026-11-23",
+          "title": "Links, forms, focus, and reduced motion",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-9.md",
+      "assignmentIds": [
+        "practice-09"
+      ]
+    },
+    {
+      "id": "week-10",
+      "number": 10,
+      "title": "Finish, test, and curate",
+      "startDate": "2026-11-30",
+      "endDate": "2026-12-06",
+      "summary": "Finish the landing page December 2, then curate existing work and prepare to explain it.",
+      "outcomes": [
+        "Prioritize functional repairs over extra features.",
+        "Curate projects and demonstrate a source decision."
+      ],
+      "estimatedHours": 7,
+      "sessions": [
+        {
+          "date": "2026-11-30",
+          "title": "Landing page test clinic",
+          "mode": "studio"
+        },
+        {
+          "date": "2026-12-02",
+          "title": "Landing page delivery; portfolio curation",
+          "mode": "studio"
+        }
+      ],
+      "lesson": "weeks/week-10.md",
+      "assignmentIds": [
+        "practice-10",
+        "project-landing",
+        "final-portfolio",
+        "studio-participation"
+      ]
+    }
+  ],
+  "assignments": [
+    {
+      "id": "practice-00",
+      "title": "One source change",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-09-27",
+      "weekId": "week-0",
+      "brief": "assignments/practice-00.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-01",
+      "title": "Recipe structure check",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-10-04",
+      "weekId": "week-1",
+      "brief": "assignments/practice-01.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-02",
+      "title": "Explain your CSS",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-10-11",
+      "weekId": "week-2",
+      "brief": "assignments/practice-02.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-03",
+      "title": "Publish one manual change",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-10-18",
+      "weekId": "week-3",
+      "brief": "assignments/practice-03.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-04",
+      "title": "Explain a layout repair",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-10-25",
+      "weekId": "week-4",
+      "brief": "assignments/practice-04.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-05",
+      "title": "October 28 practice checkpoint",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-10-28",
+      "weekId": "week-5",
+      "brief": "assignments/practice-05.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-06",
+      "title": "Responsive evidence",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-11-08",
+      "weekId": "week-6",
+      "brief": "assignments/practice-06.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-07",
+      "title": "One bug, one verified repair",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-11-15",
+      "weekId": "week-7",
+      "brief": "assignments/practice-07.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-08",
+      "title": "Landing page direction",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-11-22",
+      "weekId": "week-8",
+      "brief": "assignments/practice-08.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-09",
+      "title": "One interaction check",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-11-29",
+      "weekId": "week-9",
+      "brief": "assignments/practice-09.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "practice-10",
+      "title": "Final delivery check",
+      "group": "weekly",
+      "points": 10,
+      "dueDate": "2026-12-02",
+      "weekId": "week-10",
+      "brief": "assignments/practice-10.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "project-recipe",
+      "title": "Recipe: structure and style",
+      "group": "projects",
+      "points": 100,
+      "dueDate": "2026-10-07",
+      "weekId": "week-2",
+      "brief": "assignments/project-recipe.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "project-tribute",
+      "title": "Tribute: a meaningful composition",
+      "group": "projects",
+      "points": 100,
+      "dueDate": "2026-10-25",
+      "weekId": "week-4",
+      "brief": "assignments/project-tribute.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "project-field-guide",
+      "title": "Field guide: a responsive collection",
+      "group": "projects",
+      "points": 100,
+      "dueDate": "2026-11-15",
+      "weekId": "week-7",
+      "brief": "assignments/project-field-guide.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "project-landing",
+      "title": "Landing page: one clear invitation",
+      "group": "projects",
+      "points": 100,
+      "dueDate": "2026-12-02",
+      "weekId": "week-10",
+      "brief": "assignments/project-landing.md",
+      "dueTime": "23:59"
+    },
+    {
+      "id": "final-portfolio",
+      "title": "Portfolio and source presentation",
+      "group": "portfolio",
+      "points": 100,
+      "dueDate": "2026-12-09",
+      "weekId": "week-10",
+      "brief": "assignments/final-portfolio.md",
+      "dueTime": "12:00"
+    },
+    {
+      "id": "studio-participation",
+      "title": "Studio participation",
+      "group": "participation",
+      "points": 100,
+      "dueDate": "2026-12-09",
+      "weekId": "week-10",
+      "brief": "assignments/studio-participation.md",
+      "dueTime": "15:00"
+    }
+  ],
+  "resources": [
+    {
+      "title": "HTML syntax on MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
+      "description": "Look up element structure and attributes while practicing."
+    },
+    {
+      "title": "CSS box model on MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model",
+      "description": "Read diagrams of content, padding, border, and margin."
+    },
+    {
+      "title": "Responsive design on MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design",
+      "description": "Reference flexible sizing and media queries."
+    },
+    {
+      "title": "Configure GitHub Pages",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "description": "Use the branch publishing instructions for the course repository."
+    },
+    {
+      "title": "HTML validator",
+      "url": "https://validator.w3.org/nu/",
+      "description": "Check the HTML of a published page and investigate its messages."
+    },
+    {
+      "title": "WAI easy accessibility checks",
+      "url": "https://www.w3.org/WAI/test-evaluate/easy-checks/",
+      "description": "Practice a limited set of human checks; these are not a full accessibility audit."
+    }
+  ],
+  "documents": [
+    {
+      "id": "syllabus",
+      "title": "Syllabus",
+      "path": "syllabus.md"
+    },
+    {
+      "id": "workflow",
+      "title": "One workspace: build, publish, submit",
+      "path": "workflow.md"
+    },
+    {
+      "id": "source-checks",
+      "title": "Source checks and AI progression",
+      "path": "source-checks.md"
+    },
+    {
+      "id": "rubrics",
+      "title": "Assessment rubrics",
+      "path": "rubrics.md"
+    },
+    {
+      "id": "accessibility",
+      "title": "Readability and accessibility checks",
+      "path": "accessibility.md"
+    },
+    {
+      "id": "transition-to-378",
+      "title": "Your next course: 378 re-entry practice",
+      "path": "transition-to-378.md"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+---
+import FallCourseLayout from '../../layouts/FallCourseLayout.astro';
+import { readLesson } from '../../lib/fall2026';
+---
+<FallCourseLayout title="Syllabus"><p class="breadcrumb"><a href="/1/">Course</a> / Syllabus</p><article class="prose" set:html={readLesson('syllabus.md')} /></FallCourseLayout>

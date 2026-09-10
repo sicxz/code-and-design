@@ -1,0 +1,28 @@
+---
+import FallCourseLayout from '../../layouts/FallCourseLayout.astro';
+import { fall, displayDate } from '../../lib/fall2026';
+---
+<FallCourseLayout wide>
+  <section class="hero">
+    <div>
+      <p class="course-course-title">Web Design + Code 1</p>
+      <h1>Peel Up<br/>the Pixels.</h1>
+      <p class="page-intro">A web page is something you can take apart, understand, and make your own. Start with what you see. Learn what holds it together.</p>
+      <div class="button-row"><a class="button" href="/1/peel-up-the-pixels/">Start with the surface</a><a class="button secondary" href="/1/schedule/">Explore the quarter</a></div>
+      <p class="hero-meta">Brick by brick. Tag by tag. Source-level fluency.</p>
+    </div>
+    <div class="source-art" aria-label="A yellow printed surface folds back to reveal the HTML beneath it" role="img">
+      <code>&lt;main&gt;<br/>&nbsp; &lt;article class="story"&gt;<br/>&nbsp; &nbsp; &lt;h1&gt;Make it yours.&lt;/h1&gt;<br/>&nbsp; &nbsp; &lt;p&gt;Start with one change.&lt;/p&gt;<br/>&nbsp; &lt;/article&gt;<br/>&lt;/main&gt;</code>
+      <div class="surface"><span class="surface-swatch"></span><b>Make it yours.</b><small>There’s a structure under every surface.</small></div><div class="fold"></div>
+    </div>
+  </section>
+  <div class="course-facts"><div><strong>Monday + Wednesday</strong>1–3:30 p.m.</div><div><strong>September 23</strong>First studio</div><div><strong>December 9, 1–3 p.m.</strong>Final presentations</div><div><strong>One workspace</strong>A portfolio built throughout the quarter</div></div>
+  <section class="split">
+    <section><h2>Make a change.<br/>Understand the change.</h2><p>Inspect a page, predict what an edit will do, make it, and explain what happened. Each project gives you another way to practice.</p><p>You’ll move from a recipe to an editorial tribute, a field guide, a landing page, and a portfolio that holds the work together.</p></section>
+    <section class="callout"><h2 style="margin-top:0">Your hands first.</h2><p>The opening unit, September 23–October 7, is AI-free. You’ll work directly with HTML and CSS, with examples, classmates, and your instructor for support.</p><p>Later, optional AI help follows a short source check. Your ability to explain and change the work remains the test.</p><a href="/1/resources/source-checks/">How source checks work</a></section>
+  </section>
+  <section style="margin-top:48px"><div class="section-heading"><h2>The studio sequence</h2><a href="/1/assignments/">View assignments and due dates</a></div>
+    <ol class="week-list">{fall.weeks.map(week => <li class="week-row"><span class="week-number">{week.number === 0 ? 'Opening' : `Week ${week.number}`}</span><div><a href={`/1/weeks/${week.id}/`} style="font-size:23px;font-weight:600;color:var(--ink);text-decoration:none">{week.title}</a><p>{week.summary}</p></div><span class="week-dates">{week.sessions.map(session => displayDate(session.date)).join(' + ')}{week.sessions.some(s=>s.mode==='async') && <><br/>Includes independent studio</>}</span></li>)}</ol>
+  </section>
+  <section class="split"><section><h2>Know what comes next.</h2><p>Every studio gives you a brief, a build sequence, a source check, a small piece of evidence, and a delivery check. Required work and optional experiments are kept separate.</p><a href="/1/resources/workflow/">Your working routine</a></section><section><h2>Keep the work connected.</h2><p>Begin in CodePen, then move into one Codespace and publish through GitHub Pages. Each finished project joins your learning log.</p><a href="/1/resources/transition-to-378/">What this prepares you for</a></section></section>
+</FallCourseLayout>

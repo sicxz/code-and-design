@@ -1,0 +1,6 @@
+/* Starter foundation. Read these rules before adding your own. */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; line-height: 1.5; }
+img { max-width: 100%; height: auto; }
+:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+/* TODO: add your project type, spacing, and layout rules below. */

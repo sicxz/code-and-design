@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P4 Cut-Up Tutorial — Figma → Semantic HTML5 with AI · DESN 368</title>
+<style>
+/* ============================================================
+   DESN 368 · P4 Cut-Up Tutorial (AI image-paste + optional Figma MCP)
+   Single-file. Embedded style only. file:// viewable.
+   Palette follows S26-368 styleguide (red/blue/green).
+   ============================================================ */
+:root {
+  --bg: #FDFFFC;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F5F8F5;
+  --bg-code: #1C2128;
+  --border: rgba(57,62,65,0.22);
+  --border-light: rgba(57,62,65,0.14);
+  --text: #393E41;
+  --text-2: #656D76;
+  --text-muted: #848D97;
+  --red: #B7142E;
+  --red-subtle: #FBF3F5;
+  --blue: #006BA6;
+  --blue-subtle: #F2FCFE;
+  --green: #2B7015;
+  --green-subtle: #F8FDF4;
+  --warning: #9A6700;
+  --warning-bg: #FFF9F2;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 920px; margin: 0 auto; padding: 32px 24px 96px; }
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px 24px;
+  background: var(--bg-card);
+  position: sticky; top: 0; z-index: 10;
+}
+.topbar .brand {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 12px; background: var(--red); color: #fff; border-radius: 20px;
+}
+.topbar .crumbs { font-family: var(--mono); font-size: 12px; color: var(--text-2); }
+
+.hero { padding: 48px 0 24px; border-bottom: 1px solid var(--border-light); margin-bottom: 32px; }
+.hero h1 { font-size: 40px; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 12px; }
+.hero .lede { font-size: 19px; color: var(--text-2); margin: 0 0 16px; max-width: 680px; }
+.hero .meta { font-family: var(--mono); font-size: 12px; color: var(--text-muted); display: flex; gap: 16px; flex-wrap: wrap; }
+
+.module {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-top: 4px solid var(--red);
+  border-radius: 6px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+.module.blue { border-top-color: var(--blue); }
+.module.green { border-top-color: var(--green); }
+
+.module h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; margin: 0 0 8px; }
+.module .kicker {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 8px;
+}
+.module.blue .kicker { color: var(--blue); }
+.module.green .kicker { color: var(--green); }
+
+.module h3 { font-size: 18px; font-weight: 700; margin: 24px 0 8px; }
+.module p { margin: 12px 0; }
+.module ul, .module ol { padding-left: 22px; margin: 12px 0; }
+.module li { margin: 6px 0; }
+
+.callout {
+  border-left: 4px solid var(--blue);
+  background: var(--blue-subtle);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 15.5px;
+}
+.callout.warn { border-left-color: var(--warning); background: var(--warning-bg); }
+.callout.red { border-left-color: var(--red); background: var(--red-subtle); }
+.callout.green { border-left-color: var(--green); background: var(--green-subtle); }
+.callout strong { display: block; font-weight: 700; margin-bottom: 4px; }
+
+code, pre, kbd { font-family: var(--mono); }
+code { background: var(--bg-subtle); border: 1px solid var(--border-light); padding: 1px 6px; border-radius: 3px; font-size: 0.92em; }
+pre { background: var(--bg-code); color: #d6deeb; padding: 16px 18px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.55; margin: 12px 0; }
+pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+
+.prompt {
+  background: #F8FAF8;
+  border: 1px dashed var(--green);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin: 12px 0;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.prompt::before {
+  content: "PROMPT — paste into your AI chat";
+  display: block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--green); margin-bottom: 8px;
+}
+.shell {
+  background: var(--bg-code);
+  color: #d6deeb;
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+.shell::before {
+  content: "TERMINAL";
+  display: block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  color: #82aaff; margin-bottom: 8px;
+}
+.shell .c { color: #9aa7a7; }
+
+.step-num {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 13px; font-weight: 700;
+  background: var(--red); color: #fff;
+  padding: 2px 10px; border-radius: 12px;
+  margin-right: 8px; vertical-align: 2px;
+}
+
+table.spec { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14.5px; }
+table.spec th, table.spec td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border-light); }
+table.spec th { background: var(--bg-subtle); font-weight: 700; font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-2); }
+table.spec td code { font-size: 0.9em; }
+
+.toc {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 18px 24px;
+  margin-bottom: 32px;
+}
+.toc h2 { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); margin: 0 0 10px; }
+.toc ol { padding-left: 22px; margin: 0; }
+.toc a { color: var(--text); text-decoration: none; }
+.toc a:hover { color: var(--red); text-decoration: underline; }
+
+.gotcha {
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--warning);
+  background: var(--warning-bg);
+  padding: 14px 18px;
+  margin: 14px 0;
+  border-radius: 0 4px 4px 0;
+}
+.gotcha strong { color: var(--warning); }
+
+.submit-card {
+  background: var(--red-subtle);
+  border: 1px solid var(--red);
+  border-left: 6px solid var(--red);
+  padding: 24px 28px;
+  border-radius: 6px;
+  margin-top: 32px;
+}
+.submit-card h2 { color: var(--red); margin-top: 0; }
+
+footer.foot {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-family: var(--mono);
+}
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 30px; }
+  .module { padding: 22px 20px; }
+  .wrap { padding: 24px 16px 64px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand">DESN 368 · P4</span>
+  <span class="crumbs">week-9 / cut-up tutorial</span>
+</div>
+
+<div class="wrap">
+
+<section class="hero">
+  <h1>The P4 Cut-Up</h1>
+  <p class="lede">Hand your finished Figma to an AI and turn it into a P4-compliant semantic HTML5 scaffold. The easy way needs <strong>zero setup</strong>: export your design as an image and paste it into a chat you already have. (Want the AI to read your <em>live</em> Figma file instead? That's the optional <a href="#mcp">MCP track</a> at the end.)</p>
+  <p class="meta">
+    <span>Spring 2026 &middot; Web Design Fundamentals</span>
+    <span>Tutorial &middot; ~45 min self-paced</span>
+    <span>Checkpoint due before Tuesday class</span>
+  </p>
+</section>
+
+<div class="toc">
+  <h2>What's in this tutorial</h2>
+  <ol>
+    <li><a href="#why">Why this exists (and the deal we're making)</a></li>
+    <li><a href="#setup">Setup &mdash; the easy path (~2 min)</a></li>
+    <li><a href="#step1">Step 1 &mdash; Prime the AI with the brief + your design</a></li>
+    <li><a href="#step2">Step 2 &mdash; The Constraint Cut</a></li>
+    <li><a href="#step3">Step 3 &mdash; The Logic Implementation (table + form)</a></li>
+    <li><a href="#step4">Step 4 &mdash; The Motion Audit</a></li>
+    <li><a href="#wrong">What the AI gets wrong (and how you catch it)</a></li>
+    <li><a href="#mcp">Advanced &mdash; wire Figma into opencode (MCP)</a></li>
+    <li><a href="#submit">Submit the checkpoint</a></li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<section class="module red" id="why">
+  <div class="kicker">The Deal</div>
+  <h2>Why this tutorial exists</h2>
+
+  <p>You have two jobs in P4: <strong>design it in Figma</strong>, then <strong>build it in code</strong>. Most of the class is stuck between those two jobs &mdash; the Figma isn't quite done, and the code feels like a mountain.</p>
+
+  <p>This tutorial shows you the shortcut: when your Figma file is <em>actually finished</em> &mdash; sections laid out, real text in place, motion notes written &mdash; you can hand it to an AI (a screenshot is enough) and it will write a P4-compliant semantic HTML5 scaffold in about 15 minutes.</p>
+
+  <p>The AI builds what your design <em>shows</em>. A clean, finished design produces clean code with little back-and-forth; a half-done one produces slop. For exact text and layer names you can later wire Figma directly into the agent &mdash; see the <a href="#mcp">advanced MCP track</a> &mdash; but a good screenshot gets you most of the way with none of the setup.</p>
+
+  <div class="callout red">
+    <strong>The catch</strong>
+    AI can't build what your design doesn't show. If your screenshot is a jumble of unlabeled boxes and "Lorem ipsum," the cut-up will be slop &mdash; that's all the AI has to go on. The clearer the design, the cleaner the code. <strong>Finishing the design IS doing the code.</strong>
+  </div>
+
+  <p>Today in class you'll watch one finished Figma get cut up live. Once your own Figma is ready, run the four steps below yourself and submit the result as the <strong>P4 Cut-Up Checkpoint</strong> before Tuesday.</p>
+</section>
+
+<!-- ============================================================ -->
+<section class="module green" id="setup">
+  <div class="kicker">Setup &mdash; the easy path, ~2 min</div>
+  <h2>You need a finished design and an AI chat</h2>
+
+  <p>The whole setup is this: have your <strong>finished Figma</strong> open so you can export a picture of it, and open an <strong>AI chat you already have</strong>. <strong>No token, no install, no terminal, no config files.</strong> You hand the AI a screenshot of your design and it writes the HTML.</p>
+
+  <h3>1. Pick your AI</h3>
+
+  <p>Use whichever you already have &mdash; both read a design screenshot extremely well:</p>
+  <ul>
+    <li><strong>Claude</strong> &mdash; <a href="https://claude.ai" target="_blank" rel="noreferrer">claude.ai</a> (the free tier is fine).</li>
+    <li><strong>ChatGPT</strong> &mdash; <a href="https://chatgpt.com" target="_blank" rel="noreferrer">chatgpt.com</a> (the free tier is fine).</li>
+  </ul>
+  <p>The web version is all you need &mdash; nothing to download. (If you'd rather the AI write the <code>index.html</code> file <em>for</em> you instead of copy-pasting, the Claude or ChatGPT/Codex desktop apps do that &mdash; but that's optional.)</p>
+
+  <h3>2. Export your design as an image</h3>
+
+  <ol>
+    <li>In Figma, click the <strong>top frame</strong> of your design in the layers panel (the whole page).</li>
+    <li>Right-click &rarr; <strong>Copy/Paste as &rarr; Copy as PNG</strong> (you can paste it straight into the chat), or <strong>File &rarr; Export</strong> &rarr; PNG at 2x.</li>
+    <li>If your landing page is tall, export it in <strong>sections</strong> (hero / video / features / data / contact) so each part stays readable &mdash; you can drag several images into one message.</li>
+  </ol>
+
+  <div class="callout warn">
+    <strong>Design readiness check</strong>
+    The AI builds what your picture <em>shows</em>. Before you export, your design should have:
+    <ul>
+      <li>The five sections clearly laid out top to bottom (hero / video / features / data / contact).</li>
+      <li>Real text &mdash; actual headlines, button labels, nav links, table data &mdash; not "Lorem ipsum."</li>
+      <li>Any motion intentions written as visible text labels next to the element (e.g., <em>"button lifts on hover"</em>).</li>
+    </ul>
+    Vague picture in = vague HTML out. <strong>Finishing the design IS doing the code.</strong>
+  </div>
+
+  <div class="callout">
+    <strong>Want the AI to read your live Figma file instead of a screenshot?</strong>
+    That's the MCP path &mdash; the agent queries Figma directly for exact text and layer names, and writes the files for you. It's more powerful but it is real setup. We've moved it to the end as an <a href="#mcp">advanced track</a>, because the screenshot path above gets you a clean scaffold with zero setup.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module" id="step1">
+  <div class="kicker"><span class="step-num">01</span> Prime the AI with the brief + your design</div>
+  <h2>One setup message &mdash; loads the rules and your design</h2>
+
+  <p>Start a fresh chat. In one message you'll do two things: paste the P4 rules below, and <strong>attach the screenshot(s) of your design</strong> you exported in setup &mdash; drag them right into the message box. That gives the AI both the constraints and the picture it's building from.</p>
+
+  <p>Paste this as your first message, with your design image(s) attached:</p>
+
+  <div class="prompt">You are helping me cut a Figma design into a P4 landing page for DESN 368.
+Hold the following P4 rules in context for every reply that follows.
+
+== P4 REQUIRED STRUCTURE ==
+Outer:
+  &lt;header id="header"&gt;
+    &lt;img id="header-img" alt="..."&gt;
+    &lt;nav id="nav-bar"&gt;
+      &lt;a class="nav-link"&gt;...&lt;/a&gt; (minimum 3 nav-link anchors)
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;main&gt; ... &lt;/main&gt;
+  &lt;footer&gt; ... &lt;/footer&gt;
+
+Inside &lt;main&gt;, exactly five sections in this order:
+  &lt;section id="hero"&gt;     -- value proposition + primary CTA
+  &lt;section id="video"&gt;    -- embedded video
+  &lt;section id="features"&gt; -- repeating &lt;article&gt; cards
+  &lt;section id="data"&gt;     -- contains &lt;table id="data-table"&gt;
+  &lt;section id="contact"&gt;  -- contact form
+
+== TAG RULES ==
+- Use &lt;article&gt; for repeating self-contained items (feature cards).
+- Use &lt;section&gt; for thematic groupings with a heading.
+- Every &lt;img&gt; needs descriptive alt text (5-10 words). Never alt="".
+- Every form &lt;input&gt; has a paired &lt;label for=id&gt;. No placeholder-as-label.
+- Email input: type="email" required.
+- Submit button: id="submit".
+- Data table: id="data-table" with &lt;thead&gt; and &lt;tbody&gt;.
+- The data table must scroll horizontally on mobile (wrap in a div with
+  overflow-x: auto).
+
+== MOTION ==
+Wrap @keyframes animations in @media (prefers-reduced-motion: no-preference).
+
+== MY DESIGN ==
+I've attached screenshot(s) of my finished design. Read the layout, the
+sections, and the real text directly from the image(s). Do not invent
+content that isn't shown in the design.
+
+== CONFIRMATION ==
+Do not write any HTML yet. First, reply with:
+  1. The 5 section IDs you'll put inside &lt;main&gt;, in order, mapped to
+     the sections you can see in my design, top to bottom.
+  2. The required IDs/classes you'll bake into the scaffold (list them).
+  3. Which parts of my design you'll map to &lt;article&gt; tags
+     (the repeating feature cards).
+  4. Anything in my design that does NOT fit the P4 required structure
+     (so I know what to cut or rework on the design side).
+  5. Any motion notes or text labels in the design that describe
+     animation or hover behavior.</div>
+
+  <div class="callout green">
+    <strong>The AI reads the picture, not your mind.</strong>
+    It's working only from the screenshot(s) you attached &mdash; so the more your design shows (real text, clear sections, labels), the better the read. If the reply describes sections that aren't in your design, your image was probably cut off or low-res &mdash; re-export and try again.
+  </div>
+
+  <div class="callout">
+    <strong>Read the AI's reply line by line.</strong>
+    Verify it matches <em>what's actually in your design</em> &mdash; all five section IDs in the right order, every required ID/class above, and an article mapping that matches your real feature cards. If anything is missing or wrong, say so before moving on &mdash; for example: <em>"You missed id='header-img'. Add it."</em> or <em>"I don't actually have a video section. Tell me what I'm missing instead."</em>
+  </div>
+
+  <div class="gotcha">
+    <strong>Why this priming step matters:</strong>
+    Without it, every later prompt has to re-state the P4 rules and re-attach your design &mdash; tedious and easy to forget one. With it, you can write short prompts like "scaffold the HTML" or "build the form," and the AI already knows the rules <em>and</em> has your design in the conversation. <strong>You only prime once per chat.</strong>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module blue" id="step2">
+  <div class="kicker"><span class="step-num">02</span> The Constraint Cut</div>
+  <h2>Generate the scaffold</h2>
+
+  <p>Now that the AI has the P4 rules in context and your design in the conversation, asking for the scaffold is one short prompt. Here's the checklist you'll <em>verify the output against</em> &mdash; you don't need to paste it into the prompt:</p>
+
+  <table class="spec">
+    <thead><tr><th>Where</th><th>Required selector</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Outer header</td><td><code>&lt;header id="header"&gt;</code></td><td>Fixed position</td></tr>
+      <tr><td>Logo image</td><td><code>id="header-img"</code></td><td>Inside the header</td></tr>
+      <tr><td>Nav element</td><td><code>&lt;nav id="nav-bar"&gt;</code></td><td>Inside the header</td></tr>
+      <tr><td>Each nav link</td><td><code>class="nav-link"</code></td><td>Minimum 3 links</td></tr>
+      <tr><td>Each feature card</td><td><code>&lt;article&gt;&hellip;&lt;/article&gt;</code></td><td>Inside <code>#features</code></td></tr>
+      <tr><td>Data table</td><td><code>&lt;table id="data-table"&gt;</code></td><td>With <code>&lt;thead&gt;</code> + <code>&lt;tbody&gt;</code></td></tr>
+      <tr><td>Form submit button</td><td><code>id="submit"</code></td><td>Inside the contact form</td></tr>
+    </tbody>
+  </table>
+
+  <p>Now ask opencode to scaffold:</p>
+
+  <div class="prompt">Using the rules and the map you confirmed, write the full HTML for
+index.html.
+
+Start with DOCTYPE, lang="en", viewport meta, &lt;title&gt;, and a link to
+css/styles.css. Pull real text from my design (the screenshots) for
+headlines, button labels, and nav link labels &mdash; don't invent placeholder
+text if the real content is shown. Write descriptive alt text on every
+image based on what each image actually shows in the design.
+
+HTML only. No CSS yet. Give me the complete file.</div>
+
+  <div class="callout green">
+    <strong>Save the output as <code>index.html</code>.</strong>
+    In a chat (Claude/ChatGPT web), the AI returns the full HTML in a code block &mdash; click <strong>copy</strong>, paste it into a new plain-text file, and save it as <code>index.html</code> (a folder called <code>p4-landing-page</code> on your Desktop is a fine home for it). If you're using a desktop coding agent with file tools, it can write the file for you &mdash; just approve the change. Then open <code>index.html</code> in your browser and verify the seven items in the table above. <kbd>Cmd/Ctrl + F</kbd> for each ID.
+  </div>
+
+  <div class="gotcha">
+    <strong>What the AI gets wrong here:</strong>
+    <ul>
+      <li>Wraps everything in <code>&lt;div&gt;</code>s instead of <code>&lt;section&gt;</code> / <code>&lt;article&gt;</code>.</li>
+      <li>Forgets <code>alt</code> attributes, or writes lazy alt like <code>alt="image"</code>.</li>
+      <li>Uses <code>class="header"</code> instead of <code>id="header"</code>.</li>
+      <li>Skips the <code>&lt;footer&gt;</code> entirely.</li>
+    </ul>
+    Fix these <em>now</em>. Don't move to Step 3 until the scaffold is clean. One follow-up prompt &mdash; <em>"You used divs instead of section tags inside main. Rewrite using the required semantic structure."</em> &mdash; usually does it.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module" id="step3">
+  <div class="kicker"><span class="step-num">03</span> The Logic Implementation</div>
+  <h2>Build the table and the form</h2>
+
+  <p>The data table and the contact form are the two pieces graders look at hardest, because they have the strictest structural requirements. Do them in their own prompt so the agent doesn't shortcut.</p>
+
+  <h3>The Data Table</h3>
+
+  <div class="prompt">Inside &lt;section id="data"&gt;, replace any placeholder with a real
+&lt;table&gt; using the columns and rows shown in my design's data section
+(read them from the screenshot).
+
+Use &lt;th scope="col"&gt; for the header row. Wrap the table in
+&lt;div class="table-scroll" style="overflow-x: auto;"&gt; so it scrolls
+on mobile. (Apply the rest of the P4 table rules you already have.)
+
+Give me the updated index.html. Don't change anything else.</div>
+
+  <div class="callout">
+    <strong>Why horizontal scroll?</strong>
+    Your table has 4-6 columns of product specs. On a phone, stacking each row into a card is a real design choice &mdash; but it requires custom CSS per column. <strong>Horizontal scroll is the responsible default:</strong> it preserves the tabular reading and it works the moment you ship. The modal version stays optional. If you want it, do it after the checkpoint.
+  </div>
+
+  <h3>The Contact Form</h3>
+
+  <div class="prompt">Inside &lt;section id="contact"&gt;, build the contact form using the
+P4 form rules you already have (paired label/input, type="email"
+required, id="submit", no placeholder-as-label).
+
+Match the fields shown in my design's contact section &mdash; use the actual
+field labels from the screenshot. Use action="#" for now (no backend).
+
+Give me the updated index.html.</div>
+
+  <div class="gotcha">
+    <strong>What the AI gets wrong here:</strong>
+    <ul>
+      <li>Uses <code>placeholder="Email"</code> as a label substitute. Placeholders are <em>not</em> labels &mdash; screen readers don't read them as labels and they disappear when the user types.</li>
+      <li>Forgets the <code>for</code>/<code>id</code> pairing between <code>&lt;label&gt;</code> and <code>&lt;input&gt;</code>.</li>
+      <li>Misses <code>type="email"</code> &mdash; you lose the free browser validation.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module green" id="step4">
+  <div class="kicker"><span class="step-num">04</span> The Motion Audit</div>
+  <h2>Translate Figma motion notes into CSS</h2>
+
+  <p>If you wrote motion notes on your design during the design phase (<em>"button lifts on hover," "hero text fades in"</em>), they're in the screenshots you gave the AI. The brief asks for <strong>one <code>@keyframes</code> animation</strong> and <strong>one <code>transform</code> property</strong>. Pick the two most important.</p>
+
+  <div class="prompt">Look at the motion notes/labels in my design (in the screenshots I
+gave you). Implement two of them:
+
+  1. ONE @keyframes animation matching one note, applied to the
+     relevant element by class.
+  2. ONE transform on :hover (or :focus) matching another note, applied
+     to the relevant element by class.
+
+Create css/styles.css and link it from index.html if the link isn't
+there already. Use class names that already exist in my HTML &mdash; don't
+invent new ones. Respect prefers-reduced-motion (per the rule you
+already have).
+
+Give me both files.</div>
+
+  <div class="callout">
+    <strong>No motion notes in your Figma?</strong>
+    The agent will tell you. Add one or two simple ones to your Figma (a sticky-note next to the button saying <em>"hover: lift 4px"</em> is enough) and re-run the prompt. Or, just describe the two animations in the prompt itself: <em>"animate the hero heading with a 600ms fade-in on load, and lift the primary CTA 2px on hover."</em>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="module" id="wrong">
+  <div class="kicker">Read your output</div>
+  <h2>What the AI gets wrong (the short list)</h2>
+
+  <p>Opencode is fast, but it's also confident when it's wrong. The whole point of being a designer-coder is that <strong>you read the output</strong>. Here's the short list of failures that show up most often. Spot them, fix them, and submit only after.</p>
+
+  <table class="spec">
+    <thead><tr><th>Failure</th><th>How to spot it</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Divs instead of semantic tags</td>
+        <td>Cmd-F for <code>&lt;section</code> &mdash; should hit 5+ times</td>
+        <td>Re-prompt with the exact required tags</td>
+      </tr>
+      <tr>
+        <td>Missing or lazy alt text</td>
+        <td>Cmd-F for <code>alt=""</code> or <code>alt="image"</code></td>
+        <td>Rewrite alt to describe what's in the image, in 5-10 words</td>
+      </tr>
+      <tr>
+        <td>Placeholder used as label</td>
+        <td>No <code>&lt;label for="..."&gt;</code> in form HTML</td>
+        <td>Add a real label per input, pair with for/id</td>
+      </tr>
+      <tr>
+        <td>Wrong ID on submit button</td>
+        <td>Cmd-F for <code>id="submit"</code></td>
+        <td>One re-prompt: "Submit must have id='submit'"</td>
+      </tr>
+      <tr>
+        <td>Class used where ID was required</td>
+        <td>Cmd-F for <code>id="header"</code>, <code>id="nav-bar"</code></td>
+        <td>Re-prompt with required ID list</td>
+      </tr>
+      <tr>
+        <td>Section order doesn't match your Figma</td>
+        <td>Compare scaffold to the top-to-bottom flow of your design</td>
+        <td>"Reorder the sections in main to match the Figma top-to-bottom."</td>
+      </tr>
+      <tr>
+        <td>Invented content not in your design</td>
+        <td>Headlines, labels, or sections that aren't in your screenshot</td>
+        <td>"Only use text and sections visible in the design I gave you. Redo the mapping from the image."</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout red">
+    <strong>The submission asks you to name ONE thing the AI got wrong.</strong>
+    Pick the one that mattered most for your project and write 2-3 sentences in your prompt log about what it was, how you noticed, and what you changed. Generic answers ("it forgot some tags") don't count; specific ones ("it skipped <code>id='header-img'</code> on the logo image, I caught it by Cmd-F'ing for <code>header-img</code>, and I re-prompted with the exact requirement") do.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============================================================ -->
+<section class="module blue" id="mcp">
+  <div class="kicker">Advanced &mdash; optional, expect to tinker</div>
+  <h2>Wire Figma directly into opencode (MCP)</h2>
+
+  <p>The screenshot path above is the easy 90% and it's all you need for the checkpoint. The <strong>Model Context Protocol (MCP)</strong> is the power-user upgrade: instead of pasting a picture, you connect the agent to Figma so it reads your <em>live file</em> &mdash; exact text, real layer names, table data &mdash; and writes the files for you.</p>
+
+  <div class="callout warn">
+    <strong>Be honest with yourself: this is the advanced track, and it will probably not be straightforward.</strong>
+    MCP tooling changes fast, every machine is a little different, and the error messages are cryptic. Budget time to <em>troubleshoot</em>. The good news: the AI is your debugging partner here &mdash; <strong>paste the exact error back into ChatGPT/Claude, or ask opencode itself</strong> ("opencode won't connect to my Figma MCP, here's my <code>opencode.json</code> and the error &mdash; what's wrong?"). Expect a few rounds of back-and-forth before it connects. If you just need the checkpoint done, use the screenshot path and skip this.
+  </div>
+
+  <div class="callout red">
+    <strong>Reality check before you start.</strong>
+    Figma's <em>official</em> remote MCP (<code>mcp.figma.com</code>) uses OAuth and <strong>does not accept a <code>figd_</code> personal-access token</strong> &mdash; and it currently <strong>refuses opencode</strong> (you'll get a <code>403</code>, because Figma only allows a short list of clients while it's in beta). So for <strong>opencode specifically</strong>, use one of the two working options below. If you'd rather use Figma's smooth official OAuth server, it works today in <strong>Claude Code, Cursor, or VS Code</strong> &mdash; e.g. <code>claude mcp add --transport http figma https://mcp.figma.com/mcp</code>, then <code>/mcp</code> &rarr; Authenticate.
+  </div>
+
+  <h3>First: there's no "paste your key" button in opencode</h3>
+
+  <p>opencode doesn't have a Settings panel where you paste a Figma key. MCP servers live in a config file called <code>opencode.json</code> in your project folder. Both options below are "create that one file, then restart opencode." If you don't have a project folder yet, make one (a <code>p4-landing-page</code> folder on your Desktop is fine).</p>
+
+  <h3>Option A &mdash; Figma desktop app, no token (the cleaner one)</h3>
+
+  <ol>
+    <li>Install the <strong>Figma desktop app</strong> and open your file.</li>
+    <li>Turn on the local server: Figma menu &rarr; <strong>Preferences &rarr; Enable Dev Mode MCP Server</strong>. Figma shows you a local URL (usually <code>http://127.0.0.1:3845/mcp</code>).</li>
+    <li>In your project folder, create a file named <code>opencode.json</code> containing:
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "figma": {
+      "type": "remote",
+      "url": "http://127.0.0.1:3845/mcp",
+      "enabled": true
+    }
+  }
+}</code></pre></li>
+    <li>Restart opencode. In the terminal, <code>opencode mcp list</code> should show <code>figma</code> connected.</li>
+    <li><strong>Select the frame</strong> you want in the Figma desktop app, then prompt opencode &mdash; it reads the <em>selected</em> frame. No token, no URL.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Trade-offs:</strong> needs the Figma desktop app running, reads the frame you currently have <em>selected</em> (not a whole file by URL), and Dev Mode may require a Dev/Full seat on some plans (student Education plans usually qualify).
+  </div>
+
+  <h3>Option B &mdash; community server + your <code>figd_</code> token (reads by URL)</h3>
+
+  <p>This is the path the priming prompt's <code>get_figma_data</code> tool is written for. It reads any file by URL, but it needs <strong>Node.js installed</strong> (the server runs via <code>npx</code>) plus a Figma token.</p>
+
+  <ol>
+    <li>Get a token: <a href="https://www.figma.com/settings" target="_blank" rel="noreferrer">figma.com/settings</a> &rarr; <strong>Security</strong> &rarr; <strong>Personal access tokens</strong> &rarr; generate one (it starts with <code>figd_</code> and needs <em>File content</em> read). Copy it &mdash; treat it like a password.</li>
+    <li>In your project folder, create <code>opencode.json</code> containing:
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "figma": {
+      "type": "local",
+      "command": ["npx", "-y", "figma-developer-mcp", "--stdio"],
+      "enabled": true,
+      "environment": {
+        "FIGMA_API_KEY": "figd_PASTE_YOUR_TOKEN_HERE"
+      }
+    }
+  }
+}</code></pre></li>
+    <li>Restart opencode and run <code>opencode mcp list</code> to confirm it connected. The <code>get_figma_data</code> tool is now available.</li>
+    <li>In your prompt, give it your file URL (<code>figma.com/design/&lt;FILE_KEY&gt;/...</code>) and ask it to read the design via <code>get_figma_data</code>, then do the mapping.</li>
+  </ol>
+
+  <div class="callout warn">
+    <strong>Don't commit your token.</strong>
+    Your <code>figd_</code> token sits in <code>opencode.json</code> in plain text. If you ever put this folder in a public Git repo, the token leaks &mdash; regenerate it immediately if that happens. Keep the folder private, or use Option A (no token) instead.
+  </div>
+
+  <p>Once MCP is connected either way, the Step 1&ndash;4 prompts work the same &mdash; the agent just pulls from your live Figma instead of a screenshot, and (in opencode) writes <code>index.html</code> and <code>css/styles.css</code> directly with its file tools. And again: when it doesn't connect on the first try, <strong>that's expected</strong> &mdash; feed the error to an LLM and iterate.</p>
+</section>
+
+<!-- ============================================================ -->
+<section class="submit-card" id="submit">
+  <h2>Submit the P4 Cut-Up Checkpoint</h2>
+
+  <p>Upload to the Canvas assignment <strong>"P4 Cut-Up &mdash; First-Pass HTML + Prompt Log"</strong> before Tuesday's class.</p>
+
+  <ol>
+    <li><strong>Your <code>index.html</code></strong> &mdash; the generated scaffold. CSS is not graded yet. Submit the file or a link to your repo.</li>
+    <li><strong>A prompt log</strong> (one short markdown or text file, ~150-300 words) containing:
+      <ul>
+        <li>The 4-5 prompts you actually ran &mdash; including your priming message (copy-paste them in).</li>
+        <li>One specific thing the AI got wrong and how you fixed it (2-3 sentences).</li>
+        <li>One sentence on what step in your Figma was missing or weak that made the cut-up harder than it should have been &mdash; or "my Figma was tight, the cut-up was clean," if that's true.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p style="margin-bottom:0;"><strong>What I'm grading:</strong> structural correctness (the required IDs, classes, semantic tags all present) and evidence that you read the AI's output critically. This is a checkpoint &mdash; the full styled landing page is still due via the existing P4 Code submission.</p>
+</section>
+
+<footer class="foot">
+  DESN 368 &middot; Spring 2026 &middot; Travis Masingale &middot; <a href="/1-spring-2026/weeks/week-9" style="color: inherit;">Back to Week 9</a>
+</footer>
+
+</div>
+</body>
+</html>

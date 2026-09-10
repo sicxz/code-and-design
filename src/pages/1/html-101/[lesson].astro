@@ -1,15 +1,6 @@
 ---
 import { LESSONS } from '../../../course-pages/course-1/html-101/lessonRegistry';
-import LessonPage from '../../../course-pages/course-1/html-101/LessonPage.astro';
-
-export function getStaticPaths() {
-  return LESSONS.map((lesson) => ({
-    params: { lesson: lesson.slug },
-    props: { lesson },
-  }));
-}
-
-const { lesson } = Astro.props;
+import HistoricalCourseRedirect from '../../../components/HistoricalCourseRedirect.astro';
+export function getStaticPaths() { return LESSONS.map(lesson => ({params:{lesson:lesson.slug}})); }
 ---
-
-<LessonPage lesson={lesson} />
+<HistoricalCourseRedirect path={`html-101/${Astro.params.lesson}`} />
