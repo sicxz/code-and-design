@@ -1,0 +1,7 @@
+---
+import FallCourseLayout from '../../../layouts/FallCourseLayout.astro';
+import { fall, displayDate, readLesson, groupLabel, displayTime } from '../../../lib/fall2026';
+export function getStaticPaths(){return fall.assignments.map(assignment=>({params:{id:assignment.id},props:{assignment}}));}
+const { assignment } = Astro.props;
+---
+<FallCourseLayout title={assignment.title}><p class="breadcrumb"><a href="/1/">Course</a> / <a href="/1/assignments/">Assignments</a></p><div class="meta-strip"><strong>Due {displayDate(assignment.dueDate)}, {displayTime(assignment.dueTime)} Pacific</strong><span>{groupLabel(assignment.group)}</span><span>{assignment.points} points</span></div><article class="prose" set:html={readLesson(assignment.brief)} /><div class="button-row"><a class="button secondary" href={`/1/weeks/${assignment.weekId}/`}>Open the studio lesson</a><a class="button secondary" href="/1/assignments/">All assignments</a></div></FallCourseLayout>

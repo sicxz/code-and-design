@@ -1,5 +1,5 @@
 import course2Data from '../data/course-data.json';
-import course1Manifest from '../course-pages/course-1/courseManifest.json';
+import fall2026 from '../data/fall2026/course.json';
 
 export type CourseId = '1' | '2';
 export type CourseThemeId = CourseId;
@@ -73,31 +73,22 @@ const course2Weeks = (course2Data.weeks as Course2WeekSource[]).map((week) => ({
   route: week.route,
 }));
 
-const course1Weeks: CourseWeek[] = (course1Manifest.weeks as Array<{ key: string; number: number; title: string }>).map(
-  (week) => ({
-    slug: week.key,
-    title:
-      week.number === 0
-        ? 'Setup & Onboarding'
-        : `Week ${week.number}: ${(week.title || '').replace(/^week\s*\d+\s*:?\s*/i, '').trim() || `Week ${week.number}`}`,
-    route: `/1/weeks/${week.key}`,
-  }),
-);
+const course1Weeks: CourseWeek[] = fall2026.weeks.map(week => ({ slug: week.id, title: week.title, route: `/1/weeks/${week.id}` }));
 
 export const COURSE_REGISTRY: Record<CourseId, CourseDefinition> = {
   '1': {
     id: '1',
     themeId: '1',
-    title: 'DESN368: Code+Design 1',
+    title: 'DESN 368: Web Design + Code 1',
     courseCode: 'DESN368',
-    term: 'Spring 2026',
+    term: 'Fall 2026',
     subtitle: 'Brick by brick. Tag by tag. Source-level fluency.',
-    canvasUrl: 'https://canvas.ewu.edu/courses/1907214',
-    milanoteUrl: 'https://app.milanote.com/1W6e931MhvTVaN?p=1kaC1j7112i',
-    repoUrl: 'https://github.com/sicxz/desn368-f25',
-    studentCount: '14 students',
+    canvasUrl: 'https://canvas.ewu.edu/',
+    milanoteUrl: '/1/resources/workflow/',
+    repoUrl: 'https://github.com/sicxz/code-and-design',
+    studentCount: 'Studio course',
     weekCount: course1Weeks.length,
-    workload: '5 hours/week in class · 10 hours/week at home',
+    workload: 'Monday + Wednesday · 1–3:30 p.m.',
     homePath: '/1',
     syllabusPath: '/1/syllabus',
     assignmentsPath: '/1/assignments',

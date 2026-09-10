@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Worked example: a local form check</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0 auto; max-width: 42rem; padding: 1.5rem; background: #f7f4ed; color: #202020; font: 1rem/1.6 system-ui, sans-serif; }
+label, input, button { display: block; }
+input, button { font: inherit; padding: .6rem; margin-block: .5rem 1rem; max-width: 100%; }
+input { width: 100%; border: 2px solid #222; }
+button { color: white; background: #742137; border: 2px solid #742137; }
+:focus-visible { outline: 3px solid #202020; outline-offset: 4px; }
+</style></head>
+<body><main><p>Worked example · optional form demonstration</p><h1>A form that tells the truth</h1><p>This classroom prototype sends and stores nothing. Use an invented address such as student@example.com. The control only asks the browser to check the field.</p>
+<!-- No form submission is used: this button performs only a local validity check. -->
+<div role="group" aria-labelledby="practice-heading"><h2 id="practice-heading">Local email-format practice</h2>
+<label for="practice-email">Example email address</label><input id="practice-email" type="email" required aria-describedby="email-help" autocomplete="off"><p id="email-help">Use invented data. This is not a newsletter signup.</p>
+<button id="check" type="button">Check this example locally</button><p id="result" role="status" aria-live="polite"></p></div>
+<noscript><p>The optional check requires JavaScript. You can still inspect the label and input. Nothing will be sent.</p></noscript>
+<p>Inspect the short script: it calls the browser's reportValidity method and changes a local status message. There is no network request or signup success claim.</p>
+</main><script>
+const email = document.querySelector('#practice-email');
+const result = document.querySelector('#result');
+document.querySelector('#check').addEventListener('click', () => {
+  result.textContent = email.reportValidity()
+    ? 'The browser accepts this email format. No data was sent or stored.'
+    : 'Check the field message. No data was sent or stored.';
+});
+</script></body></html>

@@ -1,0 +1,11 @@
+/* October 28 exercise START: wide layout has THREE columns and a 1rem gap. */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 1.25rem; color: #202020; background: #f7f4ed; font: 1rem/1.6 system-ui, sans-serif; }
+header, main, footer { max-width: 68rem; margin-inline: auto; }
+h1, h2 { line-height: 1.2; }
+.cards { display: grid; gap: 1rem; }
+.card { padding: 1.25rem; border: 2px solid #202020; background: white; }
+.card h2 { margin-top: 0; }
+@media (min-width: 48rem) {
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

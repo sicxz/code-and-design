@@ -1,0 +1,32 @@
+---
+import '../styles/fall2026.css';
+const { title = 'Peel Up the Pixels', description = 'Web Design + Code 1. Build, inspect, and understand the web.', wide = false } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/$/, '');
+const nav = [{href:'/1',label:'Course'}, {href:'/1/schedule',label:'Schedule'}, {href:'/1/assignments',label:'Assignments'}, {href:'/1/syllabus',label:'Syllabus'}, {href:'/1/resources',label:'Resources'}];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} · Web Design + Code 1</title>
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body class="fall-course">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="course-topbar">
+      <a class="wordmark" href="/" aria-label="Code and Design course home"><span aria-hidden="true">&lt;/&gt;</span> code + design</a>
+      <span class="term-label">DESN 368 · Fall 2026</span>
+      <nav aria-label="Course navigation">{nav.map(item => <a href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>{item.label}</a>)}</nav>
+    </header>
+    <main id="main" class:list={['course-main', {wide}]} tabindex="-1"><slot /></main>
+    <footer class="course-footer">
+      <div><strong>Brick by brick. Tag by tag.</strong><p>Source-level fluency. Eastern Washington University.</p></div>
+      <nav aria-label="Related courses"><a href="/2/">Web Design + Code 2</a><a href="/1-spring-2026/">Spring 2026 archive</a><a href="/1-fall-2025/">Fall 2025 archive</a></nav>
+    </footer>
+  </body>
+</html>

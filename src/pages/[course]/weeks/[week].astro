@@ -2,7 +2,6 @@
 import CourseTwoGenericWeek from '../../../course-pages/course-2/weeks/GenericWeek.astro';
 import CourseOneWeek from '../../../course-pages/course-1/weeks/CourseOneWeek.astro';
 import {
-  COURSE_ONE_WEEKS,
   getCourseOneWeek,
 } from '../../../course-pages/course-1/weeks/weekRegistry';
 import {
@@ -14,16 +13,12 @@ import {
 import { isCourseId } from '../../../lib/courseRegistry';
 
 export function getStaticPaths() {
-  const courseOnePaths = COURSE_ONE_WEEKS.map((week) => ({
-    params: { course: '1', week: week.key },
-  }));
-
   const courseTwoPaths = COURSE_TWO_WEEKS.map((week) => ({
     params: { course: '2', week: `week-${week.week}` },
     props: { weekData: week },
   }));
 
-  return [...courseOnePaths, ...courseTwoPaths];
+  return courseTwoPaths;
 }
 
 const { course, week } = Astro.params;

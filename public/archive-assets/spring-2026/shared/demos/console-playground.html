@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Console Playground - DESN378</title>
+  <style>
+    /* DESN378 Neural Theme */
+    :root {
+      --neural-dark: #050816;
+      --neural-teal: #01B799;
+      --neural-cyan: #22D3EE;
+      --neural-violet: #A855F7;
+      --bg-primary: #050816;
+      --bg-card: #0d1a2d;
+      --bg-tertiary: #111d36;
+      --text-primary: #E5F3FF;
+      --text-secondary: #B8C0CC;
+      --text-muted: #c9c98d;
+      --border-color: rgba(34, 211, 238, 0.2);
+      --border-light: rgba(34, 211, 238, 0.12);
+      --teal-glow: rgba(1, 183, 153, 0.4);
+      --cyan-glow: rgba(34, 211, 238, 0.4);
+      --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-system);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #22D3EE;  /* Solid color - can be changed via JS */
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: linear-gradient(135deg, rgba(1, 183, 153, 0.2) 0%, rgba(34, 211, 238, 0.2) 100%);
+      color: var(--neural-cyan);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-left: 1rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.5rem;
+      background: linear-gradient(180deg, var(--neural-teal) 0%, var(--neural-cyan) 100%);
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-accent {
+      border-left: 3px solid var(--neural-teal);
+    }
+
+    .highlight {
+      background: rgba(1, 183, 153, 0.2);
+      padding: 0.125rem 0.5rem;
+      border-radius: 4px;
+      color: var(--neural-teal);
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    a {
+      color: var(--neural-cyan);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    a:hover {
+      color: var(--neural-teal);
+      text-shadow: 0 0 8px var(--teal-glow);
+    }
+
+    code {
+      padding: 2px 8px;
+      font-size: 85%;
+      background: rgba(1, 183, 153, 0.1);
+      border: 1px solid rgba(1, 183, 153, 0.2);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      color: var(--neural-teal);
+    }
+
+    button {
+      background: linear-gradient(135deg, #01B799 0%, #22D3EE 100%);
+      color: #050816;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      box-shadow: 0 0 20px var(--teal-glow), 0 0 40px var(--cyan-glow);
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .button-row {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .secondary {
+      background: transparent;
+      color: var(--neural-cyan);
+      border: 1px solid var(--neural-cyan);
+    }
+
+    .secondary:hover {
+      background: rgba(34, 211, 238, 0.1);
+      box-shadow: 0 0 15px var(--cyan-glow);
+    }
+
+    .danger {
+      background: transparent;
+      color: #EF4444;
+      border: 1px solid #EF4444;
+    }
+
+    .danger:hover {
+      background: rgba(239, 68, 68, 0.1);
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border: 1px solid var(--border-color);
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .image-grid img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .hidden-message {
+      display: none;
+      background: rgba(1, 183, 153, 0.15);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      border: 1px solid var(--neural-teal);
+    }
+
+    #counter {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #01B799;  /* Solid color - can be changed via JS */
+    }
+
+    .color-box {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #01B799 0%, #22D3EE 100%);
+      border-radius: 8px;
+      margin: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      border: 1px solid var(--border-light);
+      transition: all 0.2s;
+    }
+
+    .link-item:hover {
+      border-color: var(--neural-cyan);
+      background: rgba(34, 211, 238, 0.05);
+    }
+
+    .link-item span {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .console-hint {
+      background: #030712;
+      border: 1px solid rgba(1, 183, 153, 0.2);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--neural-teal);
+      margin: 1rem 0;
+      box-shadow: 0 0 20px rgba(1, 183, 153, 0.1);
+    }
+
+    .console-hint::before {
+      content: '>';
+      margin-right: 0.5rem;
+      color: var(--neural-cyan);
+    }
+
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-list li {
+      margin: 0;
+    }
+
+    .nav-list a {
+      display: block;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .nav-list li:last-child a {
+      border-bottom: none;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Console Playground <span class="badge">Week 0</span></h1>
+    <p class="subtitle">A page built for experimentation. Open DevTools and start exploring.</p>
+  </header>
+
+  <div class="card card-accent">
+    <h2>Getting Started</h2>
+    <p>Open your browser's console and try these commands:</p>
+    <div class="console-hint">document.querySelector('h1')</div>
+    <div class="console-hint">document.querySelector('h1').textContent = 'Hello!'</div>
+    <div class="console-hint">document.querySelector('h1').style.color = 'red'</div>
+    <p>Press <code>F12</code> or <code>Cmd+Option+I</code> (Mac) / <code>Ctrl+Shift+I</code> (Windows) to open DevTools.</p>
+  </div>
+
+  <div class="card">
+    <h2>Things to Try</h2>
+    <ul>
+      <li>Find elements: <code>document.querySelector('.color-box')</code></li>
+      <li>Change styles: <code>document.querySelector('.color-box').style.borderRadius = '50%'</code></li>
+      <li>Find all buttons: <code>document.querySelectorAll('button')</code></li>
+      <li>Count list items: <code>document.querySelectorAll('li').length</code></li>
+      <li>Find the hidden message and make it visible</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Interactive Elements</h2>
+    <p>These elements are here for you to manipulate:</p>
+
+    <div class="button-row">
+      <button id="primary-btn">Primary Button</button>
+      <button class="secondary" id="secondary-btn">Secondary Button</button>
+      <button class="danger" id="danger-btn">Danger Button</button>
+    </div>
+
+    <p>Counter: <span id="counter">0</span></p>
+
+    <div class="color-box" id="color-box"></div>
+
+    <div class="hidden-message" id="secret">
+      You found the secret! Try: <code>document.getElementById('secret').style.display = 'block'</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Text Content</h2>
+    <p id="editable-text">This paragraph is waiting for you to change it using the console.</p>
+    <p>Here's some text with a <span class="highlight" id="highlighted">highlighted word</span> inside.</p>
+    <p>Try: <code>document.getElementById('editable-text').innerHTML = 'I changed this!'</code></p>
+  </div>
+
+  <div class="card">
+    <h2>Images to Inspect</h2>
+    <p>Right-click these images and select "Inspect" to see their HTML:</p>
+    <div class="image-grid">
+      <img src="https://picsum.photos/400/300?random=1" alt="Random landscape image" id="img-1">
+      <img src="https://picsum.photos/400/300?random=2" alt="Random nature image" id="img-2">
+      <img src="https://picsum.photos/400/300?random=3" alt="Random architecture image" id="img-3">
+    </div>
+    <p>Try: <code>document.getElementById('img-1').src = 'https://picsum.photos/400/300?random=99'</code></p>
+  </div>
+
+  <div class="card">
+    <h2>Navigation List</h2>
+    <p>Practice selecting specific items from a list:</p>
+    <nav id="main-nav">
+      <ul class="nav-list" id="nav-list">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact" class="special">Contact</a></li>
+      </ul>
+    </nav>
+    <p>Try: <code>document.querySelector('.special').style.color = 'violet'</code></p>
+  </div>
+
+  <div class="card">
+    <h2>A Data List</h2>
+    <ul id="item-list">
+      <li data-category="fruit">Apple</li>
+      <li data-category="fruit">Banana</li>
+      <li data-category="vegetable">Carrot</li>
+      <li data-category="fruit">Date</li>
+      <li data-category="vegetable" class="special">Eggplant</li>
+    </ul>
+    <p>Try: <code>document.querySelectorAll('[data-category="fruit"]')</code></p>
+  </div>
+
+  <div class="card card-accent">
+    <h2>Guided Exercises</h2>
+    <p>Type these in the console. Watch what happens.</p>
+
+    <h3 style="margin-top: 1.5rem; font-size: 1rem; color: var(--neural-cyan);">Math</h3>
+    <div class="console-hint">100 / 3</div>
+    <div class="console-hint">2 ** 8</div>
+    <div class="console-hint">(10 + 5) * 2</div>
+
+    <h3 style="margin-top: 1.5rem; font-size: 1rem; color: var(--neural-cyan);">Strings</h3>
+    <div class="console-hint">"JavaScript".length</div>
+    <div class="console-hint">"hello".toUpperCase()</div>
+    <div class="console-hint">"Hello World".includes("World")</div>
+
+    <h3 style="margin-top: 1.5rem; font-size: 1rem; color: var(--neural-cyan);">Counting Things on This Page</h3>
+    <div class="console-hint">document.querySelectorAll('a')</div>
+    <div class="console-hint">document.querySelectorAll('a').length</div>
+    <div class="console-hint">document.querySelectorAll('img').length</div>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">How many links are on this page? How many images?</p>
+
+    <h3 style="margin-top: 1.5rem; font-size: 1rem; color: var(--neural-cyan);">Weird Stuff</h3>
+    <div class="console-hint">document.body.style.fontFamily = "Georgia"</div>
+    <div class="console-hint">document.body.style.transform = "rotate(1deg)"</div>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">Refresh to undo.</p>
+  </div>
+
+  <div class="card">
+    <h2>Free Exploration</h2>
+    <p>Now experiment on your own. Try to:</p>
+    <ul>
+      <li>Change colors</li>
+      <li>Change text</li>
+      <li>Count different elements</li>
+      <li>Type something wrong and read the error</li>
+    </ul>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">If you get an error, read it. We'll talk about errors on Day 2.</p>
+  </div>
+
+  <div class="card">
+    <h2>Resources</h2>
+    <p>When you want to learn more:</p>
+    <div class="link-list">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector" class="link-item" target="_blank">
+        MDN: querySelector
+        <span>The method we used to find elements</span>
+      </a>
+      <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Adding_interactivity" class="link-item" target="_blank">
+        MDN: Adding Interactivity
+        <span>Your first JavaScript tutorial</span>
+      </a>
+      <a href="https://firefox-source-docs.mozilla.org/devtools-user/" class="link-item" target="_blank">
+        Firefox DevTools Guide
+        <span>Official documentation</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>DESN 378: Code + Design</strong> — Console Playground</p>
+    <p>Everything you change here resets when you refresh. Experiment freely!</p>
+  </footer>
+
+  <script>
+    // This page intentionally has minimal JavaScript.
+    // The console is YOUR playground.
+
+    // But here's one helper for the curious:
+    console.log('%c Welcome to the Console Playground!', 'color: #01B799; font-size: 16px; font-weight: bold;');
+    console.log('%c Try: document.querySelector("h1").style.color = "purple"', 'color: #22D3EE;');
+    console.log('%c Or find the hidden secret...', 'color: #A855F7; font-style: italic;');
+  </script>
+</body>
+</html>

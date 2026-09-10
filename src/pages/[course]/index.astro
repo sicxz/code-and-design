@@ -4,7 +4,7 @@ import CourseTwoHome from '../../course-pages/course-2/index.astro';
 import { COURSE_REGISTRY, isCourseId } from '../../lib/courseRegistry';
 
 export function getStaticPaths() {
-  return Object.keys(COURSE_REGISTRY).map((course) => ({
+  return Object.keys(COURSE_REGISTRY).filter(id => id !== '1').map((course) => ({
     params: { course },
   }));
 }

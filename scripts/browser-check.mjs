@@ -1,0 +1,111 @@
+import { createRequire } from 'node:module';
+import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import assert from 'node:assert/strict';
+const require = createRequire(import.meta.url);
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const base = process.env.COURSE_PREVIEW_URL || 'http://127.0.0.1:4321';
+const output = resolve(process.env.COURSE_QA_OUTPUT || '../review/browser');
+mkdirSync(output,{recursive:true});
+const browser = await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE || undefined});
+const context = await browser.newContext({viewport:{width:1280,height:900}});
+const page = await context.newPage();
+const errors=[];
+page.on('pageerror',error=>errors.push(error.message));
+const paths=['/1/','/1/peel-up-the-pixels/','/curriculum/','/1/weeks/week-5/','/1/assignments/final-portfolio/','/1-spring-2026/','/2/'];
+for(const width of [1280,375]) {
+  await page.setViewportSize({width,height:900});
+  for(const path of paths) {
+    const response = await page.goto(base+path); assert.equal(response.status(),200,path);
+    await page.locator('h1').first().waitFor();
+    if(!path.startsWith('/1-spring') && path!='/2/') {
+      const size = await page.evaluate(()=>({content:document.documentElement.scrollWidth,viewport:window.innerWidth}));
+      assert.ok(size.content<=size.viewport+1,`${path} overflows at ${width}: ${JSON.stringify(size)}`);
+    }
+    if(['/1/','/1/peel-up-the-pixels/','/curriculum/'].includes(path)) await page.screenshot({path:resolve(output,`${path.replaceAll('/','_')}-${width}.png`)});
+  }
+}
+await page.setViewportSize({width:1280,height:900});
+await page.goto(base+'/1/peel-up-the-pixels/');
+const sizeButton=page.getByRole('button',{name:'Compare a smaller heading',exact:true});
+await sizeButton.focus(); await page.keyboard.press('Enter');
+assert.equal(await page.locator('.demo-title').evaluate(el=>getComputedStyle(el).fontSize),'32px');
+assert.equal(await page.locator('#code-size').textContent(),'32px');
+await page.getByRole('button',{name:'Reveal HTML structure',exact:true}).click();
+await page.getByRole('button',{name:'Reveal CSS boxes',exact:true}).click();
+assert.equal(await page.locator('.demo-notice').evaluate(el=>getComputedStyle(el).padding),'32px');
+await page.getByRole('button',{name:'Reset the example',exact:true}).click();
+assert.equal(await page.locator('.demo-title').evaluate(el=>getComputedStyle(el).fontSize),'48px');
+await page.getByRole('link',{name:'Make a plan',exact:true}).click(); assert.equal(new URL(page.url()).hash,'#plan');
+const pen=JSON.parse(await page.locator('input[name="data"]').inputValue());
+const starterHTML=readFileSync('public/pixel-pilot/starter/index.html','utf8');
+const starterCSS=readFileSync('public/pixel-pilot/starter/style.css','utf8');
+assert.equal(pen.css,starterCSS);assert.equal(pen.html,starterHTML.match(/<body>([\s\S]*)<\/body>/)[1].trim());
+// Run the student's two edits in the actual downloadable starter.
+const exercise=await context.newPage();
+await exercise.goto(base+'/pixel-pilot/starter/index.html');
+assert.equal(await exercise.locator('h1').evaluate(el=>getComputedStyle(el).fontSize),'48px');
+await exercise.setContent(starterHTML.replace('<link rel="stylesheet" href="style.css">',`<style>${starterCSS.replace('font-size: 48px','font-size: 32px').replace('padding: 32px','padding: 16px')}</style>`));
+assert.equal(await exercise.locator('h1').evaluate(el=>getComputedStyle(el).fontSize),'32px');
+assert.equal(await exercise.locator('.notice').evaluate(el=>getComputedStyle(el).padding),'16px');
+// Verify the absent-instructor packet's exact expected results.
+const asyncHTML=readFileSync('public/fall-2026/starters/async-practice/index.html','utf8');
+const asyncCSS=readFileSync('public/fall-2026/starters/async-practice/styles.css','utf8');
+await exercise.setViewportSize({width:1000,height:800});
+await exercise.setContent(asyncHTML.replace('<link rel="stylesheet" href="styles.css">',`<style>${asyncCSS.replace('gap: 1rem','gap: 2rem').replace('repeat(3,','repeat(2,')}</style>`));
+assert.equal(await exercise.locator('.cards').evaluate(el=>getComputedStyle(el).gap),'32px');
+assert.equal(await exercise.locator('.cards').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length),2);
+assert.ok(await exercise.locator('.card').nth(2).evaluate(el=>el.offsetTop) > await exercise.locator('.card').nth(1).evaluate(el=>el.offsetTop));
+await exercise.setViewportSize({width:375,height:800});
+assert.equal(await exercise.locator('.cards').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length),1);
+// Recovery faults must actually produce the stated symptoms, then accept the taught repairs.
+await exercise.goto(base+'/fall-2026/starters/source-recovery/index.html');
+assert.equal(await exercise.locator('.note').evaluate(el=>getComputedStyle(el).padding),'0px');
+const recoveryHTML=readFileSync('public/fall-2026/starters/source-recovery/index.html','utf8');
+const recoveryCSS=readFileSync('public/fall-2026/starters/source-recovery/styles.css','utf8');
+await exercise.setContent(recoveryHTML.replace('</li></ul>','</li>').replace('<li>Explain your change.</li>','<li>Explain your change.</li></ul>').replace('<link rel="stylesheet" href="styles.css">',`<style>${recoveryCSS.replace('.notes {','.note {').replace('padding: 1rem','padding: 2rem')}</style>`));
+assert.equal(await exercise.locator('.note').evaluate(el=>getComputedStyle(el).padding),'32px');
+assert.equal(await exercise.locator('ul > li').count(),2);
+await exercise.close();
+await page.goto(base+'/curriculum/');
+await page.locator('[data-view-button="proposed"]').click();
+const competency = await page.locator('#competency-filter option').nth(1).getAttribute('value');
+await page.locator('#competency-filter').selectOption(competency);
+await page.locator('#course-select').selectOption('378');
+const selection = await page.locator('#share-address').inputValue();
+assert.equal(new URL(selection).searchParams.get('view'),'proposed');
+assert.equal(new URL(selection).searchParams.get('competency'),competency);
+await page.goto(selection);
+assert.equal(await page.locator('#course-select').inputValue(),'378');
+assert.equal(await page.locator('#competency-filter').inputValue(),competency);
+await page.locator('[data-view-button="current"]').click();await page.goBack();
+assert.equal(await page.locator('[data-view-button="proposed"]').getAttribute('aria-pressed'),'true');
+// Simulate blocked clipboard support and verify the keyboard-copy fallback.
+await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{value:undefined,configurable:true}));
+await page.getByRole('button',{name:'Copy link',exact:true}).click();
+assert.match(await page.locator('#share-status').textContent(),/address is selected/);
+assert.equal(await page.evaluate(()=>document.activeElement.id),'share-address');
+await page.emulateMedia({media:'print',reducedMotion:'reduce'});
+assert.equal(await page.locator('[data-map-view]:visible').count(),2);
+assert.equal(await page.locator('[data-course-detail]:visible').count(),13);
+await page.pdf({path:resolve(output,'curriculum-print.pdf'),format:'A4',printBackground:true});
+await page.goto(base+'/1/peel-up-the-pixels/');
+await page.pdf({path:resolve(output,'pixel-lesson-print.pdf'),format:'A4',printBackground:true});
+assert.equal(await page.locator('.lab-tools').isVisible(),false);
+await page.emulateMedia({media:'screen',reducedMotion:'reduce'});
+assert.equal(await page.locator('html').evaluate(el=>getComputedStyle(el).scrollBehavior),'auto');
+const fallback=await browser.newContext({javaScriptEnabled:false,viewport:{width:375,height:900}});
+const nojs=await fallback.newPage();
+await nojs.route('https://codepen.io/**',route=>route.abort());
+await nojs.goto(base+'/1/peel-up-the-pixels/');
+assert.equal(await nojs.locator('.lab-tools').isVisible(),false);
+assert.equal(await nojs.getByRole('link',{name:'Download index.html',exact:true}).isVisible(),true);
+assert.equal(await nojs.locator('noscript').isVisible(),true);
+await nojs.goto(base+'/curriculum/');
+assert.equal(await nojs.locator('[data-course-detail]:visible').count(),13);
+assert.equal(await nojs.locator('[data-map-view]:visible').count(),2);
+await fallback.close();
+assert.deepEqual(errors,[]);
+writeFileSync(resolve(output,'results.json'),JSON.stringify({status:'passed',routes:paths,widths:[1280,375],checks:['route status','horizontal overflow','pilot keyboard controls','reset','actual starter edits','asynchronous packet expected layout','source-recovery faults and fixes','CodePen payload equality','map selections','shared URL restoration','browser Back','clipboard fallback','complete print content','reduced motion','JavaScript-disabled and blocked CodePen fallback'],pageErrors:errors},null,2));
+await browser.close();
+console.log(`PASS: browser checks and print artifacts in ${output}`);

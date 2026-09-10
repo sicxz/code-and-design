@@ -1,0 +1,250 @@
+---
+import '../../styles/curriculum-map.css';
+import { catalogSource, courses, lanes, competencies, relationships, discussionQuestions } from '../../data/curriculum-map';
+
+const courseById = new Map(courses.map((course) => [course.id, course]));
+const course = (id: string) => courseById.get(id)!;
+const courseLabel = (id: string) => courseById.get(id)?.code ?? `DESN ${id}`;
+const selectionHref = (id: string, view = 'current') => `?view=${view}&course=${id}#course-${id}`;
+const views = ['current', 'proposed'] as const;
+const suggestedConnections = relationships.filter((relationship) => relationship.type === 'suggested-learning-connection');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="A working curriculum map for colleague discussion: current catalog sequences, proposed learning connections, and shared competencies across web, UX, and computational design." />
+    <title>Working curriculum map · Code + Design</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+  </head>
+  <body class="curriculum-document">
+    <a class="skip-link" href="#curriculum">Skip to curriculum map</a>
+    <header class="cm-masthead">
+      <a class="cm-brand" href="/">code<span aria-hidden="true">+</span>design</a>
+      <nav aria-label="Site"><a href="/1">DESN 368 course</a><a href="#discussion">Discussion questions</a></nav>
+    </header>
+
+    <main>
+      <section class="cm-intro" aria-labelledby="page-title">
+        <div class="cm-draft-line"><span class="cm-draft">Working draft</span><time datetime="2026-09-10">September 10, 2026</time><span>For colleague discussion</span></div>
+        <div class="cm-intro-grid">
+          <h1 id="page-title">Web, UX &<br />computational design.</h1>
+          <div class="cm-intro-note"><p>A map of what students learn, where courses meet, and what they could carry forward.</p><p>Start with the current catalog. Then explore a proposed division of teaching responsibilities and a few possible connections.</p></div>
+        </div>
+        <p class="cm-status-note">This is a public discussion draft, not an advising guide or an approved curriculum change. Course titles and prerequisites come from the <a href={catalogSource.url}>2026–27 EWU catalog</a>; proposed roles and pathways are starting points for conversation.</p>
+      </section>
+
+      <section id="curriculum" class="cm-workspace" aria-label="Interactive curriculum map">
+        <div class="cm-map-column">
+          <div class="cm-controls enhanced-only">
+            <fieldset class="cm-view-control"><legend>View</legend><div><button type="button" data-view-button="current" aria-pressed="true">Current catalog</button><button type="button" data-view-button="proposed" aria-pressed="false">Proposed connections</button></div></fieldset>
+            <div class="cm-filter"><label for="competency-filter">Trace a competency</label><select id="competency-filter"><option value="all">All competencies</option>{competencies.map((item) => <option value={item.id}>{item.title}</option>)}</select></div>
+          </div>
+          <noscript><p class="cm-noscript">Both views and all course notes are shown below. Course links jump to the relevant notes; printing includes the complete draft.</p></noscript>
+          <p id="filter-status" class="cm-filter-status enhanced-only" aria-live="polite">Select a course to inspect its scope and proposed role.</p>
+
+          {views.map((view) => (
+            <section class="cm-map-view" data-map-view={view} aria-labelledby={`view-title-${view}`}>
+              <div class="cm-view-heading"><h2 id={`view-title-${view}`}>{view === 'current' ? 'The current course sequences' : 'One possible division of responsibilities'}</h2><span>{view === 'current' ? 'Catalog, 2026–27' : 'Discussion proposal'}</span></div>
+              <p class="cm-map-caption">{view === 'current' ? 'Read each lane from left to right. Solid connections within lanes are published prerequisite sequences; entry requirements are written beside each lane.' : 'Keep the existing sequences visible. Clarify what each course develops, then explore connections across them. None of the suggested connections changes a prerequisite.'}</p>
+
+              <div class="cm-foundation" data-territory="foundation">
+                <a href={selectionHref('216', view)} data-course-link="216" data-link-view={view} class="cm-foundation-link"><span class="cm-course-code">DESN 216</span><strong>Digital Foundations</strong><span>Media, files & assets</span></a>
+                <p><span class="cm-solid-key" aria-hidden="true"></span>Published entry into DESN 368</p>
+              </div>
+
+              <div class="cm-lanes">
+                {lanes.map((lane) => (
+                  <section class="cm-lane" data-territory={lane.id} aria-labelledby={`${view}-${lane.id}-title`}>
+                    <div class="cm-lane-heading"><h3 id={`${view}-${lane.id}-title`}>{lane.title}</h3><p>{lane.id === 'ux' ? '338 has no listed prerequisite' : lane.id === 'web' ? '368 requires DESN 216' : '369 requires DESN 368'}</p></div>
+                    <ol class="cm-course-sequence">
+                      {lane.ids.map((id) => (
+                        <li><a class="cm-course-node" data-course-link={id} data-link-view={view} href={selectionHref(id, view)}>
+                          <span class="cm-course-code">{course(id).code}</span>
+                          <strong>{view === 'current' ? course(id).title : course(id).proposedFocus}</strong>
+                          <span class="cm-course-subtitle">{view === 'current' ? course(id).currentFocus : course(id).title}</span>
+                          <span class="cm-skill-role" data-skill-role aria-hidden="true"></span>
+                        </a></li>
+                      ))}
+                    </ol>
+                  </section>
+                ))}
+              </div>
+
+              {view === 'current' ? (
+                <div class="cm-neighbor" data-territory="creative"><div><span class="cm-neighbor-label">A related studio</span><a class="cm-course-node cm-neighbor-course" href={selectionHref('345')} data-course-link="345" data-link-view="current"><span class="cm-course-code">DESN 345</span><strong>Digital Game Design</strong><span class="cm-skill-role" data-skill-role aria-hidden="true"></span></a></div><p>Requires <strong>DESN 301 and 326</strong>.<br />A separate entry through storytelling and animation.</p></div>
+              ) : (
+                <section class="cm-opportunities" aria-labelledby="opportunity-title">
+                  <div class="cm-opportunity-heading"><h3 id="opportunity-title">Connections worth exploring</h3><span><span class="cm-dashed-key" aria-hidden="true"></span>Suggested, not prerequisites</span></div>
+                  <div class="cm-opportunity-grid">
+                    {['345', 'creative-coding', 'advanced-development'].map((id) => (
+                      <a class="cm-course-node cm-opportunity-node" data-territory={course(id).territory} data-course-link={id} data-link-view="proposed" href={selectionHref(id, 'proposed')}><span class="cm-course-code">{course(id).code}</span><strong>{course(id).title}</strong><span class="cm-course-subtitle">{id === '345' ? 'Shared ideas about state, feedback & play' : id === 'creative-coding' ? 'A repeatable studio with rotating topics' : 'An opportunity informed by existing expertise'}</span><span class="cm-skill-role" data-skill-role aria-hidden="true"></span></a>
+                    ))}
+                  </div>
+                  <p>No course eliminations, renumbering, or prerequisite changes are settled here. Creative Coding and Advanced Development are proposals.</p>
+                </section>
+              )}
+              <div class="cm-legend"><span><i class="cm-solid-key" aria-hidden="true"></i>Catalog sequence</span><span>Color groups related teaching territories.</span></div>
+            </section>
+          ))}
+        </div>
+
+        <aside class="cm-detail-panel" aria-labelledby="course-notes-title">
+          <div class="cm-detail-top"><h2 id="course-notes-title">Course notes</h2><div class="enhanced-only"><label for="course-select">Inspect a course</label><select id="course-select">{courses.map((item) => <option value={item.id} selected={item.id === '368'}>{item.status === 'catalog' ? item.code : 'Proposal'} · {item.title}</option>)}</select></div><p class="cm-detail-context">Catalog topics above the line; a possible teaching role below it.</p></div>
+          {courses.map((item) => (
+            <article class="cm-course-detail" id={`course-${item.id}`} data-course-detail={item.id} data-territory={item.territory}>
+              <p class="cm-detail-code">{item.code}{item.status === 'catalog' ? ' / 5 credits' : ' / not approved'}</p>
+              <h3 tabindex="-1">{item.title}</h3>
+              {item.status === 'catalog' ? <><h4>Published topics</h4><ul class="cm-topic-list">{item.catalogTopics.map((topic) => <li>{topic}</li>)}</ul><h4>Official prerequisite</h4><p>{item.prerequisite}</p><a class="cm-source-link" href={catalogSource.url}>Check the catalog entry</a></> : <p class="cm-unapproved">{item.prerequisite}</p>}
+              <div class="cm-course-proposal"><h4>Proposed teaching role</h4><p>{item.proposal}</p><h4>Possible evidence of learning</h4><p>{item.evidence}</p></div>
+              <a class="cm-return-link" href="#curriculum">Back to the map</a>
+            </article>
+          ))}
+        </aside>
+      </section>
+
+      <section class="cm-competencies" aria-labelledby="competency-title">
+        <div class="cm-section-heading"><h2 id="competency-title">Where the work meets</h2><p>Coverage can be shared. The question is who introduces a skill, who deepens it, and what evidence travels with the student.</p></div>
+        <p class="cm-reading-note"><strong>How to read this:</strong> “Current scope” is a reading of catalog topics, not an audit of taught assignments. “Proposed lead” and “Reinforcement” are suggested teaching responsibilities, not official course ownership.</p>
+        <div class="cm-table-scroll" tabindex="0" role="region" aria-label="Competency comparison table; scroll horizontally on small screens">
+          <table class="cm-competency-table"><caption>Current scope and proposed competency responsibilities</caption><thead><tr><th scope="col">Competency</th><th scope="col">Current scope</th><th scope="col">Proposed lead</th><th scope="col">Reinforcement</th></tr></thead><tbody>{competencies.map((item) => <tr data-competency-row={item.id}><th scope="row"><strong>{item.title}</strong><span>{item.description}</span></th><td>{item.currentCourseIds.map((id) => <a data-course-link={id} data-link-view="current" href={selectionHref(id)}>{courseLabel(id)}</a>)}</td><td>{item.proposedLeadIds.map((id) => <a data-course-link={id} data-link-view="proposed" href={selectionHref(id, 'proposed')}>{course(id).status === 'catalog' ? courseLabel(id) : course(id).title}</a>)}</td><td>{item.proposedReinforcementIds.map((id) => <a data-course-link={id} data-link-view="proposed" href={selectionHref(id, 'proposed')}>{course(id).status === 'catalog' ? courseLabel(id) : course(id).title}</a>)}</td></tr>)}</tbody></table>
+        </div>
+        <p id="competency-question" class="cm-competency-question enhanced-only">Select a competency above to trace it through the map.</p>
+      </section>
+
+      <section class="cm-connection-notes" aria-labelledby="connections-title">
+        <div class="cm-section-heading"><h2 id="connections-title">Connect the teaching.</h2><p>These are invitations to coordinate exercises and expectations. Dashed connections describe possibilities, not student enrollment requirements.</p></div>
+        <ul class="cm-connection-list">{suggestedConnections.map((item) => <li><div class="cm-connection-route"><a data-course-link={item.from} data-link-view="proposed" href={selectionHref(item.from, 'proposed')}>{course(item.from).status === 'catalog' ? courseLabel(item.from) : course(item.from).title}</a><span class="cm-dashed-key" aria-label="suggested learning connection"></span><a data-course-link={item.to} data-link-view="proposed" href={selectionHref(item.to, 'proposed')}>{course(item.to).status === 'catalog' ? courseLabel(item.to) : course(item.to).title}</a></div><p>{item.note}</p></li>)}</ul>
+      </section>
+
+      <section id="discussion" class="cm-discussion" aria-labelledby="discussion-title"><div class="cm-section-heading"><h2 id="discussion-title">Bring these questions to the table.</h2><p>The immediate task is to make 368 stronger, with clear expectations for 378. Broader curriculum choices deserve a shared conversation.</p></div><div class="cm-question-grid">{discussionQuestions.map((item) => <article><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></section>
+
+      <section class="cm-share enhanced-only" aria-labelledby="share-title"><div><h2 id="share-title">Share this view</h2><p>The link keeps your view, competency, and selected course. Print includes both views and every course note.</p></div><div class="cm-share-actions"><button type="button" id="copy-view">Copy link</button><button type="button" id="print-map">Print complete draft</button><a id="selection-link" href="?view=current&course=368#course-368">Open selection link</a></div><label for="share-address">Selection address</label><input id="share-address" type="url" readonly /><p id="share-status" role="status" aria-live="polite"></p></section>
+    </main>
+
+    <footer class="cm-footer"><p><strong>Source & status</strong><br /><a href={catalogSource.url}>{catalogSource.title}</a>, checked <time datetime={catalogSource.checkedOn}>September 10, 2026</time>. Catalog topics are summarized; the linked catalog governs enrollment requirements. Proposed roles, evidence, and connections adapt the working curriculum discussion.</p><p>Prepared by Travis Masingale for colleague review.<br />Public draft; omitted from search indexing and primary course navigation.</p><a href="/">Return to Code + Design</a></footer>
+
+    <script>
+      import { courses, competencies } from '../../data/curriculum-map';
+
+      const root = document.querySelector<HTMLElement>('.curriculum-document');
+      if (root) {
+        const courseIds = new Set(courses.map((item) => item.id));
+        const proposalIds = new Set(courses.filter((item) => item.status === 'proposal').map((item) => item.id));
+        const filter = document.querySelector<HTMLSelectElement>('#competency-filter')!;
+        const courseSelect = document.querySelector<HTMLSelectElement>('#course-select')!;
+        const address = document.querySelector<HTMLInputElement>('#share-address')!;
+        const selectionLink = document.querySelector<HTMLAnchorElement>('#selection-link')!;
+        const shareStatus = document.querySelector<HTMLElement>('#share-status')!;
+        let view = 'current';
+        let selectedCourse = '368';
+        let selectedCompetency = 'all';
+
+        function readAddress() {
+          const params = new URLSearchParams(window.location.search);
+          view = params.get('view') === 'proposed' ? 'proposed' : 'current';
+          const requestedCourse = params.get('course') ?? window.location.hash.replace('#course-', '');
+          selectedCourse = courseIds.has(requestedCourse) ? requestedCourse : '368';
+          selectedCompetency = competencies.some((item) => item.id === params.get('competency')) ? params.get('competency')! : 'all';
+          if (proposalIds.has(selectedCourse)) view = 'proposed';
+        }
+
+        function render(updateAddress = false) {
+          const competency = competencies.find((item) => item.id === selectedCompetency);
+          filter.value = selectedCompetency;
+          courseSelect.value = selectedCourse;
+          document.querySelectorAll<HTMLButtonElement>('[data-view-button]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.viewButton === view)));
+          document.querySelectorAll<HTMLElement>('[data-map-view]').forEach((panel) => { panel.hidden = panel.dataset.mapView !== view; });
+          document.querySelectorAll<HTMLElement>('[data-course-detail]').forEach((panel) => { panel.hidden = panel.dataset.courseDetail !== selectedCourse; });
+          document.querySelectorAll<HTMLAnchorElement>('[data-course-link]').forEach((link) => {
+            const id = link.dataset.courseLink!;
+            const role = !competency ? '' : view === 'current'
+              ? competency.currentCourseIds.includes(id) ? 'Listed scope' : ''
+              : competency.proposedLeadIds.includes(id) ? 'Proposed lead' : competency.proposedReinforcementIds.includes(id) ? 'Reinforcement' : '';
+            link.classList.toggle('is-selected', id === selectedCourse);
+            if (link.classList.contains('cm-course-node') || link.classList.contains('cm-foundation-link')) {
+              link.dataset.match = competency ? role ? 'yes' : 'no' : 'all';
+              const roleLabel = link.querySelector<HTMLElement>('[data-skill-role]');
+              if (roleLabel) { roleLabel.textContent = role; roleLabel.hidden = !role; roleLabel.removeAttribute('aria-hidden'); }
+              if (id === selectedCourse) link.setAttribute('aria-current', 'true');
+              else link.removeAttribute('aria-current');
+            }
+          });
+          document.querySelectorAll<HTMLElement>('[data-competency-row]').forEach((row) => row.classList.toggle('is-traced', row.dataset.competencyRow === selectedCompetency));
+          const matches = competency ? view === 'current' ? competency.currentCourseIds : [...new Set([...competency.proposedLeadIds, ...competency.proposedReinforcementIds])] : [];
+          document.querySelector('#filter-status')!.textContent = competency
+            ? `${competency.title}: ${matches.length} courses highlighted. ${view === 'current' ? 'Highlights indicate catalog scope.' : 'Labels distinguish proposed leads from reinforcement.'} Other courses remain visible for context.`
+            : 'Select a course to inspect its scope and proposed role.';
+          document.querySelector('#competency-question')!.textContent = competency ? competency.discussion : 'Select a competency above to trace it through the map.';
+
+          const url = new URL(window.location.href);
+          url.search = '';
+          url.searchParams.set('view', view);
+          url.searchParams.set('course', selectedCourse);
+          if (selectedCompetency !== 'all') url.searchParams.set('competency', selectedCompetency);
+          url.hash = `course-${selectedCourse}`;
+          address.value = url.href;
+          selectionLink.href = url.href;
+          if (updateAddress) {
+            try { window.history.pushState({}, '', url); } catch { /* The explicit selection link still preserves the view. */ }
+          }
+          shareStatus.textContent = '';
+        }
+
+        function focusCourse() {
+          const panel = document.querySelector<HTMLElement>('.cm-detail-panel');
+          if (panel) panel.scrollTop = 0;
+          const heading = document.querySelector<HTMLElement>(`#course-${selectedCourse} h3`);
+          heading?.focus({ preventScroll: true });
+          const position = heading?.getBoundingClientRect();
+          if (window.matchMedia('(max-width: 1050px)').matches || (position && (position.top < 0 || position.bottom > window.innerHeight))) {
+            heading?.scrollIntoView({ block: 'start' });
+          }
+        }
+
+        document.querySelectorAll<HTMLButtonElement>('[data-view-button]').forEach((button) => button.addEventListener('click', () => {
+          view = button.dataset.viewButton!;
+          if (view === 'current' && proposalIds.has(selectedCourse)) selectedCourse = '368';
+          render(true);
+        }));
+        filter.addEventListener('change', () => { selectedCompetency = filter.value; render(true); });
+        courseSelect.addEventListener('change', () => {
+          selectedCourse = courseSelect.value;
+          if (proposalIds.has(selectedCourse)) view = 'proposed';
+          render(true);
+          focusCourse();
+        });
+        document.querySelectorAll<HTMLAnchorElement>('[data-course-link]').forEach((link) => link.addEventListener('click', (event) => {
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+          event.preventDefault();
+          selectedCourse = link.dataset.courseLink!;
+          view = link.dataset.linkView === 'proposed' ? 'proposed' : 'current';
+          render(true);
+          focusCourse();
+        }));
+        document.querySelector('#copy-view')!.addEventListener('click', async () => {
+          try {
+            if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+            await navigator.clipboard.writeText(address.value);
+            shareStatus.textContent = 'Link copied. It opens the selected course and competency.';
+          } catch {
+            address.focus();
+            address.select();
+            shareStatus.textContent = 'The address is selected. Copy it with your keyboard, or use “Open selection link”.';
+          }
+        });
+        document.querySelector('#print-map')!.addEventListener('click', () => window.print());
+        window.addEventListener('popstate', () => { readAddress(); render(); });
+        readAddress();
+        render();
+        root.classList.add('is-enhanced');
+      }
+    </script>
+  </body>
+</html>

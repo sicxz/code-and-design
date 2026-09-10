@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:course": "python3 scripts/check-course.py",
+    "package:course": "node scripts/build-course-package.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.6",

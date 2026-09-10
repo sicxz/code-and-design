@@ -15,7 +15,7 @@ type AssignmentEntry = {
 };
 
 export function getStaticPaths() {
-  return Object.values(COURSE_REGISTRY).flatMap((course) =>
+  return Object.values(COURSE_REGISTRY).filter(course => course.id !== '1').flatMap((course) =>
     course.assignments.map((assignment) => ({
       params: { course: course.id, slug: assignment.slug },
       props: { assignment },
