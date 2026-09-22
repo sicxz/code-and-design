@@ -1,0 +1,34 @@
+---
+import { readLesson, renderLessonMarkdown, lessonTypes, lessonHref, type LessonType, type CourseWeek, type LessonModule } from '../../lib/fall2026';
+import LessonTree from './LessonTree.astro';
+import TypeBadge from './TypeBadge.astro';
+import NextUp from './NextUp.astro';
+import WeekOutcomes from './WeekOutcomes.astro';
+import OpeningScene from './OpeningScene.astro';
+import openingScene from '../../data/fall2026/opening-scene.json';
+interface Props { week: CourseWeek; module: LessonModule }
+const { week, module: courseModule } = Astro.props;
+const first = courseModule.lessons[0];
+---
+<div class="module-index" data-lesson-module>
+  <article class="prose module-intro" set:html={readLesson(courseModule.intro)} />
+  {week.id === 'week-0' && <div><button class="button secondary" type="button" data-opening-replay hidden>{openingScene.controls.replay}</button></div>}
+  <Fragment set:html={renderLessonMarkdown('> **Draft for instructor review.** Waits on: the lesson-level items listed in COURSE.md "Open".')} />
+  <WeekOutcomes weekId={week.id} />
+  <section class="lesson-card" aria-labelledby="lesson-types-title">
+    <div class="lesson-color-bar" aria-hidden="true"></div>
+    <h2 id="lesson-types-title">Six lesson types</h2>
+    <dl class="lesson-legend">
+      {(Object.keys(lessonTypes) as LessonType[]).map(type => (
+        <div><dt><TypeBadge type={type} /></dt><dd>{lessonTypes[type].definition}<span class="lesson-category">Category: {lessonTypes[type].category}.</span></dd></div>
+      ))}
+    </dl>
+  </section>
+  <section class="module-lessons" aria-labelledby="module-lessons-title">
+    <h2 id="module-lessons-title">Lessons in this week</h2>
+    <p class="lesson-caption">Follow the lessons in order. Return to any page when you need it.</p>
+    <LessonTree weekId={week.id} />
+  </section>
+  <NextUp href={lessonHref(week.id, first.slug)} label={first.title} type={first.type} note={first.summary} />
+  {week.id === 'week-0' && <OpeningScene />}
+</div>

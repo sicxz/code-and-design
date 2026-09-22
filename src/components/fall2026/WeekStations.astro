@@ -1,0 +1,22 @@
+---
+import { fall, getLessonModule } from '../../lib/fall2026';
+import LessonTree from './LessonTree.astro';
+---
+<div class="course-tree">
+  {fall.weeks.map(week => {
+    const courseModule = getLessonModule(week.id);
+    return (
+      <details class="module" data-station={week.id} open={week.id === 'week-0'}>
+        <summary class="module-summary">
+          <span class="station-node" aria-hidden="true"></span>
+          <span class="station-title"><span class="week-number">Week {week.number}</span><span class="station-name">{week.title}</span></span>
+          {courseModule
+            ? <span class="module-progress" data-week-progress={week.id} data-week-number={week.number}><span class="progress-label">0 of {courseModule.lessons.length} complete</span><progress value="0" max={courseModule.lessons.length} aria-label={`Week ${week.number}: 0 of ${courseModule.lessons.length} complete`}>0</progress></span>
+            : <span class="module-progress"><span class="progress-label">Lessons in preparation</span></span>}
+          <span class="disclosure" aria-hidden="true">⌄</span>
+        </summary>
+        {courseModule ? <LessonTree weekId={week.id} /> : <p class="station-preview">Lessons in preparation.</p>}
+      </details>
+    );
+  })}
+</div>

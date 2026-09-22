@@ -1,0 +1,6 @@
+---
+import { lessonTypes, type LessonType } from '../../lib/fall2026';
+interface Props { type: LessonType }
+const { type } = Astro.props;
+---
+<span class={`badge badge-${type}`} data-lesson-type={type}><span class={`type-node node-${type}`} aria-hidden="true"></span>{lessonTypes[type].label}</span>

@@ -104,7 +104,7 @@ export const COURSE_REGISTRY: Record<CourseId, CourseDefinition> = {
   '2': {
     id: '2',
     themeId: '2',
-    title: 'DESN378: Code+Design 2',
+    title: 'DESN 378: Web Design + Code 2',
     courseCode: 'DESN378',
     term: 'Winter 2026',
     subtitle: 'Sense. Respond. Adapt.',

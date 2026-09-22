@@ -1,0 +1,192 @@
+{
+  "types": {
+    "learn": {
+      "label": "Learn",
+      "category": "ungraded or participation and engagement",
+      "canvas": "lrn",
+      "definition": "A short explanation with one example and, when useful, one check question."
+    },
+    "workshop": {
+      "label": "Workshop",
+      "category": "participation and engagement",
+      "canvas": "tutorial, in-class",
+      "definition": "A guided build in numbered steps, one small change per step."
+    },
+    "apply": {
+      "label": "Apply",
+      "category": "weekly assignments",
+      "canvas": "pr, lab, hw",
+      "definition": "A brief, a starter, named checks, and your own choices."
+    },
+    "review": {
+      "label": "Review",
+      "category": "weekly assignments",
+      "canvas": "r&d visual notes",
+      "definition": "The week's ideas in one page and your handwritten visual notes."
+    },
+    "check": {
+      "label": "Check",
+      "category": "participation and engagement",
+      "canvas": "p&e",
+      "definition": "A few questions. No grade weight beyond participation."
+    },
+    "project": {
+      "label": "Project",
+      "category": "projects",
+      "canvas": "pN.M",
+      "definition": "A graded artifact with a design step in Figma and a build step in code."
+    }
+  },
+  "modules": {
+    "week-0": {
+      "intro": "weeks/week-0.md",
+      "lessons": [
+        {
+          "slug": "syllabus-first",
+          "title": "Syllabus first",
+          "type": "learn",
+          "minutes": 20,
+          "canvasCode": "lrn",
+          "canvasCategory": "ungraded",
+          "summary": "Read the syllabus with the class and find out where your work belongs.",
+          "file": "weeks/week-0/01-syllabus-first.md",
+          "journeySteps": [
+            "canvas-week-0",
+            "syllabus"
+          ],
+          "story": false,
+          "draft": null
+        },
+        {
+          "slug": "markdown",
+          "title": "Markdown: source and preview",
+          "type": "learn",
+          "minutes": 10,
+          "canvasCode": "lrn",
+          "canvasCategory": "ungraded",
+          "summary": "Compare a small Markdown file with its preview.",
+          "file": "weeks/week-0/03-markdown.md",
+          "journeySteps": [],
+          "story": false,
+          "draft": null
+        },
+        {
+          "slug": "practice-markdown",
+          "title": "Practice Markdown live",
+          "type": "workshop",
+          "minutes": 15,
+          "canvasCode": "tutorial",
+          "canvasCategory": "participation and engagement",
+          "summary": "Add Markdown marks to the companion's notes and watch the preview change as you type.",
+          "file": "weeks/week-0/04-practice-markdown.md",
+          "journeySteps": [],
+          "story": false,
+          "draft": "The companion's notes as practice material."
+        },
+        {
+          "slug": "what-a-repository-is",
+          "title": "What a repository is",
+          "type": "learn",
+          "minutes": 15,
+          "canvasCode": "lrn",
+          "canvasCategory": "ungraded",
+          "summary": "Name the parts of a repository before you set up your workspace.",
+          "file": "weeks/week-0/05-what-a-repository-is.md",
+          "journeySteps": [
+            "repository-lesson"
+          ],
+          "story": false,
+          "draft": null
+        },
+        {
+          "slug": "set-up-your-accounts",
+          "title": "Set up your accounts",
+          "type": "workshop",
+          "minutes": 20,
+          "canvasCode": "in-class",
+          "canvasCategory": "participation and engagement",
+          "summary": "Begin with GitHub and finish the remaining account setup over the weekend.",
+          "file": "weeks/week-0/06-set-up-your-accounts.md",
+          "journeySteps": [
+            "accounts"
+          ],
+          "story": false,
+          "draft": null
+        },
+        {
+          "slug": "get-your-workspace",
+          "title": "Get your workspace",
+          "type": "workshop",
+          "minutes": 25,
+          "canvasCode": "in-class",
+          "canvasCategory": "participation and engagement",
+          "summary": "Accept the invitation and the Workspace assignment, then check your private repository.",
+          "file": "weeks/week-0/07-get-your-workspace.md",
+          "journeySteps": [],
+          "story": false,
+          "draft": "Four screens the rehearsal did not photograph: the invitation email, the Join button, the authorization page and the Accept assignment checklist. The instructor captures them in class."
+        },
+        {
+          "slug": "introduction",
+          "title": "Your introduction",
+          "type": "apply",
+          "minutes": 20,
+          "canvasCode": "pr",
+          "canvasCategory": "weekly assignments",
+          "summary": "Mark where you are starting. Then write your introduction in Markdown.",
+          "file": "weeks/week-0/08-introduction.md",
+          "journeySteps": [
+            "intake",
+            "introduction"
+          ],
+          "story": false,
+          "draft": null
+        },
+        {
+          "slug": "readings-and-visual-notes",
+          "title": "Readings and visual notes",
+          "type": "review",
+          "minutes": 60,
+          "canvasCode": "r&d",
+          "canvasCategory": "weekly assignments",
+          "summary": "Read the two weekend essays and make handwritten visual notes.",
+          "file": "weeks/week-0/09-readings-and-visual-notes.md",
+          "journeySteps": [
+            "readings-and-visual-notes"
+          ],
+          "story": false,
+          "draft": "The leading questions."
+        },
+        {
+          "slug": "your-figma-card",
+          "title": "Your Figma card",
+          "type": "apply",
+          "minutes": 30,
+          "canvasCode": "pr",
+          "canvasCategory": "weekly assignments",
+          "summary": "Fill in your own copy of the class card in Figma.",
+          "file": "weeks/week-0/09b-your-figma-card.md",
+          "journeySteps": [],
+          "story": false,
+          "draft": "The shared file set so class members can edit it, the master card updated to these prompts, and whether the card is a Canvas item."
+        },
+        {
+          "slug": "submit-and-return",
+          "title": "Submit and return",
+          "type": "check",
+          "minutes": 10,
+          "canvasCode": "p&e",
+          "canvasCategory": "participation and engagement",
+          "summary": "Check Canvas for submission and reopen your work before Monday.",
+          "file": "weeks/week-0/10-submit-and-return.md",
+          "journeySteps": [
+            "canvas-submission",
+            "return"
+          ],
+          "story": false,
+          "draft": "Whether the Figma card is a Canvas item."
+        }
+      ]
+    }
+  }
+}

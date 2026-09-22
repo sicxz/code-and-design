@@ -9,6 +9,12 @@ Make a recipe someone can follow. Before choosing colors, decide which content i
 
 Download the [recipe starter](/fall-2026/starters/recipe.zip). It contains a valid document shell, minimal CSS, a task README, and deliberately unfinished content. It is a starting point, not a model submission. Use a recipe you know or adapt one with attribution. Do not copy a long copyrighted article.
 
+## References and documentation
+
+Use **[HTML.com](https://html.com/)** as the main reference for this week's HTML. Focus on tags and attributes, headings, paragraphs, lists, links, and images. Look up element details in [MDN Web Docs](https://developer.mozilla.org/en-US/) or search [DevDocs](https://devdocs.io/). The [Milanote references board](https://app.milanote.com/1TZEGF153WvYf7?p=5XZtUQNrEkQ) holds the wider collection.
+
+Keep one reference open beside your recipe. Look up a question, type a small example, and explain its effect in your own page. See [References and documentation](/1/resources/references/) for the lookup routine. The inherited optional manifesto is superseded; do not use it as the separate introduction-to-HTML bridge, whose exact prompt remains part of the opening-package review.
+
 ## Build sequence
 
 Each studio uses 15 minutes to reconnect, 25 minutes for a demonstration, 30 minutes for a guided build, a 10-minute break, 45 minutes for your page, 20 minutes for a pair source check, and 5 minutes to save. The break is 2:10–2:20 p.m.

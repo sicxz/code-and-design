@@ -1,0 +1,21 @@
+---
+import FallCourseLayout from '../../../../layouts/FallCourseLayout.astro';
+import LessonShell from '../../../../components/fall2026/LessonShell.astro';
+import { fall, lessonModules } from '../../../../lib/fall2026';
+import lessonStyles from '../../../../styles/fall2026-lessons.css?inline';
+export function getStaticPaths() {
+  return Object.entries(lessonModules).flatMap(([weekId, courseModule]) => {
+    const week = fall.weeks.find(week => week.id === weekId);
+    if (!week) throw new Error(`Module has no course week: ${weekId}`);
+    return courseModule.lessons.map((lesson, index) => ({
+      params: { week: weekId, lesson: lesson.slug },
+      props: { week, module: courseModule, lesson, index },
+    }));
+  });
+}
+const { week, module: courseModule, lesson, index } = Astro.props;
+---
+<FallCourseLayout title={`${lesson.title} · Week ${week.number}`} wide>
+  <style is:inline set:html={lessonStyles} />
+  <LessonShell week={week} module={courseModule} lesson={lesson} index={index} />
+</FallCourseLayout>

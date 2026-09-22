@@ -26,7 +26,7 @@
     },
     {
       "id": "weekly",
-      "label": "Weekly practice",
+      "label": "Weekly assignments",
       "weight": 30
     },
     {
@@ -40,15 +40,61 @@
       "weight": 10
     }
   ],
-  "outcomes": [
-    "Explain how semantic HTML gives content a structure and CSS changes its presentation.",
-    "Build readable pages with meaningful headings, links, images, and accessible navigation.",
-    "Use selectors, the cascade, spacing, typography, Flexbox, and Grid to implement visual decisions.",
-    "Adapt a layout to narrow and wide viewports and test keyboard access and zoom.",
-    "Locate a fault, form a prediction, change source, and verify the result.",
-    "Maintain one repository, commit changes, and publish a working static website.",
-    "Credit sources and assets, disclose permitted AI assistance, and independently explain submitted code.",
-    "Curate a portfolio that communicates design intent and evidence of learning."
+  "plos": [
+    {
+      "id": "PLO-1",
+      "title": "Visual Vocabulary",
+      "text": "Achieve fluency in design's visual language."
+    },
+    {
+      "id": "PLO-2",
+      "title": "Technical Skills",
+      "text": "Demonstrate proficiency in relevant design skills."
+    }
+  ],
+  "objectives": [
+    {
+      "n": 1,
+      "plo": "PLO-1",
+      "title": "Apply Graphic Design Principles to Web Interfaces",
+      "text": "Incorporate layout, typography, and color principles into web design projects to build a visually coherent interface a reader can follow."
+    },
+    {
+      "n": 2,
+      "plo": "PLO-1",
+      "title": "Read the Web as a Made Thing",
+      "text": "Inspect how pages are built, and explain the choices and tools behind them, including AI assistance, on a platform that keeps changing."
+    },
+    {
+      "n": 3,
+      "plo": "PLO-1",
+      "title": "Design for Accessibility and Inclusivity",
+      "text": "Apply WCAG-based practices so pages work for people of diverse abilities: meaningful structure, text alternatives, keyboard access, visible focus, and layouts that reflow."
+    },
+    {
+      "n": 4,
+      "plo": "PLO-2",
+      "title": "Write HTML and CSS by Hand",
+      "text": "Write clean, valid, semantic HTML and CSS, and explain and modify any code you submit."
+    },
+    {
+      "n": 5,
+      "plo": "PLO-2",
+      "title": "Implement Responsive Design Principles",
+      "text": "Apply responsive design techniques, including media queries, Flexbox, and CSS Grid, so layouts adapt across devices and screen sizes."
+    },
+    {
+      "n": 6,
+      "plo": "PLO-2",
+      "title": "Use Version Control and Browser Tools",
+      "text": "Use GitHub to keep one repository, commit changes, and publish a working site, and use browser developer tools to locate a fault, predict a change, and verify the result."
+    },
+    {
+      "n": 7,
+      "plo": "PLO-2",
+      "title": "Direct and Evaluate AI Assistance",
+      "text": "Use AI assistance only within the stage an assignment allows, evaluate its output against the source, the browser, and documentation, and explain and revise any code you keep."
+    }
   ],
   "weeks": [
     {
@@ -59,8 +105,10 @@
       "endDate": "2026-09-27",
       "summary": "Look beneath a designed surface; change one element and explain its effect.",
       "outcomes": [
-        "Distinguish HTML structure from CSS presentation.",
-        "Find, predict, edit, and explain one source change."
+        "State what Canvas, the course site, and your repository each hold.",
+        "Predict what a Markdown mark will change. Make the change without AI. Compare the preview with your prediction.",
+        "Accept the Workspace assignment. Commit a first edit in your own private repository.",
+        "Answer the four introduction questions in Markdown in your repository. Submit the repository link."
       ],
       "estimatedHours": 2,
       "sessions": [
@@ -83,8 +131,10 @@
       "endDate": "2026-10-04",
       "summary": "Build a recipe with headings, ordered steps, meaningful links, and an image you can credit.",
       "outcomes": [
-        "Choose elements by meaning.",
-        "Use correct nesting and useful text alternatives."
+        "Structure the recipe with meaningful headings, unordered ingredients, and ordered steps.",
+        "Explain the recipe list choice after moving one step outside its list in a copy.",
+        "Credit one permitted recipe image with purposeful alternative text and a descriptive source link.",
+        "Test the recipe source link, image, and latest saved HTML before delivery."
       ],
       "estimatedHours": 4,
       "sessions": [
@@ -112,9 +162,10 @@
       "endDate": "2026-10-11",
       "summary": "Use CSS to create hierarchy and breathing room, then demonstrate an independent change.",
       "outcomes": [
-        "Explain a selector and declaration.",
-        "Distinguish margin from padding.",
-        "Build and explain the recipe without AI."
+        "Explain how a selector and declaration create the recipe type hierarchy and spacing.",
+        "Predict a margin or padding change, make it without AI, and compare the visible result.",
+        "Publish a readable recipe whose headings, lists, image credit, and source link survive narrow widths.",
+        "Repair a supplied nesting or class-name fault without AI and verify the saved result."
       ],
       "estimatedHours": 5,
       "sessions": [
@@ -143,9 +194,11 @@
       "endDate": "2026-10-18",
       "summary": "Migrate one page manually, publish it, and plan a small tribute page in Figma.",
       "outcomes": [
-        "Trace a relative path from file to published URL.",
-        "Commit and publish a change.",
-        "Translate one visual hierarchy into source."
+        "Trace a relative path from the tribute file to the recipe folder and test the destination.",
+        "Commit, push, and verify one manual recipe change on its published page.",
+        "Plan the real tribute content and reading order in one wide Figma frame.",
+        "Credit two tribute sources beside the planned content and one permitted image.",
+        "Ask AI to explain one tribute path or commit message, then check its answer against documentation."
       ],
       "estimatedHours": 6,
       "sessions": [
@@ -173,8 +226,10 @@
       "endDate": "2026-10-25",
       "summary": "Use flexible layout for a tribute and practice fixing one rule at a time.",
       "outcomes": [
-        "Use Flexbox without changing meaningful reading order.",
-        "Explain the cascade in a concrete debugging example."
+        "Arrange the tribute figure and introduction with Flexbox while preserving meaningful source order.",
+        "Predict how removing flex-wrap affects the tribute at 375px, then restore the safer behavior.",
+        "Repair one observed tribute layout problem and verify it at narrow and wide widths.",
+        "Publish the tribute with readable content, working sources, keyboard focus, and a route home."
       ],
       "estimatedHours": 6,
       "sessions": [
@@ -203,9 +258,10 @@
       "endDate": "2026-11-01",
       "summary": "Build a small guide from reusable classes; consolidate known layout skills on October 28.",
       "outcomes": [
-        "Reuse one card pattern consistently.",
-        "Predict and check a Grid change.",
-        "Record a precise question when blocked."
+        "Build three field-guide entries from one reusable semantic card pattern.",
+        "Predict and test gap and column changes at 375px and 1000px.",
+        "Explain which media-query rule applies at each tested width from browser evidence.",
+        "Name an exact blocker after two focused repair attempts on the practice starter."
       ],
       "estimatedHours": 4,
       "sessions": [
@@ -233,8 +289,11 @@
       "endDate": "2026-11-08",
       "summary": "Repair the practice together and adapt your guide as space and reading needs change.",
       "outcomes": [
-        "Choose a breakpoint from content pressure.",
-        "Test links, focus, images, and text at narrow widths."
+        "Choose a field-guide breakpoint where its cards or navigation begin to crowd.",
+        "Build a semantic guide section and repair one selector or path fault without AI.",
+        "Test the field guide anchors, focus, images, and text at narrow, intermediate, and wide widths.",
+        "Explain the active responsive rule immediately below and above the chosen breakpoint.",
+        "Accept one AI completion in the field guide, test it in the browser, and explain the line you kept."
       ],
       "estimatedHours": 6,
       "sessions": [
@@ -262,8 +321,11 @@
       "endDate": "2026-11-15",
       "summary": "Use browser evidence to locate a fault and deliver a small, usable responsive guide.",
       "outcomes": [
-        "Identify the source of overflow or a missing asset.",
-        "Publish and explain a tested guide."
+        "Locate one field-guide fault using browser or source evidence before changing code.",
+        "Repair the fault, reproduce its original test, and check one neighboring condition.",
+        "Publish a responsive field guide with three accurate entries, reliable navigation, credits, and keyboard focus.",
+        "Verify the public guide signed out at narrow, intermediate, and wide widths.",
+        "Set a written scope for AI code in the field guide, test the result, and revise one part yourself."
       ],
       "estimatedHours": 5,
       "sessions": [
@@ -287,8 +349,10 @@
       "endDate": "2026-11-22",
       "summary": "Create a concise landing page that tells one audience what it offers and what to do next.",
       "outcomes": [
-        "Align page hierarchy with a reader’s task.",
-        "Translate mobile and wide frames into one HTML structure."
+        "State the landing page audience, offering, and primary action in three concise sentences.",
+        "Plan the real landing page content at 375px and 1280px in Figma.",
+        "Build one semantic landing-page structure with a flexible hero or feature group.",
+        "Explain how the same HTML changes arrangement between widths after one peer revision."
       ],
       "estimatedHours": 6,
       "sessions": [
@@ -316,8 +380,10 @@
       "endDate": "2026-11-29",
       "summary": "Make calls to action and an optional form practice understandable, keyboard usable, and truthful.",
       "outcomes": [
-        "Choose a link, button, or form by its behavior.",
-        "Test focus and document an interaction accurately."
+        "Choose a link, button, or labeled form that matches the actual landing page behavior.",
+        "Reach and activate the primary landing page action by keyboard with visible focus.",
+        "State the expected and observed action result, including whether it sends any data.",
+        "Repair one misleading interaction or confirm its destination at a narrow width."
       ],
       "estimatedHours": 3,
       "sessions": [
@@ -340,8 +406,11 @@
       "endDate": "2026-12-06",
       "summary": "Finish the landing page December 2, then curate existing work and prepare to explain it.",
       "outcomes": [
-        "Prioritize functional repairs over extra features.",
-        "Curate projects and demonstrate a source decision."
+        "Repair the highest-impact landing page failure and verify the published result signed out.",
+        "Publish the landing page with a truthful primary action, working links, readable layouts, and visible focus.",
+        "Curate four project entries with introductions, working return paths, credits, and a repository link.",
+        "Explain and modify one source decision independently during the portfolio presentation.",
+        "Commit the final portfolio version and test every project link while signed out."
       ],
       "estimatedHours": 7,
       "sessions": [
@@ -368,7 +437,7 @@
   "assignments": [
     {
       "id": "practice-00",
-      "title": "One source change",
+      "title": "Your workspace",
       "group": "weekly",
       "points": 10,
       "dueDate": "2026-09-27",
@@ -539,6 +608,36 @@
   ],
   "resources": [
     {
+      "title": "HTML.com · main HTML reference",
+      "url": "https://html.com/",
+      "description": "Start here for beginner HTML explanations and examples; use the course editor setup."
+    },
+    {
+      "title": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Check element meanings, attributes, nesting, and accessibility guidance."
+    },
+    {
+      "title": "DevDocs",
+      "url": "https://devdocs.io/",
+      "description": "Look up HTML and CSS documentation while you code."
+    },
+    {
+      "title": "References and documentation · Milanote",
+      "url": "https://app.milanote.com/1TZEGF153WvYf7?p=5XZtUQNrEkQ",
+      "description": "The course collection of documentation, tutorials, and optional practice."
+    },
+    {
+      "title": "Week 0 · Milanote",
+      "url": "https://app.milanote.com/1V1rFD1SlyDg8D?p=WCVUqhgifFn",
+      "description": "Opening resources on learning, web design roles, asking for help, and visual notes."
+    },
+    {
+      "title": "Web Design + Code course workspace",
+      "url": "https://github.com/sicxz/DESN368-code-design-workspace",
+      "description": "Instructor source under review for the opening clone lesson. Do not fork it; the student-owned destination and save/push procedure must be verified before publication."
+    },
+    {
       "title": "HTML syntax on MDN",
       "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
       "description": "Look up element structure and attributes while practicing."
@@ -574,6 +673,16 @@
       "id": "syllabus",
       "title": "Syllabus",
       "path": "syllabus.md"
+    },
+    {
+      "id": "references",
+      "title": "References and documentation",
+      "path": "references.md"
+    },
+    {
+      "id": "opening-toolkit",
+      "title": "Web Design + Code 1: opening toolkit",
+      "path": "opening-toolkit.md"
     },
     {
       "id": "workflow",

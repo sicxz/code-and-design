@@ -1,6 +1,6 @@
 # Recipe structure check
 
-**Weekly practice · 10 points · Due 2026-10-04 at 11:59 p.m. Pacific**
+**Weekly assignments · 10 points · Due 2026-10-04 at 11:59 p.m. Pacific**
 
 ## Studio brief
 

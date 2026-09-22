@@ -13,7 +13,7 @@ Each day: reconnect 1:00–1:15; demonstration 1:15–1:40; guided work 1:40–2
 
 **Monday: publish one manual migration.**
 
-1. Follow [One workspace](/1/resources/workflow/). Create `desn368-portfolio`, add the root portfolio starter, and create `recipe/index.html` and `recipe/styles.css`.
+1. Follow [One workspace](/1/resources/workflow/). Open the verified student-owned course repository established during the opening handoff, add the root portfolio starter, and create `recipe/index.html` and `recipe/styles.css`.
 2. Move your own HTML and CSS from CodePen. The full local document needs its `head`, viewport metadata, and stylesheet link. CodePen had supplied part of that surrounding document for you.
 3. Put the recipe link on the portfolio home. From the recipe, add `<a href="../">Back to portfolio</a>`.
 4. Commit, push, and enable GitHub Pages from the `main` branch's root. Open the actual deployment URL and test both directions.

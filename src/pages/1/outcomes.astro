@@ -1,0 +1,96 @@
+---
+import FallCourseLayout from '../../layouts/FallCourseLayout.astro';
+import TypeBadge from '../../components/fall2026/TypeBadge.astro';
+import {
+  assignmentHref,
+  fall,
+  getWeekOutcomes,
+  outcomes,
+  renderLessonMarkdown,
+  type LessonType,
+} from '../../lib/fall2026';
+import '../../styles/fall2026-outcomes.css';
+
+const lessonTypeOrder: LessonType[] = ['learn', 'workshop', 'apply', 'review', 'check', 'project'];
+const weeks = fall.weeks.map(week => {
+  const detail = getWeekOutcomes(week.id);
+  if (!detail) throw new Error(`No outcomes registered for ${week.id}`);
+  return { week, detail, aiStage: outcomes.aiStages[detail.aiStage] };
+});
+const pageDraft = renderLessonMarkdown('> **Draft for instructor review.** The week outcomes are loose: each one may shift as its week is built. Waits on: the week each AI stage begins, the principle placed on each week\'s Apply or Project lesson, and the open items in COURSE.md.');
+---
+<FallCourseLayout title="Learning outcomes">
+  <div data-outcomes-page>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/1/">Course</a> / <span aria-current="page">Outcomes</span></nav>
+    <h1>What you will be able to do</h1>
+    <p class="outcomes-intro">Seven course objectives under two program objectives, reached one week at a time. Each week lists what you will be able to do by its end, where you show it, and which objective it serves. Completion marks a place; nothing here measures ability.</p>
+    <Fragment set:html={pageDraft} />
+
+    <section class="course-outcomes" data-course-objectives aria-labelledby="course-objectives-title">
+      <h2 id="course-objectives-title">The seven course objectives</h2>
+      {fall.plos.map(plo => {
+        const ploObjectives = fall.objectives.filter(objective => objective.plo === plo.id);
+        return (
+          <div class="plo-group" data-plo={plo.id}>
+            <h3>{plo.id} · {plo.title}</h3>
+            <p class="plo-text">{plo.text}</p>
+            <ol start={plo.id === 'PLO-2' ? 4 : undefined}>
+              {ploObjectives.map(objective => (
+                <li data-objective-def={objective.n}><strong>{objective.title}</strong> {objective.text}</li>
+              ))}
+            </ol>
+          </div>
+        );
+      })}
+    </section>
+
+    <section class="by-week" data-week-outcomes aria-labelledby="by-week-title">
+      <h2 id="by-week-title">By week</h2>
+      <div class="week-outcomes-grid">
+        {weeks.map(({ week, detail, aiStage }) => (
+          <section class="outcomes-week" data-outcomes-week={week.id} aria-labelledby={`${week.id}-outcomes-title`}>
+            <header class="outcomes-week-header">
+              <h3 id={`${week.id}-outcomes-title`}><a href={`/1/weeks/${week.id}/`}>Week {week.number} · {week.title}</a></h3>
+              <p class="week-focus">{detail.focus}</p>
+              <div class="outcomes-chips">
+                <span class="badge badge-secondary" data-ai-stage={detail.aiStage}>{aiStage.label}</span>
+                <div class="outcomes-kit" data-kit aria-label={`Week ${week.number} lesson kit`}>
+                  {lessonTypeOrder.map(type => (
+                    <span class="kit-chip"><TypeBadge type={type} /><span class="kit-count">{detail.kit[type]}</span></span>
+                  ))}
+                </div>
+              </div>
+            </header>
+
+            <ol class="outcome-list">
+              {detail.outcomes.map(outcome => {
+                const href = assignmentHref(outcome.evidence.item);
+                return (
+                  <li data-outcome data-objective={outcome.objective}>
+                    <p class="outcome-text">{outcome.text}</p>
+                    <p class="outcome-meta">
+                      Objective {outcome.objective} · <TypeBadge type={outcome.evidence.type as LessonType} /> · {outcome.evidence.canvas} ·{' '}
+                      {href ? <a href={href}>{outcome.evidence.item}</a> : outcome.evidence.item}
+                    </p>
+                  </li>
+                );
+              })}
+            </ol>
+
+            <div class="principle-line" data-principle={detail.principle.id}>
+              <p class="outcomes-eyebrow">In the {detail.principle.lesson === 'apply' ? 'Apply' : 'Project'} lesson</p>
+              <p>{detail.principle.plain}</p>
+            </div>
+            <div class="ai-stage-copy">
+              <span class="badge badge-secondary" data-ai-stage={detail.aiStage}>{aiStage.label}</span>
+              <p>{aiStage.text}</p>
+            </div>
+            <Fragment set:html={renderLessonMarkdown(`> **Draft for instructor review.** ${detail.draft}`)} />
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <p class="outcomes-closing">The seven course objectives are the syllabus's promise. The week outcomes are the route to them.</p>
+  </div>
+</FallCourseLayout>

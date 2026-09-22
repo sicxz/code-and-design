@@ -1,0 +1,72 @@
+---
+import FallCourseLayout from '../../layouts/FallCourseLayout.astro';
+import { renderLessonMarkdown } from '../../lib/fall2026';
+import '../../styles/fall2026-passport.css';
+---
+<FallCourseLayout title="Learning Passport" noindex>
+  <div data-passport-page>
+    <h1>Learning Passport</h1>
+    <p>Your Learning Passport is one small file that holds the name you gave the companion and the lessons you marked complete. This site has no login. The file is how your place moves with you from one computer to another.</p>
+
+    <section class="passport-card">
+      <h2>What it is not</h2>
+      <p>The marks are your own place markers. They are not a grade and not a record of completion. Your instructor grades the work you submit in Canvas, and never this file.</p>
+    </section>
+
+    <section class="passport-card">
+      <h2>In this browser</h2>
+      <p>Companion: <strong data-companion-current>not named yet</strong></p>
+      <p>Lessons marked complete: <strong data-passport-count>0</strong></p>
+      <p>Last change: <strong data-passport-saved>none yet</strong></p>
+    </section>
+
+    <section class="passport-card">
+      <h2>Export</h2>
+      <p>Download a copy, then submit it to the Save Point in Canvas. Canvas keeps it for you.</p>
+      <button class="button" type="button" data-passport-export>Export the passport</button>
+    </section>
+
+    <section class="passport-card">
+      <h2>Import</h2>
+      <p>On another computer, download your last Save Point file from Canvas, then choose it here.</p>
+      <label for="passport-import">Choose a passport file</label>
+      <input id="passport-import" type="file" data-passport-import accept=".json,.txt,application/json,text/plain" />
+    </section>
+
+    <p role="status" data-passport-status tabindex="-1"></p>
+
+    <section data-passport-conflict hidden tabindex="-1">
+      <h2>This browser and the file are different</h2>
+      <table>
+        <thead>
+          <tr><th scope="col"></th><th scope="col">Companion</th><th scope="col">Lessons marked complete</th><th scope="col">Last change</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">This browser</th><td data-conflict-local-name></td><td data-conflict-local-count></td><td data-conflict-local-saved></td></tr>
+          <tr><th scope="row">The file</th><td data-conflict-file-name></td><td data-conflict-file-count></td><td data-conflict-file-saved></td></tr>
+        </tbody>
+      </table>
+      <div class="passport-actions">
+        <button class="button secondary" type="button" data-conflict-keep>Keep this browser</button>
+        <button class="button" type="button" data-conflict-use>Use the file</button>
+        <button class="button" type="button" data-conflict-merge>Merge both</button>
+      </div>
+    </section>
+
+    <section class="passport-card">
+      <h2>Remove from this browser</h2>
+      <p>On a shared or lab computer, export first, then remove your passport from this browser.</p>
+      <button class="button secondary" type="button" data-passport-clear>Remove from this browser</button>
+      <div data-passport-clear-confirm hidden>
+        <p>Remove the name and every mark from this browser?</p>
+        <div class="passport-actions">
+          <button class="button" type="button" data-passport-clear-yes>Yes, remove</button>
+          <button class="button secondary" type="button" data-passport-clear-no>Cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <noscript><p>The Learning Passport needs JavaScript. Every lesson works without it.</p></noscript>
+    <Fragment set:html={renderLessonMarkdown('> **Draft for instructor review.** Waits on: the Canvas Save Point setup and the two-device rehearsal.')} />
+  </div>
+</FallCourseLayout>

@@ -1,0 +1,29 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { readLesson } from '../../lib/fall2026';
+
+interface Props {
+  file: string;
+  label: string;
+}
+const { file, label } = Astro.props;
+const root = resolve('src/content/fall2026');
+const path = resolve(root, file);
+if (!path.startsWith(root + '/')) throw new Error('Example path leaves the course directory');
+const source = readFileSync(path, 'utf8');
+// Nest the example's title and subheadings under the lesson's h2.
+// Its source stays unchanged, including the Markdown heading marks.
+const preview = readLesson(file).replace(/<(\/?)(h[12])(?=[\s>])/g,
+  (_, close, tag) => `<${close}${tag === 'h1' ? 'h3' : 'h4'}`);
+---
+<div class="source-preview-pair" role="group" aria-label={label}>
+  <div class="source-panel">
+    <p class="caption">Markdown source</p>
+    <pre tabindex="0" aria-label={`${label}: Markdown source`}><code>{source}</code></pre>
+  </div>
+  <div class="preview-panel">
+    <p class="caption">Preview</p>
+    <div class="preview" set:html={preview} />
+  </div>
+</div>

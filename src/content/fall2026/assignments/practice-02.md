@@ -1,6 +1,6 @@
 # Explain your CSS
 
-**Weekly practice · 10 points · Due 2026-10-11 at 11:59 p.m. Pacific**
+**Weekly assignments · 10 points · Due 2026-10-11 at 11:59 p.m. Pacific**
 
 ## Studio brief
 

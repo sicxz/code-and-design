@@ -1,0 +1,13 @@
+---
+import '../../styles/fall2026-passport.css';
+---
+<div class="lesson-card" data-companion-name>
+  <form method="dialog" data-companion-form novalidate>
+    <label for="companion-name">Name for the companion</label>
+    <input id="companion-name" type="text" name="companionName" maxlength="24" autocomplete="off" spellcheck="false" aria-describedby="companion-name-hint" />
+    <p id="companion-name-hint">Up to 24 letters. Spaces and hyphens are fine.</p>
+    <button class="button" type="submit">Save the name</button>
+  </form>
+  <p>The companion's name: <strong data-companion-current>not named yet</strong></p>
+  <p role="status" data-companion-status></p>
+</div>

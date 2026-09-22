@@ -1,6 +1,6 @@
 # Course publishing checks
 
-`npm run build` builds the production site. `npm run check:course` verifies the Fall metadata contract, all current-page local links and fragments, archive hashes, and the absence of raw export/record formats. To compare unchanged Web 2 and Fall 2025 output too, pass a build of the Spring baseline: `python3 scripts/check-course.py /path/to/baseline/dist`.
+`npm run build` builds the production site. Run it immediately before `npm run check:course`; the validator reads the generated `dist/` directory and does not build it for you. The validator checks the Fall metadata contract, selected current-page local links and fragments, archive hashes, and the absence of raw export/record formats. It is not a complete browser or multi-course regression test. To byte-compare unchanged Web Design + Code 2 and Fall 2025 output too, pass a build of the Spring baseline: `python3 scripts/check-course.py /path/to/baseline/dist`.
 
 `npm run package:course` generates the private review package in `../instructor-package/generated` and the ZIP beside it. The package includes standalone Canvas HTML and a locally validated Common Cartridge; test import in an empty Canvas sandbox before publishing. The script never calls Canvas.
 

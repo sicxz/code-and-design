@@ -1,0 +1,748 @@
+{
+  "principles": [
+    {
+      "id": "attend",
+      "text": "Attend before concluding."
+    },
+    {
+      "id": "kinds",
+      "text": "Keep kinds of information distinct."
+    },
+    {
+      "id": "support",
+      "text": "Weigh support, not appeal."
+    },
+    {
+      "id": "mistaken",
+      "text": "Make room for being mistaken."
+    },
+    {
+      "id": "confidence",
+      "text": "Distinguish confidence from accuracy."
+    },
+    {
+      "id": "revisable",
+      "text": "Remain revisable."
+    }
+  ],
+  "aiStages": {
+    "off": {
+      "label": "AI off",
+      "text": "Student AI is off. Use the demonstration, documentation, and human help."
+    },
+    "questions": {
+      "label": "AI: questions",
+      "text": "AI may answer questions and explain. It may not write, complete, or rewrite your code."
+    },
+    "completion": {
+      "label": "AI: completion",
+      "text": "AI may complete a line or block you started. You explain every completion you keep."
+    },
+    "scoped": {
+      "label": "AI: scoped",
+      "text": "AI may write code inside a scope you set and describe. You test it and explain it."
+    }
+  },
+  "weeks": {
+    "week-0": {
+      "focus": "Enter the course by locating your work and tracing one visible change to its source.",
+      "aiStage": "off",
+      "principle": {
+        "id": "attend",
+        "lesson": "apply",
+        "plain": "Compare the page before and after one source edit before naming what changed."
+      },
+      "kit": {
+        "learn": 4,
+        "workshop": 2,
+        "apply": 2,
+        "review": 1,
+        "check": 1,
+        "project": 0
+      },
+      "outcomes": [
+        {
+          "id": "w0-1",
+          "text": "State what Canvas, the course site, and your repository each hold.",
+          "objective": 6,
+          "evidence": {
+            "type": "learn",
+            "canvas": "lrn",
+            "item": "syllabus-first"
+          }
+        },
+        {
+          "id": "w0-2",
+          "text": "Predict what a Markdown mark will change. Make the change without AI. Compare the preview with your prediction.",
+          "objective": 6,
+          "evidence": {
+            "type": "workshop",
+            "canvas": "tutorial",
+            "item": "practice-markdown"
+          }
+        },
+        {
+          "id": "w0-3",
+          "text": "Accept the Workspace assignment. Commit a first edit in your own private repository.",
+          "objective": 6,
+          "evidence": {
+            "type": "workshop",
+            "canvas": "in-class",
+            "item": "get-your-workspace"
+          }
+        },
+        {
+          "id": "w0-4",
+          "text": "Answer the four introduction questions in Markdown in your repository. Submit the repository link.",
+          "objective": 6,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-00"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to settle the Week 0 Canvas evidence and approve the Attend placement in Apply."
+    },
+    "week-1": {
+      "focus": "Give the recipe meaningful structure before styling it.",
+      "aiStage": "off",
+      "principle": {
+        "id": "kinds",
+        "lesson": "apply",
+        "plain": "Choose ordered steps and unordered ingredients because they carry different kinds of content."
+      },
+      "kit": {
+        "learn": 2,
+        "workshop": 2,
+        "apply": 2,
+        "review": 1,
+        "check": 1,
+        "project": 0
+      },
+      "outcomes": [
+        {
+          "id": "w1-1",
+          "text": "Structure the recipe with meaningful headings, unordered ingredients, and ordered steps.",
+          "objective": 4,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-01"
+          }
+        },
+        {
+          "id": "w1-2",
+          "text": "Explain the recipe list choice after moving one step outside its list in a copy.",
+          "objective": 4,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-01"
+          }
+        },
+        {
+          "id": "w1-3",
+          "text": "Credit one permitted recipe image with purposeful alternative text and a descriptive source link.",
+          "objective": 3,
+          "evidence": {
+            "type": "workshop",
+            "canvas": "in-class",
+            "item": "Week 1 in-class build"
+          }
+        },
+        {
+          "id": "w1-4",
+          "text": "Test the recipe source link, image, and latest saved HTML before delivery.",
+          "objective": 6,
+          "evidence": {
+            "type": "check",
+            "canvas": "p&e",
+            "item": "Week 1 check"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to settle the visual-note evidence and approve the Kinds placement in Apply."
+    },
+    "week-2": {
+      "focus": "Make the recipe readable with CSS and connect each visible result to its source.",
+      "aiStage": "off",
+      "principle": {
+        "id": "confidence",
+        "lesson": "project",
+        "plain": "Compare each spacing prediction with the browser result, even when the prediction felt certain."
+      },
+      "kit": {
+        "learn": 2,
+        "workshop": 1,
+        "apply": 2,
+        "review": 1,
+        "check": 1,
+        "project": 1
+      },
+      "outcomes": [
+        {
+          "id": "w2-1",
+          "text": "Explain how a selector and declaration create the recipe type hierarchy and spacing.",
+          "objective": 1,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-02"
+          }
+        },
+        {
+          "id": "w2-2",
+          "text": "Predict a margin or padding change, make it without AI, and compare the visible result.",
+          "objective": 6,
+          "evidence": {
+            "type": "check",
+            "canvas": "p&e",
+            "item": "Week 2 check"
+          }
+        },
+        {
+          "id": "w2-3",
+          "text": "Publish a readable recipe whose headings, lists, image credit, and source link survive narrow widths.",
+          "objective": 4,
+          "evidence": {
+            "type": "project",
+            "canvas": "p1.2",
+            "item": "project-recipe"
+          }
+        },
+        {
+          "id": "w2-4",
+          "text": "Repair a supplied nesting or class-name fault without AI and verify the saved result.",
+          "objective": 6,
+          "evidence": {
+            "type": "check",
+            "canvas": "p&e",
+            "item": "Week 2 check"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to approve the Confidence placement in the recipe Project lesson."
+    },
+    "week-3": {
+      "focus": "Move the recipe into one published repository and plan the tribute with real content.",
+      "aiStage": "questions",
+      "principle": {
+        "id": "kinds",
+        "lesson": "apply",
+        "plain": "Separate saving, committing, pushing, and publishing while tracing one change to the live page."
+      },
+      "kit": {
+        "learn": 2,
+        "workshop": 2,
+        "apply": 1,
+        "review": 1,
+        "check": 1,
+        "project": 0
+      },
+      "outcomes": [
+        {
+          "id": "w3-1",
+          "text": "Trace a relative path from the tribute file to the recipe folder and test the destination.",
+          "objective": 4,
+          "evidence": {
+            "type": "check",
+            "canvas": "p&e",
+            "item": "Week 3 check"
+          }
+        },
+        {
+          "id": "w3-2",
+          "text": "Commit, push, and verify one manual recipe change on its published page.",
+          "objective": 6,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-03"
+          }
+        },
+        {
+          "id": "w3-3",
+          "text": "Plan the real tribute content and reading order in one wide Figma frame.",
+          "objective": 1,
+          "evidence": {
+            "type": "workshop",
+            "canvas": "in-class",
+            "item": "Week 3 in-class build"
+          }
+        },
+        {
+          "id": "w3-4",
+          "text": "Credit two tribute sources beside the planned content and one permitted image.",
+          "objective": 2,
+          "evidence": {
+            "type": "workshop",
+            "canvas": "in-class",
+            "item": "Week 3 in-class build"
+          }
+        },
+        {
+          "id": "w3-5",
+          "text": "Ask AI to explain one tribute path or commit message, then check its answer against documentation.",
+          "objective": 7,
+          "evidence": {
+            "type": "check",
+            "canvas": "p&e",
+            "item": "Week 3 check"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to approve Week 3 as the start of the questions stage."
+    },
+    "week-4": {
+      "focus": "Turn the tribute plan into a flexible composition and repair one observed layout problem.",
+      "aiStage": "questions",
+      "principle": {
+        "id": "mistaken",
+        "lesson": "project",
+        "plain": "Make a layout prediction, test it at 375px, and keep room for the browser to prove it wrong."
+      },
+      "kit": {
+        "learn": 2,
+        "workshop": 1,
+        "apply": 1,
+        "review": 1,
+        "check": 1,
+        "project": 1
+      },
+      "outcomes": [
+        {
+          "id": "w4-1",
+          "text": "Arrange the tribute figure and introduction with Flexbox while preserving meaningful source order.",
+          "objective": 5,
+          "evidence": {
+            "type": "project",
+            "canvas": "p2.2",
+            "item": "project-tribute"
+          }
+        },
+        {
+          "id": "w4-2",
+          "text": "Predict how removing flex-wrap affects the tribute at 375px, then restore the safer behavior.",
+          "objective": 5,
+          "evidence": {
+            "type": "check",
+            "canvas": "p&e",
+            "item": "Week 4 check"
+          }
+        },
+        {
+          "id": "w4-3",
+          "text": "Repair one observed tribute layout problem and verify it at narrow and wide widths.",
+          "objective": 6,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-04"
+          }
+        },
+        {
+          "id": "w4-4",
+          "text": "Publish the tribute with readable content, working sources, keyboard focus, and a route home.",
+          "objective": 1,
+          "evidence": {
+            "type": "project",
+            "canvas": "p2.2",
+            "item": "project-tribute"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to approve the Mistaken placement in the tribute Project lesson."
+    },
+    "week-5": {
+      "focus": "Build a repeatable field-guide pattern and test its columns through supported independent practice.",
+      "aiStage": "questions",
+      "principle": {
+        "id": "support",
+        "lesson": "apply",
+        "plain": "Use results at 375px and 1000px to support the column explanation instead of relying on appearance alone."
+      },
+      "kit": {
+        "learn": 2,
+        "workshop": 1,
+        "apply": 2,
+        "review": 1,
+        "check": 1,
+        "project": 0
+      },
+      "outcomes": [
+        {
+          "id": "w5-1",
+          "text": "Build three field-guide entries from one reusable semantic card pattern.",
+          "objective": 4,
+          "evidence": {
+            "type": "workshop",
+            "canvas": "in-class",
+            "item": "Week 5 in-class build"
+          }
+        },
+        {
+          "id": "w5-2",
+          "text": "Predict and test gap and column changes at 375px and 1000px.",
+          "objective": 5,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-05"
+          }
+        },
+        {
+          "id": "w5-3",
+          "text": "Explain which media-query rule applies at each tested width from browser evidence.",
+          "objective": 5,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-05"
+          }
+        },
+        {
+          "id": "w5-4",
+          "text": "Name an exact blocker after two focused repair attempts on the practice starter.",
+          "objective": 6,
+          "evidence": {
+            "type": "check",
+            "canvas": "p&e",
+            "item": "Week 5 check"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to keep Week 5 in the questions stage before completion begins."
+    },
+    "week-6": {
+      "focus": "Adapt the field guide when its content becomes crowded and test its navigation across widths.",
+      "aiStage": "completion",
+      "principle": {
+        "id": "attend",
+        "lesson": "apply",
+        "plain": "Watch where the guide's content becomes crowded before choosing a breakpoint."
+      },
+      "kit": {
+        "learn": 2,
+        "workshop": 1,
+        "apply": 2,
+        "review": 1,
+        "check": 1,
+        "project": 0
+      },
+      "outcomes": [
+        {
+          "id": "w6-1",
+          "text": "Choose a field-guide breakpoint where its cards or navigation begin to crowd.",
+          "objective": 5,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-06"
+          }
+        },
+        {
+          "id": "w6-2",
+          "text": "Build a semantic guide section and repair one selector or path fault without AI.",
+          "objective": 4,
+          "evidence": {
+            "type": "check",
+            "canvas": "p&e",
+            "item": "Week 6 check"
+          }
+        },
+        {
+          "id": "w6-3",
+          "text": "Test the field guide anchors, focus, images, and text at narrow, intermediate, and wide widths.",
+          "objective": 3,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-06"
+          }
+        },
+        {
+          "id": "w6-4",
+          "text": "Explain the active responsive rule immediately below and above the chosen breakpoint.",
+          "objective": 5,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-06"
+          }
+        },
+        {
+          "id": "w6-5",
+          "text": "Accept one AI completion in the field guide, test it in the browser, and explain the line you kept.",
+          "objective": 7,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-06"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to approve Week 6 as the start of the completion stage."
+    },
+    "week-7": {
+      "focus": "Use browser evidence to repair and publish a usable responsive field guide.",
+      "aiStage": "scoped",
+      "principle": {
+        "id": "support",
+        "lesson": "project",
+        "plain": "Show the original symptom, exact cause, repair, and passing test before calling the guide fixed."
+      },
+      "kit": {
+        "learn": 1,
+        "workshop": 1,
+        "apply": 1,
+        "review": 1,
+        "check": 1,
+        "project": 1
+      },
+      "outcomes": [
+        {
+          "id": "w7-1",
+          "text": "Locate one field-guide fault using browser or source evidence before changing code.",
+          "objective": 6,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-07"
+          }
+        },
+        {
+          "id": "w7-2",
+          "text": "Repair the fault, reproduce its original test, and check one neighboring condition.",
+          "objective": 6,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-07"
+          }
+        },
+        {
+          "id": "w7-3",
+          "text": "Publish a responsive field guide with three accurate entries, reliable navigation, credits, and keyboard focus.",
+          "objective": 5,
+          "evidence": {
+            "type": "project",
+            "canvas": "p3.2",
+            "item": "project-field-guide"
+          }
+        },
+        {
+          "id": "w7-4",
+          "text": "Verify the public guide signed out at narrow, intermediate, and wide widths.",
+          "objective": 5,
+          "evidence": {
+            "type": "project",
+            "canvas": "p3.2",
+            "item": "project-field-guide"
+          }
+        },
+        {
+          "id": "w7-5",
+          "text": "Set a written scope for AI code in the field guide, test the result, and revise one part yourself.",
+          "objective": 7,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-07"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to approve Week 7 as the start of scoped code writing."
+    },
+    "week-8": {
+      "focus": "Design one truthful landing-page invitation and translate two frames into one document.",
+      "aiStage": "scoped",
+      "principle": {
+        "id": "revisable",
+        "lesson": "apply",
+        "plain": "Revise one confusing hierarchy or action after a peer tries to identify the offering and next step."
+      },
+      "kit": {
+        "learn": 2,
+        "workshop": 2,
+        "apply": 1,
+        "review": 1,
+        "check": 1,
+        "project": 0
+      },
+      "outcomes": [
+        {
+          "id": "w8-1",
+          "text": "State the landing page audience, offering, and primary action in three concise sentences.",
+          "objective": 1,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-08"
+          }
+        },
+        {
+          "id": "w8-2",
+          "text": "Plan the real landing page content at 375px and 1280px in Figma.",
+          "objective": 1,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-08"
+          }
+        },
+        {
+          "id": "w8-3",
+          "text": "Build one semantic landing-page structure with a flexible hero or feature group.",
+          "objective": 4,
+          "evidence": {
+            "type": "workshop",
+            "canvas": "in-class",
+            "item": "Week 8 in-class build"
+          }
+        },
+        {
+          "id": "w8-4",
+          "text": "Explain how the same HTML changes arrangement between widths after one peer revision.",
+          "objective": 5,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-08"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to approve the Revisable placement in the landing-page Apply lesson."
+    },
+    "week-9": {
+      "focus": "Make the landing page's primary action truthful and keyboard usable.",
+      "aiStage": "scoped",
+      "principle": {
+        "id": "confidence",
+        "lesson": "apply",
+        "plain": "Compare the action's promised result with what actually happens when you activate it."
+      },
+      "kit": {
+        "learn": 1,
+        "workshop": 1,
+        "apply": 1,
+        "review": 1,
+        "check": 1,
+        "project": 0
+      },
+      "outcomes": [
+        {
+          "id": "w9-1",
+          "text": "Choose a link, button, or labeled form that matches the actual landing page behavior.",
+          "objective": 4,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-09"
+          }
+        },
+        {
+          "id": "w9-2",
+          "text": "Reach and activate the primary landing page action by keyboard with visible focus.",
+          "objective": 3,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-09"
+          }
+        },
+        {
+          "id": "w9-3",
+          "text": "State the expected and observed action result, including whether it sends any data.",
+          "objective": 2,
+          "evidence": {
+            "type": "check",
+            "canvas": "p&e",
+            "item": "Week 9 check"
+          }
+        },
+        {
+          "id": "w9-4",
+          "text": "Repair one misleading interaction or confirm its destination at a narrow width.",
+          "objective": 6,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-09"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to approve the Confidence placement in the interaction Apply lesson."
+    },
+    "week-10": {
+      "focus": "Finish the landing page, repair delivery faults, and curate the existing portfolio.",
+      "aiStage": "scoped",
+      "principle": {
+        "id": "revisable",
+        "lesson": "project",
+        "plain": "Prioritize broken behavior and unreadable content, then revise the portfolio without starting a new direction."
+      },
+      "kit": {
+        "learn": 1,
+        "workshop": 2,
+        "apply": 1,
+        "review": 1,
+        "check": 1,
+        "project": 1
+      },
+      "outcomes": [
+        {
+          "id": "w10-1",
+          "text": "Repair the highest-impact landing page failure and verify the published result signed out.",
+          "objective": 4,
+          "evidence": {
+            "type": "apply",
+            "canvas": "pr",
+            "item": "practice-10"
+          }
+        },
+        {
+          "id": "w10-2",
+          "text": "Publish the landing page with a truthful primary action, working links, readable layouts, and visible focus.",
+          "objective": 1,
+          "evidence": {
+            "type": "project",
+            "canvas": "p4.2",
+            "item": "project-landing"
+          }
+        },
+        {
+          "id": "w10-3",
+          "text": "Curate four project entries with introductions, working return paths, credits, and a repository link.",
+          "objective": 2,
+          "evidence": {
+            "type": "project",
+            "canvas": "p5",
+            "item": "final-portfolio"
+          }
+        },
+        {
+          "id": "w10-4",
+          "text": "Explain and modify one source decision independently during the portfolio presentation.",
+          "objective": 7,
+          "evidence": {
+            "type": "project",
+            "canvas": "p5",
+            "item": "final-portfolio"
+          }
+        },
+        {
+          "id": "w10-5",
+          "text": "Commit the final portfolio version and test every project link while signed out.",
+          "objective": 6,
+          "evidence": {
+            "type": "project",
+            "canvas": "p5",
+            "item": "final-portfolio"
+          }
+        }
+      ],
+      "draft": "Waits on Travis to approve the Revisable placement across landing delivery and portfolio curation."
+    }
+  }
+}

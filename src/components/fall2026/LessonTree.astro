@@ -1,0 +1,31 @@
+---
+import { fall, getLessonModule, lessonHref } from '../../lib/fall2026';
+import TypeBadge from './TypeBadge.astro';
+interface Props { weekId: string; currentSlug?: string | null }
+const { weekId, currentSlug = null } = Astro.props;
+const week = fall.weeks.find(week => week.id === weekId);
+const courseModule = getLessonModule(weekId);
+if (!week || !courseModule) throw new Error(`Unknown lesson module: ${weekId}`);
+const currentIndex = courseModule.lessons.findIndex(lesson => lesson.slug === currentSlug);
+---
+<nav class="lesson-tree" aria-label={`Week ${week.number} lessons`} data-lesson-tree>
+  <div class="tree-header">
+    <p class="tree-title"><span class="lesson-eyebrow">Week {week.number} ·</span> {week.title}</p>
+    <p class="tree-count">{courseModule.lessons.length} lessons</p>
+  </div>
+  <ol class="lesson-list">
+    {courseModule.lessons.map((lesson, index) => (
+      <li class:list={['lesson-row', { current: lesson.slug === currentSlug }]} data-lesson-key={`${weekId}/${lesson.slug}`} data-emphasis={index === currentIndex ? 'current' : index === currentIndex + 1 ? 'next' : 'none'}>
+        <a class="lesson-link" href={lessonHref(weekId, lesson.slug)} aria-current={lesson.slug === currentSlug ? 'page' : undefined}>
+          <span class="lesson-status" aria-hidden="true">{lesson.slug === currentSlug ? '●' : '○'}</span>
+          <span class="lesson-sr-only">{lesson.slug === currentSlug ? 'You are here. ' : 'Not started. '}</span>
+          <span class="lesson-number">{index + 1}</span>
+          <span class="badge-row"><TypeBadge type={lesson.type} />{lesson.story && <span class="badge badge-story">Story</span>}</span>
+          <span class="lesson-name">{lesson.title}</span>
+          {index === currentIndex + 1 && <span class="tree-next">Next</span>}
+        </a>
+      </li>
+    ))}
+  </ol>
+  {currentIndex >= 0 && <p class="tree-position">Lesson {currentIndex + 1} of {courseModule.lessons.length}</p>}
+</nav>

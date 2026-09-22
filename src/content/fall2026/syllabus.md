@@ -5,69 +5,203 @@
 
 A web page has a visible surface and a structure you can learn to read. In this studio, you will make both. You will build small pages, inspect their source, predict what a change will do, and test your prediction. Your work will grow into one published portfolio.
 
-## Meet and get help
+## Course information
 
-- **Instructor:** Travis Masingale · [tmasingale@ewu.edu](mailto:tmasingale@ewu.edu)
-- **Studio:** Monday and Wednesday, 1–3:30 p.m.; first meeting September 23.
-- **Final presentations:** Wednesday, December 9, 1–3 p.m.
-- **October 28:** supported asynchronous practice; the instructor is away.
-- **No class:** November 11 and November 25.
-- Use the current Canvas course for classroom location, office-hour arrangements, announcements, grades, and individual questions. Those details can change between terms.
+| Item | Detail |
+| --- | --- |
+| Course | DESN 368 · Web Design + Code 1 |
+| Term | Fall 2026, September 23 to December 9 |
+| Credits | 5 |
+| Prerequisite | DESN 216 |
+| Schedule | Monday and Wednesday, 1–3:30 p.m. |
+| Location | ISL 156 |
+| Final presentations | Wednesday, December 9, 1–3 p.m. |
+| No class | November 11 and November 25 |
+| October 28 | Supported asynchronous practice; the instructor is away. |
+
+## Instructor
+
+| Item | Detail |
+| --- | --- |
+| Professor | Travis Masingale |
+| Email | [tmasingale@ewu.edu](mailto:tmasingale@ewu.edu) |
+| Office | ISL 107 |
+| Office hours | Monday and Wednesday, 3:30 to 5 p.m. Check Canvas for changes. |
+
+Use Canvas for announcements, grades and individual questions.
 
 Bring your current files and one specific question. In Canvas Inbox, include the page or file, what you expected, what happened, and what you tried. Do not send passwords or private account details. On October 28, use the worked example and stopping point in that day's packet; an immediate instructor reply is not expected.
+
+## Course description
+
+### Catalog description
+
+**DESN 368. WEB DESIGN + CODE 1. 5 Credits.**
+
+Pre-requisites: DESN 216.
+
+Covers the foundations of web design through coding and design integration. Topics include HTML, CSS, accessibility, and version control using GitHub. Students create responsive websites, explore visual hierarchy and structure, and develop coding fluency through Figma-based design and AI-assisted workflows. Emphasis on building a professional, accessible, and well-organized web presence.
+
+### A note from the professor
+
+This course introduces you to the actual craft of building for the web. Not with shortcuts or frameworks, but with fundamental HTML and CSS—understanding how the web actually works at the source level.
+
+You'll develop fluency in reading and writing code, building responsive layouts, and creating interactive experiences. More importantly, you'll learn to think systematically about digital design and develop the problem-solving skills essential for web development.
 
 ## What you will learn
 
 By the end of 368 you should be able to build and explain a small responsive website using HTML and CSS. You will choose elements by meaning, establish a readable visual hierarchy, use Flexbox and Grid, trace file paths, debug with browser evidence, and publish from GitHub. You will also practice source attribution, keyboard and mobile checks, and concise explanations of design choices.
 
+Why learn code when AI can write it? Because code is a material you need to be able to read. If you cannot read code, you cannot tell whether a model is producing garbage. You cannot direct the model either. HTML and CSS are the design side of the web, the front end of everything seen digitally. You will learn to turn visual designs into code, so that you can do it yourself or direct someone to do it well.
+
 The course introduces the web as a platform. JavaScript, automated agents, backend services, and complex application state are not required to complete these projects. Our [378 re-entry practice](/1/resources/transition-to-378/) describes how these foundations can carry forward.
+
+## Learning objectives
+
+Two program learning objectives hold seven course objectives.
+
+### PLO-1 · Visual Vocabulary
+
+Achieve fluency in design's visual language.
+
+1. **Apply Graphic Design Principles to Web Interfaces.** Incorporate layout, typography, and color principles into web design projects to build a visually coherent interface a reader can follow.
+2. **Read the Web as a Made Thing.** Inspect how pages are built, and explain the choices and tools behind them, including AI assistance, on a platform that keeps changing.
+3. **Design for Accessibility and Inclusivity.** Apply WCAG-based practices so pages work for people of diverse abilities: meaningful structure, text alternatives, keyboard access, visible focus, and layouts that reflow.
+
+### PLO-2 · Technical Skills
+
+Demonstrate proficiency in relevant design skills.
+
+4. **Write HTML and CSS by Hand.** Write clean, valid, semantic HTML and CSS, and explain and modify any code you submit.
+5. **Implement Responsive Design Principles.** Apply responsive design techniques, including media queries, Flexbox, and CSS Grid, so layouts adapt across devices and screen sizes.
+6. **Use Version Control and Browser Tools.** Use GitHub to keep one repository, commit changes, and publish a working site, and use browser developer tools to locate a fault, predict a change, and verify the result.
+7. **Direct and Evaluate AI Assistance.** Use AI assistance only within the stage an assignment allows, evaluate its output against the source, the browser, and documentation, and explain and revise any code you keep.
+
+## Grading breakdown
+
+| Category | Weight |
+| --- | --- |
+| Participation and engagement | 20% |
+| Weekly assignments | 30% |
+| Projects | 40% |
+| Final portfolio | 10% |
+
+The four projects are equally weighted within their category. Weekly assignments are each 10 points. Category percentages, not the raw total across categories, determine the course grade. The recipe, tribute, guide, and landing page are graded as projects once. The final portfolio evaluates how you curate and explain them; it does not grade those same projects again. Weekly evidence can reference a project, but evaluates the particular source check rather than repeating its finished-page rubric.
+
+### Project evaluation criteria
+
+Each project is evaluated on:
+
+- **Technical execution:** Code validates and works
+- **Conceptual understanding:** Documentation and comments
+- **Problem-solving:** Handling edge cases and debugging
+- **Craft and presentation:** Attention to detail and polish
+
+### Weekly assignments
+
+- Micro-assignments, exercises, and tutorials
+- Emphasis on consistent practice and iteration
+- Quick-turn feedback cycle
+
+### Participation and engagement
+
+- One in-class item every class day, worth 5 points
+- Twenty class days, so each day is 1% of your course grade
+- The Attendance section below is the policy
+
+### Final portfolio
+
+- Curated selection of best work
+- Reflection on growth and AI collaboration
+- Professional presentation on GitHub Pages
+
+### Grade scale
+
+| A | B | C | D | F |
+| --- | --- | --- | --- | --- |
+| 90–100% | 80–89% | 70–79% | 60–69% | 0–59% |
+
+Detailed criteria appear in the [rubrics](/1/resources/rubrics/).
+
+## Attendance
+
+Every class day has one Participation and Engagement item. You do it in class. It is worth 5 points. If you are not in class, you do not earn that day's points, and you cannot make it up at home. There are 20 class days, so each day is 1% of your course grade. No days are dropped. Arriving late is fine: come in and join the work. October 28 is asynchronous, and that day's item is done online. If you will miss class, message me before it starts. I cannot return the points, but I can help you catch up.
+
+Absences for reasons of faith or conscience are accommodated, as Washington law requires. Give me the dates in writing during the first two weeks. University-sanctioned events and disability accommodations follow EWU policy. Talk to me early.
+
+## Late work
+
+This applies to projects and weekly assignments.
+
+| How late | Penalty |
+| --- | --- |
+| Up to 2 weeks | none |
+| More than 2 weeks | 20% off |
+
+Late work is accepted until 11:59 p.m. on December 9. Nothing is accepted after that. Work builds on earlier work, so bring what you have and ask for help before it is late.
+
+## What the course provides
+
+The course provides five things: time, tools, feedback, other people, and room to fail. Time is studio hours on Monday and Wednesday. The tools are free: GitHub, Figma, CodePen and a browser. Feedback comes from the instructor and from classmates. Other people are the classmates working beside you. Room to fail means your first try can be wrong.
 
 ## The work
 
-| Project | Main learning | Delivery date |
-| --- | --- | --- |
-| [Recipe](/1/assignments/project-recipe/) | Semantic HTML, selectors, spacing | October 7 |
-| [Tribute](/1/assignments/project-tribute/) | Hierarchy, flexible composition, publishing | October 25 |
-| [Field guide](/1/assignments/project-field-guide/) | Reusable patterns, responsive layout, navigation | November 15 |
-| [Landing page](/1/assignments/project-landing/) | Audience, action, responsive design translation | December 2 |
-| [Portfolio](/1/assignments/final-portfolio/) | Curation, reliable links, source explanation | December 9 |
-
 Each studio follows **brief → build → source check → concise evidence → delivery check**. Required practice usually improves your current project. Optional extensions are for exploration after the core works; they are not hidden grading requirements.
 
-Plan for the independent hours shown on each week page: generally 4–6 hours, with a lighter opening and holiday week and up to 7 hours during final delivery. These estimates include projects and weekly practice together. They are planning estimates, not completion quotas. Tell the instructor when required work exceeds the estimate, and bring the smallest working version for help. We will adjust the remaining work based on evidence from the class.
+At each of the five project deliveries you tidy your repository. You then write a short look-back in its README. In Week 0 you fill in the ungraded `week-0/where-i-am-starting.md`. You answer it again at the end of the quarter.
 
-## One workspace
+Plan for the independent hours shown on each week page: generally 4–6 hours, with a lighter opening and holiday week and up to 7 hours during final delivery. These estimates include projects and weekly assignments together. They are planning estimates, not completion quotas. Tell the instructor when required work exceeds the estimate, and bring the smallest working version for help. We will adjust the remaining work based on evidence from the class.
 
-Start in CodePen. In week 3, manually move one page into a single repository named `desn368-portfolio`, then publish through GitHub Pages. Keep the same repository and root portfolio throughout the term. Add links when projects are completed; do not wait until finals to build a portfolio from scratch.
+## Three places
 
-Use a browser, CodePen, GitHub, Codespaces or a local text editor, and Figma for the small design tasks introduced in class. No paid AI subscription is required. A local editor and the downloadable starter files are the fallback when an online editor is unavailable. See the [workspace guide](/1/resources/workflow/).
+The course runs in three places.
 
-## Assessment
+- **The site** teaches. The lessons and the learning live there.
+- **Canvas** holds the assignments, the due dates, the submissions, the feedback and the grades.
+- **GitHub** holds your repository, where you make the work and keep it.
 
-| Category | Weight | What is assessed |
-| --- | --- | --- |
-| Participation and engagement | 20% | Prepared practice, collaboration, feedback, and communication |
-| Weekly practice | 30% | One concrete source experiment or check, a brief explanation, and a question or next step |
-| Four projects | 40% | The finished pages and demonstrated technical/design decisions |
-| Final portfolio | 10% | Curation, navigation, presentation, and reflection on growth |
+Your repository is private: only you and the instructor can open it. You get it by accepting the **Workspace** assignment. Accepting it copies the instructor's template into the class organization on GitHub. You never fork it. In Week 0 you work in GitHub's own editor in the browser. During the opening half-week and weekend you set up GitHub, the GitHub Student Developer Pack, Figma and CodePen. You do not need a paid subscription.
 
-The four projects are equally weighted within their category. Weekly practices are each 10 points. Category percentages, not the raw total across categories, determine the course grade. The recipe, tribute, guide, and landing page are graded as projects once. The final portfolio evaluates how you curate and explain them; it does not grade those same projects again. Weekly evidence can reference a project, but evaluates the particular source check rather than repeating its finished-page rubric.
+## The story and your place in it
 
-The existing course letter bands are A: 90–100%, B: 80–below 90%, C: 70–below 80%, D: 60–below 70%, F: below 60%. Detailed criteria appear in the [rubrics](/1/resources/rubrics/).
+The site has a fictional companion. Its notes carry the label Story. You can skip every Story note and still do every lesson. The companion never says what is due or what earns points. Canvas and the instructor do. It is a character in a story, not software you use.
+
+The **Mark as complete** button on a lesson sets a place marker. Your browser stores the markers and the companion's name. They also live in one small file, the Learning Passport. The site exports and imports that file. Keep it anywhere you like. Your repository is a good place. Canvas also has an optional weekly Save Point worth 0 points. The markers are not a grade and not a record of completion.
 
 ## Source fluency and AI
 
-**September 23–October 7 is student AI-free.** Write the code, use class examples and reference documentation, and ask people for help. Disable AI autocomplete and do not use generated content or code for these activities. Human help and documentation remain welcome; a source check is completed individually.
+**September 23 through the Week 3 check, you write the code yourself.**
 
-On October 7, demonstrate four actions: identify the relevant source, predict a change, make it, and explain the result. If one is unclear, do a small recovery exercise and another check. Continue studio work while you practice.
+No AI tool writes, completes or fixes your code in that time. AI autocomplete is off. Class examples, reference documentation and people are all welcome help.
 
-After that demonstration, optional AI explanations and debugging help become available within the assignment's limits. Broader, scoped generation becomes available only after the later independent construction/debugging check. AI never replaces your source check. All students can complete the course without it. Read the [complete progression and short disclosure format](/1/resources/source-checks/).
+Every source check in the course uses the same four actions.
+
+1. Find the relevant source.
+2. Predict what a change will do.
+3. Make the change.
+4. Explain what happened and whether your prediction held.
+
+Three AI-free checks happen in class, in Week 3, Week 6 and Week 9. You know what each check covers beforehand. You may bring notes. At each check you demonstrate the four actions on harder material. The Week 6 check is on Monday, November 2.
+
+If you miss an action, you do a small recovery exercise and another check. Studio work continues meanwhile.
+
+AI help then opens in three stages.
+
+- **Teach me** opens after the Week 3 check and runs through November 1. You set up GitHub Copilot. It comes with the GitHub Student Developer Pack. You ask it to explain an element, a CSS rule, Grid, or why your code is not working. You do not ask it to fix the code.
+- **Co-coder** opens after the November 2 check and runs through November 15. Copilot may complete code you have started.
+- **Help building** runs from November 16 to the end of the quarter. You may direct AI to help build more complex things, within what an assignment allows.
+
+Any line an AI writes gets the four actions before you keep it.
+
+Account approval is not permission to use AI. Figma's AI features stay off until the class reaches them.
+
+Every student can complete the course without an AI tool. You do not need a paid AI subscription.
 
 ## Studio responsibilities
 
-Attend and take part in the exercises and critiques. If you cannot attend, contact the instructor through email or Canvas and ask how to demonstrate the missed practice. Communicate early when circumstances affect participation. The participation rubric rewards evidence of engagement; quiet, written, and pair contributions can all show that evidence.
+Attend and take part in the exercises and critiques. Communicate early when circumstances affect participation. The participation rubric rewards evidence of engagement; quiet, written, and pair contributions can all show that evidence.
 
-Work builds on earlier work. If you will miss a delivery date, contact the instructor and bring your current artifact so that the next step can be agreed. The prior course allows extensions for documented emergencies; individual arrangements belong in Canvas. This revision adds no automatic late-point deduction or new absence penalty.
+Work builds on earlier work. If you will miss a delivery date, contact the instructor and bring your current artifact so that the next step can be agreed. The Late work section above sets the penalty.
 
 Write your own explanations and cite borrowed assets, quotations, tutorials, and permitted AI help. Do not present code you cannot explain as independent work. The assignment's stated AI allowance controls its use. Follow EWU's academic-integrity requirements and use the university's current syllabus statements and student support information linked in Canvas. Contact the instructor privately about accessibility arrangements or barriers to participating; avoid putting personal accommodation information in a public repository.
 

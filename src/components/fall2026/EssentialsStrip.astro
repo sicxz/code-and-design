@@ -1,0 +1,22 @@
+---
+import { getLessonModule, lessonHref } from '../../lib/fall2026';
+const opening = getLessonModule('week-0');
+const firstLesson = opening?.lessons[0];
+if (!opening || !firstLesson) throw new Error('The front page needs the first Week 0 lesson.');
+---
+<section class="card essentials-strip" aria-labelledby="surfaces-title">
+  <div class="surfaces-main">
+    <h2 id="surfaces-title">Where things live</h2>
+    <dl class="surfaces">
+      <div class="surface"><dt>Canvas</dt><dd>Assigned route, dates, submissions, feedback, grades, and official course operations.</dd></div>
+      <div class="surface"><dt>The course site</dt><dd>Welcome, syllabus, lessons, tutorials, shared story, examples, practice, and onward routes.</dd></div>
+      <div class="surface"><dt>Your repository</dt><dd>Source work, project history, revisions, and the workspace that grows toward your portfolio.</dd></div>
+    </dl>
+  </div>
+  <section class="start-card" aria-labelledby="start-title" data-start-link>
+    <h2 id="start-title">Start</h2>
+    <p class="eyebrow">Week 0 · Lesson 1 of {opening.lessons.length}</p>
+    <h3>{firstLesson.title}</h3>
+    <a class="button secondary" href={lessonHref('week-0', firstLesson.slug)} data-opening-start>Start here <span aria-hidden="true">→</span></a>
+  </section>
+</section>

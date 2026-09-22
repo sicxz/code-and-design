@@ -1,0 +1,75 @@
+---
+import { readModuleLesson, renderLessonMarkdown, lessonHref, lessonJourneySteps, type CourseWeek, type LessonModule, type ModuleLesson } from '../../lib/fall2026';
+import LessonTree from './LessonTree.astro';
+import TypeBadge from './TypeBadge.astro';
+import Handoff from './Handoff.astro';
+import NextUp from './NextUp.astro';
+import SourcePreviewPair from './SourcePreviewPair.astro';
+import SurfaceRoles from './SurfaceRoles.astro';
+import CompanionName from './CompanionName.astro';
+import LiveMarkdown from './LiveMarkdown';
+import liveMarkdown from '../../data/fall2026/live-markdown.json';
+interface Props { week: CourseWeek; module: LessonModule; lesson: ModuleLesson; index: number }
+const { week, module: courseModule, lesson, index } = Astro.props;
+// Card labels are UI rows; reserve paragraphs for the lesson prose.
+const pieces = readModuleLesson(lesson)
+  .replace(/<p class="card-label">([\s\S]*?)<\/p>/g, '<div class="card-label">$1</div>')
+  .split(/(<!-- source-preview -->|<!-- surface-roles -->|<!-- companion-name -->|<!-- live-markdown -->)/);
+const steps = lessonJourneySteps(lesson);
+const next = courseModule.lessons[index + 1];
+const nextHref = next ? lessonHref(week.id, next.slug) : '/1/weeks/week-1/';
+---
+<div class="lesson-shell" data-lesson-module>
+  <div class="workspace-topbar">
+    <a class="workspace-back" href={`/1/weeks/${week.id}/`}>Week {week.number} · Enter the course</a>
+    <span class="workspace-title">{lesson.title}</span>
+  </div>
+  <div class="lesson-layout">
+    <details class="module-drawer" open>
+      <summary>Lessons in this week</summary>
+      <LessonTree weekId={week.id} currentSlug={lesson.slug} />
+    </details>
+    <article class="lesson-main">
+      <header class="lesson-card lesson-header">
+        <div class="lesson-color-bar" aria-hidden="true"></div>
+        <p class="lesson-eyebrow">Week {week.number} / Lesson {String(index + 1).padStart(2, '0')}</p>
+        <h1>{lesson.title}</h1>
+        <div class="badge-row">
+          <TypeBadge type={lesson.type} />
+          <span class="badge badge-secondary">{lesson.canvasCode} · {lesson.canvasCategory}</span>
+          <span class="badge badge-secondary">{lesson.minutes} min</span>
+          {lesson.story && <span class="badge badge-story">Story · fictional character</span>}
+        </div>
+        <p class="lesson-summary">{lesson.summary}</p>
+      </header>
+      <div class:list={['lesson-prose', { 'lesson-story': lesson.story }]}>
+        {pieces.map(piece => piece === '<!-- source-preview -->'
+          ? <SourcePreviewPair file="examples/markdown-introduction-example.md" label="Sample introduction: source and preview" />
+          : piece === '<!-- surface-roles -->'
+            ? <SurfaceRoles />
+            : piece === '<!-- companion-name -->'
+              ? <CompanionName />
+              : piece === '<!-- live-markdown -->'
+                ? <LiveMarkdown {...liveMarkdown} client:only="react">
+                    <pre slot="fallback">{liveMarkdown.notes}</pre>
+                  </LiveMarkdown>
+                : <Fragment set:html={piece} />)}
+      </div>
+      {lesson.draft && <Fragment set:html={renderLessonMarkdown(`> **Draft for instructor review.** Waits on: ${lesson.draft}`)} />}
+      <div class="lesson-card lesson-finish" data-finish-block>
+        <div class="finish-main">
+          {next
+            ? <NextUp href={nextHref} number={index + 2} label={next.title} type={next.type} note={next.summary} inFinish />
+            : <NextUp href={nextHref} label="Next: Week 1, the same words in HTML" note="On Monday, September 28, use your introduction words for HTML headings and paragraphs." inFinish />}
+          <div class="completion-action">
+            <button class="button" type="button" data-mark-complete data-lesson-key={`${week.id}/${lesson.slug}`} aria-pressed="false" aria-describedby="completion-note">Mark as complete</button>
+            <a class="button secondary" href={nextHref} data-next-up>{next ? 'Next lesson' : 'Next: Week 1'} <span aria-hidden="true">→</span></a>
+            <small id="completion-note" data-completion-note>Saved in this browser only. <a href="/1/passport/">Export your Learning Passport</a> to keep it.</small>
+          </div>
+        </div>
+        <Handoff steps={steps} nextHref={nextHref} nextLabel={next ? next.title : 'Next: Week 1'} />
+      </div>
+      <p class="print-only">Canvas holds the due date.</p>
+    </article>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+---
+import FallCourseLayout from '../../layouts/FallCourseLayout.astro';
+import TypeLegend from '../../components/fall2026/TypeLegend.astro';
+import NowNext from '../../components/fall2026/NowNext.astro';
+import WeekStations from '../../components/fall2026/WeekStations.astro';
+import LessonAnatomy from '../../components/fall2026/LessonAnatomy.astro';
+import { fall } from '../../lib/fall2026';
+import '../../styles/fall2026-map.css';
+---
+<FallCourseLayout title="Course map" wide>
+  <div data-course-map>
+    <section class="card" aria-labelledby="structure-title">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/1/">Course</a> / <span aria-current="page">Map</span></nav>
+      <div class="color-bar" aria-hidden="true"></div>
+      <h1 id="structure-title">How the course is organized</h1>
+      <p class="intro-copy">One course, built week by week. Each module is a mini-course of ordered lessons. Most end with a Workshop or an Apply lesson. The badge tells you what kind of work to expect.</p>
+      <div class="structure-grid">
+        <ol class="hierarchy" aria-label="Course contains modules; modules contain lessons">
+          <li><p class="eyebrow">01 / Course</p><strong>{fall.courseCode}</strong><p>{fall.title} · {fall.term}</p><a href="/1/outcomes/">Outcomes by week</a></li>
+          <li><p class="eyebrow">02 / Modules</p><strong>One week at a time</strong><p>A small, ordered path through an idea.</p></li>
+          <li><p class="eyebrow">03 / Lessons</p><strong>One page. One piece of work.</strong></li>
+        </ol>
+        <TypeLegend />
+      </div>
+    </section>
+    <NowNext weekId="week-0" />
+    <section class="card" aria-labelledby="map-title">
+      <div class="map-intro">
+        <div><h2 id="map-title">The map</h2><p>Follow the lessons in order. Return to any page when you need it.</p></div>
+        <div class="tree-key" aria-label="Lesson status key">
+          <span><span class="key-node" aria-hidden="true"></span>Not started</span>
+          <span><span class="key-node complete" aria-hidden="true"></span>Complete</span>
+          <span><span class="key-node current" aria-hidden="true"></span>Current</span>
+        </div>
+      </div>
+      <div class="course-root"><span class="root-icon" aria-hidden="true">&lt;/&gt;</span><strong>{fall.courseCode} · {fall.title}</strong></div>
+      <p class="eyebrow all-weeks-label">All weeks</p>
+      <WeekStations />
+    </section>
+    <LessonAnatomy />
+  </div>
+</FallCourseLayout>

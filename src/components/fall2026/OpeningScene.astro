@@ -1,0 +1,43 @@
+---
+import scene from '../../data/fall2026/opening-scene.json';
+import CompanionName from './CompanionName.astro';
+import { renderLessonMarkdown } from '../../lib/fall2026';
+import '../../styles/fall2026-opening-scene.css';
+
+const draft = scene.draft
+  ? renderLessonMarkdown(`> **Draft for instructor review.** Waits on: ${scene.draft}`)
+  : '';
+---
+<dialog class="opening-scene" data-opening-scene data-storage-key={scene.storageKey} aria-label={scene.label}>
+  <svg class="opening-scene-grid" aria-hidden="true" focusable="false" width="100%" height="100%">
+    <defs><pattern id="opening-scene-grid" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M8 0H0V8" fill="none" /></pattern></defs>
+    <rect width="100%" height="100%" fill="url(#opening-scene-grid)" />
+  </svg>
+  <div class="opening-scene-frame">
+    <header class="opening-scene-byline">
+      <span class="badge badge-story">Story</span>
+      <span id="opening-scene-counter" data-opening-counter>1 of {scene.screens.length}</span>
+    </header>
+    <div class="opening-scene-body" data-opening-body>
+      {scene.screens.map((screen, index) => (
+        <section data-opening-screen hidden={index !== 0}>
+          <div class:list={['opening-scene-text', { 'opening-scene-pixel': index === 0 }]} tabindex="-1" data-opening-text aria-describedby="opening-scene-counter">
+            {screen.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+          </div>
+          {index === 1 && <p class="opening-scene-note">{scene.fiction}</p>}
+          {screen.nameForm && <CompanionName />}
+          {screen.notes?.map(note => <p class="opening-scene-note">{note}</p>)}
+        </section>
+      ))}
+    </div>
+    <footer class="opening-scene-footer">
+      <div class="opening-scene-actions">
+        <button class="button" type="button" data-opening-next>{scene.controls.next}</button>
+        <button class="button" type="button" data-opening-begin hidden>{scene.controls.begin}</button>
+        <button class="button secondary" type="button" data-opening-skip>{scene.controls.skip}</button>
+      </div>
+      {draft && <div class="opening-scene-draft" set:html={draft} />}
+    </footer>
+  </div>
+</dialog>
+<script>import '../../scripts/fall2026-opening-scene.mjs';</script>

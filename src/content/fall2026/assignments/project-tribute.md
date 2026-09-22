@@ -8,7 +8,7 @@ Create one page introducing a person, collective, place, or creative practice th
 
 ## Build sequence
 
-Use the [tribute starter ZIP](/fall-2026/starters/tribute.zip). Add its files under `tribute/` in the existing `desn368-portfolio` repository; keep GitHub Pages as your publishing method.
+Use the [tribute starter ZIP](/fall-2026/starters/tribute.zip). Add its files under `tribute/` in the verified student-owned course repository established during the opening handoff; keep the approved course publishing method.
 
 1. Gather two credible source links and write a concise introduction in your own words. Choose three relevant moments or contributions and one permitted image or original illustration. Credit quotations and assets; do not copy a long biography.
 2. During October 14 studio, make one Figma wide frame using real content and a small style tile for type, color, and spacing. Make a narrow sketch showing reading order. A paper narrow sketch is acceptable. No separate mood board or multi-screen prototype is required.

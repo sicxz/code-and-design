@@ -1,6 +1,6 @@
 # Responsive evidence
 
-**Weekly practice · 10 points · Due 2026-11-08 at 11:59 p.m. Pacific**
+**Weekly assignments · 10 points · Due 2026-11-08 at 11:59 p.m. Pacific**
 
 ## Studio brief
 

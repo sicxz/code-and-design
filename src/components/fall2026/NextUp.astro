@@ -1,0 +1,13 @@
+---
+import type { LessonType } from '../../lib/fall2026';
+import TypeBadge from './TypeBadge.astro';
+interface Props { href: string; label: string; type?: LessonType; note: string; number?: number; inFinish?: boolean }
+const { href, label, type, note, number, inFinish = false } = Astro.props;
+---
+<section class="lesson-card next-up" aria-label="Next up">
+  <p class="lesson-eyebrow">Next up</p>
+  <h2><a href={href} data-next-up={inFinish ? undefined : true}>{number && `${number} · `}{label}{!inFinish && <span class="next-arrow" aria-hidden="true">→</span>}</a></h2>
+  {type && <TypeBadge type={type} />}
+  <p class="next-note">{note}</p>
+  <span class="print-only">{href}</span>
+</section>

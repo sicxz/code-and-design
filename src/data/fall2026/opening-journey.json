@@ -1,0 +1,147 @@
+{
+  "steps": [
+    {
+      "id": "canvas-week-0",
+      "order": 1,
+      "surface": "canvas",
+      "title": "Start in Canvas",
+      "href": null,
+      "section": null,
+      "whyLeave": "The syllabus and lessons live on the course site. Canvas holds the assigned route and dates.",
+      "nextAction": "Open Canvas and go to the Week 0 module. Follow the route to the syllabus and read with the instructor.",
+      "returnTo": "Canvas for the Week 0 submissions."
+    },
+    {
+      "id": "syllabus",
+      "order": 2,
+      "surface": "course-site",
+      "title": "Review the syllabus",
+      "href": "/1/syllabus/",
+      "section": null,
+      "whyLeave": "The Welcome introduces the course point of view.",
+      "nextAction": "Open the next lesson, Markdown: source and preview.",
+      "returnTo": "Syllabus in the course navigation. Official EWU statements stay in Canvas."
+    },
+    {
+      "id": "welcome",
+      "order": 3,
+      "surface": "course-site",
+      "title": "Read the Welcome",
+      "href": "/1/",
+      "section": null,
+      "whyLeave": "Week 0 holds the ordered steps.",
+      "nextAction": "Open the next lesson, Markdown: source and preview.",
+      "returnTo": "The Welcome on later visits."
+    },
+    {
+      "id": "markdown-lesson",
+      "order": 4,
+      "surface": "course-site",
+      "title": "Practice a Markdown change",
+      "href": null,
+      "section": "markdown-lesson",
+      "whyLeave": "The practice file opens in your own text editor.",
+      "nextAction": "Edit markdown-practice.md, save it, close the editor, reopen the file, and confirm the change.",
+      "returnTo": "Week 0: Repository lesson."
+    },
+    {
+      "id": "repository-lesson",
+      "order": 5,
+      "surface": "course-site",
+      "title": "Prepare for account setup",
+      "href": null,
+      "section": "repository-lesson",
+      "whyLeave": "Accounts exist on the service sites.",
+      "nextAction": "Open the next lesson, Set up your accounts, for the GitHub steps.",
+      "returnTo": "Week 0: Get your workspace, once your GitHub account exists."
+    },
+    {
+      "id": "accounts",
+      "order": 6,
+      "surface": "external-service",
+      "title": "Make your GitHub account",
+      "href": null,
+      "section": "accounts",
+      "whyLeave": "Sign-up happens on GitHub.",
+      "nextAction": "Follow this lesson's steps on github.com.",
+      "returnTo": "Week 0: Get your workspace."
+    },
+    {
+      "id": "clone",
+      "order": 7,
+      "surface": "student-repository",
+      "title": "Clone and connect your destination",
+      "href": "/1/resources/workflow/",
+      "section": "workspace",
+      "whyLeave": "Source work belongs in your repository.",
+      "nextAction": "Follow the rehearsed steps in order.",
+      "returnTo": "The workflow for the week-0 folder step."
+    },
+    {
+      "id": "week-0-folder",
+      "order": 8,
+      "surface": "student-repository",
+      "title": "Create week-0 and push your first file",
+      "href": null,
+      "section": "workspace",
+      "whyLeave": "The work happens in your editor and terminal.",
+      "nextAction": "Save, commit, push, and open your repository page on GitHub.",
+      "returnTo": "Week 0: Complete the intake."
+    },
+    {
+      "id": "intake",
+      "order": 9,
+      "surface": "student-repository",
+      "title": "Mark where you are starting",
+      "href": null,
+      "section": "intake",
+      "whyLeave": "week-0/where-i-am-starting.md lives in your repository.",
+      "nextAction": "Open week-0/where-i-am-starting.md, tick one box under each heading, and commit.",
+      "returnTo": "Week 0: Write your introduction."
+    },
+    {
+      "id": "introduction",
+      "order": 10,
+      "surface": "student-repository",
+      "title": "Write and save your introduction",
+      "href": null,
+      "section": "introduction-activity",
+      "whyLeave": "You write the introduction in your repository.",
+      "nextAction": "Write under the four headings in week-0/introduction.md, preview, and commit.",
+      "returnTo": "Week 0: Read and make visual notes."
+    },
+    {
+      "id": "readings-and-visual-notes",
+      "order": 11,
+      "surface": "paper",
+      "title": "Read the weekend pair and make notes",
+      "href": "/1/resources/references/#opening-week-reading-and-visual-notes",
+      "section": "readings-and-visual-notes",
+      "whyLeave": "The essays live on the authors' and publisher's sites. Your notes are handwritten.",
+      "nextAction": "Read both essays, then draw and write your notes.",
+      "returnTo": "Week 0: Submit and return."
+    },
+    {
+      "id": "canvas-submission",
+      "order": 12,
+      "surface": "canvas",
+      "title": "Submit in Canvas",
+      "href": null,
+      "section": "submit-and-return",
+      "whyLeave": "Canvas holds submissions, feedback, and grades.",
+      "nextAction": "Open Canvas and go to the Week 0 module. Submit your work.",
+      "returnTo": "Canvas for feedback; Week 0: Submit and return for what comes next."
+    },
+    {
+      "id": "return",
+      "order": 13,
+      "surface": "course-site",
+      "title": "Return before Monday, September 28",
+      "href": null,
+      "section": "submit-and-return",
+      "whyLeave": "Week 1 is a separate lesson.",
+      "nextAction": "On Monday, September 28, turn the same words into HTML headings and paragraphs.",
+      "returnTo": "The Canvas Week 1 entry."
+    }
+  ]
+}

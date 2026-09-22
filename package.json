@@ -1,5 +1,5 @@
 {
-  "name": "starry-star",
+  "name": "desn368-narrative-learning",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -12,9 +12,14 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.6",
+    "@astrojs/react": "4.4.2",
+    "@codemirror/lang-markdown": "6.5.2",
+    "@codesandbox/sandpack-react": "2.20.0",
     "astro": "^5.13.10",
     "lucide-static": "^0.544.0",
     "marked": "^17.0.4",
-    "package-manager-detector": "^1.6.0"
+    "package-manager-detector": "^1.6.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   }
 }

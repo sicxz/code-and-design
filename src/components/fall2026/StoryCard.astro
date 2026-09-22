@@ -1,0 +1,15 @@
+---
+import { renderLessonMarkdown } from '../../lib/fall2026';
+const draft = renderLessonMarkdown("> **Draft for instructor review.** Waits on: The companion's voice and the first encounter lines.");
+---
+<section class="card sidebar-card story-card" aria-label="Story: Your companion" data-story>
+  <div class="story-byline"><span class="badge badge-story">Story</span><span>Your companion</span></div>
+  <blockquote>
+    <p>Hi. Glad you found this.</p>
+    <p>I've made a few notes about what needs fixing. We'll get to those.</p>
+    <p>It's been a while since I've had someone to work with.</p>
+    <p>Before we start, what would you like to call me?</p>
+  </blockquote>
+  <p class="fiction">The companion is a fictional character.</p>
+  <Fragment set:html={draft} />
+</section>

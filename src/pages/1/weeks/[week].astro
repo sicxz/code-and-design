@@ -1,13 +1,17 @@
 ---
 import FallCourseLayout from '../../../layouts/FallCourseLayout.astro';
-import { fall, displayDate, readLesson } from '../../../lib/fall2026';
+import { fall, displayDate, readLesson, getLessonModule } from '../../../lib/fall2026';
+import ModuleIndex from '../../../components/fall2026/ModuleIndex.astro';
+import lessonStyles from '../../../styles/fall2026-lessons.css?inline';
 export function getStaticPaths(){return fall.weeks.map(week=>({params:{week:week.id},props:{week}}));}
 const { week } = Astro.props;
 const index = fall.weeks.findIndex(w=>w.id===week.id);
+const courseModule = getLessonModule(week.id);
 ---
 <FallCourseLayout title={week.title} wide>
   <p class="breadcrumb"><a href="/1/">Course</a> / {week.number===0?'Opening studio':`Week ${week.number}`}</p>
+  {week.id === 'week-1' && <p><a href="/1/weeks/week-1/walkthrough/">Open the Monday / Wednesday walkthrough · instructor review</a></p>}
   <div class="meta-strip"><span>{week.sessions.map(s=>displayDate(s.date)).join(' + ')}</span><span>{week.estimatedHours} hours of core independent work, including project work</span>{week.sessions.some(s=>s.mode==='async') && <strong>October 28 is independent practice</strong>}</div>
-  <div class="lesson-grid"><article class="prose" set:html={readLesson(week.lesson)} /><aside class="lesson-sidebar"><h2>This week’s evidence</h2><ul>{week.assignmentIds.map(id=>{const a=fall.assignments.find(a=>a.id===id);return a&&<li><a href={`/1/assignments/${a.id}/`}>{a.title}</a><br/><span class="muted">Due {displayDate(a.dueDate)}</span></li>})}</ul><h2>Before you move on</h2><ul>{week.outcomes.map(outcome=><li>{outcome}</li>)}</ul><a href="/1/resources/source-checks/">Source checks and recovery</a></aside></div>
+  <div class="lesson-grid">{courseModule ? <><style is:inline set:html={lessonStyles} /><ModuleIndex week={week} module={courseModule} /></> : <article class="prose" set:html={readLesson(week.lesson)} />}<aside class="lesson-sidebar"><h2>This week’s evidence</h2><ul>{week.assignmentIds.map(id=>{const a=fall.assignments.find(a=>a.id===id);return a&&<li><a href={`/1/assignments/${a.id}/`}>{a.title}</a><br/><span class="muted">Due {displayDate(a.dueDate)}</span></li>})}</ul><h2>Before you move on</h2><ul>{week.outcomes.map(outcome=><li>{outcome}</li>)}</ul><a href="/1/syllabus/#source-fluency-and-ai">Source checks and recovery</a></aside></div>
   <nav class="button-row" aria-label="Studio sequence">{index>0&&<a class="button secondary" href={`/1/weeks/${fall.weeks[index-1].id}/`}>Previous studio</a>}{index < fall.weeks.length - 1 && <a class="button" href={`/1/weeks/${fall.weeks[index+1].id}/`}>Next studio</a>}<a class="button secondary" href="/1/schedule/">Full schedule</a></nav>
 </FallCourseLayout>

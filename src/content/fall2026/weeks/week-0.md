@@ -1,42 +1,32 @@
-# Week 0 · Peel up the pixels
+# Week 0 · Enter the course
 
 **Wednesday, September 23 · 1–3:30 p.m.**  
 Independent work estimate: **2 hours total**. Student AI is off.
 
 ## Studio brief
 
-A polished page can make code feel hidden and mysterious. Today you will reveal its structure and change one visible detail on purpose. Your goal is a connection between what you see and what you can point to in the source.
+Today you enter the story and get your workspace. In class you learn one thing, Markdown. The two readings happen over the weekend. So do your GitHub Student Developer Pack, Figma and CodePen accounts.
 
-Bring a browser and a way to save text files. Open the [Peel Up the Pixels lesson](/1/peel-up-the-pixels/) and work through its controls. If the interaction or CodePen cannot load, use the downloadable files and readable explanation on that lesson page. You can complete the same prediction exercise locally.
+The [syllabus](/1/syllabus/) comes first. Read it with the class before beginning the lessons below.
 
-## Build sequence
+## First-class agenda
 
 | Time | Work |
 | --- | --- |
-| 1:00–1:15 | Introduce yourself through one page you enjoy. Say what draws your eye; no prepared presentation. |
-| 1:15–1:40 | Instructor reveals the sample's HTML and CSS. Follow one heading from pixels to element to rule. |
-| 1:40–2:10 | In pairs, predict three reveal states. Use a heading, a paragraph, and the containing box. Explain which layer changes each. |
-| 2:10–2:20 | Break. |
-| 2:20–3:05 | Open the starter, make your own saved copy, and carry out the source experiment below. |
-| 3:05–3:25 | Partner explanation: one person points to source, the other predicts the next change. Swap roles. |
-| 3:25–3:30 | Confirm your saved URL or local files open. Name one remaining question. |
+| 1:00–1:10 | Welcome. |
+| 1:10–1:30 | The syllabus and the student pledge. |
+| 1:30–1:40 | Open the course site. Select **Start here**. Then vote in Canvas: keep the course as it is, or turn it up to full game mode. |
+| 1:40–2:00 | The course's tools: GitHub, Figma, CodePen and a browser. Make your GitHub account. Accept the invitation GitHub emails you. |
+| 2:00–2:10 | Break. |
+| 2:10–2:20 | The instructor shows a repository on GitHub. |
+| 2:20–2:45 | Read the Markdown lesson. Then work through **Practice Markdown live**. |
+| 2:45–3:20 | Get your workspace. Accept the **Workspace** assignment, check your copy, and make your first edit. |
+| 3:20–3:30 | Check in with the instructor before you leave. |
 
-1. Locate the sample's primary heading in the HTML. Change only its words and refresh. The words should change; their styling should remain.
-2. Locate the CSS declaration controlling its size or the containing box's padding. Write a one-sentence prediction before editing.
-3. Change one value, save, and compare. If the result differs, inspect the selector and reload the saved file before trying a second change.
-4. Undo that change and make another intentional version. A reversible experiment helps distinguish your action from something the browser was already doing.
-5. Save a version you can explain. Do not add an entire page or imitate every decorative detail of the sample.
+## Due Sunday, September 27, at 11:59 p.m.
 
-## Source check
+- Your workspace, with your introduction and your starting mark. Submit its link in Canvas.
+- Your visual notes on both readings, as one PDF in Canvas.
+- Your Figma card, in the class team's **intro** file.
 
-Point to the opening and closing tags of the heading. Which text is content? Which rule changes its appearance? If you change the heading's words, why does its color remain? A useful answer names the actual element and declaration, not simply “HTML” and “CSS.”
-
-## Studio evidence
-
-Submit [One source change](/1/assignments/practice-00/): one saved artifact, a two-to-four-sentence explanation of your prediction and result, and one question or next step. Finish the same artifact outside class; there is no second exercise set.
-
-## Delivery check
-
-Open the saved Pen link or local `index.html` after closing the editor tab. Does it show your version? Keep a backup. If sharing is blocked, attach the HTML/CSS files to Canvas and describe the access problem in one sentence.
-
-**Optional:** use browser Inspect on a public page you enjoy and find a heading. Inspector changes are temporary; they do not edit the published site. No optional work is required for full credit.
+> **Draft for instructor review.** Waits on: the agenda's times.

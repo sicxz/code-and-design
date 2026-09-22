@@ -1,0 +1,29 @@
+---
+import type { JourneyStep } from '../../lib/fall2026';
+interface Props { steps: JourneyStep[]; nextHref: string; nextLabel: string }
+const { steps, nextHref, nextLabel } = Astro.props;
+const surfaceLabels: Record<string, string> = {
+  canvas: 'Canvas',
+  'course-site': 'Course site',
+  'student-repository': 'Your repository',
+  'external-service': 'External site',
+  paper: 'Paper',
+};
+---
+<details class="lesson-handoffs" open>
+  <summary>After this</summary>
+  {steps.length === 0 && <div class="handoff"><ul>
+    <li><span class="handoff-check" aria-hidden="true">✓</span><span><span class="handoff-label">Next:</span> <a href={nextHref}>{nextLabel}</a></span></li>
+  </ul></div>}
+  {steps.map(step => (
+    <section class="handoff" data-journey-step={step.id} aria-labelledby={`handoff-${step.id}`}>
+      <p class="lesson-eyebrow">{surfaceLabels[step.surface]}</p>
+      <h2 id={`handoff-${step.id}`}>{step.title}</h2>
+      <ul>
+        <li><span class="handoff-check" aria-hidden="true">✓</span><span><span class="handoff-label">Why you leave:</span> {step.whyLeave}</span></li>
+        <li><span class="handoff-check" aria-hidden="true">✓</span><span><span class="handoff-label">Next:</span> {step.nextAction}</span></li>
+        <li><span class="handoff-check" aria-hidden="true">✓</span><span><span class="handoff-label">Return:</span> {step.returnTo}</span></li>
+      </ul>
+    </section>
+  ))}
+</details>

@@ -1,0 +1,10 @@
+{
+  "file": "/notes.md",
+  "notes": "Notes on what needs fixing\n\nThe page with no headings\n\nEvery line looks the same size, so nothing looks important.\n\nThe list that is not a list\n\nheadings\nparagraphs\nthe space between them\n",
+  "labels": {
+    "region": "Markdown practice",
+    "editor": "notes.md",
+    "preview": "Preview",
+    "reset": "Reset the notes"
+  }
+}

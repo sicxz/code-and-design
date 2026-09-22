@@ -1,8 +1,11 @@
 ---
 import '../styles/fall2026.css';
-const { title = 'Peel Up the Pixels', description = 'Web Design + Code 1. Build, inspect, and understand the web.', wide = false } = Astro.props;
+import '../styles/fall-site-theme.css';
+import Icon from '../components/Icon.astro';
+import { fall } from '../lib/fall2026';
+const { title = 'Peel Up the Pixels', description = 'Web Design + Code 1. Build, inspect, and understand the web.', wide = false, noindex = false } = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/$/, '');
-const nav = [{href:'/1',label:'Course'}, {href:'/1/schedule',label:'Schedule'}, {href:'/1/assignments',label:'Assignments'}, {href:'/1/syllabus',label:'Syllabus'}, {href:'/1/resources',label:'Resources'}];
+const nav = [{href:'/1',label:'Course'}, {href:'/1/map',label:'Map'}, {href:'/1/schedule',label:'Schedule'}, {href:'/1/assignments',label:'Assignments'}, {href:'/1/syllabus',label:'Syllabus'}, {href:'/1/resources',label:'Resources'}];
 ---
 <!doctype html>
 <html lang="en">
@@ -10,23 +13,31 @@ const nav = [{href:'/1',label:'Course'}, {href:'/1/schedule',label:'Schedule'}, 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <title>{title} · Web Design + Code 1</title>
     <link rel="icon" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Silkscreen:wght@400&display=swap" rel="stylesheet" />
   </head>
-  <body class="fall-course">
+  <body class="fall-course code-design-theme">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="course-topbar">
-      <a class="wordmark" href="/" aria-label="Code and Design course home"><span aria-hidden="true">&lt;/&gt;</span> code + design</a>
-      <span class="term-label">DESN 368 · Fall 2026</span>
-      <nav aria-label="Course navigation">{nav.map(item => <a href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>{item.label}</a>)}</nav>
+      <div class="course-brand">
+        <span class="brand-icon"><Icon name="book" size={32} /></span>
+        <div class="course-identity">
+          <div class="course-title-line"><a class="wordmark" href="/1/"><span class="course-code">{fall.courseCode}:</span> {fall.title}</a><span class="term-label">{fall.term}</span></div>
+          <p class="course-tagline">Brick by brick. Tag by tag. Source-level fluency.</p>
+        </div>
+      </div>
+      <a class="all-courses" href="/">All courses</a>
+      <nav aria-label="Course navigation">{nav.map(item => <a href={item.href} aria-current={pathname === item.href ? 'page' : item.href !== '/1' && pathname.startsWith(`${item.href}/`) ? 'location' : undefined}>{item.label}</a>)}</nav>
     </header>
     <main id="main" class:list={['course-main', {wide}]} tabindex="-1"><slot /></main>
     <footer class="course-footer">
-      <div><strong>Brick by brick. Tag by tag.</strong><p>Source-level fluency. Eastern Washington University.</p></div>
+      <div><strong>Brick by brick. Tag by tag.</strong><p>Source-level fluency. Eastern Washington University.</p><p><a href="/1/passport/">Learning Passport</a></p></div>
       <nav aria-label="Related courses"><a href="/2/">Web Design + Code 2</a><a href="/1-spring-2026/">Spring 2026 archive</a><a href="/1-fall-2025/">Fall 2025 archive</a></nav>
     </footer>
+    <script>import '../scripts/fall2026-passport-ui.mjs';</script>
   </body>
 </html>

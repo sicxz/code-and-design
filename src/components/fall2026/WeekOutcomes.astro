@@ -1,0 +1,37 @@
+---
+import { assignmentHref, getWeekOutcomes, outcomes, type LessonType } from '../../lib/fall2026';
+import TypeBadge from './TypeBadge.astro';
+
+interface Props { weekId: string }
+const { weekId } = Astro.props;
+const week = getWeekOutcomes(weekId);
+if (!week) throw new Error(`No outcomes registered for ${weekId}`);
+const aiStage = outcomes.aiStages[week.aiStage];
+---
+<section class="lesson-card week-outcomes-card" data-week-outcomes-card aria-labelledby="week-outcomes-title">
+  <div class="lesson-color-bar" aria-hidden="true"></div>
+  <h2 id="week-outcomes-title">By the end of this week</h2>
+  <ol class="week-outcome-list">
+    {week.outcomes.map(outcome => {
+      const href = assignmentHref(outcome.evidence.item);
+      return (
+        <li data-outcome data-objective={outcome.objective}>
+          <p class="week-outcome-text">{outcome.text}</p>
+          <p class="outcome-meta">
+            Objective {outcome.objective} · <TypeBadge type={outcome.evidence.type as LessonType} /> · {outcome.evidence.canvas} ·{' '}
+            {href ? <a href={href}>{outcome.evidence.item}</a> : outcome.evidence.item}
+          </p>
+        </li>
+      );
+    })}
+  </ol>
+  <div class="week-principle" data-principle={week.principle.id}>
+    <p class="lesson-eyebrow">In the {week.principle.lesson === 'apply' ? 'Apply' : 'Project'} lesson</p>
+    <p>{week.principle.plain}</p>
+  </div>
+  <div class="week-ai-stage">
+    <span class="badge badge-secondary" data-ai-stage={week.aiStage}>{aiStage.label}</span>
+    <p>{aiStage.text}</p>
+  </div>
+  <a class="week-outcomes-link" href="/1/outcomes/">All outcomes by week</a>
+</section>

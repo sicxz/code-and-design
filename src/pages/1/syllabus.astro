@@ -1,5 +1,54 @@
 ---
 import FallCourseLayout from '../../layouts/FallCourseLayout.astro';
 import { readLesson } from '../../lib/fall2026';
+import '../../styles/fall2026-syllabus.css';
+
+const [header, ...parts] = readLesson('syllabus.md').split(/(?=<h2>)/);
+const sections = parts.map(part => {
+  const [, heading, content] = part.match(/^<h2>(.*?)<\/h2>([\s\S]*)$/)!;
+  const slug = heading.toLowerCase().replace(/\s+/g, '-');
+  let body = content;
+  if (slug === 'learning-objectives') {
+    const [intro, ...columns] = body.split(/(?=<h3>)/);
+    body = intro + '<div class="objective-columns">' + columns.map(column => {
+      const plo = column.match(/<h3>(PLO-\d+)/)![1];
+      return `<div data-plo="${plo}">${column}</div>`;
+    }).join('') + '</div>';
+  }
+  if (slug === 'grading-breakdown') {
+    let tableIndex = 0;
+    body = body.replace(/<table>[\s\S]*?<\/table>/g, table => {
+      if (tableIndex++ === 0) return table;
+      // Explicit roles preserve table semantics when CSS lays out the cells.
+      return table.replace('<table>', '<table class="grade-scale" role="table">')
+        .replace('<thead>', '<thead role="rowgroup">')
+        .replace('<tbody>', '<tbody role="rowgroup">')
+        .replace(/<tr>/g, '<tr role="row">')
+        .replace(/<th>/g, '<th role="columnheader" scope="col">')
+        .replace(/<td>/g, '<td role="cell">');
+    });
+  }
+  return { slug, heading, body };
+});
 ---
-<FallCourseLayout title="Syllabus"><p class="breadcrumb"><a href="/1/">Course</a> / Syllabus</p><article class="prose" set:html={readLesson('syllabus.md')} /></FallCourseLayout>
+<FallCourseLayout title="Syllabus">
+  <p class="breadcrumb"><a href="/1/">Course</a> / Syllabus</p>
+  <div data-syllabus-page>
+    <header data-syllabus-header set:html={header} />
+    {sections.map(({ slug, heading, body }) => (
+      <section
+        class:list={['card syllabus-card', {
+          'syllabus-facts': ['course-information', 'instructor'].includes(slug),
+          'syllabus-objectives': slug === 'learning-objectives',
+          'syllabus-grading': slug === 'grading-breakdown',
+          'syllabus-policy': ['attendance', 'late-work'].includes(slug),
+        }]}
+        data-syllabus-section={slug}
+        aria-labelledby={slug}
+      >
+        <h2 id={slug} set:html={heading} />
+        <Fragment set:html={body} />
+      </section>
+    ))}
+  </div>
+</FallCourseLayout>

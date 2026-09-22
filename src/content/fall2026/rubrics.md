@@ -1,8 +1,8 @@
 # Assessment rubrics
 
-The course uses four weighted categories: participation 20%, weekly practice 30%, projects 40%, and final portfolio 10%. Assess the learning named in the brief; extra decoration, extra pages, paid tools, and long explanations do not earn automatic extra credit.
+The course uses four weighted categories: participation 20%, weekly assignments 30%, projects 40%, and final portfolio 10%. Assess the learning named in the brief; extra decoration, extra pages, paid tools, and long explanations do not earn automatic extra credit.
 
-## Weekly practice · 10 points each
+## Weekly assignments · 10 points each
 
 | Criterion | Points | Evidence |
 | --- | --- | --- |
@@ -47,4 +47,4 @@ The instructor records examples across the term and discusses gaps with the stud
 
 ## Keep the categories distinct
 
-A weekly practice may point to a work-in-progress project to show one experiment. The weekly score concerns that experiment and explanation; the project score concerns the finished deliverable. The portfolio score concerns its collection, navigation, and presentation. Avoid making students repeat the same evidence in separate reflection documents.
+A weekly assignment may point to a work-in-progress project to show one experiment. The weekly score concerns that experiment and explanation; the project score concerns the finished deliverable. The portfolio score concerns its collection, navigation, and presentation. Avoid making students repeat the same evidence in separate reflection documents.

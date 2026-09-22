@@ -1,0 +1,13 @@
+---
+import { lessonTypes, type LessonType } from '../../lib/fall2026';
+import TypeBadge from './TypeBadge.astro';
+const types = Object.keys(lessonTypes) as LessonType[];
+---
+<dl class="legend" aria-label="Six lesson types" data-type-legend>
+  {types.map(type => (
+    <div>
+      <dt><TypeBadge type={type} /></dt>
+      <dd>{lessonTypes[type].definition}<span class="lesson-category">Category: {lessonTypes[type].category}</span></dd>
+    </div>
+  ))}
+</dl>

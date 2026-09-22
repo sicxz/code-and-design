@@ -127,15 +127,15 @@ with (out / 'assignment-dates.csv').open('w', newline='') as handle:
     for assignment in course['assignments']:
         writer.writerow([assignment[k] for k in ('id','title','group','points','dueDate','dueTime')] + [due_utc(assignment)])
 
-(out / 'README.md').write_text('''# DESN 368 · Fall 2026 · Canvas review package
+(out / 'README.md').write_text(f'''# DESN 368 · Fall 2026 · Canvas review package
 
-Generated from the same Markdown briefs and calendar metadata as the website. The package contains 34 Canvas-ready HTML documents, the Markdown sources, downloadable starters, assignment dates, and a Common Cartridge draft. It contains no student records or historical exports.
+Generated from the same Markdown briefs and calendar metadata as the website. The package contains {len(items)} Canvas-ready HTML documents, the Markdown sources, downloadable starters, assignment dates, and a Common Cartridge draft. It contains no student records or historical exports.
 
 ## Review the import in an empty sandbox course
 
 1. In a Canvas sandbox, choose Settings → Import Course Content → Canvas Course Export Package. Select `desn368-fall-2026-review.imscc`. Keep the existing dates; do not shift the quarter.
 2. Confirm 12 modules (Start here + weeks 0–10), 17 assignments, and four assignment groups. Imported material is marked unpublished; inspect visibility before making anything available.
-3. Enable/confirm assignment group weighting: participation 20%, weekly practice 30%, projects 40%, portfolio 10%. Check that participation is an instructor-recorded grade. The four projects carry equal points; portfolio evaluates curation rather than grading them again.
+3. Enable/confirm assignment group weighting: participation 20%, weekly assignments 30%, projects 40%, portfolio 10%. Check that participation is an instructor-recorded grade. The four projects carry equal points; portfolio evaluates curation rather than grading them again.
 4. Compare all dates with `assignment-dates.csv`, especially October 28 and the December 9 noon portfolio deadline. UTC dates correctly account for the November daylight-saving transition. Final presentations are December 9, 1–3 p.m. Pacific.
 5. Open each module and its links. Course links and starter downloads point to code-and-design.org; these must be reachable from student devices. The pixel lesson has a local-file fallback. HTML files can also be pasted into Canvas's HTML editor if cartridge import differs in your Canvas instance.
 6. Add the actual classroom, current office-hour arrangements, and institution-required syllabus statements in Canvas. Review rubrics and recovery arrangements. Check Student View before publishing selected materials.

@@ -1,0 +1,88 @@
+---
+import FallCourseLayout from '../../../../layouts/FallCourseLayout.astro';
+import Icon from '../../../../components/Icon.astro';
+import { fall, displayDate, displayTime } from '../../../../lib/fall2026';
+import { walkthroughDays, reviewQuestions } from '../../../../data/fall2026/week1-walkthrough';
+import { readFileSync } from 'node:fs';
+
+const practice = fall.assignments.find(assignment => assignment.id === 'practice-01')!;
+const project = fall.assignments.find(assignment => assignment.id === 'project-recipe')!;
+const starterHTML = readFileSync('public/fall-2026/starters/recipe/index.html', 'utf8');
+const starterCSS = readFileSync('public/fall-2026/starters/recipe/styles.css', 'utf8');
+const pen = JSON.stringify({ title: 'DESN 368 — Recipe in progress', html: starterHTML.match(/<body>([\s\S]*)<\/body>/)?.[1].trim() ?? '', css: starterCSS, js: '', editors: '110', layout: 'left' });
+---
+<FallCourseLayout title="Week 1 walkthrough" wide noindex>
+  <p class="breadcrumb"><a href="/1/weeks/week-1/">Week 1 lesson</a> / Walkthrough</p>
+  <div class="review-label"><span class="draft-dot" aria-hidden="true"></span>Instructor review · Proposed teaching sequence</div>
+  <header class="walkthrough-intro">
+    <div><h1>Give content<br/>a structure.</h1><p class="page-intro">One recipe, built across two studios. Walk through what students do, which tool they use, and what they should understand before moving on.</p></div>
+    <div class="week-summary"><strong>Week 1 · September 28 + 30</strong><span>Monday / Wednesday · 1–3:30 p.m.</span><span>4 hours outside class, including project work</span><span class="ai-note">Student AI is off</span></div>
+  </header>
+
+  <section class="tools-route" aria-label="This week’s tool progression">
+    <div><Icon name="book" size={18}/><strong>Browser + course</strong><span>Read the brief; see the result</span></div>
+    <div><Icon name="code" size={18}/><strong>CodePen Classic</strong><span>Continue editing and saving</span></div>
+    <div><Icon name="layers" size={18}/><strong>DevTools · new</strong><span>Learn Inspect together on Monday</span></div>
+    <div><Icon name="clipboard-list" size={18}/><strong>Canvas</strong><span>Deliver the same recipe and evidence</span></div>
+  </section>
+
+  <div class="walkthrough-layout">
+    <div class="day-workspace">
+      <nav class="day-navigation" aria-label="Choose a studio day" hidden>
+        {walkthroughDays.map(day => <button type="button" data-day-button={day.id} aria-controls={day.id} aria-pressed="false"><span>{day.label} · {displayDate(day.date)}</span><strong>{day.title}</strong></button>)}
+      </nav>
+      {walkthroughDays.map(day => <section class="day-panel" id={day.id} aria-labelledby={`${day.id}-title`}>
+        <div class="day-heading"><p class="day-date">{day.label} · {displayDate(day.date)} · 1–3:30 p.m.</p><h2 id={`${day.id}-title`}>{day.title}</h2><p>{day.intro}</p></div>
+        <div class="day-boundaries"><div><strong>Bring forward</strong><p>{day.carryIn}</p></div><div><strong>Leave with</strong><p>{day.leaveWith}</p></div></div>
+        <p class="day-tools"><strong>Tools today</strong> {day.tools.join(' · ')}</p>
+        <ol class="session-steps">
+          {day.steps.map((step, index) => <li>
+            <details class="session-step" open={index === 0}>
+              <summary><span class="step-time">{step.time}</span><span class="step-heading">{step.title}</span><Icon name="chevron-down" size={18}/></summary>
+              <div class="step-content"><p class="tool-label"><strong>Tool</strong> {step.tool}</p><ol>{step.actions.map(action => <li>{action}</li>)}</ol>{step.example && <div class="code-example"><p>Small source example</p><pre tabindex="0"><code>{step.example}</code></pre></div>}<div class="understanding-check"><Icon name="target" size={18}/><p><strong>Before moving on</strong><br/>{step.check}</p></div></div>
+            </details>
+          </li>)}
+        </ol>
+      </section>)}
+      <section class="between-studios"><h2>Keep the same work moving.</h2><p>Finish or repair the recipe you started in class. Submit your current Pen or local files, a two-to-four-sentence source explanation, and one question or next step. The recipe can still be unstyled.</p><p><strong>Practice due {displayDate(practice.dueDate)}, {displayTime(practice.dueTime)} Pacific.</strong> The completed recipe project follows on {displayDate(project.dueDate)}. Next week’s CSS builds on this same structure.</p><a href="/1/assignments/practice-01/">Read the recipe structure check</a></section>
+    </div>
+
+    <aside class="walkthrough-sidebar" aria-label="Materials and review notes">
+      <section class="materials-panel"><h2>Start with the recipe.</h2><p>Use this exact starter entry to match the Classic HTML/CSS panels described in the walkthrough.</p><form action="https://codepen.io/pen/define/" method="post" target="_blank" rel="noopener"><input type="hidden" name="data" value={pen}/><button class="button" type="submit"><Icon name="code" size={16}/>Open in CodePen Classic</button></form><p class="small-note">Opens a new tab. Sign in and save your own copy before building.</p><div class="materials-links"><a href="/fall-2026/starters/recipe.zip" download>Download the recipe files</a><a href="/fall-2026/starters/recipe/index.html" target="_blank" rel="noopener">Preview the unfinished starter</a><a href="/1/assignments/project-recipe/">Read the complete project brief</a><a href="/1/weeks/week-1/">Compare with the current week page</a></div><details class="local-instructions"><summary>Working with local files?</summary><p>Keep <code>index.html</code> and <code>styles.css</code> together. Open the HTML in a browser to view it, and in a text editor to edit it. Save and refresh. These are the recipe’s filenames; the opening pixel lesson used <code>style.css</code>.</p></details></section>
+      <section class="review-panel"><div class="review-panel-title"><Icon name="clipboard-list" size={20}/><h2>For our walkthrough</h2></div><p>These decisions are still open. The sequence above is a proposal for review.</p><ul>{reviewQuestions.map(question => <li>{question}</li>)}</ul><p class="small-note">The companion Milanote board has not been linked yet.</p></section>
+      <button type="button" class="button secondary print-walkthrough" hidden>Print both days</button>
+    </aside>
+  </div>
+</FallCourseLayout>
+
+<script>
+  const navigation = document.querySelector<HTMLElement>('.day-navigation');
+  const dayButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-day-button]'));
+  const dayPanels = Array.from(document.querySelectorAll<HTMLElement>('.day-panel'));
+  const printButton = document.querySelector<HTMLButtonElement>('.print-walkthrough');
+  function chooseDay(id: string) {
+    const selected = dayPanels.some(panel => panel.id === id) ? id : dayPanels[0]?.id;
+    for (const panel of dayPanels) panel.hidden = panel.id !== selected;
+    for (const button of dayButtons) button.setAttribute('aria-pressed', String(button.dataset.dayButton === selected));
+  }
+  if (navigation && dayPanels.length) {
+    navigation.hidden = false;
+    chooseDay(location.hash.slice(1));
+    for (const button of dayButtons) button.addEventListener('click', () => {
+      const day = button.dataset.dayButton!;
+      if (location.hash !== `#${day}`) history.pushState(null, '', `#${day}`);
+      chooseDay(day);
+    });
+    window.addEventListener('popstate', () => chooseDay(location.hash.slice(1)));
+    window.addEventListener('hashchange', () => chooseDay(location.hash.slice(1)));
+  }
+  if (printButton) { printButton.hidden = false; printButton.addEventListener('click', () => window.print()); }
+</script>
+
+<style>
+  .review-label{display:flex;gap:9px;align-items:center;color:var(--text-secondary);font:12px/1.5 var(--font-mono)}.draft-dot{width:7px;height:7px;border-radius:50%;background:#d29922}.walkthrough-intro{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:48px;align-items:center;margin-bottom:30px}.walkthrough-intro h1{max-width:none;margin-top:16px}.walkthrough-intro .page-intro{max-width:56ch}.week-summary{display:grid;gap:8px;border-left:3px solid var(--brand-primary);padding-left:22px;font-size:14px;color:var(--text-secondary)}.week-summary strong{color:var(--text-primary)}.ai-note{color:#f98c9b}.tools-route{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--border-color);border-radius:8px;background:var(--bg-card);margin:0 0 32px}.tools-route>div{padding:18px 20px;display:grid;grid-template-columns:18px 1fr;gap:4px 10px;align-items:center}.tools-route>div+div{border-left:1px solid var(--border-color)}.tools-route :global(svg){color:var(--text-link)}.tools-route strong{font-size:13px}.tools-route span{grid-column:2;font-size:12px;color:var(--text-secondary)}.walkthrough-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}.day-workspace{min-width:0}.day-navigation:not([hidden]){display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}.day-navigation button{padding:16px 18px;min-width:0;text-align:left;border:1px solid var(--border-color);border-radius:6px;background:var(--bg-card);color:var(--text-secondary);cursor:pointer}.day-navigation button span{display:block;font:11px/1.6 var(--font-mono);margin-bottom:5px}.day-navigation button strong{font-size:15px;line-height:1.35;display:block}.day-navigation button[aria-pressed=true]{border-color:var(--brand-primary);background:var(--brand-primary-light);color:var(--text-primary)}.day-heading h2{margin:8px 0 12px}.day-heading>p:last-child{font-size:16px;margin:0 0 22px}.day-date{font:12px/1.5 var(--font-mono);color:var(--text-link);margin:0}.day-boundaries{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:18px 20px;border:1px solid var(--border-color);background:var(--bg-card);border-radius:6px}.day-boundaries strong{font-size:13px}.day-boundaries p{font-size:14px;color:var(--text-secondary);margin:5px 0 0}.day-tools{font-size:12px;color:var(--text-secondary);margin:18px 0}.day-tools strong{color:var(--text-primary);margin-right:8px}.session-steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}.session-step{background:var(--bg-card);border:1px solid var(--border-color);border-radius:6px}.session-step summary{display:grid;grid-template-columns:105px 1fr 18px;gap:14px;align-items:center;cursor:pointer;list-style:none;padding:18px 20px}.session-step summary::-webkit-details-marker{display:none}.session-step summary:hover{background:var(--bg-inset)}.step-time{font:11px/1.5 var(--font-mono);color:var(--text-secondary)}.step-heading{font-size:16px;font-weight:600;line-height:1.35}.session-step summary :global(svg){color:var(--text-secondary);transition:transform .15s}.session-step[open] summary :global(svg){transform:rotate(180deg)}.session-step[open] summary{border-bottom:1px solid var(--border-color)}.step-content{padding:4px 24px 20px}.tool-label{font-size:12px;color:var(--text-secondary)}.tool-label strong{color:var(--text-link);margin-right:8px}.step-content ol{padding-left:20px;font-size:15px}.step-content li{padding-left:4px;margin:12px 0}.understanding-check{display:flex;gap:12px;padding:14px 16px;border-left:3px solid #7fde45;background:rgba(127,222,69,.05);border-radius:0 4px 4px 0}.understanding-check :global(svg){flex-shrink:0;color:#7fde45;margin-top:4px}.understanding-check p{margin:0;font-size:14px}.understanding-check strong{font-size:12px;color:#7fde45}.code-example>p{font:11px/1.5 var(--font-mono);color:var(--text-secondary);margin-bottom:8px}.code-example pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:5px;padding:16px;font:12px/1.7 var(--font-mono)}.code-example code{font:inherit}.walkthrough-sidebar{display:grid;gap:18px}.materials-panel,.review-panel{background:var(--bg-card);border:1px solid var(--border-color);border-radius:6px;padding:22px}.materials-panel{border-top:3px solid var(--brand-primary)}.materials-panel h2,.review-panel h2{font-size:20px;margin:0 0 14px}.materials-panel p,.review-panel p{font-size:14px}.materials-panel .button{font-size:13px;gap:8px;width:100%;padding:11px}.materials-links{display:grid;gap:12px;margin:22px 0;font-size:14px}.small-note{color:var(--text-secondary);font-size:12px!important;line-height:1.6}.local-instructions{border-top:1px solid var(--border-color);padding-top:15px;font-size:13px}.local-instructions summary{cursor:pointer;font-weight:600}.local-instructions code{font:12px var(--font-mono);color:#f98c9b;overflow-wrap:anywhere}.review-panel-title{display:flex;align-items:center;gap:10px}.review-panel-title :global(svg){color:#d29922;flex-shrink:0}.review-panel-title h2{margin:0}.review-panel ul{padding-left:18px;font-size:13px}.review-panel li{margin:14px 0}.between-studios{border-top:1px solid var(--border-color);margin-top:32px;padding-top:10px}.between-studios h2{font-size:24px}.between-studios p,.between-studios>a{font-size:15px}.print-walkthrough{justify-self:start}
+  @media(max-width:1000px){.walkthrough-layout{grid-template-columns:minmax(0,1fr) 270px;gap:20px}.walkthrough-intro{gap:28px;grid-template-columns:minmax(0,1fr) 270px}.tools-route{grid-template-columns:1fr 1fr}.tools-route>div:nth-child(3){border-left:0;border-top:1px solid var(--border-color)}.tools-route>div:nth-child(4){border-top:1px solid var(--border-color)}.session-step summary{grid-template-columns:85px 1fr 18px;gap:10px;padding:16px}}
+  @media(max-width:760px){.walkthrough-layout{grid-template-columns:minmax(0,1fr)}.walkthrough-intro{grid-template-columns:1fr;gap:12px}.week-summary{margin-bottom:8px}.walkthrough-sidebar{grid-template-columns:1fr 1fr}.day-boundaries{gap:16px}}
+  @media(max-width:480px){.tools-route>div{padding:14px 12px;grid-template-columns:1fr;gap:6px}.tools-route :global(svg){display:none}.tools-route span{grid-column:1}.walkthrough-sidebar{grid-template-columns:1fr}.day-navigation button{padding:13px 12px}.day-navigation button strong{font-size:14px}.day-boundaries{grid-template-columns:1fr}.session-step summary{grid-template-columns:1fr 18px;gap:5px 10px}.step-time{grid-column:1}.step-heading{grid-column:1;grid-row:2}.session-step summary :global(svg){grid-column:2;grid-row:1/3}.step-content{padding:4px 16px 16px}.understanding-check{padding:12px}.review-label{font-size:10px}.walkthrough-intro h1{font-size:38px}}
+  @media print{.day-navigation,.print-walkthrough,form{display:none!important}.walkthrough-intro,.walkthrough-layout,.walkthrough-sidebar{display:block}.walkthrough-intro h1{font-size:26pt}.week-summary{margin:16px 0}.tools-route{display:grid;grid-template-columns:1fr 1fr}.day-panel[hidden]{display:block!important}.day-panel+.day-panel{break-before:page}.session-step::details-content{content-visibility:visible;display:block}.session-step{break-inside:avoid}.session-step summary :global(svg){display:none}.day-boundaries,.materials-panel,.review-panel{background:#fff}.understanding-check{border-color:#444;background:#eee}.understanding-check strong{color:#172128}.understanding-check :global(svg){color:#172128}.materials-panel,.review-panel{margin-top:18px}.day-date,.tool-label strong,.local-instructions code{color:#172128}.step-content{padding:0 16px 12px}.session-step summary{padding:10px 16px}.tools-route,.day-boundaries{margin-bottom:16px}}
+</style>
