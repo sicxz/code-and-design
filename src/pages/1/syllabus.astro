@@ -2,6 +2,43 @@
 import FallCourseLayout from '../../layouts/FallCourseLayout.astro';
 import { readLesson } from '../../lib/fall2026';
 import '../../styles/fall2026-syllabus.css';
+import fileText from 'lucide-static/icons/file-text.svg?raw';
+import user from 'lucide-static/icons/user.svg?raw';
+import bookOpen from 'lucide-static/icons/book-open.svg?raw';
+import lightbulb from 'lucide-static/icons/lightbulb.svg?raw';
+import target from 'lucide-static/icons/target.svg?raw';
+import chartPie from 'lucide-static/icons/chart-pie.svg?raw';
+import calendarCheck from 'lucide-static/icons/calendar-check.svg?raw';
+import clock from 'lucide-static/icons/clock.svg?raw';
+import packageOpen from 'lucide-static/icons/package-open.svg?raw';
+import hammer from 'lucide-static/icons/hammer.svg?raw';
+import layers from 'lucide-static/icons/layers.svg?raw';
+import scrollText from 'lucide-static/icons/scroll-text.svg?raw';
+import code from 'lucide-static/icons/code.svg?raw';
+import handshake from 'lucide-static/icons/handshake.svg?raw';
+import send from 'lucide-static/icons/send.svg?raw';
+
+const sectionIcons: Record<string, string> = {
+  'course-information': fileText,
+  'instructor': user,
+  'course-description': bookOpen,
+  'what-you-will-learn': lightbulb,
+  'learning-objectives': target,
+  'grading-breakdown': chartPie,
+  'attendance': calendarCheck,
+  'late-work': clock,
+  'what-the-course-provides': packageOpen,
+  'the-work': hammer,
+  'three-places': layers,
+  'the-story-and-your-place-in-it': scrollText,
+  'source-fluency-and-ai': code,
+  'studio-responsibilities': handshake,
+  'deliver-cleanly': send,
+};
+const decorativeIcon = (svg: string) => svg
+  .replace(/<!--[^]*?-->/g, '')
+  .trim()
+  .replace('<svg', '<svg aria-hidden="true" focusable="false"');
 
 const [header, ...parts] = readLesson('syllabus.md').split(/(?=<h2>)/);
 const sections = parts.map(part => {
@@ -46,7 +83,10 @@ const sections = parts.map(part => {
         data-syllabus-section={slug}
         aria-labelledby={slug}
       >
-        <h2 id={slug} set:html={heading} />
+        <h2 id={slug}>
+          <Fragment set:html={decorativeIcon(sectionIcons[slug])} />
+          <span set:html={heading} />
+        </h2>
         <Fragment set:html={body} />
       </section>
     ))}

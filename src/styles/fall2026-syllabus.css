@@ -13,6 +13,18 @@
 .code-design-theme [data-syllabus-page] strong { color: var(--text-primary); font-weight: 600; }
 .code-design-theme [data-syllabus-page] h1 { max-width: none; margin-bottom: 20px; }
 .code-design-theme [data-syllabus-page] h2 { font-size: var(--fs-2xl); margin-bottom: 20px; }
+.code-design-theme [data-syllabus-page] h2 {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 12px;
+}
+.code-design-theme [data-syllabus-page] h2 > .lucide {
+  width: 24px;
+  height: 24px;
+  margin-top: calc((1lh - 24px) / 2);
+  color: var(--brand-primary);
+}
 .code-design-theme [data-syllabus-page] h3 { font-size: var(--fs-xl); margin: 24px 0 12px; }
 .code-design-theme [data-syllabus-page] code { background: var(--bg-inset); padding: 2px 5px; border-radius: 0; }
 .code-design-theme [data-syllabus-page] a:focus-visible { outline: 3px solid var(--text-link); outline-offset: 5px; }

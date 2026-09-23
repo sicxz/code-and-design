@@ -443,7 +443,8 @@
       "dueDate": "2026-09-27",
       "weekId": "week-0",
       "brief": "assignments/practice-00.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": true
     },
     {
       "id": "practice-01",
@@ -453,7 +454,8 @@
       "dueDate": "2026-10-04",
       "weekId": "week-1",
       "brief": "assignments/practice-01.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "practice-02",
@@ -463,7 +465,8 @@
       "dueDate": "2026-10-11",
       "weekId": "week-2",
       "brief": "assignments/practice-02.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "practice-03",
@@ -473,7 +476,8 @@
       "dueDate": "2026-10-18",
       "weekId": "week-3",
       "brief": "assignments/practice-03.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "practice-04",
@@ -483,7 +487,8 @@
       "dueDate": "2026-10-25",
       "weekId": "week-4",
       "brief": "assignments/practice-04.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "practice-05",
@@ -493,7 +498,8 @@
       "dueDate": "2026-10-28",
       "weekId": "week-5",
       "brief": "assignments/practice-05.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "practice-06",
@@ -503,7 +509,8 @@
       "dueDate": "2026-11-08",
       "weekId": "week-6",
       "brief": "assignments/practice-06.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "practice-07",
@@ -513,7 +520,8 @@
       "dueDate": "2026-11-15",
       "weekId": "week-7",
       "brief": "assignments/practice-07.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "practice-08",
@@ -523,7 +531,8 @@
       "dueDate": "2026-11-22",
       "weekId": "week-8",
       "brief": "assignments/practice-08.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "practice-09",
@@ -533,7 +542,8 @@
       "dueDate": "2026-11-29",
       "weekId": "week-9",
       "brief": "assignments/practice-09.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "practice-10",
@@ -543,7 +553,8 @@
       "dueDate": "2026-12-02",
       "weekId": "week-10",
       "brief": "assignments/practice-10.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "project-recipe",
@@ -553,7 +564,8 @@
       "dueDate": "2026-10-07",
       "weekId": "week-2",
       "brief": "assignments/project-recipe.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "project-tribute",
@@ -563,7 +575,8 @@
       "dueDate": "2026-10-25",
       "weekId": "week-4",
       "brief": "assignments/project-tribute.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "project-field-guide",
@@ -573,7 +586,8 @@
       "dueDate": "2026-11-15",
       "weekId": "week-7",
       "brief": "assignments/project-field-guide.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "project-landing",
@@ -583,7 +597,8 @@
       "dueDate": "2026-12-02",
       "weekId": "week-10",
       "brief": "assignments/project-landing.md",
-      "dueTime": "23:59"
+      "dueTime": "23:59",
+      "inCanvas": false
     },
     {
       "id": "final-portfolio",
@@ -593,7 +608,8 @@
       "dueDate": "2026-12-09",
       "weekId": "week-10",
       "brief": "assignments/final-portfolio.md",
-      "dueTime": "12:00"
+      "dueTime": "12:00",
+      "inCanvas": false
     },
     {
       "id": "studio-participation",
@@ -603,7 +619,8 @@
       "dueDate": "2026-12-09",
       "weekId": "week-10",
       "brief": "assignments/studio-participation.md",
-      "dueTime": "15:00"
+      "dueTime": "15:00",
+      "inCanvas": false
     }
   ],
   "resources": [

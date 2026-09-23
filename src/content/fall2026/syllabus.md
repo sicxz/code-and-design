@@ -17,6 +17,7 @@ A web page has a visible surface and a structure you can learn to read. In this 
 | Prerequisite | DESN 216 |
 | Schedule | Monday and Wednesday, 1–3:30 p.m. |
 | Location | ISL 156 |
+| Quarter board | [Milanote](https://app.milanote.com/1X9qtO1kROI85O?p=hFmcngREMeg) |
 | Final presentations | Wednesday, December 9, 1–3 p.m. |
 | No class | November 11 and November 25 |
 | October 28 | Supported asynchronous practice; the instructor is away. |
