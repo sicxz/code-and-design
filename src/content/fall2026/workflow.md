@@ -5,8 +5,8 @@ Keep one place for the work you make. Early CodePens become the first projects i
 ## Weeks 0–2: CodePen and a local backup
 
 1. Open a new Pen in [CodePen Classic](https://codepen.io/pen). Use the HTML panel for the contents of the page body and the CSS panel for the stylesheet. Leave the JavaScript panel empty. Do not paste a complete document's `head` or `body` tags into the HTML panel.
-2. Save the Pen with a meaningful title such as `DESN 368 — Recipe`. Copy its saved URL.
-3. For a starter downloaded from this site, open `index.html` in a text editor. Copy only the markup between `<body>` and `</body>` into the HTML panel; copy the starter’s CSS file into the CSS panel (`style.css` for the opening starter; `styles.css` for the recipe). The local `link` element is unnecessary in CodePen.
+2. Save the Pen with a meaningful title such as `DESN 368 — Project 1`. Copy its saved URL.
+3. For a starter downloaded from this site, open `index.html` in a text editor. Copy only the markup between `<body>` and `</body>` into the HTML panel; copy the starter’s CSS file into the CSS panel (`style.css` for the opening starter; `styles.css` for Project 1). The local `link` element is unnecessary in CodePen.
 4. Keep a local copy of your work. Online editors can be unavailable. A folder containing `index.html` and its linked CSS file opens in your browser without a build command. Keep the starter’s file names: the `href` in the HTML must match the CSS file name.
 
 These panel instructions use the Classic editor. If you see a file-based editor with a complete `index.html`, use the Classic link above or ask for help before copying. [CodePen documents the editor differences](https://blog.codepen.io/docs/what-changed/).
@@ -24,24 +24,24 @@ The final lesson will teach the required repository vocabulary and model each op
 After the opening handoff has been approved and completed, use that same student-owned course repository. Do the first CodePen-to-file move yourself so folders, paths, commits, and publication remain visible. Use the [portfolio starter ZIP](/fall-2026/starters/portfolio.zip) or individual [HTML](/fall-2026/starters/portfolio/index.html) and [CSS](/fall-2026/starters/portfolio/styles.css) files.
 
 1. Copy only the portfolio starter's `index.html` and `styles.css` to the repository root. Preserve the course README and any assigned setup files.
-2. Add the HTML document wrapper from the recipe download, then manually move your own CodePen HTML and CSS into `recipe/index.html` and `recipe/styles.css`.
-3. In the recipe document's `head`, verify `<link rel="stylesheet" href="styles.css">`. Put any recipe image in `recipe/images/` and use a matching path, such as `images/soup.jpg`. File names are case-sensitive on the published site.
-4. From the root portfolio, link to `recipe/`. From a project folder, link home with `../`. Avoid leading slashes: `/recipe/` points at the account's domain root rather than the repository's project path.
+2. Add the HTML document wrapper from the Project 1 download, then manually move your own CodePen HTML and CSS into `project-1/index.html` and `project-1/styles.css`.
+3. In the Project 1 document's `head`, verify `<link rel="stylesheet" href="styles.css">`. Put any Project 1 image in `project-1/images/` and use a matching path, such as `images/soup.jpg`. File names are case-sensitive on the published site.
+4. From the root portfolio, link to `project-1/`. From a project folder, link home with `../`. Avoid leading slashes: `/project-1/` points at the account's domain root rather than the repository's project path.
 5. Save, inspect the changed files, and commit with a message describing what changed. Use the verified save/push and publication steps from the approved opening lesson. Never run a reset command to solve a normal synchronization problem; ask for help with the displayed error.
-6. Open the actual published URL in a separate tab. Test the portfolio-to-recipe and return-home links, change one heading, save and publish again, and verify that the online heading changes. A successful local preview does not prove that publishing succeeded.
+6. Open the actual published URL in a separate tab. Test the link from the portfolio to Project 1 and the link back home, change one heading, save and publish again, and verify that the online heading changes. A successful local preview does not prove that publishing succeeded.
 
 ```text
 student-course-repository/
   index.html          portfolio home, kept all quarter
   styles.css          portfolio styles
   README.md           concise project and source notes
-  recipe/
+  project-1/
     index.html
     styles.css
     images/
-  tribute/            add in week 3
-  field-guide/        add in week 5
-  landing/            add in week 8
+  project-2/          add in week 3
+  project-3/          add in week 5
+  project-4/          add in week 8
   practice/           small experiments, linked only when useful
 ```
 

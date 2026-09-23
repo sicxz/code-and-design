@@ -105,7 +105,7 @@
       "draft": "Waits on Travis to settle the Week 0 Canvas evidence and approve the Attend placement in Apply."
     },
     "week-1": {
-      "focus": "Give the recipe meaningful structure before styling it.",
+      "focus": "Give Project 1 meaningful structure before styling it.",
       "aiStage": "off",
       "principle": {
         "id": "kinds",
@@ -123,7 +123,7 @@
       "outcomes": [
         {
           "id": "w1-1",
-          "text": "Structure the recipe with meaningful headings, unordered ingredients, and ordered steps.",
+          "text": "Structure Project 1 with meaningful headings, unordered ingredients, and ordered steps.",
           "objective": 4,
           "evidence": {
             "type": "apply",
@@ -133,7 +133,7 @@
         },
         {
           "id": "w1-2",
-          "text": "Explain the recipe list choice after moving one step outside its list in a copy.",
+          "text": "Explain the Project 1 list choice after moving one step outside its list in a copy.",
           "objective": 4,
           "evidence": {
             "type": "apply",
@@ -143,7 +143,7 @@
         },
         {
           "id": "w1-3",
-          "text": "Credit one permitted recipe image with purposeful alternative text and a descriptive source link.",
+          "text": "Credit one permitted Project 1 image with purposeful alternative text and a descriptive source link.",
           "objective": 3,
           "evidence": {
             "type": "workshop",
@@ -153,7 +153,7 @@
         },
         {
           "id": "w1-4",
-          "text": "Test the recipe source link, image, and latest saved HTML before delivery.",
+          "text": "Test the Project 1 source link, image, and latest saved HTML before delivery.",
           "objective": 6,
           "evidence": {
             "type": "check",
@@ -165,7 +165,7 @@
       "draft": "Waits on Travis to settle the visual-note evidence and approve the Kinds placement in Apply."
     },
     "week-2": {
-      "focus": "Make the recipe readable with CSS and connect each visible result to its source.",
+      "focus": "Make Project 1 readable with CSS and connect each visible result to its source.",
       "aiStage": "off",
       "principle": {
         "id": "confidence",
@@ -183,7 +183,7 @@
       "outcomes": [
         {
           "id": "w2-1",
-          "text": "Explain how a selector and declaration create the recipe type hierarchy and spacing.",
+          "text": "Explain how a selector and declaration create the Project 1 type hierarchy and spacing.",
           "objective": 1,
           "evidence": {
             "type": "apply",
@@ -203,7 +203,7 @@
         },
         {
           "id": "w2-3",
-          "text": "Publish a readable recipe whose headings, lists, image credit, and source link survive narrow widths.",
+          "text": "Publish a readable Project 1 whose headings, lists, image credit, and source link survive narrow widths.",
           "objective": 4,
           "evidence": {
             "type": "project",
@@ -222,10 +222,10 @@
           }
         }
       ],
-      "draft": "Waits on Travis to approve the Confidence placement in the recipe Project lesson."
+      "draft": "Waits on Travis to approve the Confidence placement in the Project 1 lesson."
     },
     "week-3": {
-      "focus": "Move the recipe into one published repository and plan the tribute with real content.",
+      "focus": "Move Project 1 into one published repository and plan Project 2 with real content.",
       "aiStage": "questions",
       "principle": {
         "id": "kinds",
@@ -243,7 +243,7 @@
       "outcomes": [
         {
           "id": "w3-1",
-          "text": "Trace a relative path from the tribute file to the recipe folder and test the destination.",
+          "text": "Trace a relative path from the Project 2 file to the Project 1 folder and test the destination.",
           "objective": 4,
           "evidence": {
             "type": "check",
@@ -253,7 +253,7 @@
         },
         {
           "id": "w3-2",
-          "text": "Commit, push, and verify one manual recipe change on its published page.",
+          "text": "Commit, push, and verify one manual Project 1 change on its published page.",
           "objective": 6,
           "evidence": {
             "type": "apply",
@@ -263,7 +263,7 @@
         },
         {
           "id": "w3-3",
-          "text": "Plan the real tribute content and reading order in one wide Figma frame.",
+          "text": "Plan the real Project 2 content and reading order in one wide Figma frame.",
           "objective": 1,
           "evidence": {
             "type": "workshop",
@@ -273,7 +273,7 @@
         },
         {
           "id": "w3-4",
-          "text": "Credit two tribute sources beside the planned content and one permitted image.",
+          "text": "Credit two Project 2 sources beside the planned content and one permitted image.",
           "objective": 2,
           "evidence": {
             "type": "workshop",
@@ -283,7 +283,7 @@
         },
         {
           "id": "w3-5",
-          "text": "Ask AI to explain one tribute path or commit message, then check its answer against documentation.",
+          "text": "Ask AI to explain one Project 2 path or commit message, then check its answer against documentation.",
           "objective": 7,
           "evidence": {
             "type": "check",
@@ -295,7 +295,7 @@
       "draft": "Waits on Travis to approve Week 3 as the start of the questions stage."
     },
     "week-4": {
-      "focus": "Turn the tribute plan into a flexible composition and repair one observed layout problem.",
+      "focus": "Turn the Project 2 plan into a flexible composition and repair one observed layout problem.",
       "aiStage": "questions",
       "principle": {
         "id": "mistaken",
@@ -313,7 +313,7 @@
       "outcomes": [
         {
           "id": "w4-1",
-          "text": "Arrange the tribute figure and introduction with Flexbox while preserving meaningful source order.",
+          "text": "Arrange the Project 2 figure and introduction with Flexbox while preserving meaningful source order.",
           "objective": 5,
           "evidence": {
             "type": "project",
@@ -323,7 +323,7 @@
         },
         {
           "id": "w4-2",
-          "text": "Predict how removing flex-wrap affects the tribute at 375px, then restore the safer behavior.",
+          "text": "Predict how removing flex-wrap affects Project 2 at 375px, then restore the safer behavior.",
           "objective": 5,
           "evidence": {
             "type": "check",
@@ -333,7 +333,7 @@
         },
         {
           "id": "w4-3",
-          "text": "Repair one observed tribute layout problem and verify it at narrow and wide widths.",
+          "text": "Repair one observed Project 2 layout problem and verify it at narrow and wide widths.",
           "objective": 6,
           "evidence": {
             "type": "apply",
@@ -343,7 +343,7 @@
         },
         {
           "id": "w4-4",
-          "text": "Publish the tribute with readable content, working sources, keyboard focus, and a route home.",
+          "text": "Publish Project 2 with readable content, working sources, keyboard focus, and a route home.",
           "objective": 1,
           "evidence": {
             "type": "project",
@@ -352,10 +352,10 @@
           }
         }
       ],
-      "draft": "Waits on Travis to approve the Mistaken placement in the tribute Project lesson."
+      "draft": "Waits on Travis to approve the Mistaken placement in the Project 2 lesson."
     },
     "week-5": {
-      "focus": "Build a repeatable field-guide pattern and test its columns through supported independent practice.",
+      "focus": "Build a repeatable Project 3 pattern and test its columns through supported independent practice.",
       "aiStage": "questions",
       "principle": {
         "id": "support",
@@ -373,7 +373,7 @@
       "outcomes": [
         {
           "id": "w5-1",
-          "text": "Build three field-guide entries from one reusable semantic card pattern.",
+          "text": "Build three Project 3 entries from one reusable semantic card pattern.",
           "objective": 4,
           "evidence": {
             "type": "workshop",
@@ -415,12 +415,12 @@
       "draft": "Waits on Travis to keep Week 5 in the questions stage before completion begins."
     },
     "week-6": {
-      "focus": "Adapt the field guide when its content becomes crowded and test its navigation across widths.",
+      "focus": "Adapt Project 3 when its content becomes crowded and test its navigation across widths.",
       "aiStage": "completion",
       "principle": {
         "id": "attend",
         "lesson": "apply",
-        "plain": "Watch where the guide's content becomes crowded before choosing a breakpoint."
+        "plain": "Watch where Project 3's content becomes crowded before choosing a breakpoint."
       },
       "kit": {
         "learn": 2,
@@ -433,7 +433,7 @@
       "outcomes": [
         {
           "id": "w6-1",
-          "text": "Choose a field-guide breakpoint where its cards or navigation begin to crowd.",
+          "text": "Choose a Project 3 breakpoint where its cards or navigation begin to crowd.",
           "objective": 5,
           "evidence": {
             "type": "apply",
@@ -443,7 +443,7 @@
         },
         {
           "id": "w6-2",
-          "text": "Build a semantic guide section and repair one selector or path fault without AI.",
+          "text": "Build a semantic Project 3 section and repair one selector or path fault without AI.",
           "objective": 4,
           "evidence": {
             "type": "check",
@@ -453,7 +453,7 @@
         },
         {
           "id": "w6-3",
-          "text": "Test the field guide anchors, focus, images, and text at narrow, intermediate, and wide widths.",
+          "text": "Test the Project 3 anchors, focus, images, and text at narrow, intermediate, and wide widths.",
           "objective": 3,
           "evidence": {
             "type": "apply",
@@ -473,7 +473,7 @@
         },
         {
           "id": "w6-5",
-          "text": "Accept one AI completion in the field guide, test it in the browser, and explain the line you kept.",
+          "text": "Accept one AI completion in Project 3, test it in the browser, and explain the line you kept.",
           "objective": 7,
           "evidence": {
             "type": "apply",
@@ -485,12 +485,12 @@
       "draft": "Waits on Travis to approve Week 6 as the start of the completion stage."
     },
     "week-7": {
-      "focus": "Use browser evidence to repair and publish a usable responsive field guide.",
+      "focus": "Use browser evidence to repair and publish Project 3 as a usable responsive page.",
       "aiStage": "scoped",
       "principle": {
         "id": "support",
         "lesson": "project",
-        "plain": "Show the original symptom, exact cause, repair, and passing test before calling the guide fixed."
+        "plain": "Show the original symptom, exact cause, repair, and passing test before calling Project 3 fixed."
       },
       "kit": {
         "learn": 1,
@@ -503,7 +503,7 @@
       "outcomes": [
         {
           "id": "w7-1",
-          "text": "Locate one field-guide fault using browser or source evidence before changing code.",
+          "text": "Locate one Project 3 fault using browser or source evidence before changing code.",
           "objective": 6,
           "evidence": {
             "type": "apply",
@@ -523,7 +523,7 @@
         },
         {
           "id": "w7-3",
-          "text": "Publish a responsive field guide with three accurate entries, reliable navigation, credits, and keyboard focus.",
+          "text": "Publish Project 3 as a responsive page with three accurate entries, reliable navigation, credits, and keyboard focus.",
           "objective": 5,
           "evidence": {
             "type": "project",
@@ -533,7 +533,7 @@
         },
         {
           "id": "w7-4",
-          "text": "Verify the public guide signed out at narrow, intermediate, and wide widths.",
+          "text": "Verify Project 3's public page signed out at narrow, intermediate, and wide widths.",
           "objective": 5,
           "evidence": {
             "type": "project",
@@ -543,7 +543,7 @@
         },
         {
           "id": "w7-5",
-          "text": "Set a written scope for AI code in the field guide, test the result, and revise one part yourself.",
+          "text": "Set a written scope for AI code in Project 3, test the result, and revise one part yourself.",
           "objective": 7,
           "evidence": {
             "type": "apply",
@@ -555,7 +555,7 @@
       "draft": "Waits on Travis to approve Week 7 as the start of scoped code writing."
     },
     "week-8": {
-      "focus": "Design one truthful landing-page invitation and translate two frames into one document.",
+      "focus": "Design one truthful Project 4 invitation and translate two frames into one document.",
       "aiStage": "scoped",
       "principle": {
         "id": "revisable",
@@ -573,7 +573,7 @@
       "outcomes": [
         {
           "id": "w8-1",
-          "text": "State the landing page audience, offering, and primary action in three concise sentences.",
+          "text": "State the Project 4 audience, offering, and primary action in three concise sentences.",
           "objective": 1,
           "evidence": {
             "type": "apply",
@@ -583,7 +583,7 @@
         },
         {
           "id": "w8-2",
-          "text": "Plan the real landing page content at 375px and 1280px in Figma.",
+          "text": "Plan the real Project 4 content at 375px and 1280px in Figma.",
           "objective": 1,
           "evidence": {
             "type": "apply",
@@ -593,7 +593,7 @@
         },
         {
           "id": "w8-3",
-          "text": "Build one semantic landing-page structure with a flexible hero or feature group.",
+          "text": "Build one semantic Project 4 structure with a flexible hero or feature group.",
           "objective": 4,
           "evidence": {
             "type": "workshop",
@@ -612,10 +612,10 @@
           }
         }
       ],
-      "draft": "Waits on Travis to approve the Revisable placement in the landing-page Apply lesson."
+      "draft": "Waits on Travis to approve the Revisable placement in the Project 4 Apply lesson."
     },
     "week-9": {
-      "focus": "Make the landing page's primary action truthful and keyboard usable.",
+      "focus": "Make Project 4's primary action truthful and keyboard usable.",
       "aiStage": "scoped",
       "principle": {
         "id": "confidence",
@@ -633,7 +633,7 @@
       "outcomes": [
         {
           "id": "w9-1",
-          "text": "Choose a link, button, or labeled form that matches the actual landing page behavior.",
+          "text": "Choose a link, button, or labeled form that matches the actual Project 4 behavior.",
           "objective": 4,
           "evidence": {
             "type": "apply",
@@ -643,7 +643,7 @@
         },
         {
           "id": "w9-2",
-          "text": "Reach and activate the primary landing page action by keyboard with visible focus.",
+          "text": "Reach and activate the primary Project 4 action by keyboard with visible focus.",
           "objective": 3,
           "evidence": {
             "type": "apply",
@@ -675,7 +675,7 @@
       "draft": "Waits on Travis to approve the Confidence placement in the interaction Apply lesson."
     },
     "week-10": {
-      "focus": "Finish the landing page, repair delivery faults, and curate the existing portfolio.",
+      "focus": "Finish Project 4, repair delivery faults, and curate the existing portfolio.",
       "aiStage": "scoped",
       "principle": {
         "id": "revisable",
@@ -693,7 +693,7 @@
       "outcomes": [
         {
           "id": "w10-1",
-          "text": "Repair the highest-impact landing page failure and verify the published result signed out.",
+          "text": "Repair the highest-impact Project 4 failure and verify the published result signed out.",
           "objective": 4,
           "evidence": {
             "type": "apply",
@@ -703,7 +703,7 @@
         },
         {
           "id": "w10-2",
-          "text": "Publish the landing page with a truthful primary action, working links, readable layouts, and visible focus.",
+          "text": "Publish Project 4 with a truthful primary action, working links, readable layouts, and visible focus.",
           "objective": 1,
           "evidence": {
             "type": "project",
@@ -742,7 +742,7 @@
           }
         }
       ],
-      "draft": "Waits on Travis to approve the Revisable placement across landing delivery and portfolio curation."
+      "draft": "Waits on Travis to approve the Revisable placement across Project 4 delivery and portfolio curation."
     }
   }
 }

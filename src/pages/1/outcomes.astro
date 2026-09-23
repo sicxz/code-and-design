@@ -13,6 +13,9 @@ import {
 import '../../styles/fall2026-outcomes.css';
 
 const lessonTypeOrder: LessonType[] = ['learn', 'workshop', 'apply', 'review', 'check', 'project'];
+// The project names are not settled (Travis, Sep 23), so the page shows neutral labels for the project IDs.
+const projectLabels: Record<string, string> = { 'project-recipe': 'Project 1', 'project-tribute': 'Project 2', 'project-field-guide': 'Project 3', 'project-landing': 'Project 4' };
+const evidenceLabel = (item: string): string => projectLabels[item] ?? item;
 const weeks = fall.weeks.map(week => {
   const detail = getWeekOutcomes(week.id);
   if (!detail) throw new Error(`No outcomes registered for ${week.id}`);
@@ -71,7 +74,7 @@ const pageDraft = renderLessonMarkdown('> **Draft for instructor review.** The w
                     <p class="outcome-text">{outcome.text}</p>
                     <p class="outcome-meta">
                       Objective {outcome.objective} · <TypeBadge type={outcome.evidence.type as LessonType} /> · {outcome.evidence.canvas} ·{' '}
-                      {href ? <a href={href}>{outcome.evidence.item}</a> : outcome.evidence.item}
+                      {href ? <a href={href}>{evidenceLabel(outcome.evidence.item)}</a> : evidenceLabel(outcome.evidence.item)}
                     </p>
                   </li>
                 );

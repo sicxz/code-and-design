@@ -13,9 +13,9 @@ The instructor may choose the element or ask for a different value so that memor
 
 ## October 7: HTML and CSS foundation
 
-In an individual exercise, use your recipe to identify a heading and a CSS rule. Predict the effect of a change to spacing or type size, make the change, and explain it. Then repair one small nesting or class-name problem supplied by the instructor.
+In an individual exercise, use Project 1 to identify a heading and a CSS rule. Predict the effect of a change to spacing or type size, make the change, and explain it. Then repair one small nesting or class-name problem supplied by the instructor.
 
-Readiness means all four actions are demonstrated, even if a first prediction needs correction after testing. It does not require speed, a perfect memory, or a visually elaborate recipe. The instructor follows the individual exercise with a brief fresh-change spot check during studio work. The result contributes to the source-understanding criterion already present in the recipe rubric; it is not an additional assignment or grade category.
+Readiness means all four actions are demonstrated, even if a first prediction needs correction after testing. It does not require speed, a perfect memory, or a visually elaborate Project 1. The instructor follows the individual exercise with a brief fresh-change spot check during studio work. The result contributes to the source-understanding criterion already present in the Project 1 rubric; it is not an additional assignment or grade category.
 
 If an action is missing, record which one. Use the [source recovery starter](/fall-2026/starters/source-recovery.zip), complete the steps below, and arrange a fresh check during the next studio. Continue the course using human help and reference documentation while recovering. Do not stop building the next project.
 
@@ -27,13 +27,13 @@ Open `index.html` and `styles.css`. The HTML card has `class="note"`, while the 
 
 Starting October 12, students who have demonstrated the foundation may ask an AI tool to explain an unfamiliar declaration or help investigate a specific error. First write your own prediction and make an initial attempt. Limit the question to the relevant small snippet; verify the response through documentation and a source change. Do not ask it to build or rewrite the project. Human partners, the instructor, and documentation provide the same permitted support without AI.
 
-A useful question is: “I expected this selector to match the heading. Here is the heading and the rule. What should I inspect?” A request to generate the entire tribute page exceeds this allowance.
+A useful question is: “I expected this selector to match the heading. Here is the heading and the rule. What should I inspect?” A request to generate all of Project 2 exceeds this allowance.
 
 ## November 2: independent construction and debugging
 
 Build a small content section from a blank body using a heading, a paragraph, and a working anchor link. Give it a reusable class. Add spacing and a flexible arrangement, then diagnose a supplied broken selector or path. Point to the cause and verify your repair at a narrow width. Allow about 15 minutes of individual work plus a short instructor verification during studio; take another attempt after practice if needed.
 
-After this check, and only where a brief permits it, you may use scoped generation for a small part of the field guide or landing page. State the desired behavior, inspect every returned line, remove unfamiliar or unnecessary code, modify it yourself, and test the result. You remain responsible for source attribution and the final behavior. Do not submit generated content you have not checked or cannot explain. Independent checks remain AI-free throughout the course.
+After this check, and only where a brief permits it, you may use scoped generation for a small part of Project 3 or Project 4. State the desired behavior, inspect every returned line, remove unfamiliar or unnecessary code, modify it yourself, and test the result. You remain responsible for source attribution and the final behavior. Do not submit generated content you have not checked or cannot explain. Independent checks remain AI-free throughout the course.
 
 ## Short disclosure
 

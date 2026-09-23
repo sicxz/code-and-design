@@ -130,7 +130,7 @@
       "title": "Give content a structure",
       "startDate": "2026-09-28",
       "endDate": "2026-10-04",
-      "summary": "Build a recipe with headings, ordered steps, meaningful links, and an image you can credit.",
+      "summary": "Build Project 1 with headings, ordered steps, meaningful links, and an image you can credit.",
       "outcomes": [
         "Structure the recipe with meaningful headings, unordered ingredients, and ordered steps.",
         "Explain the recipe list choice after moving one step outside its list in a copy.",
@@ -146,7 +146,7 @@
         },
         {
           "date": "2026-09-30",
-          "title": "Links, images, and a recipe",
+          "title": "Links, images, and Project 1",
           "mode": "studio"
         }
       ],
@@ -178,7 +178,7 @@
         },
         {
           "date": "2026-10-07",
-          "title": "Independent source check; recipe studio",
+          "title": "Independent source check; Project 1 studio",
           "mode": "studio"
         }
       ],
@@ -195,7 +195,7 @@
       "title": "Build a place for your work",
       "startDate": "2026-10-12",
       "endDate": "2026-10-18",
-      "summary": "Migrate one page manually, publish it, and plan a small tribute page in Figma.",
+      "summary": "Migrate one page manually, publish it, and plan Project 2 in Figma.",
       "outcomes": [
         "Trace a relative path from the tribute file to the recipe folder and test the destination.",
         "Commit, push, and verify one manual recipe change on its published page.",
@@ -212,7 +212,7 @@
         },
         {
           "date": "2026-10-14",
-          "title": "Tribute: content before composition",
+          "title": "Project 2: content before composition",
           "mode": "studio"
         }
       ],
@@ -228,7 +228,7 @@
       "title": "Arrange the pieces",
       "startDate": "2026-10-19",
       "endDate": "2026-10-25",
-      "summary": "Use flexible layout for a tribute and practice fixing one rule at a time.",
+      "summary": "Use flexible layout for Project 2 and practice fixing one rule at a time.",
       "outcomes": [
         "Arrange the tribute figure and introduction with Flexbox while preserving meaningful source order.",
         "Predict how removing flex-wrap affects the tribute at 375px, then restore the safer behavior.",
@@ -244,7 +244,7 @@
         },
         {
           "date": "2026-10-21",
-          "title": "Tribute critique and source repair",
+          "title": "Project 2 critique and source repair",
           "mode": "studio"
         }
       ],
@@ -261,7 +261,7 @@
       "title": "Build a repeatable pattern",
       "startDate": "2026-10-26",
       "endDate": "2026-11-01",
-      "summary": "Build a small guide from reusable classes; consolidate known layout skills on October 28.",
+      "summary": "Build Project 3 from reusable classes; consolidate known layout skills on October 28.",
       "outcomes": [
         "Build three field-guide entries from one reusable semantic card pattern.",
         "Predict and test gap and column changes at 375px and 1000px.",
@@ -272,7 +272,7 @@
       "sessions": [
         {
           "date": "2026-10-26",
-          "title": "Field guide: one card becomes a system",
+          "title": "Project 3: one card becomes a system",
           "mode": "studio"
         },
         {
@@ -293,7 +293,7 @@
       "title": "Let the page respond",
       "startDate": "2026-11-02",
       "endDate": "2026-11-08",
-      "summary": "Repair the practice together and adapt your guide as space and reading needs change.",
+      "summary": "Repair the practice together and adapt Project 3 as space and reading needs change.",
       "outcomes": [
         "Choose a field-guide breakpoint where its cards or navigation begin to crowd.",
         "Build a semantic guide section and repair one selector or path fault without AI.",
@@ -310,7 +310,7 @@
         },
         {
           "date": "2026-11-04",
-          "title": "Guide navigation and accessibility",
+          "title": "Project 3 navigation and accessibility",
           "mode": "studio"
         }
       ],
@@ -323,10 +323,10 @@
     {
       "id": "week-7",
       "number": 7,
-      "title": "Debug and publish the guide",
+      "title": "Debug and publish Project 3",
       "startDate": "2026-11-09",
       "endDate": "2026-11-15",
-      "summary": "Use browser evidence to locate a fault and deliver a small, usable responsive guide.",
+      "summary": "Use browser evidence to locate a fault and deliver Project 3 as a small, usable responsive page.",
       "outcomes": [
         "Locate one field-guide fault using browser or source evidence before changing code.",
         "Repair the fault, reproduce its original test, and check one neighboring condition.",
@@ -338,7 +338,7 @@
       "sessions": [
         {
           "date": "2026-11-09",
-          "title": "Find the cause; finish the field guide",
+          "title": "Find the cause; finish Project 3",
           "mode": "studio"
         }
       ],
@@ -355,7 +355,7 @@
       "title": "Design a clear invitation",
       "startDate": "2026-11-16",
       "endDate": "2026-11-22",
-      "summary": "Create a concise landing page that tells one audience what it offers and what to do next.",
+      "summary": "Create Project 4, a concise page that tells one audience what it offers and what to do next.",
       "outcomes": [
         "State the landing page audience, offering, and primary action in three concise sentences.",
         "Plan the real landing page content at 375px and 1280px in Figma.",
@@ -366,7 +366,7 @@
       "sessions": [
         {
           "date": "2026-11-16",
-          "title": "Landing page: audience and action",
+          "title": "Project 4: audience and action",
           "mode": "studio"
         },
         {
@@ -414,7 +414,7 @@
       "title": "Finish, test, and curate",
       "startDate": "2026-11-30",
       "endDate": "2026-12-06",
-      "summary": "Finish the landing page December 2, then curate existing work and prepare to explain it.",
+      "summary": "Finish Project 4 December 2, then curate existing work and prepare to explain it.",
       "outcomes": [
         "Repair the highest-impact landing page failure and verify the published result signed out.",
         "Publish the landing page with a truthful primary action, working links, readable layouts, and visible focus.",
@@ -426,12 +426,12 @@
       "sessions": [
         {
           "date": "2026-11-30",
-          "title": "Landing page test clinic",
+          "title": "Project 4 test clinic",
           "mode": "studio"
         },
         {
           "date": "2026-12-02",
-          "title": "Landing page delivery; portfolio curation",
+          "title": "Project 4 delivery; portfolio curation",
           "mode": "studio"
         }
       ],
