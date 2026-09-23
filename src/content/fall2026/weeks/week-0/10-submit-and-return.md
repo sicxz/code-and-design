@@ -8,7 +8,7 @@ Everything for Week 0 is due Sunday, September 27, at 11:59 p.m. [Canvas](https:
 
 ## Before class on Monday
 
-Complete the [Markdown Tutorial](https://www.markdowntutorial.com/). Be ready to add to your GitHub README in class on Monday, September 28. [See the homework in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775193).
+Complete the [Markdown Tutorial](https://www.markdowntutorial.com/). Then add a **Markdown practice** section to your README that uses every lesson in it: italics and bold, headers, an inline and a reference link, an image, a blockquote, an unordered and an ordered list, and two paragraphs with a hard line break. [Submit your repository link in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775193) by 1 p.m. on Monday, September 28.
 
 ## Reopen your work
 

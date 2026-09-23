@@ -31,4 +31,4 @@ The [syllabus](/1/syllabus/) comes first. Read it with the class before beginnin
 
 ## Before class on Monday, September 28
 
-- Complete the [Markdown Tutorial](https://www.markdowntutorial.com/). Be ready to add to your GitHub README in class. [See the homework in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775193).
+- Complete the [Markdown Tutorial](https://www.markdowntutorial.com/). Then add a **Markdown practice** section to your README that uses every lesson in it. [Submit your repository link in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775193).
