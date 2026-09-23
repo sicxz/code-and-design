@@ -1,9 +1,9 @@
-Everything for Week 0 is due Sunday, September 27, at 11:59 p.m. Canvas holds the due dates.
+Everything for Week 0 is due Sunday, September 27, at 11:59 p.m. [Canvas](https://canvas.ewu.edu/courses/1925415/modules) holds the due dates.
 
 ## What you turn in
 
-- **Your workspace.** Submit the link to your repository in Canvas. Your introduction and your starting mark are in it.
-- **Your visual notes.** Upload one PDF in Canvas, named `week-0-notes-lastname.pdf`.
+- **Your workspace.** [Submit the link to your repository in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11774540). Your introduction and your starting mark are in it.
+- **Your visual notes.** [Upload one PDF in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11774541), named `week-0-notes-lastname.pdf`.
 - **Your Figma card.** It lives in the class team's **intro** file, beside everyone else's.
 
 ## Reopen your work

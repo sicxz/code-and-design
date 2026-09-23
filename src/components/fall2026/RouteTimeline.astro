@@ -29,7 +29,9 @@ const types = Object.keys(lessonTypes) as LessonType[];
               <span class="progress-label">{counts ? `0/${counts.count}` : 'Not started'}</span>
             </div>
           </div>
-          <span class="route-state eyebrow" data-route-state={state}>{state}</span>
+          {week.id === 'week-0'
+            ? <a class="route-state eyebrow" href="/1/weeks/week-0/" data-opening-start data-route-state={state}>{state}</a>
+            : <span class="route-state eyebrow" data-route-state={state}>{state}</span>}
         </li>
       );
     })}

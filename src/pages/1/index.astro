@@ -28,13 +28,6 @@ const meetingTime = fall.schedule.time.replace('–', ' to ').replace(' p.m.', '
       <p class="eyebrow">Student pledge · Required</p>
       <Fragment set:html={pledge} />
     </section>
-    <nav class="quick-actions" aria-label="Quick actions">
-      <a href="/1/syllabus/">Syllabus <span aria-hidden="true">↗</span></a>
-      <a href="/1/schedule/">Schedule <span aria-hidden="true">↗</span></a>
-      <a href="/1/map/">Map <span aria-hidden="true">↗</span></a>
-      <a href="/1/assignments/">Assignments <span aria-hidden="true">↗</span></a>
-      <a href="/1/resources/">Resources <span aria-hidden="true">↗</span></a>
-    </nav>
     <EssentialsStrip />
     <RouteTimeline weeks={fall.weeks} registry={lessonModules} />
     <StoryCard />

@@ -63,6 +63,8 @@
 .code-design-theme [data-course-home] .route-card p { font-size: var(--fs-base); line-height: var(--lh-ui); color: var(--text-secondary); margin: 3px 0 9px; }
 .code-design-theme [data-course-home] .route-state { text-align: right; padding-top: 2px; color: var(--text-secondary); }
 .code-design-theme [data-course-home] .current .route-state { color: var(--eagle-red); }
+.code-design-theme [data-course-home] a.route-state { text-decoration: none; }
+.code-design-theme [data-course-home] a.route-state:hover { text-decoration: underline; }
 .code-design-theme [data-course-home] .badge-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
 .code-design-theme [data-course-home] :is(.badge, .badge-count) { display: inline-flex; align-items: center; gap: 7px; max-width: 100%; border: 1px solid currentColor; border-radius: 0; padding: 4px 10px; font: var(--fs-xs)/var(--lh-ui) var(--font-pixel); letter-spacing: var(--ls-label); text-transform: uppercase; }
 .code-design-theme [data-course-home] .route-card :is(.badge, .badge-count) { padding: 2px 7px; }

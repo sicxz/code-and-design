@@ -17,7 +17,7 @@ The organization page lists one repository, the instructor's template. There is 
 
 ## 2. Accept the Workspace assignment
 
-1. Open the **Workspace** link in the Week 0 module in Canvas. Classroom 50 opens with a dialog titled **Analytics help improve Classroom 50**.
+1. Open the **Workspace** link in the [Week 0 module in Canvas](https://canvas.ewu.edu/courses/1925415/modules). Classroom 50 opens with a dialog titled **Analytics help improve Classroom 50**.
 
    ![The Classroom 50 analytics dialog, with Decline and Accept buttons.](/fall-2026/week-0/workspace_v1/01-analytics-dialog.jpg)
 

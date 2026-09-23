@@ -1,8 +1,7 @@
 ---
-import { readModuleLesson, renderLessonMarkdown, lessonHref, lessonJourneySteps, type CourseWeek, type LessonModule, type ModuleLesson } from '../../lib/fall2026';
+import { readModuleLesson, renderLessonMarkdown, lessonHref, type CourseWeek, type LessonModule, type ModuleLesson } from '../../lib/fall2026';
 import LessonTree from './LessonTree.astro';
 import TypeBadge from './TypeBadge.astro';
-import Handoff from './Handoff.astro';
 import NextUp from './NextUp.astro';
 import SourcePreviewPair from './SourcePreviewPair.astro';
 import SurfaceRoles from './SurfaceRoles.astro';
@@ -15,7 +14,6 @@ const { week, module: courseModule, lesson, index } = Astro.props;
 const pieces = readModuleLesson(lesson)
   .replace(/<p class="card-label">([\s\S]*?)<\/p>/g, '<div class="card-label">$1</div>')
   .split(/(<!-- source-preview -->|<!-- surface-roles -->|<!-- companion-name -->|<!-- live-markdown -->)/);
-const steps = lessonJourneySteps(lesson);
 const next = courseModule.lessons[index + 1];
 const nextHref = next ? lessonHref(week.id, next.slug) : '/1/weeks/week-1/';
 ---
@@ -66,7 +64,6 @@ const nextHref = next ? lessonHref(week.id, next.slug) : '/1/weeks/week-1/';
             <small id="completion-note" data-completion-note>Saved in this browser only. <a href="/1/passport/">Export your Learning Passport</a> to keep it.</small>
           </div>
         </div>
-        <Handoff steps={steps} nextHref={nextHref} nextLabel={next ? next.title : 'Next: Week 1'} />
       </div>
       <p class="print-only">Canvas holds the due date.</p>
     </article>

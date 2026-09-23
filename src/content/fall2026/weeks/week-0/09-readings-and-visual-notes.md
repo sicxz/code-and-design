@@ -66,5 +66,5 @@ Treat the essays as practitioner perspectives, not proof.
 - Pen, in any color that scans well.
 - Handwritten, with visual elements: sketches, diagrams, connections.
 - Scan the pages into one PDF, in reading order, named `week-0-notes-lastname.pdf`.
-- Upload the PDF in Canvas by Sunday, September 27, at 11:59 p.m.
+- [Upload the PDF in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11774541) by Sunday, September 27, at 11:59 p.m.
 - The grade is complete (2 to 4 pages with genuine engagement) or incomplete (fewer than 2 pages, or minimal effort).

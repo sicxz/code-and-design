@@ -3,7 +3,7 @@ Your Figma card introduces you to the class on one card. Every student's card si
 ## Before you start
 
 - You have a Figma account with your `@ewu.edu` address.
-- You joined the class team with the invite link in Canvas.
+- You joined the class team with the invite link in the [Week 0 module in Canvas](https://canvas.ewu.edu/courses/1925415/modules).
 
 Section 3 of your workspace's setup checklist shows both.
 
