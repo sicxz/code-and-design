@@ -30,4 +30,9 @@ Repeat steps 8 and 9 for each part of the card.
 - **What do you hope to make in Web Design + Code 1?** Answer in one or two sentences.
 - **A website you love:** a screenshot of a website you love, and one sentence on what makes it good.
 
+## Submit in Canvas
+
+1. In the **intro** file, right-click your card's frame and choose **Copy/Paste as**, then **Copy link**.
+2. Paste that link into [APPLY: Figma Card in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775749).
+
 Your card is due Sunday, September 27, at 11:59 p.m.
