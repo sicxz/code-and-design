@@ -414,6 +414,9 @@ html:has([data-lesson-module]) { scroll-behavior: auto; scroll-padding-top: 68px
 .code-design-theme [data-lesson-module] .lesson-status { display: inline-block; width: 15px; height: 15px; flex: 0 0 15px; border: 1px solid var(--tree-line, var(--border-color)); border-radius: 50%; color: transparent; overflow: hidden; }
 .code-design-theme [data-lesson-module] .lesson-row.is-done .lesson-status { background: var(--eagle-green); border-color: var(--eagle-green); color: transparent; }
 .code-design-theme [data-lesson-module] .lesson-row.current .lesson-status { background: var(--brand-primary); border-color: var(--brand-primary); color: transparent; }
+.code-design-theme [data-lesson-module] .lesson-row.current.is-done .lesson-status { background: var(--eagle-green); border-color: var(--eagle-green); }
+.code-design-theme [data-lesson-module] .completion-action .button[aria-pressed="true"],
+.code-design-theme [data-lesson-module] .completion-action .button[aria-pressed="true"]:hover { background: var(--eagle-green); border-color: var(--eagle-green); color: #0a0c10 !important; }
 
 /* Week 0 outcomes card: prose outcomes, caption evidence, and label-role context. */
 .code-design-theme [data-lesson-module] .week-outcomes-card { border-top: 3px solid var(--eagle-red); }
