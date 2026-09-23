@@ -5,7 +5,7 @@
 
 A web page has a visible surface and a structure you can learn to read. In this studio, you will make both. You will build small pages, inspect their source, predict what a change will do, and test your prediction. Your work will grow into one published portfolio.
 
-[EWU General Syllabus Statements](https://docs.google.com/document/d/1qGVxC5Y49uTHjlFmPVFvN7inQ3UmgJuQsH5wCrZYQ64/edit?tab=t.0#heading=h.tsnebhl2wlvx)
+**[EWU General Syllabus Statements](https://docs.google.com/document/d/1qGVxC5Y49uTHjlFmPVFvN7inQ3UmgJuQsH5wCrZYQ64/edit?tab=t.0#heading=h.tsnebhl2wlvx)**
 
 ## Course information
 
@@ -214,7 +214,3 @@ Attend and take part in the exercises and critiques. Communicate early when circ
 Work builds on earlier work. If you will miss a delivery date, contact the instructor and bring your current artifact so that the next step can be agreed. The Late work section above sets the penalty.
 
 Write your own explanations and cite borrowed assets, quotations, tutorials, and permitted AI help. Do not present code you cannot explain as independent work. The assignment's stated AI allowance controls its use. Follow EWU's academic-integrity requirements and use the university's current syllabus statements and student support information linked in Canvas. Contact the instructor privately about accessibility arrangements or barriers to participating; avoid putting personal accommodation information in a public repository.
-
-## Deliver cleanly
-
-Use the due date on the assignment card; ordinary assignments are due by 11:59 p.m. Pacific on that date. The final portfolio is due December 9 at noon Pacific, ready for the 1 p.m. presentation session. Participation is recorded through the end of that session at 3 p.m. Submit the requested link(s) and concise evidence in Canvas. Open your public link in a signed-out window before submission. Never publish student IDs, addresses, grades, passwords, or other private information.
