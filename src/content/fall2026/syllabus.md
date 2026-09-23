@@ -27,10 +27,9 @@ A web page has a visible surface and a structure you can learn to read. In this 
 | Email | [tmasingale@ewu.edu](mailto:tmasingale@ewu.edu) |
 | Office | ISL 107 |
 | Office hours | Monday and Wednesday, 3:30 to 5 p.m. Check Canvas for changes. |
+| Make an appointment | [Schedule via Calendly](https://calendly.com/tmasingale) |
 
-Use Canvas for announcements, grades and individual questions.
-
-Bring your current files and one specific question. In Canvas Inbox, include the page or file, what you expected, what happened, and what you tried. Do not send passwords or private account details. On October 28, use the worked example and stopping point in that day's packet; an immediate instructor reply is not expected.
+Email is the best way to reach the instructor. Canvas messages work too.
 
 ## Course description
 
