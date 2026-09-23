@@ -1,7 +1,7 @@
 # Week 6 · Let the page respond
 
 **Monday, November 2 and Wednesday, November 4 · 1–3:30 p.m.**  
-Independent work estimate: **6 hours total**, including the field guide. Scoped AI generation is available only after the independent construction/debugging check and within the project brief.
+Scoped AI generation is available only after the independent construction/debugging check and within the project brief.
 
 ## Studio brief
 

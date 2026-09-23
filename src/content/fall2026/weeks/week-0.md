@@ -1,7 +1,7 @@
 # Week 0 · Enter the course
 
 **Wednesday, September 23 · 1–3:30 p.m.**  
-Independent work estimate: **2 hours total**. Student AI is off.
+Student AI is off.
 
 ## Studio brief
 

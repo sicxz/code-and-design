@@ -4,7 +4,7 @@
 
 ## Studio brief
 
-Trace one manual edit all the way to a published page. This is the evidence from [week 3](/1/weeks/week-3/), not an additional project. Finish the same experiment begun in studio; it is included in that week's independent-work estimate.
+Trace one manual edit all the way to a published page. This is the evidence from [week 3](/1/weeks/week-3/), not an additional project. Finish the same experiment begun in studio.
 
 ## Build sequence
 

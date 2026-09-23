@@ -37,7 +37,6 @@ const nextHref = next ? lessonHref(week.id, next.slug) : '/1/weeks/week-1/';
         <div class="badge-row">
           <TypeBadge type={lesson.type} />
           <span class="badge badge-secondary">{lesson.canvasCode} · {lesson.canvasCategory}</span>
-          <span class="badge badge-secondary">{lesson.minutes} min</span>
           {lesson.story && <span class="badge badge-story">Story · fictional character</span>}
         </div>
         <p class="lesson-summary">{lesson.summary}</p>

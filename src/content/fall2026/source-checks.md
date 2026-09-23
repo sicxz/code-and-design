@@ -13,13 +13,13 @@ The instructor may choose the element or ask for a different value so that memor
 
 ## October 7: HTML and CSS foundation
 
-In an approximately eight-minute individual exercise, use your recipe to identify a heading and a CSS rule. Predict the effect of a change to spacing or type size, make the change, and explain it. Then repair one small nesting or class-name problem supplied by the instructor.
+In an individual exercise, use your recipe to identify a heading and a CSS rule. Predict the effect of a change to spacing or type size, make the change, and explain it. Then repair one small nesting or class-name problem supplied by the instructor.
 
 Readiness means all four actions are demonstrated, even if a first prediction needs correction after testing. It does not require speed, a perfect memory, or a visually elaborate recipe. The instructor follows the individual exercise with a brief fresh-change spot check during studio work. The result contributes to the source-understanding criterion already present in the recipe rubric; it is not an additional assignment or grade category.
 
 If an action is missing, record which one. Use the [source recovery starter](/fall-2026/starters/source-recovery.zip), complete the steps below, and arrange a fresh check during the next studio. Continue the course using human help and reference documentation while recovering. Do not stop building the next project.
 
-### Recovery practice, 20–30 minutes
+### Recovery practice
 
 Open `index.html` and `styles.css`. The HTML card has `class="note"`, while the intended rule uses `.notes`. First state why the padding is absent. Correct the selector, save, and refresh. Next change padding from `1rem` to `2rem`, predict the space that should change, and verify it. Finally, fix the provided list so both items belong inside it. Show the instructor the corrected files and explain one new change they choose. The sample is intentionally faulty; it is not a finished solution.
 

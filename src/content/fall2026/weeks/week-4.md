@@ -1,7 +1,7 @@
 # Week 4 · Arrange the pieces
 
 **Monday, October 19 and Wednesday, October 21 · 1–3:30 p.m.**  
-Independent work estimate: **6 hours total**, including the tribute due October 25. Optional AI explanation/debugging only after the foundation check; no page generation.
+The tribute is due October 25. Optional AI explanation/debugging only after the foundation check; no page generation.
 
 ## Studio brief
 

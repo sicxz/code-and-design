@@ -1,7 +1,7 @@
 # Week 1 · Give content a structure
 
 **Monday, September 28 and Wednesday, September 30 · 1–3:30 p.m.**  
-Independent work estimate: **4 hours total**, including the recipe. Student AI is off.
+Student AI is off.
 
 ## Studio brief
 

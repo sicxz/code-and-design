@@ -4,7 +4,7 @@
 
 ## Studio brief
 
-Verify that a delivery works outside your editing environment. This is the evidence from [week 10](/1/weeks/week-10/), not an additional project. Finish the same experiment begun in studio; it is included in that week's independent-work estimate.
+Verify that a delivery works outside your editing environment. This is the evidence from [week 10](/1/weeks/week-10/), not an additional project. Finish the same experiment begun in studio.
 
 ## Build sequence
 

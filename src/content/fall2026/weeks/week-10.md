@@ -1,7 +1,7 @@
 # Week 10 · Finish, test, and curate
 
 **Monday, November 30 and Wednesday, December 2 · 1–3:30 p.m.**  
-Independent work estimate: **7 hours total**, including the landing page and portfolio preparation. Final presentations: **December 9, 1–3 p.m.** Portfolio delivery: **December 9 at noon**.
+Final presentations: **December 9, 1–3 p.m.** Portfolio delivery: **December 9 at noon**.
 
 ## Studio brief
 

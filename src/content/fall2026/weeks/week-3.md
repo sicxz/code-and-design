@@ -1,7 +1,7 @@
 # Week 3 · Build a place for your work
 
 **Monday, October 12 and Wednesday, October 14 · 1–3:30 p.m.**  
-Independent work estimate: **6 hours total**. Optional AI explanations/debugging only after the foundation check; no page generation.
+Optional AI explanations/debugging only after the foundation check; no page generation.
 
 ## Studio brief
 

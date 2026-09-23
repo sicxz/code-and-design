@@ -4,7 +4,7 @@
 
 ## Studio brief
 
-Connect a CSS declaration to an observed visual effect. This is the evidence from [week 2](/1/weeks/week-2/), not an additional project. Finish the same experiment begun in studio; it is included in that week's independent-work estimate.
+Connect a CSS declaration to an observed visual effect. This is the evidence from [week 2](/1/weeks/week-2/), not an additional project. Finish the same experiment begun in studio.
 
 ## Build sequence
 

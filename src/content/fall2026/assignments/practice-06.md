@@ -4,7 +4,7 @@
 
 ## Studio brief
 
-Explain a responsive decision using evidence from two widths. This is the evidence from [week 6](/1/weeks/week-6/), not an additional project. Finish the same experiment begun in studio; it is included in that week's independent-work estimate.
+Explain a responsive decision using evidence from two widths. This is the evidence from [week 6](/1/weeks/week-6/), not an additional project. Finish the same experiment begun in studio.
 
 ## Build sequence
 

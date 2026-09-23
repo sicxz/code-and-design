@@ -1,7 +1,7 @@
 # Week 9 · Make interactions honest
 
 **Monday, November 23 · 1–3:30 p.m.**  
-**No class Wednesday, November 25.** Independent work estimate: **3 hours total**. Keep the holiday-week scope small.
+**No class Wednesday, November 25.** Keep the holiday-week scope small.
 
 ## Studio brief
 
@@ -43,7 +43,7 @@ Point to the element that performs the main action and follow its actual destina
 
 ## Studio evidence
 
-Submit [One interaction check](/1/assignments/practice-09/) with your current landing page, a concise expected/observed keyboard result, and one next step. Complete the remaining core content within the same three-hour independent estimate; do not add an unrelated mini-project.
+Submit [One interaction check](/1/assignments/practice-09/) with your current landing page, a concise expected/observed keyboard result, and one next step. Complete the remaining core content without adding an unrelated mini-project.
 
 ## Delivery check
 

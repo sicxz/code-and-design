@@ -4,7 +4,7 @@
 
 ## Studio brief
 
-Translate a focused design plan into a source plan. This is the evidence from [week 8](/1/weeks/week-8/), not an additional project. Finish the same experiment begun in studio; it is included in that week's independent-work estimate.
+Translate a focused design plan into a source plan. This is the evidence from [week 8](/1/weeks/week-8/), not an additional project. Finish the same experiment begun in studio.
 
 ## Build sequence
 

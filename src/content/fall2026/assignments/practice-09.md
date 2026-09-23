@@ -4,7 +4,7 @@
 
 ## Studio brief
 
-Verify the landing page’s main action with the keyboard. This is the evidence from [week 9](/1/weeks/week-9/), not an additional project. Finish the same experiment begun in studio; it is included in that week's independent-work estimate.
+Verify the landing page’s main action with the keyboard. This is the evidence from [week 9](/1/weeks/week-9/), not an additional project. Finish the same experiment begun in studio.
 
 ## Build sequence
 

@@ -4,7 +4,7 @@
 
 ## Studio brief
 
-Use evidence to repair one layout problem. This is the evidence from [week 4](/1/weeks/week-4/), not an additional project. Finish the same experiment begun in studio; it is included in that week's independent-work estimate.
+Use evidence to repair one layout problem. This is the evidence from [week 4](/1/weeks/week-4/), not an additional project. Finish the same experiment begun in studio.
 
 ## Build sequence
 

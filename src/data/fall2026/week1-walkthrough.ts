@@ -194,7 +194,7 @@ export const walkthroughDays: WalkthroughDay[] = [
           'Save and reopen the actual recipe link in a signed-out window. Confirm that the latest text, image, and source link appear. For local work, include the HTML, CSS, and needed image files together.',
           'Prepare the Canvas “Recipe structure check”: one recipe artifact, two to four sentences explaining the experiment, and one question or next step. Its deadline is October 4 at 11:59 p.m. Pacific.',
           'State the boundary clearly: this weekly score concerns the structural experiment; the same recipe’s finished HTML/CSS project is due October 7. No second reflection page or replacement project is needed.',
-          'Use the remaining independent-work allowance to finish the same core recipe and evidence. The week’s four-hour estimate includes these tasks together.'
+          'Finish the same core recipe and evidence.'
         ],
         check: 'The artifact is accessible, the student knows what to submit and when, and the same recipe is ready for next week’s CSS work.'
       }

@@ -1,7 +1,7 @@
 # Week 8 · Design a clear invitation
 
 **Monday, November 16 and Wednesday, November 18 · 1–3:30 p.m.**  
-Independent work estimate: **6 hours total**, including the landing page. Scoped AI help is optional only after the required checks; design decisions and source explanations remain yours.
+Scoped AI help is optional only after the required checks; design decisions and source explanations remain yours.
 
 ## Studio brief
 

@@ -4,7 +4,7 @@
 
 ## Studio brief
 
-Show a complete debugging loop. This is the evidence from [week 7](/1/weeks/week-7/), not an additional project. Finish the same experiment begun in studio; it is included in that week's independent-work estimate.
+Show a complete debugging loop. This is the evidence from [week 7](/1/weeks/week-7/), not an additional project. Finish the same experiment begun in studio.
 
 ## Build sequence
 

@@ -4,7 +4,7 @@
 
 ## Studio brief
 
-Complete the supported October 28 practice using known concepts. This is the evidence from [week 5](/1/weeks/week-5/), not an additional project. Finish the same experiment begun in studio; it is included in that week's independent-work estimate.
+Complete the supported October 28 practice using known concepts. This is the evidence from [week 5](/1/weeks/week-5/), not an additional project. Finish the same experiment begun in studio.
 
 ## Build sequence
 

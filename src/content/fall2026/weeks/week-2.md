@@ -1,7 +1,7 @@
 # Week 2 · Make the structure visible
 
 **Monday, October 5 and Wednesday, October 7 · 1–3:30 p.m.**  
-Independent work estimate: **5 hours total**, including recipe completion. Student AI is off through October 7.
+Student AI is off through October 7.
 
 ## Studio brief
 
@@ -34,7 +34,7 @@ Increase `padding` to `2rem` and observe the space inside the border. Restore it
 **Wednesday, October 7**
 
 - **1:00–1:15:** review the [four source actions](/1/resources/source-checks/); show what counts as an explanation.
-- **1:15–2:10:** complete an eight-minute individual source exercise, then brief instructor spot checks while classmates finish the recipe delivery checklist. Each spot check uses a fresh instructor-selected edit; any remaining verifications continue during work time or by an arranged follow-up.
+- **1:15–2:10:** complete an individual source exercise, then brief instructor spot checks while classmates finish the recipe delivery checklist. Each spot check uses a fresh instructor-selected edit; any remaining verifications continue during work time or by an arranged follow-up.
 - **2:10–2:20:** break.
 - **2:20–3:05:** finish core recipe requirements, perform recovery practice where needed, and test the published Pen or local files.
 - **3:05–3:25:** brief table critique: identify one readable decision and one fix before delivery.

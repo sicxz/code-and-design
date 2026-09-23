@@ -150,7 +150,7 @@ Each studio follows **brief → build → source check → concise evidence → 
 
 At each of the five project deliveries you tidy your repository. You then write a short look-back in its README. In Week 0 you fill in the ungraded `week-0/where-i-am-starting.md`. You answer it again at the end of the quarter.
 
-Plan for the independent hours shown on each week page: generally 4–6 hours, with a lighter opening and holiday week and up to 7 hours during final delivery. These estimates include projects and weekly assignments together. They are planning estimates, not completion quotas. Tell the instructor when required work exceeds the estimate, and bring the smallest working version for help. We will adjust the remaining work based on evidence from the class.
+Tell the instructor when you cannot finish required work by its due date. Bring the smallest working version for help. We will adjust the remaining work based on evidence from the class.
 
 ## Three places
 

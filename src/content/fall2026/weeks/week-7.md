@@ -1,7 +1,7 @@
 # Week 7 · Debug and publish the guide
 
 **Monday, November 9 · 1–3:30 p.m.**  
-**No class Wednesday, November 11.** Independent work estimate: **5 hours total**, including the guide due November 15.
+**No class Wednesday, November 11.** The guide is due November 15.
 
 ## Studio brief
 

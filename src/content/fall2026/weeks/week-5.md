@@ -1,7 +1,7 @@
 # Week 5 · Build a repeatable pattern
 
 **Monday, October 26: studio · Wednesday, October 28: asynchronous practice**  
-Independent work estimate: **4 hours outside the scheduled practice block**, including the field guide. October 28 replaces the class meeting; do not treat it as extra homework. AI explanation/debugging remains optional only after the foundation check. Complete the independent practice prediction yourself.
+October 28 replaces the class meeting; do not treat it as extra homework. AI explanation/debugging remains optional only after the foundation check. Complete the independent practice prediction yourself.
 
 ## Studio brief
 
@@ -23,13 +23,13 @@ A concrete first pattern is `.cards { display: grid; gap: 1rem; }`. It remains o
 
 The instructor is away. This activity uses concepts demonstrated Monday; it introduces no new required tool or deployment step. Download the [practice starter ZIP](/fall-2026/starters/async-practice.zip) and read its `README.md`. The separate [worked example](/fall-2026/starters/worked-examples/responsive-cards.html) is a reference, not your submission.
 
-1. **First 20 minutes:** open the starter locally. Read its HTML and CSS; identify the container and its three articles. Write a prediction for changing `gap` from `1rem` to `2rem`.
-2. **Next 30 minutes:** make that one change, save, refresh, and compare. Locate the wide-screen media query and predict what changing three columns to two will do.
-3. **Next 20 minutes:** make the column change and test at 375px and 1000px. The narrow page should remain one column; the wide page should show two columns with the third card starting the next row.
-4. **Take a 10-minute break.**
-5. **Next 35 minutes:** replace one card's text with an entry for your own field guide. Keep the same pattern. Explain why longer text may make that row taller.
-6. **Next 20 minutes:** compare to the worked example. If your result differs, inspect spelling, braces, saved files, and which rule currently applies. Stop adding changes after two focused attempts at the same fault.
-7. **Last 15 minutes:** submit [October 28 practice checkpoint](/1/assignments/practice-05/) with the artifact, your prediction/result, and one question. If blocked, submit the attempted files and a precise description of the blocker. A clear attempt is useful evidence; do not spend the evening rebuilding the page.
+1. Open the starter locally. Read its HTML and CSS; identify the container and its three articles. Write a prediction for changing `gap` from `1rem` to `2rem`.
+2. Make that one change, save, refresh, and compare. Locate the wide-screen media query and predict what changing three columns to two will do.
+3. Make the column change and test at 375px and 1000px. The narrow page should remain one column; the wide page should show two columns with the third card starting the next row.
+4. **Take a break.**
+5. Replace one card's text with an entry for your own field guide. Keep the same pattern. Explain why longer text may make that row taller.
+6. Compare your result to the worked example. If your result differs, inspect spelling, braces, saved files, and which rule currently applies. Stop adding changes after two focused attempts at the same fault.
+7. Submit [October 28 practice checkpoint](/1/assignments/practice-05/) with the artifact, your prediction/result, and one question. If blocked, submit the attempted files and a precise description of the blocker. A clear attempt is useful evidence; do not spend the evening rebuilding the page.
 
 ## Source check and help
 
