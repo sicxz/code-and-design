@@ -5,6 +5,8 @@
 
 A web page has a visible surface and a structure you can learn to read. In this studio, you will make both. You will build small pages, inspect their source, predict what a change will do, and test your prediction. Your work will grow into one published portfolio.
 
+[EWU General Syllabus Statements](https://docs.google.com/document/d/1qGVxC5Y49uTHjlFmPVFvN7inQ3UmgJuQsH5wCrZYQ64/edit?tab=t.0#heading=h.tsnebhl2wlvx)
+
 ## Course information
 
 | Item | Detail |
@@ -195,6 +197,14 @@ Any line an AI writes gets the four actions before you keep it.
 Account approval is not permission to use AI. Figma's AI features stay off until the class reaches them.
 
 Every student can complete the course without an AI tool. You do not need a paid AI subscription.
+
+### AI policy
+
+In this course, students can use AI-based tools (such as ChatGPT and GitHub Copilot) on some assignments. The instructions for each assignment will include information about whether and how you may use AI-based tools to complete the assignment. All sources, including AI tools, must be appropriately cited. The use of AI in ways inconsistent with the parameters above will be considered academic misconduct and subject to investigation.
+
+Please note that AI results can be biased and inaccurate. You are responsible for ensuring that the information you use from AI is accurate. Additionally, pay attention to the privacy of your data. Many AI tools will incorporate and use any content you share, so be careful not to unintentionally share copyrighted materials, original work, or personal information.
+
+Learning how to thoughtfully and strategically use AI-based tools may help you develop your skills, refine your work, and prepare for your future career. If you have any questions about citation or what constitutes academic integrity in this course or at Eastern Washington University, please contact me to discuss your concerns.
 
 ## Studio responsibilities
 
