@@ -29,15 +29,9 @@ A technical fault should be scored in its relevant criterion rather than deducte
 
 Use the same performance levels as projects. Do not re-grade the four projects inside this category. They are evidence to curate, not four new builds. Repairs that improve project navigation are welcome without adding a new assignment.
 
-## Participation and engagement · 100 points across the term
+## Participation and engagement
 
-| Criterion | Points | Observable contribution |
-| --- | --- | --- |
-| Prepared studio practice | 40 | Brings current work, attempts the studio activity, and uses work time purposefully. |
-| Peer exchange | 30 | Gives specific feedback and listens or responds to a partner's question in discussion, writing, or an agreed equivalent format. |
-| Follow-through and communication | 30 | Uses feedback, identifies barriers, and communicates about missed or interrupted work. |
-
-The instructor records examples across the term and discusses gaps with the student. Use the same demonstrated/mostly/developing/attempted/not-evidenced levels for each criterion, based on the pattern across available opportunities. Attendance alone is not the whole measure of engagement. The October 28 work can demonstrate participation through the independent attempt and the following discussion; it does not require an instructor to be online.
+Participation and engagement is 20% of your course grade. It includes one in-class item every class day, worth 5 points, and other participation and engagement assignments that are not daily. The [syllabus](/1/syllabus/#attendance) explains the daily item.
 
 ## Keep the categories distinct
 

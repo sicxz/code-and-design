@@ -108,8 +108,8 @@ Each project is evaluated on:
 ### Participation and engagement
 
 - One in-class item every class day, worth 5 points
-- Twenty class days, so each day is 1% of your course grade
-- The Attendance section below is the policy
+- Other participation and engagement assignments that are not daily
+- The Attendance section below is the policy for the daily item
 
 ### Final portfolio
 
@@ -127,7 +127,7 @@ Detailed criteria appear in the [rubrics](/1/resources/rubrics/).
 
 ## Attendance
 
-Every class day has one Participation and Engagement item. You do it in class. It is worth 5 points. If you are not in class, you do not earn that day's points, and you cannot make it up at home. There are 20 class days, so each day is 1% of your course grade. No days are dropped. Arriving late is fine: come in and join the work. October 28 is asynchronous, and that day's item is done online. If you will miss class, message me before it starts. I cannot return the points, but I can help you catch up.
+Every class day has one Participation and Engagement item. You do it in class. It is worth 5 points. If you are not in class, you do not earn that day's points, and you cannot make it up at home. No days are dropped. Arriving late is fine: come in and join the work. October 28 is asynchronous, and that day's item is done online. If you will miss class, message me before it starts. I cannot return the points, but I can help you catch up.
 
 Absences for reasons of faith or conscience are accommodated, as Washington law requires. Give me the dates in writing during the first two weeks. University-sanctioned events and disability accommodations follow EWU policy. Talk to me early.
 
