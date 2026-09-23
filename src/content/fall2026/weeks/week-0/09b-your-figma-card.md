@@ -1,25 +1,18 @@
-Your Figma card introduces you to the class on one card. Every student's card sits side by side in one shared Figma file.
+Your Figma card introduces you to the class on one card. Every student's card sits side by side in one shared Figma file, **intro**, in the class team.
 
 ## Before you start
 
 - You have a Figma account with your `@ewu.edu` address.
 - You joined the class team with the invite link in the [Week 0 module in Canvas](https://canvas.ewu.edu/courses/1925415/modules).
 
-Section 3 of your workspace's setup checklist shows both.
-
 ## Make your card
 
 1. Open the file named **intro** in the class team. The canvas shows the card to copy.
-2. Select the frame named **card**. A blue outline surrounds it.
-3. Press **Cmd+D** on a Mac, or **Ctrl+D** on Windows. A copy of the card appears on top of the original.
-4. Drag your copy to an empty spot on the canvas. The original stays where it was.
-5. Double-click the name of your copy, above its top left corner. The name becomes editable.
-6. Type your own name.
-7. Press **Return**. Your copy now carries your name.
-8. Hold **Cmd** on a Mac, or **Ctrl** on Windows, and click a layer inside your copy. Figma selects that layer.
-9. Change the layer, as the list below describes.
-
-Repeat steps 8 and 9 for each part of the card.
+2. Select the frame named **card-template**. A blue outline surrounds it.
+3. Press **Cmd+D** on a Mac, or **Ctrl+D** on Windows. A copy of the card appears above the original.
+4. Drag your copy to one of the card placeholders on the canvas. The original stays where it was.
+5. Double-click the name of your copy above its top-left corner, type your own name, and press **Return**.
+6. Hold **Cmd** on a Mac, or **Ctrl** on Windows, and click a layer inside your copy. Change it as the list below describes. Repeat for each part of the card.
 
 ## What goes on the card
 
