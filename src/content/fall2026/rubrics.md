@@ -2,19 +2,13 @@
 
 The course uses four weighted categories: participation 20%, weekly assignments 30%, projects 40%, and final portfolio 10%. Assess the learning named in the brief; extra decoration, extra pages, paid tools, and long explanations do not earn automatic extra credit.
 
-## Weekly assignments · 10 points each
+## Weekly assignments
 
-| Criterion | Points | Evidence |
-| --- | --- | --- |
-| The requested experiment or checkpoint | 4 | An accessible artifact shows the specific required attempt, comparison, or repair. |
-| Source explanation | 4 | The explanation identifies the responsible element/rule, prediction, and observed result. |
-| Next step and delivery | 2 | A real question or useful next step, with an openable link or file. |
-
-For each four-point criterion: 4 = complete and specific; 3 = substantially demonstrated with one small gap; 2 = partly demonstrated; 1 = an identifiable attempt with a major gap; 0 = no evidence. For the two-point criterion: 2 = both elements present and usable; 1 = one is missing or unclear; 0 = neither is evidenced. A working source experiment can receive full credit even while the surrounding project remains unfinished.
+Weekly assignments have different point values. Some are graded complete or incomplete. Each assignment in Canvas shows its points.
 
 ## Projects · 100 points each
 
-The recipe, tribute, field guide, and landing page have their own criteria and point allocations in their briefs. Use these performance levels within each criterion:
+Each project has its own criteria and point allocations in its brief. Use these performance levels within each criterion:
 
 - **Demonstrated:** full points when the named behavior works and the student explains it.
 - **Mostly demonstrated:** 75% of criterion points when the core works with a limited omission or inconsistency.

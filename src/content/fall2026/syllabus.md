@@ -88,7 +88,7 @@ Demonstrate proficiency in relevant design skills.
 | Projects | 40% |
 | Final portfolio | 10% |
 
-The four projects are equally weighted within their category. Weekly assignments are each 10 points. Category percentages, not the raw total across categories, determine the course grade. The recipe, tribute, guide, and landing page are graded as projects once. The final portfolio evaluates how you curate and explain them; it does not grade those same projects again. Weekly evidence can reference a project, but evaluates the particular source check rather than repeating its finished-page rubric.
+The four projects are equally weighted within their category. Weekly assignments have different point values. Some are graded complete or incomplete. Category percentages, not the raw total across categories, determine the course grade. Each project is graded once. The final portfolio evaluates how you curate and explain the projects; it does not grade those same projects again. Weekly evidence can reference a project, but evaluates the particular source check rather than repeating its finished-page rubric.
 
 ### Project evaluation criteria
 
