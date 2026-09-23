@@ -18,5 +18,3 @@ Get your private repository. The four things below go in it by Sunday. This is t
 Submit the link to your repository. The link begins `github.com/code-and-design-teaching/desn368-f26-workspace-`. The instructor can open your repository. No one else can.
 
 **AI allowance:** Student AI is off. Use the lessons, the documentation, and human help.
-
-> **Draft for instructor review.** Waits on: The points and the rubric for the Week 0 workspace, and whether the visual notes and the Figma card get their own Canvas items.

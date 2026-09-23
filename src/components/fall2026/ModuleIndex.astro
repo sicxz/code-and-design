@@ -13,7 +13,7 @@ const first = courseModule.lessons[0];
 <div class="module-index" data-lesson-module>
   <article class="prose module-intro" set:html={readLesson(courseModule.intro)} />
   {week.id === 'week-0' && <div><button class="button secondary" type="button" data-opening-replay hidden>{openingScene.controls.replay}</button></div>}
-  <Fragment set:html={renderLessonMarkdown('> **Draft for instructor review.** Waits on: the lesson-level items listed in COURSE.md "Open".')} />
+  {week.id !== 'week-0' && <Fragment set:html={renderLessonMarkdown('> **Draft for instructor review.** Waits on: the lesson-level items listed in COURSE.md "Open".')} />}
   <WeekOutcomes weekId={week.id} />
   <section class="lesson-card" aria-labelledby="lesson-types-title">
     <div class="lesson-color-bar" aria-hidden="true"></div>

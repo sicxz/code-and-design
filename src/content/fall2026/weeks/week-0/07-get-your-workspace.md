@@ -75,5 +75,3 @@ The README's Step 2 gives these same steps. Do them once here, with the instruct
    ![The saved README with the profile link filled in.](/fall-2026/week-0/workspace_v1/08-profile-saved.jpg)
 
 A commit is a saved, named change to the files in your repository.
-
-> **Draft for instructor review.** Waits on: Four screens the rehearsal did not photograph: the invitation email, the Join button, the authorization page and the Accept assignment checklist. The instructor captures them in class.

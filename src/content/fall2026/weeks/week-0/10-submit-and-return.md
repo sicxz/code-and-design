@@ -25,5 +25,3 @@ On Monday, September 28, the same words become HTML headings and paragraphs.
 >   <label class="answer-option"><input type="radio" name="due-date-surface" value="repository"> <span>Your repository</span></label>
 > </fieldset>
 > <p class="lesson-caption" id="check-sample-note">Sample question. No scoring. Your answer is not saved.</p>
-
-> **Draft for instructor review.** Waits on: Whether the Figma card is a Canvas item.

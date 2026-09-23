@@ -81,7 +81,7 @@
           "file": "weeks/week-0/04-practice-markdown.md",
           "journeySteps": [],
           "story": false,
-          "draft": "The companion's notes as practice material."
+          "draft": null
         },
         {
           "slug": "what-a-repository-is",
@@ -124,7 +124,7 @@
           "file": "weeks/week-0/07-get-your-workspace.md",
           "journeySteps": [],
           "story": false,
-          "draft": "Four screens the rehearsal did not photograph: the invitation email, the Join button, the authorization page and the Accept assignment checklist. The instructor captures them in class."
+          "draft": null
         },
         {
           "slug": "introduction",
@@ -155,7 +155,7 @@
             "readings-and-visual-notes"
           ],
           "story": false,
-          "draft": "The leading questions."
+          "draft": null
         },
         {
           "slug": "your-figma-card",
@@ -168,7 +168,7 @@
           "file": "weeks/week-0/09b-your-figma-card.md",
           "journeySteps": [],
           "story": false,
-          "draft": "The shared file set so class members can edit it, the master card updated to these prompts, and whether the card is a Canvas item."
+          "draft": null
         },
         {
           "slug": "submit-and-return",
@@ -184,7 +184,7 @@
             "return"
           ],
           "story": false,
-          "draft": "Whether the Figma card is a Canvas item."
+          "draft": null
         }
       ]
     }

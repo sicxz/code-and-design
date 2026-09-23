@@ -68,5 +68,3 @@ Treat the essays as practitioner perspectives, not proof.
 - Scan the pages into one PDF, in reading order, named `week-0-notes-lastname.pdf`.
 - Upload the PDF in Canvas by Sunday, September 27, at 11:59 p.m.
 - The grade is complete (2 to 4 pages with genuine engagement) or incomplete (fewer than 2 pages, or minimal effort).
-
-> **Draft for instructor review.** Waits on: The leading questions.

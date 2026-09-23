@@ -28,5 +28,3 @@ The [syllabus](/1/syllabus/) comes first. Read it with the class before beginnin
 - Your workspace, with your introduction and your starting mark. Submit its link in Canvas.
 - Your visual notes on both readings, as one PDF in Canvas.
 - Your Figma card, in the class team's **intro** file.
-
-> **Draft for instructor review.** Waits on: the agenda's times.

@@ -31,5 +31,3 @@ Repeat steps 8 and 9 for each part of the card.
 - **A website you love:** a screenshot of a website you love, and one sentence on what makes it good.
 
 Your card is due Sunday, September 27, at 11:59 p.m.
-
-> **Draft for instructor review.** Waits on: The shared file set so class members can edit it, the master card updated to these prompts, and whether the card is a Canvas item.

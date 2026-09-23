@@ -11,5 +11,3 @@ The companion left some notes. They are plain text so far, so every line looks t
 <!-- live-markdown -->
 
 Nothing you type here is saved. Your real words go in `week-0/introduction.md`, in your repository.
-
-> **Draft for instructor review.** Waits on: The companion's notes as practice material.
