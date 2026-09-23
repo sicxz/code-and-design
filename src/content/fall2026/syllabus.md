@@ -150,7 +150,7 @@ Each studio follows **brief → build → source check → concise evidence → 
 
 At each of the five project deliveries you tidy your repository. You then write a short look-back in its README. In Week 0 you fill in the ungraded `week-0/where-i-am-starting.md`. You answer it again at the end of the quarter.
 
-Tell the instructor when you cannot finish required work by its due date. Bring the smallest working version for help. We will adjust the remaining work based on evidence from the class.
+DESN 368 is a 5-credit course. EWU's credit-hour rule expects at least two hours of work outside class each week for every credit, so plan on at least 10 hours a week outside our Monday and Wednesday studios. Tell the instructor when you cannot finish required work by its due date. Bring the smallest working version for help. We will adjust the remaining work based on evidence from the class.
 
 ## Three places
 
