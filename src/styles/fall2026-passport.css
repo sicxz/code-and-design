@@ -41,14 +41,16 @@
 }
 
 .code-design-theme [data-passport-page] label,
-.code-design-theme [data-companion-name] label {
+.code-design-theme [data-companion-name] label,
+.code-design-theme [data-student-name] label {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
 }
 
 .code-design-theme [data-passport-page] input,
-.code-design-theme [data-companion-name] input {
+.code-design-theme [data-companion-name] input,
+.code-design-theme [data-student-name] input {
   width: 100%;
   max-width: 34rem;
   min-height: 44px;
@@ -66,13 +68,15 @@
 }
 
 .code-design-theme [data-passport-page] :is(button, input):focus-visible,
-.code-design-theme [data-companion-name] :is(button, input):focus-visible {
+.code-design-theme [data-companion-name] :is(button, input):focus-visible,
+.code-design-theme [data-student-name] :is(button, input):focus-visible {
   outline: 3px solid var(--text-link);
   outline-offset: 4px;
 }
 
 .code-design-theme [data-passport-page] [data-passport-status],
-.code-design-theme [data-companion-name] [data-companion-status] {
+.code-design-theme [data-companion-name] [data-companion-status],
+.code-design-theme [data-student-name] [data-student-status] {
   min-height: 1.5em;
   margin: 0;
   color: var(--attention);
@@ -108,7 +112,8 @@
   margin-top: 0;
 }
 
-.code-design-theme [data-companion-name] {
+.code-design-theme [data-companion-name],
+.code-design-theme [data-student-name] {
   display: grid;
   gap: 18px;
   min-width: 0;
@@ -118,18 +123,22 @@
   background: var(--bg-card);
 }
 
-.code-design-theme [data-companion-name] form {
+.code-design-theme [data-companion-name] form,
+.code-design-theme [data-student-name] form {
   display: grid;
   gap: 10px;
   justify-items: start;
 }
 
 .code-design-theme [data-companion-name] form p,
-.code-design-theme [data-companion-name] > p {
+.code-design-theme [data-companion-name] > p,
+.code-design-theme [data-student-name] form p,
+.code-design-theme [data-student-name] > p {
   margin: 0;
 }
 
-.code-design-theme [data-companion-name] form p {
+.code-design-theme [data-companion-name] form p,
+.code-design-theme [data-student-name] form p {
   color: var(--text-secondary);
   font-size: var(--fs-sm);
 }
@@ -138,7 +147,8 @@
   .code-design-theme [data-passport-page] .passport-card,
   .code-design-theme [data-passport-page] [data-passport-conflict],
   .code-design-theme [data-passport-page] > .card,
-  .code-design-theme [data-companion-name] {
+  .code-design-theme [data-companion-name],
+  .code-design-theme [data-student-name] {
     padding: 18px;
   }
 

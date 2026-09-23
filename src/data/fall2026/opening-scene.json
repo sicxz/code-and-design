@@ -1,52 +1,63 @@
 {
   "storageKey": "desn368.openingSceneSeen",
+  "studentNameKey": "desn368.studentName",
   "label": "Opening scene",
-  "draft": "Travis rules on every line of this scene on the evening of September 22.",
+  "draft": null,
   "fiction": "The companion is a fictional character.",
+  "destination": "/1/weeks/week-0/syllabus-first/",
   "controls": {
     "next": "Next",
     "skip": "Skip",
-    "begin": "Begin Week 0",
+    "begin": "Open the syllabus",
     "replay": "Replay the opening"
   },
   "screens": [
     {
-      "speaker": "course",
-      "paragraphs": [
-        "Peel up the pixels.",
-        "Brick by brick. Tag by tag."
-      ]
-    },
-    {
       "speaker": "companion",
+      "headline": "Hello, and welcome. Let's peel up some pixels.",
       "paragraphs": [
-        "Hi. Glad you found this.",
-        "I've made a few notes about what needs fixing. We'll get to those.",
-        "It's been a while since I've had someone to work with."
-      ]
-    },
-    {
-      "speaker": "companion",
-      "paragraphs": [
-        "Before we start, what would you like to call me?"
+        "I am an AI agent. You discovered me. Thanks for looking underneath.",
+        "Welcome to DESN 368, Peel Up the Pixels.",
+        "This is a narrative learning structure, and you will work through it all quarter."
       ],
-      "nameForm": true,
+      "nextLabel": "Begin"
+    },
+    {
+      "speaker": "companion",
+      "paragraphs": [
+        "Hello. I am an AI, a computational intelligence.",
+        "I'm happy you found me.",
+        "To complete this story, I need the help of a biological intelligence."
+      ],
+      "fiction": true
+    },
+    {
+      "speaker": "companion",
+      "paragraphs": [
+        "What would you like to call me?"
+      ],
+      "nameForm": "companion",
       "notes": [
-        "Naming it is optional. Pick a name that is not your own name or anyone's you know.",
-        "The name is saved in this browser and in your Learning Passport file, nowhere else."
+        "Pick a name that is not your own name or anyone's you know.",
+        "The name is saved in this browser and in your Learning Passport file, nowhere else.",
+        "Name the companion to continue."
       ]
     },
     {
       "speaker": "companion",
       "paragraphs": [
-        "I can list what a page contains before you finish reading it. What it is for, I get wrong. I decide too fast, and then I am sure. So this week is slow on purpose. The looking is yours. I will wait."
+        "What would you like me to call you?"
+      ],
+      "nameForm": "student",
+      "notes": [
+        "A first name or a nickname is fine. It is saved in this browser, nowhere else.",
+        "Tell me your name to continue."
       ]
     },
     {
       "speaker": "companion",
       "paragraphs": [
-        "What do you think intelligence is?",
-        "Yours comes first."
+        "All right, {you}. Let's get going."
       ]
     }
   ]

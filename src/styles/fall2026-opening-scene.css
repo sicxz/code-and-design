@@ -62,8 +62,10 @@ html:has(.opening-scene[open]) { overflow: hidden; }
 .code-design-theme .opening-scene .opening-scene-text p:last-child { margin-bottom: 0; }
 .code-design-theme .opening-scene .opening-scene-pixel { font: clamp(24px, 4vw, 48px)/var(--lh-heading) var(--font-pixel); }
 .code-design-theme .opening-scene .opening-scene-note { max-width: 60ch; margin: 16px 0 0; color: var(--text-secondary); font-size: var(--fs-sm); }
-.code-design-theme .opening-scene [data-companion-name] { max-width: 60ch; padding: 18px; margin: 20px 0; gap: 12px; }
-.code-design-theme .opening-scene [data-companion-name] p { font-size: var(--fs-sm); }
+.code-design-theme .opening-scene :is([data-companion-name], [data-student-name]) { max-width: 60ch; padding: 18px; margin: 20px 0; gap: 12px; }
+.code-design-theme .opening-scene :is([data-companion-name], [data-student-name]) p { font-size: var(--fs-sm); }
+.code-design-theme .opening-scene .opening-scene-text .opening-scene-pixel { margin-bottom: .6em; }
+.code-design-theme .opening-scene .opening-scene-actions .button[disabled] { opacity: .45; cursor: not-allowed; }
 
 .opening-scene-footer { flex-shrink: 0; }
 .opening-scene-actions { display: flex; flex-wrap: wrap; gap: 12px; }
