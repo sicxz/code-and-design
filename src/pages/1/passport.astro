@@ -1,6 +1,5 @@
 ---
 import FallCourseLayout from '../../layouts/FallCourseLayout.astro';
-import { renderLessonMarkdown } from '../../lib/fall2026';
 import '../../styles/fall2026-passport.css';
 ---
 <FallCourseLayout title="Learning Passport" noindex>
@@ -67,6 +66,5 @@ import '../../styles/fall2026-passport.css';
     </section>
 
     <noscript><p>The Learning Passport needs JavaScript. Every lesson works without it.</p></noscript>
-    <Fragment set:html={renderLessonMarkdown('> **Draft for instructor review.** Waits on: the Canvas Save Point setup and the two-device rehearsal.')} />
   </div>
 </FallCourseLayout>

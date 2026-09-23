@@ -185,6 +185,32 @@
           ],
           "story": false,
           "draft": null
+        },
+        {
+          "slug": "week-0-quiz",
+          "title": "Week 0 quiz",
+          "type": "check",
+          "minutes": 10,
+          "canvasCode": "lrn",
+          "canvasCategory": "ungraded",
+          "summary": "Six quick questions on Week 0, with the answers one click away.",
+          "file": "weeks/week-0/11-week-0-quiz.md",
+          "journeySteps": [],
+          "story": false,
+          "draft": null
+        },
+        {
+          "slug": "your-learning-passport",
+          "title": "Your Learning Passport",
+          "type": "learn",
+          "minutes": 10,
+          "canvasCode": "lrn",
+          "canvasCategory": "ungraded",
+          "summary": "Save your place in the course and pick it up on another computer.",
+          "file": "weeks/week-0/12-your-learning-passport.md",
+          "journeySteps": [],
+          "story": false,
+          "draft": null
         }
       ]
     }
