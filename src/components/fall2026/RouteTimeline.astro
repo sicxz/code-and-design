@@ -1,6 +1,6 @@
 ---
 import TypeBadge from './TypeBadge.astro';
-import { weekLessonCounts, lessonTypes, type CourseWeek, type LessonModule, type LessonType } from '../../lib/fall2026';
+import { weekLessonCounts, lessonTypes, isWeekReleased, type CourseWeek, type LessonModule, type LessonType } from '../../lib/fall2026';
 interface Props { weeks: CourseWeek[]; registry: Record<string, LessonModule> }
 const { weeks, registry } = Astro.props;
 const types = Object.keys(lessonTypes) as LessonType[];
@@ -16,7 +16,7 @@ const types = Object.keys(lessonTypes) as LessonType[];
           <span class="route-node" data-week-node aria-hidden="true"></span>
           <span class="route-number" aria-hidden="true">{String(week.number).padStart(2, '0')}</span>
           <div class="route-content">
-            <div class="route-title"><h3><a href={`/1/weeks/${week.id}/`}>Week {week.number} · {week.title}</a></h3></div>
+            <div class="route-title"><h3>{isWeekReleased(week.id) ? <a href={`/1/weeks/${week.id}/`}>Week {week.number} · {week.title}</a> : <>Week {week.number} · {week.title}</>}</h3></div>
             <p>{week.summary}</p>
             <div class="badge-row">
               {counts ? <>

@@ -49,6 +49,8 @@ export function displayDate(date: string): string {
   return dateFormatter.format(new Date(date + 'T12:00:00Z'));
 }
 export const groupLabel = (id: string) => fall.grading.find(group => group.id === id)?.label ?? id;
+export const isWeekReleased = (weekId: string): boolean => fall.weeks.some(week => week.id === weekId && week.released === true);
+export const opensLabel = (isoDate: string): string => new Date(`${isoDate}T12:00:00Z`).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
 export function displayTime(time = "23:59"): string {
   const [hour, minute] = time.split(":").map(Number);

@@ -8,6 +8,7 @@ import {
   outcomes,
   renderLessonMarkdown,
   type LessonType,
+  isWeekReleased,
 } from '../../lib/fall2026';
 import '../../styles/fall2026-outcomes.css';
 
@@ -50,7 +51,7 @@ const pageDraft = renderLessonMarkdown('> **Draft for instructor review.** The w
         {weeks.map(({ week, detail, aiStage }) => (
           <section class="outcomes-week" data-outcomes-week={week.id} aria-labelledby={`${week.id}-outcomes-title`}>
             <header class="outcomes-week-header">
-              <h3 id={`${week.id}-outcomes-title`}><a href={`/1/weeks/${week.id}/`}>Week {week.number} · {week.title}</a></h3>
+              <h3 id={`${week.id}-outcomes-title`}>{isWeekReleased(week.id) ? <a href={`/1/weeks/${week.id}/`}>Week {week.number} · {week.title}</a> : <>Week {week.number} · {week.title}</>}</h3>
               <p class="week-focus">{detail.focus}</p>
               <div class="outcomes-chips">
                 <span class="badge badge-secondary" data-ai-stage={detail.aiStage}>{aiStage.label}</span>

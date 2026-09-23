@@ -121,7 +121,8 @@
       "lesson": "weeks/week-0.md",
       "assignmentIds": [
         "practice-00"
-      ]
+      ],
+      "released": true
     },
     {
       "id": "week-1",
@@ -152,7 +153,8 @@
       "lesson": "weeks/week-1.md",
       "assignmentIds": [
         "practice-01"
-      ]
+      ],
+      "released": false
     },
     {
       "id": "week-2",
@@ -184,7 +186,8 @@
       "assignmentIds": [
         "practice-02",
         "project-recipe"
-      ]
+      ],
+      "released": false
     },
     {
       "id": "week-3",
@@ -216,7 +219,8 @@
       "lesson": "weeks/week-3.md",
       "assignmentIds": [
         "practice-03"
-      ]
+      ],
+      "released": false
     },
     {
       "id": "week-4",
@@ -248,7 +252,8 @@
       "assignmentIds": [
         "practice-04",
         "project-tribute"
-      ]
+      ],
+      "released": false
     },
     {
       "id": "week-5",
@@ -279,7 +284,8 @@
       "lesson": "weeks/week-5.md",
       "assignmentIds": [
         "practice-05"
-      ]
+      ],
+      "released": false
     },
     {
       "id": "week-6",
@@ -311,7 +317,8 @@
       "lesson": "weeks/week-6.md",
       "assignmentIds": [
         "practice-06"
-      ]
+      ],
+      "released": false
     },
     {
       "id": "week-7",
@@ -339,7 +346,8 @@
       "assignmentIds": [
         "practice-07",
         "project-field-guide"
-      ]
+      ],
+      "released": false
     },
     {
       "id": "week-8",
@@ -370,7 +378,8 @@
       "lesson": "weeks/week-8.md",
       "assignmentIds": [
         "practice-08"
-      ]
+      ],
+      "released": false
     },
     {
       "id": "week-9",
@@ -396,7 +405,8 @@
       "lesson": "weeks/week-9.md",
       "assignmentIds": [
         "practice-09"
-      ]
+      ],
+      "released": false
     },
     {
       "id": "week-10",
@@ -431,7 +441,8 @@
         "project-landing",
         "final-portfolio",
         "studio-participation"
-      ]
+      ],
+      "released": false
     }
   ],
   "assignments": [
