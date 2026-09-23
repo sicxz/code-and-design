@@ -28,3 +28,7 @@ The [syllabus](/1/syllabus/) comes first. Read it with the class before beginnin
 - Your workspace, with your introduction and your starting mark. [Submit its link in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11774540).
 - Your visual notes on both readings, as [one PDF in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11774541).
 - Your Figma card, in the class team's **intro** file.
+
+## Before class on Monday, September 28
+
+- Complete the [Markdown Tutorial](https://www.markdowntutorial.com/). Be ready to add to your GitHub README in class. [See the homework in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775193).
