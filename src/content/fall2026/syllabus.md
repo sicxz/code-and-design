@@ -168,7 +168,7 @@ Your repository is private: only you and the instructor can open it. You get it 
 
 The site has a fictional companion. Its notes carry the label Story. You can skip every Story note and still do every lesson. The companion never says what is due or what earns points. Canvas and the instructor do. It is a character in a story, not software you use.
 
-The **Mark as complete** button on a lesson sets a place marker. Your browser stores the markers and the companion's name. They also live in one small file, the Learning Passport. The site exports and imports that file. Keep it anywhere you like. Your repository is a good place. Canvas also has an optional weekly Save Point worth 0 points. The markers are not a grade and not a record of completion.
+The **Mark as complete** button sets a place marker for that lesson. Choosing **Next** also marks the lesson you are leaving and opens the next one; you can undo that mark if you need to. The Week 0 percentage counts these place markers, not submitted work or mastery. Your browser stores the markers and the companion's name. You can export them as a Learning Passport file and import that file in another browser. Keep it anywhere you like; your repository is one option. Canvas also has an optional weekly Save Point worth 0 points. Your instructor grades the work you submit in Canvas, not the site's markers.
 
 ## Source fluency and AI
 

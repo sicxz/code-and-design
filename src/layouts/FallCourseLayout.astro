@@ -2,10 +2,11 @@
 import '../styles/fall2026.css';
 import '../styles/fall-site-theme.css';
 import Icon from '../components/Icon.astro';
-import { fall } from '../lib/fall2026';
+import { fall, getLessonModule, lessonHref } from '../lib/fall2026';
 const { title = 'Peel Up the Pixels', description = 'Web Design + Code 1. Build, inspect, and understand the web.', wide = false, noindex = false } = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/$/, '');
 const nav = [{href:'/1',label:'Course'}, {href:'/1/map',label:'Map'}, {href:'/1/schedule',label:'Schedule'}, {href:'/1/assignments',label:'Assignments'}, {href:'/1/syllabus',label:'Syllabus'}, {href:'/1/resources',label:'Resources'}];
+const firstLesson = getLessonModule('week-0')?.lessons[0];
 ---
 <!doctype html>
 <html lang="en">
@@ -31,7 +32,7 @@ const nav = [{href:'/1',label:'Course'}, {href:'/1/map',label:'Map'}, {href:'/1/
         </div>
       </div>
       <a class="all-courses" href="/">All courses</a>
-      <nav aria-label="Course navigation">{nav.map(item => <a href={item.href} aria-current={pathname === item.href ? 'page' : item.href !== '/1' && pathname.startsWith(`${item.href}/`) ? 'location' : undefined}>{item.label}</a>)}</nav>
+      <nav aria-label="Course navigation">{nav.map(item => <a href={item.href} aria-current={pathname === item.href ? 'page' : item.href !== '/1' && pathname.startsWith(`${item.href}/`) ? 'location' : undefined}>{item.label}</a>)}{firstLesson && <a class="lesson-shortcut" href={lessonHref('week-0', firstLesson.slug)} data-opening-start data-opening-label="lesson" aria-current={pathname.startsWith('/1/weeks/') ? 'location' : undefined}>Start lesson 1 <span aria-hidden="true">→</span></a>}</nav>
     </header>
     <main id="main" class:list={['course-main', {wide}]} tabindex="-1"><slot /></main>
     <footer class="course-footer">

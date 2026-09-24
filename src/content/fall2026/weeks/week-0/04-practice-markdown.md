@@ -10,4 +10,4 @@ The companion left some notes. They are plain text so far, so every line looks t
 
 <!-- live-markdown -->
 
-Nothing you type here is saved. Your real words go in `week-0/introduction.md`, in your repository.
+Nothing you type here is saved. Later in the route, complete [Markdown Tutorial](/1/weeks/week-0/markdown-tutorial/) before adding [Markdown practice in your README](/1/weeks/week-0/markdown-practice-in-your-readme/) to your own repository. If you already made Wednesday's first README edit, keep it.

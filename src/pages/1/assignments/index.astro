@@ -3,8 +3,10 @@ import FallCourseLayout from '../../../layouts/FallCourseLayout.astro';
 import { fall, displayDate } from '../../../lib/fall2026';
 ---
 <FallCourseLayout title="Assignments">
-  <p class="breadcrumb"><a href="/1/">Course</a> / Assignments</p><h1>Build a body of work.</h1><p class="page-intro">Small source experiments support the projects. Each finished project becomes part of the portfolio.</p>
+  <p class="breadcrumb"><a href="/1/">Course</a> / Assignments</p>
+  <h1>Build a body of work.</h1>
+  <p class="page-intro">Small source experiments support the projects. Each finished project becomes part of the portfolio.</p>
   <p class="page-intro">Assignments appear here when they open in Canvas.</p>
-  {fall.grading.filter(group=>fall.assignments.some(a=>a.group===group.id&&a.inCanvas)).map(group=><section><h2>{group.label} <span class="muted">{group.weight}%</span></h2><div class="table-wrap"><table><thead><tr><th>Work</th><th>Due</th><th>Points</th></tr></thead><tbody>{fall.assignments.filter(a=>a.group===group.id&&a.inCanvas).map(a=><tr><td><a href={`/1/assignments/${a.id}/`}>{a.title}</a></td><td>{displayDate(a.dueDate)}</td><td>{a.points}</td></tr>)}</tbody></table></div></section>)}
+  {fall.grading.filter(group=>fall.assignments.some(a=>a.group===group.id&&a.inCanvas)).map(group=><section class="course-index-section" aria-labelledby={`group-${group.id}`}><h2 id={`group-${group.id}`}>{group.label} <span class="muted">{group.weight}%</span></h2><div class="table-wrap"><table><thead><tr><th>Work</th><th>Due</th><th>Points</th></tr></thead><tbody>{fall.assignments.filter(a=>a.group===group.id&&a.inCanvas).map(a=><tr><td><a href={`/1/assignments/${a.id}/`}>{a.title}</a></td><td>{displayDate(a.dueDate)}</td><td>{a.points}</td></tr>)}</tbody></table></div></section>)}
   <div class="callout"><p>Category weights determine the final grade. Weekly evidence evaluates your practice; projects evaluate the finished page; the final portfolio evaluates curation, navigation, and presentation. The same work is not graded twice for the same criteria.</p><a href="/1/resources/rubrics/">Read the assessment criteria</a></div>
 </FallCourseLayout>

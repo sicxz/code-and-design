@@ -4,7 +4,7 @@ This part is new for everyone on the first day, and it may be bumpy. If a screen
 
 ## Before you start
 
-- Complete **Set up your accounts** before this lesson. Sign in to your GitHub account.
+- Complete the GitHub account steps in [Set up your accounts](/1/weeks/week-0/set-up-your-accounts/) and sign in. Student Developer Pack, Figma, and CodePen setup can continue over the weekend.
 - The instructor has added your `@ewu.edu` address to the class roster. GitHub then emails you an invitation to **code-and-design-teaching**.
 
 ## 1. Accept the invitation

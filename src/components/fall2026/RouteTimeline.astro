@@ -1,9 +1,10 @@
 ---
 import TypeBadge from './TypeBadge.astro';
-import { weekLessonCounts, lessonTypes, isWeekReleased, type CourseWeek, type LessonModule, type LessonType } from '../../lib/fall2026';
+import { weekLessonCounts, lessonTypes, isWeekReleased, lessonHref, type CourseWeek, type LessonModule, type LessonType } from '../../lib/fall2026';
 interface Props { weeks: CourseWeek[]; registry: Record<string, LessonModule> }
 const { weeks, registry } = Astro.props;
 const types = Object.keys(lessonTypes) as LessonType[];
+const firstOpeningLesson = registry['week-0']?.lessons[0];
 ---
 <section aria-labelledby="route-title">
   <div class="section-heading"><h2 id="route-title">Your route</h2><span class="meta">One week. One mini-course.</span></div>
@@ -24,13 +25,13 @@ const types = Object.keys(lessonTypes) as LessonType[];
                 {types.filter(type => counts.byType[type]).map(type => <span class={`badge-count badge-${type}`}><TypeBadge type={type} />{' '}<span>{counts.byType[type]}</span></span>)}
               </> : <span class="badge badge-secondary">Lessons in preparation</span>}
             </div>
-            <div class="progress-line">
+            <div class="progress-line" data-week-progress={week.id} data-week-number={week.number} data-progress-format="fraction">
               <progress value="0" max={counts?.count || 1} aria-label={`Week ${week.number}: ${counts ? `0 of ${counts.count} lessons` : 'Not started'}`}>0</progress>
               <span class="progress-label">{counts ? `0/${counts.count}` : 'Not started'}</span>
             </div>
           </div>
-          {week.id === 'week-0'
-            ? <a class="route-state eyebrow" href="/1/weeks/week-0/" data-opening-start data-route-state={state}>{state}</a>
+          {week.id === 'week-0' && firstOpeningLesson
+            ? <a class="route-state" href={lessonHref(week.id, firstOpeningLesson.slug)} data-opening-start data-opening-label="lesson" data-route-state={state}>Start lesson 1 <span aria-hidden="true">→</span></a>
             : <span class="route-state eyebrow" data-route-state={state}>{state}</span>}
         </li>
       );

@@ -94,6 +94,26 @@
 .code-design-theme .course-topbar nav a { padding: 14px 0 12px; border-bottom: 3px solid transparent; color: var(--text-secondary); }
 .code-design-theme .course-topbar nav a:hover { color: var(--text-link); }
 .code-design-theme .course-topbar nav a[aria-current] { border-bottom-color: var(--brand-primary); color: var(--text-primary); }
+.code-design-theme .course-topbar nav a.lesson-shortcut,
+.code-design-theme .course-topbar nav a.lesson-shortcut[aria-current] {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin: 5px 0 5px auto;
+  padding: 8px 13px;
+  border: 1px solid var(--blue);
+  background: #15323c;
+  color: #e7faff;
+  font: 600 14px/1.35 var(--font-system);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.code-design-theme .course-topbar nav a.lesson-shortcut:hover { background: #214957; color: #fff; box-shadow: 0 0 0 1px #5ddcff66; }
+@media (max-width: 620px) {
+  .code-design-theme .course-topbar nav a.lesson-shortcut,
+  .code-design-theme .course-topbar nav a.lesson-shortcut[aria-current] { order: -1; margin-left: 0; }
+}
 .code-design-theme .course-main,
 .code-design-theme .course-main.wide { width: calc(100% - 48px); max-width: 1200px; padding: 24px 0 64px; }
 .code-design-theme .course-main > * { min-width: 0; }
@@ -164,6 +184,9 @@
 .code-design-theme .resource-list li:last-child { border-bottom: 0; }
 .code-design-theme .resource-list a { font-size: var(--fs-body); }
 .code-design-theme .resource-list p { color: var(--text-secondary); }
+.code-design-theme .course-index-section { margin: 30px 0 34px; padding-top: 23px; border-top: 1px solid var(--border-color); }
+.code-design-theme .course-index-section > h2:first-child { margin-top: 0; }
+.code-design-theme .course-index-section > :last-child { margin-bottom: 0; }
 .code-design-theme .course-footer { width: calc(100% - 48px); max-width: 1200px; padding: 28px 0; color: var(--text-secondary); }
 .code-design-theme .course-footer strong { color: var(--text-primary); }
 
@@ -215,6 +238,7 @@
   .code-design-theme .week-dates { grid-column: 1; }
   .code-design-theme .week-row a { font-size: var(--fs-lg) !important; }
   .code-design-theme .resource-list li { padding: 16px 18px; }
+  .code-design-theme .course-index-section { margin: 26px 0; padding-top: 19px; }
   .code-design-theme table { font-size: var(--fs-sm); }
   .code-design-theme .course-footer { padding: 24px 0; }
 }
@@ -244,6 +268,44 @@
 .code-design-theme table { border-radius: 0; }
 .code-design-theme .prose pre { max-width: 100%; }
 .code-design-theme .skip-link { z-index: 20; }
+
+/* Long course guides and assignment briefs follow the lesson section rhythm. */
+.code-design-theme .prose.sectioned-prose {
+  display: grid;
+  gap: 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.code-design-theme .sectioned-prose > :is(.sectioned-prose__opening, .sectioned-prose__section) {
+  min-width: 0;
+  padding: 26px 30px 28px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+.code-design-theme .sectioned-prose > :is(.sectioned-prose__opening, .sectioned-prose__section) > :first-child { margin-top: 0; }
+.code-design-theme .sectioned-prose > :is(.sectioned-prose__opening, .sectioned-prose__section) > :last-child { margin-bottom: 0; }
+.code-design-theme .sectioned-prose__opening > h1 { margin: 0 0 18px; font-size: var(--fs-3xl); }
+.code-design-theme .sectioned-prose__section > h2:first-child {
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-color);
+}
+.code-design-theme .sectioned-prose__section > h3 {
+  margin: 26px 0 10px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  font-size: var(--fs-lg);
+}
+.code-design-theme .sectioned-prose__section > ol > li + li {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+}
+@media (max-width: 620px) {
+  .code-design-theme .prose.sectioned-prose { gap: 14px; }
+  .code-design-theme .sectioned-prose > :is(.sectioned-prose__opening, .sectioned-prose__section) { padding: 19px 17px 21px; }
+}
 
 @media print {
   .code-design-theme {
@@ -294,4 +356,13 @@
   .code-design-theme .week-row a { font-size: 13pt !important; }
   .code-design-theme .resource-list a { font-size: 12pt; }
   .code-design-theme .callout { break-inside: avoid; }
+  .code-design-theme .prose.sectioned-prose { display: block; }
+  .code-design-theme .sectioned-prose > :is(.sectioned-prose__opening, .sectioned-prose__section) {
+    margin-bottom: 18pt;
+    padding: 0 0 12pt;
+    border: 0;
+    border-bottom: 1px solid #c9d1d5;
+    background: #fff;
+  }
+  .code-design-theme .sectioned-prose__section > h2:first-child { break-after: avoid; }
 }

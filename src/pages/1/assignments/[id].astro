@@ -1,7 +1,18 @@
 ---
 import FallCourseLayout from '../../../layouts/FallCourseLayout.astro';
+import SectionedProse from '../../../components/fall2026/SectionedProse.astro';
 import { fall, displayDate, readLesson, groupLabel, displayTime } from '../../../lib/fall2026';
 export function getStaticPaths(){return fall.assignments.map(assignment=>({params:{id:assignment.id},props:{assignment}}));}
 const { assignment } = Astro.props;
 ---
-<FallCourseLayout title={assignment.title}><p class="breadcrumb"><a href="/1/">Course</a> / <a href="/1/assignments/">Assignments</a></p><div class="meta-strip"><strong>Due {displayDate(assignment.dueDate)}, {displayTime(assignment.dueTime)} Pacific</strong><span>{groupLabel(assignment.group)}</span><span>{assignment.points} points</span></div><article class="prose" set:html={readLesson(assignment.brief)} /><div class="button-row"><a class="button secondary" href={`/1/weeks/${assignment.weekId}/`}>Open the studio lesson</a><a class="button secondary" href="/1/assignments/">All assignments</a></div></FallCourseLayout>
+<FallCourseLayout title={assignment.title} noindex={!assignment.inCanvas}>
+  <p class="breadcrumb"><a href="/1/">Course</a> / <a href="/1/assignments/">Assignments</a></p>
+  {assignment.inCanvas ? <>
+    <div class="meta-strip"><strong>Due {displayDate(assignment.dueDate)}, {displayTime(assignment.dueTime)} Pacific</strong><span>{groupLabel(assignment.group)}</span><span>{assignment.points} points</span></div>
+    <SectionedProse html={readLesson(assignment.brief)} />
+    <div class="button-row"><a class="button secondary" href={`/1/weeks/${assignment.weekId}/`}>Open the studio lesson</a><a class="button secondary" href="/1/assignments/">All assignments</a></div>
+  </> : <article class="prose">
+    <h1>{assignment.title}</h1>
+    <p>This assignment opens with its week in Canvas. See <a href="/1/assignments/">available assignments</a> or return to the <a href="/1/">course route</a>.</p>
+  </article>}
+</FallCourseLayout>

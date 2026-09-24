@@ -2,4 +2,20 @@
 import FallCourseLayout from '../../../layouts/FallCourseLayout.astro';
 import { fall } from '../../../lib/fall2026';
 ---
-<FallCourseLayout title="Resources"><p class="breadcrumb"><a href="/1/">Course</a> / Resources</p><h1>Help at the point of need.</h1><p class="page-intro">Start with the guide for the task in front of you. Your weekly lesson identifies the required reading; everything else is here when you need it.</p><h2>Course guides</h2><ul class="resource-list">{fall.documents.filter(doc=>doc.id!=='syllabus').map(doc=><li><a href={`/1/resources/${doc.id}/`}>{doc.title}</a></li>)}</ul><h2>Reference and practice</h2><ul class="resource-list">{fall.resources.map(resource=><li><a href={resource.url}>{resource.title}</a><p>{resource.description}</p></li>)}</ul><h2>Start by looking underneath</h2><p><a href="/1/peel-up-the-pixels/">Peel Up the Pixels</a> includes a source reveal, a starter, and a short explanation check.</p></FallCourseLayout>
+<FallCourseLayout title="Resources">
+  <p class="breadcrumb"><a href="/1/">Course</a> / Resources</p>
+  <h1>Help at the point of need.</h1>
+  <p class="page-intro">Start with the guide for the task in front of you. Your weekly lesson identifies the required reading; everything else is here when you need it.</p>
+  <section class="course-index-section" aria-labelledby="course-guides">
+    <h2 id="course-guides">Course guides</h2>
+    <ul class="resource-list">{fall.documents.filter(doc=>doc.id!=='syllabus').map(doc=><li><a href={`/1/resources/${doc.id}/`}>{doc.title}</a></li>)}</ul>
+  </section>
+  <section class="course-index-section" aria-labelledby="reference-practice">
+    <h2 id="reference-practice">Reference and practice</h2>
+    <ul class="resource-list">{fall.resources.map(resource=><li><a href={resource.url}>{resource.title}</a><p>{resource.description}</p></li>)}</ul>
+  </section>
+  <section class="course-index-section" aria-labelledby="looking-underneath">
+    <h2 id="looking-underneath">Start by looking underneath</h2>
+    <p><a href="/1/peel-up-the-pixels/">Peel Up the Pixels</a> includes a source reveal, a starter, and a short explanation check.</p>
+  </section>
+</FallCourseLayout>

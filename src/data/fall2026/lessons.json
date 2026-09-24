@@ -127,6 +127,37 @@
           "draft": null
         },
         {
+          "slug": "markdown-tutorial",
+          "title": "Markdown Tutorial",
+          "type": "apply",
+          "minutes": 30,
+          "canvasCode": "pr",
+          "canvasCategory": "weekly assignments",
+          "summary": "Follow one of the learning paths in the Canvas assignment before writing in your README.",
+          "file": "weeks/week-0/07b-markdown-tutorial.md",
+          "journeySteps": [],
+          "story": false,
+          "draft": null
+        },
+        {
+          "slug": "markdown-practice-in-your-readme",
+          "title": "Markdown practice in your README",
+          "type": "apply",
+          "minutes": 25,
+          "canvasCode": "pr",
+          "canvasCategory": "weekly assignments",
+          "summary": "Use the tutorial's Markdown features in your own repository, preview the result, and submit its link in Canvas.",
+          "file": "weeks/week-0/07c-markdown-practice-in-your-readme.md",
+          "submission": {
+            "title": "APPLY: Markdown Tutorial",
+            "url": "https://canvas.ewu.edu/courses/1925415/assignments/11775193",
+            "instruction": "Submit your repository URL after the Markdown practice section is committed and visible in GitHub."
+          },
+          "journeySteps": [],
+          "story": false,
+          "draft": null
+        },
+        {
           "slug": "introduction",
           "title": "Your introduction",
           "type": "apply",
@@ -135,6 +166,11 @@
           "canvasCategory": "weekly assignments",
           "summary": "Mark where you are starting. Then write your introduction in Markdown.",
           "file": "weeks/week-0/08-introduction.md",
+          "submission": {
+            "title": "WORKSHOP: Your workspace",
+            "url": "https://canvas.ewu.edu/courses/1925415/assignments/11774540",
+            "instruction": "Submit your repository URL after your starting mark, four-answer introduction, and README cleanup are saved."
+          },
           "journeySteps": [
             "intake",
             "introduction"
@@ -151,6 +187,11 @@
           "canvasCategory": "weekly assignments",
           "summary": "Read the two weekend essays and make handwritten visual notes.",
           "file": "weeks/week-0/09-readings-and-visual-notes.md",
+          "submission": {
+            "title": "Visual notes",
+            "url": "https://canvas.ewu.edu/courses/1925415/assignments/11774541",
+            "instruction": "Upload one PDF of your handwritten notes on both readings."
+          },
           "journeySteps": [
             "readings-and-visual-notes"
           ],
@@ -166,29 +207,18 @@
           "canvasCategory": "weekly assignments",
           "summary": "Fill in your own copy of the class card in Figma.",
           "file": "weeks/week-0/09b-your-figma-card.md",
+          "submission": {
+            "title": "APPLY: Figma Card",
+            "url": "https://canvas.ewu.edu/courses/1925415/assignments/11775749",
+            "instruction": "Submit the link to your card in the shared Figma file."
+          },
           "journeySteps": [],
           "story": false,
           "draft": null
         },
         {
-          "slug": "submit-and-return",
-          "title": "Submit and return",
-          "type": "check",
-          "minutes": 10,
-          "canvasCode": "p&e",
-          "canvasCategory": "participation and engagement",
-          "summary": "Check Canvas for submission and reopen your work before Monday.",
-          "file": "weeks/week-0/10-submit-and-return.md",
-          "journeySteps": [
-            "canvas-submission",
-            "return"
-          ],
-          "story": false,
-          "draft": null
-        },
-        {
           "slug": "week-0-quiz",
-          "title": "Week 0 quiz",
+          "title": "Week 0 check",
           "type": "check",
           "minutes": 10,
           "canvasCode": "lrn",
@@ -200,15 +230,18 @@
           "draft": null
         },
         {
-          "slug": "your-learning-passport",
-          "title": "Your Learning Passport",
-          "type": "learn",
+          "slug": "submit-and-return",
+          "title": "Check submissions and return",
+          "type": "check",
           "minutes": 10,
-          "canvasCode": "lrn",
-          "canvasCategory": "ungraded",
-          "summary": "Save your place in the course and pick it up on another computer.",
-          "file": "weeks/week-0/12-your-learning-passport.md",
-          "journeySteps": [],
+          "canvasCode": "p&e",
+          "canvasCategory": "participation and engagement",
+          "summary": "Confirm each Canvas submission and reopen your repository before the next class.",
+          "file": "weeks/week-0/10-submit-and-return.md",
+          "journeySteps": [
+            "canvas-submission",
+            "return"
+          ],
           "story": false,
           "draft": null
         }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   SandpackCodeEditor,
   SandpackLayout,
@@ -98,6 +98,9 @@ function previewDocument(source: string) {
 function MarkdownWorkspace({ notes, labels }: Pick<LiveMarkdownProps, 'notes' | 'labels'>) {
   const { code, updateCode } = useActiveCode();
   const [previewSource, setPreviewSource] = useState(code);
+  const [mobileView, setMobileView] = useState<'source' | 'preview'>('source');
+  const editorPanel = useRef<HTMLDivElement>(null);
+  const previewFrame = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     const updatePreview = window.setTimeout(() => setPreviewSource(code), 150);
@@ -109,12 +112,27 @@ function MarkdownWorkspace({ notes, labels }: Pick<LiveMarkdownProps, 'notes' | 
   const reset = () => {
     updateCode(notes, false);
     setPreviewSource(notes);
+    setMobileView('source');
+    requestAnimationFrame(() => editorPanel.current?.querySelector<HTMLElement>('.cm-content')?.focus());
+  };
+
+  const chooseView = (view: 'source' | 'preview') => {
+    setMobileView(view);
+    requestAnimationFrame(() => {
+      if (view === 'preview') previewFrame.current?.focus();
+      else editorPanel.current?.querySelector<HTMLElement>('.cm-content')?.focus();
+    });
   };
 
   return (
     <>
+      <div className="live-markdown__switch" role="group" aria-label="Markdown workspace view">
+        <button type="button" aria-pressed={mobileView === 'source'} onClick={() => chooseView('source')}>Source</button>
+        <button type="button" aria-pressed={mobileView === 'preview'} onClick={() => chooseView('preview')}>Preview</button>
+      </div>
+      <div className="live-markdown__viewport" data-mobile-view={mobileView}>
       <SandpackLayout className="live-markdown__layout">
-        <div className="live-markdown__panel live-markdown__editor">
+        <div className="live-markdown__panel live-markdown__editor" ref={editorPanel}>
           <div className="live-markdown__label">{labels.editor}</div>
           <SandpackCodeEditor
             additionalLanguages={markdownLanguage}
@@ -125,12 +143,14 @@ function MarkdownWorkspace({ notes, labels }: Pick<LiveMarkdownProps, 'notes' | 
             showTabs={false}
             wrapContent
           />
+          <button className="live-markdown__view-preview" type="button" onClick={() => chooseView('preview')}>View preview</button>
         </div>
         <div className="live-markdown__panel live-markdown__preview">
           <div className="live-markdown__label">{labels.preview}</div>
-          <iframe title={labels.preview} sandbox="" srcDoc={srcDoc} />
+          <iframe ref={previewFrame} title={labels.preview} tabIndex={0} sandbox="" srcDoc={srcDoc} />
         </div>
       </SandpackLayout>
+      </div>
       <button className="button secondary" type="button" onClick={reset}>
         {labels.reset}
       </button>

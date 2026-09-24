@@ -4,6 +4,7 @@ import EssentialsStrip from '../../components/fall2026/EssentialsStrip.astro';
 import RouteTimeline from '../../components/fall2026/RouteTimeline.astro';
 import StoryCard from '../../components/fall2026/StoryCard.astro';
 import OpeningScene from '../../components/fall2026/OpeningScene.astro';
+import CourseGuide from '../../components/fall2026/CourseGuide.astro';
 import { fall, lessonModules, readLesson } from '../../lib/fall2026';
 import '../../styles/fall2026-home.css';
 
@@ -20,9 +21,13 @@ const meetingTime = fall.schedule.time.replace('–', ' to ').replace(' p.m.', '
   <div data-course-home>
     <div class="schedule-strip"><span>{fall.weeks.length} weeks</span><span>{meetingDays} {meetingTime}</span><span>Canvas holds the dates</span></div>
     <section class="card card-accent welcome" aria-labelledby="welcome-title">
-      <p class="eyebrow">Start with the source</p>
+      <div class="welcome-topline"><p class="eyebrow">Start with the source</p><button class="guide-link" type="button" data-course-guide-open aria-haspopup="dialog">How the course is organized</button></div>
       <Fragment set:html={welcome} />
-      <div class="button-row"><a class="button" href="/1/weeks/week-0/" data-opening-start>Start here: Week 0 <span aria-hidden="true">→</span></a><a class="button secondary" href="/1/syllabus/">Read the syllabus</a></div>
+      <div class="button-row">
+        <a class="button" href="/1/weeks/week-0/" data-opening-start data-opening-label="lesson">Start here: Week 0 <span aria-hidden="true">→</span></a>
+        <a class="button secondary" href="/1/weeks/week-0/">Browse Week 0 lessons</a>
+        <a class="button secondary" href="/1/syllabus/">Read the syllabus</a>
+      </div>
     </section>
     <section class="card pledge-card" aria-labelledby="pledge-title">
       <p class="eyebrow">Student pledge · Required</p>
@@ -33,4 +38,5 @@ const meetingTime = fall.schedule.time.replace('–', ' to ').replace(' p.m.', '
     <StoryCard />
     <OpeningScene />
   </div>
+  <CourseGuide />
 </FallCourseLayout>

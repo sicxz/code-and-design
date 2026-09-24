@@ -1,0 +1,37 @@
+---
+import TypeLegend from './TypeLegend.astro';
+import { fall } from '../../lib/fall2026';
+import '../../styles/fall2026-course-guide.css';
+---
+<dialog class="course-guide" data-course-guide aria-labelledby="course-guide-title" aria-describedby="course-guide-summary">
+  <div class="course-guide__topbar">
+    <span>Course guide</span>
+    <button type="button" data-course-guide-close aria-label="Close course guide">Close <span aria-hidden="true">×</span></button>
+  </div>
+  <div class="course-guide__content">
+    <div class="course-guide__intro">
+      <div class="course-guide__color-bar" aria-hidden="true"></div>
+      <h2 id="course-guide-title">How the course is organized</h2>
+      <p id="course-guide-summary">One course, built week by week. Each week is an ordered route of lessons. The badges tell you what kind of work each lesson asks you to do.</p>
+    </div>
+    <div class="course-guide__grid">
+      <section aria-labelledby="course-guide-levels">
+        <h3 id="course-guide-levels">Your path</h3>
+        <ol class="course-guide__hierarchy" aria-label="Course contains modules; modules contain lessons">
+          <li><p class="course-guide__step">01 / Course</p><strong>{fall.courseCode}</strong><p>{fall.title} · {fall.term}</p><a href="/1/outcomes/">Outcomes by week</a></li>
+          <li><p class="course-guide__step">02 / Modules</p><strong>One week at a time</strong><p>A small, ordered path through an idea.</p></li>
+          <li><p class="course-guide__step">03 / Lessons</p><strong>One page. One piece of work.</strong></li>
+        </ol>
+      </section>
+      <section aria-labelledby="course-guide-types">
+        <h3 id="course-guide-types">What each badge means</h3>
+        <TypeLegend />
+      </section>
+    </div>
+    <div class="course-guide__actions">
+      <a class="button" href="/1/weeks/week-0/">Browse Week 0 lessons <span aria-hidden="true">→</span></a>
+      <button class="button secondary" type="button" data-course-guide-close>Back to course</button>
+    </div>
+  </div>
+</dialog>
+<script>import '../../scripts/fall2026-course-guide.mjs';</script>

@@ -11,61 +11,132 @@ import liveMarkdown from '../../data/fall2026/live-markdown.json';
 interface Props { week: CourseWeek; module: LessonModule; lesson: ModuleLesson; index: number }
 const { week, module: courseModule, lesson, index } = Astro.props;
 // Card labels are UI rows; reserve paragraphs for the lesson prose.
-const pieces = readModuleLesson(lesson)
+const sectionHeadings: { id: string; label: string }[] = [];
+const headingCounts = new Map<string, number>();
+let lessonHtml = readModuleLesson(lesson)
   .replace(/<p class="card-label">([\s\S]*?)<\/p>/g, '<div class="card-label">$1</div>')
-  .split(/(<!-- source-preview -->|<!-- surface-roles -->|<!-- companion-name -->|<!-- live-markdown -->)/);
+  .replace(/<h2>([\s\S]*?)<\/h2>/g, (_, inner: string) => {
+    const label = inner.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    const base = label.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
+    const number = (headingCounts.get(base) || 0) + 1;
+    headingCounts.set(base, number);
+    const id = `lesson-${base}${number > 1 ? `-${number}` : ''}`;
+    sectionHeadings.push({ id, label });
+    return `<h2 id="${id}">${inner}</h2>`;
+  });
+const firstExerciseStep = lessonHtml.match(/<ol>\s*<li>([\s\S]*?)<\/li>/)?.[1]
+  ?.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#39;/g, "'") ?? '';
+if (lessonHtml.includes('<!-- live-markdown -->')) {
+  lessonHtml = lessonHtml.replace(
+    /(<h2 id="lesson-try-it">Try it<\/h2>\s*)(<ol>[\s\S]*?<\/ol>)/,
+    '$1<details class="workbench-steps" open><summary>All exercise steps</summary>$2</details>',
+  );
+}
+const lessonChunks = lessonHtml
+  .split(/(?=<h2 id="lesson-[^"]+">)/)
+  .filter(chunk => chunk.trim())
+  .map(chunk => ({
+    html: chunk,
+    headingId: chunk.match(/^<h2 id="([^"]+)">/)?.[1],
+    pieces: chunk.split(/(<!-- source-preview -->|<!-- surface-roles -->|<!-- companion-name -->|<!-- live-markdown -->)/),
+  }));
+const hasContents = sectionHeadings.length >= 3;
+const isWorkbench = lessonHtml.includes('<!-- live-markdown -->');
 const next = courseModule.lessons[index + 1];
-const nextHref = next ? lessonHref(week.id, next.slug) : '/1/weeks/week-1/';
+const nextHref = next ? lessonHref(week.id, next.slug) : `/1/weeks/${week.id}/`;
 ---
-<div class="lesson-shell" data-lesson-module>
+<div class="lesson-shell" data-lesson-module data-current-lesson={`${week.id}/${lesson.slug}`}>
   <div class="workspace-topbar">
-    <a class="workspace-back" href={`/1/weeks/${week.id}/`}>Week {week.number} · Enter the course</a>
+    <a class="workspace-back" href={`/1/weeks/${week.id}/`}>← Week {week.number} lesson list</a>
     <span class="workspace-title">{lesson.title}</span>
   </div>
-  <div class="lesson-layout">
+  <div class:list={['lesson-layout', { 'has-contents': hasContents, 'workbench-layout': isWorkbench }]}>
     <details class="module-drawer" open>
-      <summary>Lessons in this week</summary>
+      <summary><span>Lessons in this week</span><span class="drawer-percent" data-progress-percent={week.id}>0% complete</span></summary>
+      <div class="lesson-progress" data-week-progress={week.id} data-week-number={week.number} data-progress-format="percent">
+        <strong class="lesson-progress__percent" data-progress-percent={week.id}>0% complete</strong>
+        <progress value="0" max={courseModule.lessons.length} aria-label={`Week ${week.number}: 0 of ${courseModule.lessons.length} lessons marked complete on this site`}>0</progress>
+        <p class="lesson-progress__caption"><span class="progress-label">0 of {courseModule.lessons.length} lessons marked here</span>. Canvas submissions are separate.</p>
+      </div>
       <LessonTree weekId={week.id} currentSlug={lesson.slug} />
     </details>
     <article class="lesson-main">
       <header class="lesson-card lesson-header">
         <div class="lesson-color-bar" aria-hidden="true"></div>
         <p class="lesson-eyebrow">Week {week.number} / Lesson {String(index + 1).padStart(2, '0')}</p>
-        <h1>{lesson.title}</h1>
+        <h1 tabindex="-1" data-lesson-heading>{lesson.title}</h1>
+        <div class="completion-notice" data-completion-notice hidden role="status" aria-live="polite">
+          <span class="completion-notice__check" aria-hidden="true">✓</span>
+          <p><span data-completion-notice-copy>Previous lesson marked complete on this site.</span> <span class="lesson-sr-only">Canvas submissions are separate.</span></p>
+          <div class="completion-notice__actions"><button type="button" data-undo-next>Undo</button><button type="button" data-dismiss-completion>Dismiss</button></div>
+        </div>
         <div class="badge-row">
           <TypeBadge type={lesson.type} />
           <span class="badge badge-secondary">{lesson.canvasCode} · {lesson.canvasCategory}</span>
           {lesson.story && <span class="badge badge-story">Story · fictional character</span>}
         </div>
         <p class="lesson-summary">{lesson.summary}</p>
+        {week.id === 'week-0' && lesson.slug === 'practice-markdown' &&
+          <img class="workbench-illustration" src="/fall-2026/graphics/companion-notes.png" alt="" width="1254" height="1254" loading="lazy" decoding="async" />}
       </header>
       <div class:list={['lesson-prose', { 'lesson-story': lesson.story }]}>
-        {pieces.map(piece => piece === '<!-- source-preview -->'
-          ? <SourcePreviewPair file="examples/markdown-introduction-example.md" label="Sample introduction: source and preview" />
-          : piece === '<!-- surface-roles -->'
-            ? <SurfaceRoles />
-            : piece === '<!-- companion-name -->'
-              ? <CompanionName />
-              : piece === '<!-- live-markdown -->'
-                ? <LiveMarkdown {...liveMarkdown} client:only="react">
-                    <pre slot="fallback">{liveMarkdown.notes}</pre>
-                  </LiveMarkdown>
-                : <Fragment set:html={piece} />)}
+        {lessonChunks.map(chunk => <section
+          class:list={['lesson-chunk', {
+            'lesson-chunk--opening': !chunk.headingId,
+            'lesson-chunk--callout': !chunk.headingId && chunk.html.trimStart().startsWith('<aside class="card'),
+            'lesson-chunk--definitions': !chunk.headingId && lesson.slug === 'what-a-repository-is',
+            'lesson-chunk--questions': lesson.slug === 'week-0-quiz',
+          }]}
+          aria-labelledby={chunk.headingId}
+          aria-label={!chunk.headingId
+            ? lesson.slug === 'what-a-repository-is' ? 'Key terms'
+              : chunk.html.trimStart().startsWith('<aside class="card') ? 'Note' : 'Introduction'
+            : undefined}
+        >
+          {chunk.pieces.map(piece => piece === '<!-- source-preview -->'
+            ? <SourcePreviewPair file="examples/markdown-introduction-example.md" label="Sample introduction: source and preview" />
+            : piece === '<!-- surface-roles -->'
+              ? <SurfaceRoles />
+              : piece === '<!-- companion-name -->'
+                ? <CompanionName />
+                : piece === '<!-- live-markdown -->'
+                  ? <>{firstExerciseStep && <p class="workbench-cue">Start here: {firstExerciseStep}</p>}<LiveMarkdown {...liveMarkdown} client:only="react">
+                      <pre slot="fallback">{liveMarkdown.notes}</pre>
+                    </LiveMarkdown></>
+                  : <Fragment set:html={piece} />)}
+        </section>)}
       </div>
       {lesson.draft && <Fragment set:html={renderLessonMarkdown(`> **Draft for instructor review.** Waits on: ${lesson.draft}`)} />}
+      {lesson.submission && <section class="lesson-card canvas-turn-in" aria-labelledby="canvas-turn-in-title">
+        <div>
+          <p class="lesson-eyebrow">Turn in · Canvas</p>
+          <h2 id="canvas-turn-in-title">{lesson.submission.title}</h2>
+          <p>{lesson.submission.instruction}</p>
+          <p class="canvas-turn-in__note">Canvas shows the due date and whether your submission was received.</p>
+        </div>
+        <a class="button secondary" href={lesson.submission.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${lesson.submission.title} in Canvas in a new tab`}>Open assignment <span aria-hidden="true">↗</span></a>
+        <span class="print-only">{lesson.submission.url}</span>
+      </section>}
       <div class="lesson-card lesson-finish" data-finish-block>
         <div class="finish-main">
           {next
             ? <NextUp href={nextHref} number={index + 2} label={next.title} type={next.type} note={next.summary} inFinish />
-            : <NextUp href={nextHref} label="Next: Week 1, the same words in HTML" note="On Monday, September 28, use your introduction words for HTML headings and paragraphs." inFinish />}
+            : <NextUp href={nextHref} label={`Week ${week.number} overview`} note="Return to the route and review the place markers you made on this site. Check Canvas for submitted work." inFinish />}
           <div class="completion-action">
             <button class="button" type="button" data-mark-complete data-lesson-key={`${week.id}/${lesson.slug}`} aria-pressed="false" aria-describedby="completion-note">Mark as complete</button>
-            <a class="button secondary" href={nextHref} data-next-up>{next ? 'Next lesson' : 'Next: Week 1'} <span aria-hidden="true">→</span></a>
-            <small id="completion-note" data-completion-note>Saved in this browser only. <a href="/1/passport/">Export your Learning Passport</a> to keep it.</small>
+            <a class="button secondary" href={nextHref} data-next-up data-lesson-key={`${week.id}/${lesson.slug}`}>{next ? 'Next lesson' : `Return to Week ${week.number} overview`} <span aria-hidden="true">→</span></a>
+            <small id="completion-note" data-completion-note>A check marks your place on this site. <a href="/1/passport/">Export your Learning Passport</a> to keep it across devices. Canvas submissions are separate.</small>
           </div>
         </div>
       </div>
       <p class="print-only">Canvas holds the due date.</p>
     </article>
+    {hasContents && <aside class="lesson-contents" aria-label="Lesson sections">
+      <p class="lesson-contents__title">On this page</p>
+      <details class="lesson-contents__drawer" open>
+        <summary>On this page</summary>
+        <nav aria-label="On this page"><ol>{sectionHeadings.map(section => <li><a href={`#${section.id}`}>{section.label}</a></li>)}</ol></nav>
+      </details>
+    </aside>}
   </div>
 </div>

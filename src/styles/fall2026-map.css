@@ -50,7 +50,8 @@
 .code-design-theme [data-course-map] .now-row .row-label { color: var(--eagle-red); }
 .code-design-theme [data-course-map] .now-row h3 { margin-top: 4px; }
 .code-design-theme [data-course-map] .meta { color: var(--text-secondary); font-size: var(--fs-base); }
-.code-design-theme [data-course-map] .now-row .button { gap: 12px; font: var(--fs-xs)/var(--lh-ui) var(--font-mono); text-transform: uppercase; }
+.code-design-theme [data-course-map] .now-row .button.continue-action { gap: 10px; min-height: 46px; border-color: var(--blue); background: var(--blue); color: #09242e !important; font: 700 15px/1.35 var(--font-system); white-space: nowrap; }
+.code-design-theme [data-course-map] .now-row .button.continue-action:hover { border-color: #b1efff; background: #b1efff; }
 .code-design-theme [data-course-map] .next-row { margin-top: 8px; grid-template-columns: 48px minmax(0, 1fr); }
 .code-design-theme [data-course-map] .next-row ol { list-style: none; padding: 0; }
 .code-design-theme [data-course-map] .next-row li { display: flex; gap: 16px; align-items: center; }
@@ -63,7 +64,7 @@
 .code-design-theme [data-course-map] .tree-key > span { display: inline-flex; align-items: center; gap: 7px; }
 .code-design-theme [data-course-map] .key-node { width: 14px; height: 14px; flex: 0 0 14px; border: 1px solid var(--tree-line); border-radius: 50%; }
 .code-design-theme [data-course-map] .key-node.complete { border-color: var(--eagle-green); background: var(--eagle-green); }
-.code-design-theme [data-course-map] .key-node.current { border: 2px solid var(--eagle-red); }
+.code-design-theme [data-course-map] .key-node.resume { border: 2px solid var(--blue); background: #183440; box-shadow: 0 0 9px #5ddcff66; }
 .code-design-theme [data-course-map] .course-root { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
 .code-design-theme [data-course-map] .course-root strong { font-size: var(--fs-lg); }
 .code-design-theme [data-course-map] .root-icon { flex-shrink: 0; color: var(--eagle-red); font: var(--fs-lg)/var(--lh-ui) var(--font-mono); }
@@ -96,12 +97,14 @@
 .code-design-theme [data-course-map] .lesson-row::before { content: ''; position: absolute; left: -19px; top: 23px; width: 11px; height: 1px; background: var(--tree-line); }
 .code-design-theme [data-course-map] .lesson-link { display: grid; grid-template-columns: 15px 20px 145px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 10px 12px; min-height: 44px; border: 1px solid transparent; color: var(--text-primary); text-decoration: none; font-size: var(--fs-base); }
 .code-design-theme [data-course-map] .lesson-link:hover { background: var(--bg-inset); }
-.code-design-theme [data-course-map] [data-emphasis="next"] .lesson-link { background: var(--eagle-blue-light); }
+.code-design-theme [data-course-map] [data-emphasis="next"] .lesson-link { border-color: var(--blue); background: #183440; box-shadow: 0 0 0 1px #5ddcff33, 0 0 18px #5ddcff33; }
+.code-design-theme [data-course-map] [data-emphasis="next"] .lesson-link:hover { background: #214553; box-shadow: 0 0 0 1px #5ddcff88, 0 0 24px #5ddcff66; }
+.code-design-theme [data-course-map] [data-emphasis="next"] .lesson-name { font-weight: 700; }
 .code-design-theme [data-course-map] .lesson-status { width: 15px; height: 15px; border: 1px solid var(--tree-line); border-radius: 50%; color: transparent; font-size: var(--fs-sm); }
 .code-design-theme [data-course-map] .badge-row { display: flex; align-items: start; flex-wrap: wrap; gap: 6px; min-width: 0; }
 .code-design-theme [data-course-map] .lesson-link .badge { padding: 2px 7px; }
 .code-design-theme [data-course-map] [data-emphasis="none"] .badge:not(.badge-story) { color: var(--text-secondary); border-color: var(--border-color); background: var(--bg-inset); }
-.code-design-theme [data-course-map] .tree-next { color: var(--text-secondary); font: var(--fs-xs)/var(--lh-ui) var(--font-mono); text-transform: uppercase; letter-spacing: var(--ls-label); }
+.code-design-theme [data-course-map] .tree-next { justify-self: end; padding: 6px 9px; border: 1px solid var(--blue); background: var(--blue); color: #09242e; font: 700 12px/1.25 var(--font-system); white-space: nowrap; }
 .code-design-theme [data-course-map] .lesson-sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .code-design-theme [data-course-map] .anatomy { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
 .code-design-theme [data-course-map] .anatomy-card { padding: 22px; background: var(--bg-primary); border: 1px solid var(--border-color); }
@@ -135,7 +138,7 @@
   .code-design-theme [data-course-map] .lesson-link > .badge-row { grid-column: 3; grid-row: 1; }
   .code-design-theme [data-course-map] .lesson-link .lesson-name { grid-column: 3; grid-row: 2; }
   .code-design-theme [data-course-map] .lesson-link .badge { padding: 2px 5px; }
-  .code-design-theme [data-course-map] .tree-next { grid-column: 3; }
+  .code-design-theme [data-course-map] .tree-next { grid-column: 3; justify-self: start; }
   .code-design-theme [data-course-map] .anatomy { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 400px) {

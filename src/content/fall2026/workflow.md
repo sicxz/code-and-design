@@ -1,11 +1,11 @@
 # One workspace: build, publish, submit
 
-Keep one place for the work you make. Early CodePens become the first projects in the same portfolio repository you use through finals.
+Your Week 0 source work lives in your own private GitHub repository. Follow [Get your workspace](/1/weeks/week-0/get-your-workspace/) for the current setup and first edit. Later HTML and CSS lessons may use CodePen for practice; follow each released lesson for the editor and submission it requires.
 
-## Weeks 0–2: CodePen and a local backup
+## When a lesson uses CodePen
 
 1. Open a new Pen in [CodePen Classic](https://codepen.io/pen). Use the HTML panel for the contents of the page body and the CSS panel for the stylesheet. Leave the JavaScript panel empty. Do not paste a complete document's `head` or `body` tags into the HTML panel.
-2. Save the Pen with a meaningful title such as `DESN 368 — Project 1`. Copy its saved URL.
+2. Save the Pen with a meaningful title such as `DESN 368 — practice`. Copy its saved URL.
 3. For a starter downloaded from this site, open `index.html` in a text editor. Copy only the markup between `<body>` and `</body>` into the HTML panel; copy the starter’s CSS file into the CSS panel (`style.css` for the opening starter; `styles.css` for Project 1). The local `link` element is unnecessary in CodePen.
 4. Keep a local copy of your work. Online editors can be unavailable. A folder containing `index.html` and its linked CSS file opens in your browser without a build command. Keep the starter’s file names: the `href` in the HTML must match the CSS file name.
 
@@ -15,13 +15,13 @@ If an assignment link or embed fails, use its downloaded starter and follow the 
 
 ## Opening half-week: establish the course workspace
 
-> **Development hold:** do not publish or assign this repository handoff yet. The accepted direction is clone—not fork—but the instructor source, student-owned destination, editing environment, public/private arrangement, save/push path, and update strategy still require an end-to-end novice rehearsal.
-
-The final lesson will teach the required repository vocabulary and model each operation before independent work. It must verify that the student can clone the instructor source, establish their own writable destination, make and inspect one change, save and push it, close the workspace, and reopen the same work. Creating an account or receiving GitHub Education access does not grant permission to use AI during the independent foundation period.
+The [Get your workspace](/1/weeks/week-0/get-your-workspace/) lesson walks through the class invitation, the Workspace assignment in Canvas, your private repository, and your first saved edit. Use that lesson for the current handoff. Creating an account or receiving GitHub Education access does not grant permission to use AI during the independent foundation period.
 
 ## Week 3: migrate one page manually
 
-After the opening handoff has been approved and completed, use that same student-owned course repository. Do the first CodePen-to-file move yourself so folders, paths, commits, and publication remain visible. Use the [portfolio starter ZIP](/fall-2026/starters/portfolio.zip) or individual [HTML](/fall-2026/starters/portfolio/index.html) and [CSS](/fall-2026/starters/portfolio/styles.css) files.
+> **Draft for instructor review.** This future migration route will be checked when Week 3 opens. Follow the released week's lesson for assigned work.
+
+Use the same private course repository you received in Week 0. The proposed first CodePen-to-file move keeps folders, paths, commits, and publication visible. The draft uses the [portfolio starter ZIP](/fall-2026/starters/portfolio.zip) or individual [HTML](/fall-2026/starters/portfolio/index.html) and [CSS](/fall-2026/starters/portfolio/styles.css) files.
 
 1. Copy only the portfolio starter's `index.html` and `styles.css` to the repository root. Preserve the course README and any assigned setup files.
 2. Add the HTML document wrapper from the Project 1 download, then manually move your own CodePen HTML and CSS into `project-1/index.html` and `project-1/styles.css`.
@@ -63,6 +63,6 @@ When viewing locally, opening `index.html` in a browser is enough for these HTML
 
 ## Evidence and attribution
 
-Each weekly Canvas submission has one artifact link or file, a two-to-four-sentence explanation of the specific source change, and one question or next step. No separate essay or duplicated screenshot set is required unless the brief needs a before/after comparison.
+Follow each Canvas assignment for what to submit. When a brief asks you to explain a source change, name the change and what happened when you checked it.
 
 Keep a compact source section in the project or README: asset title/creator/source/license when known; tutorial or quotation link; and any permitted AI tool and the exact task it helped with. If you wrote the work yourself and used no external assets or AI, say so once. Never invent an AI error or fabricate a prompt history.

@@ -2,16 +2,45 @@
 import { readLesson, renderLessonMarkdown, lessonTypes, lessonHref, type LessonType, type CourseWeek, type LessonModule } from '../../lib/fall2026';
 import LessonTree from './LessonTree.astro';
 import TypeBadge from './TypeBadge.astro';
-import NextUp from './NextUp.astro';
 import WeekOutcomes from './WeekOutcomes.astro';
 import OpeningScene from './OpeningScene.astro';
 import openingScene from '../../data/fall2026/opening-scene.json';
 interface Props { week: CourseWeek; module: LessonModule }
 const { week, module: courseModule } = Astro.props;
 const first = courseModule.lessons[0];
+const introHtml = readLesson(courseModule.intro);
+const firstParagraphEnd = introHtml.indexOf('</p>');
+const openingHtml = (firstParagraphEnd >= 0 ? introHtml.slice(0, firstParagraphEnd + 4) : introHtml)
+  .replace('<h1>', '<h1 tabindex="-1" data-lesson-heading>');
+const remainingHtml = firstParagraphEnd >= 0 ? introHtml.slice(firstParagraphEnd + 4) : '';
+const overviewSections = remainingHtml
+  .split(/(?=<h2(?:\s|>))/)
+  .filter(section => section.trim().length > 0);
 ---
 <div class="module-index" data-lesson-module>
-  <article class="prose module-intro" set:html={readLesson(courseModule.intro)} />
+  <article class="prose module-intro">
+    <Fragment set:html={openingHtml} />
+    <div class="completion-notice" data-completion-notice hidden role="status" aria-live="polite">
+      <span class="completion-notice__check" aria-hidden="true">✓</span>
+      <p><span data-completion-notice-copy>Previous lesson marked complete on this site.</span> <span class="lesson-sr-only">Canvas submissions are separate.</span></p>
+      <div class="completion-notice__actions"><button type="button" data-undo-next>Undo</button><button type="button" data-dismiss-completion>Dismiss</button></div>
+    </div>
+    <section class="lesson-card module-resume" data-week-resume={week.id} aria-labelledby="module-resume-title">
+      <div>
+        <p class="lesson-eyebrow">Your place in Week {week.number}</p>
+        <h2 id="module-resume-title">Start with {first.title}</h2>
+        <p data-resume-description>Open the first lesson. You can return to any lesson from the route below.</p>
+      </div>
+      <a class="button" href={lessonHref(week.id, first.slug)} data-resume-link>Start Lesson 1 <span aria-hidden="true">→</span></a>
+    </section>
+    <div class="module-overview-sections">
+      {overviewSections.map(section => (
+        <div class:list={['module-overview-section', { 'module-overview-section--lead': !section.trimStart().startsWith('<h2') }]}>
+          <Fragment set:html={section} />
+        </div>
+      ))}
+    </div>
+  </article>
   {week.id === 'week-0' && <div><button class="button secondary" type="button" data-opening-replay hidden>{openingScene.controls.replay}</button></div>}
   {week.id !== 'week-0' && <Fragment set:html={renderLessonMarkdown('> **Draft for instructor review.** Waits on: the lesson-level items listed in COURSE.md "Open".')} />}
   <WeekOutcomes weekId={week.id} />
@@ -29,6 +58,5 @@ const first = courseModule.lessons[0];
     <p class="lesson-caption">Follow the lessons in order. Return to any page when you need it.</p>
     <LessonTree weekId={week.id} />
   </section>
-  <NextUp href={lessonHref(week.id, first.slug)} label={first.title} type={first.type} note={first.summary} />
   {week.id === 'week-0' && <OpeningScene />}
 </div>

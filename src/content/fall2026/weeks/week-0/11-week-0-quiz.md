@@ -56,8 +56,8 @@ Six quick questions on Week 0. Pick an answer, then open **Check your answer**. 
 >
 > <fieldset class="lesson-check">
 >   <legend>6. Where does your Figma card go?</legend>
->   <label class="answer-option"><input type="radio" name="q6" value="intro"> <span>In the class team's <strong>intro</strong> file, with its link submitted in Canvas</span></label>
+>   <label class="answer-option"><input type="radio" name="q6" value="intro"> <span>In the shared class Figma file, with its link submitted in Canvas</span></label>
 >   <label class="answer-option"><input type="radio" name="q6" value="repository"> <span>In your repository</span></label>
 >   <label class="answer-option"><input type="radio" name="q6" value="email"> <span>In an email to the instructor</span></label>
 > </fieldset>
-> <details class="lesson-answer"><summary>Check your answer</summary><p><strong>In the intro file.</strong> Every card sits side by side there, and you submit a link to yours in <a href="https://canvas.ewu.edu/courses/1925415/assignments/11775749">APPLY: Figma Card</a>.</p></details>
+> <details class="lesson-answer"><summary>Check your answer</summary><p><strong>In the shared class Figma file.</strong> Every card sits side by side there, and you submit a link to yours in <a href="https://canvas.ewu.edu/courses/1925415/assignments/11775749" target="_blank" rel="noopener noreferrer">APPLY: Figma Card</a>.</p></details>

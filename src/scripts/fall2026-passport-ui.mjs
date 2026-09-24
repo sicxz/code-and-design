@@ -11,8 +11,14 @@ import {
   setName,
   unmarkComplete,
 } from '../lib/fall2026-passport.mjs';
+import lessonRegistry from '../data/fall2026/lessons.json';
+import openingScene from '../data/fall2026/opening-scene.json';
 
 const STORAGE_MESSAGE = 'This browser is not saving. Export before you close this tab.';
+const LAST_OPENED_KEY = 'desn368.last-opened.v1';
+const NEXT_UNDO_KEY = 'desn368.next-undo.v1';
+const modules = lessonRegistry.modules;
+const lessonKeys = new Set(Object.entries(modules).flatMap(([weekId, module]) => module.lessons.map((lesson) => `${weekId}/${lesson.slug}`)));
 const importMessages = {
   'not-json': 'That file is not a Learning Passport. Nothing changed.',
   'too-large': 'That file is too large to be a Learning Passport. Nothing changed.',
@@ -26,6 +32,63 @@ const importMessages = {
 let storageFailed = false;
 let passport = loadPassport();
 let incomingPassport = null;
+
+function weekLessons(weekId) {
+  return modules[weekId]?.lessons ?? [];
+}
+
+function lessonByKey(key) {
+  const [weekId, slug] = key.split('/');
+  return weekLessons(weekId).find((lesson) => lesson.slug === slug);
+}
+
+function lessonHref(weekId, slug) {
+  return `/1/weeks/${weekId}/${slug}/`;
+}
+
+function readLastOpened() {
+  try {
+    const value = localStorage.getItem(LAST_OPENED_KEY);
+    return value && lessonKeys.has(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+function recordLastOpened() {
+  const key = document.querySelector('[data-current-lesson]')?.dataset.currentLesson;
+  if (!lessonKeys.has(key)) return;
+  try {
+    localStorage.setItem(LAST_OPENED_KEY, key);
+  } catch {
+    // Place markers still work in memory if storage is unavailable.
+  }
+}
+
+function readNextUndo() {
+  try {
+    const value = sessionStorage.getItem(NEXT_UNDO_KEY);
+    return value ? JSON.parse(value) : null;
+  } catch {
+    return null;
+  }
+}
+
+function clearNextUndo() {
+  try {
+    sessionStorage.removeItem(NEXT_UNDO_KEY);
+  } catch {
+    // The notice is also cleared in the current document.
+  }
+}
+
+function writeNextUndo(key, destination) {
+  try {
+    sessionStorage.setItem(NEXT_UNDO_KEY, JSON.stringify({ key, destination }));
+  } catch {
+    // Completion remains reversible through Mark as complete and the route.
+  }
+}
 
 function loadPassport() {
   try {
@@ -50,6 +113,9 @@ function savePassport() {
 function removePassport() {
   try {
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(LAST_OPENED_KEY);
+    localStorage.removeItem(openingScene.studentNameKey);
+    clearNextUndo();
   } catch {
     storageFailed = true;
   }
@@ -73,34 +139,149 @@ function updateLessonButtons() {
   document.querySelectorAll('button[data-mark-complete][data-lesson-key]').forEach((button) => {
     const done = Object.hasOwn(passport.completed, button.dataset.lessonKey);
     button.setAttribute('aria-pressed', String(done));
-    button.textContent = done ? 'Marked complete' : 'Mark as complete';
+    button.textContent = done ? '✓ Marked complete · Undo' : 'Mark as complete';
   });
 }
 
 function updateLessonTrees() {
-  document.querySelectorAll('[data-lesson-tree] li[data-lesson-key]').forEach((row) => {
-    const done = Object.hasOwn(passport.completed, row.dataset.lessonKey);
-    const current = row.classList.contains('current') || row.querySelector('[aria-current="page"]');
-    row.classList.toggle('is-done', done);
-    const status = row.querySelector('.lesson-sr-only');
-    if (status) status.textContent = current ? 'You are here. ' : done ? 'Marked complete. ' : 'Not started. ';
+  document.querySelectorAll('[data-lesson-tree]').forEach((tree) => {
+    const hasOpenLesson = Boolean(tree.querySelector('[aria-current="page"]'));
+    const target = hasOpenLesson ? null : resumeTarget(tree.dataset.weekId);
+    tree.querySelectorAll('li[data-lesson-key]').forEach((row, index) => {
+      const done = Object.hasOwn(passport.completed, row.dataset.lessonKey);
+      const current = row.classList.contains('current') || row.querySelector('[aria-current="page"]');
+      const resumeHere = target && index === target.index;
+      row.classList.toggle('is-done', done);
+      if (target) {
+        row.dataset.emphasis = resumeHere ? 'next' : 'none';
+        let cue = row.querySelector('.tree-next');
+        if (resumeHere) {
+          if (!cue) {
+            cue = document.createElement('span');
+            cue.className = 'tree-next';
+            row.querySelector('.lesson-link')?.append(cue);
+          }
+          cue.textContent = target.allMarked ? 'Review here →' : target.hasStarted ? 'Continue here →' : 'Start here →';
+        } else {
+          cue?.remove();
+        }
+      }
+      const status = row.querySelector('.lesson-sr-only');
+      if (status) status.textContent = `${current ? 'You are here. ' : ''}${done ? 'Marked complete on this site. ' : current ? '' : 'Not marked. '}`;
+    });
   });
 }
 
 function updateWeekProgress() {
   document.querySelectorAll('[data-week-progress]').forEach((surface) => {
     const weekId = surface.dataset.weekProgress;
-    const station = surface.closest('[data-station]');
-    const rows = [...(station ?? document).querySelectorAll('[data-lesson-tree] li[data-lesson-key]')]
-      .filter((row) => row.dataset.lessonKey.startsWith(`${weekId}/`));
-    const done = rows.filter((row) => Object.hasOwn(passport.completed, row.dataset.lessonKey)).length;
+    const lessons = weekLessons(weekId);
+    const done = lessons.filter((lesson) => Object.hasOwn(passport.completed, `${weekId}/${lesson.slug}`)).length;
     const progress = surface.querySelector('progress');
     const label = surface.querySelector('.progress-label');
-    if (!progress || !label) return;
-    const total = progress.max;
-    label.textContent = `${done} of ${total} complete`;
+    if (!progress || !label || !lessons.length) return;
+    const total = lessons.length;
+    progress.max = total;
     progress.value = done;
-    progress.setAttribute('aria-label', `Week ${surface.dataset.weekNumber}: ${done} of ${total} complete`);
+    progress.setAttribute('aria-label', `Week ${surface.dataset.weekNumber}: ${done} of ${total} lessons marked complete on this site`);
+    label.textContent = surface.dataset.progressFormat === 'fraction'
+      ? `${done}/${total}`
+      : surface.dataset.progressFormat === 'percent'
+        ? `${done} of ${total} lessons marked here`
+        : `${done} of ${total} complete`;
+    const percent = Math.round((done / total) * 100);
+    surface.querySelectorAll('[data-progress-percent]').forEach((node) => { node.textContent = `${percent}% complete`; });
+  });
+  document.querySelectorAll('.module-drawer > summary [data-progress-percent]').forEach((node) => {
+    const weekId = node.dataset.progressPercent;
+    const lessons = weekLessons(weekId);
+    if (!lessons.length) return;
+    const done = lessons.filter((lesson) => Object.hasOwn(passport.completed, `${weekId}/${lesson.slug}`)).length;
+    node.textContent = `${Math.round((done / lessons.length) * 100)}% complete`;
+  });
+}
+
+function resumeTarget(weekId) {
+  const lessons = weekLessons(weekId);
+  if (!lessons.length) return null;
+  const lastOpened = readLastOpened();
+  const [lastWeek, lastSlug] = lastOpened?.split('/') ?? [];
+  const lastIndex = lastWeek === weekId ? lessons.findIndex((lesson) => lesson.slug === lastSlug) : -1;
+  const marked = (lesson) => Object.hasOwn(passport.completed, `${weekId}/${lesson.slug}`);
+  let index = lastIndex >= 0 && !marked(lessons[lastIndex]) ? lastIndex : -1;
+  if (index < 0 && lastIndex >= 0) index = lessons.findIndex((lesson, position) => position > lastIndex && !marked(lesson));
+  if (index < 0) index = lessons.findIndex((lesson) => !marked(lesson));
+  if (index < 0) index = lastIndex >= 0 ? lastIndex : lessons.length - 1;
+  return { lesson: lessons[index], index, total: lessons.length, allMarked: lessons.every(marked), hasStarted: lastIndex >= 0 || lessons.some(marked) };
+}
+
+function makeTypeBadge(type) {
+  const badge = document.createElement('span');
+  badge.className = `badge badge-${type}`;
+  badge.dataset.lessonType = type;
+  const node = document.createElement('span');
+  node.className = `type-node node-${type}`;
+  node.setAttribute('aria-hidden', 'true');
+  badge.append(node, lessonRegistry.types[type].label);
+  return badge;
+}
+
+function updateResumeLinks() {
+  document.querySelectorAll('[data-week-resume]').forEach((surface) => {
+    const weekId = surface.dataset.weekResume;
+    const target = resumeTarget(weekId);
+    if (!target) return;
+    const { lesson, index, total, allMarked, hasStarted } = target;
+    const weekNumber = weekId.replace('week-', '');
+    const href = lessonHref(weekId, lesson.slug);
+    const heading = surface.querySelector('#module-resume-title, [data-resume-title]');
+    const position = surface.querySelector('[data-resume-position]');
+    const state = surface.querySelector('[data-resume-state]');
+    const description = surface.querySelector('[data-resume-description]');
+    if (heading) heading.textContent = `${allMarked ? 'Review' : hasStarted ? 'Continue with' : 'Start with'} ${lesson.title}`;
+    if (position) position.textContent = `Week ${weekNumber} · Lesson ${index + 1} of ${total}`;
+    if (state) state.textContent = allMarked ? 'Review' : hasStarted ? 'Continue' : 'Start';
+    const badge = surface.querySelector('.now-row [data-lesson-type]');
+    if (badge) badge.replaceWith(makeTypeBadge(lesson.type));
+    const nextList = surface.querySelector('.next-row ol');
+    if (nextList) {
+      nextList.start = index + 2;
+      nextList.replaceChildren();
+      const following = weekLessons(weekId).slice(index + 1, index + 3);
+      if (!following.length) {
+        const item = document.createElement('li');
+        item.textContent = 'You are at the end of this week’s route.';
+        nextList.append(item);
+      }
+      following.forEach((nextLesson, offset) => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = lessonHref(weekId, nextLesson.slug);
+        const number = document.createElement('span');
+        number.className = 'lesson-number';
+        number.textContent = String(index + offset + 2);
+        link.append(number, ` ${nextLesson.title}`);
+        item.append(makeTypeBadge(nextLesson.type), link);
+        nextList.append(item);
+      });
+    }
+    if (description) description.textContent = allMarked
+      ? 'All lessons are marked here. Reopen the route whenever you need it. Check Canvas for submissions.'
+      : hasStarted ? 'Pick up at this lesson. You can open any other lesson from the route below.'
+        : 'Open the first lesson. You can return to any lesson from the route below.';
+    surface.querySelectorAll('[data-resume-link]').forEach((link) => {
+      link.href = href;
+      link.innerHTML = `${allMarked ? 'Review lesson' : hasStarted ? 'Continue lesson' : 'Start lesson'} <span aria-hidden="true">→</span>`;
+    });
+  });
+  const target = resumeTarget('week-0');
+  if (target) document.querySelectorAll('[data-opening-start]').forEach((link) => {
+    link.href = lessonHref('week-0', target.lesson.slug);
+    const action = link.dataset.openingLabel === 'lesson'
+      ? `${target.allMarked ? 'Review' : target.hasStarted ? 'Continue' : 'Start'} lesson ${target.index + 1}`
+      : target.allMarked ? 'Review Week 0' : target.hasStarted ? 'Continue Week 0' : 'Start here: Week 0';
+    link.innerHTML = `${action} <span aria-hidden="true">→</span>`;
+    link.setAttribute('aria-label', `${action}: ${target.lesson.title}`);
   });
 }
 
@@ -126,6 +307,7 @@ function updateSurfaces() {
   updateLessonButtons();
   updateLessonTrees();
   updateWeekProgress();
+  updateResumeLinks();
   updateCompanionName();
   updatePassportPage();
   if (storageFailed) setPassportStatus();
@@ -169,6 +351,7 @@ function fillConflict(local, incoming) {
 
 document.querySelectorAll('button[data-mark-complete][data-lesson-key]').forEach((button) => {
   button.addEventListener('click', () => {
+    hideCompletionNotice();
     const key = button.dataset.lessonKey;
     const next = Object.hasOwn(passport.completed, key)
       ? unmarkComplete(passport, key, new Date())
@@ -176,6 +359,101 @@ document.querySelectorAll('button[data-mark-complete][data-lesson-key]').forEach
     changePassport(next);
   });
 });
+
+function hideCompletionNotice(restoreFocus = false) {
+  const notice = document.querySelector('[data-completion-notice]');
+  if (!notice) return;
+  notice.hidden = true;
+  clearNextUndo();
+  if (restoreFocus) document.querySelector('[data-lesson-heading]')?.focus();
+}
+
+function showCompletionNotice() {
+  const notice = document.querySelector('[data-completion-notice]');
+  const pending = readNextUndo();
+  if (!pending) return;
+  if (pending.destination !== window.location.pathname || !lessonKeys.has(pending.key)
+    || !Object.hasOwn(passport.completed, pending.key) || !notice) {
+    clearNextUndo();
+    return;
+  }
+  const lesson = lessonByKey(pending.key);
+  const message = notice.querySelector('[data-completion-notice-copy]');
+  if (message) message.textContent = `${lesson?.title ?? 'Previous lesson'} marked complete on this site.`;
+  notice.hidden = false;
+  document.querySelector('[data-lesson-heading]')?.focus();
+}
+
+document.querySelectorAll('a[data-next-up][data-lesson-key]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const key = link.dataset.lessonKey;
+    if (!lessonKeys.has(key)) return;
+    hideCompletionNotice();
+    if (Object.hasOwn(passport.completed, key)) return;
+    changePassport(markComplete(passport, key, new Date()));
+    writeNextUndo(key, new URL(link.href).pathname);
+  });
+});
+
+document.querySelectorAll('[data-undo-next]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const pending = readNextUndo();
+    if (!pending || !lessonKeys.has(pending.key) || pending.destination !== window.location.pathname) return;
+    if (Object.hasOwn(passport.completed, pending.key)) changePassport(unmarkComplete(passport, pending.key, new Date()));
+    hideCompletionNotice(true);
+  });
+});
+
+document.querySelectorAll('[data-dismiss-completion]').forEach((button) => {
+  button.addEventListener('click', () => hideCompletionNotice(true));
+});
+
+const lessonDrawer = document.querySelector('.module-drawer');
+const contentsDrawer = document.querySelector('.lesson-contents__drawer');
+if (lessonDrawer || contentsDrawer) {
+  const narrow = window.matchMedia('(max-width: 950px)');
+  const syncDrawers = () => {
+    if (lessonDrawer) lessonDrawer.open = !narrow.matches;
+    if (contentsDrawer) contentsDrawer.open = !narrow.matches;
+  };
+  syncDrawers();
+  narrow.addEventListener('change', syncDrawers);
+}
+
+const exerciseSteps = document.querySelector('.workbench-steps');
+if (exerciseSteps) {
+  const phone = window.matchMedia('(max-width: 620px)');
+  const syncSteps = () => { exerciseSteps.open = !phone.matches; };
+  syncSteps();
+  phone.addEventListener('change', syncSteps);
+}
+
+const contentLinks = [...document.querySelectorAll('.lesson-contents nav a[href^="#"]')];
+if (contentLinks.length) {
+  let contentsQueued = false;
+  const updateContents = () => {
+    contentsQueued = false;
+    let active = contentLinks[0];
+    for (const link of contentLinks) {
+      const section = document.getElementById(link.hash.slice(1));
+      if (section && section.getBoundingClientRect().top <= 180) active = link;
+    }
+    for (const link of contentLinks) {
+      link.classList.toggle('is-active', link === active);
+      if (link === active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+  };
+  const scheduleContents = () => {
+    if (contentsQueued) return;
+    contentsQueued = true;
+    requestAnimationFrame(updateContents);
+  };
+  window.addEventListener('scroll', scheduleContents, { passive: true });
+  window.addEventListener('resize', scheduleContents);
+  scheduleContents();
+}
 
 document.querySelectorAll('[data-companion-form]').forEach((form) => {
   form.addEventListener('submit', (event) => {
@@ -294,6 +572,10 @@ document.querySelectorAll('[data-passport-clear-yes]').forEach((button) => {
 });
 
 window.addEventListener('storage', (event) => {
+  if (event.key === LAST_OPENED_KEY) {
+    updateSurfaces();
+    return;
+  }
   if (event.key !== STORAGE_KEY) return;
   if (event.newValue === null) {
     passport = emptyPassport(new Date());
@@ -305,4 +587,6 @@ window.addEventListener('storage', (event) => {
   updateSurfaces();
 });
 
+recordLastOpened();
 updateSurfaces();
+showCompletionNotice();

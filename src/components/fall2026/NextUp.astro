@@ -6,7 +6,7 @@ const { href, label, type, note, number, inFinish = false } = Astro.props;
 ---
 <section class="lesson-card next-up" aria-label="Next up">
   <p class="lesson-eyebrow">Next up</p>
-  <h2><a href={href} data-next-up={inFinish ? undefined : true}>{number && `${number} · `}{label}{!inFinish && <span class="next-arrow" aria-hidden="true">→</span>}</a></h2>
+  <h2>{inFinish ? <>{number && `${number} · `}{label}</> : <a href={href}>{number && `${number} · `}{label}<span class="next-arrow" aria-hidden="true">→</span></a>}</h2>
   {type && <TypeBadge type={type} />}
   <p class="next-note">{note}</p>
   <span class="print-only">{href}</span>

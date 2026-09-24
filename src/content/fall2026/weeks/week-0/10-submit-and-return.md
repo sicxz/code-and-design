@@ -1,31 +1,20 @@
-Everything for Week 0 is due Sunday, September 27, at 11:59 p.m. [Canvas](https://canvas.ewu.edu/courses/1925415/modules) holds the due dates.
+This is the last check of your Week 0 route. You can submit each assignment as soon as its work is ready; you do not have to wait to reach this page. Canvas shows the authoritative due date and submission status for each item.
 
-## What you turn in
+## Confirm four Canvas submissions
 
-- **Your workspace.** [Submit the link to your repository in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11774540). Your introduction and your starting mark are in it.
-- **Your visual notes.** [Upload one PDF in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11774541), named `week-0-notes-lastname.pdf`.
-- **Your Figma card.** It lives in the class team's **intro** file, beside everyone else's. [Submit a link to it in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775749).
+Open each assignment and check that it shows the work you intended to submit:
 
-## Before class on Monday
+1. **[APPLY: Markdown Tutorial](https://canvas.ewu.edu/courses/1925415/assignments/11775193)** — the link to your private repository. Its rendered README should include `## Markdown practice` and all the syntax named in the assignment.
+2. **[WORKSHOP: Your workspace](https://canvas.ewu.edu/courses/1925415/assignments/11774540)** — the link to that same repository. Your starting mark and four-answer introduction should be saved there, and the README setup block should be cleaned up.
+3. **[Visual notes](https://canvas.ewu.edu/courses/1925415/assignments/11774541)** — one PDF named `week-0-notes-lastname.pdf`, with your handwritten notes on both readings.
+4. **[APPLY: Figma Card](https://canvas.ewu.edu/courses/1925415/assignments/11775749)** — the link to your card in the class team's shared file.
 
-Complete the [Markdown Tutorial](https://www.markdowntutorial.com/). Then add a **Markdown practice** section to your README that uses every lesson in it: italics and bold, headers, an inline and a reference link, an image, a blockquote, an unordered and an ordered list, and two paragraphs with a hard line break. [Submit your repository link in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775193) by 1 p.m. on Monday, September 28.
+If an item is missing, open its lesson above and finish that piece. A green checkmark or percentage on this site saves your place in the route; it does not show whether Canvas received a submission.
 
 ## Reopen your work
 
-Open your repository on GitHub from another computer or from your phone. Confirm that your introduction is there before Monday, September 28.
+Open your repository on GitHub from another computer or your phone if one is available. If you have only this computer, reload the repository's front page. Confirm that the introduction and **Markdown practice** are still there after README cleanup. If something is missing, revise it in your repository and check the Canvas submissions again.
 
-## What comes next
+On Monday, September 28, you will turn your introduction's words into HTML headings and paragraphs.
 
-On Monday, September 28, the same words become HTML headings and paragraphs.
-
-## Check: where is the due date?
-
-> **Check.**
->
-> <fieldset class="lesson-check" aria-describedby="check-sample-note">
->   <legend>Which surface holds the due date?</legend>
->   <label class="answer-option"><input type="radio" name="due-date-surface" value="canvas"> <span>Canvas</span></label>
->   <label class="answer-option"><input type="radio" name="due-date-surface" value="course-site"> <span>The course site</span></label>
->   <label class="answer-option"><input type="radio" name="due-date-surface" value="repository"> <span>Your repository</span></label>
-> </fieldset>
-> <p class="lesson-caption" id="check-sample-note">Sample question. No scoring. Your answer is not saved.</p>
+Need your place markers on another browser? [Export your Learning Passport](/1/passport/) and save a copy. It is a backup for this site's route, not a Canvas grade or submission record.

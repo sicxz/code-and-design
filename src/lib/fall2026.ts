@@ -25,6 +25,13 @@ const lessonCards = {
 // One renderer for Markdown files and the draft notes placed by the templates.
 export function renderLessonMarkdown(markdown: string): string {
   const renderer = new Renderer();
+  const renderLink = renderer.link;
+  renderer.link = function (token) {
+    const html = renderLink.call(this, token);
+    return token.href.startsWith('https://canvas.ewu.edu/')
+      ? html.replace('<a ', '<a target="_blank" rel="noopener noreferrer" ')
+      : html;
+  };
   renderer.blockquote = function ({ tokens }) {
     const html = this.parser.parse(tokens);
     const first = html.match(/^<p><strong>([^<]+)<\/strong>/);
@@ -62,6 +69,11 @@ import registry from '../data/fall2026/lessons.json';
 import journey from '../data/fall2026/opening-journey.json';
 
 export type LessonType = keyof typeof registry.types;
+export interface CanvasTurnIn {
+  title: string;
+  url: string;
+  instruction: string;
+}
 export interface ModuleLesson {
   slug: string;
   title: string;
@@ -74,6 +86,7 @@ export interface ModuleLesson {
   journeySteps: string[];
   story: boolean;
   draft: string | null;
+  submission?: CanvasTurnIn;
 }
 export interface LessonModule {
   intro: string;

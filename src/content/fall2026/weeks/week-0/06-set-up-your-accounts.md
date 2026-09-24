@@ -27,18 +27,24 @@ Use the account you have. Do not make a second account for this course.
 5. Select **Emails** in the sidebar, under "Access". The Emails page lists every address on your account.
 6. Look for your `@ewu.edu` address in that list. One of the three cases below matches what you see.
 
-**Case A.** Your `@ewu.edu` address is in the list, and nothing under it offers to resend a verification email. GitHub has verified the address, so nothing here is left to do.
+### Case A
+
+Your `@ewu.edu` address is in the list, and nothing under it offers to resend a verification email. GitHub has verified the address, so nothing here is left to do.
 
 1. Go on to **Your profile** below.
 
-**Case B.** Your `@ewu.edu` address is in the list, and a link under it offers to resend a verification email. GitHub has not verified the address yet.
+### Case B
+
+Your `@ewu.edu` address is in the list, and a link under it offers to resend a verification email. GitHub has not verified the address yet.
 
 1. Select **Resend verification email** under that address. GitHub emails a verification link to your `@ewu.edu` address.
 2. Open that email.
 3. Select the link in the message. GitHub marks the address as verified.
 4. Go on to **Your profile** below.
 
-**Case C.** Your `@ewu.edu` address is not in the list.
+### Case C
+
+Your `@ewu.edu` address is not in the list.
 
 1. Type your `@ewu.edu` address in the box under "Add email address".
 2. Select **Add**. The address joins the list, and GitHub emails a verification link to it.

@@ -661,11 +661,6 @@
       "description": "Opening resources on learning, web design roles, asking for help, and visual notes."
     },
     {
-      "title": "Web Design + Code course workspace",
-      "url": "https://github.com/sicxz/DESN368-code-design-workspace",
-      "description": "Instructor source under review for the opening clone lesson. Do not fork it; the student-owned destination and save/push procedure must be verified before publication."
-    },
-    {
       "title": "HTML syntax on MDN",
       "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
       "description": "Look up element structure and attributes while practicing."
@@ -706,11 +701,6 @@
       "id": "references",
       "title": "References and documentation",
       "path": "references.md"
-    },
-    {
-      "id": "opening-toolkit",
-      "title": "Web Design + Code 1: opening toolkit",
-      "path": "opening-toolkit.md"
     },
     {
       "id": "workflow",

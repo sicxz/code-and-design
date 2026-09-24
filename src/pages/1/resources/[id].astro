@@ -1,7 +1,8 @@
 ---
 import FallCourseLayout from '../../../layouts/FallCourseLayout.astro';
+import SectionedProse from '../../../components/fall2026/SectionedProse.astro';
 import { fall, readLesson } from '../../../lib/fall2026';
 export function getStaticPaths(){return fall.documents.filter(d=>d.id!=='syllabus').map(document=>({params:{id:document.id},props:{document}}));}
 const { document } = Astro.props;
 ---
-<FallCourseLayout title={document.title}><p class="breadcrumb"><a href="/1/">Course</a> / <a href="/1/resources/">Resources</a></p><article class="prose" set:html={readLesson(document.path)} /></FallCourseLayout>
+<FallCourseLayout title={document.title}><p class="breadcrumb"><a href="/1/">Course</a> / <a href="/1/resources/">Resources</a></p><SectionedProse html={readLesson(document.path)} /></FallCourseLayout>

@@ -13,10 +13,10 @@ if (!opening || !firstLesson) throw new Error('The front page needs the first We
       <div class="surface"><dt>Your repository</dt><dd>Source work, project history, revisions, and the workspace that grows toward your portfolio.</dd></div>
     </dl>
   </div>
-  <section class="start-card" aria-labelledby="start-title" data-start-link>
+  <section class="start-card" aria-labelledby="start-title" data-start-link data-week-resume="week-0">
     <h2 id="start-title">Start</h2>
-    <p class="eyebrow">Week 0 · Lesson 1 of {opening.lessons.length}</p>
-    <h3>{firstLesson.title}</h3>
-    <a class="button secondary" href={lessonHref('week-0', firstLesson.slug)} data-opening-start>Start here <span aria-hidden="true">→</span></a>
+    <p class="eyebrow" data-resume-position>Week 0 · Lesson 1 of {opening.lessons.length}</p>
+    <h3 data-resume-title>{firstLesson.title}</h3>
+    <a class="button resume-action" href={lessonHref('week-0', firstLesson.slug)} data-resume-link>Start lesson <span aria-hidden="true">→</span></a>
   </section>
 </section>

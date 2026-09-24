@@ -29,7 +29,7 @@ The selected first-weekend pair is:
 - [“Code is Clay”](https://campedersen.com/code-is-clay) · Cam Pedersen's practitioner perspective on code as material that can be shaped and revised.
 - [“Making space for a handmade web”](https://www.figma.com/blog/making-space-for-a-handmade-web/) · Chia Amisola's personal invitation to imagine what a website might be.
 
-Read both and make handwritten visual notes. These essays offer practitioner perspectives; they do not establish that a particular activity causes learning. The exact note prompt, page expectation, evidence, deadline, and submission route remain under instructor review. See the [opening toolkit](/1/resources/opening-toolkit/) and the repository's evidence entries `E-READ-001` and `E-READ-002` before publication.
+Read both and make handwritten visual notes. These essays offer practitioner perspectives; they do not establish that a particular activity causes learning. Follow [Readings and visual notes](/1/weeks/week-0/readings-and-visual-notes/) for the current prompt, page format, and Canvas submission.
 
 ## When you need help
 

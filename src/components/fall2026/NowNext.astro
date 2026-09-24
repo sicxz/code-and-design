@@ -8,13 +8,13 @@ const courseModule = getLessonModule(weekId);
 if (!week || !courseModule?.lessons.length) throw new Error(`No starting lesson for ${weekId}`);
 const [first, ...next] = courseModule.lessons.slice(0, 3);
 ---
-<section class="card now-next" aria-labelledby="now-next-title" data-now-next>
+<section class="card now-next" aria-labelledby="now-next-title" data-now-next data-week-resume={weekId}>
   <h2 id="now-next-title">Now and next</h2>
   <div class="now-row">
-    <span class="eyebrow row-label">Start</span>
-    <div><p class="meta">Week {week.number} / Lesson 1 of {courseModule.lessons.length}</p><h3>{first.title}</h3></div>
+    <span class="eyebrow row-label" data-resume-state>Start</span>
+    <div><p class="meta" data-resume-position>Week {week.number} / Lesson 1 of {courseModule.lessons.length}</p><h3 data-resume-title>{first.title}</h3></div>
     <TypeBadge type={first.type} />
-    <a class="button secondary" href={lessonHref(weekId, first.slug)} data-now-link>Open lesson <span aria-hidden="true">→</span></a>
+    <a class="button continue-action" href={lessonHref(weekId, first.slug)} data-resume-link>Start lesson <span aria-hidden="true">→</span></a>
   </div>
   <div class="next-row">
     <span class="eyebrow row-label">Next</span>

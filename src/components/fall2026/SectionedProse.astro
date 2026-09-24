@@ -1,0 +1,22 @@
+---
+interface Props { html: string }
+const { html } = Astro.props;
+const parts = html.split(/(?=<h2(?:\s[^>]*)?>)/).filter(part => part.trim());
+const opening = parts[0]?.trimStart().startsWith('<h2') ? '' : parts.shift() ?? '';
+const headingCounts = new Map<string, number>();
+const sections = parts.map(part => {
+  const heading = part.match(/^<h2([^>]*)>([\s\S]*?)<\/h2>/);
+  if (!heading) throw new Error('Sectioned prose needs a second-level heading for each section.');
+  const existingId = heading[1].match(/\bid=["']([^"']+)["']/)?.[1];
+  const base = heading[2].replace(/<[^>]+>/g, '').toLowerCase().normalize('NFKD')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
+  const count = (headingCounts.get(base) ?? 0) + 1;
+  headingCounts.set(base, count);
+  const id = existingId ?? `section-${base}${count > 1 ? `-${count}` : ''}`;
+  return { id, html: existingId ? part : part.replace(/^<h2/, `<h2 id="${id}"`) };
+});
+---
+<article class="prose sectioned-prose">
+  {opening && <div class="sectioned-prose__opening" set:html={opening} />}
+  {sections.map(section => <section class="sectioned-prose__section" aria-labelledby={section.id} set:html={section.html} />)}
+</article>

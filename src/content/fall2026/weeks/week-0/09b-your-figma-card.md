@@ -1,4 +1,4 @@
-Your Figma card introduces you to the class on one card. Every student's card sits side by side in one shared Figma file, **intro**, in the class team.
+Your Figma card introduces you to the class on one card. Every student's card sits side by side in the shared class Figma file linked from [APPLY: Figma Card in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775749).
 
 ## Before you start
 
@@ -7,8 +7,10 @@ Your Figma card introduces you to the class on one card. Every student's card si
 
 ## Make your card
 
-1. Open the file named **intro** in the class team. The canvas shows the card to copy.
+1. Open the shared Figma file from the Canvas assignment. The canvas shows the card to copy.
 2. Select the frame named **card-template**. A blue outline surrounds it.
+
+   Canvas currently uses **desn368f26 intro cards** for this step. In the linked Figma file, the frame to copy is labeled **card-template**.
 3. Press **Cmd+D** on a Mac, or **Ctrl+D** on Windows. A copy of the card appears above the original.
 4. Drag your copy to one of the card placeholders on the canvas. The original stays where it was.
 5. Double-click the name of your copy above its top-left corner, type your own name, and press **Return**.
@@ -25,7 +27,7 @@ Your Figma card introduces you to the class on one card. Every student's card si
 
 ## Submit in Canvas
 
-1. In the **intro** file, right-click your card's frame and choose **Copy/Paste as**, then **Copy link**.
+1. In the shared file, right-click your card's frame and choose **Copy/Paste as**, then **Copy link**.
 2. Paste that link into [APPLY: Figma Card in Canvas](https://canvas.ewu.edu/courses/1925415/assignments/11775749).
 
 Your card is due Sunday, September 27, at 11:59 p.m.
