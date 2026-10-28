@@ -17,12 +17,223 @@
   --sq-radius: 18px;
   --sq-shadow: 0 18px 45px rgba(15, 23, 42, 0.16);
 
+  display: flex;
+  flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   min-height: 0;
   overflow: hidden;
   background: var(--sq-paper);
   color: var(--sq-ink);
   line-height: 1.55;
+}
+
+/* Layout bar: Story / Both / Pen, reset, tips, and the Pen in a new tab. */
+
+.selector-quest__toolbar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--sq-panel-line);
+  background: #0b1220;
+  color: var(--sq-light-muted);
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.selector-quest__toolbar-label {
+  color: var(--sq-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.selector-quest__views {
+  display: inline-flex;
+  border: 1px solid var(--sq-panel-line);
+  border-radius: 999px;
+}
+
+.selector-quest__toolbar button,
+.selector-quest__tips summary,
+.selector-quest__open {
+  min-height: 32px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.selector-quest__views button {
+  padding: 6px 14px;
+  border: 0;
+  border-left: 1px solid var(--sq-panel-line);
+  background: transparent;
+  color: var(--sq-light-muted);
+}
+
+.selector-quest__views button:first-child {
+  border-left: 0;
+  border-radius: 999px 0 0 999px;
+}
+
+.selector-quest__views button:last-child {
+  border-radius: 0 999px 999px 0;
+}
+
+.selector-quest__views button:focus-visible {
+  z-index: 1;
+}
+
+.selector-quest__views button[aria-pressed='true'] {
+  background: var(--sq-accent);
+  color: #0b1220;
+}
+
+.selector-quest__width {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.selector-quest__width button {
+  min-width: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--sq-panel-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sq-light-muted);
+}
+
+.selector-quest__views button:hover,
+.selector-quest__width button:hover,
+.selector-quest__tips summary:hover {
+  color: var(--sq-light);
+}
+
+.selector-quest__views button[aria-pressed='true']:hover {
+  color: #0b1220;
+}
+
+.selector-quest__toolbar button:focus-visible,
+.selector-quest__tips summary:focus-visible,
+.selector-quest__open:focus-visible,
+.selector-quest__divider:focus-visible {
+  outline: 3px solid var(--sq-gold);
+  outline-offset: 2px;
+}
+
+.selector-quest__tips {
+  position: relative;
+}
+
+.selector-quest__tips summary {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 4px;
+  color: var(--sq-light-muted);
+  list-style: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.selector-quest__tips summary::-webkit-details-marker {
+  display: none;
+}
+
+.selector-quest__tips ul {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: min(420px, calc(100vw - 28px));
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 14px 16px 14px 32px;
+  border: 1px solid var(--sq-panel-line);
+  border-radius: 14px;
+  background: #0f172a;
+  color: var(--sq-light-muted);
+  box-shadow: var(--sq-shadow);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.selector-quest__tips ul:focus {
+  outline: none;
+}
+
+.selector-quest__tips strong {
+  color: var(--sq-light);
+}
+
+.selector-quest__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  margin-left: auto;
+  padding: 6px 12px;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  border-radius: 999px;
+  color: #bae6fd;
+  background: rgba(14, 165, 233, 0.12);
+  text-decoration: none;
+}
+
+.selector-quest .selector-quest__open {
+  color: #bae6fd;
+}
+
+.selector-quest__open:hover {
+  background: rgba(14, 165, 233, 0.24);
+  text-decoration: underline;
+}
+
+/* The bar between the panels. */
+
+.selector-quest__divider {
+  position: relative;
+  min-height: 0;
+  background: #1e293b;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.selector-quest__divider::before {
+  content: '';
+  position: absolute;
+  inset: 0 -6px;
+}
+
+.selector-quest__divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(203, 213, 225, 0.55);
+  transform: translate(-50%, -50%);
+}
+
+.selector-quest__divider:hover,
+.selector-quest.is-resizing .selector-quest__divider {
+  background: var(--sq-accent);
+}
+
+.selector-quest.is-resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.selector-quest.is-resizing iframe {
+  pointer-events: none;
 }
 
 .selector-quest__back-link {
@@ -80,14 +291,42 @@
 
 .selector-quest__layout {
   display: grid;
-  grid-template-columns: minmax(360px, 460px) 1fr;
-  height: 100%;
+  grid-template-columns: var(--sq-story-width, clamp(320px, 32vw, 460px)) 12px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  flex: 1 1 auto;
   min-height: 0;
+}
+
+/* Pen: the Pen fills the page. Story: the story fills it, in a readable column. */
+
+.selector-quest[data-view='pen'] .selector-quest__layout,
+.selector-quest[data-view='story'] .selector-quest__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.selector-quest[data-view='pen'] .selector-quest__story-panel,
+.selector-quest[data-view='pen'] .selector-quest__divider,
+.selector-quest[data-view='pen'] .selector-quest__width,
+.selector-quest[data-view='story'] .selector-quest__divider,
+.selector-quest[data-view='story'] .selector-quest__pen-panel,
+.selector-quest[data-view='story'] .selector-quest__width {
+  display: none;
+}
+
+.selector-quest[data-view='story'] .selector-quest__story-panel {
+  border-right: 0;
+}
+
+.selector-quest[data-view='story'] .selector-quest__story-panel > * {
+  max-width: 760px;
 }
 
 .selector-quest__story-panel {
   height: 100%;
   min-width: 0;
+  min-height: 0;
   overflow-y: auto;
   padding: 28px;
   border-right: 1px solid var(--border-light);
@@ -126,6 +365,21 @@
   color: var(--sq-light-muted);
   font-size: 0.96rem;
   line-height: 1.65;
+}
+
+.selector-quest__match {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--sq-gold);
+  border-radius: 12px;
+  background: rgba(250, 204, 21, 0.1);
+  color: var(--sq-light-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.selector-quest__match strong {
+  color: var(--sq-light);
 }
 
 .selector-quest__chapters {
@@ -367,6 +621,7 @@
 .selector-quest__pen-panel {
   min-width: 0;
   min-height: 0;
+  height: 100%;
   overflow: hidden;
   background: #ffffff;
 }
@@ -384,10 +639,31 @@
     overflow: auto;
   }
 
+  .selector-quest__toolbar {
+    position: sticky;
+    top: 0;
+  }
+
   .selector-quest__layout {
     display: block;
-    height: auto;
-    min-height: 100%;
+    flex: none;
+  }
+
+  .selector-quest__divider,
+  .selector-quest__width {
+    display: none;
+  }
+
+  .selector-quest__tips {
+    position: static;
+  }
+
+  .selector-quest__tips ul {
+    left: 14px;
+    right: 14px;
+    width: auto;
+    max-height: calc(100dvh - 120px);
+    overflow-y: auto;
   }
 
   .selector-quest__story-panel {
@@ -398,5 +674,18 @@
 
   .selector-quest__pen-panel {
     height: 72vh;
+  }
+
+  /* Pen on a narrow screen: the Pen takes everything under the bar. */
+  .selector-quest[data-view='pen'] {
+    overflow: hidden;
+  }
+
+  .selector-quest[data-view='pen'] .selector-quest__layout {
+    flex: 1 1 auto;
+  }
+
+  .selector-quest[data-view='pen'] .selector-quest__pen-panel {
+    height: 100%;
   }
 }

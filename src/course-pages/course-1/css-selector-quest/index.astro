@@ -2,7 +2,9 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import '../../../styles/selector-quest.css';
 
-const codepenEmbedUrl = 'https://codepen.io/editor/tmasingale/pen/019dd4c7-6216-7eaa-8caf-d056f6e6f77f?default-tab=css,result&editable=true';
+// tab=style.css opens the CSS file first (the 2.0 editor's sharing parameter, checked October 27).
+const codepenEmbedUrl = 'https://codepen.io/editor/tmasingale/pen/019dd4c7-6216-7eaa-8caf-d056f6e6f77f?tab=style.css&default-tab=css,result&editable=true';
+const codepenPenUrl = 'https://codepen.io/editor/tmasingale/pen/019dd4c7-6216-7eaa-8caf-d056f6e6f77f';
 
 const helpLinks = {
   basic: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Basic_selectors',
@@ -239,9 +241,36 @@ const spellbookRows = [
 ---
 
 <BaseLayout title="CSS Selector Quest: The Selector Guild - DESN368" workspaceMode={true}>
-  <main class="selector-quest" aria-labelledby="sq-page-title">
+  <main class="selector-quest" aria-labelledby="sq-page-title" data-view="both">
+    <div class="selector-quest__toolbar">
+      <span class="selector-quest__toolbar-label" id="sq-layout-label">Layout</span>
+      <div class="selector-quest__views" role="group" aria-labelledby="sq-layout-label">
+        <button type="button" data-view="story" aria-pressed="false">Story</button>
+        <button type="button" data-view="both" aria-pressed="true">Both</button>
+        <button type="button" data-view="pen" aria-pressed="false">Pen</button>
+      </div>
+      <div class="selector-quest__width" role="group" aria-labelledby="sq-width-label">
+        <span class="selector-quest__toolbar-label" id="sq-width-label">Story width</span>
+        <button type="button" data-nudge="-1" aria-controls="sq-story" aria-label="Make the story narrower">&minus;</button>
+        <button type="button" data-nudge="1" aria-controls="sq-story" aria-label="Make the story wider">+</button>
+        <button type="button" data-reset-width aria-controls="sq-story">Reset</button>
+      </div>
+      <details class="selector-quest__tips">
+        <summary>Layout tips</summary>
+        <ul tabindex="-1">
+          <li><strong>Story, Both, Pen</strong> choose what this page shows. It remembers your choice next time.</li>
+          <li><strong>On a wide screen, drag the bar</strong> between the story and the Pen to make either side wider. Or use the <strong>&minus;</strong> and <strong>+</strong> buttons, or click the bar and use the arrow keys. Double-click the bar, or press <strong>Reset</strong>, to go back.</li>
+          <li><strong>Inside the Pen,</strong> drag the line between the code and the preview to give either more room. The grid button at the Pen's top right changes CodePen's own layout: editors and preview together, editors only, or preview only, with the editors on the left, top or right.</li>
+          <li><strong>Still cramped?</strong> Open the Pen in its own tab and keep this page beside it.</li>
+        </ul>
+      </details>
+      <a class="selector-quest__open" href={codepenPenUrl} target="_blank" rel="noopener noreferrer">
+        Open the Pen in a new tab
+        <span aria-hidden="true">&#8599;</span>
+      </a>
+    </div>
     <div class="selector-quest__layout">
-      <aside class="selector-quest__story-panel" aria-label="CSS selector quest instructions">
+      <aside class="selector-quest__story-panel" id="sq-story" aria-label="CSS selector quest instructions">
         <a class="selector-quest__back-link" href="/1/weeks/week-5">&larr; Week 5</a>
 
         <header class="selector-quest__hero">
@@ -249,6 +278,9 @@ const spellbookRows = [
           <h1 id="sq-page-title">CSS Selector Quest: The Selector Guild</h1>
           <p class="selector-quest__intro">
             In the city of Markup, every element is waiting to be found. A CSS selector is a search spell: it tells the browser exactly which parts of the page should change. Complete each chapter by choosing the right selector block, adding CSS declarations, and checking the result in the CodePen.
+          </p>
+          <p class="selector-quest__match">
+            <strong>Style it to match the portrait.</strong> The picture in Chapter 2 sets the look: royal purple, gold, sky blue, parchment and stone, with storybook serif lettering. Take your colors from it, choose fonts that feel like its lettering, and keep its storybook mood in every chapter.
           </p>
         </header>
 
@@ -338,6 +370,16 @@ const spellbookRows = [
         </section>
       </aside>
 
+      <div
+        class="selector-quest__divider"
+        role="separator"
+        tabindex="0"
+        aria-orientation="vertical"
+        aria-controls="sq-story"
+        aria-label="Resize the story panel"
+        title="Drag to resize. Double-click to reset."
+      ></div>
+
       <section class="selector-quest__pen-panel" aria-label="CodePen practice area">
         <iframe
           title="CSS Selector Quest CodePen"
@@ -349,3 +391,160 @@ const spellbookRows = [
     </div>
   </main>
 </BaseLayout>
+
+<script>
+  // Layout controls: Story / Both / Pen, a draggable divider, and a remembered choice (Travis, October 27).
+  const root = document.querySelector<HTMLElement>('.selector-quest');
+  const layout = root?.querySelector<HTMLElement>('.selector-quest__layout');
+  const story = root?.querySelector<HTMLElement>('.selector-quest__story-panel');
+  const divider = root?.querySelector<HTMLElement>('.selector-quest__divider');
+  const viewButtons = Array.from(root?.querySelectorAll<HTMLButtonElement>('.selector-quest__views button') ?? []);
+  const resetButton = root?.querySelector<HTMLButtonElement>('[data-reset-width]');
+  const nudgeButtons = Array.from(root?.querySelectorAll<HTMLButtonElement>('[data-nudge]') ?? []);
+
+  if (root && layout && story && divider) {
+    const KEY = 'desn368-selector-quest-layout';
+    const MIN = 260;
+    const STEP = 24;
+    const VIEWS = ['story', 'both', 'pen'];
+    const state: { view: string; width: number | null } = { view: 'both', width: null };
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+      if (VIEWS.includes(saved.view)) state.view = saved.view;
+      if (typeof saved.width === 'number') state.width = saved.width;
+    } catch {
+      // Private windows can refuse storage; the page still works.
+    }
+
+    const save = () => {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(state));
+      } catch {
+        // See above.
+      }
+    };
+
+    const maxWidth = () => Math.max(MIN, Math.round(layout.clientWidth * 0.7));
+    const clamp = (w: number) => Math.min(Math.max(Math.round(w), MIN), maxWidth());
+
+    const applyWidth = () => {
+      if (state.width === null) layout.style.removeProperty('--sq-story-width');
+      else layout.style.setProperty('--sq-story-width', `${clamp(state.width)}px`);
+      const now = Math.round(story.getBoundingClientRect().width);
+      divider.setAttribute('aria-valuemin', String(MIN));
+      divider.setAttribute('aria-valuemax', String(maxWidth()));
+      divider.setAttribute('aria-valuenow', String(now));
+      divider.setAttribute('aria-valuetext', `Story panel ${now} pixels wide`);
+    };
+
+    const applyView = () => {
+      root.dataset.view = state.view;
+      viewButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === state.view)));
+      if (state.view === 'both') applyWidth();
+    };
+
+    const resetWidth = () => {
+      state.width = null;
+      applyWidth();
+      save();
+    };
+
+    viewButtons.forEach((b) =>
+      b.addEventListener('click', () => {
+        state.view = b.dataset.view || 'both';
+        applyView();
+        save();
+      }),
+    );
+    resetButton?.addEventListener('click', resetWidth);
+
+    const nudge = (delta: number) => {
+      state.width = clamp(Math.round(story.getBoundingClientRect().width) + delta);
+      applyWidth();
+      save();
+    };
+    nudgeButtons.forEach((b) => b.addEventListener('click', () => nudge(Number(b.dataset.nudge) * STEP * 3)));
+
+    // One pointer at a time. The drag ends on lostpointercapture, which follows pointerup, pointercancel,
+    // and a capture lost to a context menu (Ctrl-click on a Mac), so the page cannot stay stuck mid-drag.
+    let activePointer: number | null = null;
+    divider.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0 || event.ctrlKey || activePointer !== null) return;
+      event.preventDefault();
+      divider.focus({ preventScroll: true });
+      activePointer = event.pointerId;
+      root.classList.add('is-resizing');
+      const left = layout.getBoundingClientRect().left;
+      const grab = event.clientX - divider.getBoundingClientRect().left;
+      const move = (e: PointerEvent) => {
+        if (e.pointerId !== activePointer) return;
+        state.width = clamp(e.clientX - left - grab);
+        applyWidth();
+      };
+      const stop = (e: PointerEvent) => {
+        if (e.pointerId !== activePointer) return;
+        activePointer = null;
+        root.classList.remove('is-resizing');
+        divider.removeEventListener('pointermove', move);
+        ['pointerup', 'pointercancel', 'lostpointercapture'].forEach((t) => divider.removeEventListener(t, stop as EventListener));
+        save();
+      };
+      divider.addEventListener('pointermove', move);
+      ['pointerup', 'pointercancel', 'lostpointercapture'].forEach((t) => divider.addEventListener(t, stop as EventListener));
+      try {
+        divider.setPointerCapture(event.pointerId);
+      } catch {
+        // Without capture the drag still ends on pointerup.
+      }
+    });
+
+    divider.addEventListener('dblclick', resetWidth);
+
+    divider.addEventListener('keydown', (event) => {
+      const current = Math.round(story.getBoundingClientRect().width);
+      const step = event.shiftKey ? STEP * 3 : STEP;
+      let next: number | null = null;
+      if (event.key === 'ArrowLeft') next = current - step;
+      else if (event.key === 'ArrowRight') next = current + step;
+      else if (event.key === 'Home') next = MIN;
+      else if (event.key === 'End') next = maxWidth();
+      else if (event.key === 'Enter') {
+        event.preventDefault();
+        resetWidth();
+        return;
+      }
+      if (next === null) return;
+      event.preventDefault();
+      state.width = clamp(next);
+      applyWidth();
+      save();
+    });
+
+    window.addEventListener('resize', () => {
+      if (state.view === 'both') applyWidth();
+    });
+
+    // The tips close with Escape, a click elsewhere, focus leaving them, or a click into the Pen.
+    const tips = root.querySelector<HTMLDetailsElement>('.selector-quest__tips');
+    const closeTips = () => {
+      if (tips?.open) tips.open = false;
+    };
+    document.addEventListener('click', (event) => {
+      if (tips?.open && !tips.contains(event.target as Node)) closeTips();
+    });
+    tips?.addEventListener('focusout', (event) => {
+      if (!tips.contains(event.relatedTarget as Node)) closeTips();
+    });
+    window.addEventListener('blur', closeTips);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && tips?.open) {
+        const inside = tips.contains(document.activeElement);
+        closeTips();
+        if (inside) tips.querySelector('summary')?.focus();
+      }
+    });
+
+    applyView();
+  }
+</script>
