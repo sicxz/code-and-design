@@ -78,7 +78,12 @@ for folder in (archive, assets):
         content = file.read_text()
         content = re.sub(r'<aside style="padding:12px 24px;background:#fff0b0.*?</aside>', '', content, flags=re.S)
         for _, link in Links(content).links:
-            url = urlsplit(urljoin('https://code-and-design.org/', link))
+            try:
+                url = urlsplit(urljoin('https://code-and-design.org/', link))
+            except ValueError:
+                # Placeholder addresses such as https://[your-username].github.io/ are not URLs Python can parse.
+                assert 'code-and-design.org' not in link, f'Unparseable course link: {file}: {link}'
+                continue
             if url.netloc == 'code-and-design.org':
                 assert not re.match(r'^/(1(?:/|$)|tutorials/|demos/|assets/)', url.path), f'Archive link escapes: {file}: {link}'
 # Compare unrelated course output to the baseline. Strip build-specific asset hashes only.

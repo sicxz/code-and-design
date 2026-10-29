@@ -110,6 +110,7 @@ Each project is evaluated on:
 - One in-class item every class day, worth 5 points
 - Other participation and engagement assignments that are not daily
 - The Attendance section below is the policy for the daily item
+- Six or more absences lower the course grade by one letter, as the Attendance section explains
 
 ### Final portfolio
 
@@ -129,18 +130,36 @@ Detailed criteria appear in the [rubrics](/1/resources/rubrics/).
 
 Every class day has one Participation and Engagement item. You do it in class. It is worth 5 points. If you are not in class, you do not earn that day's points, and you cannot make it up at home. No days are dropped. Arriving late is fine: come in and join the work. October 28 is asynchronous, and that day's item is done online. If you will miss class, message me before it starts. I cannot return the points, but I can help you catch up.
 
+Starting October 29, absences also affect your course grade:
+
+| Absences | What happens |
+| --- | --- |
+| 1 | No big deal. Check the course site and get notes from a classmate. |
+| 2 or 3 | We should talk. I will reach out to you, and you are welcome to come to me first. |
+| 4 or 5 | You are at serious risk of failing. Each class builds on the last one, and missing this much makes the projects very hard to finish. |
+| 6 or more | Your final course grade drops one full letter grade. This comes on top of the points you missed. |
+
+Arriving late counts as present. Absences for faith or conscience, university-sanctioned events, and disability accommodations do not count toward these numbers.
+
 Absences for reasons of faith or conscience are accommodated, as Washington law requires. Give me the dates in writing during the first two weeks. University-sanctioned events and disability accommodations follow EWU policy. Talk to me early.
 
 ## Late work
 
-This applies to projects and weekly assignments.
+This applies to projects and weekly assignments due on or after Monday, November 2.
 
 | How late | Penalty |
 | --- | --- |
-| Up to 2 weeks | none |
-| More than 2 weeks | 20% off |
+| Up to 2 days | none |
+| More than 2 days, up to 1 week | 10% off |
+| More than 1 week, up to 2 weeks | 20% off |
+| More than 2 weeks, up to 3 weeks | 30% off |
+| More than 3 weeks | 50% off |
 
-Late work is accepted until 11:59 p.m. on December 9. Nothing is accepted after that. Work builds on earlier work, so bring what you have and ask for help before it is late.
+Complete/Incomplete assignments earn full credit up to 1 week late. After that, they are marked Incomplete.
+
+Work due before November 2 can be turned in under the earlier rule until 11:59 p.m. on Monday, November 2: no penalty up to 2 weeks late, and 20% off after that. Work still missing after that time follows the table above, counted from its original due date.
+
+Late work is accepted until 11:59 p.m. on December 9. Nothing is accepted after that. Unfinished work turned in on time earns more than finished work turned in late. Each assignment builds on the one before, so turn in what you have and ask me for help before it is late.
 
 ## What the course provides
 
