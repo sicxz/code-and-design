@@ -130,7 +130,7 @@ Detailed criteria appear in the [rubrics](/1/resources/rubrics/).
 
 Every class day has one Participation and Engagement item. You do it in class. It is worth 5 points. If you are not in class, you do not earn that day's points, and you cannot make it up at home. No days are dropped. Arriving late is fine: come in and join the work. October 28 is asynchronous, and that day's item is done online. If you will miss class, message me before it starts. I cannot return the points, but I can help you catch up.
 
-Starting October 29, absences also affect your course grade:
+Absences also affect your course grade:
 
 | Absences | What happens |
 | --- | --- |
@@ -145,7 +145,7 @@ Absences for reasons of faith or conscience are accommodated, as Washington law 
 
 ## Late work
 
-This applies to projects and weekly assignments due on or after Monday, November 2.
+This applies to projects and weekly assignments.
 
 | How late | Penalty |
 | --- | --- |
@@ -156,8 +156,6 @@ This applies to projects and weekly assignments due on or after Monday, November
 | More than 3 weeks | 50% off |
 
 Complete/Incomplete assignments earn full credit up to 1 week late. After that, they are marked Incomplete.
-
-Work due before November 2 can be turned in under the earlier rule until 11:59 p.m. on Monday, November 2: no penalty up to 2 weeks late, and 20% off after that. Work still missing after that time follows the table above, counted from its original due date.
 
 Late work is accepted until 11:59 p.m. on December 9. Nothing is accepted after that. Unfinished work turned in on time earns more than finished work turned in late. Each assignment builds on the one before, so turn in what you have and ask me for help before it is late.
 
