@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Line drawing of a beetle seen from above">
+<title>Line drawing of a beetle seen from above</title>
+<g fill="none" stroke="#33d4ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<g><path d="M400 250 C520 250 590 360 590 480 C590 620 510 720 400 730"/><path d="M400 160 C470 160 520 190 525 240 C480 255 440 258 400 258"/><path d="M400 95 C440 95 462 120 462 150 C440 160 420 162 400 162"/><path d="M430 100 C450 60 500 40 540 60 C560 72 562 96 548 108"/><path d="M520 215 C580 190 640 150 660 110 L700 80"/><path d="M588 440 C650 430 700 450 730 490 L760 560"/><path d="M560 610 C620 640 650 690 660 740 L690 780"/><path d="M440 300 C500 320 540 400 540 480 C540 580 490 660 430 690"/><circle cx="470" cy="400" r="18"/><circle cx="500" cy="500" r="14"/><circle cx="465" cy="590" r="11"/></g>
+<g transform="translate(800 0) scale(-1 1)"><path d="M400 250 C520 250 590 360 590 480 C590 620 510 720 400 730"/><path d="M400 160 C470 160 520 190 525 240 C480 255 440 258 400 258"/><path d="M400 95 C440 95 462 120 462 150 C440 160 420 162 400 162"/><path d="M430 100 C450 60 500 40 540 60 C560 72 562 96 548 108"/><path d="M520 215 C580 190 640 150 660 110 L700 80"/><path d="M588 440 C650 430 700 450 730 490 L760 560"/><path d="M560 610 C620 640 650 690 660 740 L690 780"/><path d="M440 300 C500 320 540 400 540 480 C540 580 490 660 430 690"/><circle cx="470" cy="400" r="18"/><circle cx="500" cy="500" r="14"/><circle cx="465" cy="590" r="11"/></g>
+<path d="M400 258 L400 730"/><path d="M400 95 L400 162"/>
+</g>
+</svg>
